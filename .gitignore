@@ -25,7 +25,7 @@ writable/session/*
 writable/uploads/*
 !writable/uploads/index.html
 
-writable/debugbar/*
+# writable/debugbar/*
 
 php_errors.log
 
