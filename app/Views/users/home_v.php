@@ -165,10 +165,11 @@
                         </div>
                         <div class="card-footer bg-transparent py-6 px-3">
                             <div class="row border-bottom">
-                                <div class="col-6 py-1 text-left">
+                                <div class="col-12 py-1 text-center">
                                     <strong>Usia Anak</strong>
                                 </div>
-                                <div class="col-6 py-1 text-left"><?= $program->usia_anak ?></div>
+
+                                <div class="col-12 py-1 text-center"><?= $program->usia_anak ?></div>
                             </div>
                             <div class="row border-bottom">
                                 <div class="col-6 py-1 text-left">
