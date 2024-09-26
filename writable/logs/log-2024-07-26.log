@@ -1,0 +1,55 @@
+CRITICAL - 2024-07-26 00:00:02 --> CodeIgniter\HTTP\Exceptions\HTTPException: The original file is not a valid file.
+in SYSTEMPATH/HTTP/Files/UploadedFile.php on line 146.
+ 1 SYSTEMPATH/HTTP/Files/UploadedFile.php(146): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+ 2 APPPATH/Controllers/Admin/PresensiController.php(256): CodeIgniter\HTTP\Files\UploadedFile->move('dokumentasi/', '1721926802_8e7a652e7b7ae479c6d2.jpg')
+ 3 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->update()
+ 4 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 5 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-26 09:27:43 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(185): mysqli->real_connect('127.0.0.1', 'root', '', 'alifya_private_...', 3306, '', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokModel.php(26): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(37): App\Models\Admin\KelompokModel->getKelompokPengajar()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#4 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokModel.php(26): CodeIgniter\Model->__call('get', Array)
+#5 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(37): App\Models\Admin\KelompokModel->getKelompokPengajar()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->index()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#10 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#11 {main}
+CRITICAL - 2024-07-26 09:27:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 428.
+ 1 SYSTEMPATH/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_table`.`id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`
+FROM `kelompok_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+ORDER BY `kelompok_table`.`id` desc', [], false)
+ 3 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH/Models/Admin/KelompokModel.php(26): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH/Controllers/Admin/PresensiController.php(37): App\Models\Admin\KelompokModel->getKelompokPengajar()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')

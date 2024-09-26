@@ -1,0 +1,1605 @@
+CRITICAL - 2024-08-04 00:47:13 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/Admin/UserManagementController.php on line 149.
+ 1 APPPATH/Controllers/Admin/UserManagementController.php(149): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/UserManagementController.php', 149, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->delete()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-08-04 00:50:55 --> mysqli_sql_exception: Unknown column 'data_pengajar_table' in 'where clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pe...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pe...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pe...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pe...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PengajarModel.php(79): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\PengajarModel->getMitraPengajarWithUsersManagement()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-08-04 00:50:55 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'data_pengajar_table' in 'where clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+JOIN `users_management_table` ON `users_management_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`status_id` = :data_pengajar_table.status_id:
+AND `data_pengajar_table` IS NULL
+ORDER BY `id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PengajarModel.php(79): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\PengajarModel->getMitraPengajarWithUsersManagement()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 00:50:55 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'data_pengajar_table' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+JOIN `users_management_table` ON `users_management_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`status_id` = 1
+AND `data_pengajar_table` IS NULL
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+JOIN `users_management_table` ON `users_management_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`status_id` = 1
+AND `data_pengajar_table` IS NULL
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+JOIN `users_management_table` ON `users_management_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`status_id` = :data_pengajar_table.status_id:
+AND `data_pengajar_table` IS NULL
+ORDER BY `id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PengajarModel.php(79): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\PengajarModel->getMitraPengajarWithUsersManagement()
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 00:50:55 --> [Caused by] mysqli_sql_exception: Unknown column 'data_pengajar_table' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+JOIN `users_management_table` ON `users_management_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`status_id` = 1
+AND `data_pengajar_table` IS NULL
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+JOIN `users_management_table` ON `users_management_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`status_id` = 1
+AND `data_pengajar_table` IS NULL
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+JOIN `users_management_table` ON `users_management_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`status_id` = 1
+AND `data_pengajar_table` IS NULL
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+JOIN `users_management_table` ON `users_management_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`status_id` = :data_pengajar_table.status_id:
+AND `data_pengajar_table` IS NULL
+ORDER BY `id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PengajarModel.php(79): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\PengajarModel->getMitraPengajarWithUsersManagement()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 00:59:27 --> BadMethodCallException: Call to undefined method App\Models\Admin\PengajarModel::getMitraPengajarWithUsersManagement
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Admin/UserManagementController.php(32): CodeIgniter\Model->__call('getMitraPengajarWithUsersManagement', [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-08-04 00:59:46 --> mysqli_sql_exception: Unknown column 'user_management_table.mitra_pengajar_id' in 'field list' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `user_ma...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `user_ma...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `user_ma...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `user_ma...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/UserManagementModel.php(40): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\UserManagementModel->getMitraPengajarWithUsersManagement()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-08-04 00:59:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user_management_table.mitra_pengajar_id' in 'field list'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `user_management_table`.`mitra_pengajar_id`, `user_management_table`.`email`, `user_management_table`.`password`, `user_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = :data_pengajar_table.status_id:
+ORDER BY `id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/UserManagementModel.php(40): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\UserManagementModel->getMitraPengajarWithUsersManagement()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 00:59:46 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'user_management_table.mitra_pengajar_id' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `user_management_table`.`mitra_pengajar_id`, `user_management_table`.`email`, `user_management_table`.`password`, `user_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = 1
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `user_management_table`.`mitra_pengajar_id`, `user_management_table`.`email`, `user_management_table`.`password`, `user_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = 1
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `user_management_table`.`mitra_pengajar_id`, `user_management_table`.`email`, `user_management_table`.`password`, `user_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = :data_pengajar_table.status_id:
+ORDER BY `id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/UserManagementModel.php(40): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\UserManagementModel->getMitraPengajarWithUsersManagement()
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 00:59:46 --> [Caused by] mysqli_sql_exception: Unknown column 'user_management_table.mitra_pengajar_id' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `user_management_table`.`mitra_pengajar_id`, `user_management_table`.`email`, `user_management_table`.`password`, `user_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = 1
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `user_management_table`.`mitra_pengajar_id`, `user_management_table`.`email`, `user_management_table`.`password`, `user_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = 1
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `user_management_table`.`mitra_pengajar_id`, `user_management_table`.`email`, `user_management_table`.`password`, `user_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = 1
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `user_management_table`.`mitra_pengajar_id`, `user_management_table`.`email`, `user_management_table`.`password`, `user_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = :data_pengajar_table.status_id:
+ORDER BY `id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/UserManagementModel.php(40): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\UserManagementModel->getMitraPengajarWithUsersManagement()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-08-04 01:00:34 --> mysqli_sql_exception: Column 'id' in order clause is ambiguous in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `users_m...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `users_m...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `users_m...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `users_m...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/UserManagementModel.php(40): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\UserManagementModel->getMitraPengajarWithUsersManagement()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-08-04 01:00:34 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'id' in order clause is ambiguous
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `users_management_table`.`mitra_pengajar_id`, `users_management_table`.`email`, `users_management_table`.`password`, `users_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = :data_pengajar_table.status_id:
+ORDER BY `id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/UserManagementModel.php(40): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\UserManagementModel->getMitraPengajarWithUsersManagement()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 01:00:34 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'id' in order clause is ambiguous
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `users_management_table`.`mitra_pengajar_id`, `users_management_table`.`email`, `users_management_table`.`password`, `users_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = 1
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `users_management_table`.`mitra_pengajar_id`, `users_management_table`.`email`, `users_management_table`.`password`, `users_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = 1
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `users_management_table`.`mitra_pengajar_id`, `users_management_table`.`email`, `users_management_table`.`password`, `users_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = :data_pengajar_table.status_id:
+ORDER BY `id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/UserManagementModel.php(40): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\UserManagementModel->getMitraPengajarWithUsersManagement()
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 01:00:34 --> [Caused by] mysqli_sql_exception: Column 'id' in order clause is ambiguous
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `users_management_table`.`mitra_pengajar_id`, `users_management_table`.`email`, `users_management_table`.`password`, `users_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = 1
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `users_management_table`.`mitra_pengajar_id`, `users_management_table`.`email`, `users_management_table`.`password`, `users_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = 1
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `users_management_table`.`mitra_pengajar_id`, `users_management_table`.`email`, `users_management_table`.`password`, `users_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = 1
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `users_management_table`.`mitra_pengajar_id`, `users_management_table`.`email`, `users_management_table`.`password`, `users_management_table`.`role_management_id`
+FROM `users_management_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `users_management_table`.`mitra_pengajar_id`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+WHERE `data_pengajar_table`.`status_id` = :data_pengajar_table.status_id:
+ORDER BY `id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/UserManagementModel.php(40): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/UserManagementController.php(32): App\Models\Admin\UserManagementModel->getMitraPengajarWithUsersManagement()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 01:03:09 --> BadMethodCallException: Call to undefined method App\Models\Admin\UserManagementModel::getMitraPengajarWithUsersManagement
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Admin/UserManagementController.php(32): CodeIgniter\Model->__call('getMitraPengajarWithUsersManagement', [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 01:08:44 --> ErrorException: Undefined variable: mitra_pengajar
+in APPPATH/Controllers/Admin/UserManagementController.php on line 39.
+ 1 APPPATH/Controllers/Admin/UserManagementController.php(39): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: mitra_pengajar', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/UserManagementController.php', 39, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 01:14:11 --> ErrorException: Undefined variable: mitra_pengajar
+in APPPATH/Controllers/Admin/UserManagementController.php on line 38.
+ 1 APPPATH/Controllers/Admin/UserManagementController.php(38): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: mitra_pengajar', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/UserManagementController.php', 38, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 01:15:10 --> BadMethodCallException: Call to undefined method App\Models\Admin\PengajarModel::getMitraPengajarWithUsersManagement
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Admin/UserManagementController.php(33): CodeIgniter\Model->__call('getMitraPengajarWithUsersManagement', [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-08-04 13:11:54 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(185): mysqli->real_connect('127.0.0.1', 'root', '', 'alifya_private_...', 3306, '', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#4 /Volumes/mf480 - Data/Alifya/app/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', Array)
+#5 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#10 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#11 {main}
+CRITICAL - 2024-08-04 13:11:54 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 428.
+ 1 SYSTEMPATH/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `program_belajar_table`
+ORDER BY `id` desc', [], false)
+ 3 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-08-04 13:11:54 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(185): mysqli->real_connect('127.0.0.1', 'root', '', 'alifya_private_...', 3306, '', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#4 /Volumes/mf480 - Data/Alifya/app/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', Array)
+#5 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#10 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#11 {main}
+CRITICAL - 2024-08-04 13:11:54 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 428.
+ 1 SYSTEMPATH/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `program_belajar_table`
+ORDER BY `id` desc', [], false)
+ 3 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 13:33:12 --> Error: Class 'App\Database\Migrations\Usermanagement' not found
+in APPPATH/Controllers/Auth/LoginController.php on line 16.
+ 1 SYSTEMPATH/CodeIgniter.php(913): App\Controllers\Auth\LoginController->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 14:01:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:01:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:01:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:01:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:02:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:02:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:03:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:03:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:04:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:07:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:07:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:08:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:08:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:08:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:08:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:09:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:09:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:10:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:10:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:10:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:10:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:11:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:11:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:11:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:11:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:12:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:12:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:12:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:12:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:12:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:13:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:13:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:13:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:13:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:13:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:13:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:13:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:14:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:14:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:14:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:14:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:14:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:14:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:14:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:15:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:15:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:15:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:15:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:22:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:24:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:24:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 14:24:26 --> ErrorException: Undefined index: isLoggedIn
+in SYSTEMPATH/Filters/Filters.php on line 555.
+ 1 SYSTEMPATH/Filters/Filters.php(555): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: isLoggedIn', '/Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Filters/Filters.php', 555, [...])
+ 2 SYSTEMPATH/Filters/Filters.php(516): CodeIgniter\Filters\Filters->registerArguments('isLoggedIn', [])
+ 3 SYSTEMPATH/Filters/Filters.php(250): CodeIgniter\Filters\Filters->processFilters('admin/dashboard')
+ 4 SYSTEMPATH/Filters/Filters.php(172): CodeIgniter\Filters\Filters->initialize('admin/dashboard')
+ 5 SYSTEMPATH/CodeIgniter.php(474): CodeIgniter\Filters\Filters->run('admin/dashboard', 'before')
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 14:24:56 --> ErrorException: Undefined index: isLoggedIn
+in SYSTEMPATH/Filters/Filters.php on line 555.
+ 1 SYSTEMPATH/Filters/Filters.php(555): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: isLoggedIn', '/Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Filters/Filters.php', 555, [...])
+ 2 SYSTEMPATH/Filters/Filters.php(516): CodeIgniter\Filters\Filters->registerArguments('isLoggedIn', [])
+ 3 SYSTEMPATH/Filters/Filters.php(250): CodeIgniter\Filters\Filters->processFilters('admin/dashboard')
+ 4 SYSTEMPATH/Filters/Filters.php(172): CodeIgniter\Filters\Filters->initialize('admin/dashboard')
+ 5 SYSTEMPATH/CodeIgniter.php(474): CodeIgniter\Filters\Filters->run('admin/dashboard', 'before')
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 14:24:58 --> ErrorException: Undefined index: isLoggedIn
+in SYSTEMPATH/Filters/Filters.php on line 555.
+ 1 SYSTEMPATH/Filters/Filters.php(555): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: isLoggedIn', '/Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Filters/Filters.php', 555, [...])
+ 2 SYSTEMPATH/Filters/Filters.php(516): CodeIgniter\Filters\Filters->registerArguments('isLoggedIn', [])
+ 3 SYSTEMPATH/Filters/Filters.php(250): CodeIgniter\Filters\Filters->processFilters('admin/dashboard')
+ 4 SYSTEMPATH/Filters/Filters.php(172): CodeIgniter\Filters\Filters->initialize('admin/dashboard')
+ 5 SYSTEMPATH/CodeIgniter.php(474): CodeIgniter\Filters\Filters->run('admin/dashboard', 'before')
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 14:25:08 --> ErrorException: Undefined index: isLoggedIn
+in SYSTEMPATH/Filters/Filters.php on line 555.
+ 1 SYSTEMPATH/Filters/Filters.php(555): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: isLoggedIn', '/Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Filters/Filters.php', 555, [...])
+ 2 SYSTEMPATH/Filters/Filters.php(516): CodeIgniter\Filters\Filters->registerArguments('isLoggedIn', [])
+ 3 SYSTEMPATH/Filters/Filters.php(250): CodeIgniter\Filters\Filters->processFilters('admin/program_belajar')
+ 4 SYSTEMPATH/Filters/Filters.php(172): CodeIgniter\Filters\Filters->initialize('admin/program_belajar')
+ 5 SYSTEMPATH/CodeIgniter.php(474): CodeIgniter\Filters\Filters->run('admin/program_belajar', 'before')
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 14:25:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:25:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:25:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:25:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:25:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:25:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:26:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:27:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:27:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:27:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:27:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:27:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:27:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:28:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:28:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:28:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:28:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:28:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:28:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:28:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:28:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:37:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:43:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:46:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:46:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:46:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:46:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:46:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:47:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:47:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:47:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:47:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:47:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:47:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:47:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:48:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:48:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:48:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:49:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:49:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:49:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:49:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:49:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:49:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:49:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:50:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:50:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:50:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:50:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:50:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:50:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:51:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:53:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:53:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:53:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:54:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:57:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 14:57:46 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "mitra/materi_belajar_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('mitra/materi_belajar_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/materi_belajar_v', [], true)
+ 3 APPPATH/Controllers/Mitra/MateriBelajarController.php(28): view('mitra/materi_belajar_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MateriBelajarController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MateriBelajarController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 14:58:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 14:58:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:01:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:01:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:02:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:03:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:03:22 --> ErrorException: Undefined variable: status_pengajar
+in APPPATH/Views/admin/pengajar_v.php on line 175.
+ 1 APPPATH/Views/admin/pengajar_v.php(175): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: status_pengajar', '/Volumes/mf480 - Data/Alifya/app/Views/admin/pengajar_v.php', 175, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/pengajar_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/pengajar_v', [], true)
+ 5 APPPATH/Controllers/Mitra/PengajarController.php(28): view('admin/pengajar_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\PengajarController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\PengajarController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:03:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:03:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:03:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:03:42 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "mitra/pengajar_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('mitra/pengajar_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/pengajar_v', [], true)
+ 3 APPPATH/Controllers/Mitra/PengajarController.php(28): view('mitra/pengajar_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\PengajarController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\PengajarController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:05:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:05:12 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "mitra_pengajar/pengajar_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('mitra_pengajar/pengajar_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra_pengajar/pengajar_v', [], true)
+ 3 APPPATH/Controllers/Mitra/PengajarController.php(31): view('mitra_pengajar/pengajar_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\PengajarController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\PengajarController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:05:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:05:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:07:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:07:09 --> ErrorException: Trying to get property 'nama_lengkap' of non-object
+in APPPATH/Views/mitra/pengajar_v.php on line 55.
+ 1 APPPATH/Views/mitra/pengajar_v.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nama_lengkap\' of non-object', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/pengajar_v.php', 55, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/pengajar_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/pengajar_v', [], true)
+ 5 APPPATH/Controllers/Mitra/PengajarController.php(36): view('mitra/pengajar_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\PengajarController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\PengajarController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:07:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:07:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:08:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:08:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:08:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:08:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:08:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:10:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:10:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:10:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:11:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:12:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:12:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:12:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:12:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:16:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:16:55 --> BadMethodCallException: Call to undefined method App\Models\Mitra\MuridModel::getDataMurid
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Mitra/MuridController.php(39): CodeIgniter\Model->__call('getDataMurid', [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:17:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:17:54 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "mitra/murid_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('mitra/murid_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/murid_v', [], true)
+ 3 APPPATH/Controllers/Mitra/MuridController.php(42): view('mitra/murid_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:18:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:19:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:21:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-04 15:21:51 --> mysqli_sql_exception: Not unique table/alias: 'data_murid_table' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Mitra/MuridModel.php(41): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-08-04 15:21:51 --> CodeIgniter\Database\Exceptions\DatabaseException: Not unique table/alias: 'data_murid_table'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Mitra/MuridModel.php(41): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 15:21:51 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Not unique table/alias: 'data_murid_table'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Mitra/MuridModel.php(41): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 15:21:51 --> [Caused by] mysqli_sql_exception: Not unique table/alias: 'data_murid_table'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Mitra/MuridModel.php(41): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:22:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-04 15:22:44 --> mysqli_sql_exception: Unknown column 'kelompok_belajar_table.id' in 'field list' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-08-04 15:22:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_table.id' in 'field list'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 15:22:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_table.id' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 15:22:44 --> [Caused by] mysqli_sql_exception: Unknown column 'kelompok_belajar_table.id' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:24:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-04 15:24:05 --> mysqli_sql_exception: Unknown column 'kelompok_belajar_table.kelompok_id' in 'on clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-08-04 15:24:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_table.kelompok_id' in 'on clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 15:24:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_table.kelompok_id' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 15:24:05 --> [Caused by] mysqli_sql_exception: Unknown column 'kelompok_belajar_table.kelompok_id' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:24:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-04 15:24:18 --> mysqli_sql_exception: Unknown column 'kelompok_table.mitra_pengajar_id' in 'field list' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-08-04 15:24:18 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_table.mitra_pengajar_id' in 'field list'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 15:24:18 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_table.mitra_pengajar_id' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-04 15:24:18 --> [Caused by] mysqli_sql_exception: Unknown column 'kelompok_table.mitra_pengajar_id' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`mitra_pengajar_id`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_murid_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `kelompok_belajar_table` ON `kelompok_belajar_table`.`kelompok_id` = `kelompok_table`.`id`
+WHERE `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Mitra/MuridModel.php(40): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Mitra/MuridController.php(39): App\Models\Mitra\MuridModel->getPesertaDidikWhereMitraPengajar('1')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:24:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:24:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:25:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:28:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:28:42 --> BadMethodCallException: Call to undefined method App\Models\Mitra\PengajarModel::getDataPengajarStatusWaiting
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Mitra/KelompokController.php(36): CodeIgniter\Model->__call('getDataPengajarStatusWaiting', [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\KelompokController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\KelompokController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:28:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:28:55 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "mitra/kelompok_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('mitra/kelompok_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/kelompok_v', [], true)
+ 3 APPPATH/Controllers/Mitra/KelompokController.php(39): view('mitra/kelompok_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\KelompokController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\KelompokController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:29:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:29:24 --> ErrorException: Undefined variable: pengajar
+in APPPATH/Views/mitra/kelompok_v.php on line 100.
+ 1 APPPATH/Views/mitra/kelompok_v.php(100): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: pengajar', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/kelompok_v.php', 100, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/kelompok_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/kelompok_v', [], true)
+ 5 APPPATH/Controllers/Mitra/KelompokController.php(38): view('mitra/kelompok_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\KelompokController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\KelompokController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:30:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:30:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:30:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:30:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:31:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:31:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:31:13 --> BadMethodCallException: Call to undefined method App\Models\Mitra\KelompokModel::getKelompokPengajarWithMitraPengajar
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Mitra/KelompokController.php(34): CodeIgniter\Model->__call('getKelompokPengajarWithMitraPengajar', [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\KelompokController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\KelompokController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:31:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:32:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:32:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:32:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:32:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:35:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:36:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:37:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:37:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:38:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:38:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:38:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:38:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:39:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:39:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:39:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:39:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:40:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:41:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:41:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:41:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:41:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:41:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:42:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:42:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:42:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:42:16 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "mitra/detail_kelompok_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('mitra/detail_kelompok_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/detail_kelompok_v', [], true)
+ 3 APPPATH/Controllers/Mitra/KelompokController.php(53): view('mitra/detail_kelompok_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\KelompokController->views('', '8')
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\KelompokController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:43:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:43:03 --> ErrorException: Trying to get property 'foto' of non-object
+in APPPATH/Views/mitra/detail_kelompok_v.php on line 20.
+ 1 APPPATH/Views/mitra/detail_kelompok_v.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'foto\' of non-object', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/detail_kelompok_v.php', 20, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/detail_kelompok_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/detail_kelompok_v', [], true)
+ 5 APPPATH/Controllers/Mitra/KelompokController.php(53): view('mitra/detail_kelompok_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\KelompokController->views('', '8')
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\KelompokController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:43:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:43:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:43:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:44:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:44:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:44:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:44:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:45:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:45:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:45:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:46:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:46:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:47:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:47:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:47:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:47:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:47:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:48:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:48:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:48:05 --> ErrorException: Undefined property: stdClass::$kelompok_id
+in APPPATH/Views/mitra/kelompok_v.php on line 42.
+ 1 APPPATH/Views/mitra/kelompok_v.php(42): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$kelompok_id', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/kelompok_v.php', 42, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/kelompok_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/kelompok_v', [], true)
+ 5 APPPATH/Controllers/Mitra/KelompokController.php(37): view('mitra/kelompok_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\KelompokController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\KelompokController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:48:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:48:06 --> ErrorException: Undefined property: stdClass::$kelompok_id
+in APPPATH/Views/mitra/kelompok_v.php on line 42.
+ 1 APPPATH/Views/mitra/kelompok_v.php(42): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$kelompok_id', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/kelompok_v.php', 42, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/kelompok_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/kelompok_v', [], true)
+ 5 APPPATH/Controllers/Mitra/KelompokController.php(37): view('mitra/kelompok_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\KelompokController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\KelompokController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:49:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:50:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:50:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:50:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:50:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:50:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:50:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:51:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:51:11 --> ErrorException: Undefined property: stdClass::$kelompok_id
+in APPPATH/Views/mitra/kelompok_v.php on line 42.
+ 1 APPPATH/Views/mitra/kelompok_v.php(42): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$kelompok_id', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/kelompok_v.php', 42, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/kelompok_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/kelompok_v', [], true)
+ 5 APPPATH/Controllers/Mitra/KelompokController.php(40): view('mitra/kelompok_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\KelompokController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\KelompokController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:51:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:51:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:51:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:52:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:52:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:52:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:52:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:52:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:52:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:53:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:53:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:55:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:55:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:55:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:55:14 --> BadMethodCallException: Call to undefined method App\Models\Mitra\MuridModel::getPesertaDidikWhereMitraPengajar
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Mitra/MuridController.php(39): CodeIgniter\Model->__call('getPesertaDidikWhereMitraPengajar', [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:57:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:57:58 --> ErrorException: Undefined property: stdClass::$status_murid_id
+in APPPATH/Views/mitra/murid_v.php on line 59.
+ 1 APPPATH/Views/mitra/murid_v.php(59): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$status_murid_id', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php', 59, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/murid_v', [], true)
+ 5 APPPATH/Controllers/Mitra/MuridController.php(45): view('mitra/murid_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:58:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:58:09 --> ErrorException: Undefined property: stdClass::$status_murid_id
+in APPPATH/Views/mitra/murid_v.php on line 59.
+ 1 APPPATH/Views/mitra/murid_v.php(59): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$status_murid_id', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php', 59, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/murid_v', [], true)
+ 5 APPPATH/Controllers/Mitra/MuridController.php(45): view('mitra/murid_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:58:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:58:10 --> ErrorException: Undefined property: stdClass::$status_murid_id
+in APPPATH/Views/mitra/murid_v.php on line 59.
+ 1 APPPATH/Views/mitra/murid_v.php(59): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$status_murid_id', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php', 59, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/murid_v', [], true)
+ 5 APPPATH/Controllers/Mitra/MuridController.php(45): view('mitra/murid_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:58:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:58:58 --> ErrorException: Undefined property: stdClass::$status_murid_id
+in APPPATH/Views/mitra/murid_v.php on line 59.
+ 1 APPPATH/Views/mitra/murid_v.php(59): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$status_murid_id', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php', 59, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/murid_v', [], true)
+ 5 APPPATH/Controllers/Mitra/MuridController.php(45): view('mitra/murid_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 15:59:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 15:59:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 15:59:40 --> ErrorException: Undefined property: stdClass::$status_murid_id
+in APPPATH/Views/mitra/murid_v.php on line 59.
+ 1 APPPATH/Views/mitra/murid_v.php(59): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$status_murid_id', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php', 59, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/murid_v', [], true)
+ 5 APPPATH/Controllers/Mitra/MuridController.php(45): view('mitra/murid_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 16:00:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:00:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:01:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 16:01:01 --> ErrorException: Undefined property: stdClass::$status_murid
+in APPPATH/Views/mitra/murid_v.php on line 59.
+ 1 APPPATH/Views/mitra/murid_v.php(59): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$status_murid', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php', 59, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/murid_v', [], true)
+ 5 APPPATH/Controllers/Mitra/MuridController.php(49): view('mitra/murid_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 16:01:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 16:01:02 --> ErrorException: Undefined property: stdClass::$status_murid
+in APPPATH/Views/mitra/murid_v.php on line 59.
+ 1 APPPATH/Views/mitra/murid_v.php(59): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$status_murid', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php', 59, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/murid_v', [], true)
+ 5 APPPATH/Controllers/Mitra/MuridController.php(49): view('mitra/murid_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 16:01:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 16:01:04 --> ErrorException: Undefined property: stdClass::$status_murid
+in APPPATH/Views/mitra/murid_v.php on line 59.
+ 1 APPPATH/Views/mitra/murid_v.php(59): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$status_murid', '/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php', 59, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/mitra/murid_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/murid_v', [], true)
+ 5 APPPATH/Controllers/Mitra/MuridController.php(49): view('mitra/murid_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 16:01:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:02:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:02:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:02:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:02:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:02:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:02:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:02:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:02:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:02:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:04:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:05:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:05:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 16:05:37 --> BadMethodCallException: Call to undefined method App\Models\Mitra\MuridModel::getMitramurid
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Mitra/MuridController.php(53): CodeIgniter\Model->__call('getMitramurid', [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\MuridController->view('7')
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\MuridController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 16:06:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:06:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 16:06:24 --> Error: Class 'App\Models\Admin\HariModel' not found
+in APPPATH/Controllers/Admin/MuridController.php on line 30.
+ 1 SYSTEMPATH/CodeIgniter.php(913): App\Controllers\Admin\MuridController->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 16:07:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 16:07:17 --> ErrorException: Undefined property: App\Controllers\Admin\MuridController::$hariModel
+in APPPATH/Controllers/Admin/MuridController.php on line 40.
+ 1 APPPATH/Controllers/Admin/MuridController.php(40): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Admin\\MuridController::$hariModel', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/MuridController.php', 40, [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\MuridController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\MuridController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 16:07:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:07:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:07:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:07:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:07:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:08:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:08:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:08:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:08:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:08:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:10:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:10:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:10:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:10:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:10:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:11:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:11:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:12:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:12:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:12:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:12:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:12:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:12:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:12:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:12:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:12:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:12:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:13:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:18:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-04 16:18:40 --> BadMethodCallException: Call to undefined method App\Models\Mitra\KelompokModel::getKelompokPengajar
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Mitra/PresensiController.php(35): CodeIgniter\Model->__call('getKelompokPengajar', [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\PresensiController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\PresensiController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-04 16:19:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:19:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:19:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:19:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:20:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:20:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:20:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:20:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:20:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:20:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:21:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:22:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:22:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:22:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:22:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:22:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:22:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:23:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:24:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:24:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:25:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:25:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:25:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:25:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:26:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:26:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:26:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:26:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:26:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:29:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:31:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:31:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:31:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:31:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:32:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:32:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:32:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:33:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:33:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:34:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:34:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:34:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:34:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:34:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:34:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:35:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:36:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:36:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:36:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:36:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:38:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:39:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:39:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:39:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:39:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:39:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:40:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:40:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:41:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:41:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:41:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:41:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:41:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:41:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:41:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:42:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:42:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:42:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:42:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:42:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:44:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:44:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:44:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:44:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:44:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:45:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:45:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:45:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:45:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:46:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:46:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:46:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:47:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:47:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:47:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:47:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:47:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:47:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:47:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:47:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:47:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:48:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:48:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:48:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:48:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:48:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:49:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:49:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:49:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:49:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:49:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-04 16:50:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

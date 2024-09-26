@@ -1,0 +1,131 @@
+ERROR - 2024-07-25 23:00:41 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid...' at line 3 in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `presens...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presens...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presens...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presens...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PresensiModel.php(27): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(38): App\Models\Admin\PresensiModel->getDataPresensi()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-25 23:00:41 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid...' at line 3
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id, data_pengajar_table`.`nama_lengkap,` `data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+ORDER BY `id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PresensiModel.php(27): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PresensiController.php(38): App\Models\Admin\PresensiModel->getDataPresensi()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-25 23:00:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid...' at line 3
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id, data_pengajar_table`.`nama_lengkap,` `data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id, data_pengajar_table`.`nama_lengkap,` `data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id, data_pengajar_table`.`nama_lengkap,` `data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+ORDER BY `id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PresensiModel.php(27): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PresensiController.php(38): App\Models\Admin\PresensiModel->getDataPresensi()
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-25 23:00:41 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid...' at line 3
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id, data_pengajar_table`.`nama_lengkap,` `data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id, data_pengajar_table`.`nama_lengkap,` `data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id, data_pengajar_table`.`nama_lengkap,` `data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id, data_pengajar_table`.`nama_lengkap,` `data_murid_table`.`nama_lengkap_anak`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+ORDER BY `id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PresensiModel.php(27): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PresensiController.php(38): App\Models\Admin\PresensiModel->getDataPresensi()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-25 23:55:24 --> ParseError: syntax error, unexpected '}', expecting end of file
+in APPPATH/Controllers/Admin/PresensiController.php on line 278.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(290): CodeIgniter\Autoloader\Autoloader->includeFile('/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php')
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(266): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Admin\\PresensiController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Admin\\PresensiController')
+ 4 [internal function]: spl_autoload_call('App\\Controllers\\Admin\\PresensiController')
+ 5 SYSTEMPATH/CodeIgniter.php(899): class_exists('\\App\\Controllers\\Admin\\PresensiController', true)
+ 6 SYSTEMPATH/CodeIgniter.php(489): CodeIgniter\CodeIgniter->startController()
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-25 23:56:50 --> Error: Call to undefined method CodeIgniter\HTTP\Files\UploadedFile::get()
+in APPPATH/Controllers/Admin/PresensiController.php on line 249.
+ 1 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->update()
+ 2 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 3 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-25 23:57:00 --> Error: Call to undefined method CodeIgniter\HTTP\Files\UploadedFile::get()
+in APPPATH/Controllers/Admin/PresensiController.php on line 249.
+ 1 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->update()
+ 2 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 3 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-25 23:57:38 --> ErrorException: Undefined variable: path_dokumentasi
+in APPPATH/Controllers/Admin/PresensiController.php on line 253.
+ 1 APPPATH/Controllers/Admin/PresensiController.php(253): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: path_dokumentasi', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php', 253, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->update()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-25 23:58:25 --> CodeIgniter\HTTP\Exceptions\HTTPException: The original file is not a valid file.
+in SYSTEMPATH/HTTP/Files/UploadedFile.php on line 146.
+ 1 SYSTEMPATH/HTTP/Files/UploadedFile.php(146): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+ 2 APPPATH/Controllers/Admin/PresensiController.php(256): CodeIgniter\HTTP\Files\UploadedFile->move('dokumentasi/', '1721926705_46bf4bae0a80cbf7530c.jpg')
+ 3 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->update()
+ 4 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 5 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')

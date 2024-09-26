@@ -1,0 +1,38 @@
+CRITICAL - 2024-04-23 04:29:51 --> ErrorException: Undefined variable: status_pengajar
+in APPPATH/Views/admin/role_management_v.php on line 48.
+ 1 APPPATH/Views/admin/role_management_v.php(48): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: status_pengajar', '/Volumes/mf480 - Data/Alifya/app/Views/admin/role_management_v.php', 48, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/role_management_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/role_management_v', [], true)
+ 5 APPPATH/Controllers/Admin/RoleManagementController.php(28): view('admin/role_management_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\RoleManagementController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\RoleManagementController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-04-23 04:35:31 --> ErrorException: Undefined variable: title
+in APPPATH/Views/layout/template.php on line 8.
+ 1 APPPATH/Views/layout/template.php(8): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: title', '/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php', 8, [])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/View/View.php(244): CodeIgniter\View\View->render('layout/template', [], true)
+ 5 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard_v', [], true)
+ 6 APPPATH/Controllers/Admin/DashboardController.php(12): view('admin/dashboard_v')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-04-23 04:36:30 --> ErrorException: Undefined variable: title
+in APPPATH/Views/layout/template.php on line 8.
+ 1 APPPATH/Views/layout/template.php(8): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: title', '/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php', 8, [])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/View/View.php(244): CodeIgniter\View\View->render('layout/template', [], true)
+ 5 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard_v', [], true)
+ 6 APPPATH/Controllers/Admin/DashboardController.php(12): view('admin/dashboard_v')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')

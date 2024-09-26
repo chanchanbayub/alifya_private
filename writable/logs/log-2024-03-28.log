@@ -1,0 +1,60 @@
+CRITICAL - 2024-03-28 02:06:16 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/program_belajar_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/program_belajar_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/program_belajar_v', [], true)
+ 3 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): view('admin/program_belajar_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-03-28 02:35:24 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/program_belajar_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/program_belajar_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/program_belajar_v', [], true)
+ 3 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): view('admin/program_belajar_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-03-28 02:38:26 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/program_belajar_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/program_belajar_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/program_belajar_v', [], true)
+ 3 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): view('admin/program_belajar_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-03-28 02:41:03 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/program_belajar_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/program_belajar_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/program_belajar_v', [], true)
+ 3 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): view('admin/program_belajar_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-03-28 02:41:05 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/program_belajar_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/program_belajar_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/program_belajar_v', [], true)
+ 3 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): view('admin/program_belajar_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-03-28 02:43:41 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/dashboard.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/dashboard.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 3 APPPATH/Controllers/Admin/DashboardController.php(12): view('admin/dashboard')
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')

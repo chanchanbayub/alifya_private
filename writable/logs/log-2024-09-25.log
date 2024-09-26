@@ -1,0 +1,666 @@
+INFO - 2024-09-25 13:54:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 13:55:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 13:55:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 13:55:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 13:55:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-25 14:00:58 --> mysqli_sql_exception: Cannot drop index 'alat_pengajaran_table_materi_belajar_id_foreign': needed in a foreign key constraint in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('ALTER TABLE `al...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `al...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `al...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/Forge.php(784): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `al...')
+#4 /Volumes/mf480 - Data/Alifya/app/Database/Migrations/2024-09-25-065706_DropMateriAlatPengajaran.php(21): CodeIgniter\Database\Forge->dropColumn('alat_pengajaran...', 'materi_belajar_...')
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(865): App\Database\Migrations\DropMateriAlatPengajaran->up()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2024-09-25 14:02:22 --> mysqli_sql_exception: Duplicate column name 'materi_belajar' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('ALTER TABLE `al...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `al...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `al...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/Forge.php(757): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `al...')
+#4 /Volumes/mf480 - Data/Alifya/app/Database/Migrations/2024-09-25-065706_DropMateriAlatPengajaran.php(20): CodeIgniter\Database\Forge->addColumn('alat_pengajaran...', Array, false, Array)
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(865): App\Database\Migrations\DropMateriAlatPengajaran->up()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2024-09-25 14:02:55 --> mysqli_sql_exception: Can't DROP FOREIGN KEY `materi_belajar_id`; check that it exists in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('ALTER TABLE `al...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `al...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `al...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/Forge.php(524): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `al...')
+#4 /Volumes/mf480 - Data/Alifya/app/Database/Migrations/2024-09-25-065706_DropMateriAlatPengajaran.php(20): CodeIgniter\Database\Forge->dropForeignKey('alat_pengajaran...', 'materi_belajar_...')
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(865): App\Database\Migrations\DropMateriAlatPengajaran->up()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+INFO - 2024-09-25 14:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:08:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:08:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:08:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:08:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:08:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:08:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:08:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-25 14:08:56 --> ErrorException: Undefined property: stdClass::$level
+in APPPATH/Views/admin/alat_pengajar_v.php on line 52.
+ 1 APPPATH/Views/admin/alat_pengajar_v.php(52): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$level', '/Volumes/mf480 - Data/Alifya/app/Views/admin/alat_pengajar_v.php', 52, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/alat_pengajar_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/alat_pengajar_v', [], true)
+ 5 APPPATH/Controllers/Admin/AlatPengajaranController.php(33): view('admin/alat_pengajar_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\AlatPengajaranController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\AlatPengajaranController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-09-25 14:09:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-25 14:09:08 --> ErrorException: Undefined property: stdClass::$level
+in APPPATH/Views/admin/alat_pengajar_v.php on line 52.
+ 1 APPPATH/Views/admin/alat_pengajar_v.php(52): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$level', '/Volumes/mf480 - Data/Alifya/app/Views/admin/alat_pengajar_v.php', 52, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/alat_pengajar_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/alat_pengajar_v', [], true)
+ 5 APPPATH/Controllers/Admin/AlatPengajaranController.php(33): view('admin/alat_pengajar_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\AlatPengajaranController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\AlatPengajaranController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-09-25 14:09:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-25 14:09:37 --> ErrorException: Undefined property: stdClass::$level
+in APPPATH/Views/admin/alat_pengajar_v.php on line 52.
+ 1 APPPATH/Views/admin/alat_pengajar_v.php(52): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$level', '/Volumes/mf480 - Data/Alifya/app/Views/admin/alat_pengajar_v.php', 52, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/alat_pengajar_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/alat_pengajar_v', [], true)
+ 5 APPPATH/Controllers/Admin/AlatPengajaranController.php(33): view('admin/alat_pengajar_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\AlatPengajaranController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\AlatPengajaranController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-09-25 14:09:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:09:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:10:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:10:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:10:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:10:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:10:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:10:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:11:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:11:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:11:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:11:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:11:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:11:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:11:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:11:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:12:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:17:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:17:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:17:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:17:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:17:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:18:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:18:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:18:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:18:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:19:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:20:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-25 14:20:30 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "mitra/alat_pengajar_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('mitra/alat_pengajar_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('mitra/alat_pengajar_v', [], true)
+ 3 APPPATH/Controllers/Mitra/AlatPengajaranController.php(31): view('mitra/alat_pengajar_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Mitra\AlatPengajaranController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Mitra\AlatPengajaranController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-09-25 14:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:21:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:22:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:22:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:22:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:32:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:32:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:32:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:41:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:41:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:49:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:49:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:49:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:49:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:49:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:49:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:56:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:56:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:56:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:56:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:56:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:57:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:58:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:58:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:58:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:58:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:58:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:59:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 14:59:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:00:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:00:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:00:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:00:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:00:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:00:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:00:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:00:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:00:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:01:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:01:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:01:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:01:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:01:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:01:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:03:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:03:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:03:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:03:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:03:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:03:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:04:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:05:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:06:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:06:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:06:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:06:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-25 15:06:25 --> mysqli_sql_exception: Table 'alifya_private_db.data_pendukung_table' doesn't exist in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pe...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pe...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pe...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pe...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('nurwahidah22334...')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('nurwahidah22334...')
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-09-25 15:06:25 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('nurwahidah22334@gmail.com')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('nurwahidah22334@gmail.com')
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-09-25 15:06:25 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'nurwahidah22334@gmail.com\'
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'nurwahidah22334@gmail.com\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('nurwahidah22334@gmail.com')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('nurwahidah22334@gmail.com')
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-09-25 15:06:25 --> [Caused by] mysqli_sql_exception: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'nurwahidah22334@gmail.com\'
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'nurwahidah22334@gmail.com\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'nurwahidah22334@gmail.com\'
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('nurwahidah22334@gmail.com')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('nurwahidah22334@gmail.com')
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-09-25 15:06:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-25 15:06:47 --> mysqli_sql_exception: Table 'alifya_private_db.data_pendukung_table' doesn't exist in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pe...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pe...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pe...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pe...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('rachwidiaakunke...')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('rachwidiaakunke...')
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-09-25 15:06:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('rachwidiaakunke2@gmail.com')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('rachwidiaakunke2@gmail.com')
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-09-25 15:06:47 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'rachwidiaakunke2@gmail.com\'
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'rachwidiaakunke2@gmail.com\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('rachwidiaakunke2@gmail.com')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('rachwidiaakunke2@gmail.com')
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-09-25 15:06:47 --> [Caused by] mysqli_sql_exception: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'rachwidiaakunke2@gmail.com\'
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'rachwidiaakunke2@gmail.com\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'rachwidiaakunke2@gmail.com\'
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('rachwidiaakunke2@gmail.com')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('rachwidiaakunke2@gmail.com')
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-09-25 15:07:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-25 15:07:09 --> mysqli_sql_exception: Table 'alifya_private_db.data_pendukung_table' doesn't exist in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pe...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pe...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pe...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pe...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('ulfa@gmail.com')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('ulfa@gmail.com')
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-09-25 15:07:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('ulfa@gmail.com')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('ulfa@gmail.com')
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-09-25 15:07:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'ulfa@gmail.com\'
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'ulfa@gmail.com\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('ulfa@gmail.com')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('ulfa@gmail.com')
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-09-25 15:07:09 --> [Caused by] mysqli_sql_exception: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'ulfa@gmail.com\'
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'ulfa@gmail.com\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'ulfa@gmail.com\'
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('ulfa@gmail.com')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('ulfa@gmail.com')
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-09-25 15:07:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:07:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:07:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:07:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:07:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:07:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:08:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:09:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:10:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:10:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:10:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:10:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:10:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:10:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:10:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:10:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:10:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-25 15:10:36 --> mysqli_sql_exception: Table 'alifya_private_db.data_pendukung_table' doesn't exist in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pe...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pe...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pe...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pe...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('haniyahasyifa@g...')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('haniyahasyifa@g...')
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-09-25 15:10:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('haniyahasyifa@gmail.com')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('haniyahasyifa@gmail.com')
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-09-25 15:10:36 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'haniyahasyifa@gmail.com\'
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'haniyahasyifa@gmail.com\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('haniyahasyifa@gmail.com')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('haniyahasyifa@gmail.com')
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-09-25 15:10:36 --> [Caused by] mysqli_sql_exception: Table 'alifya_private_db.data_pendukung_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'haniyahasyifa@gmail.com\'
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'haniyahasyifa@gmail.com\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = \'haniyahasyifa@gmail.com\'
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `data_pengajar_table`.`uid`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`email`, `data_pengajar_table`.`usia`, `data_pengajar_table`.`alamat_domisili`, `data_pengajar_table`.`pendidikan_terakhir`, `data_pengajar_table`.`jurusan`, `status_perkawinan`, `data_pengajar_table`.`nomor_whatsapp`, `data_pengajar_table`.`username_instagram`, `data_pengajar_table`.`foto`, `data_pengajar_table`.`cv`, `data_pengajar_table`.`status_id`, `data_pengajar_table`.`pekerjaan`, `data_pengajar_table`.`pernyataan`, `data_pengajar_table`.`kendaraan_pribadi`, `data_pengajar_table`.`media_belajar`, `data_pengajar_table`.`alasan_bergabung`, `data_pengajar_table`.`kelebihan`, `data_pengajar_table`.`info_loker`, `data_pengajar_table`.`ijazah`, `data_pengajar_table`.`kontrak`, `status_pengajar_table`.`status_pengajar`
+FROM `data_pengajar_table`
+JOIN `status_pengajar_table` ON `status_pengajar_table`.`id` = `data_pengajar_table`.`status_id`
+LEFT JOIN `data_pendukung_table` ON `data_pendukung_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`email` = :data_pengajar_table.email:
+ORDER BY `id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PengajarModel.php(47): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PengajarController.php(588): App\Models\Admin\PengajarModel->getMitraPengajar('haniyahasyifa@gmail.com')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->view('haniyahasyifa@gmail.com')
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-09-25 15:12:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:12:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:13:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:13:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:13:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:13:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:13:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:13:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:13:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:13:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:13:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:14:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:14:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:14:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:14:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:14:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:14:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:14:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:14:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:15:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:15:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:15:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:15:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:15:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:15:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:15:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:15:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:16:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:16:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:16:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:16:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 15:16:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

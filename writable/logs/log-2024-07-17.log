@@ -1,0 +1,156 @@
+ERROR - 2024-07-17 06:36:37 --> mysqli_sql_exception: Can't create table `alifya_private_db`.`kelompok_belajar_table` (errno: 150 "Foreign key constraint is incorrectly formed") in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('CREATE TABLE `k...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `k...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `k...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `k...')
+#4 /Volumes/mf480 - Data/Alifya/app/Database/Migrations/2024-07-17-031802_KelompokBelajarTable.php(51): CodeIgniter\Database\Forge->createTable('kelompok_belaja...', false, Array)
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(865): App\Database\Migrations\KelompokBelajarTable->up()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+CRITICAL - 2024-07-17 06:45:09 --> BadMethodCallException: Call to undefined method App\Models\Admin\KelompokBelajarModel::getKelompokBelajar
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Admin/KelompokBelajarController.php(34): CodeIgniter\Model->__call('getKelompokBelajar', [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\KelompokBelajarController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KelompokBelajarController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-17 06:46:23 --> mysqli_sql_exception: Table 'alifya_private_db.kelpmpok_belajar_table' doesn't exist in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokBelajarModel.php(24): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/KelompokBelajarController.php(34): App\Models\Admin\KelompokBelajarModel->getKelompokBelajar()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\KelompokBelajarController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KelompokBelajarController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-17 06:46:23 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.kelpmpok_belajar_table' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `kelpmpok_belajar_table`
+ORDER BY `id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/KelompokBelajarModel.php(24): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/KelompokBelajarController.php(34): App\Models\Admin\KelompokBelajarModel->getKelompokBelajar()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\KelompokBelajarController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KelompokBelajarController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-17 06:46:23 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.kelpmpok_belajar_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `kelpmpok_belajar_table`
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `kelpmpok_belajar_table`
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `kelpmpok_belajar_table`
+ORDER BY `id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/KelompokBelajarModel.php(24): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/KelompokBelajarController.php(34): App\Models\Admin\KelompokBelajarModel->getKelompokBelajar()
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\KelompokBelajarController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KelompokBelajarController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-17 06:46:23 --> [Caused by] mysqli_sql_exception: Table 'alifya_private_db.kelpmpok_belajar_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *
+FROM `kelpmpok_belajar_table`
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `kelpmpok_belajar_table`
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `kelpmpok_belajar_table`
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `kelpmpok_belajar_table`
+ORDER BY `id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/KelompokBelajarModel.php(24): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/KelompokBelajarController.php(34): App\Models\Admin\KelompokBelajarModel->getKelompokBelajar()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\KelompokBelajarController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KelompokBelajarController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-17 06:46:32 --> ErrorException: Undefined variable: role_management
+in APPPATH/Views/admin/kelompok_belajar_v.php on line 48.
+ 1 APPPATH/Views/admin/kelompok_belajar_v.php(48): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: role_management', '/Volumes/mf480 - Data/Alifya/app/Views/admin/kelompok_belajar_v.php', 48, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/kelompok_belajar_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/kelompok_belajar_v', [], true)
+ 5 APPPATH/Controllers/Admin/KelompokBelajarController.php(40): view('admin/kelompok_belajar_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\KelompokBelajarController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KelompokBelajarController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-17 15:47:36 --> ErrorException: Undefined property: stdClass::$peserta_didik_id
+in APPPATH/Views/admin/kelompok_belajar_v.php on line 55.
+ 1 APPPATH/Views/admin/kelompok_belajar_v.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$peserta_didik_id', '/Volumes/mf480 - Data/Alifya/app/Views/admin/kelompok_belajar_v.php', 55, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/kelompok_belajar_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/kelompok_belajar_v', [], true)
+ 5 APPPATH/Controllers/Admin/KelompokBelajarController.php(40): view('admin/kelompok_belajar_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\KelompokBelajarController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KelompokBelajarController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-17 16:19:05 --> CodeIgniter\Database\Exceptions\DataException: There is no data to update.
+in SYSTEMPATH/BaseModel.php on line 970.
+ 1 SYSTEMPATH/BaseModel.php(970): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH/Model.php(807): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH/Controllers/Admin/KelompokBelajarController.php(100): CodeIgniter\Model->update('1', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\KelompokBelajarController->insert()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KelompokBelajarController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-17 16:19:12 --> CodeIgniter\Database\Exceptions\DataException: There is no data to update.
+in SYSTEMPATH/BaseModel.php on line 970.
+ 1 SYSTEMPATH/BaseModel.php(970): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH/Model.php(807): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH/Controllers/Admin/KelompokBelajarController.php(100): CodeIgniter\Model->update('1', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\KelompokBelajarController->insert()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KelompokBelajarController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-17 16:55:31 --> ErrorException: Undefined variable: title
+in APPPATH/Views/layout/template.php on line 8.
+ 1 APPPATH/Views/layout/template.php(8): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: title', '/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php', 8, [])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/View/View.php(244): CodeIgniter\View\View->render('layout/template', [], true)
+ 5 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard_v', [], true)
+ 6 APPPATH/Controllers/Admin/DashboardController.php(12): view('admin/dashboard_v')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-17 17:41:23 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/Admin/KelompokController.php on line 160.
+ 1 APPPATH/Controllers/Admin/KelompokController.php(160): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/KelompokController.php', 160, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\KelompokController->update()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KelompokController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')

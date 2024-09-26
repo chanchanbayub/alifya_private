@@ -1,0 +1,530 @@
+INFO - 2024-08-29 08:41:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:41:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:41:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:41:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:41:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:41:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:41:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:41:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:41:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:43:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:43:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:43:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:43:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-29 08:43:50 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`alifya_private_db`.`harga_mitra_table`, CONSTRAINT `harga_mitra_table_peserta_didik_id_foreign` FOREIGN KEY (`peserta_didik_id`) REFERENCES `data_murid_table` (`id`) ON DELETE CASCADE ON UPDA) in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('UPDATE `harga_m...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `harga_m...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `harga_m...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(2474): CodeIgniter\Database\BaseConnection->query('UPDATE `harga_m...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(393): CodeIgniter\Database\BaseBuilder->update()
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/BaseModel.php(987): CodeIgniter\Model->doUpdate(Array, Array)
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(807): CodeIgniter\BaseModel->update(Array, Array)
+#7 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/HargaMitraController.php(213): CodeIgniter\Model->update('1', Array)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\HargaMitraController->update()
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\HargaMitraController))
+#10 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#12 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#13 {main}
+CRITICAL - 2024-08-29 08:43:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`alifya_private_db`.`harga_mitra_table`, CONSTRAINT `harga_mitra_table_peserta_didik_id_foreign` FOREIGN KEY (`peserta_didik_id`) REFERENCES `data_murid_table` (`id`) ON DELETE CASCADE ON UPDA)
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2474): CodeIgniter\Database\BaseConnection->query('UPDATE `harga_mitra_table` SET `mitra_pengajar_id` = :mitra_pengajar_id:, `peserta_didik_id` = :peserta_didik_id:, `bulan_mitra` = :bulan_mitra:, `harga_mitra` = :harga_mitra:, `updated_at` = :updated_at:
+WHERE `harga_mitra_table`.`id` IN :harga_mitra_table.id:', [...], false)
+ 2 SYSTEMPATH/Model.php(393): CodeIgniter\Database\BaseBuilder->update()
+ 3 SYSTEMPATH/BaseModel.php(987): CodeIgniter\Model->doUpdate([...], [...])
+ 4 SYSTEMPATH/Model.php(807): CodeIgniter\BaseModel->update([...], [...])
+ 5 APPPATH/Controllers/Admin/HargaMitraController.php(213): CodeIgniter\Model->update('1', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\HargaMitraController->update()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\HargaMitraController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-29 08:43:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`alifya_private_db`.`harga_mitra_table`, CONSTRAINT `harga_mitra_table_peserta_didik_id_foreign` FOREIGN KEY (`peserta_didik_id`) REFERENCES `data_murid_table` (`id`) ON DELETE CASCADE ON UPDA)
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `harga_mitra_table` SET `mitra_pengajar_id` = \'2\', `peserta_didik_id` = \'\', `bulan_mitra` = \'8\', `harga_mitra` = \'50000\', `updated_at` = \'2024-08-29 08:43:50\'
+WHERE `harga_mitra_table`.`id` IN (\'1\')')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `harga_mitra_table` SET `mitra_pengajar_id` = \'2\', `peserta_didik_id` = \'\', `bulan_mitra` = \'8\', `harga_mitra` = \'50000\', `updated_at` = \'2024-08-29 08:43:50\'
+WHERE `harga_mitra_table`.`id` IN (\'1\')')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(2474): CodeIgniter\Database\BaseConnection->query('UPDATE `harga_mitra_table` SET `mitra_pengajar_id` = :mitra_pengajar_id:, `peserta_didik_id` = :peserta_didik_id:, `bulan_mitra` = :bulan_mitra:, `harga_mitra` = :harga_mitra:, `updated_at` = :updated_at:
+WHERE `harga_mitra_table`.`id` IN :harga_mitra_table.id:', [...], false)
+ 4 SYSTEMPATH/Model.php(393): CodeIgniter\Database\BaseBuilder->update()
+ 5 SYSTEMPATH/BaseModel.php(987): CodeIgniter\Model->doUpdate([...], [...])
+ 6 SYSTEMPATH/Model.php(807): CodeIgniter\BaseModel->update([...], [...])
+ 7 APPPATH/Controllers/Admin/HargaMitraController.php(213): CodeIgniter\Model->update('1', [...])
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\HargaMitraController->update()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\HargaMitraController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-29 08:43:50 --> [Caused by] mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`alifya_private_db`.`harga_mitra_table`, CONSTRAINT `harga_mitra_table_peserta_didik_id_foreign` FOREIGN KEY (`peserta_didik_id`) REFERENCES `data_murid_table` (`id`) ON DELETE CASCADE ON UPDA)
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('UPDATE `harga_mitra_table` SET `mitra_pengajar_id` = \'2\', `peserta_didik_id` = \'\', `bulan_mitra` = \'8\', `harga_mitra` = \'50000\', `updated_at` = \'2024-08-29 08:43:50\'
+WHERE `harga_mitra_table`.`id` IN (\'1\')', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `harga_mitra_table` SET `mitra_pengajar_id` = \'2\', `peserta_didik_id` = \'\', `bulan_mitra` = \'8\', `harga_mitra` = \'50000\', `updated_at` = \'2024-08-29 08:43:50\'
+WHERE `harga_mitra_table`.`id` IN (\'1\')')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `harga_mitra_table` SET `mitra_pengajar_id` = \'2\', `peserta_didik_id` = \'\', `bulan_mitra` = \'8\', `harga_mitra` = \'50000\', `updated_at` = \'2024-08-29 08:43:50\'
+WHERE `harga_mitra_table`.`id` IN (\'1\')')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2474): CodeIgniter\Database\BaseConnection->query('UPDATE `harga_mitra_table` SET `mitra_pengajar_id` = :mitra_pengajar_id:, `peserta_didik_id` = :peserta_didik_id:, `bulan_mitra` = :bulan_mitra:, `harga_mitra` = :harga_mitra:, `updated_at` = :updated_at:
+WHERE `harga_mitra_table`.`id` IN :harga_mitra_table.id:', [...], false)
+ 5 SYSTEMPATH/Model.php(393): CodeIgniter\Database\BaseBuilder->update()
+ 6 SYSTEMPATH/BaseModel.php(987): CodeIgniter\Model->doUpdate([...], [...])
+ 7 SYSTEMPATH/Model.php(807): CodeIgniter\BaseModel->update([...], [...])
+ 8 APPPATH/Controllers/Admin/HargaMitraController.php(213): CodeIgniter\Model->update('1', [...])
+ 9 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\HargaMitraController->update()
+10 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\HargaMitraController))
+11 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 08:44:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:44:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:44:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:44:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:44:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:44:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:45:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:46:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:46:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 08:46:07 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/Admin/HargaMitraController.php on line 151.
+ 1 APPPATH/Controllers/Admin/HargaMitraController.php(151): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/HargaMitraController.php', 151, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\HargaMitraController->delete()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\HargaMitraController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 08:46:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:46:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:46:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 08:46:20 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/Admin/HargaMitraController.php on line 151.
+ 1 APPPATH/Controllers/Admin/HargaMitraController.php(151): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/HargaMitraController.php', 151, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\HargaMitraController->delete()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\HargaMitraController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 08:46:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:46:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:46:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:46:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:46:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:46:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:46:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:47:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:47:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:47:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:47:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:47:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:47:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:49:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:49:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:49:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 08:49:51 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/PDF/PdfController.php on line 81.
+ 1 APPPATH/Controllers/PDF/PdfController.php(81): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PdfController.php', 81, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 08:50:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 08:50:24 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/PDF/PdfController.php on line 81.
+ 1 APPPATH/Controllers/PDF/PdfController.php(81): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PdfController.php', 81, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 08:50:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:51:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 08:51:01 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/PDF/PdfController.php on line 81.
+ 1 APPPATH/Controllers/PDF/PdfController.php(81): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PdfController.php', 81, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 08:51:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 08:51:20 --> ErrorException: Undefined variable: harga
+in APPPATH/Views/pdf/invoice_mitra_pdf.php on line 80.
+ 1 APPPATH/Views/pdf/invoice_mitra_pdf.php(80): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: harga', '/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_mitra_pdf.php', 80, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_mitra_pdf.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('pdf/invoice_mitra_pdf', [], true)
+ 5 APPPATH/Controllers/PDF/PdfController.php(85): view('pdf/invoice_mitra_pdf', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 08:52:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:52:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:55:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:55:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:56:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 08:57:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:06:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:07:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:07:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 09:07:15 --> BadMethodCallException: Call to undefined method App\Models\Admin\HargaMitraModel::getInvoice
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/PDF/PdfController.php(81): CodeIgniter\Model->__call('getInvoice', [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 09:08:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-29 09:08:37 --> mysqli_sql_exception: Not unique table/alias: 'data_murid_table' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `harga_m...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `harga_m...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `harga_m...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `harga_m...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/HargaMitraModel.php(48): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PdfController.php(81): App\Models\Admin\HargaMitraModel->getInvoice('2', '8')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-08-29 09:08:37 --> CodeIgniter\Database\Exceptions\DatabaseException: Not unique table/alias: 'data_murid_table'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id_id`
+WHERE `mitra_pengajar_id` = :mitra_pengajar_id:
+AND `bulan_mitra` = :bulan_mitra:
+ORDER BY `id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/HargaMitraModel.php(48): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/PDF/PdfController.php(81): App\Models\Admin\HargaMitraModel->getInvoice('2', '8')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-29 09:08:37 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Not unique table/alias: 'data_murid_table'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id_id`
+WHERE `mitra_pengajar_id` = \'2\'
+AND `bulan_mitra` = \'8\'
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id_id`
+WHERE `mitra_pengajar_id` = \'2\'
+AND `bulan_mitra` = \'8\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id_id`
+WHERE `mitra_pengajar_id` = :mitra_pengajar_id:
+AND `bulan_mitra` = :bulan_mitra:
+ORDER BY `id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/HargaMitraModel.php(48): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/PDF/PdfController.php(81): App\Models\Admin\HargaMitraModel->getInvoice('2', '8')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-29 09:08:37 --> [Caused by] mysqli_sql_exception: Not unique table/alias: 'data_murid_table'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id_id`
+WHERE `mitra_pengajar_id` = \'2\'
+AND `bulan_mitra` = \'8\'
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id_id`
+WHERE `mitra_pengajar_id` = \'2\'
+AND `bulan_mitra` = \'8\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id_id`
+WHERE `mitra_pengajar_id` = \'2\'
+AND `bulan_mitra` = \'8\'
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id_id`
+WHERE `mitra_pengajar_id` = :mitra_pengajar_id:
+AND `bulan_mitra` = :bulan_mitra:
+ORDER BY `id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/HargaMitraModel.php(48): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/PDF/PdfController.php(81): App\Models\Admin\HargaMitraModel->getInvoice('2', '8')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 09:08:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-29 09:08:49 --> mysqli_sql_exception: Not unique table/alias: 'data_murid_table' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `harga_m...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `harga_m...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `harga_m...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `harga_m...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/HargaMitraModel.php(48): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PdfController.php(81): App\Models\Admin\HargaMitraModel->getInvoice('2', '8')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-08-29 09:08:49 --> CodeIgniter\Database\Exceptions\DatabaseException: Not unique table/alias: 'data_murid_table'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id`
+WHERE `mitra_pengajar_id` = :mitra_pengajar_id:
+AND `bulan_mitra` = :bulan_mitra:
+ORDER BY `id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/HargaMitraModel.php(48): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/PDF/PdfController.php(81): App\Models\Admin\HargaMitraModel->getInvoice('2', '8')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-29 09:08:49 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Not unique table/alias: 'data_murid_table'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id`
+WHERE `mitra_pengajar_id` = \'2\'
+AND `bulan_mitra` = \'8\'
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id`
+WHERE `mitra_pengajar_id` = \'2\'
+AND `bulan_mitra` = \'8\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id`
+WHERE `mitra_pengajar_id` = :mitra_pengajar_id:
+AND `bulan_mitra` = :bulan_mitra:
+ORDER BY `id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/HargaMitraModel.php(48): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/PDF/PdfController.php(81): App\Models\Admin\HargaMitraModel->getInvoice('2', '8')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-29 09:08:49 --> [Caused by] mysqli_sql_exception: Not unique table/alias: 'data_murid_table'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id`
+WHERE `mitra_pengajar_id` = \'2\'
+AND `bulan_mitra` = \'8\'
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id`
+WHERE `mitra_pengajar_id` = \'2\'
+AND `bulan_mitra` = \'8\'
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id`
+WHERE `mitra_pengajar_id` = \'2\'
+AND `bulan_mitra` = \'8\'
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `harga_mitra_table`.`id`, `harga_mitra_table`.`mitra_pengajar_id`, `harga_mitra_table`.`harga_mitra`, `harga_mitra_table`.`bulan_mitra`, `data_pengajar_table`.`nama_lengkap`
+FROM `harga_mitra_table`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `harga_mitra_table`.`peserta_didik_id`
+WHERE `mitra_pengajar_id` = :mitra_pengajar_id:
+AND `bulan_mitra` = :bulan_mitra:
+ORDER BY `id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/HargaMitraModel.php(48): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/PDF/PdfController.php(81): App\Models\Admin\HargaMitraModel->getInvoice('2', '8')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 09:09:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:11:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:11:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:11:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:12:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:15:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:15:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:20:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:20:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:21:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:21:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:21:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:21:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:21:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:22:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:22:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 09:22:54 --> ErrorException: Undefined variable: harga
+in APPPATH/Views/pdf/invoice_mitra_pdf.php on line 80.
+ 1 APPPATH/Views/pdf/invoice_mitra_pdf.php(80): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: harga', '/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_mitra_pdf.php', 80, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_mitra_pdf.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('pdf/invoice_mitra_pdf', [], true)
+ 5 APPPATH/Controllers/PDF/PdfController.php(95): view('pdf/invoice_mitra_pdf', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 09:23:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 09:23:09 --> ErrorException: Object of class stdClass could not be converted to number
+in APPPATH/Views/pdf/invoice_mitra_pdf.php on line 80.
+ 1 APPPATH/Views/pdf/invoice_mitra_pdf.php(80): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Object of class stdClass could not be converted to number', '/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_mitra_pdf.php', 80, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_mitra_pdf.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('pdf/invoice_mitra_pdf', [], true)
+ 5 APPPATH/Controllers/PDF/PdfController.php(95): view('pdf/invoice_mitra_pdf', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 09:24:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:24:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:25:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:25:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:26:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:26:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:28:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:28:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:28:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:29:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:29:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:29:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 09:30:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:53:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:54:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:54:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:54:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:54:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:54:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:54:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:54:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:55:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:55:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:55:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:55:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:56:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:56:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:56:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:56:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:56:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:56:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:57:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:58:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:58:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 22:58:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 22:58:53 --> ParseError: syntax error, unexpected end of file
+in APPPATH/Views/pdf/invoice_mitra_pdf.php on line 105.
+ 1 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('pdf/invoice_mitra_pdf', [], true)
+ 3 APPPATH/Controllers/PDF/PdfController.php(95): view('pdf/invoice_mitra_pdf', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->mitra()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 23:00:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:00:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:01:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:01:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:02:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:03:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:03:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 23:03:42 --> Mpdf\MpdfException: Unknown page format F4
+in VENDORPATH/mpdf/mpdf/src/PageFormat.php on line 78.
+ 1 VENDORPATH/mpdf/mpdf/src/Mpdf.php(1647): Mpdf\PageFormat::getSizeFromName('F4')
+ 2 VENDORPATH/mpdf/mpdf/src/Mpdf.php(1300): Mpdf\Mpdf->_setPageSize('F4', 'L')
+ 3 APPPATH/Controllers/PDF/PdfController.php(24): Mpdf\Mpdf->__construct([...])
+ 4 SYSTEMPATH/CodeIgniter.php(913): App\Controllers\PDF\PdfController->__construct()
+ 5 SYSTEMPATH/CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 23:03:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:04:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:04:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-29 23:04:19 --> Mpdf\MpdfException: Unknown page format F4
+in VENDORPATH/mpdf/mpdf/src/PageFormat.php on line 78.
+ 1 VENDORPATH/mpdf/mpdf/src/Mpdf.php(1647): Mpdf\PageFormat::getSizeFromName('F4')
+ 2 VENDORPATH/mpdf/mpdf/src/Mpdf.php(1300): Mpdf\Mpdf->_setPageSize('F4', 'L')
+ 3 APPPATH/Controllers/PDF/PdfController.php(24): Mpdf\Mpdf->__construct([...])
+ 4 SYSTEMPATH/CodeIgniter.php(913): App\Controllers\PDF\PdfController->__construct()
+ 5 SYSTEMPATH/CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-08-29 23:04:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:04:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:05:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:06:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:06:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:08:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:08:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:08:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:09:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:09:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:10:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:11:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:11:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:11:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:11:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:12:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:12:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:12:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:13:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:13:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:14:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:14:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:15:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:15:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:15:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:16:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:16:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:16:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:17:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-29 23:17:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

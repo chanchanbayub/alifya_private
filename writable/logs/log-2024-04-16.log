@@ -1,0 +1,32 @@
+CRITICAL - 2024-04-16 07:05:22 --> ErrorException: Undefined variable: materi_belajar
+in APPPATH/Views/admin/pengajar_v.php on line 49.
+ 1 APPPATH/Views/admin/pengajar_v.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: materi_belajar', '/Volumes/mf480 - Data/Alifya/app/Views/admin/pengajar_v.php', 49, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/pengajar_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/pengajar_v', [], true)
+ 5 APPPATH/Controllers/Admin/PengajarController.php(28): view('admin/pengajar_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-04-16 07:05:44 --> ErrorException: Undefined variable: materi_belajar
+in APPPATH/Views/admin/pengajar_v.php on line 49.
+ 1 APPPATH/Views/admin/pengajar_v.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: materi_belajar', '/Volumes/mf480 - Data/Alifya/app/Views/admin/pengajar_v.php', 49, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/pengajar_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/pengajar_v', [], true)
+ 5 APPPATH/Controllers/Admin/PengajarController.php(28): view('admin/pengajar_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PengajarController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PengajarController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-04-16 08:42:59 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/Admin/MateriBelajarController.php on line 95.
+ 1 APPPATH/Controllers/Admin/MateriBelajarController.php(95): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/MateriBelajarController.php', 95, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\MateriBelajarController->delete()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\MateriBelajarController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')

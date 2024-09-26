@@ -1,0 +1,84 @@
+ERROR - 2024-03-26 01:34:26 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'alifya_private' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(185): mysqli->real_connect('127.0.0.1', 'root', '', 'alifya_private', 3306, '', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(1410): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(1429): CodeIgniter\Database\BaseConnection->listTables()
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(757): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(161): CodeIgniter\Database\MigrationRunner->ensureTable()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'alifya_private' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(1410): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(1429): CodeIgniter\Database\BaseConnection->listTables()
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(757): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(161): CodeIgniter\Database\MigrationRunner->ensureTable()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#9 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#10 {main}
+ERROR - 2024-03-26 01:34:45 --> mysqli_sql_exception: Incorrect table definition; there can be only one auto column and it must be defined as a key in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('CREATE TABLE `b...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `b...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `b...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `b...')
+#4 /Volumes/mf480 - Data/Alifya/app/Database/Migrations/2024-03-26-013102_ProgramBelajar.php(29): CodeIgniter\Database\Forge->createTable('blog', false, Array)
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(865): App\Database\Migrations\ProgramBelajar->up()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2024-03-26 01:36:06 --> Error connecting to the database: mysqli_sql_exception: No such file or directory in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(185): mysqli->real_connect('localhost', 'root', '', 'alifya_private_...', 3306, '', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(1410): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(1429): CodeIgniter\Database\BaseConnection->listTables()
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(757): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(161): CodeIgniter\Database\MigrationRunner->ensureTable()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No such file or directory in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(1410): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(1429): CodeIgniter\Database\BaseConnection->listTables()
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(757): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(161): CodeIgniter\Database\MigrationRunner->ensureTable()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#9 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#10 {main}
+ERROR - 2024-03-26 01:36:59 --> mysqli_sql_exception: Incorrect table definition; there can be only one auto column and it must be defined as a key in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('CREATE TABLE `b...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `b...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `b...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `b...')
+#4 /Volumes/mf480 - Data/Alifya/app/Database/Migrations/2024-03-26-013102_ProgramBelajar.php(29): CodeIgniter\Database\Forge->createTable('blog', false, Array)
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(865): App\Database\Migrations\ProgramBelajar->up()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}

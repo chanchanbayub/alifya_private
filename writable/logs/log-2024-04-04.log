@@ -1,0 +1,146 @@
+CRITICAL - 2024-04-04 04:09:18 --> BadMethodCallException: Call to undefined method App\Models\Admin\ProgramBelajarModel::getProgramBelajar
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): CodeIgniter\Model->__call('getProgramBelajar', [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-04-04 04:10:32 --> BadMethodCallException: Call to undefined method App\Models\Admin\ProgramBelajarModel::getProgramBelajar
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): CodeIgniter\Model->__call('getProgramBelajar', [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-04-04 04:12:44 --> mysqli_sql_exception: Table 'alifya_private_db.progran_belajar_table' doesn't exist in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-04-04 04:12:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.progran_belajar_table' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `progran_belajar_table`
+ORDER BY `id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-04-04 04:12:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.progran_belajar_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `progran_belajar_table`
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `progran_belajar_table`
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `progran_belajar_table`
+ORDER BY `id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-04-04 04:12:44 --> [Caused by] mysqli_sql_exception: Table 'alifya_private_db.progran_belajar_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *
+FROM `progran_belajar_table`
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `progran_belajar_table`
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `progran_belajar_table`
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `progran_belajar_table`
+ORDER BY `id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-04-04 04:19:11 --> mysqli_sql_exception: Unknown column 'level' in 'field list' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('INSERT INTO `pr...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pr...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pr...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pr...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/BaseModel.php(802): CodeIgniter\Model->doInsert(Array)
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(744): CodeIgniter\BaseModel->insert(Array, false)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/BaseModel.php(713): CodeIgniter\Model->insert(Array, false)
+#8 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/ProgramBelajarController.php(62): CodeIgniter\BaseModel->save(Array)
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->insert()
+#10 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#13 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#14 {main}
+CRITICAL - 2024-04-04 04:19:11 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'level' in 'field list'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `program_belajar_table` (`level`, `keterangan`, `created_at`, `updated_at`) VALUES (:level:, :keterangan:, :created_at:, :updated_at:)', [...], false)
+ 2 SYSTEMPATH/Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH/Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH/BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH/Controllers/Admin/ProgramBelajarController.php(62): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->insert()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-04-04 04:19:11 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'level' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `program_belajar_table` (`level`, `keterangan`, `created_at`, `updated_at`) VALUES (\'level 1\', \'usia 2 s.d 3 tahun\', \'2024-04-04 04:19:11\', \'2024-04-04 04:19:11\')')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `program_belajar_table` (`level`, `keterangan`, `created_at`, `updated_at`) VALUES (\'level 1\', \'usia 2 s.d 3 tahun\', \'2024-04-04 04:19:11\', \'2024-04-04 04:19:11\')')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `program_belajar_table` (`level`, `keterangan`, `created_at`, `updated_at`) VALUES (:level:, :keterangan:, :created_at:, :updated_at:)', [...], false)
+ 4 SYSTEMPATH/Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH/BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH/Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH/BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH/Controllers/Admin/ProgramBelajarController.php(62): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->insert()
+10 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+11 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-04-04 04:19:11 --> [Caused by] mysqli_sql_exception: Unknown column 'level' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('INSERT INTO `program_belajar_table` (`level`, `keterangan`, `created_at`, `updated_at`) VALUES (\'level 1\', \'usia 2 s.d 3 tahun\', \'2024-04-04 04:19:11\', \'2024-04-04 04:19:11\')', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `program_belajar_table` (`level`, `keterangan`, `created_at`, `updated_at`) VALUES (\'level 1\', \'usia 2 s.d 3 tahun\', \'2024-04-04 04:19:11\', \'2024-04-04 04:19:11\')')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `program_belajar_table` (`level`, `keterangan`, `created_at`, `updated_at`) VALUES (\'level 1\', \'usia 2 s.d 3 tahun\', \'2024-04-04 04:19:11\', \'2024-04-04 04:19:11\')')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2307): CodeIgniter\Database\BaseConnection->query('INSERT INTO `program_belajar_table` (`level`, `keterangan`, `created_at`, `updated_at`) VALUES (:level:, :keterangan:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH/Model.php(326): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH/BaseModel.php(802): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH/Model.php(744): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH/BaseModel.php(713): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH/Controllers/Admin/ProgramBelajarController.php(62): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->insert()
+11 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+12 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')

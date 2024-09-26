@@ -1,0 +1,1167 @@
+CRITICAL - 2024-07-28 14:52:59 --> ErrorException: Undefined variable: nama_lengkap
+in APPPATH/Views/admin/invoice_v.php on line 35.
+ 1 APPPATH/Views/admin/invoice_v.php(35): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: nama_lengkap', '/Volumes/mf480 - Data/Alifya/app/Views/admin/invoice_v.php', 35, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/invoice_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/invoice_v', [], true)
+ 5 APPPATH/Controllers/Admin/InvoiceController.php(30): view('admin/invoice_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 15:29:44 --> ErrorException: Undefined variable: data
+in APPPATH/Controllers/Admin/InvoiceController.php on line 74.
+ 1 APPPATH/Controllers/Admin/InvoiceController.php(74): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: data', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/InvoiceController.php', 74, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-28 15:34:02 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY `id` desc' at line 7 in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `presens...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presens...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presens...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presens...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PresensiModel.php(39): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/InvoiceController.php(69): App\Models\Admin\PresensiModel->getPresensiWithMonth(NULL, NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-28 15:34:02 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY `id` desc' at line 7
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH((presensi_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PresensiModel.php(39): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/InvoiceController.php(69): App\Models\Admin\PresensiModel->getPresensiWithMonth(null, null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 15:34:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY `id` desc' at line 7
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH((presensi_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH((presensi_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH((presensi_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PresensiModel.php(39): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/InvoiceController.php(69): App\Models\Admin\PresensiModel->getPresensiWithMonth(null, null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 15:34:02 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY `id` desc' at line 7
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH((presensi_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH((presensi_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH((presensi_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH((presensi_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PresensiModel.php(39): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/InvoiceController.php(69): App\Models\Admin\PresensiModel->getPresensiWithMonth(null, null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-28 15:39:36 --> mysqli_sql_exception: Unknown column 'presesni_table.tanggal_masuk' in 'where clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `presens...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presens...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presens...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presens...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PresensiModel.php(39): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/InvoiceController.php(69): App\Models\Admin\PresensiModel->getPresensiWithMonth(NULL, NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-28 15:39:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'presesni_table.tanggal_masuk' in 'where clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH(presesni_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PresensiModel.php(39): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/InvoiceController.php(69): App\Models\Admin\PresensiModel->getPresensiWithMonth(null, null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 15:39:36 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'presesni_table.tanggal_masuk' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH(presesni_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH(presesni_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH(presesni_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PresensiModel.php(39): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/InvoiceController.php(69): App\Models\Admin\PresensiModel->getPresensiWithMonth(null, null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 15:39:36 --> [Caused by] mysqli_sql_exception: Unknown column 'presesni_table.tanggal_masuk' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH(presesni_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH(presesni_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH(presesni_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_murid_table`.`nama_lengkap_anak`
+FROM `presensi_table`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+WHERE `presensi_table`.`mitra_pengajar_id` IS NULL
+AND MONTH(presesni_table.tanggal_masuk) IS NULL
+ORDER BY `id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PresensiModel.php(39): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/InvoiceController.php(69): App\Models\Admin\PresensiModel->getPresensiWithMonth(null, null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+INFO - 2024-07-28 16:24:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-07-28 16:25:42 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Result::RowObject()
+in APPPATH/Models/Admin/PresensiModel.php on line 39.
+ 1 APPPATH/Controllers/Admin/InvoiceController.php(68): App\Models\Admin\PresensiModel->getPresensiWithMonth('1', '7')
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:26:15 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Result::RowsObject()
+in APPPATH/Models/Admin/PresensiModel.php on line 39.
+ 1 APPPATH/Controllers/Admin/InvoiceController.php(68): App\Models\Admin\PresensiModel->getPresensiWithMonth('1', '7')
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:28:33 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Result::getResultsObject()
+in APPPATH/Models/Admin/PresensiModel.php on line 40.
+ 1 APPPATH/Controllers/Admin/InvoiceController.php(68): App\Models\Admin\PresensiModel->getPresensiWithMonth('1', '7')
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:36:46 --> BadMethodCallException: Call to undefined method App\Models\Admin\PresensiModel::getKelompokWithIdPresensi
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Admin/InvoiceController.php(67): CodeIgniter\Model->__call('getKelompokWithIdPresensi', [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-28 16:43:31 --> mysqli_sql_exception: Unknown column 'pengajar_table.mitra_pengajar_id' in 'where clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `presens...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presens...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presens...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presens...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-28 16:43:31 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'pengajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`mitra_pengajar_id` = :pengajar_table.mitra_pengajar_id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `pengajar_table`.`id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:43:31 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'pengajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`mitra_pengajar_id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`mitra_pengajar_id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`mitra_pengajar_id` = :pengajar_table.mitra_pengajar_id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `pengajar_table`.`id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:43:31 --> [Caused by] mysqli_sql_exception: Unknown column 'pengajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`mitra_pengajar_id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`mitra_pengajar_id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`mitra_pengajar_id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`mitra_pengajar_id` = :pengajar_table.mitra_pengajar_id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `pengajar_table`.`id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-28 16:44:05 --> mysqli_sql_exception: Unknown column 'pengajar_table.id' in 'where clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `presens...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presens...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presens...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presens...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-28 16:44:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'pengajar_table.id' in 'where clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = :pengajar_table.id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `pengajar_table`.`id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:44:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'pengajar_table.id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = :pengajar_table.id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `pengajar_table`.`id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:44:05 --> [Caused by] mysqli_sql_exception: Unknown column 'pengajar_table.id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `presensi_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = :pengajar_table.id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `pengajar_table`.`id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-28 16:44:29 --> mysqli_sql_exception: Unknown column 'pengajar_table.id' in 'field list' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `pengaja...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `pengaja...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `pengaja...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `pengaja...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-28 16:44:29 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'pengajar_table.id' in 'field list'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = :pengajar_table.id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `pengajar_table`.`id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:44:29 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'pengajar_table.id' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = :pengajar_table.id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `pengajar_table`.`id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:44:29 --> [Caused by] mysqli_sql_exception: Unknown column 'pengajar_table.id' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `pengajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `pengajar_table`.`id`
+WHERE `pengajar_table`.`id` = :pengajar_table.id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `pengajar_table`.`id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-28 16:45:29 --> mysqli_sql_exception: Unknown column 'presensi_table.mitra_pengajar_id' in 'on clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pe...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pe...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pe...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pe...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-28 16:45:29 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'presensi_table.mitra_pengajar_id' in 'on clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`id` = :data_pengajar_table.id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `data_pengajar_table`.`id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:45:29 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'presensi_table.mitra_pengajar_id' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `data_pengajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `data_pengajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`id` = :data_pengajar_table.id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `data_pengajar_table`.`id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:45:29 --> [Caused by] mysqli_sql_exception: Unknown column 'presensi_table.mitra_pengajar_id' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `data_pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `data_pengajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `data_pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `data_pengajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `data_pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`id` = \'1\'
+AND MONTH(presensi_table.tanggal_masuk) = \'7\'
+AND `kelompok_table`.`mitra_pengajar_id` = \'1\'
+ORDER BY `data_pengajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `data_pengajar_table`.`id`, `presensi_table`.`mitra_pengajar_id`, `presensi_table`.`tanggal_masuk`, `presensi_table`.`jam_masuk`, `presensi_table`.`dokumentasi`, `data_pengajar_table`.`nama_lengkap`, `data_pengajar_table`.`foto`, `data_murid_table`.`nama_lengkap_anak`
+FROM `data_pengajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`mitra_pengajar_id` = `presensi_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `presensi_table`.`peserta_didik_id`
+JOIN `presensi_table` ON `presensi_table`.`mitra_pengajar_id` = `data_pengajar_table`.`id`
+WHERE `data_pengajar_table`.`id` = :data_pengajar_table.id:
+AND MONTH(presensi_table.tanggal_masuk) = :MONTH(presensi_table.tanggal_masuk):
+AND `kelompok_table`.`mitra_pengajar_id` = :kelompok_table.mitra_pengajar_id:
+ORDER BY `data_pengajar_table`.`id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/PengajarModel.php(61): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/InvoiceController.php(70): App\Models\Admin\PengajarModel->getPengajarWithIdPresensi('1', '7')
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 16:53:22 --> BadMethodCallException: Call to undefined method App\Models\Admin\PresensiModel::getPengajarWithIdPresensi
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Admin/InvoiceController.php(70): CodeIgniter\Model->__call('getPengajarWithIdPresensi', [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-28 17:57:19 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(185): mysqli->real_connect('127.0.0.1', 'root', '', 'alifya_private_...', 3306, '', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#4 /Volumes/mf480 - Data/Alifya/app/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', Array)
+#5 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#10 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#11 {main}
+CRITICAL - 2024-07-28 17:57:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 428.
+ 1 SYSTEMPATH/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `program_belajar_table`
+ORDER BY `id` desc', [], false)
+ 3 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 19:16:54 --> ArgumentCountError: Too few arguments to function App\Controllers\PDF\PdfController::index(), 0 passed in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php on line 941 and exactly 1 expected
+in APPPATH/Controllers/PDF/PDFController.php on line 19.
+ 1 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 2 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 3 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 19:17:19 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "pdf/bap-digital.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('pdf/bap-digital.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('pdf/bap-digital', [], true)
+ 3 APPPATH/Controllers/PDF/PDFController.php(34): view('pdf/bap-digital', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 19:24:40 --> Error: Call to a member function getPresensiWithMonth() on null
+in APPPATH/Controllers/PDF/PDFController.php on line 31.
+ 1 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 2 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 3 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 19:33:14 --> ErrorException: Undefined variable: waktu
+in APPPATH/Views/pdf/invoice_pdf.php on line 22.
+ 1 APPPATH/Views/pdf/invoice_pdf.php(22): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: waktu', '/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_pdf.php', 22, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_pdf.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('pdf/invoice_pdf', [], true)
+ 5 APPPATH/Controllers/PDF/PDFController.php(49): view('pdf/invoice_pdf', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 19:33:36 --> ErrorException: Undefined variable: waktu
+in APPPATH/Views/pdf/invoice_pdf.php on line 29.
+ 1 APPPATH/Views/pdf/invoice_pdf.php(29): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: waktu', '/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_pdf.php', 29, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_pdf.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('pdf/invoice_pdf', [], true)
+ 5 APPPATH/Controllers/PDF/PDFController.php(49): view('pdf/invoice_pdf', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 19:34:00 --> Mpdf\MpdfException: Incorrect output destination .PDF
+in VENDORPATH/mpdf/mpdf/src/Mpdf.php on line 9645.
+ 1 APPPATH/Controllers/PDF/PDFController.php(53): Mpdf\Mpdf->Output('INVOICE_ALIFYA', '.PDF', 'I')
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 19:35:58 --> Mpdf\MpdfException: Incorrect output destination .PDF
+in VENDORPATH/mpdf/mpdf/src/Mpdf.php on line 9645.
+ 1 APPPATH/Controllers/PDF/PDFController.php(53): Mpdf\Mpdf->Output('INVOICE_ALIFYA', '.PDF', 'I')
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 19:51:30 --> ErrorException: A non well formed numeric value encountered
+in APPPATH/Views/pdf/invoice_pdf.php on line 37.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'A non well formed numeric value encountered', '/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_pdf.php', 37, [...])
+ 2 APPPATH/Views/pdf/invoice_pdf.php(37): date('H:i', '15:53:00')
+ 3 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_pdf.php')
+ 4 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('pdf/invoice_pdf', [], true)
+ 6 APPPATH/Controllers/PDF/PDFController.php(47): view('pdf/invoice_pdf', [...])
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 19:51:54 --> ErrorException: A non well formed numeric value encountered
+in APPPATH/Views/pdf/invoice_pdf.php on line 37.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(8, 'A non well formed numeric value encountered', '/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_pdf.php', 37, [...])
+ 2 APPPATH/Views/pdf/invoice_pdf.php(37): date('h:i', '15:53:00')
+ 3 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_pdf.php')
+ 4 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('pdf/invoice_pdf', [], true)
+ 6 APPPATH/Controllers/PDF/PDFController.php(47): view('pdf/invoice_pdf', [...])
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 19:55:23 --> ErrorException: Undefined variable: pengajar
+in APPPATH/Views/pdf/invoice_pdf.php on line 29.
+ 1 APPPATH/Views/pdf/invoice_pdf.php(29): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: pengajar', '/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_pdf.php', 29, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/pdf/invoice_pdf.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('pdf/invoice_pdf', [], true)
+ 5 APPPATH/Controllers/PDF/PDFController.php(47): view('pdf/invoice_pdf', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 20:05:46 --> ErrorException: Trying to get property 'harga' of non-object
+in APPPATH/Controllers/PDF/PDFController.php on line 47.
+ 1 APPPATH/Controllers/PDF/PDFController.php(47): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'harga\' of non-object', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 47, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 20:20:55 --> ErrorException: Undefined variable: peserta_didik
+in APPPATH/Controllers/Admin/InvoiceController.php on line 111.
+ 1 APPPATH/Controllers/Admin/InvoiceController.php(111): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: peserta_didik', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/InvoiceController.php', 111, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 20:20:57 --> ErrorException: Undefined variable: peserta_didik
+in APPPATH/Controllers/Admin/InvoiceController.php on line 111.
+ 1 APPPATH/Controllers/Admin/InvoiceController.php(111): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: peserta_didik', '/Volumes/mf480 - Data/Alifya/app/Controllers/Admin/InvoiceController.php', 111, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\InvoiceController->cek_invoice()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InvoiceController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 20:39:05 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/PDF/PDFController.php on line 47.
+ 1 APPPATH/Controllers/PDF/PDFController.php(47): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 47, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 20:39:43 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/PDF/PDFController.php on line 47.
+ 1 APPPATH/Controllers/PDF/PDFController.php(47): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 47, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 20:42:18 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/PDF/PDFController.php on line 48.
+ 1 APPPATH/Controllers/PDF/PDFController.php(48): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 48, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 20:42:34 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/PDF/PDFController.php on line 48.
+ 1 APPPATH/Controllers/PDF/PDFController.php(48): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 48, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 20:42:58 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/PDF/PDFController.php on line 48.
+ 1 APPPATH/Controllers/PDF/PDFController.php(48): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 48, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 21:23:40 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/PDF/PDFController.php on line 49.
+ 1 APPPATH/Controllers/PDF/PDFController.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 49, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 21:41:30 --> Mpdf\MpdfImageException: Could not find image file (#)
+in VENDORPATH/mpdf/mpdf/src/Image/ImageProcessor.php on line 575.
+ 1 VENDORPATH/mpdf/mpdf/src/Image/ImageProcessor.php(197): Mpdf\Image\ImageProcessor->imageError('#', true, 'Could not find image file')
+ 2 VENDORPATH/mpdf/mpdf/src/Tag/Img.php(276): Mpdf\Image\ImageProcessor->getImage('#', true, true, '#', false)
+ 3 VENDORPATH/mpdf/mpdf/src/Tag.php(240): Mpdf\Tag\Img->open([...], [...], 3)
+ 4 VENDORPATH/mpdf/mpdf/src/Mpdf.php(13921): Mpdf\Tag->OpenTag('IMG', [...], [...], 3)
+ 5 APPPATH/Controllers/PDF/PDFController.php(54): Mpdf\Mpdf->WriteHTML(' <div class="logo"> <img src="#" alt="#" /> </div> <table> <thead> <tr> <th scope="col">Mitra Pengajar</th> <th scope="col">:</th> <th scope="col" style="text-transform: capitalize;">chan chan bayu bahari</th> </tr></thead> </table> <table id="table"> <thead> <tr> <th scope="col">Pertemuan</th> <th scope="col">Nama Anak</th> <th scope="col">Tanggal</th> <th scope="col">Jam</th> </tr></thead> <tbody> <tr> <td>Pertemuan Ke -1</td> <td>arief ahmad</td> <td> Jumat, 12 Juli 2024</td> <td> 15:53</td> </tr> <tr> <td>Pertemuan Ke -2</td> <td>arief ahmad</td> <td> Minggu, 28 Juli 2024</td> <td> 15:37</td> </tr> </tbody> <tfoot> <tr> <th colspan="3">Total Pembayaran</th> <th>Rp. 140,000</th> </tr> </tfoot> </table> ')
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 21:41:38 --> Mpdf\MpdfImageException: Could not find image file (#)
+in VENDORPATH/mpdf/mpdf/src/Image/ImageProcessor.php on line 575.
+ 1 VENDORPATH/mpdf/mpdf/src/Image/ImageProcessor.php(197): Mpdf\Image\ImageProcessor->imageError('#', true, 'Could not find image file')
+ 2 VENDORPATH/mpdf/mpdf/src/Tag/Img.php(276): Mpdf\Image\ImageProcessor->getImage('#', true, true, '#', false)
+ 3 VENDORPATH/mpdf/mpdf/src/Tag.php(240): Mpdf\Tag\Img->open([...], [...], 3)
+ 4 VENDORPATH/mpdf/mpdf/src/Mpdf.php(13921): Mpdf\Tag->OpenTag('IMG', [...], [...], 3)
+ 5 APPPATH/Controllers/PDF/PDFController.php(54): Mpdf\Mpdf->WriteHTML(' <div class="logo"> <img src="#" alt="logo" /> </div> <table> <thead> <tr> <th scope="col">Mitra Pengajar</th> <th scope="col">:</th> <th scope="col" style="text-transform: capitalize;">chan chan bayu bahari</th> </tr></thead> </table> <table id="table"> <thead> <tr> <th scope="col">Pertemuan</th> <th scope="col">Nama Anak</th> <th scope="col">Tanggal</th> <th scope="col">Jam</th> </tr></thead> <tbody> <tr> <td>Pertemuan Ke -1</td> <td>arief ahmad</td> <td> Jumat, 12 Juli 2024</td> <td> 15:53</td> </tr> <tr> <td>Pertemuan Ke -2</td> <td>arief ahmad</td> <td> Minggu, 28 Juli 2024</td> <td> 15:37</td> </tr> </tbody> <tfoot> <tr> <th colspan="3">Total Pembayaran</th> <th>Rp. 140,000</th> </tr> </tfoot> </table> ')
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 21:43:37 --> Mpdf\MpdfImageException: Could not find image file ()
+in VENDORPATH/mpdf/mpdf/src/Image/ImageProcessor.php on line 575.
+ 1 VENDORPATH/mpdf/mpdf/src/Image/ImageProcessor.php(197): Mpdf\Image\ImageProcessor->imageError('', true, 'Could not find image file')
+ 2 VENDORPATH/mpdf/mpdf/src/Tag/Img.php(276): Mpdf\Image\ImageProcessor->getImage('', true, true, '', false)
+ 3 VENDORPATH/mpdf/mpdf/src/Tag.php(240): Mpdf\Tag\Img->open([...], [...], 3)
+ 4 VENDORPATH/mpdf/mpdf/src/Mpdf.php(13921): Mpdf\Tag->OpenTag('IMG', [...], [...], 3)
+ 5 APPPATH/Controllers/PDF/PDFController.php(54): Mpdf\Mpdf->WriteHTML(' <div class="logo"> <img src="" alt="logo" /> </div> <table> <thead> <tr> <th scope="col">Mitra Pengajar</th> <th scope="col">:</th> <th scope="col" style="text-transform: capitalize;">chan chan bayu bahari</th> </tr></thead> </table> <table id="table"> <thead> <tr> <th scope="col">Pertemuan</th> <th scope="col">Nama Anak</th> <th scope="col">Tanggal</th> <th scope="col">Jam</th> </tr></thead> <tbody> <tr> <td>Pertemuan Ke -1</td> <td>arief ahmad</td> <td> Jumat, 12 Juli 2024</td> <td> 15:53</td> </tr> <tr> <td>Pertemuan Ke -2</td> <td>arief ahmad</td> <td> Minggu, 28 Juli 2024</td> <td> 15:37</td> </tr> </tbody> <tfoot> <tr> <th colspan="3">Total Pembayaran</th> <th>Rp. 140,000</th> </tr> </tfoot> </table> ')
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 21:44:02 --> ErrorException: Undefined variable: title
+in APPPATH/Views/layout/template.php on line 8.
+ 1 APPPATH/Views/layout/template.php(8): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: title', '/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php', 8, [])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/View/View.php(244): CodeIgniter\View\View->render('layout/template', [], true)
+ 5 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard_v', [], true)
+ 6 APPPATH/Controllers/Admin/DashboardController.php(12): view('admin/dashboard_v')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 21:51:11 --> ErrorException: Trying to get property 'nama_lengkap_anak' of non-object
+in APPPATH/Controllers/PDF/PDFController.php on line 49.
+ 1 APPPATH/Controllers/PDF/PDFController.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nama_lengkap_anak\' of non-object', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 49, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 21:51:22 --> ErrorException: Trying to get property 'nama_lengkap_anak' of non-object
+in APPPATH/Controllers/PDF/PDFController.php on line 49.
+ 1 APPPATH/Controllers/PDF/PDFController.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nama_lengkap_anak\' of non-object', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 49, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 22:13:56 --> ErrorException: Trying to get property 'nama_lengkap_anak' of non-object
+in APPPATH/Controllers/PDF/PDFController.php on line 49.
+ 1 APPPATH/Controllers/PDF/PDFController.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nama_lengkap_anak\' of non-object', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 49, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 22:15:26 --> ErrorException: Trying to get property 'nama_lengkap_anak' of non-object
+in APPPATH/Controllers/PDF/PDFController.php on line 49.
+ 1 APPPATH/Controllers/PDF/PDFController.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nama_lengkap_anak\' of non-object', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 49, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 22:15:45 --> ErrorException: Trying to get property 'nama_lengkap_anak' of non-object
+in APPPATH/Controllers/PDF/PDFController.php on line 49.
+ 1 APPPATH/Controllers/PDF/PDFController.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'nama_lengkap_anak\' of non-object', '/Volumes/mf480 - Data/Alifya/app/Controllers/PDF/PDFController.php', 49, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\PDF\PdfController->index()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PDF\PdfController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 22:19:43 --> ErrorException: Undefined variable: title
+in APPPATH/Views/layout/template.php on line 8.
+ 1 APPPATH/Views/layout/template.php(8): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: title', '/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php', 8, [])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/View/View.php(244): CodeIgniter\View\View->render('layout/template', [], true)
+ 5 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard_v', [], true)
+ 6 APPPATH/Controllers/Admin/DashboardController.php(12): view('admin/dashboard_v')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 22:28:20 --> ErrorException: Undefined variable: title
+in APPPATH/Views/layout/template.php on line 8.
+ 1 APPPATH/Views/layout/template.php(8): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: title', '/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php', 8, [])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/View/View.php(244): CodeIgniter\View\View->render('layout/template', [], true)
+ 5 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard_v', [], true)
+ 6 APPPATH/Controllers/Admin/DashboardController.php(12): view('admin/dashboard_v')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 22:29:39 --> ErrorException: Undefined variable: title
+in APPPATH/Views/layout/template.php on line 8.
+ 1 APPPATH/Views/layout/template.php(8): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: title', '/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php', 8, [])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/View/View.php(244): CodeIgniter\View\View->render('layout/template', [], true)
+ 5 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard_v', [], true)
+ 6 APPPATH/Controllers/Admin/DashboardController.php(12): view('admin/dashboard_v')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-28 23:20:51 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(185): mysqli->real_connect('127.0.0.1', 'root', '', 'alifya_private_...', 3306, '', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(392): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#4 /Volumes/mf480 - Data/Alifya/app/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', Array)
+#5 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#10 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#11 {main}
+CRITICAL - 2024-07-28 23:20:51 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 428.
+ 1 SYSTEMPATH/Database/BaseConnection.php(575): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `program_belajar_table`
+ORDER BY `id` desc', [], false)
+ 3 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH/Models/Admin/ProgramBelajarModel.php(24): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH/Controllers/Admin/ProgramBelajarController.php(25): App\Models\Admin\ProgramBelajarModel->getProgramBelajar()
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\ProgramBelajarController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProgramBelajarController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 23:21:06 --> ErrorException: Undefined variable: title
+in APPPATH/Views/layout/template.php on line 8.
+ 1 APPPATH/Views/layout/template.php(8): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: title', '/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php', 8, [])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/layout/template.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/View/View.php(244): CodeIgniter\View\View->render('layout/template', [], true)
+ 5 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard_v', [], true)
+ 6 APPPATH/Controllers/Admin/DashboardController.php(12): view('admin/dashboard_v')
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 23:34:31 --> Error: Call to a member function countAllResult() on array
+in APPPATH/Controllers/Admin/DashboardController.php on line 27.
+ 1 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 2 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 3 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 23:35:21 --> ErrorException: Array to string conversion
+in APPPATH/Views/admin/dashboard_v.php on line 81.
+ 1 APPPATH/Views/admin/dashboard_v.php(81): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string conversion', '/Volumes/mf480 - Data/Alifya/app/Views/admin/dashboard_v.php', 81, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/dashboard_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard_v', [], true)
+ 5 APPPATH/Controllers/Admin/DashboardController.php(33): view('admin/dashboard_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-28 23:45:16 --> ErrorException: Undefined variable: peserta_didik_waititng
+in APPPATH/Views/admin/dashboard_v.php on line 143.
+ 1 APPPATH/Views/admin/dashboard_v.php(143): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: peserta_didik_waititng', '/Volumes/mf480 - Data/Alifya/app/Views/admin/dashboard_v.php', 143, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/dashboard_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/dashboard_v', [], true)
+ 5 APPPATH/Controllers/Admin/DashboardController.php(47): view('admin/dashboard_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\DashboardController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\DashboardController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')

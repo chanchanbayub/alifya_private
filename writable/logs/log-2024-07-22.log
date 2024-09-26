@@ -1,0 +1,840 @@
+INFO - 2024-07-22 15:55:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-22 15:55:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-07-22 15:55:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-07-22 15:56:28 --> mysqli_sql_exception: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokBelajarModel.php(51): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-22 15:56:28 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `data_pengajar_table`.`id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/KelompokBelajarModel.php(51): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 15:56:28 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `data_pengajar_table`.`id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `data_pengajar_table`.`id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `data_pengajar_table`.`id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/KelompokBelajarModel.php(51): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 15:56:28 --> [Caused by] mysqli_sql_exception: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `data_pengajar_table`.`id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `data_pengajar_table`.`id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `data_pengajar_table`.`id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+WHERE `data_pengajar_table`.`id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/KelompokBelajarModel.php(51): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-22 16:01:18 --> mysqli_sql_exception: Unknown column 'status_murid_table.status_murid' in 'field list' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-22 16:01:18 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'status_murid_table.status_murid' in 'field list'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:01:18 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'status_murid_table.status_murid' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:01:18 --> [Caused by] mysqli_sql_exception: Unknown column 'status_murid_table.status_murid' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-22 16:02:27 --> mysqli_sql_exception: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-22 16:02:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:02:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:02:27 --> [Caused by] mysqli_sql_exception: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-22 16:05:10 --> mysqli_sql_exception: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-22 16:05:10 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:05:10 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:05:10 --> [Caused by] mysqli_sql_exception: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-22 16:09:07 --> mysqli_sql_exception: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-22 16:09:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:09:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:09:07 --> [Caused by] mysqli_sql_exception: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+WHERE `kelompok_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:11:15 --> BadMethodCallException: Call to undefined method App\Models\Admin\KelompokBelajarModel::getPesertaDidik
+in SYSTEMPATH/Model.php on line 874.
+ 1 APPPATH/Controllers/Admin/PresensiController.php(131): CodeIgniter\Model->__call('getPesertaDidik', [])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-22 16:22:53 --> mysqli_sql_exception: Unknown column 'kelompok_belajar_id' in 'where clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-22 16:22:53 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_id' in 'where clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_id` = :kelompok_belajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:22:53 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_id` = \'kelompok_table.id\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_id` = \'kelompok_table.id\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_id` = :kelompok_belajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:22:53 --> [Caused by] mysqli_sql_exception: Unknown column 'kelompok_belajar_id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_id` = \'kelompok_table.id\'
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_id` = \'kelompok_table.id\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_id` = \'kelompok_table.id\'
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_id` = :kelompok_belajar_id:
+ORDER BY `kelompok_belajar_table`.`id` desc', [...], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-22 16:25:08 --> mysqli_sql_exception: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-22 16:25:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:25:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:25:08 --> [Caused by] mysqli_sql_exception: Unknown column 'kelompok_belajar_table.mitra_pengajar_id' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `kelompok_table`.`kelompok`, `kelompok_table`.`mitra_pengajar_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_table`.`id` = `kelompok_belajar_table`.`kelompok_id`
+JOIN `data_pengajar_table` ON `data_pengajar_table`.`id` = `kelompok_table`.`mitra_pengajar_id`
+JOIN `data_murid_table` ON `data_murid_table`.`id` = `kelompok_belajar_table`.`peserta_didik_id`
+WHERE `kelompok_belajar_table`.`mitra_pengajar_id` IS NULL
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-22 16:29:09 --> mysqli_sql_exception: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-22 16:29:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:29:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:29:09 --> [Caused by] mysqli_sql_exception: Unknown column 'data_murid_table.nama_lengkap_anak' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`, `data_murid_table`.`nama_lengkap_anak`, `status_murid_table`.`status_murid`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-07-22 16:30:10 --> mysqli_sql_exception: Unknown column 'kelompok_tabel.id' in 'on clause' in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompo...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompo...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompo...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompo...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(NULL)
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-07-22 16:30:10 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_tabel.id' in 'on clause'
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:30:10 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelompok_tabel.id' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-07-22 16:30:10 --> [Caused by] mysqli_sql_exception: Unknown column 'kelompok_tabel.id' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `kelompok_belajar_table`.`id`, `kelompok_belajar_table`.`kelompok_id`, `kelompok_belajar_table`.`peserta_didik_id`
+FROM `kelompok_belajar_table`
+JOIN `kelompok_table` ON `kelompok_tabel`.`id` = `kelompok_belajar_table`.`id`
+ORDER BY `kelompok_belajar_table`.`id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/KelompokBelajarModel.php(50): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/PresensiController.php(130): App\Models\Admin\KelompokBelajarModel->getPesertaDidikWhereMitraPengajar(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\PresensiController->getPesertaDidik()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PresensiController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')

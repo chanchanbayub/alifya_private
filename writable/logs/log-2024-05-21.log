@@ -1,0 +1,56 @@
+ERROR - 2024-05-21 01:55:07 --> mysqli_sql_exception: Table 'status_pengajar_table' already exists in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('CREATE TABLE `s...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `s...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `s...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `s...')
+#4 /Volumes/mf480 - Data/Alifya/app/Database/Migrations/2024-05-21-015410_StatusMurid.php(35): CodeIgniter\Database\Forge->createTable('status_pengajar...', false, Array)
+#5 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(865): App\Database\Migrations\StatusMurid->up()
+#6 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CLI/Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 /Volumes/mf480 - Data/Alifya/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+CRITICAL - 2024-05-21 01:59:10 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/status_murid_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/status_murid_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/status_murid_v', [], true)
+ 3 APPPATH/Controllers/Admin/StatusMuridController.php(28): view('admin/status_murid_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\StatusMuridController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\StatusMuridController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-05-21 03:56:59 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/murid_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/murid_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/murid_v', [], true)
+ 3 APPPATH/Controllers/Admin/MuridController.php(32): view('admin/murid_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\MuridController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\MuridController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-05-21 04:34:18 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/murid_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/murid_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/murid_v', [], true)
+ 3 APPPATH/Controllers/Admin/MuridController.php(32): view('admin/murid_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\MuridController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\MuridController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-05-21 04:48:53 --> ErrorException: Undefined variable: status_data_murid
+in APPPATH/Views/admin/murid_v.php on line 171.
+ 1 APPPATH/Views/admin/murid_v.php(171): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: status_data_murid', '/Volumes/mf480 - Data/Alifya/app/Views/admin/murid_v.php', 171, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/murid_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/murid_v', [], true)
+ 5 APPPATH/Controllers/Admin/MuridController.php(32): view('admin/murid_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\MuridController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\MuridController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')

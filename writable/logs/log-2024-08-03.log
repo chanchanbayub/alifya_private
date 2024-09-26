@@ -1,0 +1,181 @@
+CRITICAL - 2024-08-03 19:00:43 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/user_management_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/user_management_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/user_management_v', [], true)
+ 3 APPPATH/Controllers/Admin/UserManagementController.php(26): view('admin/user_management_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 19:01:38 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/user_management_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/user_management_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/user_management_v', [], true)
+ 3 APPPATH/Controllers/Admin/UserManagementController.php(26): view('admin/user_management_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 19:01:39 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/user_management_v.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/user_management_v.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/user_management_v', [], true)
+ 3 APPPATH/Controllers/Admin/UserManagementController.php(26): view('admin/user_management_v', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 19:01:52 --> ErrorException: Undefined variable: user_management
+in APPPATH/Views/admin/user_management_v.php on line 48.
+ 1 APPPATH/Views/admin/user_management_v.php(48): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: user_management', '/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php', 48, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/user_management_v', [], true)
+ 5 APPPATH/Controllers/Admin/UserManagementController.php(26): view('admin/user_management_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 19:04:11 --> ErrorException: Undefined variable: user_management
+in APPPATH/Views/admin/user_management_v.php on line 48.
+ 1 APPPATH/Views/admin/user_management_v.php(48): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: user_management', '/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php', 48, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/user_management_v', [], true)
+ 5 APPPATH/Controllers/Admin/UserManagementController.php(26): view('admin/user_management_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+ERROR - 2024-08-03 19:04:41 --> mysqli_sql_exception: Table 'alifya_private_db.user_management_table' doesn't exist in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+#5 /Volumes/mf480 - Data/Alifya/app/Models/Admin/UserManagementModel.php(24): CodeIgniter\Model->__call('get', Array)
+#6 /Volumes/mf480 - Data/Alifya/app/Controllers/Admin/UserManagementController.php(23): App\Models\Admin\UserManagementModel->getUserManagement()
+#7 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+#8 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+#9 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Volumes/mf480 - Data/Alifya/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 ...')
+#12 {main}
+CRITICAL - 2024-08-03 19:04:41 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.user_management_table' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `user_management_table`
+ORDER BY `id` desc', [], false)
+ 2 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH/Models/Admin/UserManagementModel.php(24): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH/Controllers/Admin/UserManagementController.php(23): App\Models\Admin\UserManagementModel->getUserManagement()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 19:04:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'alifya_private_db.user_management_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `user_management_table`
+ORDER BY `id` desc')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `user_management_table`
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `user_management_table`
+ORDER BY `id` desc', [], false)
+ 4 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/Admin/UserManagementModel.php(24): CodeIgniter\Model->__call('get', [])
+ 6 APPPATH/Controllers/Admin/UserManagementController.php(23): App\Models\Admin\UserManagementModel->getUserManagement()
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 19:04:41 --> [Caused by] mysqli_sql_exception: Table 'alifya_private_db.user_management_table' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *
+FROM `user_management_table`
+ORDER BY `id` desc', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `user_management_table`
+ORDER BY `id` desc')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `user_management_table`
+ORDER BY `id` desc')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `user_management_table`
+ORDER BY `id` desc', [], false)
+ 5 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/Admin/UserManagementModel.php(24): CodeIgniter\Model->__call('get', [])
+ 7 APPPATH/Controllers/Admin/UserManagementController.php(23): App\Models\Admin\UserManagementModel->getUserManagement()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 19:50:25 --> ErrorException: Undefined property: stdClass::$user_management
+in APPPATH/Views/admin/user_management_v.php on line 51.
+ 1 APPPATH/Views/admin/user_management_v.php(51): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$user_management', '/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php', 51, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/user_management_v', [], true)
+ 5 APPPATH/Controllers/Admin/UserManagementController.php(36): view('admin/user_management_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 19:51:06 --> ErrorException: Trying to get property 'id' of non-object
+in APPPATH/Views/admin/user_management_v.php on line 56.
+ 1 APPPATH/Views/admin/user_management_v.php(56): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'id\' of non-object', '/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php', 56, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/user_management_v', [], true)
+ 5 APPPATH/Controllers/Admin/UserManagementController.php(36): view('admin/user_management_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 20:07:02 --> ArgumentCountError: Too few arguments to function CodeIgniter\Database\BaseBuilder::join(), 1 passed in /Volumes/mf480 - Data/Alifya/vendor/codeigniter4/framework/system/Model.php on line 872 and at least 2 expected
+in SYSTEMPATH/Database/BaseBuilder.php on line 617.
+ 1 SYSTEMPATH/Model.php(872): CodeIgniter\Database\BaseBuilder->join('')
+ 2 APPPATH/Models/Admin/UserManagementModel.php(24): CodeIgniter\Model->__call('join', [...])
+ 3 APPPATH/Controllers/Admin/UserManagementController.php(31): App\Models\Admin\UserManagementModel->getUserManagement()
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 20:08:17 --> ErrorException: Undefined property: stdClass::$nama_lengkap
+in APPPATH/Views/admin/user_management_v.php on line 54.
+ 1 APPPATH/Views/admin/user_management_v.php(54): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$nama_lengkap', '/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php', 54, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/user_management_v', [], true)
+ 5 APPPATH/Controllers/Admin/UserManagementController.php(36): view('admin/user_management_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
+CRITICAL - 2024-08-03 20:09:32 --> ErrorException: Undefined property: stdClass::$role_management
+in APPPATH/Views/admin/user_management_v.php on line 57.
+ 1 APPPATH/Views/admin/user_management_v.php(57): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$role_management', '/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php', 57, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Volumes/mf480 - Data/Alifya/app/Views/admin/user_management_v.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('admin/user_management_v', [], true)
+ 5 APPPATH/Controllers/Admin/UserManagementController.php(36): view('admin/user_management_v', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Admin\UserManagementController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\UserManagementController))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Commands/Server/rewrite.php(47): require_once('/Volumes/mf480 - Data/Alifya/public/index.php')
