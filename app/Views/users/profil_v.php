@@ -26,7 +26,7 @@
                                 <i class="fa fa-check text-primary mr-3"></i>Guru Datang Kerumah
                             </li>
                             <li class="py-2 border-bottom">
-                                <i class="fa fa-check text-primary mr-3"></i>Media dan Metode Pembelajaran yang digunakan sesuai kemampuan anak <em>(Learning by Playing)</em>
+                                <i class="fa fa-check text-primary mr-3"></i>Media pembelajaran yang diguakan sesuai dengan kebutuhan dan kesukaan anak, dengan menggunakan metode learning by playing
                             </li>
                             <li class="py-2 border-bottom">
                                 <i class="fa fa-check text-primary mr-3"></i>Durasi Belajar 90 Menit
