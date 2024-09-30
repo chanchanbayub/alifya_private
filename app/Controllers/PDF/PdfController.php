@@ -43,7 +43,7 @@ class PdfController extends BaseController
         $invoice = $this->presensiModel->getPresensiWithMonth($mitra_pengajar_id, $bulan, $peserta_didik);
         $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
 
-        $harga_perjam = $this->hargaModel->getHargaPerbulan($peserta_didik, $bulan);
+        $harga_perjam = $this->hargaModel->getHargaPerbulan($peserta_didik);
 
         $total = count($invoice);
 

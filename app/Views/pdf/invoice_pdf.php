@@ -24,6 +24,7 @@
 
         .logo {
             text-align: center;
+            margin-top: -20px;
         }
 
         #logo_center {
@@ -55,7 +56,7 @@
 <body>
     <div class="container">
         <div class="logo">
-            <img src="assets/img/logo.png" id="logo_center" width="150" alt="logo">
+            <img src="assets/img/logo.png" id="logo_center" width="100" alt="logo">
         </div>
         <!-- <hr> -->
         <table id="pengantar">
@@ -179,6 +180,10 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <th colspan="2">Media Belajar</th>
+                    <th>Rp. 0 </th>
+                </tr>
+                <tr>
                     <th colspan="2">Total Pembayaran</th>
                     <th>Rp. <?= number_format($total * $harga) ?></th>
                 </tr>
@@ -201,7 +206,7 @@
                 </tr>
                 <tr>
                     <th colspan="2" style="border: 0;"></th>
-                    <th style="border: 0;"><img src="assets/img/ttd_anisa.png" alt="" class="ttd"></th>
+                    <th style="border: 0;"><img src="assets/img/ttd_anisa.png" alt="tanda_tangan" width="150"></th>
                 </tr>
                 <tr>
                     <th colspan="2" style="border: 0;"></th>
@@ -209,8 +214,7 @@
                 </tr>
             </tfoot>
         </table>
-
-        <img src="assets/img/cap.png" alt="" style="margin-left:830px; margin-top:-180px;" class="cap">
+        <img src="assets/img/cap.png" alt="stempel" style="margin-left:790px; margin-top:-180px;" class="cap">
     </div>
 
 </body>

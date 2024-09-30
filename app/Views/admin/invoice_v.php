@@ -25,7 +25,7 @@
                             <!-- Browser Default Validation -->
                             <form class="row g-3 text-capitalize" id="cek_invoice" action="cetak_invoice/pdf" target="_new">
                                 <?= csrf_field(); ?>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="mitra_pengajar_id" class="form-label">Pilih Mitra Pengajar :</label>
                                     <select name="mitra_pengajar_id" id="mitra_pengajar_id" class="form-control" required>
                                         <option value="">--Silahkan Pilih--</option>
@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="peserta_didik_id" class="form-label">Pilih Peserta Didik :</label>
                                     <select name="peserta_didik_id" id="peserta_didik_id" class="form-control" disabled>
                                         <option value="">--Silahkan Pilih--</option>
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="bulan" class="form-label">Pilih Bulan :</label>
                                     <select name="bulan" id="bulan" class="form-control" required>
                                         <option value="">--Silahkan Pilih--</option>
@@ -65,6 +65,13 @@
                                         <option value="12">Desember</option>
                                     </select>
                                     <div class="invalid-feedback error-bulan">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="media_belajar" class="form-label"> Media Pembelajaran :</label>
+                                    <input type="number" name="media_belajar" id="media_belajar" class="form-control" placeholder="cth : 10000">
+                                    <div class="invalid-feedback error-media-belajar">
                                     </div>
                                 </div>
 

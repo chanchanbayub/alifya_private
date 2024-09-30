@@ -28,7 +28,7 @@ class HargaModel extends Model
     public function getHargaPerbulan($peserta_didik_id)
     {
         return $this->table($this->table)
-            ->select('harga_table.id, harga_table.peserta_didik_id, harga_table.harga, harga_table.bulan ,data_murid_table.nama_lengkap_anak')
+            ->select('harga_table.id, harga_table.peserta_didik_id, harga_table.harga, data_murid_table.nama_lengkap_anak')
             ->join('data_murid_table', 'data_murid_table.id = harga_table.peserta_didik_id')
             ->where(["peserta_didik_id" => $peserta_didik_id])
             ->orderBy('id desc')->get()->getRowObject();
