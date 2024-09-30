@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\HargaMitraModel;
 use App\Models\Admin\HargaModel;
 use App\Models\Admin\KelompokBelajarModel;
 use App\Models\Admin\KelompokModel;
@@ -19,6 +20,7 @@ class InvoiceMitraController extends BaseController
     protected $kelompokBelajarModel;
     protected $hargaModel;
     protected $validation;
+    protected $hargaMitraModel;
     protected $mediaBelajarModel;
 
     public function __construct()
@@ -29,6 +31,7 @@ class InvoiceMitraController extends BaseController
         $this->hargaModel = new HargaModel();
         $this->kelompokBelajarModel = new KelompokBelajarModel();
         $this->validation = \Config\Services::validation();
+        $this->hargaMitraModel = new HargaMitraModel();
         $this->mediaBelajarModel = new MediaBelajarModel();
     }
 
@@ -36,11 +39,9 @@ class InvoiceMitraController extends BaseController
     {
         $mitra_pengajar = $this->kelompokModel->getKelompokPengajar();
 
-
         $data = [
             'title' => 'Invoice Mitra Pengajar',
             'mitra_pengajar' => $mitra_pengajar,
-
         ];
 
         return view('admin/invoice_mitra_v', $data);
@@ -80,7 +81,7 @@ class InvoiceMitraController extends BaseController
                         'required' => 'Bulan Tidak Boleh Kosong !'
                     ]
                 ],
-                'harga_media' => [
+                'lain_lain' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'Upah Tidak Boleh Kosong !'
@@ -92,7 +93,7 @@ class InvoiceMitraController extends BaseController
                     'error' => [
                         'mitra_pengajar_id' => $this->validation->getError('mitra_pengajar_id'),
                         'bulan' => $this->validation->getError('bulan'),
-                        'harga_media' => $this->validation->getError('harga_media'),
+                        'lain_lain' => $this->validation->getError('lain_lain'),
 
                     ]
                 ];
@@ -100,7 +101,7 @@ class InvoiceMitraController extends BaseController
 
                 $mitra_pengajar_id = $this->request->getPost('mitra_pengajar_id');
                 $bulan_media = $this->request->getPost('bulan');
-                $harga_media = $this->request->getPost('harga_media');
+                $harga_media = $this->request->getPost('lain_lain');
 
                 $media_belajar = $this->mediaBelajarModel->getMediaBelajar($mitra_pengajar_id, $bulan_media);
 

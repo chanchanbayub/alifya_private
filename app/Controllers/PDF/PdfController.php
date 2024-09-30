@@ -77,7 +77,6 @@ class PdfController extends BaseController
     public function mitra($mitra_pengajar_id, $bulan)
     {
 
-        // dd($mitra_pengajar_id, $bulan, $harga_media);
         $this->mpdf->showImageErrors = true;
 
         $mitra_pengajar_id = $mitra_pengajar_id;
@@ -99,17 +98,25 @@ class PdfController extends BaseController
 
         $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
 
-        $harga = $this->hargaMitraModel->getInvoice($mitra_pengajar_id, $bulan);
+        $harga = $this->hargaMitraModel->getInvoiceData($mitra_pengajar_id);
+        // dd($harga);
 
         $media_belajar = $this->mediaBelajarModel->getMediaBelajar($mitra_pengajar_id, $bulan);
 
-        $total = count($invoice);
+        $total = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar_id, $bulan);
+
+        $media_pengajar = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan);
+
+
+
+        // dd($total_media);
 
         $data = [
             'invoice' =>  $invoice,
             'mitra_pengajar' => $pengajar,
             'harga' => $harga,
             'total' => $total,
+            'media_pengajar' => $media_pengajar,
             'media_belajar' => $media_belajar
         ];
 

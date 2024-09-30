@@ -63,9 +63,9 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="harga_media" class="form-label">Lain-Lain :</label>
-                                    <input type="number" name="harga_media" id="harga_media" class="form-control">
-                                    <div class="invalid-feedback error-harga-media">
+                                    <label for="lain_lain" class="form-label">Lain-Lain :</label>
+                                    <input type="number" name="lain_lain" id="lain_lain" class="form-control" placeholder=" cth : 10000">
+                                    <div class="invalid-feedback error-lain-lain">
                                     </div>
                                 </div>
 
@@ -102,7 +102,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Mitra Pengajar</th>
                             <th scope="col">Jumlah Pertemuan</th>
-                            <th scope="col">Total Media</th>
+                            <th scope="col">Lain-Lain</th>
                             <th scope="col">Cetak Invoice</th>
                         </tr>
                     </thead>
@@ -143,7 +143,7 @@
             e.preventDefault();
             let mitra_pengajar_id = $("#mitra_pengajar_id").val();
             let bulan = $("#bulan").val();
-            let harga_media = $("#harga_media").val();
+            let lain_lain = $("#lain_lain").val();
 
             $.ajax({
                 url: 'invoice_mitra/cek_invoice',
@@ -152,7 +152,7 @@
                 data: {
                     mitra_pengajar_id: mitra_pengajar_id,
                     bulan: bulan,
-                    harga_media: harga_media
+                    lain_lain: lain_lain
                 },
                 beforeSend: function() {
                     $('.save').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
@@ -178,12 +178,12 @@
                             $("#bulan").removeClass('is-invalid');
                             $(".error-bulan").html('');
                         }
-                        if (response.error.harga_media) {
-                            $("#harga_media").addClass('is-invalid');
-                            $(".error-harga-media").html(response.error.harga_media);
+                        if (response.error.lain_lain) {
+                            $("#lain_lain").addClass('is-invalid');
+                            $(".error-lain-lain").html(response.error.lain_lain);
                         } else {
-                            $("#harga_media").removeClass('is-invalid');
-                            $(".error-harga-media").html('');
+                            $("#lain_lain").removeClass('is-invalid');
+                            $(".error-lain-lain").html('');
                         }
                     } else {
                         $("#invoice_modal").modal('show');

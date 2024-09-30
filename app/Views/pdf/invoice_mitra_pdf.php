@@ -85,18 +85,22 @@
                         <td>Pertemuan Ke -<?= $no++ ?> </td>
                         <td><?= $invoice->nama_lengkap_anak ?> </td>
                         <td> <?= tanggal_indonesia(date('Y-m-d', strtotime($invoice->tanggal_masuk))) ?>, <?= date_indo(date('Y-m-d', strtotime($invoice->tanggal_masuk))) ?></td>
-                        <td> Rp. <?= number_format($harga->harga_mitra) ?> </td>
+                        <td>Rp. <?= number_format($invoice->harga_mitra)  ?> </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="3">Media Pembelajaran</th>
+                    <th colspan="3">Media Belajar</th>
+                    <th>Rp. <?= number_format($media_pengajar->total_media) ?></th>
+                </tr>
+                <tr>
+                    <th colspan="3">Lain-Lain</th>
                     <th>Rp. <?= number_format($media_belajar->harga_media) ?></th>
                 </tr>
                 <tr>
                     <th colspan="3">Total Pembayaran</th>
-                    <th>Rp. <?= number_format($total * $harga->harga_mitra + $media_belajar->harga_media) ?></th>
+                    <th>Rp. <?= number_format($total->total + $media_belajar->harga_media) ?></th>
                 </tr>
 
                 <tr>

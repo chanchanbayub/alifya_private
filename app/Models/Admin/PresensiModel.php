@@ -58,14 +58,54 @@ class PresensiModel extends Model
     public function getInvoiceMitraWithMonth($mitra_pengajar_id, $bulan)
     {
         return $this->table($this->table)
-            ->select("presensi_table.id, presensi_table.mitra_pengajar_id ,presensi_table.tanggal_masuk, presensi_table.jam_masuk,  data_murid_table.nama_lengkap_anak")
+            ->select("presensi_table.id, presensi_table.mitra_pengajar_id ,presensi_table.tanggal_masuk, presensi_table.jam_masuk,  data_murid_table.nama_lengkap_anak, harga_mitra_table.harga_mitra, harga_mitra_table.booster_media")
             ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
             ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->join('harga_mitra_table', 'harga_mitra_table.peserta_didik_id = data_murid_table.id', 'left')
+            // ->join('harga_mitra_table', 'presensi_table.mitra_pengajar_id = harga_mitra_table.mitra_pengajar_id ')
             ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
 
             ->orderBy('data_murid_table.nama_lengkap_anak asc')
             ->get()->getResultObject();
     }
+
+    public function getInvoiceMitraWithMonthSum($mitra_pengajar_id, $bulan)
+    {
+        return $this->table($this->table)
+            ->select('sum(harga_mitra_table.harga_mitra) as total')
+            ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
+            ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->join('harga_mitra_table', 'harga_mitra_table.peserta_didik_id = data_murid_table.id', 'left')
+            // ->join('harga_mitra_table', 'presensi_table.mitra_pengajar_id = harga_mitra_table.mitra_pengajar_id ')
+            ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+
+            ->orderBy('data_murid_table.nama_lengkap_anak asc')
+            ->get()->getRowObject();
+    }
+
+    public function getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan)
+    {
+        return $this->table($this->table)
+            ->select('sum(harga_mitra_table.booster_media) as total_media')
+            ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
+            ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->join('harga_mitra_table', 'harga_mitra_table.peserta_didik_id = data_murid_table.id', 'left')
+            // ->join('harga_mitra_table', 'presensi_table.mitra_pengajar_id = harga_mitra_table.mitra_pengajar_id ')
+            ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->orderBy('data_murid_table.nama_lengkap_anak asc')
+            ->get()->getRowObject();
+    }
+
+    //     $this->db->select('customers.name,sum(sales.price)')
+    // ->from('customers')
+    // ->join('sales','sales.customerid = customers.id','left')
+    // ->where('sales.state !=0')
+    // ->group_by('customers.name');
+    // ->get()->result_array();
 }

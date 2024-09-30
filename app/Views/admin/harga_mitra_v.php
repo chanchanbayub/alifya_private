@@ -55,7 +55,7 @@
                                             <td> <?= $harga_perjam->nama_lengkap ?></td>
                                             <td><?= $harga_perjam->nama_lengkap_anak ?></td>
                                             <td>Rp. <?= number_format($harga_perjam->harga_mitra) ?></td>
-                                            <td><?= number_format($harga_perjam->booster_media) ?></td>
+                                            <td>Rp. <?= number_format($harga_perjam->booster_media) ?></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $harga_perjam->id ?>" type="button">
                                                     <i class="bi bi-pencil-square"></i>
