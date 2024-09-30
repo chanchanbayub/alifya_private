@@ -46,12 +46,7 @@ class HargaController extends BaseController
                         'required' => 'Upah Tidak Boleh Kosong !'
                     ]
                 ],
-                'bulan' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
-                    ]
-                ],
+
                 'harga' => [
                     'rules' => 'required',
                     'errors' => [
@@ -63,7 +58,6 @@ class HargaController extends BaseController
                 $alert = [
                     'error' => [
                         'peserta_didik_id' => $this->validation->getError('peserta_didik_id'),
-                        'bulan' => $this->validation->getError('bulan'),
                         'harga' => $this->validation->getError('harga'),
 
                     ]
@@ -71,12 +65,10 @@ class HargaController extends BaseController
             } else {
 
                 $peserta_didik_id = $this->request->getPost('peserta_didik_id');
-                $bulan = $this->request->getPost('bulan');
                 $harga = $this->request->getPost('harga');
 
                 $this->hargaModel->save([
                     'peserta_didik_id' => strtolower($peserta_didik_id),
-                    'bulan' => strtolower($bulan),
                     'harga' => strtolower($harga),
 
                 ]);
@@ -137,12 +129,6 @@ class HargaController extends BaseController
                         'required' => 'Upah Tidak Boleh Kosong !'
                     ]
                 ],
-                'bulan' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
-                    ]
-                ],
                 'harga' => [
                     'rules' => 'required',
                     'errors' => [
@@ -154,7 +140,6 @@ class HargaController extends BaseController
                 $alert = [
                     'error' => [
                         'peserta_didik_id' => $this->validation->getError('peserta_didik_id'),
-                        'bulan' => $this->validation->getError('bulan'),
                         'harga' => $this->validation->getError('harga'),
 
                     ]
@@ -162,12 +147,10 @@ class HargaController extends BaseController
             } else {
                 $id = $this->request->getPost('id');
                 $peserta_didik_id = $this->request->getPost('peserta_didik_id');
-                $bulan = $this->request->getPost('bulan');
                 $harga = $this->request->getPost('harga');
 
                 $this->hargaModel->update($id, [
                     'peserta_didik_id' => strtolower($peserta_didik_id),
-                    'bulan' => strtolower($bulan),
                     'harga' => strtolower($harga),
 
                 ]);

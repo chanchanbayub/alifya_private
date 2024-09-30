@@ -40,7 +40,6 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Peserta Didik</th>
-                                        <th scope="col">Bulan</th>
                                         <th scope="col"><?= $title ?></th>
 
                                         <th scope="col">Aksi</th>
@@ -52,7 +51,6 @@
                                         <tr>
                                             <th scope="row"><a href="#"><?= $no++ ?>.</a></th>
                                             <td> <?= $harga_perjam->nama_lengkap_anak ?></td>
-                                            <td><?= $harga_perjam->bulan ?></td>
                                             <td>Rp. <?= number_format($harga_perjam->harga) ?></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $harga_perjam->id ?>" type="button">
@@ -101,26 +99,6 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="bulan" class="col-form-label">Bulan :</label>
-                        <select name="bulan" id="bulan" class="form-select">
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="1">Januari</option>
-                            <option value="2">Februari</option>
-                            <option value="3">Maret</option>
-                            <option value="4">April</option>
-                            <option value="5">Mei</option>
-                            <option value="6">Juni</option>
-                            <option value="7">Juli</option>
-                            <option value="8">Agustus</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
-                        <div class="invalid-feedback error-bulan">
-                        </div>
-                    </div>
-                    <div class="mb-3">
                         <label for="harga" class="col-form-label">Harga :</label>
                         <input type="number" class="form-control" id="harga" name="harga" placeholder="50000">
                         <div class="invalid-feedback error-harga">
@@ -161,27 +139,6 @@
                             </select>
                             <div class="invalid-feedback error-peserta-didik-edit">
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="bulan_edit" class="col-form-label">Bulan :</label>
-                        <select name="bulan" id="bulan_edit" class="form-select">
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="1">Januari</option>
-                            <option value="2">Februari</option>
-                            <option value="3">Maret</option>
-                            <option value="4">April</option>
-                            <option value="5">Mei</option>
-                            <option value="6">Juni</option>
-                            <option value="7">Juli</option>
-                            <option value="8">Agustus</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
-                        <div class="invalid-feedback error-bulan-edit">
                         </div>
                     </div>
 
@@ -246,23 +203,12 @@
             dropdownParent: $('#editModal')
         });
 
-        $('#bulan').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#exampleModal')
-        });
-        $('#bulan_edit').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#editModal')
-        });
-
-
 
         $("#add_form").submit(function(e) {
             e.preventDefault();
 
             let harga = $("#harga").val();
             let peserta_didik_id = $("#peserta_didik_id").val();
-            let bulan = $("#bulan").val();
 
             $.ajax({
                 url: '/admin/harga/insert',
@@ -271,7 +217,6 @@
                 data: {
                     harga: harga,
                     peserta_didik_id: peserta_didik_id,
-                    bulan: bulan,
 
                 },
                 beforeSend: function() {
@@ -289,13 +234,7 @@
                             $("#peserta_didik_id").removeClass('is-invalid');
                             $(".error-peserta-didik").html('');
                         }
-                        if (response.error.bulan) {
-                            $("#bulan").addClass('is-invalid');
-                            $(".error-bulan").html(response.error.bulan);
-                        } else {
-                            $("#bulan").removeClass('is-invalid');
-                            $(".error-bulan").html('');
-                        }
+
                         if (response.error.harga) {
                             $("#harga").addClass('is-invalid');
                             $(".error-harga").html(response.error.harga);
@@ -352,7 +291,6 @@
 
                 $("#peserta_didik_id_edit").val(response.harga.peserta_didik_id).trigger('change');
 
-                $("#bulan_edit").val(response.harga.bulan).trigger('change');
 
             }
         });
@@ -362,7 +300,6 @@
         e.preventDefault();
         let id = $('#id_edit').val();
         let peserta_didik_id = $('#peserta_didik_id_edit').val();
-        let bulan = $('#bulan_edit').val();
         let harga = $('#harga_edit').val();
 
         $.ajax({
@@ -372,7 +309,6 @@
             data: {
                 id: id,
                 peserta_didik_id: peserta_didik_id,
-                bulan: bulan,
                 harga: harga,
 
             },
@@ -390,13 +326,6 @@
                     } else {
                         $("#peserta_didik_id_edit").removeClass('is-invalid');
                         $(".error-peserta-didik-edit").html('');
-                    }
-                    if (response.error.bulan) {
-                        $("#bulan_edit").addClass('is-invalid');
-                        $(".error-bulan-edit").html(response.error.bulan);
-                    } else {
-                        $("#bulan_edit").removeClass('is-invalid');
-                        $(".error-bulan-edit").html('');
                     }
 
                     if (response.error.harga) {
