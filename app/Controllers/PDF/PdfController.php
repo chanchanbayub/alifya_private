@@ -77,7 +77,7 @@ class PdfController extends BaseController
 
         helper(['format']);
 
-        $invoice = $this->presensiModel->getPresensiMitraWithMonth($mitra_pengajar_id, $bulan);
+        $invoice = $this->presensiModel->getInvoiceMitraWithMonth($mitra_pengajar_id, $bulan);
 
         if ($invoice == null) {
 
