@@ -71,10 +71,10 @@ class HargaMitraController extends BaseController
                         'required' => 'Peserta Didik Tidak Boleh Kosong !'
                     ]
                 ],
-                'bulan_mitra' => [
+                'booster_media' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
+                        'required' => 'Booster Media Tidak Boleh Kosong !'
                     ]
                 ],
                 'harga_mitra' => [
@@ -89,7 +89,7 @@ class HargaMitraController extends BaseController
                     'error' => [
                         'mitra_pengajar_id' => $this->validation->getError('mitra_pengajar_id'),
                         'peserta_didik_id' => $this->validation->getError('peserta_didik_id'),
-                        'bulan_mitra' => $this->validation->getError('bulan_mitra'),
+                        'booster_media' => $this->validation->getError('booster_media'),
                         'harga_mitra' => $this->validation->getError('harga_mitra'),
 
                     ]
@@ -98,13 +98,13 @@ class HargaMitraController extends BaseController
 
                 $mitra_pengajar_id = $this->request->getPost('mitra_pengajar_id');
                 $peserta_didik_id = $this->request->getPost('peserta_didik_id');
-                $bulan_mitra = $this->request->getPost('bulan_mitra');
+                $booster_media = $this->request->getPost('booster_media');
                 $harga_mitra = $this->request->getPost('harga_mitra');
 
                 $this->hargaMitraModel->save([
                     'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
                     'peserta_didik_id' => strtolower($peserta_didik_id),
-                    'bulan_mitra' => strtolower($bulan_mitra),
+                    'booster_media' => strtolower($booster_media),
                     'harga_mitra' => strtolower($harga_mitra),
 
                 ]);
@@ -176,10 +176,10 @@ class HargaMitraController extends BaseController
                         'required' => 'Peserta Didik Tidak Boleh Kosong !'
                     ]
                 ],
-                'bulan_mitra' => [
+                'booster_media' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
+                        'required' => 'Booster Media Tidak Boleh Kosong !'
                     ]
                 ],
                 'harga_mitra' => [
@@ -194,7 +194,7 @@ class HargaMitraController extends BaseController
                     'error' => [
                         'mitra_pengajar_id' => $this->validation->getError('mitra_pengajar_id'),
                         'peserta_didik_id' => $this->validation->getError('peserta_didik_id'),
-                        'bulan_mitra' => $this->validation->getError('bulan_mitra'),
+                        'booster_media' => $this->validation->getError('booster_media'),
                         'harga_mitra' => $this->validation->getError('harga_mitra'),
 
                     ]
@@ -203,15 +203,14 @@ class HargaMitraController extends BaseController
                 $id = $this->request->getPost('id');
                 $mitra_pengajar_id = $this->request->getPost('mitra_pengajar_id');
                 $peserta_didik_id = $this->request->getPost('peserta_didik_id');
-                $bulan = $this->request->getPost('bulan_mitra');
+                $booster_media = $this->request->getPost('booster_media');
                 $harga = $this->request->getPost('harga_mitra');
 
                 $this->hargaMitraModel->update($id, [
                     'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
                     'peserta_didik_id' => strtolower($peserta_didik_id),
-                    'bulan_mitra' => strtolower($bulan),
+                    'booster_media' => strtolower($booster_media),
                     'harga_mitra' => strtolower($harga),
-
                 ]);
 
                 $alert = [

@@ -40,9 +40,9 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Mitra Pengajar</th>
-                                        <th scope="col">Bulan</th>
                                         <th scope="col">Peserta Didik</th>
                                         <th scope="col"><?= $title ?></th>
+                                        <th scope="col">Booster Media</th>
 
                                         <th scope="col">Aksi</th>
                                     </tr>
@@ -53,9 +53,9 @@
                                         <tr>
                                             <th scope="row"><a href="#"><?= $no++ ?>.</a></th>
                                             <td> <?= $harga_perjam->nama_lengkap ?></td>
-                                            <td><?= $harga_perjam->bulan_mitra ?></td>
                                             <td><?= $harga_perjam->nama_lengkap_anak ?></td>
                                             <td>Rp. <?= number_format($harga_perjam->harga_mitra) ?></td>
+                                            <td><?= number_format($harga_perjam->booster_media) ?></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $harga_perjam->id ?>" type="button">
                                                     <i class="bi bi-pencil-square"></i>
@@ -114,29 +114,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="bulan_mitra" class="col-form-label">Bulan :</label>
-                        <select name="bulan_mitra" id="bulan_mitra" class="form-select">
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="1">Januari</option>
-                            <option value="2">Februari</option>
-                            <option value="3">Maret</option>
-                            <option value="4">April</option>
-                            <option value="5">Mei</option>
-                            <option value="6">Juni</option>
-                            <option value="7">Juli</option>
-                            <option value="8">Agustus</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
-                        <div class="invalid-feedback error-bulan-mitra">
-                        </div>
-                    </div>
-                    <div class="mb-3">
                         <label for="harga_mitra" class="col-form-label">Upah Perjam :</label>
                         <input type="number" class="form-control" id="harga_mitra" name="harga_mitra" placeholder="50000">
                         <div class="invalid-feedback error-harga-mitra">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="booster_media" class="col-form-label">Booster Media :</label>
+                        <input type="number" class="form-control" id="booster_media" name="booster_media" placeholder="50000">
+                        <div class="invalid-feedback error-booster-media">
                         </div>
                     </div>
 
@@ -188,32 +175,19 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="bulan_mitra_edit" class="col-form-label">Bulan :</label>
-                        <select name="bulan_mitra" id="bulan_mitra_edit" class="form-select">
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="1">Januari</option>
-                            <option value="2">Februari</option>
-                            <option value="3">Maret</option>
-                            <option value="4">April</option>
-                            <option value="5">Mei</option>
-                            <option value="6">Juni</option>
-                            <option value="7">Juli</option>
-                            <option value="8">Agustus</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
-                        <div class="invalid-feedback error-bulan-mitra-edit">
-                        </div>
-                    </div>
-
                     <div class="form-group">
 
                         <label for="harga_mitra_edit" class="col-form-label"><?= $title ?> :</label>
                         <input type="number" class="form-control" id="harga_mitra_edit" name="harga_mitra">
-                        <div class="invalid-feedback error-harga-mitra-edit">
+                        <div class="invalid-feedback error-booster-media-edit">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="booster_media_edit" class="col-form-label">Booster Media :</label>
+                        <input type="number" class="form-control" id="booster_media_edit" name="booster_media">
+                        <div class="invalid-feedback error-booster-media-edit">
 
                         </div>
                     </div>
@@ -265,11 +239,6 @@
             dropdownParent: $('#exampleModal')
         });
 
-        // $('#peserta_didik_id').select2({
-        //     theme: 'bootstrap-5',
-        //     dropdownParent: $('#exampleModal')
-        // });
-
         $('#mitra_pengajar_id_edit').select2({
             theme: 'bootstrap-5',
             dropdownParent: $('#editModal')
@@ -285,17 +254,6 @@
             dropdownParent: $('#editModal')
         });
 
-        $('#bulan_mitra').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#exampleModal')
-        });
-
-        $('#bulan_mitra_edit').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#editModal')
-        });
-
-
 
         $("#add_form").submit(function(e) {
             e.preventDefault();
@@ -303,7 +261,7 @@
             let harga_mitra = $("#harga_mitra").val();
             let mitra_pengajar_id = $("#mitra_pengajar_id").val();
             let peserta_didik_id = $("#peserta_didik_id").val();
-            let bulan_mitra = $("#bulan_mitra").val();
+            let booster_media = $("#booster_media").val();
 
             $.ajax({
                 url: '/admin/harga_mitra/insert',
@@ -313,7 +271,7 @@
                     harga_mitra: harga_mitra,
                     mitra_pengajar_id: mitra_pengajar_id,
                     peserta_didik_id: peserta_didik_id,
-                    bulan_mitra: bulan_mitra,
+                    booster_media: booster_media,
 
                 },
                 beforeSend: function() {
@@ -338,12 +296,12 @@
                             $("#peserta_didik_id").removeClass('is-invalid');
                             $(".error-peserta-didik").html('');
                         }
-                        if (response.error.bulan_mitra) {
-                            $("#bulan_mitra").addClass('is-invalid');
-                            $(".error-bulan-mitra").html(response.error.bulan_mitra);
+                        if (response.error.booster_media) {
+                            $("#booster_media").addClass('is-invalid');
+                            $(".error-booster-media").html(response.error.booster_media);
                         } else {
-                            $("#bulan_mitra").removeClass('is-invalid');
-                            $(".error-bulan-mitra").html('');
+                            $("#booster_media").removeClass('is-invalid');
+                            $(".error-booster-media").html('');
                         }
                         if (response.error.harga_mitra) {
                             $("#harga_mitra").addClass('is-invalid');
@@ -392,7 +350,7 @@
                 $("#id_edit").val(response.harga_mitra.id);
                 $("#harga_mitra_edit").val(response.harga_mitra.harga_mitra);
 
-                $("#bulan_mitra_edit").val(response.harga_mitra.bulan_mitra).trigger('change');
+                $("#booster_media_edit").val(response.harga_mitra.booster_media).trigger('change');
 
                 let mitra_pengajar_data = `<option value="">--Silahkan Pilih--</option>`;
 
@@ -424,7 +382,7 @@
         let id = $('#id_edit').val();
         let mitra_pengajar_id = $('#mitra_pengajar_id_edit').val();
         let peserta_didik_id = $('#peserta_didik_id_edit').val();
-        let bulan_mitra = $('#bulan_mitra_edit').val();
+        let booster_media = $('#booster_media_edit').val();
         let harga = $('#harga_mitra_edit').val();
 
         $.ajax({
@@ -435,7 +393,7 @@
                 id: id,
                 mitra_pengajar_id: mitra_pengajar_id,
                 peserta_didik_id: peserta_didik_id,
-                bulan_mitra: bulan_mitra,
+                booster_media: booster_media,
                 harga_mitra: harga,
 
             },
@@ -461,12 +419,12 @@
                         $("#peserta_didik_id_edit").removeClass('is-invalid');
                         $(".error-peserta-didik-edit").html('');
                     }
-                    if (response.error.bulan_mitra) {
-                        $("#bulan_mitra_edit").addClass('is-invalid');
-                        $(".error-bulan_mitra-edit").html(response.error.bulan_mitra);
+                    if (response.error.booster_media) {
+                        $("#booster_media_edit").addClass('is-invalid');
+                        $(".error-booster-media-edit").html(response.error.booster_media);
                     } else {
-                        $("#bulan_mitra_edit").removeClass('is-invalid');
-                        $(".error-bulan_mitra-edit").html('');
+                        $("#booster_media_edit").removeClass('is-invalid');
+                        $(".error-booster-media-edit").html('');
                     }
 
                     if (response.error.harga_mitra) {
