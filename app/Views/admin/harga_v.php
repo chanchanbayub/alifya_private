@@ -41,6 +41,7 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Peserta Didik</th>
                                         <th scope="col"><?= $title ?></th>
+                                        <th scope="col">Media Belajar</th>
 
                                         <th scope="col">Aksi</th>
                                     </tr>
@@ -52,6 +53,7 @@
                                             <th scope="row"><a href="#"><?= $no++ ?>.</a></th>
                                             <td> <?= $harga_perjam->nama_lengkap_anak ?></td>
                                             <td>Rp. <?= number_format($harga_perjam->harga) ?></td>
+                                            <td>Rp. <?= number_format($harga_perjam->media_belajar) ?></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $harga_perjam->id ?>" type="button">
                                                     <i class="bi bi-pencil-square"></i>
@@ -105,6 +107,13 @@
                         </div>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="media_belajar" class="col-form-label">Media Belajar :</label>
+                        <input type="number" class="form-control" id="media_belajar" name="media_belajar" placeholder="10000">
+                        <div class="invalid-feedback error-media-belajar">
+                        </div>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
                         <button type="submit" class="btn btn-outline-success save"> <i class="bi bi-arrow-right"></i> Kirim</button>
@@ -147,6 +156,15 @@
                         <label for="harga_edit" class="col-form-label"><?= $title ?> :</label>
                         <input type="number" class="form-control" id="harga_edit" name="harga">
                         <div class="invalid-feedback error-harga-edit">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="media_belajar_edit" class="col-form-label">Media Belajar :</label>
+                        <input type="number" class="form-control" id="media_belajar_edit" name="media_belajar">
+                        <div class="invalid-feedback error-media-belajar-edit">
 
                         </div>
                     </div>
@@ -208,6 +226,7 @@
             e.preventDefault();
 
             let harga = $("#harga").val();
+            let media_belajar = $("#media_belajar").val();
             let peserta_didik_id = $("#peserta_didik_id").val();
 
             $.ajax({
@@ -217,6 +236,7 @@
                 data: {
                     harga: harga,
                     peserta_didik_id: peserta_didik_id,
+                    media_belajar: media_belajar,
 
                 },
                 beforeSend: function() {
@@ -241,6 +261,14 @@
                         } else {
                             $("#harga").removeClass('is-invalid');
                             $(".error-harga").html('');
+                        }
+
+                        if (response.error.media_belajar) {
+                            $("#media_belajar").addClass('is-invalid');
+                            $(".error-media-belajar").html(response.error.media_belajar);
+                        } else {
+                            $("#media_belajar").removeClass('is-invalid');
+                            $(".error-media-belajar").html('');
                         }
 
                     } else {
@@ -280,6 +308,7 @@
                 // console.log(response);
                 $("#id_edit").val(response.harga.id);
                 $("#harga_edit").val(response.harga.harga);
+                $("#media_belajar_edit").val(response.harga.media_belajar);
 
                 let peserta_didik_data = `<option value="">--Silahkan Pilih--</option>`;
 
@@ -301,6 +330,7 @@
         let id = $('#id_edit').val();
         let peserta_didik_id = $('#peserta_didik_id_edit').val();
         let harga = $('#harga_edit').val();
+        let media_belajar = $('#media_belajar_edit').val();
 
         $.ajax({
             url: '/admin/harga/update',
@@ -310,6 +340,7 @@
                 id: id,
                 peserta_didik_id: peserta_didik_id,
                 harga: harga,
+                media_belajar: media_belajar,
 
             },
             beforeSend: function() {
@@ -334,6 +365,14 @@
                     } else {
                         $("#harga_edit").removeClass('is-invalid');
                         $(".error-harga-edit").html('');
+                    }
+
+                    if (response.error.media_belajar) {
+                        $("#media_belajar_edit").addClass('is-invalid');
+                        $(".error-media-belajar-edit").html(response.error.media_belajar);
+                    } else {
+                        $("#media_belajar_edit").removeClass('is-invalid');
+                        $(".error-media-belajar-edit").html('');
                     }
 
                 } else {
