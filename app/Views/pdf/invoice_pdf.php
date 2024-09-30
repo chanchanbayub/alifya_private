@@ -181,11 +181,11 @@
             <tfoot>
                 <tr>
                     <th colspan="2">Media Belajar</th>
-                    <th>Rp. 0 </th>
+                    <th>Rp. <?= number_format($media_belajar) ?> </th>
                 </tr>
                 <tr>
                     <th colspan="2">Total Pembayaran</th>
-                    <th>Rp. <?= number_format($total * $harga) ?></th>
+                    <th>Rp. <?= number_format($total * $harga + $media_belajar) ?></th>
                 </tr>
                 <tr>
                     <th colspan="2" style="border: 0;"></th>

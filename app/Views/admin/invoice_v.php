@@ -139,6 +139,29 @@
             });
         });
 
+        $('#peserta_didik_id').change(function(e) {
+            e.preventDefault();
+            let peserta_didik_id = $(this).val();
+
+            $.ajax({
+                url: '/admin/invoice/getHargaPeserta',
+                method: 'get',
+                dataType: 'JSON',
+                data: {
+                    peserta_didik_id: peserta_didik_id,
+                },
+                success: function(response) {
+                    if (response.media_belajar == null) {
+                        $("#media_belajar").val("0");
+                    } else {
+                        $("#media_belajar").val(response.media_belajar);
+                    }
+
+
+                },
+            });
+        });
+
     });
 </script>
 

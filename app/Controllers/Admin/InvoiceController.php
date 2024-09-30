@@ -65,7 +65,7 @@ class InvoiceController extends BaseController
 
             $peserta_didik_id = $this->request->getVar('peserta_didik_id');
 
-            $harga_perjam = $this->hargaModel->where(["peserta_didik_id" => $peserta_didik_id])->get()->getResultObject();
+            $harga_perjam = $this->hargaModel->where(["peserta_didik_id" => $peserta_didik_id])->get()->getRowObject();
 
             $data = [
                 'harga_perjam' => $harga_perjam

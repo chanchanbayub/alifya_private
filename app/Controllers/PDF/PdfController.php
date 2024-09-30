@@ -38,6 +38,15 @@ class PdfController extends BaseController
         $mitra_pengajar_id = $this->request->getVar('mitra_pengajar_id');
         $peserta_didik = $this->request->getVar('peserta_didik_id');
         $bulan = $this->request->getVar('bulan');
+        $media_belajar = $this->request->getVar('media_belajar');
+
+
+        $harga = $this->hargaModel->where(["peserta_didik_id" => $peserta_didik])->get()->getRowObject();
+
+        $this->hargaModel->update($harga->id, [
+            'media_belajar' => $media_belajar
+        ]);
+        // $this->hargaModel->update()
         helper(['format']);
 
         $invoice = $this->presensiModel->getPresensiWithMonth($mitra_pengajar_id, $bulan, $peserta_didik);
@@ -54,8 +63,8 @@ class PdfController extends BaseController
             'mitra_pengajar' => $pengajar,
             'peserta_didik' => $peserta_didik_data->nama_lengkap_anak,
             'harga' => $harga_perjam->harga,
+            'media_belajar' => $harga_perjam->media_belajar,
             'total' => $total,
-
         ];
 
         $html = view('pdf/invoice_pdf', $data);
