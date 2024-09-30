@@ -63,7 +63,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="harga_media" class="form-label">Total Media Belajar :</label>
+                                    <label for="harga_media" class="form-label">Lain-Lain :</label>
                                     <input type="number" name="harga_media" id="harga_media" class="form-control">
                                     <div class="invalid-feedback error-harga-media">
                                     </div>
