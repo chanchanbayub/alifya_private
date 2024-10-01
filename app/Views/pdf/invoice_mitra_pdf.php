@@ -100,7 +100,7 @@
                 </tr>
                 <tr>
                     <th colspan="3">Total Pembayaran</th>
-                    <th>Rp. <?= number_format($total->total + $media_belajar->harga_media) ?></th>
+                    <th>Rp. <?= number_format($total->total + $media_belajar->harga_media + $media_pengajar->total_media) ?></th>
                 </tr>
 
                 <tr>
