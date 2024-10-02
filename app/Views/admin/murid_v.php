@@ -1031,11 +1031,11 @@
                         $("#username_instagram_wali_edit").removeClass('is-invalid');
                         $(".error-username-ig-wali-edit").html('');
                     }
-                    if (response.error.paket_belajar) {
-                        $("#paket_belajar_edit").addClass('is-invalid');
-                        $(".error-paket-belajar-edit").html(response.error.paket_belajar);
+                    if (response.error.paket_belajar_id) {
+                        $("#paket_belajar_id_edit").addClass('is-invalid');
+                        $(".error-paket-belajar-edit").html(response.error.paket_belajar_id);
                     } else {
-                        $("#paket_belajar_edit").removeClass('is-invalid');
+                        $("#paket_belajar_id_edit").removeClass('is-invalid');
                         $(".error-paket-belajar-edit").html('');
                     }
                     if (response.error.program_belajar_id) {

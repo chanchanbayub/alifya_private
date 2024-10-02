@@ -512,7 +512,7 @@ class MuridController extends BaseController
                         'nomor_whatsapp_wali' => $this->validation->getError('nomor_whatsapp_wali'),
                         'username_instagram_wali' => $this->validation->getError('username_instagram_wali'),
                         'info_les' => $this->validation->getError('info_les'),
-                        'paket_belajar' => $this->validation->getError('paket_belajar'),
+                        'paket_belajar_id' => $this->validation->getError('paket_belajar_id'),
                         'program_belajar_id' => $this->validation->getError('program_belajar_id'),
                         'materi_belajar_id' => $this->validation->getError('materi_belajar_id'),
                         'hari_belajar' => $this->validation->getError('hari_belajar'),
