@@ -149,7 +149,9 @@ $routes->group('auth', static function ($routes) {
 
 $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('dashboard', 'Mitra\DashboardController::index');
+
     $routes->get('materi_belajar', 'Mitra\MateriBelajarController::index');
+
     $routes->get('data_pengajar', 'Mitra\PengajarController::index');
     $routes->get('data_pengajar/view/(:any)', 'Admin\PengajarController::view/$1');
 
@@ -158,6 +160,9 @@ $routes->group('mitra_pengajar', static function ($routes) {
 
     $routes->get('data_murid', 'Mitra\MuridController::index');
     $routes->get('data_murid/view/(:any)', 'Mitra\MuridController::view/$1');
+    $routes->get('data_murid/edit', 'Mitra\MuridController::edit');
+    $routes->post('data_murid/update', 'Mitra\MuridController::update');
+
 
     $routes->get('presensi', 'Mitra\PresensiController::index');
     $routes->post('presensi/insert', 'Mitra\PresensiController::insert');

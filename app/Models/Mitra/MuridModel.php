@@ -9,7 +9,7 @@ class MuridModel extends Model
     protected $table            = 'data_murid_table';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['uid_murid', 'nama_lengkap_anak', 'tanggal_lahir_anak', 'usia_anak', 'alamat_domisili_anak', 'sekolah_anak', 'nomor_whatsapp_wali', 'username_instagram_wali', 'program_belajar_id', 'materi_belajar_id', 'hari_belajar', 'waktu_belajar', 'foto_anak', 'status_murid_id'];
+    protected $allowedFields    = ['uid_murid', 'nama_lengkap_anak', 'tanggal_lahir_anak', 'usia_anak', 'alamat_domisili_anak', 'sekolah_anak', 'nama_ibu', 'nama_ayah', 'pekerjaan_ayah', 'pekerjaan_ibu', 'nomor_whatsapp_wali', 'paket_belajar_id', 'username_instagram_wali', 'program_belajar_id', 'materi_belajar_id', 'hari_belajar', 'waktu_belajar', 'brosur', 'info_les', 'data', 'foto_anak', 'status_murid_id'];
 
     // Dates
     protected $useTimestamps = true;
