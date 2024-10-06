@@ -31,7 +31,6 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Materi Belajar</th>
                                         <th scope="col">Link</th>
-                                        <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,14 +40,6 @@
                                             <th scope="row"><a href="#"><?= $no++ ?></a></th>
                                             <td><?= $alat_pengajaran->materi_belajar ?> </td>
                                             <td><a href="<?= $alat_pengajaran->link ?>" target="_blank" class="btn btn-sm btn-primary">Kunjungi Link</a></td>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $alat_pengajaran->id ?>" type="button">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $alat_pengajaran->id ?>" type="button">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
