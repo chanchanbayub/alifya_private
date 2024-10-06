@@ -85,11 +85,8 @@ class AlatPengajaranController extends BaseController
 
             $alat_pengajaran = $this->alatPengajaranModel->where(["id" => $id])->first();
 
-            $materi_belajar = $this->materiBelajarModel->getMateriBelajar();
-
             $data = [
                 'alat_pengajaran' => $alat_pengajaran,
-                'materi_belajar' => $materi_belajar
             ];
 
             return json_encode($data);

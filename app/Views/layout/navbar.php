@@ -66,6 +66,11 @@
                          <i class="bi bi-circle"></i><span>Alat Pengajaran</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="/admin/alat_tim">
+                         <i class="bi bi-circle"></i><span>Alat Tim</span>
+                     </a>
+                 </li>
              </ul>
          </li><!-- End Icons Nav -->
 

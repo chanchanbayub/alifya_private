@@ -65,6 +65,12 @@ $routes->group('admin', static function ($routes) {
     $routes->post('alat_pengajaran/update', 'Admin\AlatPengajaranController::update');
     $routes->post('alat_pengajaran/delete', 'Admin\AlatPengajaranController::delete');
 
+    $routes->get('alat_tim', 'Admin\AlatTimController::index');
+    $routes->post('alat_tim/insert', 'Admin\AlatTimController::insert');
+    $routes->get('alat_tim/edit', 'Admin\AlatTimController::edit');
+    $routes->post('alat_tim/update', 'Admin\AlatTimController::update');
+    $routes->post('alat_tim/delete', 'Admin\AlatTimController::delete');
+
     $routes->get('materi_belajar', 'Admin\MateriBelajarController::index');
     $routes->post('materi_belajar/insert', 'Admin\MateriBelajarController::insert');
     $routes->get('materi_belajar/edit', 'Admin\MateriBelajarController::edit');
