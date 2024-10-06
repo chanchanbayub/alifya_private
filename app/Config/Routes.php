@@ -89,6 +89,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('hari_belajar/update', 'Admin\HariBelajarController::update');
     $routes->post('hari_belajar/delete', 'Admin\HariBelajarController::delete');
 
+    $routes->get('jadwal_tetap', 'Admin\JadwalTetapController::index');
+    $routes->post('jadwal_tetap/insert', 'Admin\JadwalTetapController::insert');
+    $routes->get('jadwal_tetap/edit', 'Admin\JadwalTetapController::edit');
+    $routes->post('jadwal_tetap/update', 'Admin\JadwalTetapController::update');
+    $routes->post('jadwal_tetap/delete', 'Admin\JadwalTetapController::delete');
+    $routes->get('jadwal_tetap/getPesertaDidik', 'Admin\JadwalTetapController::getPesertaDidik');
+
     $routes->get('data_pengajar', 'Admin\PengajarController::index');
     $routes->post('data_pengajar/insert', 'Admin\PengajarController::insert');
     $routes->get('data_pengajar/edit', 'Admin\PengajarController::edit');

@@ -83,6 +83,19 @@
          <li class="nav-heading">DATA MANAGEMENT</li>
 
          <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#jadwal-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-calendar"></i><span>Jadwal Tetap Mitra</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="jadwal-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/admin/jadwal_tetap">
+                         <i class="bi bi-circle"></i><span>Jadwal Tetap</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+
+         <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#pengajar-nav" data-bs-toggle="collapse" href="#">
                  <i class="bi bi-person-check"></i><span>Mitra Pengajar</span><i class="bi bi-chevron-down ms-auto"></i>
              </a>

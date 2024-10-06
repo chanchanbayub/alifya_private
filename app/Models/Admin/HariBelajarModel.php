@@ -20,7 +20,7 @@ class HariBelajarModel extends Model
     public function getHari()
     {
         return $this->table($this->table)
-            ->orderBy('id desc')
+            ->orderBy('hari_belajar_table.id asc')
             ->get()->getResultObject();
     }
 }
