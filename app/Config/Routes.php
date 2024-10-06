@@ -83,6 +83,12 @@ $routes->group('admin', static function ($routes) {
     $routes->post('status_pengajar/update', 'Admin\StatusPengajarController::update');
     $routes->post('status_pengajar/delete', 'Admin\StatusPengajarController::delete');
 
+    $routes->get('hari_belajar', 'Admin\HariBelajarController::index');
+    $routes->post('hari_belajar/insert', 'Admin\HariBelajarController::insert');
+    $routes->get('hari_belajar/edit', 'Admin\HariBelajarController::edit');
+    $routes->post('hari_belajar/update', 'Admin\HariBelajarController::update');
+    $routes->post('hari_belajar/delete', 'Admin\HariBelajarController::delete');
+
     $routes->get('data_pengajar', 'Admin\PengajarController::index');
     $routes->post('data_pengajar/insert', 'Admin\PengajarController::insert');
     $routes->get('data_pengajar/edit', 'Admin\PengajarController::edit');

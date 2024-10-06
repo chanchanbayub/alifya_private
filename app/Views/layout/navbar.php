@@ -18,6 +18,12 @@
              </a>
              <ul id="component-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                  <li>
+                     <a href="/admin/hari_belajar">
+                         <i class="bi bi-circle"></i><span>Hari Belajar</span>
+                     </a>
+                 </li>
+
+                 <li>
                      <a href="/admin/role_management">
                          <i class="bi bi-circle"></i><span>Role Management</span>
                      </a>
