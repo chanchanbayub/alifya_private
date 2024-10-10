@@ -171,6 +171,13 @@ $routes->group('mitra_pengajar', static function ($routes) {
 
     $routes->get('materi_belajar', 'Mitra\MateriBelajarController::index');
 
+    $routes->get('jadwal_tetap', 'Mitra\JadwalTetapController::index');
+    $routes->post('jadwal_tetap/insert', 'Mitra\JadwalTetapController::insert');
+    $routes->get('jadwal_tetap/edit', 'Mitra\JadwalTetapController::edit');
+    $routes->post('jadwal_tetap/update', 'Mitra\JadwalTetapController::update');
+    $routes->post('jadwal_tetap/delete', 'Mitra\JadwalTetapController::delete');
+    $routes->get('jadwal_tetap/getPesertaDidik', 'Mitra\JadwalTetapController::getPesertaDidik');
+
     $routes->get('data_pengajar', 'Mitra\PengajarController::index');
     $routes->get('data_pengajar/view/(:any)', 'Admin\PengajarController::view/$1');
 
