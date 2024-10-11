@@ -9,7 +9,7 @@ class PengajarModel extends Model
     protected $table            = 'data_pengajar_table';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['uid', 'nama_lengkap', 'email', 'usia', 'alamat_domisili', 'pendidikan_terakhir', 'jurusan', 'status_perkawinan', 'nomor_whatsapp', 'username_instagram', 'foto', 'cv', 'status_id'];
+    protected $allowedFields    = ['uid', 'nama_lengkap', 'email', 'usia', 'alamat_domisili', 'pendidikan_terakhir', 'jurusan', 'status_perkawinan', 'nomor_whatsapp', 'username_instagram', 'pekerjaan', 'kontrak', 'pernyataan', 'kendaraan_pribadi', 'media_belajar', 'alasan_bergabung', 'kelebihan', 'info_loker', 'ijazah', 'foto', 'cv', 'status_id'];
 
     // Dates
     protected $useTimestamps = true;
