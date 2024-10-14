@@ -3,7 +3,9 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\AbsensiModel;
 use App\Models\Admin\HargaModel;
+use App\Models\Admin\JadwalTetapModel;
 use App\Models\Admin\KelompokBelajarModel;
 use App\Models\Admin\KelompokModel;
 use App\Models\Admin\MuridModel;
@@ -18,7 +20,9 @@ class PresensiController extends BaseController
     protected $kelompokBelajarModel;
     protected $pengajarModel;
     protected $muridModel;
+    protected $jadwalTetaModel;
     protected $hargaModel;
+    protected $absensiModel;
     protected $validation;
 
     public function __construct()
@@ -29,6 +33,8 @@ class PresensiController extends BaseController
         $this->kelompokBelajarModel = new KelompokBelajarModel();
         $this->muridModel = new MuridModel();
         $this->hargaModel = new HargaModel();
+        $this->jadwalTetaModel = new JadwalTetapModel();
+        $this->absensiModel = new AbsensiModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -46,6 +52,35 @@ class PresensiController extends BaseController
         ];
 
         return view('admin/presensi_v', $data);
+    }
+
+    public function presensi_harian()
+    {
+        $kelompokPengajar = $this->kelompokModel->getKelompokPengajar();
+
+        helper(['format']);
+
+        $tanggal_hari = date('Y/m/d');
+
+        $presensi_harian = $this->presensiModel->getDataPresensiPerhari($tanggal_hari);
+
+
+        $hari_ini = tanggal_indonesia(date('Y-m-d'));
+
+        $jadwal_harian = $this->jadwalTetaModel->getJadwalHarian($hari_ini);
+
+        $absensi = $this->absensiModel->getAbsensiPerhari($tanggal_hari);
+
+        $data = [
+            'title' => 'Presensi Harian',
+            'presensi' => $presensi_harian,
+            'mitra_pengajar' => $kelompokPengajar,
+            'jadwal_harian' => $jadwal_harian,
+            'absensi' => $absensi
+
+        ];
+
+        return view('admin/presensi_harian_v', $data);
     }
 
     public function getPesertaDidik()

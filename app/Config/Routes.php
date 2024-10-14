@@ -137,6 +137,8 @@ $routes->group('admin', static function ($routes) {
     $routes->post('presensi/delete', 'Admin\PresensiController::delete');
     $routes->get('presensi/getPesertaDidik', 'Admin\PresensiController::getPesertaDidik');
 
+    $routes->get('presensi_harian', 'Admin\PresensiController::presensi_harian');
+
     $routes->get('absensi', 'Admin\AbsensiController::index');
     $routes->post('absensi/insert', 'Admin\AbsensiController::insert');
     $routes->get('absensi/edit', 'Admin\AbsensiController::edit');

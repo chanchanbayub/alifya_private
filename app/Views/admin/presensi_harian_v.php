@@ -13,91 +13,23 @@
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
-    <div class="row">
-        <div class="col-xxl-4 col-md-12">
-            <div class="card info-card sales-card">
-
-                <div class="card-body">
-                    <h5 class="card-title"><span>| Presensi Hari <?= tanggal_indonesia(date('Y-m-d')) ?>, <?= date_indo(date('Y-m-d')); ?></span></h5>
-                    <div class="d-flex align-items-center">
-                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-fingerprint"></i>
-                        </div>
-                        <div class="ps-3">
-                            <a href="presensi_harian"> <small>Lihat Presensi</small> </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-xxl-4 col-md-12">
-            <div class="card info-card sales-card">
-
-                <div class="card-body">
-                    <h5 class="card-title"><span>| Presensi / Perbulan </span></h5>
-                    <div class="d-flex align-items-center">
-                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-fingerprint"></i>
-                        </div>
-                        <div class="ps-3">
-                            <a href="#">Lihat Presensi <small> (Cooming Soon) </small> </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-xxl-4 col-md-12">
-            <div class="card info-card sales-card">
-
-                <div class="card-body">
-                    <h5 class="card-title"><span>| Presensi Ideal </span></h5>
-                    <div class="d-flex align-items-center">
-                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-fingerprint"></i>
-                        </div>
-                        <div class="ps-3">
-                            <a href="#">Lihat Presensi <small> (Cooming Soon) </small> </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
     <!-- Left side columns -->
-    <div class="col-lg-12">
+    <div class="col-md-12">
         <div class="row">
 
             <!-- Recent Sales -->
-            <div class="col-12">
+            <div class="col-md-6">
                 <div class="card recent-sales overflow-auto">
 
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Aksi</h6>
-                            </li>
-                            <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
-                        </ul>
-                    </div>
-
                     <div class="card-body">
-                        <h5 class="card-title"><?= $title ?> <span>| Table </span></h5>
+                        <h5 class="card-title"><?= $title ?> <span>| <?= tanggal_indonesia(date('Y-m-d')) ?>, <?= date_indo(date('Y-m-d')); ?> </span></h5>
                         <table class="table table-bordered datatable">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Mitra Pengajar</th>
-                                    <th scope="col">Tanggal Masuk</th>
-                                    <th scope="col">Jam Masuk</th>
-                                    <th scope="col">Nama Peserta Didik</th>
+                                    <th scope="col">Peserta Didik</th>
                                     <th scope="col">Dokumentasi</th>
-                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -106,31 +38,82 @@
                                     <tr>
                                         <th scope="row"><a href="#"><?= $no++ ?></a></th>
                                         <td><?= $presensi->nama_lengkap  ?></td>
-                                        <td><?= date('d-m-Y', strtotime($presensi->tanggal_masuk)) ?></td>
-                                        <td> <?= date('H:i', strtotime($presensi->jam_masuk)) ?> </td>
-                                        <td><?= $presensi->nama_lengkap_anak ?> </td>
-                                        <td><a href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat Dokumentasi</a> </td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $presensi->id ?>" type="button">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $presensi->id ?>" type="button">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </td>
+                                        <td><?= $presensi->nama_lengkap_anak ?></td>
+                                        <td><a type="button" href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank"><i class="bi bi-eye"></i> Lihat</a> </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-
                     </div>
-
                 </div>
-            </div><!-- End Recent Sales -->
+            </div>
 
+            <div class="col-md-6">
+                <div class="card recent-sales overflow-auto">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Jadwal Tetap Anak <span>| <b> Hari <?= tanggal_indonesia(date('Y-m-d')) ?> </b> </span></h5>
+                        <table class="table table-bordered datatable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Mitra Pengajar</th>
+                                    <th scope="col">Peserta Didik</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1; ?>
+                                <?php foreach ($jadwal_harian as $jadwal_harian) : ?>
+                                    <tr>
+                                        <th scope="row"><a href="#"><?= $no++ ?></a></th>
+                                        <td><?= $jadwal_harian->nama_lengkap  ?></td>
+                                        <td><?= $jadwal_harian->nama_lengkap_anak ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- End Recent Sales -->
         </div>
     </div><!-- End Left side columns -->
 
+    <div class="col-md-12">
+        <div class="row">
+
+            <!-- Recent Sales -->
+            <div class="col-md-12">
+                <div class="card recent-sales overflow-auto">
+
+                    <div class="card-body">
+                        <h5 class="card-title"> Absensi Harian <span>| <?= tanggal_indonesia(date('Y-m-d')) ?>, <?= date_indo(date('Y-m-d')); ?> </span></h5>
+                        <table class="table table-bordered datatable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Tanggal Masuk</th>
+                                    <th scope="col">Mitra Pengajar</th>
+                                    <th scope="col">Peserta Didik</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1; ?>
+                                <?php foreach ($absensi as $absensi) : ?>
+                                    <tr>
+                                        <th scope="row"><a href="#"><?= $no++ ?></a></th>
+                                        <td><?= tanggal_indonesia(date('Y-m-d', strtotime($absensi->tanggal))) ?>, <?= date_indo(date('Y-m-d', strtotime($absensi->tanggal))) ?></td>
+                                        <td><?= $absensi->nama_lengkap ?></td>
+                                        <td><?= $absensi->nama_lengkap_anak ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- End Recent Sales -->
+        </div>
     </div>
 </section>
 
