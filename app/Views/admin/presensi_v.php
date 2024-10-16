@@ -36,13 +36,13 @@
             <div class="card info-card sales-card">
 
                 <div class="card-body">
-                    <h5 class="card-title"><span>| Presensi / Perbulan </span></h5>
+                    <h5 class="card-title"><span>| Presensi Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
                     <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                             <i class="bi bi-fingerprint"></i>
                         </div>
                         <div class="ps-3">
-                            <a href="#">Lihat Presensi <small> (Cooming Soon) </small> </a>
+                            <a href="presensi_bulanan"><small>Lihat Presensi Perbulan </small> </a>
                         </div>
                     </div>
                 </div>

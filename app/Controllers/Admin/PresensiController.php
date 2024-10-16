@@ -83,6 +83,35 @@ class PresensiController extends BaseController
         return view('admin/presensi_harian_v', $data);
     }
 
+    public function presensi_bulanan()
+    {
+        $kelompokPengajar = $this->kelompokModel->getKelompokPengajar();
+
+        helper(['format']);
+
+        $tanggal_hari = date('Y/m/d');
+
+        $presensi_bulanan = $this->presensiModel->getDataPresensiPerhari($tanggal_hari);
+
+
+        $hari_ini = tanggal_indonesia(date('Y-m-d'));
+
+        // $jadwal_bulanan = $this->jadwalTetaModel->getJadwalbulanan($hari_ini);
+
+        // $absensi = $this->absensiModel->getAbsensiPerhari($tanggal_hari);
+
+        $data = [
+            'title' => 'Presensi bulanan',
+            'presensi' => $presensi_bulanan,
+            'mitra_pengajar' => $kelompokPengajar,
+            // 'jadwal_bulanan' => $jadwal_bulanan,
+            // 'absensi' => $absensi
+
+        ];
+
+        return view('admin/presensi_bulanan_v', $data);
+    }
+
     public function getPesertaDidik()
     {
         if ($this->request->isAJAX()) {
