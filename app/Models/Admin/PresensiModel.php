@@ -124,10 +124,18 @@ class PresensiModel extends Model
             ->get()->getRowObject();
     }
 
-    //     $this->db->select('customers.name,sum(sales.price)')
-    // ->from('customers')
-    // ->join('sales','sales.customerid = customers.id','left')
-    // ->where('sales.state !=0')
-    // ->group_by('customers.name');
-    // ->get()->result_array();
+    public function getPresensiPerMitra($mitra_pengajar_id, $bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("presensi_table.id, presensi_table.mitra_pengajar_id ,presensi_table.tanggal_masuk, presensi_table.jam_masuk,presensi_table.dokumentasi,data_murid_table.nama_lengkap_anak, data_pengajar_table.nama_lengkap")
+            ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
+            ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
+
+            ->orderBy('presensi_table.tanggal_masuk desc')
+            ->get()->getResultObject();
+    }
 }

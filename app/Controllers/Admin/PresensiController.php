@@ -104,9 +104,6 @@ class PresensiController extends BaseController
             'title' => 'Presensi bulanan',
             'presensi' => $presensi_bulanan,
             'mitra_pengajar' => $kelompokPengajar,
-            // 'jadwal_bulanan' => $jadwal_bulanan,
-            // 'absensi' => $absensi
-
         ];
 
         return view('admin/presensi_bulanan_v', $data);
@@ -336,5 +333,25 @@ class PresensiController extends BaseController
         }
 
         return json_encode($alert);
+    }
+
+    public function getPresensiPerbulan()
+    {
+        if ($this->request->isAJAX()) {
+
+            $mitra_pengajar_id = $this->request->getVar('mitra_pengajar_id');
+            $bulan = $this->request->getVar('bulan');
+            $tahun = date('Y');
+
+            $presensi = $this->presensiModel->getPresensiPerMitra($mitra_pengajar_id, $bulan, $tahun);
+
+            $data = [
+                'presensi' => $presensi,
+                // 'mitra_pengajar' => $kelompokPengajar,
+                // 'peserta_didik' => $peserta_didik
+            ];
+
+            return json_encode($data);
+        }
     }
 }

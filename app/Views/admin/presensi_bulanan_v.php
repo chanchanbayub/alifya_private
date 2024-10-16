@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Presensi Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?></h5>
                         <!-- Browser Default Validation -->
-                        <form class="row g-3 text-capitalize" id="cek_invoice" action="cetak_invoice/pdf" target="_new">
+                        <form class="row g-3 text-capitalize" id="cek_presensi">
                             <?= csrf_field(); ?>
                             <div class="col-md-6">
                                 <label for="mitra_pengajar_id" class="form-label">Pilih Mitra Pengajar :</label>
@@ -57,7 +57,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <button class="btn btn-outline-primary btn-block" onclick="cek_invoice();" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cari</button>
+                                <button class="btn btn-outline-primary btn-block" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cari</button>
                             </div>
                         </form>
                         <!-- End Browser Default Validation -->
@@ -72,25 +72,17 @@
 
                             <div class="card-body">
                                 <h5 class="card-title"><?= $title ?> <span>| <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?></span></h5>
-                                <table class="table table-bordered datatable">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Mitra Pengajar</th>
+                                            <th scope="col">Tanggal Masuk</th>
                                             <th scope="col">Peserta Didik</th>
                                             <th scope="col">Dokumentasi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php $no = 1; ?>
-                                        <?php foreach ($presensi as $presensi) : ?>
-                                            <tr>
-                                                <th scope="row"><a href="#"><?= $no++ ?></a></th>
-                                                <td><?= $presensi->nama_lengkap  ?></td>
-                                                <td><?= $presensi->nama_lengkap_anak ?></td>
-                                                <td><a type="button" href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank"><i class="bi bi-eye"></i> Lihat</a> </td>
-                                            </tr>
-                                        <?php endforeach; ?>
+                                    <tbody class="data_presensi">
+
                                     </tbody>
                                 </table>
                             </div>
@@ -102,7 +94,7 @@
 
                             <div class="card-body">
                                 <h5 class="card-title">Jadwal Tetap Anak <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
-                                <table class="table table-bordered datatable">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
@@ -111,7 +103,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $no = 1; ?>
 
                                     </tbody>
                                 </table>
@@ -124,15 +115,13 @@
 
         </div><!-- End Left side columns -->
 
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <div class="row">
-
-                <!-- Recent Sales -->
                 <div class="col-md-12">
                     <div class="card recent-sales overflow-auto">
 
                         <div class="card-body">
-                            <h5 class="card-title"> Absensi Harian <span>| <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+                            <h5 class="card-title"> Absensi Bulan <span>| <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
                             <table class="table table-bordered datatable">
                                 <thead>
                                     <tr>
@@ -143,15 +132,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 1; ?>
+                                  
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <!-- End Recent Sales -->
+
             </div>
-        </div>
+        </div> -->
 </section>
 
 
@@ -167,6 +156,47 @@
 
         $('#bulan').select2({
             theme: 'bootstrap-5',
+        });
+
+        $("#cek_presensi").submit(function(e) {
+            e.preventDefault();
+            let mitra_pengajar_id = $("#mitra_pengajar_id").val();
+            let bulan = $("#bulan").val();
+            $.ajax({
+                url: '/admin/presensi/getPresensiPerbulan',
+                method: 'get',
+                dataType: 'JSON',
+                data: {
+                    mitra_pengajar_id: mitra_pengajar_id,
+                    bulan: bulan
+                },
+                success: function(response) {
+                    // console.log();
+                    let no = 1;
+                    let tableData = ``;
+
+                    if (response.presensi.length >= 1) {
+                        response.presensi.forEach(function(e) {
+                            tableData += `<tr>
+                                <td>${no++}</td>
+                                <td>${e.tanggal_masuk}</td>
+                                <td>${e.nama_lengkap_anak}</td>
+                                <td><a href="/../dokumentasi/${e.dokumentasi}" target="_blank">Dokumentasi</a></td>
+                            </tr>`;
+                        });
+
+                        $(".data_presensi").html(tableData);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `Data Tidak Ditemukan!`,
+                        });
+                    }
+
+
+
+                }
+            });
         });
     })
 </script>
