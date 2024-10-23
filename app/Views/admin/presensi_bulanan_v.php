@@ -122,7 +122,7 @@
 
                         <div class="card-body">
                             <h5 class="card-title"> Absensi Bulan <span>| <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
-                            <table class="table table-bordered datatable">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -132,7 +132,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  
+
                                 </tbody>
                             </table>
                         </div>
