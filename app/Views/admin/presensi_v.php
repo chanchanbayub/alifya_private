@@ -14,7 +14,7 @@
 
 <section class="section dashboard">
     <div class="row">
-        <div class="col-xxl-4 col-md-12">
+        <div class="col-xxl-6 col-md-12">
             <div class="card info-card sales-card">
 
                 <div class="card-body">
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="col-xxl-4 col-md-12">
+        <div class="col-xxl-6 col-md-12">
             <div class="card info-card sales-card">
 
                 <div class="card-body">
@@ -43,24 +43,6 @@
                         </div>
                         <div class="ps-3">
                             <a href="presensi_bulanan"><small>Lihat Presensi Perbulan </small> </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-xxl-4 col-md-12">
-            <div class="card info-card sales-card">
-
-                <div class="card-body">
-                    <h5 class="card-title"><span>| Presensi Ideal </span></h5>
-                    <div class="d-flex align-items-center">
-                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-fingerprint"></i>
-                        </div>
-                        <div class="ps-3">
-                            <a href="#">Lihat Presensi <small> (Cooming Soon) </small> </a>
                         </div>
                     </div>
                 </div>

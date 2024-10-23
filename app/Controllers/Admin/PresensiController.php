@@ -346,11 +346,23 @@ class PresensiController extends BaseController
 
             $jumlah_presensi = count($presensi);
 
+            $jumlah_paket_belajar = $this->kelompokBelajarModel->getPesertaDidikWhereMitraPengajarSumPaketBelajar($mitra_pengajar_id);
+
+
+            if ($jumlah_presensi > 0) {
+                $presensi_ideal = intval($jumlah_presensi) / intval($jumlah_paket_belajar->total_paket_belajar) * 100;
+            } else {
+                $presensi_ideal = 0;
+            }
+
+
+
             $data = [
                 'presensi' => $presensi,
                 'jadwal' => $jadwal_bulanan,
-                'jumlah_presensi' => $jumlah_presensi
-                // 'mitra_pengajar' => $kelompokPengajar,
+                'jumlah_presensi' => $jumlah_presensi,
+                'jumlah_paket_belajar' => $jumlah_paket_belajar->total_paket_belajar,
+                'presensi_ideal' => $presensi_ideal
                 // 'peserta_didik' => $peserta_didik
             ];
 
