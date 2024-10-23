@@ -67,6 +67,47 @@
             <div class="col-md-12">
                 <div class="row">
                     <!-- Recent Sales -->
+
+                    <div class="col-md-6">
+                        <div class="card info-card sales-card">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Total Presensi <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-fingerprint"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6 class="jumlah_presensi">0 </h6>
+                                        <span class="text-muted small pt-2 ps-1">Target Presensi : </span><span class="text-success small pt-1 fw-bold"> 0 </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card info-card sales-card">
+
+                            <div class="card-body">
+                                <h5 class="card-title"> Presensi Ideal <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-fingerprint"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>0 %</h6>
+                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-md-6">
                         <div class="card recent-sales overflow-auto">
 
@@ -172,6 +213,9 @@
                 },
                 success: function(response) {
                     // console.log();
+
+                    $(".jumlah_presensi").html(response.jumlah_presensi);
+
                     let no = 1;
                     let noJadwal = 1;
                     let tableData = ``;

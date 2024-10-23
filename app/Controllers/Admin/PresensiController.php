@@ -344,9 +344,12 @@ class PresensiController extends BaseController
             $jadwal_bulanan = $this->jadwalTetaModel->getJadwalbulanan($mitra_pengajar_id);
             $presensi = $this->presensiModel->getPresensiPerMitra($mitra_pengajar_id, $bulan, $tahun);
 
+            $jumlah_presensi = count($presensi);
+
             $data = [
                 'presensi' => $presensi,
-                'jadwal' => $jadwal_bulanan
+                'jadwal' => $jadwal_bulanan,
+                'jumlah_presensi' => $jumlah_presensi
                 // 'mitra_pengajar' => $kelompokPengajar,
                 // 'peserta_didik' => $peserta_didik
             ];
