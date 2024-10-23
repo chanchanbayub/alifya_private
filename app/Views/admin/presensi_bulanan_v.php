@@ -98,11 +98,11 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Mitra Pengajar</th>
+                                            <th scope="col">Hari</th>
                                             <th scope="col">Peserta Didik</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="jadwal_bulanan">
 
                                     </tbody>
                                 </table>
@@ -173,7 +173,9 @@
                 success: function(response) {
                     // console.log();
                     let no = 1;
+                    let noJadwal = 1;
                     let tableData = ``;
+                    let jadwalData = ``;
 
                     if (response.presensi.length >= 1) {
                         response.presensi.forEach(function(e) {
@@ -184,20 +186,39 @@
                                 <td><a href="/../dokumentasi/${e.dokumentasi}" target="_blank">Dokumentasi</a></td>
                             </tr>`;
                         });
-
                         $(".data_presensi").html(tableData);
+
+
                     } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: `Data Tidak Ditemukan!`,
-                        });
+                        tableData += `<tr>
+                                <td colspan="4"  align="center">data tidak ditemukan</td>
+                            </tr>`;
+                        $(".data_presensi").html(tableData);
                     }
 
+                    if (response.jadwal.length >= 1) {
+                        response.jadwal.forEach(function(e) {
+                            jadwalData += `<tr>
+                                <td>${noJadwal++}</td>
+                                <td>${e.nama_hari}</td>
+                                <td>${e.nama_lengkap_anak}</td>
+                               
+                            </tr>`;
+                        });
+                        $(".jadwal_bulanan").html(jadwalData);
+
+
+                    } else {
+                        jadwalData += `<tr>
+                                <td colspan="4"  align="center">data tidak ditemukan</td>
+                            </tr>`;
+                        $(".jadwal_bulanan").html(jadwalData);
+                    }
 
 
                 }
             });
-        });
+        })
     })
 </script>
 <?= $this->endSection(); ?>

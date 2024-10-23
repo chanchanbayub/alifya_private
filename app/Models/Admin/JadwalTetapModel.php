@@ -39,4 +39,16 @@ class JadwalTetapModel extends Model
             ->orderBy('jadwal_tetap_table.id desc')
             ->get()->getResultObject();
     }
+
+    public function getJadwalbulanan($mitra_pengajar_id)
+    {
+        return $this->table($this->table)
+            ->select("jadwal_tetap_table.id,jadwal_tetap_table.hari_id, jadwal_tetap_table.mitra_pengajar_id, jadwal_tetap_table.peserta_didik_id, jadwal_tetap_table.jam_belajar, data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak, hari_belajar_table.nama_hari")
+            ->join('hari_belajar_table', 'hari_belajar_table.id = jadwal_tetap_table.hari_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = jadwal_tetap_table.mitra_pengajar_id')
+            ->join('data_murid_table', 'data_murid_table.id = jadwal_tetap_table.peserta_didik_id')
+            ->where(["jadwal_tetap_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->orderBy('jadwal_tetap_table.id desc')
+            ->get()->getResultObject();
+    }
 }

@@ -96,8 +96,6 @@ class PresensiController extends BaseController
 
         $hari_ini = tanggal_indonesia(date('Y-m-d'));
 
-        // $jadwal_bulanan = $this->jadwalTetaModel->getJadwalbulanan($hari_ini);
-
         // $absensi = $this->absensiModel->getAbsensiPerhari($tanggal_hari);
 
         $data = [
@@ -343,10 +341,12 @@ class PresensiController extends BaseController
             $bulan = $this->request->getVar('bulan');
             $tahun = date('Y');
 
+            $jadwal_bulanan = $this->jadwalTetaModel->getJadwalbulanan($mitra_pengajar_id);
             $presensi = $this->presensiModel->getPresensiPerMitra($mitra_pengajar_id, $bulan, $tahun);
 
             $data = [
                 'presensi' => $presensi,
+                'jadwal' => $jadwal_bulanan
                 // 'mitra_pengajar' => $kelompokPengajar,
                 // 'peserta_didik' => $peserta_didik
             ];

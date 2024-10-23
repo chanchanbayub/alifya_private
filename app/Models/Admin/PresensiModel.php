@@ -30,7 +30,7 @@ class PresensiModel extends Model
     public function getDataPresensiPerhari($tanggal)
     {
         return $this->table($this->table)
-            ->select("presensi_table.id, presensi_table.tanggal_masuk, presensi_table.jam_masuk, presensi_table.dokumentasi, data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak")
+            ->select("presensi_table.id, presensi_table.tanggal_masuk, presensi_table.jam_masuk, presensi_table.dokumentasi, data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak, presensi_table.mitra_pengajar_id")
             ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
             ->where(["presensi_table.tanggal_masuk" => $tanggal])
