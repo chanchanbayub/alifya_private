@@ -134,7 +134,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="keterangan" class="col-form-label">Keterangan :</label>
-                        <textarea name="keterangan" id="keterangan" class="form-control"></textarea>
+                        <textarea name="keterangan" id="keterangan" class="form-control">Tulis tanggal pengganti. Jika tidak ada, jelaskan alasannya </textarea>
                         <div class="invalid-feedback error-keterangan">
                         </div>
                     </div>
