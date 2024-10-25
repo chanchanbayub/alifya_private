@@ -23,7 +23,7 @@ class KelompokBelajarModel extends Model
             ->select("kelompok_belajar_table.id, kelompok_belajar_table.kelompok_id, kelompok_table.kelompok, data_murid_table.nama_lengkap_anak")
             ->join('kelompok_table', 'kelompok_table.id = kelompok_belajar_table.kelompok_id')
             ->join('data_murid_table', 'data_murid_table.id = kelompok_belajar_table.peserta_didik_id')
-            ->orderBy('id desc')
+            ->orderBy('kelompok_table.kelompok asc')
             ->get()->getResultObject();
     }
 
