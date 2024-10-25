@@ -38,7 +38,8 @@ class MuridModel extends Model
             ->join('materi_belajar_table', 'materi_belajar_table.id = data_murid_table.materi_belajar_id')
             ->join('program_belajar_table', 'program_belajar_table.id = data_murid_table.program_belajar_id')
             ->where(["data_murid_table.id" => $id])
-            ->orderBy('id desc')
+            ->orderBy('data_murid_table.status_murid_id ASC')
+            ->orderBy('data_murid_table.nama_lengkap_anak ASC')
             ->get()->getRowObject();
     }
 }
