@@ -134,8 +134,20 @@ class PresensiModel extends Model
             ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
             ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
-
             ->orderBy('presensi_table.tanggal_masuk desc')
             ->get()->getResultObject();
+    }
+
+    public function getPresensiPerAnak($peserta_didik_id, $bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("data_murid_table.nama_lengkap_anak, COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi_perbulan, paket_belajar_table.jumlah_pertemuan")
+            ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->join('paket_belajar_table', 'paket_belajar_table.id = data_murid_table.paket_belajar_id')
+            ->where(["presensi_table.peserta_didik_id" => $peserta_didik_id])
+            ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
+            ->orderBy('presensi_table.tanggal_masuk desc')
+            ->get()->getRowObject();
     }
 }

@@ -68,7 +68,7 @@
                 <div class="row">
                     <!-- Recent Sales -->
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card info-card sales-card">
 
                             <div class="card-body">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card info-card sales-card">
 
                             <div class="card-body">
@@ -100,8 +100,24 @@
                                     </div>
                                     <div class="ps-3">
                                         <h6 class="presensi_ideal"> 0 %</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="col-md-4">
+                        <div class="card info-card sales-card">
 
+                            <div class="card-body">
+                                <h5 class="card-title"> Absensi <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-fingerprint"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6 class="total_absensi"> 0 </h6>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +139,9 @@
                                         </tr>
                                     </thead>
                                     <tbody class="data_presensi">
-
+                                        <tr>
+                                            <td colspan="4" style="text-align: center;">Tidak Ada Data</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -144,7 +162,9 @@
                                         </tr>
                                     </thead>
                                     <tbody class="jadwal_bulanan">
-
+                                        <tr>
+                                            <td colspan="4" style="text-align: center;">Tidak Ada Data</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -156,24 +176,27 @@
 
         </div><!-- End Left side columns -->
 
-        <!-- <div class="col-md-12">
+        <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card recent-sales overflow-auto">
 
                         <div class="card-body">
-                            <h5 class="card-title"> Absensi Bulan <span>| <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+                            <h5 class="card-title"> Presensi Ideal <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Tanggal Masuk</th>
-                                        <th scope="col">Mitra Pengajar</th>
-                                        <th scope="col">Peserta Didik</th>
+                                        <th scope="col">Nama Anak</th>
+                                        <th scope="col">Jumlah Pertemuan</th>
+                                        <th scope="col">Kehadiran Mitra</th>
+                                        <th scope="col">Presensi Ideal</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
+                                <tbody class="presensi_anak">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">Tidak Ada Data</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -181,7 +204,36 @@
                 </div>
 
             </div>
-        </div> -->
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card recent-sales overflow-auto">
+
+                        <div class="card-body">
+                            <h5 class="card-title"> Absensi <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Tanggal</th>
+                                        <th scope="col">Peserta Didik</th>
+                                        <th scope="col">Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="absensi">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center;">Tidak Ada Data</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 </section>
 
 
@@ -212,15 +264,19 @@
                     bulan: bulan
                 },
                 success: function(response) {
-
+                    $(".total_absensi").html(response.total_absensi);
                     $(".jumlah_presensi").html(response.jumlah_presensi);
                     $(".presensi_ideal").html(`${response.presensi_ideal} %`);
                     $("#target_presensi").html(response.jumlah_paket_belajar);
 
                     let no = 1;
                     let noJadwal = 1;
+                    let noPresensi = 1;
+                    let noAbsensi = 1;
                     let tableData = ``;
                     let jadwalData = ``;
+                    let presensiData = ``;
+                    let absensiData = ``;
 
                     if (response.presensi.length >= 1) {
                         response.presensi.forEach(function(e) {
@@ -258,6 +314,46 @@
                                 <td colspan="4"  align="center">data tidak ditemukan</td>
                             </tr>`;
                         $(".jadwal_bulanan").html(jadwalData);
+                    }
+
+                    if (response.data_presensi.length >= 1) {
+                        response.data_presensi.forEach(function(e) {
+                            presensiData += `<tr>
+                                <td>${noPresensi++}</td>
+                                <td>${e.nama_lengkap_anak}</td>
+                                <td>${e.jumlah_pertemuan}</td>
+                                <td>${e.total_presensi_perbulan}</td>
+                                <th>${e.presensi_ideal_anak}%</th>
+                               
+                            </tr>`;
+                        });
+                        $(".presensi_anak").html(presensiData);
+
+
+                    } else {
+                        presensiData += `<tr>
+                                <td colspan="5"  align="center">data tidak ditemukan</td>
+                            </tr>`;
+                        $(".presensi_anak").html(presensiData);
+                    }
+
+                    if (response.absensi_data.length >= 1) {
+                        response.absensi_data.forEach(function(e) {
+                            absensiData += `<tr>
+                                <td>${noAbsensi++}</td>
+                                <td>${e.tanggal}</td>
+                                <td>${e.nama_lengkap_anak}</td>
+                                <td>${e.keterangan}</td>       
+                            </tr>`;
+                        });
+                        $(".absensi").html(absensiData);
+
+
+                    } else {
+                        absensiData += `<tr>
+                                <td colspan="4"  align="center">data tidak ditemukan</td>
+                            </tr>`;
+                        $(".absensi").html(absensiData);
                     }
 
 

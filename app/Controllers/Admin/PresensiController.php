@@ -348,22 +348,52 @@ class PresensiController extends BaseController
 
             $jumlah_paket_belajar = $this->kelompokBelajarModel->getPesertaDidikWhereMitraPengajarSumPaketBelajar($mitra_pengajar_id);
 
-
             if ($jumlah_presensi > 0) {
-                $presensi_ideal = intval($jumlah_presensi) / intval($jumlah_paket_belajar->total_paket_belajar) * 100;
+                $presensi_ideal = number_format(intval($jumlah_presensi) / intval($jumlah_paket_belajar->total_paket_belajar) * 100);
             } else {
                 $presensi_ideal = 0;
             }
 
+            $presensi_ideal_anak = $this->kelompokBelajarModel->getPesertaDidikWhereMitraPengajar($mitra_pengajar_id);
 
+            $data_presensi = [];
+
+            foreach ($presensi_ideal_anak as $presensi_data) {
+                $presensi_peranak = $this->presensiModel->getPresensiPerAnak($presensi_data->peserta_didik_id, $bulan, $tahun);
+                $data_murid = $this->muridModel->getMitraMurid($presensi_data->peserta_didik_id);
+                if ($presensi_peranak != null) {
+                    if ($presensi_peranak->jumlah_pertemuan > 0 || $presensi_peranak->total_presensi_perbulan > 0) {
+                        $data_presensi[] = [
+                            'nama_lengkap_anak' => $presensi_peranak->nama_lengkap_anak,
+                            'jumlah_pertemuan' => $presensi_peranak->jumlah_pertemuan,
+                            'total_presensi_perbulan' => $presensi_peranak->total_presensi_perbulan,
+                            'presensi_ideal_anak' => number_format(intval($presensi_peranak->total_presensi_perbulan) / intval($presensi_peranak->jumlah_pertemuan) * 100)
+                        ];
+                    } else {
+                        $data_presensi[] = [
+                            'nama_lengkap_anak' => $data_murid->nama_lengkap_anak,
+                            'jumlah_pertemuan' => $data_murid->jumlah_pertemuan,
+                            'total_presensi_perbulan' => $presensi_peranak->total_presensi_perbulan,
+                            'presensi_ideal_anak' => 0
+                        ];
+                    }
+                }
+            }
+
+            $absensi_data = $this->absensiModel->getAbsensiPerbulan($mitra_pengajar_id, $bulan, $tahun);
+
+            $total_absensi = count($absensi_data);
 
             $data = [
                 'presensi' => $presensi,
                 'jadwal' => $jadwal_bulanan,
                 'jumlah_presensi' => $jumlah_presensi,
                 'jumlah_paket_belajar' => $jumlah_paket_belajar->total_paket_belajar,
-                'presensi_ideal' => $presensi_ideal
-                // 'peserta_didik' => $peserta_didik
+                'presensi_ideal' => $presensi_ideal,
+                'presensi_ideal_anak' => $presensi_ideal_anak,
+                'data_presensi' => $data_presensi,
+                'absensi_data' => $absensi_data,
+                'total_absensi' => $total_absensi
             ];
 
             return json_encode($data);
