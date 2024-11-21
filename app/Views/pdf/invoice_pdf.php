@@ -180,6 +180,10 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <th colspan="2">Jumlah Pertemuan</th>
+                    <th> <?= $jumlah_pertemuan ?> Pertemuan </th>
+                </tr>
+                <tr>
                     <th colspan="2">Media Belajar</th>
                     <th>Rp. <?= number_format($media_belajar) ?> </th>
                 </tr>

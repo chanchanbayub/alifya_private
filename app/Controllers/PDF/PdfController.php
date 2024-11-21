@@ -57,6 +57,7 @@ class PdfController extends BaseController
         $total = count($invoice);
 
         $peserta_didik_data = $this->muridModel->where(["id" => $peserta_didik])->get()->getRowObject();
+        $jumlah_pertemuan = count($invoice);
 
         $data = [
             'invoice' =>  $invoice,
@@ -64,6 +65,7 @@ class PdfController extends BaseController
             'peserta_didik' => $peserta_didik_data->nama_lengkap_anak,
             'harga' => $harga_perjam->harga,
             'media_belajar' => $harga_perjam->media_belajar,
+            'jumlah_pertemuan' => $jumlah_pertemuan,
             'total' => $total,
         ];
 
@@ -107,7 +109,7 @@ class PdfController extends BaseController
 
         $media_pengajar = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan);
 
-
+        $jumlah_pertemuan = count($invoice);
 
         // dd($total_media);
 
@@ -117,7 +119,8 @@ class PdfController extends BaseController
             'harga' => $harga,
             'total' => $total,
             'media_pengajar' => $media_pengajar,
-            'media_belajar' => $media_belajar
+            'media_belajar' => $media_belajar,
+            'jumlah_pertemuan' => $jumlah_pertemuan
         ];
 
         $html = view('pdf/invoice_mitra_pdf', $data);

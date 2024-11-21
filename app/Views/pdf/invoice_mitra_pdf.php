@@ -91,6 +91,10 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <th colspan="3">Jumlah Pertemuan</th>
+                    <th> <?= $jumlah_pertemuan ?> Pertemuan</th>
+                </tr>
+                <tr>
                     <th colspan="3">Media Belajar</th>
                     <th>Rp. <?= number_format($media_pengajar->total_media) ?></th>
                 </tr>
