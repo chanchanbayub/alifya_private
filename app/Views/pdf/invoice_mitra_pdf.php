@@ -9,21 +9,16 @@
         #table th,
         td {
             width: 100%;
+            margin: 0 auto;
             border: 1px solid black;
             text-align: center;
             box-sizing: border-box;
-            border: 1px solid;
-            margin: 0 auto;
-            /* text-transform: capitalize; */
-        }
-
-        table {
-            margin: 0 auto;
-            /* width: 100%; */
+            text-transform: capitalize;
         }
 
         .logo {
             text-align: center;
+            /* margin-top: -30px; */
         }
 
         #logo_center {
@@ -39,24 +34,33 @@
             position: absolute;
             left: 0px;
             top: 0px;
-            width: 200;
+            width: 150px;
             z-index: -1;
         }
 
         .container {
             box-sizing: border-box;
-            width: 100%;
             border: 1px solid black;
-            padding: 40px 20px;
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin: 0 auto;
+            background-image: url('assets/img/logo.png');
+            background-size: 350px;
+            background-repeat: no-repeat;
+            background-origin: content-box;
+            background-position: center;
+            /* background-position-x: center; */
+
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="logo">
-            <img src="assets/img/logo.png" id="logo_center" width="150" alt="logo">
-        </div>
+        <!-- <div class="logo">
+            <img src="assets/img/logo.png" id="logo_center" width="80" alt="logo">
+        </div> -->
         <!-- <hr> -->
         <table id="pengantar">
             <thead>
@@ -92,7 +96,7 @@
             <tfoot>
                 <tr>
                     <th colspan="3">Jumlah Pertemuan</th>
-                    <th> <?= $jumlah_pertemuan ?> Pertemuan</th>
+                    <th>Rp. <?= number_format($total->total) ?></th>
                 </tr>
                 <tr>
                     <th colspan="3">Media Belajar</th>
@@ -117,7 +121,7 @@
                 </tr>
                 <tr>
                     <th colspan="3" style="border: 0;"></th>
-                    <th style="border: 0;"><img src="assets/img/ttd_anisa.png" alt="" class="ttd"></th>
+                    <th style="border: 0;"><img src="assets/img/ttd_anisa.png" alt="" width="100" class="ttd"></th>
                 </tr>
                 <tr>
                     <th colspan="3" style="border: 0;"></th>
@@ -125,7 +129,7 @@
                 </tr>
             </tfoot>
         </table>
-        <img src="assets/img/cap.png" alt="" style="margin-left:820px; margin-top:-200px;" class="cap">
+        <img src="assets/img/cap.png" alt="" style="margin-left:905px; margin-top:-145px;" class="cap">
     </div>
 </body>
 

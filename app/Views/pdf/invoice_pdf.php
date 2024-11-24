@@ -24,7 +24,7 @@
 
         .logo {
             text-align: center;
-            margin-top: -20px;
+            /* margin-top: -40px; */
         }
 
         #logo_center {
@@ -181,7 +181,7 @@
             <tfoot>
                 <tr>
                     <th colspan="2">Jumlah Pertemuan</th>
-                    <th> <?= $jumlah_pertemuan ?> Pertemuan </th>
+                    <th>Rp. <?= number_format($total * $harga) ?> </th>
                 </tr>
                 <tr>
                     <th colspan="2">Media Belajar</th>
@@ -210,7 +210,7 @@
                 </tr>
                 <tr>
                     <th colspan="2" style="border: 0;"></th>
-                    <th style="border: 0;"><img src="assets/img/ttd_anisa.png" alt="tanda_tangan" width="150"></th>
+                    <th style="border: 0;"><img src="assets/img/ttd_anisa.png" alt="tanda_tangan" width="100"></th>
                 </tr>
                 <tr>
                     <th colspan="2" style="border: 0;"></th>
@@ -218,7 +218,7 @@
                 </tr>
             </tfoot>
         </table>
-        <img src="assets/img/cap.png" alt="stempel" style="margin-left:790px; margin-top:-180px;" class="cap">
+        <img src="assets/img/cap.png" alt="stempel" style="margin-left:780px; margin-top:-150px;" class="cap">
     </div>
 
 </body>
