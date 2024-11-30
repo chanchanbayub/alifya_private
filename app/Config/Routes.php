@@ -27,6 +27,12 @@ $routes->group('admin', static function ($routes) {
     $routes->post('role_management/update', 'Admin\RoleManagementController::update');
     $routes->post('role_management/delete', 'Admin\RoleManagementController::delete');
 
+    $routes->get('jenis_media_belajar', 'Admin\JenisMediaBelajarController::index');
+    $routes->post('jenis_media_belajar/insert', 'Admin\JenisMediaBelajarController::insert');
+    $routes->get('jenis_media_belajar/edit', 'Admin\JenisMediaBelajarController::edit');
+    $routes->post('jenis_media_belajar/update', 'Admin\JenisMediaBelajarController::update');
+    $routes->post('jenis_media_belajar/delete', 'Admin\JenisMediaBelajarController::delete');
+
     $routes->get('user_management', 'Admin\UserManagementController::index');
     $routes->post('user_management/insert', 'Admin\UserManagementController::insert');
     $routes->get('user_management/getMitra', 'Admin\UserManagementController::getMitra');

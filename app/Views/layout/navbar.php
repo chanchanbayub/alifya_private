@@ -35,6 +35,12 @@
                      </a>
                  </li>
 
+                 <li>
+                     <a href="/admin/jenis_media_belajar">
+                         <i class="bi bi-circle"></i><span>Jenis Media Belajar</span>
+                     </a>
+                 </li>
+
              </ul>
          </li><!-- End Icons Nav -->
 
