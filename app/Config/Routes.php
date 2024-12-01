@@ -192,8 +192,10 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('data_pengajar', 'Mitra\PengajarController::index');
     $routes->get('data_pengajar/edit', 'Mitra\PengajarController::edit');
     $routes->post('data_pengajar/update', 'Mitra\PengajarController::update');
-    $routes->get('data_pengajar/view/(:any)', 'Admin\PengajarController::view/$1');
+    $routes->get('data_pengajar/view/(:any)', 'Mitra\PengajarController::view/$1');
 
+    $routes->get('media_belajar', 'Mitra\HargaController::index');
+    $routes->post('media_belajar/insert', 'Mitra\HargaController::insert');
 
     $routes->get('kelompok', 'Mitra\KelompokController::index');
     $routes->get('kelompok/view/(:any)', 'Mitra\KelompokController::views/$1');

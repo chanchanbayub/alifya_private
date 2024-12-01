@@ -75,6 +75,19 @@
          </li>
 
          <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#media-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-cash-stack"></i><span>Harga Media Belajar</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="media-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/mitra_pengajar/media_belajar">
+                         <i class="bi bi-circle"></i><span>Harga Media Belajar</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+
+         <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#presensi-nav" data-bs-toggle="collapse" href="#">
                  <i class="bi bi-fingerprint"></i><span>Presensi Mitra</span><i class="bi bi-chevron-down ms-auto"></i>
              </a>
