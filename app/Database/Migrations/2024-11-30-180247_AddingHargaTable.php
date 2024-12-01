@@ -20,10 +20,15 @@ class AddingHargaTable extends Migration
                 'constraint' => 100,
                 'after' => 'harga'
             ],
+            'tahun' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+                'after' => 'media_belajar'
+            ],
             'faktur' => [
                 'type' => 'varchar',
                 'constraint' => 100,
-                'after' => 'media_belajar'
+                'after' => 'tahun'
             ],
         ];
         $attributes = ['ENGINE' => 'InnoDB'];
@@ -33,6 +38,6 @@ class AddingHargaTable extends Migration
 
     public function down()
     {
-        $this->forge->dropColumn('jenis_media_id', 'faktur', 'bulan');
+        $this->forge->dropColumn('jenis_media_id', 'faktur', 'bulan', 'tahun');
     }
 }

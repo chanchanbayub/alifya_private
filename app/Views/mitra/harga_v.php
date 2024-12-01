@@ -198,8 +198,6 @@
         formData.append('media_belajar', media_belajar);
         formData.append('faktur', faktur);
 
-
-
         $.ajax({
             url: '/mitra_pengajar/media_belajar/insert',
             data: formData,

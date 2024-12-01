@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\Admin\HargaModel;
+use App\Models\Admin\JenisMediaBelajarModel;
 use App\Models\Admin\MuridModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -11,12 +12,14 @@ class HargaController extends BaseController
 {
     protected $hargaModel;
     protected $muridModel;
+    protected $jenisMediaBelajarModel;
     protected $validation;
 
     public function __construct()
     {
         $this->hargaModel = new HargaModel();
         $this->muridModel = new MuridModel();
+        $this->jenisMediaBelajarModel = new JenisMediaBelajarModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -29,6 +32,7 @@ class HargaController extends BaseController
             'title' => 'Upah Perjam',
             'harga_perjam' => $harga_perjam,
             'peserta_didik' => $peserta_didik,
+            'jenis_media' => $this->jenisMediaBelajarModel->getJenisMediaBelajar()
         ];
 
         return view('admin/harga_v', $data);
@@ -102,7 +106,8 @@ class HargaController extends BaseController
 
             $data = [
                 'harga' => $harga,
-                'peserta_didik' => $peserta_didik
+                'peserta_didik' => $peserta_didik,
+                'jenis_media' => $this->jenisMediaBelajarModel->getJenisMediaBelajar()
             ];
 
             return json_encode($data);
@@ -117,11 +122,19 @@ class HargaController extends BaseController
 
             $harga = $this->hargaModel->where(["id" => $id])->first();
 
+            $path_foto = 'faktur/' . $harga['faktur'];
+
             $this->hargaModel->delete($harga["id"]);
 
             $alert = [
                 'success' => 'Upah Berhasil di Hapus !'
             ];
+
+            if ($harga['faktur'] != null) {
+                if (file_exists($path_foto)) {
+                    unlink($path_foto);
+                }
+            }
 
             return json_encode($alert);
         }
@@ -135,19 +148,27 @@ class HargaController extends BaseController
                 'peserta_didik_id' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Upah Tidak Boleh Kosong !'
+                        'required' => 'Peserta Didik Tidak Boleh Kosong !'
                     ]
                 ],
-                'harga' => [
+
+                'jenis_media_id' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Upah Tidak Boleh Kosong !'
+                        'required' => 'Jenis Media Tidak Boleh Kosong !'
+                    ]
+                ],
+
+                'bulan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bulan Tidak Boleh Kosong !'
                     ]
                 ],
                 'media_belajar' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Media Belajar Tidak Boleh Kosong !'
+                        'required' => 'Media Belajar Boleh Kosong !'
                     ]
                 ],
 
@@ -155,21 +176,49 @@ class HargaController extends BaseController
                 $alert = [
                     'error' => [
                         'peserta_didik_id' => $this->validation->getError('peserta_didik_id'),
-                        'harga' => $this->validation->getError('harga'),
+                        'jenis_media_id' => $this->validation->getError('jenis_media_id'),
+                        'bulan' => $this->validation->getError('bulan'),
                         'media_belajar' => $this->validation->getError('media_belajar'),
 
                     ]
                 ];
             } else {
                 $id = $this->request->getPost('id');
+
+                $faktur_lama = $this->request->getPost('faktur_lama');
+
                 $peserta_didik_id = $this->request->getPost('peserta_didik_id');
-                $harga = $this->request->getPost('harga');
+
+                $bulan = $this->request->getPost('bulan');
+
+                $jenis_media_id = $this->request->getPost('jenis_media_id');
+
                 $media_belajar = $this->request->getPost('media_belajar');
+
+                $harga = $this->request->getPost('harga');
+
+                $faktur = $this->request->getFile('faktur');
+
+                $path_foto_lama = 'faktur/' . $faktur_lama;
+
+                if ($faktur->getError() == 4) {
+                    $nama_foto = $faktur_lama;
+                } else {
+                    if (file_exists($path_foto_lama)) {
+                        unlink($path_foto_lama);
+                    }
+                    $nama_foto = $faktur->getRandomName();
+                    $faktur->move('faktur', $nama_foto);
+                }
+
 
                 $this->hargaModel->update($id, [
                     'peserta_didik_id' => strtolower($peserta_didik_id),
+                    'jenis_media_id' => strtolower($jenis_media_id),
+                    'bulan' => $bulan,
                     'harga' => strtolower($harga),
                     'media_belajar' => strtolower($media_belajar),
+                    'faktur' => strtolower($nama_foto),
 
                 ]);
 
