@@ -9,7 +9,7 @@ class HargaModel extends Model
     protected $table            = 'harga_table';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['peserta_didik_id', 'jenis_media_id', 'harga', 'bulan', 'media_belajar', 'faktur'];
+    protected $allowedFields    = ['peserta_didik_id', 'jenis_media_id', 'harga', 'bulan', 'tahun', 'media_belajar', 'faktur'];
 
     // Dates
     protected $useTimestamps = true;

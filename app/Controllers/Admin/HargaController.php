@@ -195,6 +195,8 @@ class HargaController extends BaseController
 
                 $media_belajar = $this->request->getPost('media_belajar');
 
+                $tahun = $this->request->getPost('tahun');
+
                 $harga = $this->request->getPost('harga');
 
                 $faktur = $this->request->getFile('faktur');
@@ -216,6 +218,7 @@ class HargaController extends BaseController
                     'peserta_didik_id' => strtolower($peserta_didik_id),
                     'jenis_media_id' => strtolower($jenis_media_id),
                     'bulan' => $bulan,
+                    'tahun' => $tahun,
                     'harga' => strtolower($harga),
                     'media_belajar' => strtolower($media_belajar),
                     'faktur' => strtolower($nama_foto),

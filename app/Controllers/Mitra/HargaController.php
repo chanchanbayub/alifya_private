@@ -107,6 +107,8 @@ class HargaController extends BaseController
 
                 $bulan = $this->request->getPost('bulan');
 
+                $tahun = date('Y');
+
                 $jenis_media_id = $this->request->getPost('jenis_media_id');
 
                 $media_belajar = $this->request->getPost('media_belajar');
@@ -118,6 +120,7 @@ class HargaController extends BaseController
                 $this->hargaModel->save([
                     'peserta_didik_id' => strtolower($peserta_didik_id),
                     'bulan' => strtolower($bulan),
+                    'tahun' => strtolower($tahun),
                     'jenis_media_id' => strtolower($jenis_media_id),
                     'faktur' => $nama_foto,
                     'harga' => $harga->harga,

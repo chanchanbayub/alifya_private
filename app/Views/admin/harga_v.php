@@ -193,6 +193,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="tahun_edit" class="col-form-label">Tahun :</label>
+                        <input type="number" class="form-control" id="tahun_edit" name="tahun">
+                        <div class="invalid-feedback error-tahun-edit">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
 
                         <label for="harga_edit" class="col-form-label"><?= $title ?> :</label>
                         <input type="number" class="form-control" id="harga_edit" name="harga">
@@ -368,6 +376,7 @@
                 $("#harga_edit").val(response.harga.harga);
                 $("#media_belajar_edit").val(response.harga.media_belajar);
                 $("#bulan_edit").val(response.harga.bulan).trigger('change');
+                $("#tahun_edit").val(response.harga.tahun);
 
 
                 let peserta_didik_data = `<option value="">--Silahkan Pilih--</option>`;
@@ -402,6 +411,7 @@
         let peserta_didik_id = $("#peserta_didik_id_edit").val();
         let jenis_media_id = $("#jenis_media_id_edit").val();
         let bulan = $("#bulan_edit").val();
+        let tahun = $("#tahun_edit").val();
         let media_belajar = $("#media_belajar_edit").val();
         let faktur = $("#faktur").val();
 
@@ -412,6 +422,7 @@
         formData.append('peserta_didik_id', peserta_didik_id);
         formData.append('jenis_media_id', jenis_media_id);
         formData.append('bulan', bulan);
+        formData.append('tahun', tahun);
         formData.append('media_belajar', media_belajar);
         formData.append('faktur', faktur);
 
@@ -454,6 +465,14 @@
                     } else {
                         $("#bulan_edit").removeClass('is-invalid');
                         $(".error-bulan-edit").html('');
+                    }
+
+                    if (response.error.tahun) {
+                        $("#tahun_edit").addClass('is-invalid');
+                        $(".error-tahun-edit").html(response.error.tahun);
+                    } else {
+                        $("#tahun_edit").removeClass('is-invalid');
+                        $(".error-tahun-edit").html('');
                     }
 
                     if (response.error.harga) {
