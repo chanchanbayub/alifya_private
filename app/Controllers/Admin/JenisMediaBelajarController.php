@@ -39,30 +39,19 @@ class JenisMediaBelajarController extends BaseController
                         'required' => 'Nama Media Tidak Boleh Kosong !'
                     ]
                 ],
-                'harga_media' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Harga Media Tidak Boleh Kosong !'
-                    ]
-                ],
 
             ])) {
                 $alert = [
                     'error' => [
                         'nama_media' => $this->validation->getError('nama_media'),
-                        'harga_media' => $this->validation->getError('harga_media'),
-
                     ]
                 ];
             } else {
 
                 $nama_media = $this->request->getPost('nama_media');
-                $harga_media = $this->request->getPost('harga_media');
 
                 $this->jenisMediaBelajarModel->save([
                     'nama_media' => strtolower($nama_media),
-                    'harga_media' => strtolower($harga_media),
-
                 ]);
 
                 $alert = [
@@ -116,30 +105,21 @@ class JenisMediaBelajarController extends BaseController
                     ]
                 ],
 
-                'harga_media' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'nama_media Tidak Boleh Kosong !'
-                    ]
-                ],
+
 
             ])) {
                 $alert = [
                     'error' => [
                         'nama_media' => $this->validation->getError('nama_media'),
-                        'harga_media' => $this->validation->getError('harga_media'),
                     ]
                 ];
             } else {
 
                 $id = $this->request->getPost('id');
                 $nama_media = $this->request->getPost('nama_media');
-                $harga_media = $this->request->getPost('harga_media');
-
 
                 $this->jenisMediaBelajarModel->update($id, [
                     'nama_media' => strtolower($nama_media),
-                    'harga_media' => strtolower($harga_media),
 
                 ]);
 

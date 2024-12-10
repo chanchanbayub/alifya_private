@@ -21,12 +21,6 @@ class JenisMediaBelajar extends Migration
                 'constraint' => '100',
             ],
 
-            'harga_media' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
-                'null'       => true
-            ],
-
             'created_at' => [
                 'type' => 'datetime',
 

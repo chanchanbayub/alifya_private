@@ -9,7 +9,7 @@ class JenisMediaBelajarModel extends Model
     protected $table            = 'jenis_media_table';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['nama_media', 'harga_media'];
+    protected $allowedFields    = ['nama_media'];
 
     // Dates
     protected $useTimestamps = true;

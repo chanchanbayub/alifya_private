@@ -40,7 +40,6 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col"><?= $title ?></th>
-                                        <th scope="col">Harga Media</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -50,7 +49,6 @@
                                         <tr>
                                             <th scope="row"><a href="#"><?= $no++ ?></a></th>
                                             <td><?= $jenis_media_belajar->nama_media ?></td>
-                                            <td><?= $jenis_media_belajar->harga_media ?></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $jenis_media_belajar->id ?>" type="button">
                                                     <i class="bi bi-pencil-square"></i>
@@ -93,13 +91,6 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="harga_media" class="col-form-label">Harga Media :</label>
-                        <input type="number" class="form-control" id="harga_media" name="harga_media" placeholder="10000">
-                        <div class="invalid-feedback error-harga">
-                        </div>
-                    </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
                         <button type="submit" class="btn btn-outline-success save"> <i class="bi bi-arrow-right"></i> Kirim</button>
@@ -128,14 +119,6 @@
                         <label for="nama_media_edit" class="col-form-label"><?= $title ?> :</label>
                         <input type="text" class="form-control" id="nama_media_edit" name="nama_media">
                         <div class="invalid-feedback error-nama-edit">
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="harga_media_edit" class="col-form-label"><?= $title ?> :</label>
-                        <input type="number" class="form-control" id="harga_media_edit" name="harga_media">
-                        <div class="invalid-feedback error-harga-edit">
 
                         </div>
                     </div>
@@ -185,7 +168,6 @@
             e.preventDefault();
 
             let nama_media = $("#nama_media").val();
-            let harga_media = $("#harga_media").val();
 
             $.ajax({
                 url: '/admin/jenis_media_belajar/insert',
@@ -193,8 +175,6 @@
                 dataType: 'JSON',
                 data: {
                     nama_media: nama_media,
-                    harga_media: harga_media,
-
                 },
                 beforeSend: function() {
                     $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
@@ -210,14 +190,6 @@
                         } else {
                             $("#nama_media").removeClass('is-invalid');
                             $(".error-nama").html('');
-                        }
-
-                        if (response.error.harga_media) {
-                            $("#harga_media").addClass('is-invalid');
-                            $(".error-harga").html(response.error.harga_media);
-                        } else {
-                            $("#harga_media").removeClass('is-invalid');
-                            $(".error-harga").html('');
                         }
 
                     } else {
@@ -257,7 +229,6 @@
                 // console.log(response);
                 $("#id_edit").val(response.id);
                 $("#nama_media_edit").val(response.nama_media);
-                $("#harga_media_edit").val(response.harga_media);
 
             }
         });
@@ -267,7 +238,6 @@
         e.preventDefault();
         let id = $('#id_edit').val();
         let nama_media = $('#nama_media_edit').val();
-        let harga_media = $('#harga_media_edit').val();
 
         $.ajax({
             url: '/admin/jenis_media_belajar/update',
@@ -276,7 +246,6 @@
             data: {
                 id: id,
                 nama_media: nama_media,
-                harga_media: harga_media,
 
             },
             beforeSend: function() {
@@ -293,14 +262,6 @@
                     } else {
                         $("#nama_media_edit").removeClass('is-invalid');
                         $(".error-nama-edit").html('');
-                    }
-
-                    if (response.error.harga_media) {
-                        $("#harga_media_edit").addClass('is-invalid');
-                        $(".error-harga-edit").html(response.error.harga_media);
-                    } else {
-                        $("#harga_media_edit").removeClass('is-invalid');
-                        $(".error-harga-edit").html('');
                     }
 
                 } else {
