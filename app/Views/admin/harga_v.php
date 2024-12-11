@@ -35,7 +35,7 @@
 
                         <div class="card-body">
                             <h5 class="card-title"><?= $title ?> <span>| Table </span></h5>
-                            <table class="table table-bordered datatable">
+                            <table class="table table-bordered" id="data_table">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -43,37 +43,14 @@
                                         <th scope="col">Bulan</th>
                                         <th scope="col">Jenis Media</th>
                                         <th scope="col"><?= $title ?></th>
-                                        <th scope="col">Media Belajar</th>
+                                        <th scope="col">Harga Media Belajar</th>
                                         <th scope="col">Faktur</th>
                                         <th scope="col">Aksi</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 1; ?>
-                                    <?php foreach ($harga_perjam as $harga_perjam) : ?>
-                                        <tr>
-                                            <th scope="row"><a href="#"><?= $no++ ?>.</a></th>
-                                            <td> <?= $harga_perjam->nama_lengkap_anak ?></td>
-                                            <td> <?= $harga_perjam->bulan ?></td>
-                                            <td> <?= $harga_perjam->nama_media ?></td>
-                                            <td>Rp. <?= number_format($harga_perjam->harga) ?></td>
-                                            <td>Rp. <?= number_format($harga_perjam->media_belajar) ?></td>
-                                            <?php if ($harga_perjam->faktur == null) : ?>
-                                                <td><button class="btn btn-link btn-sm" disabled>Lihat Faktur</a> </td>
-                                            <?php else : ?>
-                                                <td><a href="../faktur/<?= $harga_perjam->faktur ?>" target="_blank">Lihat Faktur</a> </td>
-                                            <?php endif; ?>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $harga_perjam->id ?>" type="button">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $harga_perjam->id ?>" type="button">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
+
                                 </tbody>
                             </table>
 
@@ -211,7 +188,7 @@
 
                     <div class="form-group">
 
-                        <label for="media_belajar_edit" class="col-form-label">Media Belajar :</label>
+                        <label for="media_belajar_edit" class="col-form-label"> Harga Media Belajar :</label>
                         <input type="number" class="form-control" id="media_belajar_edit" name="media_belajar">
                         <div class="invalid-feedback error-media-belajar-edit">
 
@@ -263,7 +240,51 @@
 
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script>
+    $(document).ready(function() {
+        $('#data_table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '/admin/harga/getDataHarga',
+                method: 'POST'
+            },
+            order: [],
+            columns: [{
+                    data: 'no',
+                    orderable: true
+                },
+                {
+                    data: 'nama_lengkap_anak',
+                },
+                {
+                    data: 'bulan',
+                },
+                {
+                    data: 'nama_media',
+                },
+                {
+                    data: 'harga',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'media_belajar',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'faktur',
+                },
+
+                {
+                    data: 'action',
+                    orderable: false
+                },
+
+            ],
+        });
+    });
+
     $(document).ready(function(e) {
 
         $('#peserta_didik_id').select2({

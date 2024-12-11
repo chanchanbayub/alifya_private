@@ -7,6 +7,7 @@ use App\Models\Admin\HargaModel;
 use App\Models\Admin\JenisMediaBelajarModel;
 use App\Models\Admin\MuridModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use Hermawan\DataTables\DataTable;
 
 class HargaController extends BaseController
 {
@@ -25,17 +26,43 @@ class HargaController extends BaseController
 
     public function index()
     {
-        $harga_perjam = $this->hargaModel->getHarga();
+
         $peserta_didik = $this->muridModel->getDataMuridAktif();
 
         $data = [
             'title' => 'Upah Perjam',
-            'harga_perjam' => $harga_perjam,
             'peserta_didik' => $peserta_didik,
             'jenis_media' => $this->jenisMediaBelajarModel->getJenisMediaBelajar()
         ];
 
         return view('admin/harga_v', $data);
+    }
+
+    public function getDataHarga()
+    {
+        if ($this->request->isAjax()) {
+            $harga_perjam = $this->hargaModel->getHarga();
+
+            return DataTable::of($harga_perjam)
+                ->add('faktur', function ($row) {
+                    if ($row->faktur != null) {
+                        return '<a href ="/faktur/' . $row->faktur . '" class="btn btn-link btn-sm" target="_blank">Lihat Faktur </a>';
+                    } else {
+                        return '<small> - </small>';
+                    }
+                })
+                ->add('action', function ($row) {
+                    return '<button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="' .  $row->id . '" type="button">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </button>
+                            <button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="' .  $row->id . '" type="button">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>';
+                })
+                ->setSearchableColumns(['nama_lengkap_anak', 'bulan', 'harga', 'nama_media'])
+
+                ->addNumbering('no')->toJson(true);
+        }
     }
 
     public function insert()

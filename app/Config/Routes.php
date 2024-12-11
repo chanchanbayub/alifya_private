@@ -45,6 +45,7 @@ $routes->group('admin', static function ($routes) {
     $routes->get('harga/edit', 'Admin\HargaController::edit');
     $routes->post('harga/update', 'Admin\HargaController::update');
     $routes->post('harga/delete', 'Admin\HargaController::delete');
+    $routes->post('harga/getDataHarga', 'Admin\HargaController::getDataHarga');
 
     $routes->get('kelompok', 'Admin\KelompokController::index');
     $routes->post('kelompok/insert', 'Admin\KelompokController::insert');
