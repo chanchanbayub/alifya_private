@@ -56,6 +56,13 @@ class PengajarController extends BaseController
                         'required' => 'usia Tidak Boleh Kosong !'
                     ]
                 ],
+
+                'tanggal_lahir_mitra' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tanggal Lahir Tidak Boleh Kosong !'
+                    ]
+                ],
                 'alamat_domisili' => [
                     'rules' => 'required',
                     'errors' => [
@@ -180,6 +187,7 @@ class PengajarController extends BaseController
                     'error' => [
                         'nama_lengkap' => $this->validation->getError('nama_lengkap'),
                         'email' => $this->validation->getError('email'),
+                        'tanggal_lahir_mitra' => $this->validation->getError('tanggal_lahir_mitra'),
                         'usia' => $this->validation->getError('usia'),
                         'alamat_domisili' => $this->validation->getError('alamat_domisili'),
                         'pendidikan_terakhir' => $this->validation->getError('pendidikan_terakhir'),
@@ -208,6 +216,7 @@ class PengajarController extends BaseController
                 $uid = $regIdMitra + 1;
                 $nama_lengkap = $this->request->getPost('nama_lengkap');
                 $email = $this->request->getPost('email');
+                $tanggal_lahir_mitra = $this->request->getPost('tanggal_lahir_mitra');
                 $usia = $this->request->getPost('usia');
                 $alamat_domisili = $this->request->getPost('alamat_domisili');
                 $pendidikan_terakhir = $this->request->getPost('pendidikan_terakhir');
@@ -244,6 +253,7 @@ class PengajarController extends BaseController
                     'uid' => $uid,
                     'nama_lengkap' => strtolower($nama_lengkap),
                     'email' => strtolower($email),
+                    'tanggal_lahir_mitra' => $tanggal_lahir_mitra,
                     'usia' => strtolower($usia),
                     'alamat_domisili' => strtolower($alamat_domisili),
                     'pendidikan_terakhir' => strtolower($pendidikan_terakhir),
@@ -352,6 +362,14 @@ class PengajarController extends BaseController
                         'required' => 'usia Tidak Boleh Kosong !'
                     ]
                 ],
+
+                'tanggal_lahir_mitra' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tanggal Lahir Tidak Boleh Kosong !'
+                    ]
+                ],
+
                 'alamat_domisili' => [
                     'rules' => 'required',
                     'errors' => [
@@ -452,6 +470,7 @@ class PengajarController extends BaseController
                     'error' => [
                         'nama_lengkap' => $this->validation->getError('nama_lengkap'),
                         'email' => $this->validation->getError('email'),
+                        'tanggal_lahir_mitra' => $this->validation->getError('tanggal_lahir_mitra'),
                         'usia' => $this->validation->getError('usia'),
                         'alamat_domisili' => $this->validation->getError('alamat_domisili'),
                         'pendidikan_terakhir' => $this->validation->getError('pendidikan_terakhir'),
@@ -482,6 +501,7 @@ class PengajarController extends BaseController
                 $uid = $this->pengajarModel->countAllResults();
                 $nama_lengkap = $this->request->getPost('nama_lengkap');
                 $email = $this->request->getPost('email');
+                $tanggal_lahir_mitra = $this->request->getPost('tanggal_lahir_mitra');
                 $usia = $this->request->getPost('usia');
                 $alamat_domisili = $this->request->getPost('alamat_domisili');
                 $pendidikan_terakhir = $this->request->getPost('pendidikan_terakhir');
@@ -545,6 +565,7 @@ class PengajarController extends BaseController
                     'uid' => $uid,
                     'nama_lengkap' => strtolower($nama_lengkap),
                     'email' => strtolower($email),
+                    'tanggal_lahir_mitra' => $tanggal_lahir_mitra,
                     'usia' => strtolower($usia),
                     'alamat_domisili' => strtolower($alamat_domisili),
                     'pendidikan_terakhir' => strtolower($pendidikan_terakhir),

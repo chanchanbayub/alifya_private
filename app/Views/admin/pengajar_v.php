@@ -113,6 +113,12 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <label for="tanggal_lahir_mitra" class="col-form-label">Tanggal Lahir :</label>
+                        <input type="date" class="form-control" id="tanggal_lahir_mitra" name="tanggal_lahir_mitra" placeholder="26">
+                        <div class="invalid-feedback error-tanggal-lahir">
+                        </div>
+                    </div>
+                    <div class="mb-3">
                         <label for="usia" class="col-form-label">Usia :</label>
                         <input type="number" class="form-control" id="usia" name="usia" placeholder="26">
                         <div class="invalid-feedback error-usia">
@@ -281,7 +287,7 @@
                         <input type="hidden" class="form-control" id="id_edit" name="id">
                         <input type="hidden" class="form-control" id="fotoLama" name="foto">
                         <input type="hidden" class="form-control" id="cvLama" name="cv">
-                        <input type="text" class="form-control" id="ijazahLama" name="ijazah">
+                        <input type="hidden" class="form-control" id="ijazahLama" name="ijazah">
                         <label for="nama_lengkap_edit" class="col-form-label">Nama Lengkap :</label>
                         <input type="text" class="form-control" id="nama_lengkap_edit" name="nama_lengkap" placeholder="masukan nama lengkap">
                         <div class="invalid-feedback error-nama-edit">
@@ -297,6 +303,12 @@
                         <label for="email_edit" class="col-form-label">Email :</label>
                         <input type="email" class="form-control" id="email_edit" name="email" placeholder="abc@gmail.com">
                         <div class="invalid-feedback error-email-edit">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal_lahir_mitra_edit" class="col-form-label">Tanggal Lahir :</label>
+                        <input type="date" class="form-control" id="tanggal_lahir_mitra_edit" name="tanggal_lahir_mitra" placeholder="26">
+                        <div class="invalid-feedback error-tanggal-lahir-edit">
                         </div>
                     </div>
                     <div class="mb-3">
@@ -492,6 +504,7 @@
             let nama_lengkap = $("#nama_lengkap").val();
             let nomor_whatsapp = $("#nomor_whatsapp").val();
             let email = $("#email").val();
+            let tanggal_lahir_mitra = $("#tanggal_lahir_mitra").val();
             let usia = $("#usia").val();
             let alamat_domisili = $("#alamat_domisili").val();
             let pendidikan_terakhir = $("#pendidikan_terakhir").val();
@@ -516,6 +529,7 @@
             formData.append('nama_lengkap', nama_lengkap);
             formData.append('nomor_whatsapp', nomor_whatsapp);
             formData.append('email', email);
+            formData.append('tanggal_lahir_mitra', tanggal_lahir_mitra);
             formData.append('usia', usia);
             formData.append('alamat_domisili', alamat_domisili);
             formData.append('pendidikan_terakhir', pendidikan_terakhir);
@@ -571,6 +585,13 @@
                         } else {
                             $("#email").removeClass('is-invalid');
                             $(".error-email").html('');
+                        }
+                        if (response.error.tanggal_lahir_mitra) {
+                            $("#tanggal_lahir_mitra").addClass('is-invalid');
+                            $(".error-tanggal-lahir").html(response.error.tanggal_lahir_mitra);
+                        } else {
+                            $("#tanggal_lahir_mitra").removeClass('is-invalid');
+                            $(".error-tanggal-lahir").html('');
                         }
                         if (response.error.usia) {
                             $("#usia").addClass('is-invalid');
@@ -746,6 +767,7 @@
                 $("#nama_lengkap_edit").val(response.pengajar.nama_lengkap);
                 $("#email_edit").val(response.pengajar.email);
                 $("#usia_edit").val(response.pengajar.usia);
+                $("#tanggal_lahir_mitra_edit").val(response.pengajar.tanggal_lahir_mitra);
                 $("#alamat_domisili_edit").val(response.pengajar.alamat_domisili);
                 $("#pendidikan_terakhir_edit").val(response.pengajar.pendidikan_terakhir);
                 $("#jurusan_edit").val(response.pengajar.jurusan);
@@ -785,6 +807,7 @@
         let nama_lengkap = $("#nama_lengkap_edit").val();
         let nomor_whatsapp = $("#nomor_whatsapp_edit").val();
         let email = $("#email_edit").val();
+        let tanggal_lahir_mitra = $("#tanggal_lahir_mitra_edit").val();
         let usia = $("#usia_edit").val();
         let alamat_domisili = $("#alamat_domisili_edit").val();
         let pendidikan_terakhir = $("#pendidikan_terakhir_edit").val();
@@ -815,6 +838,7 @@
         formData.append('nama_lengkap', nama_lengkap);
         formData.append('nomor_whatsapp', nomor_whatsapp);
         formData.append('email', email);
+        formData.append('tanggal_lahir_mitra', tanggal_lahir_mitra);
         formData.append('usia', usia);
         formData.append('alamat_domisili', alamat_domisili);
         formData.append('pendidikan_terakhir', pendidikan_terakhir);
@@ -871,6 +895,13 @@
                     } else {
                         $("#email_edit").removeClass('is-invalid');
                         $(".error-email-edit").html('');
+                    }
+                    if (response.error.tanggal_lahir_mitra) {
+                        $("#tanggal_lahir_mitra_edit").addClass('is-invalid');
+                        $(".error-tanggal-lahir-edit").html(response.error.tanggal_lahir_mitra);
+                    } else {
+                        $("#tanggal_lahir_mitra_edit").removeClass('is-invalid');
+                        $(".error-tanggal-lahir-edit").html('');
                     }
                     if (response.error.usia) {
                         $("#usia_edit").addClass('is-invalid');
