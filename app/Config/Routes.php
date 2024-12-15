@@ -105,6 +105,7 @@ $routes->group('admin', static function ($routes) {
 
     $routes->get('data_pengajar', 'Admin\PengajarController::index');
     $routes->get('data_pengajar/ulang_tahun', 'Admin\PengajarController::ulang_tahun');
+    $routes->post('data_pengajar/data_ulang_tahun_mitra', 'Admin\PengajarController::data_ulang_tahun_mitra');
     $routes->post('data_pengajar/insert', 'Admin\PengajarController::insert');
     $routes->get('data_pengajar/edit', 'Admin\PengajarController::edit');
     $routes->post('data_pengajar/update', 'Admin\PengajarController::update');

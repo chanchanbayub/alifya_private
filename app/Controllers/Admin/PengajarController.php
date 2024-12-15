@@ -48,6 +48,23 @@ class PengajarController extends BaseController
         return view('admin/ultah_pengajar_v', $data);
     }
 
+    public function data_ulang_tahun_mitra()
+    {
+        if ($this->request->isAJAX()) {
+
+            $bulan = $this->request->getVar('bulan');
+
+            $data_ultah = $this->pengajarModel->getDataPengajarWithBulanUltah($bulan);
+
+            $data = [
+                'data_ultah' => $data_ultah,
+                'tahun' => date('Y')
+            ];
+
+            return json_encode($data);
+        }
+    }
+
     public function insert()
     {
         if ($this->request->isAJAX()) {
