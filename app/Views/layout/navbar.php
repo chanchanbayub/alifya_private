@@ -117,6 +117,11 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/data_pengajar/ulang_tahun">
+                         <i class="bi bi-circle"></i><span>Data Ultah Mitra</span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="/admin/harga_mitra">
                          <i class="bi bi-circle"></i><span>Upah Mitra / Jam</span>
                      </a>

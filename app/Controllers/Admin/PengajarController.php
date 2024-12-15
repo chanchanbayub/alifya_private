@@ -32,6 +32,19 @@ class PengajarController extends BaseController
         return view('admin/pengajar_v', $data);
     }
 
+    public function ulang_tahun()
+    {
+        helper(['format']);
+
+        $data = [
+            'title' => 'Ulang Tahun Mitra Pengajar',
+            'status_pengajar' => $this->statusPengajarModel->getStatusPengajar(),
+            'data_pengajar_ultah' => $this->pengajarModel->getDataPengajarUltah()
+        ];
+
+        return view('admin/ultah_pengajar_v', $data);
+    }
+
     public function insert()
     {
         if ($this->request->isAJAX()) {
