@@ -302,7 +302,7 @@
             dropdownParent: $('#editModal')
         });
 
-        $('#jenis_media_id').select2({
+        $('#jenis_media_id_edit').select2({
             theme: 'bootstrap-5',
             dropdownParent: $('#editModal')
         });
