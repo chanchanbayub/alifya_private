@@ -35,11 +35,14 @@ class PengajarController extends BaseController
     public function ulang_tahun()
     {
         helper(['format']);
+        $tahun = date('Y');
+
 
         $data = [
             'title' => 'Ulang Tahun Mitra Pengajar',
             'status_pengajar' => $this->statusPengajarModel->getStatusPengajar(),
-            'data_pengajar_ultah' => $this->pengajarModel->getDataPengajarUltah()
+            'data_pengajar_ultah' => $this->pengajarModel->getDataPengajarUltah(),
+            'tahun' => $tahun
         ];
 
         return view('admin/ultah_pengajar_v', $data);

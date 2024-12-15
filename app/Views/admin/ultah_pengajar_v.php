@@ -32,6 +32,7 @@
                                         <th scope="col">Nama </th>
                                         <th scope="col">Tanggal Lahir </th>
                                         <th scope="col">Status Pengajar </th>
+                                        <th scope="col">Aksi </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,12 +46,18 @@
                                             <td><?= ($pengajar->tanggal_lahir_mitra == null) ? "-" : date('d-M-Y', strtotime($pengajar->tanggal_lahir_mitra))  ?></td>
 
                                             <td><span class='<?= ($pengajar->status_id == 1) ? "badge bg-success" : "badge bg-warning" ?>'><?= $pengajar->status_pengajar ?></span></td>
+                                            <?php if ($pengajar->tanggal_lahir_mitra == null) : ?>
+                                                <td><a aria-disabled="true">Tambah Google Calendar</a></td>
+                                            <?php else : ?>
+                                                <td><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Example+Google+Calendar+Event&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=<?= $tahun ?><?= date('md', strtotime($pengajar->tanggal_lahir_mitra)) ?>/<?= $tahun ?><?= date('md', strtotime($pengajar->tanggal_lahir_mitra)) ?>UNTIL%3D<?= $tahun ?>0603&ctz=Asia/Jakarta" target="_blank">Tambah Google Calendar</a></td>
+                                            <?php endif; ?>
+
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                             <br>
-                            <iframe src="https://calendar.google.com/calendar/embed?src=69b50ef13cc072fbcdc37060abdd7e5ad98b54fdc2eac4124da7b2bd4e9f3aef%40group.calendar.google.com&ctz=Asia%2FJakarta" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+                            <iframe src=" https://calendar.google.com/calendar/embed?src=69b50ef13cc072fbcdc37060abdd7e5ad98b54fdc2eac4124da7b2bd4e9f3aef%40group.calendar.google.com&ctz=Asia%2FJakarta" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
 
                         </div>
 
