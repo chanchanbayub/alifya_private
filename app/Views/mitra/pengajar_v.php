@@ -101,6 +101,14 @@
                         <div class="invalid-feedback error-email-edit">
                         </div>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="tanggal_lahir_mitra_edit" class="col-form-label">Tanggal Lahir :</label>
+                        <input type="date" class="form-control" id="tanggal_lahir_mitra_edit" name="tanggal_lahir_mitra">
+                        <div class="invalid-feedback error-tanggal-lahir-edit">
+                        </div>
+                    </div>
+
                     <div class="mb-3">
                         <label for="usia_edit" class="col-form-label">Usia :</label>
                         <input type="number" class="form-control" id="usia_edit" name="usia" placeholder="26">
@@ -279,6 +287,7 @@
                 $("#ijazahLama").val(response.pengajar.ijazah);
                 $("#nama_lengkap_edit").val(response.pengajar.nama_lengkap);
                 $("#email_edit").val(response.pengajar.email);
+                $("#tanggal_lahir_mitra_edit").val(response.pengajar.tanggal_lahir_mitra);
                 $("#usia_edit").val(response.pengajar.usia);
                 $("#alamat_domisili_edit").val(response.pengajar.alamat_domisili);
                 $("#pendidikan_terakhir_edit").val(response.pengajar.pendidikan_terakhir);
@@ -319,6 +328,7 @@
         let nama_lengkap = $("#nama_lengkap_edit").val();
         let nomor_whatsapp = $("#nomor_whatsapp_edit").val();
         let email = $("#email_edit").val();
+        let tanggal_lahir_mitra = $("#tanggal_lahir_mitra_edit").val();
         let usia = $("#usia_edit").val();
         let alamat_domisili = $("#alamat_domisili_edit").val();
         let pendidikan_terakhir = $("#pendidikan_terakhir_edit").val();
@@ -349,6 +359,7 @@
         formData.append('nama_lengkap', nama_lengkap);
         formData.append('nomor_whatsapp', nomor_whatsapp);
         formData.append('email', email);
+        formData.append('tanggal_lahir_mitra', tanggal_lahir_mitra);
         formData.append('usia', usia);
         formData.append('alamat_domisili', alamat_domisili);
         formData.append('pendidikan_terakhir', pendidikan_terakhir);
@@ -405,6 +416,13 @@
                     } else {
                         $("#email_edit").removeClass('is-invalid');
                         $(".error-email-edit").html('');
+                    }
+                    if (response.error.tanggal_lahir_mitra) {
+                        $("#tanggal_lahir_mitra_edit").addClass('is-invalid');
+                        $(".error-tanggal-lahir-edit").html(response.error.tanggal_lahir_mitra);
+                    } else {
+                        $("#tanggal_lahir_mitra_edit").removeClass('is-invalid');
+                        $(".error-tanggal-lahir-edit").html('');
                     }
                     if (response.error.usia) {
                         $("#usia_edit").addClass('is-invalid');

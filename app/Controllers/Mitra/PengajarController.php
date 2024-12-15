@@ -39,13 +39,13 @@ class PengajarController extends BaseController
     public function view($email)
     {
         if ($email == null) {
-            return redirect()->to('/admin/data_pengajar');
+            return redirect()->to('/mitra_pengajar/data_pengajar');
         }
 
         $mitra_pengajar = $this->pengajarModel->getMitraPengajar($email);
 
         if ($mitra_pengajar == null) {
-            return redirect()->to('/admin/data_pengajar');
+            return redirect()->to('/mitra_pengajar/data_pengajar');
         }
 
         $data = [
@@ -97,6 +97,12 @@ class PengajarController extends BaseController
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'usia Tidak Boleh Kosong !'
+                    ]
+                ],
+                'tanggal_lahir_mitra' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tanggal Lahir Tidak Boleh Kosong !'
                     ]
                 ],
                 'alamat_domisili' => [
@@ -199,6 +205,7 @@ class PengajarController extends BaseController
                     'error' => [
                         'nama_lengkap' => $this->validation->getError('nama_lengkap'),
                         'email' => $this->validation->getError('email'),
+                        'tanggal_lahir_mitra' => $this->validation->getError('tanggal_lahir_mitra'),
                         'usia' => $this->validation->getError('usia'),
                         'alamat_domisili' => $this->validation->getError('alamat_domisili'),
                         'pendidikan_terakhir' => $this->validation->getError('pendidikan_terakhir'),
@@ -230,6 +237,7 @@ class PengajarController extends BaseController
                 $nama_lengkap = $this->request->getPost('nama_lengkap');
                 $email = $this->request->getPost('email');
                 $usia = $this->request->getPost('usia');
+                $tanggal_lahir_mitra = $this->request->getPost('tanggal_lahir_mitra');
                 $alamat_domisili = $this->request->getPost('alamat_domisili');
                 $pendidikan_terakhir = $this->request->getPost('pendidikan_terakhir');
                 $jurusan = $this->request->getPost('jurusan');
@@ -295,6 +303,7 @@ class PengajarController extends BaseController
                     'uid' => $uid,
                     'nama_lengkap' => strtolower($nama_lengkap),
                     'email' => strtolower($email),
+                    'tanggal_lahir_mitra' => strtolower($tanggal_lahir_mitra),
                     'usia' => strtolower($usia),
                     'alamat_domisili' => strtolower($alamat_domisili),
                     'pendidikan_terakhir' => strtolower($pendidikan_terakhir),
