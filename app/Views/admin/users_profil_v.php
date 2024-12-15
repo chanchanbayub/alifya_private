@@ -62,6 +62,15 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-lg-6 col-md-4 label">Tanggal Lahir</div>
+                                <?php if ($mitra_pengajar->tanggal_lahir_mitra == null) : ?>
+                                    <div class="col-lg-6 col-md-8">-</div>
+                                <?php else : ?>
+                                    <div class="col-lg-6 col-md-8"><?= date("d-m-Y", strtotime($mitra_pengajar->tanggal_lahir_mitra))  ?> </div>
+                                <?php endif; ?>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-lg-6 col-md-4 label">Usia</div>
                                 <div class="col-lg-6 col-md-8"><?= $mitra_pengajar->usia ?> Tahun</div>
                             </div>
