@@ -25,29 +25,7 @@
                             <!-- Browser Default Validation -->
                             <form class="row g-3 text-capitalize" id="cek_invoice" action="cetak_invoice/pdf" target="_new">
                                 <?= csrf_field(); ?>
-                                <div class="col-md-3">
-                                    <label for="mitra_pengajar_id" class="form-label">Pilih Mitra Pengajar :</label>
-                                    <select name="mitra_pengajar_id" id="mitra_pengajar_id" class="form-control" required>
-                                        <option value="">--Silahkan Pilih--</option>
-                                        <?php foreach ($mitra_pengajar as $mitra_pengajar) : ?>
-                                            <option value="<?= $mitra_pengajar->mitra_pengajar_id ?>"> <?= $mitra_pengajar->nama_lengkap ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <div class="invalid-feedback error-mitra-pengajar">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <label for="peserta_didik_id" class="form-label">Pilih Peserta Didik :</label>
-                                    <select name="peserta_didik_id" id="peserta_didik_id" class="form-control" disabled>
-                                        <option value="">--Silahkan Pilih--</option>
-
-                                    </select>
-                                    <div class="invalid-feedback error-peserta-didik">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
+                                <div class="col-md-12">
                                     <label for="bulan" class="form-label">Pilih Bulan :</label>
                                     <select name="bulan" id="bulan" class="form-control" required>
                                         <option value="">--Silahkan Pilih--</option>
@@ -68,21 +46,66 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <label for="media_belajar" class="form-label"> Media Pembelajaran :</label>
-                                    <input type="number" name="media_belajar" id="media_belajar" class="form-control" placeholder="cth : 10000">
-                                    <div class="invalid-feedback error-media-belajar">
-                                    </div>
-                                </div>
-
                                 <div class="col-md-6">
-                                    <button class="btn btn-outline-primary" onclick="cek_invoice();" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cek Invoice</button>
+                                    <button class="btn btn-outline-primary" onclick="cek_invoice();" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cek Data</button>
                                 </div>
                             </form>
                             <!-- End Browser Default Validation -->
                         </div>
                     </div>
                 </div><!-- End Recent Sales -->
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card recent-sales overflow-auto">
+
+                <!-- <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Aksi</h6>
+                        </li>
+
+                    </ul>
+                </div> -->
+
+                <div class="card-body">
+                    <h5 class="card-title">Rekap Peserta Didik Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> <span>| Table </span></h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">No</th>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">Nama Anak</th>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi</th>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">Upah Per Anak</th>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Upah</th>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">Media Belajar</th>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain</th>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no = 1; ?>
+                            <?php foreach ($data_presensi as $peserta_didik) : ?>
+                                <tr>
+                                    <td scope="col"><?= $no++ ?></td>
+                                    <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik->nama_lengkap_anak ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= $peserta_didik->total_presensi_perbulan ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga)  ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga * $peserta_didik->total_presensi_perbulan) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->media_belajar) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->media_belajar) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->total_presensi_perbulan * $peserta_didik->harga + $peserta_didik->media_belajar + $peserta_didik->harga) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Cetak PDF </td>
+
+                                </tr>
+                        </tbody>
+                    <?php endforeach; ?>
+                    </table>
+
+                </div>
+
             </div>
         </div>
     </div><!-- End Left side columns -->

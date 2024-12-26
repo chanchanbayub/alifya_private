@@ -141,13 +141,15 @@ class PresensiModel extends Model
     public function getPresensiPerAnak($peserta_didik_id, $bulan, $tahun)
     {
         return $this->table($this->table)
-            ->select("data_murid_table.nama_lengkap_anak, COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi_perbulan, paket_belajar_table.jumlah_pertemuan")
+            ->select("COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi_perbulan, data_murid_table.nama_lengkap_anak, harga_table.harga, harga_table.media_belajar")
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
-            ->join('paket_belajar_table', 'paket_belajar_table.id = data_murid_table.paket_belajar_id')
-            ->where(["presensi_table.peserta_didik_id" => $peserta_didik_id])
+            ->join('harga_table', 'harga_table.peserta_didik_id = presensi_table.peserta_didik_id')
+            ->where(["data_murid_table.id" => $peserta_didik_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where(['harga_table.bulan' => $bulan])
             ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
-            ->orderBy('presensi_table.tanggal_masuk desc')
-            ->get()->getRowObject();
+            ->where(['harga_table.tahun' =>  $tahun])
+            ->orderBy('data_murid_table.nama_lengkap_anak asc')
+            ->get()->getResultObject();
     }
 }

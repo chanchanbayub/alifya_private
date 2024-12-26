@@ -149,6 +149,11 @@
                          <i class="bi bi-circle"></i><span>Upah Anak / Jam</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="/admin/klaim_media_belajar">
+                         <i class="bi bi-circle"></i><span>Klaim Media Belajar</span>
+                     </a>
+                 </li>
 
              </ul>
          </li>

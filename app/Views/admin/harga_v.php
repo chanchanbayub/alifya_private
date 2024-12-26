@@ -23,7 +23,7 @@
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
 
-                        <!-- <div class="filter">
+                        <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                 <li class="dropdown-header text-start">
@@ -31,7 +31,7 @@
                                 </li>
                                 <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
                             </ul>
-                        </div> -->
+                        </div>
 
                         <div class="card-body">
                             <h5 class="card-title"><?= $title ?> <span>| Table </span></h5>
@@ -41,12 +41,9 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Peserta Didik</th>
                                         <th scope="col">Bulan</th>
-                                        <th scope="col">Jenis Media</th>
                                         <th scope="col"><?= $title ?></th>
-                                        <th scope="col">Harga Media Belajar</th>
-                                        <th scope="col">Faktur</th>
+                                        <th scope="col">Tahun</th>
                                         <th scope="col">Aksi</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,17 +84,32 @@
                         <div class="invalid-feedback error-peserta-didik">
                         </div>
                     </div>
+
                     <div class="mb-3">
-                        <label for="harga" class="col-form-label">Harga :</label>
-                        <input type="number" class="form-control" id="harga" name="harga" placeholder="50000">
-                        <div class="invalid-feedback error-harga">
+                        <label for="bulan" class="form-label">Pilih Bulan :</label>
+                        <select name="bulan" id="bulan" class="form-control">
+                            <option value="">--Silahkan Pilih--</option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <div class="invalid-feedback error-bulan-edit">
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="media_belajar" class="col-form-label">Media Belajar :</label>
-                        <input type="number" class="form-control" id="media_belajar" name="media_belajar" placeholder="10000">
-                        <div class="invalid-feedback error-media-belajar">
+                        <label for="harga" class="col-form-label">Harga :</label>
+                        <input type="number" class="form-control" id="harga" name="harga" placeholder="50000">
+                        <div class="invalid-feedback error-harga">
                         </div>
                     </div>
 
@@ -128,7 +140,7 @@
                     <div class="form_group">
                         <div class="mb-3">
                             <input type="hidden" class="form-control" id="id_edit" name="id">
-                            <input type="hidden" class="form-control" id="faktur_lama" name="faktur_lama">
+                            <input type="hidden" class="form-control" id="tahun_edit" name="tahun">
                             <label for="peserta_didik_id_edit" class="col-form-label">Peserta Didik :</label>
                             <select name="peserta_didik_id" id="peserta_didik_id_edit" class="form-select">
                                 <option value="">--Silahkan Pilih--</option>
@@ -136,15 +148,6 @@
                             </select>
                             <div class="invalid-feedback error-peserta-didik-edit">
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="jenis_media_id_edit" class="form-label">Jenis Media :</label>
-                        <select name="jenis_media_id" id="jenis_media_id_edit" class="form-control">
-                            <option value="">--Silahkan Pilih--</option>
-                        </select>
-                        <div class="invalid-feedback error-jenis-media-edit">
                         </div>
                     </div>
 
@@ -170,35 +173,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="tahun_edit" class="col-form-label">Tahun :</label>
-                        <input type="number" class="form-control" id="tahun_edit" name="tahun">
-                        <div class="invalid-feedback error-tahun-edit">
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
 
                         <label for="harga_edit" class="col-form-label"><?= $title ?> :</label>
                         <input type="number" class="form-control" id="harga_edit" name="harga">
                         <div class="invalid-feedback error-harga-edit">
 
                         </div>
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="media_belajar_edit" class="col-form-label"> Harga Media Belajar :</label>
-                        <input type="number" class="form-control" id="media_belajar_edit" name="media_belajar">
-                        <div class="invalid-feedback error-media-belajar-edit">
-
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="faktur_edit" class="col-form-label">Faktur / Kwitansi :</label>
-                        <input type="file" class="form-control" id="faktur_edit" name="faktur" placeholder="10000">
-                        <small> * Kosongkan jika tidak mengganti faktur</small>
                     </div>
 
                     <div class="modal-footer">
@@ -262,20 +242,12 @@
                     data: 'bulan',
                 },
                 {
-                    data: 'nama_media',
-                },
-                {
                     data: 'harga',
                     render: $.fn.dataTable.render.number('.', '.', 0, '')
                 },
                 {
-                    data: 'media_belajar',
-                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                    data: 'tahun',
                 },
-                {
-                    data: 'faktur',
-                },
-
                 {
                     data: 'action',
                     orderable: false
@@ -297,12 +269,12 @@
             dropdownParent: $('#editModal')
         });
 
-        $('#bulan_edit').select2({
+        $('#bulan').select2({
             theme: 'bootstrap-5',
-            dropdownParent: $('#editModal')
+            dropdownParent: $('#exampleModal')
         });
 
-        $('#jenis_media_id_edit').select2({
+        $('#bulan_edit').select2({
             theme: 'bootstrap-5',
             dropdownParent: $('#editModal')
         });
@@ -311,18 +283,18 @@
         $("#add_form").submit(function(e) {
             e.preventDefault();
 
-            let harga = $("#harga").val();
-            let media_belajar = $("#media_belajar").val();
             let peserta_didik_id = $("#peserta_didik_id").val();
+            let bulan = $("#bulan").val();
+            let harga = $("#harga").val();
 
             $.ajax({
                 url: '/admin/harga/insert',
                 method: 'post',
                 dataType: 'JSON',
                 data: {
-                    harga: harga,
                     peserta_didik_id: peserta_didik_id,
-                    media_belajar: media_belajar,
+                    bulan: bulan,
+                    harga: harga,
 
                 },
                 beforeSend: function() {
@@ -341,6 +313,14 @@
                             $(".error-peserta-didik").html('');
                         }
 
+                        if (response.error.bulan) {
+                            $("#bulan").addClass('is-invalid');
+                            $(".error-bulan").html(response.error.bulan);
+                        } else {
+                            $("#bulan").removeClass('is-invalid');
+                            $(".error-bulan").html('');
+                        }
+
                         if (response.error.harga) {
                             $("#harga").addClass('is-invalid');
                             $(".error-harga").html(response.error.harga);
@@ -349,13 +329,7 @@
                             $(".error-harga").html('');
                         }
 
-                        if (response.error.media_belajar) {
-                            $("#media_belajar").addClass('is-invalid');
-                            $(".error-media-belajar").html(response.error.media_belajar);
-                        } else {
-                            $("#media_belajar").removeClass('is-invalid');
-                            $(".error-media-belajar").html('');
-                        }
+
 
                     } else {
                         Swal.fire({
@@ -389,13 +363,12 @@
             dataType: 'JSON',
             data: {
                 id: id,
+
             },
             success: function(response) {
                 // console.log(response);
                 $("#id_edit").val(response.harga.id);
-                $("#faktur_lama").val(response.harga.faktur);
                 $("#harga_edit").val(response.harga.harga);
-                $("#media_belajar_edit").val(response.harga.media_belajar);
                 $("#bulan_edit").val(response.harga.bulan).trigger('change');
                 $("#tahun_edit").val(response.harga.tahun);
 
@@ -410,16 +383,6 @@
 
                 $("#peserta_didik_id_edit").val(response.harga.peserta_didik_id).trigger('change');
 
-                let jenis_media_data = `<option value="">--Silahkan Pilih--</option>`;
-
-                response.jenis_media.forEach(function(e) {
-                    jenis_media_data += `<option value="${e.id}"> ${e.nama_media} </option>`
-                });
-
-                $("#jenis_media_id_edit").html(jenis_media_data);
-
-                $("#jenis_media_id_edit").val(response.harga.jenis_media_id).trigger('change');
-
 
             }
         });
@@ -428,34 +391,22 @@
     $("#edit_form").submit(function(e) {
         e.preventDefault();
         let id = $("#id_edit").val();
-        let faktur_lama = $("#faktur_lama").val();
         let peserta_didik_id = $("#peserta_didik_id_edit").val();
-        let jenis_media_id = $("#jenis_media_id_edit").val();
         let bulan = $("#bulan_edit").val();
+        let harga = $("#harga_edit").val();
         let tahun = $("#tahun_edit").val();
-        let media_belajar = $("#media_belajar_edit").val();
-        let faktur = $("#faktur").val();
-
-        let formData = new FormData(this);
-
-        formData.append('id', id);
-        formData.append('faktur_lama', faktur_lama);
-        formData.append('peserta_didik_id', peserta_didik_id);
-        formData.append('jenis_media_id', jenis_media_id);
-        formData.append('bulan', bulan);
-        formData.append('tahun', tahun);
-        formData.append('media_belajar', media_belajar);
-        formData.append('faktur', faktur);
 
         $.ajax({
             url: '/admin/harga/update',
-            data: formData,
-            dataType: 'json',
-            enctype: 'multipart/form-data',
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            cache: false,
+            method: 'post',
+            dataType: 'JSON',
+            data: {
+                id: id,
+                peserta_didik_id: peserta_didik_id,
+                bulan: bulan,
+                harga: harga,
+                tahun: tahun
+            },
             beforeSend: function() {
                 $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
                 $('.save').prop('disabled', true);
@@ -471,15 +422,6 @@
                         $("#peserta_didik_id_edit").removeClass('is-invalid');
                         $(".error-peserta-didik-edit").html('');
                     }
-
-                    if (response.error.jenis_media_id) {
-                        $("#jenis_media_id_edit").addClass('is-invalid');
-                        $(".error-jenis-media-edit").html(response.error.jenis_media_id);
-                    } else {
-                        $("#jenis_media_id_edit").removeClass('is-invalid');
-                        $(".error-jenis-media-edit").html('');
-                    }
-
                     if (response.error.bulan) {
                         $("#bulan_edit").addClass('is-invalid');
                         $(".error-bulan-edit").html(response.error.bulan);
@@ -488,28 +430,12 @@
                         $(".error-bulan-edit").html('');
                     }
 
-                    if (response.error.tahun) {
-                        $("#tahun_edit").addClass('is-invalid');
-                        $(".error-tahun-edit").html(response.error.tahun);
-                    } else {
-                        $("#tahun_edit").removeClass('is-invalid');
-                        $(".error-tahun-edit").html('');
-                    }
-
                     if (response.error.harga) {
                         $("#harga_edit").addClass('is-invalid');
                         $(".error-harga-edit").html(response.error.harga);
                     } else {
                         $("#harga_edit").removeClass('is-invalid');
                         $(".error-harga-edit").html('');
-                    }
-
-                    if (response.error.media_belajar) {
-                        $("#media_belajar_edit").addClass('is-invalid');
-                        $(".error-media-belajar-edit").html(response.error.media_belajar);
-                    } else {
-                        $("#media_belajar_edit").removeClass('is-invalid');
-                        $(".error-media-belajar-edit").html('');
                     }
 
                 } else {

@@ -3,9 +3,11 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+
 use App\Models\Admin\HargaModel;
 use App\Models\Admin\KelompokBelajarModel;
 use App\Models\Admin\KelompokModel;
+use App\Models\Admin\MuridModel;
 use App\Models\Admin\PengajarModel;
 use App\Models\Admin\PresensiModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -16,6 +18,7 @@ class InvoiceController extends BaseController
     protected $kelompokModel;
     protected $pengajarModel;
     protected $kelompokBelajarModel;
+    protected $muridModel;
     protected $hargaModel;
     protected $validation;
 
@@ -26,18 +29,35 @@ class InvoiceController extends BaseController
         $this->pengajarModel = new PengajarModel();
         $this->hargaModel = new HargaModel();
         $this->kelompokBelajarModel = new KelompokBelajarModel();
+        $this->muridModel = new MuridModel();
         $this->validation = \Config\Services::validation();
     }
 
     public function index()
     {
-        $mitra_pengajar = $this->kelompokModel->getKelompokPengajar();
-        $harga = $this->hargaModel->getHarga();
+        helper(['format']);
 
+        $bulan = date('m');
+        $tahun = date('Y');
+
+        $peserta_didik = $this->muridModel->getPesertaDidikData();
+
+        $data_presensi = [];
+        foreach ($peserta_didik as $data_anak) {
+
+            $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->id, $bulan, $tahun);
+
+            foreach ($presensi_data as $data_peserta) {
+                $data_presensi[] = $data_peserta;
+            }
+        }
+        // dd($presensi_data);
         $data = [
+            'data_presensi' => $data_presensi,
             'title' => 'Invoice Peserta Didik',
-            'mitra_pengajar' => $mitra_pengajar,
-            'harga' => $harga
+            // 'mitra_pengajar' => $mitra_pengajar,
+            // 'harga' => $harga,
+
         ];
 
         return view('admin/invoice_v', $data);

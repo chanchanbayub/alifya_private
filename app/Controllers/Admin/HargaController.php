@@ -44,13 +44,6 @@ class HargaController extends BaseController
             $harga_perjam = $this->hargaModel->getHarga();
 
             return DataTable::of($harga_perjam)
-                ->add('faktur', function ($row) {
-                    if ($row->faktur != null) {
-                        return '<a href ="/faktur/' . $row->faktur . '" class="btn btn-link btn-sm" target="_blank">Lihat Faktur </a>';
-                    } else {
-                        return '<small> - </small>';
-                    }
-                })
                 ->add('action', function ($row) {
                     return '<button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="' .  $row->id . '" type="button">
                                                     <i class="bi bi-pencil-square"></i>
@@ -59,8 +52,7 @@ class HargaController extends BaseController
                                                     <i class="bi bi-trash"></i>
                                                 </button>';
                 })
-                ->setSearchableColumns(['nama_lengkap_anak', 'bulan', 'harga', 'nama_media'])
-
+                ->setSearchableColumns(['nama_lengkap_anak', 'bulan', 'harga', 'tahun'])
                 ->addNumbering('no')->toJson(true);
         }
     }
@@ -77,17 +69,16 @@ class HargaController extends BaseController
                     ]
                 ],
 
-                'harga' => [
+                'bulan' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'Upah Tidak Boleh Kosong !'
                     ]
                 ],
-
-                'media_belajar' => [
+                'harga' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Media Belajar Boleh Kosong !'
+                        'required' => 'Upah Tidak Boleh Kosong !'
                     ]
                 ],
 
@@ -96,7 +87,7 @@ class HargaController extends BaseController
                     'error' => [
                         'peserta_didik_id' => $this->validation->getError('peserta_didik_id'),
                         'harga' => $this->validation->getError('harga'),
-                        'media_belajar' => $this->validation->getError('media_belajar'),
+                        'bulan' => $this->validation->getError('bulan'),
 
                     ]
                 ];
@@ -104,12 +95,15 @@ class HargaController extends BaseController
 
                 $peserta_didik_id = $this->request->getPost('peserta_didik_id');
                 $harga = $this->request->getPost('harga');
-                $media_belajar = $this->request->getPost('media_belajar');
+                $bulan = $this->request->getPost('bulan');
+
+                $tahun = date('Y');
 
                 $this->hargaModel->save([
                     'peserta_didik_id' => strtolower($peserta_didik_id),
                     'harga' => strtolower($harga),
-                    'media_belajar' => strtolower($media_belajar),
+                    'bulan' => $bulan,
+                    'tahun' => $tahun
 
                 ]);
 
@@ -134,7 +128,6 @@ class HargaController extends BaseController
             $data = [
                 'harga' => $harga,
                 'peserta_didik' => $peserta_didik,
-                'jenis_media' => $this->jenisMediaBelajarModel->getJenisMediaBelajar()
             ];
 
             return json_encode($data);
@@ -149,19 +142,11 @@ class HargaController extends BaseController
 
             $harga = $this->hargaModel->where(["id" => $id])->first();
 
-            $path_foto = 'faktur/' . $harga['faktur'];
-
             $this->hargaModel->delete($harga["id"]);
 
             $alert = [
                 'success' => 'Upah Berhasil di Hapus !'
             ];
-
-            if ($harga['faktur'] != null) {
-                if (file_exists($path_foto)) {
-                    unlink($path_foto);
-                }
-            }
 
             return json_encode($alert);
         }
@@ -179,76 +164,51 @@ class HargaController extends BaseController
                     ]
                 ],
 
-                'jenis_media_id' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Jenis Media Tidak Boleh Kosong !'
-                    ]
-                ],
-
                 'bulan' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'Bulan Tidak Boleh Kosong !'
                     ]
                 ],
-                'media_belajar' => [
+
+                'harga' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Media Belajar Boleh Kosong !'
+                        'required' => 'Harga Tidak Boleh Kosong !'
                     ]
                 ],
+
 
             ])) {
                 $alert = [
                     'error' => [
                         'peserta_didik_id' => $this->validation->getError('peserta_didik_id'),
-                        'jenis_media_id' => $this->validation->getError('jenis_media_id'),
+                        'harga' => $this->validation->getError('harga'),
                         'bulan' => $this->validation->getError('bulan'),
-                        'media_belajar' => $this->validation->getError('media_belajar'),
 
                     ]
                 ];
             } else {
                 $id = $this->request->getPost('id');
 
-                $faktur_lama = $this->request->getPost('faktur_lama');
-
                 $peserta_didik_id = $this->request->getPost('peserta_didik_id');
 
                 $bulan = $this->request->getPost('bulan');
-
-                $jenis_media_id = $this->request->getPost('jenis_media_id');
-
-                $media_belajar = $this->request->getPost('media_belajar');
 
                 $tahun = $this->request->getPost('tahun');
 
                 $harga = $this->request->getPost('harga');
 
-                $faktur = $this->request->getFile('faktur');
-
-                $path_foto_lama = 'faktur/' . $faktur_lama;
-
-                if ($faktur->getError() == 4) {
-                    $nama_foto = $faktur_lama;
-                } else {
-                    if (file_exists($path_foto_lama)) {
-                        unlink($path_foto_lama);
-                    }
-                    $nama_foto = $faktur->getRandomName();
-                    $faktur->move('faktur', $nama_foto);
+                if ($tahun == null) {
+                    $tahun = date('Y');
                 }
 
 
                 $this->hargaModel->update($id, [
                     'peserta_didik_id' => strtolower($peserta_didik_id),
-                    'jenis_media_id' => strtolower($jenis_media_id),
                     'bulan' => $bulan,
                     'tahun' => $tahun,
                     'harga' => strtolower($harga),
-                    'media_belajar' => strtolower($media_belajar),
-                    'faktur' => strtolower($nama_foto),
 
                 ]);
 

@@ -63,7 +63,7 @@ class MuridModel extends Model
             ->join('materi_belajar_table', 'materi_belajar_table.id = data_murid_table.materi_belajar_id')
             ->join('program_belajar_table', 'program_belajar_table.id = data_murid_table.program_belajar_id')
             ->where(["data_murid_table.status_murid_id" => 1])
-            ->orderBy('id desc')
+            ->orderBy('data_murid_table.id desc')
             ->get()->getResultObject();
     }
 
@@ -103,11 +103,31 @@ class MuridModel extends Model
             ->get()->getResultObject();
     }
 
+    public function getRekapPesertaDidikPerbulan()
+    {
+        return $this->table($this->table)
+            ->select('data_murid_table.id,data_murid_table.uid_murid,data_murid_table.nama_lengkap_anak')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->where(["data_murid_table.status_murid_id" => 1])
+            ->orderBy('data_murid_table.nama_lengkap_anak asc')
+            ->get()->getResultObject();
+    }
+
     public function getMuridIDTerakhir()
     {
         return $this->table($this->table)
             ->select("data_murid_table.id")
             ->orderBy('id desc')
             ->get()->getRowObject();
+    }
+
+    public function getPesertaDidikData()
+    {
+        return $this->table($this->table)
+            ->select("data_murid_table.id,data_murid_table.uid_murid,data_murid_table.nama_lengkap_anak, data_murid_table.tanggal_lahir_anak, data_murid_table.usia_anak, data_murid_table.alamat_domisili_anak, data_murid_table.sekolah_anak, data_murid_table.nomor_whatsapp_wali, data_murid_table. username_instagram_wali, data_murid_table.program_belajar_id, data_murid_table.materi_belajar_id, data_murid_table.hari_belajar, data_murid_table.waktu_belajar, data_murid_table.foto_anak, data_murid_table.status_murid_id")
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->where(["data_murid_table.status_murid_id" => 1])
+            ->orderBy('data_murid_table.nama_lengkap_anak asc')
+            ->get()->getResultObject();
     }
 }

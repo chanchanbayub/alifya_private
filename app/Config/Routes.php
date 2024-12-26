@@ -40,6 +40,14 @@ $routes->group('admin', static function ($routes) {
     $routes->post('user_management/update', 'Admin\UserManagementController::update');
     $routes->post('user_management/delete', 'Admin\UserManagementController::delete');
 
+    $routes->get('klaim_media_belajar', 'Admin\KlaimMediaPesertaController::index');
+    $routes->post('klaim_media_belajar/insert', 'Admin\KlaimMediaPesertaController::insert');
+    $routes->get('klaim_media_belajar/edit', 'Admin\KlaimMediaPesertaController::edit');
+    $routes->post('klaim_media_belajar/update', 'Admin\KlaimMediaPesertaController::update');
+    $routes->post('klaim_media_belajar/delete', 'Admin\KlaimMediaPesertaController::delete');
+    $routes->post('klaim_media_belajar/getDataHargaMedia', 'Admin\KlaimMediaPesertaController::getDataHargaMedia');
+
+
     $routes->get('harga', 'Admin\HargaController::index');
     $routes->post('harga/insert', 'Admin\HargaController::insert');
     $routes->get('harga/edit', 'Admin\HargaController::edit');
