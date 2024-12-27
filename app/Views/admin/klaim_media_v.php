@@ -159,7 +159,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"> Form <small>Edit <?= $title ?></small> </h5>
+                <h5 class="modal-title"> Form <small>Edit Media Belajar</small> </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -170,6 +170,7 @@
                         <div class="mb-3">
                             <input type="hidden" class="form-control" id="id_edit" name="id">
                             <input type="hidden" class="form-control" id="tahun_edit" name="tahun">
+                            <input type="hidden" class="form-control" id="faktur_lama" name="faktur_lama">
                             <label for="peserta_didik_id_edit" class="col-form-label">Peserta Didik :</label>
                             <select name="peserta_didik_id" id="peserta_didik_id_edit" class="form-select">
                                 <option value="">--Silahkan Pilih--</option>
@@ -201,12 +202,34 @@
                         </div>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="jenis_media_id_edit" class="form-label">Jenis Media :</label>
+                        <select name="jenis_media_id" id="jenis_media_id_edit" class="form-control">
+                            <option value="">--Silahkan Pilih--</option>
+
+                        </select>
+                        <div class="invalid-feedback error-jenis-media-edit">
+                        </div>
+                    </div>
+
                     <div class="form-group">
+                        <label for="harga_media_edit" class="col-form-label">Harga Media :</label>
+                        <input type="number" class="form-control" id="harga_media_edit" name="harga_media">
+                        <div class="invalid-feedback error-harga-media-edit">
+                        </div>
+                    </div>
 
-                        <label for="harga_edit" class="col-form-label"><?= $title ?> :</label>
-                        <input type="number" class="form-control" id="harga_edit" name="harga">
-                        <div class="invalid-feedback error-harga-edit">
+                    <div class="form-group">
+                        <label for="lain_lain_edit" class="col-form-label">Lain-Lain :</label>
+                        <input type="number" class="form-control" id="lain_lain_edit" name="lain_lain">
+                        <div class="invalid-feedback error-lain-lain-edit">
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="faktur_edit" class="col-form-label">Faktur (kosongkan jika tidak ada) :</label>
+                        <input type="file" class="form-control" id="faktur_edit" name="faktur">
+                        <div class="invalid-feedback error-faktur-edit">
                         </div>
                     </div>
 
@@ -255,6 +278,7 @@
         $('#data_table').DataTable({
             processing: true,
             serverSide: true,
+            responsive: true,
             ajax: {
                 url: '/admin/klaim_media_belajar/getDataHargaMedia',
                 method: 'POST'
@@ -279,12 +303,12 @@
 
                 {
                     data: 'harga_media',
-                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                    render: $.fn.dataTable.render.number('.', '.', 0, 'Rp. ')
                 },
 
                 {
                     data: 'lain_lain',
-                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                    render: $.fn.dataTable.render.number('.', '.', 0, 'Rp. ')
                 },
 
                 {
@@ -321,6 +345,10 @@
         $('#jenis_media_id').select2({
             theme: 'bootstrap-5',
             dropdownParent: $('#exampleModal')
+        });
+        $('#jenis_media_id_edit').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#editModal')
         });
 
         $('#bulan_edit').select2({
@@ -433,7 +461,7 @@
         e.preventDefault();
         let id = $(this).attr('data-id');
         $.ajax({
-            url: '/admin/harga/edit',
+            url: '/admin/klaim_media_belajar/edit',
             method: 'get',
             dataType: 'JSON',
             data: {
@@ -442,10 +470,12 @@
             },
             success: function(response) {
                 // console.log(response);
-                $("#id_edit").val(response.harga.id);
-                $("#harga_edit").val(response.harga.harga);
-                $("#bulan_edit").val(response.harga.bulan).trigger('change');
-                $("#tahun_edit").val(response.harga.tahun);
+                $("#id_edit").val(response.klaim_media.id);
+                $("#harga_media_edit").val(response.klaim_media.harga_media);
+                $("#bulan_edit").val(response.klaim_media.bulan).trigger('change');
+                $("#tahun_edit").val(response.klaim_media.tahun);
+                $("#lain_lain_edit").val(response.klaim_media.lain_lain);
+                $("#faktur_lama").val(response.klaim_media.faktur);
 
 
                 let peserta_didik_data = `<option value="">--Silahkan Pilih--</option>`;
@@ -456,7 +486,17 @@
 
                 $("#peserta_didik_id_edit").html(peserta_didik_data);
 
-                $("#peserta_didik_id_edit").val(response.harga.peserta_didik_id).trigger('change');
+                $("#peserta_didik_id_edit").val(response.klaim_media.peserta_didik_id).trigger('change');
+
+                let jenis_media_data = `<option value="">--Silahkan Pilih--</option>`;
+
+                response.jenis_media.forEach(function(e) {
+                    jenis_media_data += `<option value="${e.id}"> ${e.nama_media} </option>`
+                });
+
+                $("#jenis_media_id_edit").html(jenis_media_data);
+
+                $("#jenis_media_id_edit").val(response.klaim_media.jenis_media_id).trigger('change');
 
 
             }
@@ -466,22 +506,36 @@
     $("#edit_form").submit(function(e) {
         e.preventDefault();
         let id = $("#id_edit").val();
+        let faktur_lama = $("#faktur_lama").val();
         let peserta_didik_id = $("#peserta_didik_id_edit").val();
         let bulan = $("#bulan_edit").val();
-        let harga = $("#harga_edit").val();
         let tahun = $("#tahun_edit").val();
+        let jenis_media_id = $("#jenis_media_id_edit").val();
+        let harga_media = $("#harga_media_edit").val();
+        let lain_lain = $("#lain_lain_edit").val();
+        let faktur = $("#faktur_edit").val();
+
+        let formData = new FormData(this);
+
+        formData.append('id', id);
+        formData.append('faktur_lama', faktur_lama);
+        formData.append('tahun', tahun);
+        formData.append('peserta_didik_id', peserta_didik_id);
+        formData.append('bulan', bulan);
+        formData.append('jenis_media_id', jenis_media_id);
+        formData.append('harga_media', harga_media);
+        formData.append('lain_lain', lain_lain);
+        formData.append('faktur', faktur);
 
         $.ajax({
-            url: '/admin/harga/update',
-            method: 'post',
-            dataType: 'JSON',
-            data: {
-                id: id,
-                peserta_didik_id: peserta_didik_id,
-                bulan: bulan,
-                harga: harga,
-                tahun: tahun
-            },
+            url: '/admin/klaim_media_belajar/update',
+            data: formData,
+            dataType: 'json',
+            enctype: 'multipart/form-data',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            cache: false,
             beforeSend: function() {
                 $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
                 $('.save').prop('disabled', true);
@@ -504,13 +558,36 @@
                         $("#bulan_edit").removeClass('is-invalid');
                         $(".error-bulan-edit").html('');
                     }
-
-                    if (response.error.harga) {
-                        $("#harga_edit").addClass('is-invalid');
-                        $(".error-harga-edit").html(response.error.harga);
+                    if (response.error.jenis_media_id) {
+                        $("#jenis_media_id_edit").addClass('is-invalid');
+                        $(".error-jenis-media-edit").html(response.error.jenis_media_id);
                     } else {
-                        $("#harga_edit").removeClass('is-invalid');
-                        $(".error-harga-edit").html('');
+                        $("#jenis_media_id_edit").removeClass('is-invalid');
+                        $(".error-jenis-media-edit").html('');
+                    }
+
+                    if (response.error.harga_media) {
+                        $("#harga_media_edit").addClass('is-invalid');
+                        $(".error-harga-media-edit").html(response.error.harga_media);
+                    } else {
+                        $("#harga_media_edit").removeClass('is-invalid');
+                        $(".error-harga-media-edit").html('');
+                    }
+
+                    if (response.error.lain_lain) {
+                        $("#lain_lain_edit").addClass('is-invalid');
+                        $(".error-lain-lain-edit").html(response.error.lain_lain);
+                    } else {
+                        $("#lain_lain_edit").removeClass('is-invalid');
+                        $(".error-lain-lain-edit").html('');
+                    }
+
+                    if (response.error.faktur) {
+                        $("#faktur_edit").addClass('is-invalid');
+                        $(".error-faktur-edit").html(response.error.faktur);
+                    } else {
+                        $("#faktur_edit").removeClass('is-invalid');
+                        $(".error-faktur-edit").html('');
                     }
 
                 } else {
@@ -540,14 +617,14 @@
         e.preventDefault();
         let id = $(this).attr('data-id');
         $.ajax({
-            url: '/admin/harga/edit',
+            url: '/admin/klaim_media_belajar/edit',
             method: 'get',
             dataType: 'JSON',
             data: {
                 id: id,
             },
             success: function(response) {
-                $("#id_delete").val(response.harga.id);
+                $("#id_delete").val(response.klaim_media.id);
             }
         });
     });
@@ -556,7 +633,7 @@
         e.preventDefault();
         let id = $("#id_delete").val();
         $.ajax({
-            url: '/admin/harga/delete',
+            url: '/admin/klaim_media_belajar/delete',
             method: 'post',
             dataType: 'JSON',
             data: {
