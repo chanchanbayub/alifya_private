@@ -207,8 +207,9 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->post('data_pengajar/update', 'Mitra\PengajarController::update');
     $routes->get('data_pengajar/view/(:any)', 'Mitra\PengajarController::view/$1');
 
-    $routes->get('media_belajar', 'Mitra\HargaController::index');
-    $routes->post('media_belajar/insert', 'Mitra\HargaController::insert');
+    $routes->get('media_belajar', 'Mitra\KlaimMediaPesertaController::index');
+    $routes->post('media_belajar/insert', 'Mitra\KlaimMediaPesertaController::insert');
+    $routes->post('media_belajar/getDataHargaMedia', 'Mitra\KlaimMediaPesertaController::getDataHargaMedia');
 
     $routes->get('kelompok', 'Mitra\KelompokController::index');
     $routes->get('kelompok/view/(:any)', 'Mitra\KelompokController::views/$1');

@@ -50,14 +50,7 @@
                                 <tbody>
                                     <?php $no = 1; ?>
                                     <?php foreach ($harga_perjam as $harga) : ?>
-                                        <tr>
-                                            <th scope="row"><a href="#"><?= $no++ ?></a></th>
-                                            <td><?= $harga->nama_lengkap_anak ?></td>
-                                            <td><?= $harga->nama_media ?></td>
-                                            <td><?= $harga->bulan ?></td>
-                                            <td>Rp. <?= number_format($harga->media_belajar)  ?></td>
-                                            <td><a href="../faktur/<?= $harga->faktur ?>" target="_blank">Lihat Faktur</a> </td>
-                                        </tr>
+
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
