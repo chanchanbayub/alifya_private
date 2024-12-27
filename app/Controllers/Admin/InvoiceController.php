@@ -51,13 +51,9 @@ class InvoiceController extends BaseController
                 $data_presensi[] = $data_peserta;
             }
         }
-        // dd($presensi_data);
         $data = [
             'data_presensi' => $data_presensi,
             'title' => 'Invoice Peserta Didik',
-            // 'mitra_pengajar' => $mitra_pengajar,
-            // 'harga' => $harga,
-
         ];
 
         return view('admin/invoice_v', $data);

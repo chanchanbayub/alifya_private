@@ -94,18 +94,23 @@
                                     <td scope="col" style="text-transform: capitalize; text-align:center"><?= $peserta_didik->total_presensi_perbulan ?></td>
                                     <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga)  ?></td>
                                     <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga * $peserta_didik->total_presensi_perbulan) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->media_belajar) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->media_belajar) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->total_presensi_perbulan * $peserta_didik->harga + $peserta_didik->media_belajar + $peserta_didik->harga) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center">Cetak PDF </td>
-
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga_media) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->lain_lain) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold">Rp. <?= number_format($peserta_didik->total_presensi_perbulan * $peserta_didik->harga + $peserta_didik->harga_media + $peserta_didik->lain_lain) ?></td>
+                                    <?php if ($peserta_didik->mitra_pengajar_id == null) : ?>
+                                        <td scope="col" style="text-transform: capitalize; text-align:center">
+                                            <button target="_blank" class="btn btn-sm btn-outline-primary" disabled> Cetak Invoice</button>
+                                        </td>
+                                    <?php else : ?>
+                                        <td scope="col" style="text-transform: capitalize; text-align:center">
+                                            <a href="/admin/cetak_invoice/pdf/<?= $peserta_didik->mitra_pengajar_id ?>/<?= $peserta_didik->id ?>/<?= $peserta_didik->bulan ?>" target="_blank" class="btn btn-sm btn-outline-primary"> Cetak Invoice</a>
+                                        </td>
+                                    <?php endif; ?>
                                 </tr>
                         </tbody>
                     <?php endforeach; ?>
                     </table>
-
                 </div>
-
             </div>
         </div>
     </div><!-- End Left side columns -->
@@ -114,77 +119,9 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function(e) {
-
-        $('#mitra_pengajar_id').select2({
-            theme: 'bootstrap-5',
-        });
-
-        $('#peserta_didik_id').select2({
-            theme: 'bootstrap-5',
-        });
-
         $('#bulan').select2({
             theme: 'bootstrap-5',
         });
-
-        $('#harga').select2({
-            theme: 'bootstrap-5',
-        });
-
-
-        $('#mitra_pengajar_id').change(function(e) {
-            e.preventDefault();
-            let mitra_pengajar_id = $(this).val();
-
-            $.ajax({
-                url: '/admin/invoice/getPesertaDidik',
-                method: 'get',
-                dataType: 'JSON',
-                data: {
-                    mitra_pengajar_id: mitra_pengajar_id,
-                },
-                success: function(response) {
-                    let peserta_didik = `<option value="">--Silahkan Pilih-- </option>`;
-
-                    if (response.peserta_didik.length >= 1) {
-                        response.peserta_didik.forEach(function(e) {
-                            $("#peserta_didik_id").removeAttr('disabled', false);
-                            peserta_didik += `<option value="${e.peserta_didik_id}"> ${e.nama_lengkap_anak} </option>`;
-                            // console.log(e.id);
-                        });
-                    } else {
-                        $("#peserta_didik_id").attr('disabled', 'disabled');
-                        $("#peserta_didik_id").html(peserta_didik);
-                    }
-                    $("#peserta_didik_id").html(peserta_didik);
-
-                },
-            });
-        });
-
-        $('#peserta_didik_id').change(function(e) {
-            e.preventDefault();
-            let peserta_didik_id = $(this).val();
-
-            $.ajax({
-                url: '/admin/invoice/getHargaPeserta',
-                method: 'get',
-                dataType: 'JSON',
-                data: {
-                    peserta_didik_id: peserta_didik_id,
-                },
-                success: function(response) {
-                    if (response.media_belajar == null) {
-                        $("#media_belajar").val("0");
-                    } else {
-                        $("#media_belajar").val(response.media_belajar);
-                    }
-
-
-                },
-            });
-        });
-
     });
 </script>
 

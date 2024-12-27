@@ -167,6 +167,7 @@ $routes->group('admin', static function ($routes) {
     $routes->get('absensi/getPesertaDidik', 'Admin\AbsensiController::getPesertaDidik');
 
     $routes->get('invoice', 'Admin\InvoiceController::index');
+    $routes->get('invoice/cetak_invoice/(:any)', 'Admin\InvoiceController::cetak_invoice/$1');
     $routes->post('invoice/cek_invoice', 'Admin\InvoiceController::cek_invoice');
     $routes->get('invoice/getPesertaDidik', 'Admin\InvoiceController::getPesertaDidik');
     $routes->get('invoice/getHargaPeserta', 'Admin\InvoiceController::getHargaPeserta');
@@ -177,6 +178,7 @@ $routes->group('admin', static function ($routes) {
 
     // invoice orang tua
     $routes->get('cetak_invoice/pdf', 'PDF\PdfController::index');
+    $routes->get('cetak_invoice/pdf/(:any)', 'PDF\PdfController::invoice_peserta_didik/$1');
     // invoice mitra
     $routes->get('invoice_mitra/pdf/(:any)', 'PDF\PdfController::mitra/$1');
 });

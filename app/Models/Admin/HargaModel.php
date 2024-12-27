@@ -27,15 +27,18 @@ class HargaModel extends Model
         return $builder->orderBy('data_murid_table.nama_lengkap_anak asc');
     }
 
-    public function getHargaPerbulan($peserta_didik_id)
+    public function getHargaPerbulan($peserta_didik_id, $bulan, $tahun)
     {
 
         $db = db_connect();
         $builder = $db->table($this->table);
 
-        $builder = $builder->select('harga_table.id, harga_table.peserta_didik_id, harga_table.harga, harga_table.media_belajar ,data_murid_table.nama_lengkap_anak')
+        $builder = $builder->select('harga_table.id, harga_table.peserta_didik_id, harga_table.bulan ,harga_table.harga, harga_table.tahun ,data_murid_table.nama_lengkap_anak, media_belajar_anak_table.harga_media, media_belajar_anak_table.lain_lain')
             ->join('data_murid_table', 'data_murid_table.id = harga_table.peserta_didik_id')
-            ->where(["peserta_didik_id" => $peserta_didik_id]);
+            ->join('media_belajar_anak_table', 'media_belajar_anak_table.peserta_didik_id = harga_table.peserta_didik_id')
+            ->where(["harga_table.peserta_didik_id" => $peserta_didik_id])
+            ->where(['harga_table.bulan' => $bulan])
+            ->where(['harga_table.tahun' => $tahun]);
         return $builder->orderBy('id desc')->get()->getRowObject();
     }
 

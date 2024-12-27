@@ -59,7 +59,7 @@ class PresensiModel extends Model
             ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
             ->where(["presensi_table.peserta_didik_id" => $peserta_didik_id])
-            ->orderBy('presensi_table.tanggal_masuk desc')
+            ->orderBy('presensi_table.tanggal_masuk asc')
             ->get()->getResultObject();
     }
 
@@ -141,14 +141,16 @@ class PresensiModel extends Model
     public function getPresensiPerAnak($peserta_didik_id, $bulan, $tahun)
     {
         return $this->table($this->table)
-            ->select("COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi_perbulan, data_murid_table.nama_lengkap_anak, harga_table.harga, harga_table.media_belajar")
+            ->select("COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi_perbulan, data_murid_table.id,  data_murid_table.nama_lengkap_anak, harga_table.harga, media_belajar_anak_table.harga_media, media_belajar_anak_table.lain_lain, media_belajar_anak_table.bulan, presensi_table.mitra_pengajar_id")
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
             ->join('harga_table', 'harga_table.peserta_didik_id = presensi_table.peserta_didik_id')
+            ->join('media_belajar_anak_table', 'media_belajar_anak_table.peserta_didik_id = harga_table.peserta_didik_id')
             ->where(["data_murid_table.id" => $peserta_didik_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
             ->where(['harga_table.bulan' => $bulan])
-            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
-            ->where(['harga_table.tahun' =>  $tahun])
+            ->where(['harga_table.tahun' => $tahun])
+            ->where(['media_belajar_anak_table.bulan' => $bulan])
+            ->where(['media_belajar_anak_table.tahun' => $tahun])
             ->orderBy('data_murid_table.nama_lengkap_anak asc')
             ->get()->getResultObject();
     }

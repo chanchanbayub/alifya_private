@@ -174,22 +174,26 @@
                     <tr>
                         <td>Pertemuan Ke -<?= $no++ ?> </td>
                         <td> <?= tanggal_indonesia(date('Y-m-d', strtotime($invoice->tanggal_masuk))) ?>, <?= date_indo(date('Y-m-d', strtotime($invoice->tanggal_masuk))) ?></td>
-                        <td>Rp. <?= number_format($harga) ?></td>
+                        <td>Rp. <?= number_format($harga->harga) ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="2">Jumlah Pertemuan</th>
-                    <th>Rp. <?= number_format($total * $harga) ?> </th>
+                    <th>Rp. <?= number_format($total * $harga->harga) ?> </th>
                 </tr>
                 <tr>
                     <th colspan="2">Media Belajar</th>
-                    <th>Rp. <?= number_format($media_belajar) ?> </th>
+                    <th>Rp. <?= number_format($harga->harga_media) ?> </th>
+                </tr>
+                <tr>
+                    <th colspan="2">Lain-Lain</th>
+                    <th>Rp. <?= number_format($harga->lain_lain) ?> </th>
                 </tr>
                 <tr>
                     <th colspan="2">Total Pembayaran</th>
-                    <th>Rp. <?= number_format($total * $harga + $media_belajar) ?></th>
+                    <th>Rp. <?= number_format($total * $harga->harga + $harga->harga_media + $harga->lain_lain) ?></th>
                 </tr>
                 <tr>
                     <th colspan="2" style="border: 0;"></th>

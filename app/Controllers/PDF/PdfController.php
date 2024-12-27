@@ -76,6 +76,56 @@ class PdfController extends BaseController
         $this->mpdf->output('Invoice-' . $peserta_didik_data->nama_lengkap_anak . '.pdf', 'I');
     }
 
+    public function invoice_peserta_didik($mitra_pengajar_id, $peserta_didik_id, $bulan)
+    {
+        $this->mpdf->showImageErrors = true;
+
+        helper(['format']);
+
+        $mitra = $this->pengajarModel->where(["id" => $mitra_pengajar_id])->get()->getRowObject();
+        $peserta = $this->muridModel->where(["id" => $peserta_didik_id])->get()->getRowObject();
+
+
+
+        if ($mitra == null || $peserta == null || $bulan == null) {
+            return redirect()->back();
+        }
+
+
+        $mitra_data = $mitra->id;
+        $peserta_data = $peserta->id;
+
+        $bulan = $bulan;
+        $tahun = date('Y');
+
+        $invoice = $this->presensiModel->getPresensiWithMonth($mitra_data, $bulan, $peserta_data);
+
+        $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_data);
+
+        $harga_perjam = $this->hargaModel->getHargaPerbulan($peserta_data, $bulan, $tahun);
+
+        $total = count($invoice);
+
+        $peserta_didik_data = $this->muridModel->where(["id" => $peserta_data])->get()->getRowObject();
+
+        $jumlah_pertemuan = count($invoice);
+
+        $data = [
+            'invoice' =>  $invoice,
+            'mitra_pengajar' => $pengajar,
+            'peserta_didik' => $peserta_didik_data->nama_lengkap_anak,
+            'harga' => $harga_perjam,
+            'jumlah_pertemuan' => $jumlah_pertemuan,
+            'total' => $total,
+        ];
+
+        $html = view('pdf/invoice_pdf', $data);
+        $this->mpdf->WriteHTML($html);
+
+        $this->response->setHeader('Content-Type', 'application/pdf');;
+        $this->mpdf->output('Invoice-' . $peserta_didik_data->nama_lengkap_anak . '.pdf', 'I');
+    }
+
     public function mitra($mitra_pengajar_id, $bulan)
     {
 
