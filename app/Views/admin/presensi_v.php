@@ -78,7 +78,8 @@
                                     <th scope="col">Tanggal Masuk</th>
                                     <th scope="col">Jam Masuk</th>
                                     <th scope="col">Nama Peserta Didik</th>
-                                    <th scope="col">Dokumentasi</th>
+                                    <th scope="col">Dokumentasi Ke Orang Tua</th>
+                                    <th scope="col">Dokumentasi Ke Grup</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -91,7 +92,12 @@
                                         <td><?= date('d-m-Y', strtotime($presensi->tanggal_masuk)) ?></td>
                                         <td> <?= date('H:i', strtotime($presensi->jam_masuk)) ?> </td>
                                         <td><?= $presensi->nama_lengkap_anak ?> </td>
-                                        <td><a href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat Dokumentasi</a> </td>
+                                        <td><a href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat</a> </td>
+                                        <?php if ($presensi->dokumentasi_orang_tua == null): ?>
+                                            <td><button class="btn btn-sm btn-outline-primary" target="_blank" disabled>Lihat</button> </td>
+                                        <?php else : ?>
+                                            <td><a href="../dokumentasi/<?= $presensi->dokumentasi_orang_tua ?>" target="_blank">Lihat</a> </td>
+                                        <?php endif; ?>
                                         <td>
                                             <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $presensi->id ?>" type="button">
                                                 <i class="bi bi-pencil-square"></i>
