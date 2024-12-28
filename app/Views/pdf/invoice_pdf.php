@@ -206,7 +206,7 @@
                 </tr>
                 <tr>
                     <th colspan="2" style="border: 0;"></th>
-                    <th style="border: 0;">Tasikmalaya, <?= date('d F Y') ?></th>
+                    <th style="border: 0;">Tasikmalaya, <?= date_indo('Y-m-d');  ?></th>
                 </tr>
                 <tr>
                     <th colspan="2" style="border: 0;"></th>

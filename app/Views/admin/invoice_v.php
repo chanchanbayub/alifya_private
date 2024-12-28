@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <button class="btn btn-outline-primary" onclick="cek_invoice();" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cek Data</button>
+                                    <button class="btn btn-outline-primary" onclick="cek_invoice();" id="cek_data" type="submit" disabled> <i class="bi bi-search"></i> Cek Data</button>
                                 </div>
                             </form>
                             <!-- End Browser Default Validation -->
