@@ -9,7 +9,7 @@ class PresensiModel extends Model
     protected $table            = 'presensi_table';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['mitra_pengajar_id', 'tanggal_masuk', 'jam_masuk', 'peserta_didik_id', 'dokumentasi'];
+    protected $allowedFields    = ['mitra_pengajar_id', 'tanggal_masuk', 'jam_masuk', 'peserta_didik_id', 'dokumentasi', 'dokumentasi_orang_tua'];
 
     // Dates
     protected $useTimestamps = true;
@@ -30,7 +30,7 @@ class PresensiModel extends Model
     public function getPresensi($mitra_pengajar_id)
     {
         return $this->table($this->table)
-            ->select("presensi_table.id, presensi_table.tanggal_masuk, presensi_table.jam_masuk, presensi_table.dokumentasi, data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak")
+            ->select("presensi_table.id, presensi_table.tanggal_masuk, presensi_table.jam_masuk, presensi_table.dokumentasi,presensi_table.dokumentasi_orang_tua,  data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak")
             ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
             ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')

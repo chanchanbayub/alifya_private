@@ -43,7 +43,8 @@
                                         <th scope="col">Tanggal Masuk</th>
                                         <th scope="col">Jam Masuk</th>
                                         <th scope="col">Nama Peserta Didik</th>
-                                        <th scope="col">Dokumentasi</th>
+                                        <th scope="col">Dokumentasi Ke Orang Tua</th>
+                                        <th scope="col">Dokumentasi Ke Grup</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,7 +56,12 @@
                                             <td><?= date('d-m-Y', strtotime($presensi->tanggal_masuk)) ?></td>
                                             <td> <?= date('H:i', strtotime($presensi->jam_masuk)) ?> </td>
                                             <td><?= $presensi->nama_lengkap_anak ?> </td>
-                                            <td><a href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat Dokumentasi</a> </td>
+                                            <?php if ($presensi->dokumentasi_orang_tua == null): ?>
+                                                <td><button class="btn btn-sm tn btn-link" target="_blank" disabled>Lihat</button> </td>
+                                            <?php else : ?>
+                                                <td><a class="btn btn-link btn-sm" href="../dokumentasi_orang_tua/<?= $presensi->dokumentasi_orang_tua ?>" target="_blank">Lihat</a> </td>
+                                            <?php endif; ?>
+                                            <td><a class="btn btn-sm tn btn-link" href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat</a> </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -97,7 +103,7 @@
 
                     <div class="mb-3">
                         <label for="tanggal_masuk" class="col-form-label">Tanggal Masuk :</label>
-                        <input type="date" name="tanggal_masuk" id="tanggal_masuk" class="form-control" value="<?= date('Y-m-d') ?>">
+                        <input type="date" name="tanggal_masuk" id="tanggal_masuk" class="form-control" value="<?= date('Y-m-d') ?>" disabled>
                         <div class=" invalid-feedback error-tanggal-masuk">
                         </div>
                     </div>
@@ -120,7 +126,14 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="dokumentasi" class="col-form-label">Dokumentasi :</label>
+                        <label for="dokumentasi_orang_tua" class="col-form-label">Dokumentasi Orang Tua :</label>
+                        <input type="file" name="dokumentasi_orang_tua" id="dokumentasi_orang_tua" class="form-control">
+                        <div class=" invalid-feedback error-dokumentasi-orang-tua">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dokumentasi" class="col-form-label">Dokumentasi Grup :</label>
                         <input type="file" name="dokumentasi" id="dokumentasi" class="form-control">
                         <div class=" invalid-feedback error-dokumentasi">
                         </div>
@@ -192,6 +205,7 @@
             let jam_masuk = $("#jam_masuk").val();
             let peserta_didik_id = $("#peserta_didik_id").val();
             let dokumentasi = $("#dokumentasi").val();
+            let dokumentasi_orang_tua = $("#dokumentasi_orang_tua").val();
 
             let formData = new FormData(this);
 
@@ -200,6 +214,7 @@
             formData.append('jam_masuk', jam_masuk);
             formData.append('peserta_didik_id', peserta_didik_id);
             formData.append('dokumentasi', dokumentasi);
+            formData.append('dokumentasi_orang_tua', dokumentasi_orang_tua);
 
             $.ajax({
                 url: '/mitra_pengajar/presensi/insert',
@@ -247,6 +262,14 @@
                         } else {
                             $("#peserta_didik_id").removeClass('is-invalid');
                             $(".error-peserta-didik").html('');
+                        }
+
+                        if (response.error.dokumentasi_orang_tua) {
+                            $("#dokumentasi_orang_tua").addClass('is-invalid');
+                            $(".error-dokumentasi-orang-tua").html(response.error.dokumentasi_orang_tua);
+                        } else {
+                            $("#dokumentasi_orang_tua").removeClass('is-invalid');
+                            $(".error-dokumentasi-orang-tua").html('');
                         }
 
                         if (response.error.dokumentasi) {

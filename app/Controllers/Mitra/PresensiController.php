@@ -101,6 +101,16 @@ class PresensiController extends BaseController
                     ]
                 ],
 
+                'dokumentasi_orang_tua' => [
+                    'rules' => 'uploaded[dokumentasi_orang_tua]|max_size[dokumentasi_orang_tua,5000]|is_image[dokumentasi_orang_tua]|mime_in[dokumentasi_orang_tua,image/png,image/jpeg,image/jpg]',
+                    'errors' => [
+                        'uploaded' => 'Dokumentasi Orang Tua Tidak Boleh Kosong !',
+                        'max_size' => 'Ukuran Terlalu Besar (max : 5MB) !',
+                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
+                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
+                    ]
+                ],
+
             ])) {
                 $alert = [
                     'error' => [
@@ -109,6 +119,7 @@ class PresensiController extends BaseController
                         'jam_masuk' => $this->validation->getError('jam_masuk'),
                         'peserta_didik_id' => $this->validation->getError('peserta_didik_id'),
                         'dokumentasi' => $this->validation->getError('dokumentasi'),
+                        'dokumentasi_orang_tua' => $this->validation->getError('dokumentasi_orang_tua'),
 
                     ]
                 ];
@@ -119,8 +130,10 @@ class PresensiController extends BaseController
                 $jam_masuk = $this->request->getVar('jam_masuk');
                 $peserta_didik_id = $this->request->getVar('peserta_didik_id');
                 $dokumentasi = $this->request->getFile('dokumentasi');
-
                 $nama_foto = $dokumentasi->getRandomName();
+
+                $dokumentasi_orang_tua = $this->request->getFile('dokumentasi_orang_tua');
+                $nama_foto_dua = $dokumentasi_orang_tua->getRandomName();
 
                 $this->presensiModel->save([
                     'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
@@ -128,10 +141,12 @@ class PresensiController extends BaseController
                     'jam_masuk' => strtolower($jam_masuk),
                     'peserta_didik_id' => strtolower($peserta_didik_id),
                     'dokumentasi' => strtolower($nama_foto),
+                    'dokumentasi_orang_tua' => strtolower($nama_foto_dua),
 
                 ]);
 
                 $dokumentasi->move('dokumentasi', $nama_foto);
+                $dokumentasi_orang_tua->move('dokumentasi_orang_tua', $nama_foto_dua);
 
                 $alert = [
                     'success' => 'Presensi Berhasil di Simpan !'
