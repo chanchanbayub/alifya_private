@@ -98,13 +98,6 @@ class KlaimMediaPesertaController extends BaseController
                     ]
                 ],
 
-                'lain_lain' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Lain-Lain Tidak Boleh Kosong !'
-                    ]
-                ],
-
                 'faktur' => [
                     'rules' => 'max_size[faktur,2048]|is_image[faktur]|mime_in[faktur,image/png,image/jpeg]',
                     'errors' => [
@@ -121,7 +114,6 @@ class KlaimMediaPesertaController extends BaseController
                         'bulan' => $this->validation->getError('bulan'),
                         'jenis_media_id' => $this->validation->getError('jenis_media_id'),
                         'harga_media' => $this->validation->getError('harga_media'),
-                        'lain_lain' => $this->validation->getError('lain_lain'),
                         'faktur' => $this->validation->getError('faktur'),
 
                     ]
@@ -133,7 +125,6 @@ class KlaimMediaPesertaController extends BaseController
                 $tahun = date('Y');
                 $jenis_media_id = $this->request->getPost('jenis_media_id');
                 $harga_media = $this->request->getPost('harga_media');
-                $lain_lain = $this->request->getPost('lain_lain');
                 $faktur = $this->request->getFile('faktur');
 
 
@@ -150,7 +141,6 @@ class KlaimMediaPesertaController extends BaseController
                     'tahun' => strtolower($tahun),
                     'jenis_media_id' => $jenis_media_id,
                     'harga_media' => $harga_media,
-                    'lain_lain' => $lain_lain,
                     'faktur' => $namaFaktur,
                 ]);
 
@@ -242,13 +232,6 @@ class KlaimMediaPesertaController extends BaseController
                     ]
                 ],
 
-                'lain_lain' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Lain-Lain Tidak Boleh Kosong !'
-                    ]
-                ],
-
                 'faktur' => [
                     'rules' => 'max_size[faktur,2048]|is_image[faktur]|mime_in[faktur,image/png,image/jpeg]',
                     'errors' => [
@@ -265,7 +248,6 @@ class KlaimMediaPesertaController extends BaseController
                         'bulan' => $this->validation->getError('bulan'),
                         'jenis_media_id' => $this->validation->getError('jenis_media_id'),
                         'harga_media' => $this->validation->getError('harga_media'),
-                        'lain_lain' => $this->validation->getError('lain_lain'),
                         'faktur' => $this->validation->getError('faktur'),
 
                     ]
@@ -279,7 +261,6 @@ class KlaimMediaPesertaController extends BaseController
                 $tahun = date('Y');
                 $jenis_media_id = $this->request->getPost('jenis_media_id');
                 $harga_media = $this->request->getPost('harga_media');
-                $lain_lain = $this->request->getPost('lain_lain');
                 $faktur = $this->request->getFile('faktur');
 
                 if ($faktur->getError() == 4) {
@@ -295,7 +276,6 @@ class KlaimMediaPesertaController extends BaseController
                     'tahun' => strtolower($tahun),
                     'jenis_media_id' => $jenis_media_id,
                     'harga_media' => $harga_media,
-                    'lain_lain' => $lain_lain,
                     'faktur' => $namaFaktur,
                 ]);
 

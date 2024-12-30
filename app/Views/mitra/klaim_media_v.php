@@ -44,7 +44,6 @@
                                         <th scope="col">Tahun</th>
                                         <th scope="col">Jenis Media</th>
                                         <th scope="col">Harga Media</th>
-                                        <th scope="col">Lain-Lain</th>
                                         <th scope="col">Cek Faktur</th>
                                     </tr>
                                 </thead>
@@ -124,13 +123,6 @@
                         <label for="harga_media" class="col-form-label">Harga Media :</label>
                         <input type="number" class="form-control" id="harga_media" name="harga_media" placeholder="50000">
                         <div class="invalid-feedback error-harga-media">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="lain_lain" class="col-form-label">Lain-Lain :</label>
-                        <input type="number" class="form-control" id="lain_lain" name="lain_lain" placeholder="50000">
-                        <div class="invalid-feedback error-lain-lain">
                         </div>
                     </div>
 
@@ -219,13 +211,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="lain_lain_edit" class="col-form-label">Lain-Lain :</label>
-                        <input type="number" class="form-control" id="lain_lain_edit" name="lain_lain">
-                        <div class="invalid-feedback error-lain-lain-edit">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="faktur_edit" class="col-form-label">Faktur (kosongkan jika tidak ada) :</label>
                         <input type="file" class="form-control" id="faktur_edit" name="faktur">
                         <div class="invalid-feedback error-faktur-edit">
@@ -306,11 +291,6 @@
                 },
 
                 {
-                    data: 'lain_lain',
-                    render: $.fn.dataTable.render.number('.', '.', 0, 'Rp. ')
-                },
-
-                {
                     data: 'faktur',
                     orderable: false
                 },
@@ -359,7 +339,6 @@
             let bulan = $("#bulan").val();
             let jenis_media_id = $("#jenis_media_id").val();
             let harga_media = $("#harga_media").val();
-            let lain_lain = $("#lain_lain").val();
             let faktur = $("#faktur").val();
 
 
@@ -369,7 +348,6 @@
             formData.append('bulan', bulan);
             formData.append('jenis_media_id', jenis_media_id);
             formData.append('harga_media', harga_media);
-            formData.append('lain_lain', lain_lain);
             formData.append('faktur', faktur);
 
             $.ajax({
@@ -419,14 +397,6 @@
                         } else {
                             $("#harga_media").removeClass('is-invalid');
                             $(".error-harga-media").html('');
-                        }
-
-                        if (response.error.lain - lain) {
-                            $("#lain-lain").addClass('is-invalid');
-                            $(".error-harga-media").html(response.error.lain_lain);
-                        } else {
-                            $("#lain-lain").removeClass('is-invalid');
-                            $(".error-lain-lain").html('');
                         }
 
                     } else {
