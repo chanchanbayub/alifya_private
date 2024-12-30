@@ -147,7 +147,7 @@
 
                     <div class="mb-3">
                         <label for="tanggal_masuk" class="col-form-label">Tanggal Masuk :</label>
-                        <input type="date" name="tanggal_masuk" id="tanggal_masuk" class="form-control" value="<?= date('Y-m-d') ?>" disabled>
+                        <input type="date" name="tanggal_masuk" id="tanggal_masuk" class="form-control" value="<?= date('Y-m-d') ?>">
                         <div class=" invalid-feedback error-tanggal-masuk">
                         </div>
                     </div>
