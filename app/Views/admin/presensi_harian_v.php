@@ -29,7 +29,8 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Mitra Pengajar</th>
                                     <th scope="col">Peserta Didik</th>
-                                    <th scope="col">Dokumentasi</th>
+                                    <th scope="col">Dokumentasi Orang Tua</th>
+                                    <th scope="col">Dokumentasi Grup</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,6 +40,11 @@
                                         <th scope="row"><a href="#"><?= $no++ ?></a></th>
                                         <td><?= $presensi->nama_lengkap  ?></td>
                                         <td><?= $presensi->nama_lengkap_anak ?></td>
+                                        <?php if ($presensi->dokumentasi_orang_tua == null): ?>
+                                            <td><button class="btn btn-sm tn btn-link" target="_blank" disabled>Lihat</button> </td>
+                                        <?php else : ?>
+                                            <td><a class="btn btn-link btn-sm" href="../dokumentasi_orang_tua/<?= $presensi->dokumentasi_orang_tua ?>" target="_blank">Lihat</a> </td>
+                                        <?php endif; ?>
                                         <td><a type="button" href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank"><i class="bi bi-eye"></i> Lihat</a> </td>
                                     </tr>
                                 <?php endforeach; ?>

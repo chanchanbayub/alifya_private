@@ -135,12 +135,13 @@
                                             <th scope="col">No</th>
                                             <th scope="col">Tanggal Masuk</th>
                                             <th scope="col">Peserta Didik</th>
-                                            <th scope="col">Dokumentasi</th>
+                                            <th scope="col">Dokumentasi Orang Tua</th>
+                                            <th scope="col">Dokumentasi Grup</th>
                                         </tr>
                                     </thead>
                                     <tbody class="data_presensi">
                                         <tr>
-                                            <td colspan="4" style="text-align: center;">Tidak Ada Data</td>
+                                            <td colspan="5" style="text-align: center;">Tidak Ada Data</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -284,7 +285,8 @@
                                 <td>${no++}</td>
                                 <td>${e.tanggal_masuk}</td>
                                 <td>${e.nama_lengkap_anak}</td>
-                                <td><a href="/../dokumentasi/${e.dokumentasi}" target="_blank">Dokumentasi</a></td>
+                                <td><a href="/../dokumentasi_orang_tua/${e.dokumentasi_orang_tua}" target="_blank">Lihat</a></td>
+                                <td><a href="/../dokumentasi/${e.dokumentasi}" target="_blank">Lihat</a></td>
                             </tr>`;
                         });
                         $(".data_presensi").html(tableData);

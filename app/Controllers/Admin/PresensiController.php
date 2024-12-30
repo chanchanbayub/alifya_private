@@ -65,7 +65,6 @@ class PresensiController extends BaseController
 
         $presensi_harian = $this->presensiModel->getDataPresensiPerhari($tanggal_hari);
 
-
         $hari_ini = tanggal_indonesia(date('Y-m-d'));
 
         $jadwal_harian = $this->jadwalTetaModel->getJadwalHarian($hari_ini);
@@ -384,10 +383,13 @@ class PresensiController extends BaseController
 
             $jadwal_bulanan = $this->jadwalTetaModel->getJadwalbulanan($mitra_pengajar_id);
             $presensi = $this->presensiModel->getPresensiPerMitra($mitra_pengajar_id, $bulan, $tahun);
+            // dd($presensi);
 
             $jumlah_presensi = count($presensi);
 
+
             $jumlah_paket_belajar = $this->kelompokBelajarModel->getPesertaDidikWhereMitraPengajarSumPaketBelajar($mitra_pengajar_id);
+
 
             if ($jumlah_presensi > 0) {
                 $presensi_ideal = number_format(intval($jumlah_presensi) / intval($jumlah_paket_belajar->total_paket_belajar) * 100);
@@ -400,8 +402,10 @@ class PresensiController extends BaseController
             $data_presensi = [];
 
             foreach ($presensi_ideal_anak as $presensi_data) {
-                $presensi_peranak = $this->presensiModel->getPresensiPerAnak($presensi_data->peserta_didik_id, $bulan, $tahun);
+                $presensi_peranak = $this->presensiModel->getPresensiPerbulan($presensi_data->peserta_didik_id, $bulan, $tahun);
+                // dd($presensi_peranak->jumlah_pertemuan);
                 $data_murid = $this->muridModel->getMitraMurid($presensi_data->peserta_didik_id);
+
                 if ($presensi_peranak != null) {
                     if ($presensi_peranak->jumlah_pertemuan > 0 || $presensi_peranak->total_presensi_perbulan > 0) {
                         $data_presensi[] = [
@@ -420,6 +424,7 @@ class PresensiController extends BaseController
                     }
                 }
             }
+            // dd($data_presensi);
 
             $absensi_data = $this->absensiModel->getAbsensiPerbulan($mitra_pengajar_id, $bulan, $tahun);
 
