@@ -41,6 +41,7 @@ class PresensiController extends BaseController
     public function index()
     {
         $kelompokPengajar = $this->kelompokModel->getKelompokPengajar();
+        $presensi =  $this->presensiModel->getDataPresensi();
 
         helper(['format']);
 
@@ -210,7 +211,7 @@ class PresensiController extends BaseController
                 ]);
 
                 $dokumentasi->move('dokumentasi', $nama_foto);
-                $dokumentasi_orang_tua->move('dokumentasi_orang_tua', $nama_foto);
+                $dokumentasi_orang_tua->move('dokumentasi_orang_tua', $nama_dokumentasi);
 
                 $alert = [
                     'success' => 'Presensi Berhasil di Simpan !'
@@ -255,6 +256,7 @@ class PresensiController extends BaseController
             $presensi = $this->presensiModel->where(["id" => $id])->first();
 
             $path_dokumentasi =  'dokumentasi/' . $presensi['dokumentasi'];
+            $path_dokumentasi_orang_tua =  'dokumentasi_orang_tua/' . $presensi['dokumentasi_orang_tua'];
 
             $this->presensiModel->delete($presensi["id"]);
 
@@ -265,6 +267,12 @@ class PresensiController extends BaseController
             if ($presensi['dokumentasi'] != null) {
                 if (file_exists($path_dokumentasi)) {
                     unlink($path_dokumentasi);
+                }
+            }
+
+            if ($presensi['dokumentasi_orang_tua'] != null) {
+                if (file_exists($path_dokumentasi_orang_tua)) {
+                    unlink($path_dokumentasi_orang_tua);
                 }
             }
 
@@ -315,12 +323,16 @@ class PresensiController extends BaseController
             $id = $this->request->getVar('id');
             $mitra_pengajar_id = $this->request->getPost('mitra_pengajar_id');
             $foto_lama = $this->request->getPost('foto_lama');
+            $dok_lama_orang_tua = $this->request->getPost('dok_lama_ortu');
             $tanggal_masuk = $this->request->getPost('tanggal_masuk');
             $jam_masuk = $this->request->getPost('jam_masuk');
             $peserta_didik_id = $this->request->getPost('peserta_didik_id');
-            $dokumentasi = $this->request->getFile('dokumentasi');
 
+            $dokumentasi = $this->request->getFile('dokumentasi');
             $path_foto_lama = 'dokumentasi/' . $foto_lama;
+
+            $dokumentasi_orang_tua = $this->request->getFile('dokumentasi_orang_tua');
+            $path_dokumentasi_orang_tua = 'dokumentasi_orang_tua/' . $dok_lama_orang_tua;
 
             if ($dokumentasi->getError() == 4) {
                 $nama_foto = $foto_lama;
@@ -332,6 +344,18 @@ class PresensiController extends BaseController
                 $dokumentasi->move('dokumentasi', $nama_foto);
             }
 
+            if ($dokumentasi_orang_tua->getError() == 4) {
+                $nama_foto_dua = $dok_lama_orang_tua;
+            } else {
+                if (file_exists($path_dokumentasi_orang_tua)) {
+                    if ($path_dokumentasi_orang_tua != null) {
+                        unlink($path_dokumentasi_orang_tua);
+                    }
+                }
+                $nama_foto_dua = $dokumentasi_orang_tua->getRandomName();
+                $dokumentasi_orang_tua->move('dokumentasi_orang_tua', $nama_foto_dua);
+            }
+
             $this->presensiModel->update($id, [
                 'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
                 'foto_lama' => strtolower($foto_lama),
@@ -339,6 +363,7 @@ class PresensiController extends BaseController
                 'jam_masuk' => strtolower($jam_masuk),
                 'peserta_didik_id' => strtolower($peserta_didik_id),
                 'dokumentasi' => strtolower($nama_foto),
+                'dokumentasi_orang_tua' => strtolower($nama_foto_dua),
             ]);
 
             $alert = [

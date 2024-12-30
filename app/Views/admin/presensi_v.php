@@ -92,12 +92,12 @@
                                         <td><?= date('d-m-Y', strtotime($presensi->tanggal_masuk)) ?></td>
                                         <td> <?= date('H:i', strtotime($presensi->jam_masuk)) ?> </td>
                                         <td><?= $presensi->nama_lengkap_anak ?> </td>
-                                        <td><a href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat</a> </td>
                                         <?php if ($presensi->dokumentasi_orang_tua == null): ?>
-                                            <td><button class="btn btn-sm btn-outline-primary" target="_blank" disabled>Lihat</button> </td>
+                                            <td><button class="btn btn-sm tn btn-link" target="_blank" disabled>Lihat</button> </td>
                                         <?php else : ?>
-                                            <td><a href="../dokumentasi/<?= $presensi->dokumentasi_orang_tua ?>" target="_blank">Lihat</a> </td>
+                                            <td><a class="btn btn-link btn-sm" href="../dokumentasi_orang_tua/<?= $presensi->dokumentasi_orang_tua ?>" target="_blank">Lihat</a> </td>
                                         <?php endif; ?>
+                                        <td><a class="btn btn-link btn-sm" href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat</a> </td>
                                         <td>
                                             <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $presensi->id ?>" type="button">
                                                 <i class="bi bi-pencil-square"></i>
@@ -147,7 +147,7 @@
 
                     <div class="mb-3">
                         <label for="tanggal_masuk" class="col-form-label">Tanggal Masuk :</label>
-                        <input type="date" name="tanggal_masuk" id="tanggal_masuk" class="form-control" value="<?= date('Y-m-d') ?>">
+                        <input type="date" name="tanggal_masuk" id="tanggal_masuk" class="form-control" value="<?= date('Y-m-d') ?>" disabled>
                         <div class=" invalid-feedback error-tanggal-masuk">
                         </div>
                     </div>
@@ -170,7 +170,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="dokumentasi" class="col-form-label">Dokumentasi :</label>
+                        <label for="dokumentasi_orang_tua" class="col-form-label">Dokumentasi Orang Tua :</label>
+                        <input type="file" name="dokumentasi_orang_tua" id="dokumentasi_orang_tua" class="form-control">
+                        <div class=" invalid-feedback error-dokumentasi-orang-tua">
+                            <div class=" invalid-feedback error-dokumentasi-orang-tua">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dokumentasi" class="col-form-label">Dokumentasi Grup :</label>
                         <input type="file" name="dokumentasi" id="dokumentasi" class="form-control">
                         <div class=" invalid-feedback error-dokumentasi">
                         </div>
@@ -180,6 +189,7 @@
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
                         <button type="submit" class="btn btn-outline-success save"> <i class="bi bi-arrow-right"></i> Kirim</button>
                     </div>
+
                 </form>
             </div>
 
@@ -200,8 +210,9 @@
                 <form id="edit_form" autocomplete="off">
                     <?= csrf_field(); ?>
                     <div class="form-group">
-                        <input type="hidden" class="form-control" id="id_edit" name="id">
-                        <input type="hidden" class="form-control" id="foto_lama_edit" name="foto_lama">
+                        <input type="text" class="form-control" id="id_edit" name="id">
+                        <input type="text" class="form-control" id="foto_lama_edit" name="foto_lama">
+                        <input type="text" class="form-control" id="dok_lama_ortu_edit" name="dok_lama_ortu">
                         <label for="mitra_pengajar_id_edit" class="col-form-label">Mitra Pengajar :</label>
                         <select name="mitra_pengajar_id" id="mitra_pengajar_id_edit" class="form-select">
                             <option value="">--Silahkan Pilih--</option>
@@ -235,9 +246,15 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="dokumentasi_orang_tua_edit" class="col-form-label">Dokumentasi Orang Tua :</label>
+                        <input type="file" name="dokumentasi_orang_tua" id="dokumentasi_orang_tua_edit" class="form-control">
+                        <div class="invalid-feedback error-dokumentasi-orang-tua-edit">
+                        </div>
+                    </div>
 
                     <div class="form-group">
-                        <label for="dokumentasi_edit" class="col-form-label">Dokumentasi :</label>
+                        <label for="dokumentasi_edit" class="col-form-label">Dokumentasi Grup :</label>
                         <input type="file" name="dokumentasi" id="dokumentasi_edit" class="form-control">
                         <div class="invalid-feedback error-dokumentasi-edit">
                         </div>
@@ -346,6 +363,7 @@
             let jam_masuk = $("#jam_masuk").val();
             let peserta_didik_id = $("#peserta_didik_id").val();
             let dokumentasi = $("#dokumentasi").val();
+            let dokumentasi_orang_tua = $("#dokumentasi_orang_tua").val();
 
             let formData = new FormData(this);
 
@@ -354,6 +372,7 @@
             formData.append('jam_masuk', jam_masuk);
             formData.append('peserta_didik_id', peserta_didik_id);
             formData.append('dokumentasi', dokumentasi);
+            formData.append('dokumentasi_orang_tua', dokumentasi_orang_tua);
 
             $.ajax({
                 url: '/admin/presensi/insert',
@@ -412,6 +431,14 @@
                             $(".error-dokumentasi").html('');
                         }
 
+                        if (response.error.dokumentasi_orang_tua) {
+                            $("#dokumentasi_orang_tua").addClass('is-invalid');
+                            $(".error-dokumentasi-orang-tua").html(response.error.dokumentasi_orang_tua);
+                        } else {
+                            $("#dokumentasi_orang_tua").removeClass('is-invalid');
+                            $(".error-dokumentasi-orang-tua").html('');
+                        }
+
                     } else {
                         Swal.fire({
                             icon: 'success',
@@ -451,6 +478,7 @@
                 $("#tanggal_masuk_edit").val(response.presensi.tanggal_masuk);
                 $("#jam_masuk_edit").val(response.presensi.jam_masuk);
                 $("#foto_lama_edit").val(response.presensi.dokumentasi);
+                $("#dok_lama_ortu_edit").val(response.presensi.dokumentasi_orang_tua);
 
                 let mitra_pengajar = `<option value="">--Silahkan Pilih-- </option>`;
 
@@ -484,7 +512,9 @@
         let jam_masuk = $("#jam_masuk_edit").val();
         let peserta_didik_id = $("#peserta_didik_id_edit").val();
         let dokumentasi = $("#dokumentasi_edit").val();
+        let dokumentasi_orang_tua = $("#dokumentasi_orang_tua_edit").val();
         let foto_lama = $("#foto_lama_edit").val();
+        let dok_lama_ortu = $("#dok_lama_ortu_edit").val();
 
         let formData = new FormData(this);
 
@@ -494,7 +524,9 @@
         formData.append('jam_masuk', jam_masuk);
         formData.append('peserta_didik_id', peserta_didik_id);
         formData.append('dokumentasi', dokumentasi);
+        formData.append('dokumentasi_orang_tua', dokumentasi_orang_tua);
         formData.append('foto_lama', foto_lama);
+        formData.append('dok_lama_ortu', dok_lama_ortu);
 
         $.ajax({
             url: '/admin/presensi/update',
@@ -551,6 +583,14 @@
                     } else {
                         $("#dokumentasi_edit").removeClass('is-invalid');
                         $(".error-dokumentasi-edit").html('');
+                    }
+
+                    if (response.error.dokumentasi_orang_tua) {
+                        $("#dokumentasi_orang_tua_edit").addClass('is-invalid');
+                        $(".error-dokumentasi-orang-tua-edit").html(response.error.dokumentasi_orang_tua);
+                    } else {
+                        $("#dokumentasi_orang_tua_edit").removeClass('is-invalid');
+                        $(".error-dokumentasi-orang-tua-edit").html('');
                     }
 
                 } else {
