@@ -403,17 +403,18 @@ class PresensiController extends BaseController
 
             foreach ($presensi_ideal_anak as $presensi_data) {
                 $presensi_peranak = $this->presensiModel->getPresensiPerbulan($presensi_data->peserta_didik_id, $bulan, $tahun);
-                // dd($presensi_peranak->jumlah_pertemuan);
                 $data_murid = $this->muridModel->getMitraMurid($presensi_data->peserta_didik_id);
 
                 if ($presensi_peranak != null) {
-                    if ($presensi_peranak->jumlah_pertemuan > 0 || $presensi_peranak->total_presensi_perbulan > 0) {
-                        $data_presensi[] = [
-                            'nama_lengkap_anak' => $presensi_peranak->nama_lengkap_anak,
-                            'jumlah_pertemuan' => $presensi_peranak->jumlah_pertemuan,
-                            'total_presensi_perbulan' => $presensi_peranak->total_presensi_perbulan,
-                            'presensi_ideal_anak' => number_format(intval($presensi_peranak->total_presensi_perbulan) / intval($presensi_peranak->jumlah_pertemuan) * 100)
-                        ];
+                    if ($presensi_peranak->jumlah_pertemuan >= 0 || $presensi_peranak->total_presensi_perbulan >= 0) {
+                        if ($presensi_peranak->jumlah_pertemuan != null) {
+                            $data_presensi[] = [
+                                'nama_lengkap_anak' => $presensi_peranak->nama_lengkap_anak,
+                                'jumlah_pertemuan' => $presensi_peranak->jumlah_pertemuan,
+                                'total_presensi_perbulan' => $presensi_peranak->total_presensi_perbulan,
+                                'presensi_ideal_anak' => number_format(intval($presensi_peranak->total_presensi_perbulan) / intval($presensi_peranak->jumlah_pertemuan) * 100)
+                            ];
+                        }
                     } else {
                         $data_presensi[] = [
                             'nama_lengkap_anak' => $data_murid->nama_lengkap_anak,
