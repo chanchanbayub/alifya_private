@@ -56,12 +56,12 @@
                                             <td><?= date('d-m-Y', strtotime($presensi->tanggal_masuk)) ?></td>
                                             <td> <?= date('H:i', strtotime($presensi->jam_masuk)) ?> </td>
                                             <td><?= $presensi->nama_lengkap_anak ?> </td>
+                                            <td><a class="btn btn-sm tn btn-link" href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat</a> </td>
                                             <?php if ($presensi->dokumentasi_orang_tua == null): ?>
                                                 <td><button class="btn btn-sm tn btn-link" target="_blank" disabled>Lihat</button> </td>
                                             <?php else : ?>
                                                 <td><a class="btn btn-link btn-sm" href="../dokumentasi_orang_tua/<?= $presensi->dokumentasi_orang_tua ?>" target="_blank">Lihat</a> </td>
                                             <?php endif; ?>
-                                            <td><a class="btn btn-sm tn btn-link" href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat</a> </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -126,16 +126,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="dokumentasi_orang_tua" class="col-form-label">Dokumentasi Orang Tua :</label>
-                        <input type="file" name="dokumentasi_orang_tua" id="dokumentasi_orang_tua" class="form-control">
-                        <div class=" invalid-feedback error-dokumentasi-orang-tua">
+                        <label for="dokumentasi" class="col-form-label">Dokumentasi Orang Tua :</label>
+                        <input type="file" name="dokumentasi" id="dokumentasi" class="form-control">
+                        <div class=" invalid-feedback error-dokumentasi">
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="dokumentasi" class="col-form-label">Dokumentasi Grup :</label>
-                        <input type="file" name="dokumentasi" id="dokumentasi" class="form-control">
-                        <div class=" invalid-feedback error-dokumentasi">
+                        <label for="dokumentasi_orang_tua" class="col-form-label">Dokumentasi Grup :</label>
+                        <input type="file" name="dokumentasi_orang_tua" id="dokumentasi_orang_tua" class="form-control">
+                        <div class=" invalid-feedback error-dokumentasi-orang-tua">
                         </div>
                     </div>
 

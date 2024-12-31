@@ -92,12 +92,12 @@
                                         <td><?= date('d-m-Y', strtotime($presensi->tanggal_masuk)) ?></td>
                                         <td> <?= date('H:i', strtotime($presensi->jam_masuk)) ?> </td>
                                         <td><?= $presensi->nama_lengkap_anak ?> </td>
+                                        <td><a class="btn btn-link btn-sm" href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat</a> </td>
                                         <?php if ($presensi->dokumentasi_orang_tua == null): ?>
                                             <td><button class="btn btn-sm tn btn-link" target="_blank" disabled>Lihat</button> </td>
                                         <?php else : ?>
                                             <td><a class="btn btn-link btn-sm" href="../dokumentasi_orang_tua/<?= $presensi->dokumentasi_orang_tua ?>" target="_blank">Lihat</a> </td>
                                         <?php endif; ?>
-                                        <td><a class="btn btn-link btn-sm" href="../dokumentasi/<?= $presensi->dokumentasi ?>" target="_blank">Lihat</a> </td>
                                         <td>
                                             <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $presensi->id ?>" type="button">
                                                 <i class="bi bi-pencil-square"></i>
@@ -170,7 +170,14 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="dokumentasi_orang_tua" class="col-form-label">Dokumentasi Orang Tua :</label>
+                        <label for="dokumentasi" class="col-form-label">Dokumentasi Orang Tua :</label>
+                        <input type="file" name="dokumentasi" id="dokumentasi" class="form-control">
+                        <div class=" invalid-feedback error-dokumentasi">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dokumentasi_orang_tua" class="col-form-label">Dokumentasi Grup :</label>
                         <input type="file" name="dokumentasi_orang_tua" id="dokumentasi_orang_tua" class="form-control">
                         <div class=" invalid-feedback error-dokumentasi-orang-tua">
                             <div class=" invalid-feedback error-dokumentasi-orang-tua">
@@ -178,12 +185,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="dokumentasi" class="col-form-label">Dokumentasi Grup :</label>
-                        <input type="file" name="dokumentasi" id="dokumentasi" class="form-control">
-                        <div class=" invalid-feedback error-dokumentasi">
-                        </div>
-                    </div>
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
@@ -210,9 +212,9 @@
                 <form id="edit_form" autocomplete="off">
                     <?= csrf_field(); ?>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="id_edit" name="id">
-                        <input type="text" class="form-control" id="foto_lama_edit" name="foto_lama">
-                        <input type="text" class="form-control" id="dok_lama_ortu_edit" name="dok_lama_ortu">
+                        <input type="hidden" class="form-control" id="id_edit" name="id">
+                        <input type="hidden" class="form-control" id="foto_lama_edit" name="foto_lama">
+                        <input type="hidden" class="form-control" id="dok_lama_ortu_edit" name="dok_lama_ortu">
                         <label for="mitra_pengajar_id_edit" class="col-form-label">Mitra Pengajar :</label>
                         <select name="mitra_pengajar_id" id="mitra_pengajar_id_edit" class="form-select">
                             <option value="">--Silahkan Pilih--</option>
@@ -247,18 +249,20 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="dokumentasi_orang_tua_edit" class="col-form-label">Dokumentasi Orang Tua :</label>
+                        <label for="dokumentasi_edit" class="col-form-label">Dokumentasi Orang Tua:</label>
+                        <input type="file" name="dokumentasi" id="dokumentasi_edit" class="form-control">
+                        <div class="invalid-feedback error-dokumentasi-edit">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dokumentasi_orang_tua_edit" class="col-form-label">Dokumentasi Grup:</label>
                         <input type="file" name="dokumentasi_orang_tua" id="dokumentasi_orang_tua_edit" class="form-control">
                         <div class="invalid-feedback error-dokumentasi-orang-tua-edit">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="dokumentasi_edit" class="col-form-label">Dokumentasi Grup :</label>
-                        <input type="file" name="dokumentasi" id="dokumentasi_edit" class="form-control">
-                        <div class="invalid-feedback error-dokumentasi-edit">
-                        </div>
-                    </div>
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"> <i class="bi bi-x-lg"></i> Batal</button>
