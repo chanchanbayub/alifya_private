@@ -280,6 +280,16 @@
                             $(".error-dokumentasi").html('');
                         }
 
+                        if (response.error.duplicate) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: `${response.error.duplicate}`,
+                            });
+                            setTimeout(function() {
+                                location.reload();
+                            }, 3000)
+                        }
+
                     } else {
                         Swal.fire({
                             icon: 'success',
@@ -293,7 +303,7 @@
                 error: function() {
                     Swal.fire({
                         icon: 'error',
-                        title: `Data Belum Tersimpan!`,
+                        title: `${response.error}`,
                     });
                     $('.save').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
                     $('.save').prop('disabled', false);
