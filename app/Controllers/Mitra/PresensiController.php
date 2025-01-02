@@ -140,7 +140,7 @@ class PresensiController extends BaseController
                 if ($rowDataPresensi != null) {
                     $alert = [
                         'error' => [
-                            'duplicate' => 'Anda Sudah Melakukan Absensi Pada Tanggal ini, Silahkan Cek dihalaman Ini!',
+                            'duplicate' => 'Anda Sudah Melakukan Presensi Pada Tanggal ini, Silahkan Cek dihalaman Ini!',
                         ]
                     ];
                 } else {
