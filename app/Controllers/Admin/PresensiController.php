@@ -377,13 +377,19 @@ class PresensiController extends BaseController
     {
         if ($this->request->isAJAX()) {
 
+
             $mitra_pengajar_id = $this->request->getVar('mitra_pengajar_id');
-            $bulan = $this->request->getVar('bulan');
-            $tahun = date('Y');
+
+            $tahun = $this->request->getVar('tahun');
+
+
+            $bulan = explode("-", $tahun);
 
             $jadwal_bulanan = $this->jadwalTetaModel->getJadwalbulanan($mitra_pengajar_id);
-            $presensi = $this->presensiModel->getPresensiPerMitra($mitra_pengajar_id, $bulan, $tahun);
-            // dd($presensi);
+            $presensi = $this->presensiModel->getPresensiPerMitra($mitra_pengajar_id, $bulan["1"], $bulan["0"]);
+
+            helper(['format']);
+
 
             $jumlah_presensi = count($presensi);
 
@@ -402,7 +408,7 @@ class PresensiController extends BaseController
             $data_presensi = [];
 
             foreach ($presensi_ideal_anak as $presensi_data) {
-                $presensi_peranak = $this->presensiModel->getPresensiPerbulan($presensi_data->peserta_didik_id, $bulan, $tahun);
+                $presensi_peranak = $this->presensiModel->getPresensiPerbulan($presensi_data->peserta_didik_id, $bulan["1"], $bulan["0"]);
                 $data_murid = $this->muridModel->getMitraMurid($presensi_data->peserta_didik_id);
 
                 if ($presensi_peranak != null) {
@@ -427,7 +433,7 @@ class PresensiController extends BaseController
             }
             // dd($data_presensi);
 
-            $absensi_data = $this->absensiModel->getAbsensiPerbulan($mitra_pengajar_id, $bulan, $tahun);
+            $absensi_data = $this->absensiModel->getAbsensiPerbulan($mitra_pengajar_id,  $bulan["1"], $bulan["0"]);
 
             $total_absensi = count($absensi_data);
 
@@ -440,7 +446,8 @@ class PresensiController extends BaseController
                 'presensi_ideal_anak' => $presensi_ideal_anak,
                 'data_presensi' => $data_presensi,
                 'absensi_data' => $absensi_data,
-                'total_absensi' => $total_absensi
+                'total_absensi' => $total_absensi,
+                'bulan' => $bulan["1"]
             ];
 
             return json_encode($data);

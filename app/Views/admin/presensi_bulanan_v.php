@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <div class="card recent-sales overflow-auto">
                     <div class="card-body">
-                        <h5 class="card-title">Presensi Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?></h5>
+                        <h5 class="card-title">Presensi Bulan <span class="bulan_text"><?= bulan(date('n', strtotime(date('Y-m-d'))))  ?></h5>
                         <!-- Browser Default Validation -->
                         <form class="row g-3 text-capitalize" id="cek_presensi">
                             <?= csrf_field(); ?>
@@ -36,23 +36,9 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="bulan" class="form-label">Pilih Bulan :</label>
-                                <select name="bulan" id="bulan" class="form-control" required>
-                                    <option value="">--Silahkan Pilih--</option>
-                                    <option value="1">Januari</option>
-                                    <option value="2">Februari</option>
-                                    <option value="3">Maret</option>
-                                    <option value="4">April</option>
-                                    <option value="5">Mei</option>
-                                    <option value="6">Juni</option>
-                                    <option value="7">Juli</option>
-                                    <option value="8">Agustus</option>
-                                    <option value="9">September</option>
-                                    <option value="10">Oktober</option>
-                                    <option value="11">November</option>
-                                    <option value="12">Desember</option>
-                                </select>
-                                <div class="invalid-feedback error-bulan">
+                                <label for="tahun" class="form-label">Pilih Bulan :</label>
+                                <input type="month" name="tahun" id="tahun" class="form-control" required>
+                                <div class="invalid-feedback error-tahun">
                                 </div>
                             </div>
 
@@ -72,7 +58,7 @@
                         <div class="card info-card sales-card">
 
                             <div class="card-body">
-                                <h5 class="card-title">Total Presensi <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+                                <h5 class="card-title">Total Presensi <span>| Bulan <span class="bulan_text"><?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -92,7 +78,7 @@
                         <div class="card info-card sales-card">
 
                             <div class="card-body">
-                                <h5 class="card-title"> Presensi Ideal <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+                                <h5 class="card-title"> Presensi Ideal <span>| Bulan <span class="bulan_text"><?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -110,7 +96,7 @@
                         <div class="card info-card sales-card">
 
                             <div class="card-body">
-                                <h5 class="card-title"> Absensi <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+                                <h5 class="card-title"> Absensi <span>| Bulan <span class="bulan_text"><?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span> </span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -128,7 +114,7 @@
                         <div class="card recent-sales overflow-auto">
 
                             <div class="card-body">
-                                <h5 class="card-title"><?= $title ?> <span>| <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?></span></h5>
+                                <h5 class="card-title"><?= $title ?> <span>| Bulan <span class="bulan_text"><?= bulan(date('n', strtotime(date('Y-m-d'))))  ?></span></h5>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -153,7 +139,7 @@
                         <div class="card recent-sales overflow-auto">
 
                             <div class="card-body">
-                                <h5 class="card-title">Jadwal Tetap Anak <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+                                <h5 class="card-title">Jadwal Tetap Anak <span>| Bulan <span class="bulan_text"><?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -183,7 +169,7 @@
                     <div class="card recent-sales overflow-auto">
 
                         <div class="card-body">
-                            <h5 class="card-title"> Presensi Ideal <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+                            <h5 class="card-title"> Presensi Ideal <span>| Bulan <span class="bulan_text"><?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -213,7 +199,7 @@
                     <div class="card recent-sales overflow-auto">
 
                         <div class="card-body">
-                            <h5 class="card-title"> Absensi <span>| Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
+                            <h5 class="card-title"> Absensi <span>| Bulan <span class="bulan_text"><?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> </span></h5>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -255,20 +241,47 @@
         $("#cek_presensi").submit(function(e) {
             e.preventDefault();
             let mitra_pengajar_id = $("#mitra_pengajar_id").val();
-            let bulan = $("#bulan").val();
+            let tahun = $("#tahun").val();
+
             $.ajax({
                 url: '/admin/presensi/getPresensiPerbulan',
                 method: 'get',
                 dataType: 'JSON',
                 data: {
                     mitra_pengajar_id: mitra_pengajar_id,
-                    bulan: bulan
+                    tahun: tahun,
                 },
                 success: function(response) {
+                    // console.log(tahun);
                     $(".total_absensi").html(response.total_absensi);
                     $(".jumlah_presensi").html(response.jumlah_presensi);
                     $(".presensi_ideal").html(`${response.presensi_ideal} %`);
                     $("#target_presensi").html(response.jumlah_paket_belajar);
+                    if (response.bulan == 1) {
+                        $(".bulan_text").html('Januari');
+                    } else if (response.bulan == 2) {
+                        $(".bulan_text").html('Februari');
+                    } else if (response.bulan == 3) {
+                        $(".bulan_text").html('Maret');
+                    } else if (response.bulan == 4) {
+                        $(".bulan_text").html('April');
+                    } else if (response.bulan == 5) {
+                        $(".bulan_text").html('Mei');
+                    } else if (response.bulan == 6) {
+                        $(".bulan_text").html('Juni');
+                    } else if (response.bulan == 7) {
+                        $(".bulan_text").html('Juli');
+                    } else if (response.bulan == 8) {
+                        $(".bulan_text").html('Agustus');
+                    } else if (response.bulan == 9) {
+                        $(".bulan_text").html('September');
+                    } else if (response.bulan == 10) {
+                        $(".bulan_text").html('Oktober');
+                    } else if (response.bulan == 11) {
+                        $(".bulan_text").html('November');
+                    } else if (response.bulan == 12) {
+                        $(".bulan_text").html('Desember');
+                    }
 
                     let no = 1;
                     let noJadwal = 1;
