@@ -287,7 +287,7 @@
                         <input type="hidden" class="form-control" id="id_edit" name="id">
                         <input type="hidden" class="form-control" id="fotoLama" name="foto">
                         <input type="hidden" class="form-control" id="cvLama" name="cv">
-                        <input type="text" class="form-control" id="ijazahLama" name="ijazahLama">
+                        <input type="hidden" class="form-control" id="ijazahLama" name="ijazahLama">
                         <label for="nama_lengkap_edit" class="col-form-label">Nama Lengkap :</label>
                         <input type="text" class="form-control" id="nama_lengkap_edit" name="nama_lengkap" placeholder="masukan nama lengkap">
                         <div class="invalid-feedback error-nama-edit">
