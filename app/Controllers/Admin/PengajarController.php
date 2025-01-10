@@ -558,6 +558,7 @@ class PengajarController extends BaseController
                 $foto = $this->request->getFile('foto');
                 $cv = $this->request->getFile('cv');
 
+
                 $path_ijazah_lama = 'ijazah/' . $ijazahLama;
                 $path_foto_lama = 'foto_profil/' . $fotoLama;
                 $path_cv_lama = 'cv_file/' . $cvLama;
@@ -565,9 +566,12 @@ class PengajarController extends BaseController
                 if ($ijazah->getError() == 4) {
                     $nama_ijazah = $ijazahLama;
                 } else {
-                    if (file_exists($path_ijazah_lama)) {
-                        unlink($path_ijazah_lama);
+                    if ($ijazahLama != null) {
+                        if (file_exists($path_ijazah_lama)) {
+                            unlink($path_ijazah_lama);
+                        }
                     }
+
                     $nama_ijazah = $ijazah->getRandomName();
                     $ijazah->move('ijazah', $nama_ijazah);
                 }

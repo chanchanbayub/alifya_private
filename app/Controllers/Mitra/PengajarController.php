@@ -270,8 +270,6 @@ class PengajarController extends BaseController
                         if (file_exists($path_ijazah_lama)) {
                             unlink($path_ijazah_lama);
                         }
-                        $nama_ijazah = $ijazah->getRandomName();
-                        $ijazah->move('ijazah', $nama_ijazah);
                     }
                     $nama_ijazah = $ijazah->getRandomName();
                     $ijazah->move('ijazah', $nama_ijazah);
