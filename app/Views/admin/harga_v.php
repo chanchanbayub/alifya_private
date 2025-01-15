@@ -30,6 +30,7 @@
                                     <h6>Aksi</h6>
                                 </li>
                                 <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
+                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateHargaModal"><i class="bi bi-plus"></i> Update Harga Bulan Ini</a></li>
                             </ul>
                         </div>
 
@@ -62,6 +63,46 @@
     </div>
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="updateHargaModal" tabindex="-1" aria-labelledby="updateHargaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateHargaModalLabel">Update Upah Peserta Didik</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="update_harga_form">
+                    <div class="mb-3">
+                        <label for="bulan_data" class="col-form-label">Silahkan Pilih Bulan:</label>
+                        <select name="bulan" id="bulan_data" class="form-control">
+                            <option value="">--Silahkan Pilih--</option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <div class="invalid-feedback error-bulan-data">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
+                        <button type="submit" class="btn btn-outline-success update"> <i class="bi bi-arrow-right"></i> Update Upah Peserta</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 <!-- modal save-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -272,6 +313,11 @@
         $('#bulan').select2({
             theme: 'bootstrap-5',
             dropdownParent: $('#exampleModal')
+        });
+
+        $('#bulan_data').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#updateHargaModal')
         });
 
         $('#bulan_edit').select2({
@@ -517,6 +563,55 @@
         });
     });
     // End Aksi Hapus
+
+    $("#update_harga_form").submit(function(e) {
+        e.preventDefault();
+        let bulan = $("#bulan_data").val();
+
+        $.ajax({
+            url: '/admin/harga/update_harga',
+            method: 'post',
+            dataType: 'JSON',
+            data: {
+                bulan: bulan,
+            },
+            beforeSend: function() {
+                $('.update').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
+                $('.update').prop('disabled', true);
+            },
+            success: function(response) {
+                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Update Upah Peserta');
+                $('.update').prop('disabled', false);
+                if (response.error) {
+
+                    if (response.error.bulan) {
+                        $("#bulan_data").addClass('is-invalid');
+                        $(".error-bulan-data").html(response.error.bulan);
+                    } else {
+                        $("#bulan_data").removeClass('is-invalid');
+                        $(".error-bulan-data").html('');
+                    }
+
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: `${response.success}`,
+                    });
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000)
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: `Data Belum Tersimpan!`,
+                });
+                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
+                $('.update').prop('disabled', false);
+            }
+        });
+    })
 </script>
 
 <?= $this->endSection(); ?>

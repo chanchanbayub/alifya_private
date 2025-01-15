@@ -220,4 +220,52 @@ class HargaController extends BaseController
             return json_encode($alert);
         }
     }
+
+    public function update_harga()
+    {
+        if ($this->request->isAJAX()) {
+
+            if (!$this->validate([
+                'bulan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bulan Tidak Boleh Kosong !'
+                    ]
+                ],
+            ])) {
+                $alert = [
+                    'error' => [
+                        'bulan' => $this->validation->getError('bulan'),
+                    ]
+                ];
+            } else {
+                $bulan = $this->request->getPost('bulan');
+                $tahun = date('Y');
+
+                $peserta_didik = $this->muridModel->getDataMuridAktif();
+                // dd($peserta_didik);
+
+                foreach ($peserta_didik as $peserta) {
+                    $data_harga = $this->hargaModel->where(["peserta_didik_id" => $peserta->id])->orderBy('id')->get()->getRowObject();
+                    if ($data_harga != null) {
+                        if ($data_harga->peserta_didik_id != null) {
+                            if ($bulan != $data_harga->bulan) {
+                                $this->hargaModel->save([
+                                    'peserta_didik_id' => strtolower($data_harga->peserta_didik_id),
+                                    'harga' => strtolower($data_harga->harga),
+                                    'bulan' => $bulan,
+                                    'tahun' => $tahun
+                                ]);
+                            }
+                        }
+                        $alert = [
+                            'success' => 'Upah Anak Berhasil di Simpan !'
+                        ];
+                    }
+                }
+            }
+
+            return json_encode($alert);
+        }
+    }
 }
