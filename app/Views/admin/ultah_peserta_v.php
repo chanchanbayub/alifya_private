@@ -89,7 +89,49 @@
                 </div><!-- End Recent Sales -->
 
             </div>
-        </div><!-- End Left side columns -->
+        </div>
+
+        <div class="col-lg-12">
+            <div class="row">
+
+                <!-- Recent Sales -->
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $title ?> <span>| Bulan Ini </span></h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama </th>
+                                        <th scope="col">Tanggal Lahir </th>
+                                        <th scope="col">Usia Tahun Ini </th>
+                                        <th scope="col">Kirim Ucapan Selamat </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $no = 1; ?>
+                                    <?php foreach ($data_ultah_bulan_ini as $ultah) : ?>
+                                        <tr>
+                                            <th scope="row"><a href="#"><?= $no++ ?></a></th>
+                                            <td>
+                                                <span class="text-capitalize"><?= $ultah->nama_lengkap_anak ?></span>
+                                            </td>
+                                            <td><?= ($ultah->tanggal_lahir_anak == null) ? "-" : date('d-M-Y', strtotime($ultah->tanggal_lahir_anak))  ?></td>
+                                            <td><?= $tahun - date('Y', strtotime($ultah->tanggal_lahir_anak))  ?> Tahun</td>
+                                            <td><a href="https://wa.me/<?= $ultah->nomor_whatsapp_wali ?>?text=Selamat ulang tahun, anakku yang tercinta. Semoga panjang umur, menjadi anak yang cerdas, dan berbakti kepada orang tua" target="_blank" class="btn btn-outline-success btn-sm"> <i class="bi bi-whatsapp"></i> Kirim Ucapan</a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div><!-- End Recent Sales -->
+
+            </div>
+        </div>
+        <!-- End Left side columns -->
 
     </div>
 </section>

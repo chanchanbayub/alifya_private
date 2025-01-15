@@ -605,15 +605,17 @@ class MuridController extends BaseController
     {
         helper(['format']);
         $tahun = date('Y');
+        $bulan = date('m');
+
 
         $data_murid_ultah = $this->muridModel->getDataUltahMurid();
-        // dd($data_murid_ultah);
-
+        $data_ultah_bulan_ini = $this->muridModel->getDataPesertaWithBulanUltah($bulan);
 
         $data = [
             'title' => 'Ulang Tahun Peserta Didik',
             'status_murid' => $this->statusMuridModel->getStatusMurid(),
             'data_murid_ultah' => $data_murid_ultah,
+            'data_ultah_bulan_ini' => $data_ultah_bulan_ini,
             'tahun' => $tahun
         ];
 
