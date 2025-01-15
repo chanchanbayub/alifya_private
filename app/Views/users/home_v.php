@@ -10,7 +10,7 @@
                 Les Private Diwilayah Jawa Barat
             </h1>
             <p class="text-white mb-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur vel voluptatem fugiat corporis dolor, similique deserunt harum impedit et quaerat ipsam distinctio. Odio expedita incidunt fuga voluptas necessitatibus asperiores nulla!
+                Alifya Private merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
             </p>
             <a href="/program_belajar" class="btn btn-secondary btn-sm mt-1 py-3 px-5">Program Belajar</a>
         </div>
