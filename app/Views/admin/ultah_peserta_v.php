@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                    <h5 class="card-title">Cek Ultah Mitra Pengajar</h5>
+                    <h5 class="card-title">Cek Ultah Peserta Peserta Didik</h5>
                     <!-- Browser Default Validation -->
                     <form class="row g-3 text-capitalize" id="cek_ultah">
                         <?= csrf_field(); ?>
@@ -65,36 +65,26 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Nama </th>
                                         <th scope="col">Tanggal Lahir </th>
-                                        <th scope="col">Status Pengajar </th>
-                                        <th scope="col">Aksi </th>
+                                        <th scope="col">Usia Tahun Ini </th>
+                                        <th scope="col">Status Aktif </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1; ?>
-                                    <?php foreach ($data_pengajar_ultah as $pengajar) : ?>
+                                    <?php foreach ($data_murid_ultah as $murid) : ?>
                                         <tr>
                                             <th scope="row"><a href="#"><?= $no++ ?></a></th>
                                             <td>
-                                                <span class="text-capitalize"><?= $pengajar->nama_lengkap ?></span>
+                                                <span class="text-capitalize"><?= $murid->nama_lengkap_anak ?></span>
                                             </td>
-                                            <td><?= ($pengajar->tanggal_lahir_mitra == null) ? "-" : date('d-M-Y', strtotime($pengajar->tanggal_lahir_mitra))  ?></td>
-
-                                            <td><span class='<?= ($pengajar->status_id == 1) ? "badge bg-success" : "badge bg-warning" ?>'><?= $pengajar->status_pengajar ?></span></td>
-                                            <?php if ($pengajar->tanggal_lahir_mitra == null) : ?>
-                                                <td><a aria-disabled="true">Tambah Google Calendar</a></td>
-                                            <?php else : ?>
-                                                <td><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Example+Google+Calendar+Event&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=<?= $tahun ?><?= date('md', strtotime($pengajar->tanggal_lahir_mitra)) ?>/<?= $tahun ?><?= date('md', strtotime($pengajar->tanggal_lahir_mitra)) ?>UNTIL%3D<?= $tahun ?>0603&ctz=Asia/Jakarta" target="_blank">Tambah Google Calendar</a></td>
-                                            <?php endif; ?>
-
+                                            <td><?= ($murid->tanggal_lahir_anak == null) ? "-" : date('d-M-Y', strtotime($murid->tanggal_lahir_anak))  ?></td>
+                                            <td><?= $tahun - date('Y', strtotime($murid->tanggal_lahir_anak))  ?> Tahun</td>
+                                            <td><span class='<?= ($murid->status_murid_id == 1) ? "badge bg-success" : "badge bg-warning" ?>'><?= $murid->status_murid ?></span></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-                            <br>
-                            <iframe src="https://calendar.google.com/calendar/embed?src=privatealifya%40gmail.com&ctz=Asia%2FJakarta" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-
                         </div>
-
                     </div>
                 </div><!-- End Recent Sales -->
 
@@ -106,7 +96,7 @@
 
 <!-- modal save-->
 <div class="modal fade" id="ultahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $title ?></h1>
@@ -121,7 +111,6 @@
                                 <th scope="col">Nama</th>
                                 <th scope="col">Tanggal Lahir</th>
                                 <th scope="col">Umur Sekarang</th>
-                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="table_data">
@@ -143,8 +132,6 @@
         $('#bulan').select2({
             theme: 'bootstrap-5',
         });
-
-
     });
 
     $(document).ready(function(e) {
@@ -152,7 +139,7 @@
             e.preventDefault();
             let bulan = $("#bulan").val();
             $.ajax({
-                url: '/admin/data_pengajar/data_ulang_tahun_mitra',
+                url: '/admin/data_murid/data_ulang_tahun_murid',
                 data: {
                     bulan: bulan
                 },
@@ -163,7 +150,7 @@
                     $('.save').prop('disabled', true);
                 },
                 success: function(response) {
-                    console.log(response.tahun);
+                    console.log(response);
                     let no = 1;
                     let table_data = ``;
                     $('.save').html('<i class="bi bi-search"></i> Search');
@@ -173,10 +160,9 @@
                         response.data_ultah.forEach(function(e) {
                             table_data += `<tr>
                                 <td>${no++}</td>
-                                <td>${e.nama_lengkap}</td>
-                                <td>${e.tanggal_lahir_mitra}</td>
-                                <td>${new Date().getFullYear() - new Date(e.tanggal_lahir_mitra).getFullYear() } Tahun </td>
-                                <td><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Example+Google+Calendar+Event&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=${new Date().getFullYear()}${new Date(e.tanggal_lahir_mitra).getMonth()}${new Date(e.tanggal_lahir_mitra).getDate()}/${new Date().getFullYear()}${new Date(e.tanggal_lahir_mitra).getMonth()}${new Date(e.tanggal_lahir_mitra).getDate()}UNTIL%3D${new Date().getFullYear()}0603&ctz=Asia/Jakarta" target="_blank">Tambah Google Calendars</a></td>
+                                <td>${e.nama_lengkap_anak}</td>
+                                <td>${e.tanggal_lahir_anak}</td>
+                                <td>${new Date().getFullYear() - new Date(e.tanggal_lahir_anak).getFullYear() } Tahun </td>
                             </tr>`;
                         });
                         $(".table_data").html(table_data);

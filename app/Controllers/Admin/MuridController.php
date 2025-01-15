@@ -600,4 +600,40 @@ class MuridController extends BaseController
             return json_encode($alert);
         }
     }
+
+    public function ulang_tahun()
+    {
+        helper(['format']);
+        $tahun = date('Y');
+
+        $data_murid_ultah = $this->muridModel->getDataUltahMurid();
+        // dd($data_murid_ultah);
+
+
+        $data = [
+            'title' => 'Ulang Tahun Peserta Didik',
+            'status_murid' => $this->statusMuridModel->getStatusMurid(),
+            'data_murid_ultah' => $data_murid_ultah,
+            'tahun' => $tahun
+        ];
+
+        return view('admin/ultah_peserta_v', $data);
+    }
+
+    public function data_ulang_tahun_murid()
+    {
+        if ($this->request->isAJAX()) {
+
+            $bulan = $this->request->getVar('bulan');
+
+            $data_ultah = $this->muridModel->getDataPesertaWithBulanUltah($bulan);
+
+            $data = [
+                'data_ultah' => $data_ultah,
+                'tahun' => date('Y')
+            ];
+
+            return json_encode($data);
+        }
+    }
 }

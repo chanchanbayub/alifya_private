@@ -118,7 +118,7 @@
                  </li>
                  <li>
                      <a href="/admin/data_pengajar/ulang_tahun">
-                         <i class="bi bi-circle"></i><span>Data Ultah Mitra</span>
+                         <i class="bi bi-circle"></i><span>Ulang Tahun Mitra</span>
                      </a>
                  </li>
                  <li>
@@ -142,6 +142,11 @@
                  <li>
                      <a href="/admin/data_murid">
                          <i class="bi bi-circle"></i><span>Peserta Didik</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/admin/data_murid/ulang_tahun_murid">
+                         <i class="bi bi-circle"></i><span>Ulang Tahun Peserta Didik</span>
                      </a>
                  </li>
                  <li>

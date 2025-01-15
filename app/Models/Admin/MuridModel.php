@@ -130,4 +130,25 @@ class MuridModel extends Model
             ->orderBy('data_murid_table.nama_lengkap_anak asc')
             ->get()->getResultObject();
     }
+
+    public function getDataUltahMurid()
+    {
+        return $this->table($this->table)
+            ->select("data_murid_table.id, data_murid_table.nama_lengkap_anak, data_murid_table.tanggal_lahir_anak, data_murid_table.nomor_whatsapp_wali, data_murid_table.username_instagram_wali, data_murid_table.status_murid_id, status_murid_table.status_murid")
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->where(["data_murid_table.status_murid_id" => 1])
+            ->orderBy('MONTH(data_murid_table.tanggal_lahir_anak) asc')
+            ->get()->getResultObject();
+    }
+
+    public function getDataPesertaWithBulanUltah($bulan)
+    {
+        return $this->table($this->table)
+            ->select("data_murid_table.id, data_murid_table.nama_lengkap_anak, data_murid_table.tanggal_lahir_anak, data_murid_table.nomor_whatsapp_wali, data_murid_table.username_instagram_wali, data_murid_table.status_murid_id, status_murid_table.status_murid")
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->where(["data_murid_table.status_murid_id" => 1])
+            ->where("MONTH(data_murid_table.tanggal_lahir_anak)", $bulan)
+            ->orderBy('data_murid_table.nama_lengkap_anak asc')
+            ->get()->getResultObject();
+    }
 }

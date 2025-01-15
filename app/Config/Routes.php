@@ -139,6 +139,8 @@ $routes->group('admin', static function ($routes) {
     $routes->get('data_murid/edit', 'Admin\MuridController::edit');
     $routes->post('data_murid/update', 'Admin\MuridController::update');
     $routes->post('data_murid/delete', 'Admin\MuridController::delete');
+    $routes->get('data_murid/ulang_tahun_murid', 'Admin\MuridController::ulang_tahun');
+    $routes->post('data_murid/data_ulang_tahun_murid', 'Admin\MuridController::data_ulang_tahun_murid');
     $routes->get('data_murid/view/(:any)', 'Admin\MuridController::view/$1');
 
     $routes->get('kelompok_belajar', 'Admin\KelompokBelajarController::index');
