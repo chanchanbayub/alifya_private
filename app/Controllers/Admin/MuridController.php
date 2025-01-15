@@ -616,7 +616,8 @@ class MuridController extends BaseController
             'status_murid' => $this->statusMuridModel->getStatusMurid(),
             'data_murid_ultah' => $data_murid_ultah,
             'data_ultah_bulan_ini' => $data_ultah_bulan_ini,
-            'tahun' => $tahun
+            'tahun' => $tahun,
+            'bulan' => $bulan
         ];
 
         return view('admin/ultah_peserta_v', $data);

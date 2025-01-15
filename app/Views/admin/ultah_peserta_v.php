@@ -78,7 +78,7 @@
                                                 <span class="text-capitalize"><?= $murid->nama_lengkap_anak ?></span>
                                             </td>
                                             <td><?= ($murid->tanggal_lahir_anak == null) ? "-" : date('d-M-Y', strtotime($murid->tanggal_lahir_anak))  ?></td>
-                                            <td><?= $tahun - date('Y', strtotime($murid->tanggal_lahir_anak))  ?> Tahun</td>
+                                            <td><?= $tahun - date('Y', strtotime($murid->tanggal_lahir_anak))  ?> Tahun </td>
                                             <td><span class='<?= ($murid->status_murid_id == 1) ? "badge bg-success" : "badge bg-warning" ?>'><?= $murid->status_murid ?></span></td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -119,7 +119,7 @@
                                                 <span class="text-capitalize"><?= $ultah->nama_lengkap_anak ?></span>
                                             </td>
                                             <td><?= ($ultah->tanggal_lahir_anak == null) ? "-" : date('d-M-Y', strtotime($ultah->tanggal_lahir_anak))  ?></td>
-                                            <td><?= $tahun - date('Y', strtotime($ultah->tanggal_lahir_anak))  ?> Tahun</td>
+                                            <td><?= $tahun - date('Y', strtotime($ultah->tanggal_lahir_anak))  ?> Tahun </td>
                                             <td><a href="https://wa.me/<?= $ultah->nomor_whatsapp_wali ?>?text=Selamat ulang tahun, anakku yang tercinta. Semoga panjang umur, menjadi anak yang cerdas, dan berbakti kepada orang tua" target="_blank" class="btn btn-outline-success btn-sm"> <i class="bi bi-whatsapp"></i> Kirim Ucapan</a></td>
                                         </tr>
                                     <?php endforeach; ?>
