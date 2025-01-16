@@ -31,7 +31,7 @@ class PengajarModel extends Model
         return $this->table($this->table)
             ->select("data_pengajar_table.id, data_pengajar_table.uid, data_pengajar_table.nama_lengkap, data_pengajar_table.email, data_pengajar_table.usia, data_pengajar_table.tanggal_lahir_mitra ,data_pengajar_table.alamat_domisili, data_pengajar_table.pendidikan_terakhir, data_pengajar_table.jurusan, status_perkawinan, data_pengajar_table.nomor_whatsapp, data_pengajar_table.username_instagram, data_pengajar_table.foto, data_pengajar_table.cv, data_pengajar_table.status_id, status_pengajar_table.status_pengajar")
             ->join('status_pengajar_table', 'status_pengajar_table.id = data_pengajar_table.status_id')
-            ->orderBy('id desc')
+            ->orderBy('data_pengajar_table.nama_lengkap asc')
             ->get()->getResultObject();
     }
 
@@ -101,6 +101,17 @@ class PengajarModel extends Model
             ->join('status_pengajar_table', 'status_pengajar_table.id = data_pengajar_table.status_id')
             ->where(["data_pengajar_table.status_id" => 1])
             ->limit(4)
+            ->orderBy('id desc')
+            ->get()->getResultObject();
+    }
+
+    public function getUltahPerbulan($bulan)
+    {
+        return $this->table($this->table)
+            ->select("data_pengajar_table.id,  data_pengajar_table.nama_lengkap, data_pengajar_table.tanggal_lahir_mitra, data_pengajar_table.nomor_whatsapp, status_pengajar_table.status_pengajar")
+            ->join('status_pengajar_table', 'status_pengajar_table.id = data_pengajar_table.status_id')
+            ->where("MONTH(data_pengajar_table.tanggal_lahir_mitra)", $bulan)
+            ->where(["data_pengajar_table.status_id" => 1])
             ->orderBy('id desc')
             ->get()->getResultObject();
     }

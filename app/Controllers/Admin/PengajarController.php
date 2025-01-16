@@ -36,12 +36,15 @@ class PengajarController extends BaseController
     {
         helper(['format']);
         $tahun = date('Y');
+        $bulan = date('m');
 
+        $ultah_bulan_ini = $this->pengajarModel->getUltahPerbulan($bulan);
 
         $data = [
             'title' => 'Ulang Tahun Mitra Pengajar',
             'status_pengajar' => $this->statusPengajarModel->getStatusPengajar(),
             'data_pengajar_ultah' => $this->pengajarModel->getDataPengajarUltah(),
+            'ultah_bulan_ini' => $ultah_bulan_ini,
             'tahun' => $tahun
         ];
 

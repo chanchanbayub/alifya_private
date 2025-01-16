@@ -65,8 +65,8 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Nama </th>
                                         <th scope="col">Tanggal Lahir </th>
+                                        <th scope="col">Usia Saat Ini</th>
                                         <th scope="col">Status Pengajar </th>
-                                        <th scope="col">Aksi </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,20 +78,56 @@
                                                 <span class="text-capitalize"><?= $pengajar->nama_lengkap ?></span>
                                             </td>
                                             <td><?= ($pengajar->tanggal_lahir_mitra == null) ? "-" : date('d-M-Y', strtotime($pengajar->tanggal_lahir_mitra))  ?></td>
-
+                                            <td><?= $tahun - date('Y', strtotime($pengajar->tanggal_lahir_mitra))  ?> Tahun </td>
                                             <td><span class='<?= ($pengajar->status_id == 1) ? "badge bg-success" : "badge bg-warning" ?>'><?= $pengajar->status_pengajar ?></span></td>
-                                            <?php if ($pengajar->tanggal_lahir_mitra == null) : ?>
-                                                <td><a aria-disabled="true">Tambah Google Calendar</a></td>
-                                            <?php else : ?>
-                                                <td><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Example+Google+Calendar+Event&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=<?= $tahun ?><?= date('md', strtotime($pengajar->tanggal_lahir_mitra)) ?>/<?= $tahun ?><?= date('md', strtotime($pengajar->tanggal_lahir_mitra)) ?>UNTIL%3D<?= $tahun ?>0603&ctz=Asia/Jakarta" target="_blank">Tambah Google Calendar</a></td>
-                                            <?php endif; ?>
-
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                             <br>
-                            <iframe src="https://calendar.google.com/calendar/embed?src=privatealifya%40gmail.com&ctz=Asia%2FJakarta" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+
+                        </div>
+
+                    </div>
+                </div><!-- End Recent Sales -->
+
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $title ?> <span>| Table </span></h5>
+                            <table class="table table-bordered datatable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama </th>
+                                        <th scope="col">Tanggal Lahir </th>
+                                        <th scope="col">Usia Saat Ini</th>
+                                        <th scope="col">Kirim Ucapan </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $no = 1; ?>
+                                    <?php foreach ($ultah_bulan_ini as $ultah) : ?>
+                                        <tr>
+                                            <th scope="row"><a href="#"><?= $no++ ?></a></th>
+                                            <td>
+                                                <span class="text-capitalize"><?= $ultah->nama_lengkap ?></span>
+                                            </td>
+                                            <td><?= ($ultah->tanggal_lahir_mitra == null) ? "-" : date('d-M-Y', strtotime($ultah->tanggal_lahir_mitra))  ?></td>
+                                            <td><?= $tahun - date('Y', strtotime($ultah->tanggal_lahir_mitra))  ?> Tahun </td>
+                                            <td><a href="https://wa.me/+<?= $ultah->nomor_whatsapp ?>?text=Barakallah Fii Umrik Miss, 
+Semoga Miss selalu dalam lindungan Allah SWT, panjang umur, diberikan kesehatan, keselamatan, serta limpahan rezeki.🙏🏻😊
+
+Semoga Miss selalu menjadi orang yang bermanfaat. Terimakasih atas dedikasi Miss bersama Alifya Private, semoga setiap apa yang Miss berikan kepada anak menjadi ladang pahala bagi Miss di dunia dan diakhirat kelak. 
+
+Barakallah Fiik, 
+Tim Alifya Private" target="_blank" class="btn btn-outline-success btn-sm"> <i class="bi bi-whatsapp"></i> Kirim Ucapan</a></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <br>
 
                         </div>
 
