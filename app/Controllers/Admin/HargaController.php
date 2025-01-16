@@ -268,4 +268,26 @@ class HargaController extends BaseController
             return json_encode($alert);
         }
     }
+
+    public function harga_perbulan()
+    {
+        if ($this->request->isAJAX()) {
+
+            $bulan = $this->request->getVar('bulan');
+
+            $data_bulan = explode("-", $bulan);
+
+            $inputan_bulan = $data_bulan[1];
+            $inputan_tahun = $data_bulan[0];
+
+            $harga = $this->hargaModel->getHargaPerbulanData($inputan_bulan, $inputan_tahun);
+
+
+            $data = [
+                'harga' => $harga,
+            ];
+
+            return json_encode($data);
+        }
+    }
 }

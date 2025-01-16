@@ -51,4 +51,15 @@ class HargaModel extends Model
             ->join('jenis_media_table', 'jenis_media_table.id = harga_table.jenis_media_id', 'left')
             ->orderBy('id desc')->get()->getResultObject();
     }
+
+    public function getHargaPerbulanData($bulan, $tahun)
+    {
+
+        return $this->table($this->table)
+            ->select('harga_table.id, harga_table.peserta_didik_id, harga_table.bulan ,harga_table.harga,  data_murid_table.nama_lengkap_anak, harga_table.tahun')
+            ->join('data_murid_table', 'data_murid_table.id = harga_table.peserta_didik_id')
+            ->where(['harga_table.bulan' => $bulan])
+            ->where(['harga_table.tahun' => $tahun])
+            ->orderBy('data_murid_table.nama_lengkap_anak asc')->get()->getResultObject();
+    }
 }

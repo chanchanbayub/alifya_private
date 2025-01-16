@@ -192,7 +192,6 @@
                     $('.save').prop('disabled', true);
                 },
                 success: function(response) {
-                    console.log(response);
                     let no = 1;
                     let table_data = ``;
                     $('.save').html('<i class="bi bi-search"></i> Search');

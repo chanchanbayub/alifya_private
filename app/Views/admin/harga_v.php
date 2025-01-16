@@ -19,6 +19,28 @@
         <div class="col-lg-12">
             <div class="row">
 
+                <div class="col-md-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Cek Harga Perbulan Peserta Didik</h5>
+                            <!-- Browser Default Validation -->
+                            <form class="row g-3 text-capitalize" id="cek_harga_perbulan">
+                                <?= csrf_field(); ?>
+                                <div class="col-md-12">
+                                    <label for="bulan_table" class="form-label">Pilih Bulan :</label>
+                                    <input type="month" name="bulan_table" id="bulan_table" class="form-control">
+                                    <div class="invalid-feedback error-bulan-table">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-outline-primary btn-block save" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cari</button>
+                                </div>
+                            </form>
+                            <!-- End Browser Default Validation -->
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Recent Sales -->
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
@@ -55,7 +77,37 @@
                         </div>
 
                     </div>
+
                 </div><!-- End Recent Sales -->
+
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $title ?> <span>| Bulan Tersebut </span></h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Peserta Didik</th>
+                                        <th scope="col">Bulan</th>
+                                        <th scope="col">Tahun</th>
+                                        <th scope="col"><?= $title ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="harga_table_data">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">Tidak Ada Data</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div><!-- End Recent Sales -->
+
+
 
             </div>
         </div><!-- End Left side columns -->
@@ -177,7 +229,6 @@
             <div class="modal-body">
                 <form id="edit_form" autocomplete="off">
                     <?= csrf_field(); ?>
-
                     <div class="form_group">
                         <div class="mb-3">
                             <input type="hidden" class="form-control" id="id_edit" name="id">
@@ -324,7 +375,6 @@
             theme: 'bootstrap-5',
             dropdownParent: $('#editModal')
         });
-
 
         $("#add_form").submit(function(e) {
             e.preventDefault();
@@ -612,6 +662,57 @@
             }
         });
     })
+
+    $(document).ready(function(e) {
+        $("#cek_harga_perbulan").submit(function(e) {
+            e.preventDefault();
+            let bulan = $("#bulan_table").val();
+            $.ajax({
+                url: '/admin/harga/harga_perbulan',
+                data: {
+                    bulan: bulan
+                },
+                dataType: 'json',
+                type: 'POST',
+                beforeSend: function() {
+                    $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
+                    $('.save').prop('disabled', true);
+                },
+                success: function(response) {
+                    let no = 1;
+                    let table_data = ``;
+                    $('.save').html('<i class="bi bi-search"></i> Search');
+                    $('.save').prop('disabled', false);
+                    if (response.harga.length >= 1) {
+                        response.harga.forEach(function(e) {
+                            table_data += `<tr>
+                                <td>${no++}</td>
+                                <td>${e.nama_lengkap_anak}</td>
+                                <td>${e.bulan}</td>
+                                <td>${e.tahun}</td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.harga)} </td>
+                            </tr>`;
+                        });
+                        $("#harga_table_data").html(table_data);
+                    } else {
+                        table_data += `<tr>
+                                <td colspan="5" style="text-align:center">Data Tidak ditemukan</td>
+                            </tr>`;
+                        $("#harga_table_data").html(table_data);
+                    }
+
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: `Data Belum Tersimpan!`,
+                    });
+                    $('.save').html('<i class="bi bi-search"></i> Search');
+                    $('.save').prop('disabled', false);
+                }
+            });
+        })
+    });
 </script>
 
 <?= $this->endSection(); ?>
