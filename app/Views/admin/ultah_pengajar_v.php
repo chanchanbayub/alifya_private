@@ -116,12 +116,13 @@
                                             </td>
                                             <td><?= ($ultah->tanggal_lahir_mitra == null) ? "-" : date('d-M-Y', strtotime($ultah->tanggal_lahir_mitra))  ?></td>
                                             <td><?= $tahun - date('Y', strtotime($ultah->tanggal_lahir_mitra))  ?> Tahun </td>
-                                            <td><a href='https://wa.me/+<?= $ultah->nomor_whatsapp ?>?text=Barakallah%20Fii%20Umrik%20Miss, %0D%0A
-Semoga%20 Miss%20 selalu%20 dalam %20lindungan%20 Allah%20 SWT,%20 panjang%20 umur, %20diberikan%20 kesehatan,%20keselamatan, %20serta%20 limpahan%20 rezeki.%20🙏🏻😊%0D%0A%0D%0A
 
-Semoga%20 Miss%20 selalu%20 menjadi%20 orang%20 yang%20 bermanfaat%20. Terimakasih%20 atas%20 dedikasi%20 Miss%20 bersama%20 Alifya%20 Private%20, semoga%20 setiap%20 apa%20 yang Miss%20 berikan%20 kepada%20 anak%20 menjadi %20ladang %20pahala %20bagi %20Miss %20di %20dunia %20dan %20diakhirat %20kelak. 
+
+                                            <td><a href='https://wa.me/+<?= $ultah->nomor_whatsapp ?>?text=Barakallah%20Fii%20Umrik%20Miss,%0D%0A
+Semoga%20 Miss%20 selalu%20 dalam %20lindungan%20 Allah%20 SWT,%20 panjang%20 umur, %20diberikan%20 kesehatan,%20keselamatan, %20serta%20 limpahan%20 rezeki.🙏🏻😊%0D%0A%0D%0A
+Semoga%20 Miss%20 selalu%20 menjadi%20 orang%20 yang%20 bermanfaat. Terimakasih%20 atas%20 dedikasi%20 Miss%20 bersama%20 Alifya%20 Private, semoga%20 setiap%20 apa%20 yang Miss%20 berikan%20 kepada%20 anak%20 menjadi %20ladang %20pahala %20bagi %20Miss %20di %20dunia %20dan %20diakhirat %20kelak. 
 %0D%0A%0D%0A
-Barakallah%20 Fiik%20%20, 
+Barakallah%20 Fiik, 
 %0D%0A
 Tim %20Alifya %20Private' target="_blank" class="btn btn-outline-success btn-sm"> <i class="bi bi-whatsapp"></i> Kirim Ucapan</a></td>
                                         </tr>
