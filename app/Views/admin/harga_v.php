@@ -41,45 +41,6 @@
                     </div>
                 </div>
 
-                <!-- Recent Sales -->
-                <div class="col-12">
-                    <div class="card recent-sales overflow-auto">
-
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Aksi</h6>
-                                </li>
-                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
-                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateHargaModal"><i class="bi bi-plus"></i> Update Harga Bulan Ini</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $title ?> <span>| Table </span></h5>
-                            <table class="table table-bordered" id="data_table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Peserta Didik</th>
-                                        <th scope="col">Bulan</th>
-                                        <th scope="col"><?= $title ?></th>
-                                        <th scope="col">Tahun</th>
-                                        <th scope="col">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-
-                        </div>
-
-                    </div>
-
-                </div><!-- End Recent Sales -->
-
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
@@ -106,6 +67,46 @@
                     </div>
 
                 </div><!-- End Recent Sales -->
+                <!-- Recent Sales -->
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Aksi</h6>
+                                </li>
+                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
+                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateHargaModal"><i class="bi bi-plus"></i> Update Harga Bulan Ini</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $title ?> <span>| Table </span></h5>
+                            <table class="table table-bordered" id="data_table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Peserta Didik</th>
+                                        <th scope="col">Bulan</th>
+                                        <th scope="col">Tahun</th>
+                                        <th scope="col"><?= $title ?></th>
+                                        <th scope="col">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div><!-- End Recent Sales -->
+
+
 
 
 
@@ -334,12 +335,13 @@
                     data: 'bulan',
                 },
                 {
+                    data: 'tahun',
+                },
+                {
                     data: 'harga',
                     render: $.fn.dataTable.render.number('.', '.', 0, '')
                 },
-                {
-                    data: 'tahun',
-                },
+
                 {
                     data: 'action',
                     orderable: false
