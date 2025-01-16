@@ -116,13 +116,14 @@
                                             </td>
                                             <td><?= ($ultah->tanggal_lahir_mitra == null) ? "-" : date('d-M-Y', strtotime($ultah->tanggal_lahir_mitra))  ?></td>
                                             <td><?= $tahun - date('Y', strtotime($ultah->tanggal_lahir_mitra))  ?> Tahun </td>
-                                            <td><a href="https://wa.me/+<?= $ultah->nomor_whatsapp ?>?text=Barakallah Fii Umrik Miss, 
-Semoga Miss selalu dalam lindungan Allah SWT, panjang umur, diberikan kesehatan, keselamatan, serta limpahan rezeki.🙏🏻😊
+                                            <td><a href='https://wa.me/+<?= $ultah->nomor_whatsapp ?>?text=Barakallah%20Fii%20Umrik%20Miss, %0D%0A
+Semoga%20 Miss%20 selalu%20 dalam %20lindungan%20 Allah%20 SWT,%20 panjang%20 umur, %20diberikan%20 kesehatan,%20keselamatan, %20serta%20 limpahan%20 rezeki.%20🙏🏻😊%0D%0A%0D%0A
 
-Semoga Miss selalu menjadi orang yang bermanfaat. Terimakasih atas dedikasi Miss bersama Alifya Private, semoga setiap apa yang Miss berikan kepada anak menjadi ladang pahala bagi Miss di dunia dan diakhirat kelak. 
-
-Barakallah Fiik, 
-Tim Alifya Private" target="_blank" class="btn btn-outline-success btn-sm"> <i class="bi bi-whatsapp"></i> Kirim Ucapan</a></td>
+Semoga%20 Miss%20 selalu%20 menjadi%20 orang%20 yang%20 bermanfaat%20. Terimakasih%20 atas%20 dedikasi%20 Miss%20 bersama%20 Alifya%20 Private%20, semoga%20 setiap%20 apa%20 yang Miss%20 berikan%20 kepada%20 anak%20 menjadi %20ladang %20pahala %20bagi %20Miss %20di %20dunia %20dan %20diakhirat %20kelak. 
+%0D%0A%0D%0A
+Barakallah%20 Fiik%20%20, 
+%0D%0A
+Tim %20Alifya %20Private' target="_blank" class="btn btn-outline-success btn-sm"> <i class="bi bi-whatsapp"></i> Kirim Ucapan</a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -157,7 +158,6 @@ Tim Alifya Private" target="_blank" class="btn btn-outline-success btn-sm"> <i c
                                 <th scope="col">Nama</th>
                                 <th scope="col">Tanggal Lahir</th>
                                 <th scope="col">Umur Sekarang</th>
-                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="table_data">
@@ -212,7 +212,7 @@ Tim Alifya Private" target="_blank" class="btn btn-outline-success btn-sm"> <i c
                                 <td>${e.nama_lengkap}</td>
                                 <td>${e.tanggal_lahir_mitra}</td>
                                 <td>${new Date().getFullYear() - new Date(e.tanggal_lahir_mitra).getFullYear() } Tahun </td>
-                                <td><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Example+Google+Calendar+Event&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=${new Date().getFullYear()}${new Date(e.tanggal_lahir_mitra).getMonth()}${new Date(e.tanggal_lahir_mitra).getDate()}/${new Date().getFullYear()}${new Date(e.tanggal_lahir_mitra).getMonth()}${new Date(e.tanggal_lahir_mitra).getDate()}UNTIL%3D${new Date().getFullYear()}0603&ctz=Asia/Jakarta" target="_blank">Tambah Google Calendars</a></td>
+                              
                             </tr>`;
                         });
                         $(".table_data").html(table_data);
