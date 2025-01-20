@@ -37,8 +37,10 @@ class InvoiceController extends BaseController
     {
         helper(['format']);
 
-        $bulan = date('m');
+        $bulan = date('n');
+        // dd($bulan);
         $tahun = date('Y');
+        // dd($tahun);
 
         // $peserta_didik = $this->muridModel->getPesertaDidikData();
         $peserta_didik = $this->kelompokBelajarModel->getKelompokBelajar();
@@ -47,8 +49,8 @@ class InvoiceController extends BaseController
         $data_presensi = [];
         foreach ($peserta_didik as $data_anak) {
 
+            // $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $bulan, $tahun);
             $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $bulan, $tahun);
-            // $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, 12, 2024);
 
             // dd($presensi_data);
 
