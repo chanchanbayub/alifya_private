@@ -9,18 +9,14 @@
         #table th,
         td {
             width: 100%;
+            margin: 0 auto;
             border: 1px solid black;
             text-align: center;
             box-sizing: border-box;
-            border: 1px solid;
-            margin: 0 auto;
-            /* text-transform: capitalize; */
+            text-transform: capitalize;
+            padding: 6px 5px;
         }
 
-        table {
-            margin: 0 auto;
-            /* width: 100%; */
-        }
 
         .logo {
             text-align: center;
@@ -139,21 +135,6 @@
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
                     <th scope="col" style="text-transform: capitalize;">Peserta Didik </th>
                     <th scope="col">: </th>
                     <th scope="col" style="text-transform: capitalize;"><?= $peserta_didik ?> </th>
@@ -163,9 +144,9 @@
         <table id="table">
             <thead>
                 <tr>
-                    <th scope="col">Pertemuan</th>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Upah / Jam</th>
+                    <th>Pertemuan</th>
+                    <th>Tanggal</th>
+                    <th>Upah / Jam</th>
                 </tr>
             </thead>
             <tbody>
@@ -174,26 +155,47 @@
                     <tr>
                         <td>Pertemuan Ke -<?= $no++ ?> </td>
                         <td> <?= tanggal_indonesia(date('Y-m-d', strtotime($invoice->tanggal_masuk))) ?>, <?= date_indo(date('Y-m-d', strtotime($invoice->tanggal_masuk))) ?></td>
-                        <td>Rp. <?= number_format($harga->harga) ?></td>
+                        <?php if ($harga != null) : ?>
+                            <td>Rp. <?= number_format($harga->harga) ?></td>
+                        <?php else : ?>
+                            <td>Rp. 0</td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
             <tfoot>
+
                 <tr>
                     <th colspan="2">Jumlah Pertemuan</th>
-                    <th>Rp. <?= number_format($total * $harga->harga) ?> </th>
+                    <?php if ($harga != null) : ?>
+                        <th>Rp. <?= number_format($total * $harga->harga) ?> </th>
+                    <?php else : ?>
+                        <th>Rp.0 </th>
+                    <?php endif; ?>
                 </tr>
                 <tr>
                     <th colspan="2">Media Belajar</th>
-                    <th>Rp. <?= number_format($harga->harga_media) ?> </th>
+                    <?php if ($harga != null) : ?>
+                        <th>Rp. <?= number_format($harga->harga_media) ?> </th>
+                    <?php else : ?>
+                        <th>Rp.0 </th>
+                    <?php endif; ?>
                 </tr>
                 <tr>
                     <th colspan="2">Lain-Lain</th>
-                    <th>Rp. <?= number_format($harga->lain_lain) ?> </th>
+                    <?php if ($harga != null) : ?>
+                        <th>Rp. <?= number_format($harga->lain_lain) ?> </th>
+                    <?php else : ?>
+                        <th>Rp.0 </th>
+                    <?php endif; ?>
                 </tr>
                 <tr>
                     <th colspan="2">Total Pembayaran</th>
-                    <th>Rp. <?= number_format($total * $harga->harga + $harga->harga_media + $harga->lain_lain) ?></th>
+                    <?php if ($harga != null) : ?>
+                        <th>Rp. <?= number_format($total * $harga->harga + $harga->harga_media + $harga->lain_lain) ?></th>
+                    <?php else : ?>
+                        <th>Rp.0 </th>
+                    <?php endif; ?>
                 </tr>
                 <tr>
                     <th colspan="2" style="border: 0;"></th>

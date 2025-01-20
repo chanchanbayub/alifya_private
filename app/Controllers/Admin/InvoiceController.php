@@ -40,18 +40,23 @@ class InvoiceController extends BaseController
         $bulan = date('m');
         $tahun = date('Y');
 
-        $peserta_didik = $this->muridModel->getPesertaDidikData();
+        // $peserta_didik = $this->muridModel->getPesertaDidikData();
+        $peserta_didik = $this->kelompokBelajarModel->getKelompokBelajar();
+
 
         $data_presensi = [];
         foreach ($peserta_didik as $data_anak) {
 
-            $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->id, $bulan, $tahun);
+            $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $bulan, $tahun);
+            // $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, 12, 2024);
+
+            // dd($presensi_data);
 
             foreach ($presensi_data as $data_peserta) {
                 $data_presensi[] = $data_peserta;
             }
         }
-        // dd($data_presensi);
+
         $data = [
             'data_presensi' => $data_presensi,
             'title' => 'Invoice Peserta Didik',

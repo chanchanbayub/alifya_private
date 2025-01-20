@@ -75,6 +75,7 @@
                         <thead>
                             <tr>
                                 <th scope="col" style="text-transform: capitalize; text-align:center">No</th>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">Mitra Pengajar</th>
                                 <th scope="col" style="text-transform: capitalize; text-align:center">Nama Anak</th>
                                 <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi</th>
                                 <th scope="col" style="text-transform: capitalize; text-align:center">Upah Per Anak</th>
@@ -90,6 +91,7 @@
                             <?php foreach ($data_presensi as $peserta_didik) : ?>
                                 <tr>
                                     <td scope="col"><?= $no++ ?></td>
+                                    <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik->nama_lengkap ?></td>
                                     <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik->nama_lengkap_anak ?></td>
                                     <td scope="col" style="text-transform: capitalize; text-align:center"><?= $peserta_didik->total_presensi_perbulan ?></td>
                                     <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga)  ?></td>

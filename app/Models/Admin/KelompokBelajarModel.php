@@ -20,7 +20,7 @@ class KelompokBelajarModel extends Model
     public function getKelompokBelajar()
     {
         return $this->table($this->table)
-            ->select("kelompok_belajar_table.id, kelompok_belajar_table.kelompok_id, kelompok_table.kelompok, data_murid_table.nama_lengkap_anak")
+            ->select("kelompok_belajar_table.id, kelompok_belajar_table.kelompok_id, kelompok_table.kelompok, data_murid_table.nama_lengkap_anak, kelompok_belajar_table.peserta_didik_id")
             ->join('kelompok_table', 'kelompok_table.id = kelompok_belajar_table.kelompok_id')
             ->join('data_murid_table', 'data_murid_table.id = kelompok_belajar_table.peserta_didik_id')
             ->orderBy('kelompok_table.kelompok asc')

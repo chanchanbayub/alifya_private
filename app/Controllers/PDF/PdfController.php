@@ -32,49 +32,49 @@ class PdfController extends BaseController
         $this->muridModel = new MuridModel();
     }
 
-    public function index()
-    {
-        $this->mpdf->showImageErrors = true;
-        $mitra_pengajar_id = $this->request->getVar('mitra_pengajar_id');
-        $peserta_didik = $this->request->getVar('peserta_didik_id');
-        $bulan = $this->request->getVar('bulan');
-        $media_belajar = $this->request->getVar('media_belajar');
+    // public function index()
+    // {
+    //     $this->mpdf->showImageErrors = true;
+    //     $mitra_pengajar_id = $this->request->getVar('mitra_pengajar_id');
+    //     $peserta_didik = $this->request->getVar('peserta_didik_id');
+    //     $bulan = $this->request->getVar('bulan');
+    //     $media_belajar = $this->request->getVar('media_belajar');
 
 
-        $harga = $this->hargaModel->where(["peserta_didik_id" => $peserta_didik])->get()->getRowObject();
+    //     $harga = $this->hargaModel->where(["peserta_didik_id" => $peserta_didik])->get()->getRowObject();
 
-        $this->hargaModel->update($harga->id, [
-            'media_belajar' => $media_belajar
-        ]);
-        // $this->hargaModel->update()
-        helper(['format']);
+    //     $this->hargaModel->update($harga->id, [
+    //         'media_belajar' => $media_belajar
+    //     ]);
+    //     // $this->hargaModel->update()
+    //     helper(['format']);
 
-        $invoice = $this->presensiModel->getPresensiWithMonth($mitra_pengajar_id, $bulan, $peserta_didik);
-        $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
+    //     $invoice = $this->presensiModel->getPresensiWithMonth($mitra_pengajar_id, $bulan, $peserta_didik);
+    //     $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
 
-        $harga_perjam = $this->hargaModel->getHargaPerbulan($peserta_didik);
+    //     $harga_perjam = $this->hargaModel->getHargaPerbulan($peserta_didik);
 
-        $total = count($invoice);
+    //     $total = count($invoice);
 
-        $peserta_didik_data = $this->muridModel->where(["id" => $peserta_didik])->get()->getRowObject();
-        $jumlah_pertemuan = count($invoice);
+    //     $peserta_didik_data = $this->muridModel->where(["id" => $peserta_didik])->get()->getRowObject();
+    //     $jumlah_pertemuan = count($invoice);
 
-        $data = [
-            'invoice' =>  $invoice,
-            'mitra_pengajar' => $pengajar,
-            'peserta_didik' => $peserta_didik_data->nama_lengkap_anak,
-            'harga' => $harga_perjam->harga,
-            'media_belajar' => $harga_perjam->media_belajar,
-            'jumlah_pertemuan' => $jumlah_pertemuan,
-            'total' => $total,
-        ];
+    //     $data = [
+    //         'invoice' =>  $invoice,
+    //         'mitra_pengajar' => $pengajar,
+    //         'peserta_didik' => $peserta_didik_data->nama_lengkap_anak,
+    //         'harga' => $harga_perjam->harga,
+    //         'media_belajar' => $harga_perjam->media_belajar,
+    //         'jumlah_pertemuan' => $jumlah_pertemuan,
+    //         'total' => $total,
+    //     ];
 
-        $html = view('pdf/invoice_pdf', $data);
-        $this->mpdf->WriteHTML($html);
+    //     $html = view('pdf/invoice_pdf', $data);
+    //     $this->mpdf->WriteHTML($html);
 
-        $this->response->setHeader('Content-Type', 'application/pdf');;
-        $this->mpdf->output('Invoice-' . $peserta_didik_data->nama_lengkap_anak . '.pdf', 'I');
-    }
+    //     $this->response->setHeader('Content-Type', 'application/pdf');;
+    //     $this->mpdf->output('Invoice-' . $peserta_didik_data->nama_lengkap_anak . '.pdf', 'I');
+    // }
 
     public function invoice_peserta_didik($mitra_pengajar_id, $peserta_didik_id, $bulan)
     {
@@ -97,12 +97,14 @@ class PdfController extends BaseController
 
         $bulan = $bulan;
         $tahun = date('Y');
+        // $tahun = 2024;
 
         $invoice = $this->presensiModel->getPresensiWithMonth($mitra_data, $bulan, $peserta_data);
 
         $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_data);
 
         $harga_perjam = $this->hargaModel->getHargaPerbulan($peserta_data, $bulan, $tahun);
+
 
         $total = count($invoice);
 
