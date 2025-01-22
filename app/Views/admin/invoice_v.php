@@ -110,7 +110,15 @@
                                     <?php endif; ?>
                                 </tr>
                         </tbody>
+
                     <?php endforeach; ?>
+                    <tfoot>
+                        <tr>
+                            <th colspan="8" style="text-align: center;">TOTAL PEMASUKAN :</th>
+                            <th colspan="2" style="text-align: left;">Rp. <?= number_format($total_pemasukan) ?></th>
+
+                        </tr>
+                    </tfoot>
                     </table>
                 </div>
             </div>

@@ -52,16 +52,22 @@ class InvoiceController extends BaseController
             // $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $bulan, $tahun);
             $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $bulan, $tahun);
 
-            // dd($presensi_data);
-
             foreach ($presensi_data as $data_peserta) {
                 $data_presensi[] = $data_peserta;
             }
         }
 
+        $total_pemasukan = $this->presensiModel->SumHargaPresensi($bulan, $tahun);
+
+
+
+        $total = $total_pemasukan->total_harga + $total_pemasukan->harga_media + $total_pemasukan->lain_lain;
+
+
         $data = [
             'data_presensi' => $data_presensi,
             'title' => 'Invoice Peserta Didik',
+            'total_pemasukan' => $total
         ];
 
         return view('admin/invoice_v', $data);
