@@ -141,7 +141,7 @@ class PresensiModel extends Model
     public function getPresensiPerAnak($peserta_didik_id, $bulan, $tahun)
     {
         return $this->table($this->table)
-            ->select("COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi_perbulan, data_murid_table.id,  data_murid_table.nama_lengkap_anak, harga_table.harga, media_belajar_anak_table.harga_media, media_belajar_anak_table.lain_lain, media_belajar_anak_table.bulan, paket_belajar_table.jumlah_pertemuan, data_pengajar_table.nama_lengkap, presensi_table.mitra_pengajar_id, SUM(harga_table.harga) as total_harga ")
+            ->select("COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi_perbulan, data_murid_table.id,  data_murid_table.nama_lengkap_anak, harga_table.harga, media_belajar_anak_table.harga_media, media_belajar_anak_table.lain_lain, media_belajar_anak_table.bulan, paket_belajar_table.jumlah_pertemuan, data_pengajar_table.nama_lengkap, presensi_table.mitra_pengajar_id")
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
             ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
             ->join('harga_table', 'harga_table.peserta_didik_id = data_murid_table.id')
@@ -160,11 +160,14 @@ class PresensiModel extends Model
     public function SumHargaPresensi($bulan, $tahun)
     {
         return $this->table($this->table)
-            ->select("SUM(harga_table.harga) as total_harga, SUM(media_belajar_anak_table.harga_media) as harga_media, SUM(media_belajar_anak_table.lain_lain) as lain_lain")
+            ->select("COUNT(harga_table.harga) as total_harga")
+            ->select("COUNT(media_belajar_anak_table.harga_media) as total_harga_media")
+            // ->select("SUM(harga_table.harga) as total_harga, SUM(media_belajar_anak_table.harga_media) as total_harga_media")
+            // ->select("SUM(harga_table.harga, media_belajar_anak_table.harga_media, media_belajar_anak_table.lain_lain) as total")
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
-            ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
-            ->join('harga_table', 'harga_table.peserta_didik_id = data_murid_table.id')
-            ->join('media_belajar_anak_table', 'media_belajar_anak_table.peserta_didik_id = data_murid_table.id')
+            // ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
+            ->join('harga_table', 'harga_table.peserta_didik_id = presensi_table.peserta_didik_id')
+            ->join('media_belajar_anak_table', 'media_belajar_anak_table.peserta_didik_id = presensi_table.peserta_didik_id')
             ->join('paket_belajar_table', 'paket_belajar_table.id = data_murid_table.paket_belajar_id')
             // ->where(["data_murid_table.id" => $peserta_didik_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
@@ -172,7 +175,7 @@ class PresensiModel extends Model
             ->where(['harga_table.tahun' => $tahun])
             ->where(['media_belajar_anak_table.bulan' => $bulan])
             ->where(['media_belajar_anak_table.tahun' => $tahun])
-            ->orderBy('data_pengajar_table.nama_lengkap desc')
+            // ->orderBy('data_pengajar_table.nama_lengkap desc')
             ->get()->getRowObject();
     }
 
