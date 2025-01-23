@@ -7,6 +7,7 @@ use App\Controllers\BaseController;
 use App\Models\Admin\HargaModel;
 use App\Models\Admin\KelompokBelajarModel;
 use App\Models\Admin\KelompokModel;
+use App\Models\Admin\KlaimMediaPesertaModel;
 use App\Models\Admin\MuridModel;
 use App\Models\Admin\PengajarModel;
 use App\Models\Admin\PresensiModel;
@@ -18,6 +19,7 @@ class InvoiceController extends BaseController
     protected $kelompokModel;
     protected $pengajarModel;
     protected $kelompokBelajarModel;
+    protected $klaimMediaPesertaModel;
     protected $muridModel;
     protected $hargaModel;
     protected $validation;
@@ -30,6 +32,7 @@ class InvoiceController extends BaseController
         $this->hargaModel = new HargaModel();
         $this->kelompokBelajarModel = new KelompokBelajarModel();
         $this->muridModel = new MuridModel();
+        $this->klaimMediaPesertaModel = new KlaimMediaPesertaModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -39,6 +42,7 @@ class InvoiceController extends BaseController
 
         $bulan = date('n');
         // dd($bulan);
+
         $tahun = date('Y');
         // dd($tahun);
 
@@ -49,34 +53,23 @@ class InvoiceController extends BaseController
         $data_presensi = [];
         foreach ($peserta_didik as $data_anak) {
 
-            // $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $bulan, $tahun);
             $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $bulan, $tahun);
-
-            // dd($total_pemasukan);
             foreach ($presensi_data as $data_peserta) {
                 $data_presensi[] = $data_peserta;
             }
-
-            $total_pemasukan = $this->presensiModel->SumHargaPresensi($bulan, $tahun);
-            // dd($total_pemasukan);
-            // dd($total_pemasukan);
-            // dd($total_pemasukan);
-
-            $total = $total_pemasukan->total_harga + $total_pemasukan->total_harga_media;
-            // dd($total);
         }
 
 
+        $total_harga = $this->presensiModel->SumHargaPresensi($bulan, $tahun);
+        $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($bulan, $tahun);
 
-
-
-        // dd($total);
+        $total_pemasukan = $total_harga->total_harga + $total_harga_media->total_harga_media + $total_harga_media->total_lain_lain;
 
 
         $data = [
             'data_presensi' => $data_presensi,
             'title' => 'Invoice Peserta Didik',
-            // 'total_pemasukan' => $total_pemasukan
+            'total_pemasukan' => $total_pemasukan
         ];
 
         return view('admin/invoice_v', $data);

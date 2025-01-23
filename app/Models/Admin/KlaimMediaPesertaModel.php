@@ -58,4 +58,14 @@ class KlaimMediaPesertaModel extends Model
             ->join('jenis_media_table', 'jenis_media_table.id = harga_table.jenis_media_id', 'left')
             ->orderBy('id desc')->get()->getResultObject();
     }
+
+    public function SumHargaMedia($bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("SUM(media_belajar_anak_table.harga_media) as total_harga_media")
+            ->select("SUM(media_belajar_anak_table.lain_lain) as total_lain_lain")
+            ->where(['media_belajar_anak_table.bulan' => $bulan])
+            ->where(['media_belajar_anak_table.tahun' => $tahun])
+            ->get()->getRowObject();
+    }
 }

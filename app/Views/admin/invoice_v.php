@@ -112,13 +112,13 @@
                         </tbody>
 
                     <?php endforeach; ?>
-                    <!-- <tfoot>
+                    <tfoot>
                         <tr>
                             <th colspan="8" style="text-align: center;">TOTAL PEMASUKAN :</th>
-                            <th colspan="2" style="text-align: left;">Rp. </th>
+                            <th colspan="2" style="text-align: left;">Rp. <?= number_format($total_pemasukan) ?> </th>
 
                         </tr>
-                    </tfoot> -->
+                    </tfoot>
                     </table>
                 </div>
             </div>
