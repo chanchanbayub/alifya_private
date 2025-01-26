@@ -185,6 +185,11 @@ $routes->group('admin', static function ($routes) {
     $routes->get('cetak_invoice/pdf/(:any)', 'PDF\PdfController::invoice_peserta_didik/$1');
     // invoice mitra
     $routes->get('invoice_mitra/pdf/(:any)', 'PDF\PdfController::mitra/$1');
+
+
+    // export excel peserta
+
+    $routes->get('export_excel/', 'Excel\ExcelController::index');
 });
 
 $routes->group('auth', static function ($routes) {

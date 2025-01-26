@@ -21,33 +21,17 @@
                 <div class="col-md-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title"><?= $title ?></h5>
+                            <h5 class="card-title">Export <?= $title ?></h5>
                             <!-- Browser Default Validation -->
-                            <form class="row g-3 text-capitalize" id="cek_invoice" action="cetak_invoice/pdf" target="_new">
+                            <form class="row g-3 text-capitalize" action="export_excel" method="get">
                                 <?= csrf_field(); ?>
                                 <div class="col-md-12">
                                     <label for="bulan" class="form-label">Pilih Bulan :</label>
-                                    <select name="bulan" id="bulan" class="form-control" required>
-                                        <option value="">--Silahkan Pilih--</option>
-                                        <option value="1">Januari</option>
-                                        <option value="2">Februari</option>
-                                        <option value="3">Maret</option>
-                                        <option value="4">April</option>
-                                        <option value="5">Mei</option>
-                                        <option value="6">Juni</option>
-                                        <option value="7">Juli</option>
-                                        <option value="8">Agustus</option>
-                                        <option value="9">September</option>
-                                        <option value="10">Oktober</option>
-                                        <option value="11">November</option>
-                                        <option value="12">Desember</option>
-                                    </select>
-                                    <div class="invalid-feedback error-bulan">
-                                    </div>
+                                    <input type="month" name="bulan" id="bulan" class="form-control" required>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <button class="btn btn-outline-primary" onclick="cek_invoice();" id="cek_data" type="submit" disabled> <i class="bi bi-search"></i> Cek Data</button>
+                                    <button class="btn btn-outline-primary" id="cek_data" type="submit"> <i class="bi bi-file-excel"></i> Export Excel</button>
                                 </div>
                             </form>
                             <!-- End Browser Default Validation -->
@@ -58,16 +42,6 @@
         </div>
         <div class="col-md-12">
             <div class="card recent-sales overflow-auto">
-
-                <!-- <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <li class="dropdown-header text-start">
-                            <h6>Aksi</h6>
-                        </li>
-
-                    </ul>
-                </div> -->
 
                 <div class="card-body">
                     <h5 class="card-title">Rekap Peserta Didik Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> <span>| Table </span></h5>
@@ -127,12 +101,6 @@
 </section>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function(e) {
-        $('#bulan').select2({
-            theme: 'bootstrap-5',
-        });
-    });
-</script>
+
 
 <?= $this->endSection(); ?>

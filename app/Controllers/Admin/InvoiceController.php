@@ -62,6 +62,7 @@ class InvoiceController extends BaseController
 
         $total_harga = $this->presensiModel->SumHargaPresensi($bulan, $tahun);
         $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($bulan, $tahun);
+        // dd($total_harga);
 
         $total_pemasukan = $total_harga->total_harga + $total_harga_media->total_harga_media + $total_harga_media->total_lain_lain;
 
