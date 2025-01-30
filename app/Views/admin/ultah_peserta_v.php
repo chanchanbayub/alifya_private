@@ -120,7 +120,14 @@
                                             </td>
                                             <td><?= ($ultah->tanggal_lahir_anak == null) ? "-" : date('d-M-Y', strtotime($ultah->tanggal_lahir_anak))  ?></td>
                                             <td><?= $tahun - date('Y', strtotime($ultah->tanggal_lahir_anak))  ?> Tahun </td>
-                                            <td><a href="https://wa.me/<?= $ultah->nomor_whatsapp_wali ?>?text=Selamat ulang tahun, anakku yang tercinta. Semoga panjang umur, menjadi anak yang cerdas, dan berbakti kepada orang tua" target="_blank" class="btn btn-outline-success btn-sm"> <i class="bi bi-whatsapp"></i> Kirim Ucapan</a></td>
+                                            <td><a href='https://wa.me/+<?= $ultah->nomor_whatsapp_wali ?>?text=Selamat Ulang Tahun Ananda,%0D%0A 
+                                            %0D%0ASemoga ananda menjadi anak yang tumbuh  dan berkembang dengan baik, sehat lahir dan bathin, panjang umur, cerdas, bahagia.
+                                            %0D%0A
+                                            %0D%0ABerbakti dan sayang Ayah Bunda, utamanya selalu menjadi penyejuk hati. 
+                                            %0D%0A
+                                            %0D%0ABertambahnya usia, semoga Ananda selalu dalam keberkahan dan limpahan kasih sayang dari Tuhan Yang Maha Esa🥰
+                                            %0D%0A
+                                            %0D%0ASalam Sayang %0D%0AAlifya Private' target="_blank" class="btn btn-outline-success btn-sm"> <i class="bi bi-whatsapp"></i> Kirim Ucapan</a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
