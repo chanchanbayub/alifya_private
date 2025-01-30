@@ -46,7 +46,7 @@ header("Content-Disposition: attachment; filename=Pembukuan Alifya.xls");
 <body>
 
     <div class="card-body">
-        <h2 class="card-title">Rekap Peserta Didik Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> <span>| Table </span></h2>
+        <h2 class="card-title">Rekap Peserta Didik Bulan <?= bulan(date('n', $bulan_indo))  ?> <span>| Table </span></h2>
         <table class="table table-bordered" border="1">
             <thead>
                 <tr>
@@ -74,7 +74,7 @@ header("Content-Disposition: attachment; filename=Pembukuan Alifya.xls");
                         <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga * $peserta_didik->total_presensi_perbulan) ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga_media) ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->lain_lain) ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold">Rp. <?= number_format($peserta_didik->total_presensi_perbulan * $peserta_didik->harga + $peserta_didik->harga_media + $peserta_didik->lain_lain) ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold">Rp. <?= number_format($peserta_didik->total_presensi_perbulan * $peserta_didik->harga + $peserta_didik->harga_media + $peserta_didik->lain_lain) ?>.</td>
                         <td></td>
                         <td></td>
                     </tr>

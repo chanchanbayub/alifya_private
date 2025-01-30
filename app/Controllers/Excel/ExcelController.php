@@ -26,12 +26,14 @@ class ExcelController extends BaseController
     public function index()
     {
         helper(['format']);
+
         $date = $this->request->getVar('bulan');
 
         $date_data = explode("-", $date);
 
         $tahun = $date_data["0"];
-        $bulan = date('j', strtotime($date_data["1"]));
+
+        $bulan = intval($date_data["1"]);
 
         $peserta_didik = $this->kelompokBelajarModel->getKelompokBelajar();
 
@@ -54,7 +56,8 @@ class ExcelController extends BaseController
         $data = [
             'data_presensi' => $data_presensi,
             'title' => 'Invoice Peserta Didik',
-            'total_pemasukan' => $total_pemasukan
+            'total_pemasukan' => $total_pemasukan,
+            'bulan_indo' => $bulan
         ];
 
         return view('excel/export_excel', $data);
