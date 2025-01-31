@@ -62,4 +62,20 @@ class HargaModel extends Model
             ->where(['harga_table.tahun' => $tahun])
             ->orderBy('data_murid_table.nama_lengkap_anak asc')->get()->getResultObject();
     }
+
+    public function getHargaPerbulanPeserta($peserta_didik_id, $bulan, $tahun)
+    {
+
+        return $this->table($this->table)
+
+            ->select('harga_table.id, harga_table.peserta_didik_id, harga_table.bulan ,harga_table.harga, harga_table.tahun ,data_murid_table.nama_lengkap_anak, media_belajar_anak_table.harga_media, media_belajar_anak_table.lain_lain')
+            ->join('data_murid_table', 'data_murid_table.id = harga_table.peserta_didik_id')
+            ->join('media_belajar_anak_table', 'media_belajar_anak_table.peserta_didik_id = data_murid_table.id')
+            ->where(["harga_table.peserta_didik_id" => $peserta_didik_id])
+            ->where(['harga_table.bulan' => $bulan])
+            ->where(['harga_table.tahun' => $tahun])
+            ->where(['media_belajar_anak_table.bulan' => $bulan])
+            ->where(['media_belajar_anak_table.tahun' => $tahun])
+            ->orderBy('harga_table.id desc')->get()->getRowObject();
+    }
 }

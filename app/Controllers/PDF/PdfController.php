@@ -97,14 +97,17 @@ class PdfController extends BaseController
 
         $bulan = $bulan;
         $tahun = date('Y');
+
+        // dd($bulan);
         // $tahun = 2024;
 
         $invoice = $this->presensiModel->getPresensiWithMonth($mitra_data, $bulan, $peserta_data);
 
         $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_data);
 
-        $harga_perjam = $this->hargaModel->getHargaPerbulan($peserta_data, $bulan, $tahun);
+        $harga_perjam = $this->hargaModel->getHargaPerbulanPeserta($peserta_data, $bulan, $tahun);
 
+        // dd($harga_perjam);
 
         $total = count($invoice);
 
@@ -127,6 +130,8 @@ class PdfController extends BaseController
         $this->response->setHeader('Content-Type', 'application/pdf');;
         $this->mpdf->output('Invoice-' . $peserta_didik_data->nama_lengkap_anak . '.pdf', 'I');
     }
+
+
 
     public function mitra($mitra_pengajar_id, $bulan)
     {
