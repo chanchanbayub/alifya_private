@@ -122,6 +122,12 @@ $routes->group('admin', static function ($routes) {
     $routes->post('data_pengajar/delete', 'Admin\PengajarController::delete');
     $routes->get('data_pengajar/view/(:any)', 'Admin\PengajarController::view/$1');
 
+    $routes->get('kontrak_mitra', 'Admin\KontrakMitraController::index');
+    $routes->post('kontrak_mitra/insert', 'Admin\KontrakMitraController::insert');
+    $routes->get('kontrak_mitra/edit', 'Admin\KontrakMitraController::edit');
+    $routes->post('kontrak_mitra/update', 'Admin\KontrakMitraController::update');
+    $routes->post('kontrak_mitra/delete', 'Admin\KontrakMitraController::delete');
+
     $routes->get('harga_mitra', 'Admin\HargaMitraController::index');
     $routes->post('harga_mitra/insert', 'Admin\HargaMitraController::insert');
     $routes->get('harga_mitra/edit', 'Admin\HargaMitraController::edit');

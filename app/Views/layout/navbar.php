@@ -126,6 +126,11 @@
                          <i class="bi bi-circle"></i><span>Upah Mitra / Jam</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="/admin/masa_kerja">
+                         <i class="bi bi-circle"></i><span>Masa Kerja Mitra</span>
+                     </a>
+                 </li>
              </ul>
          </li>
 
