@@ -127,8 +127,8 @@
                      </a>
                  </li>
                  <li>
-                     <a href="/admin/masa_kerja">
-                         <i class="bi bi-circle"></i><span>Masa Kerja Mitra</span>
+                     <a href="/admin/kontrak_mitra">
+                         <i class="bi bi-circle"></i><span>Kontrak Mitra</span>
                      </a>
                  </li>
              </ul>
