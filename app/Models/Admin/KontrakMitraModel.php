@@ -17,12 +17,23 @@ class KontrakMitraModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
+
     public function getKontrakMitra()
     {
+        $db = db_connect();
+        $builder = $db->table($this->table);
+
+        $builder = $builder->select('kontrak_mitra_table.id, data_pengajar_table.nama_lengkap, kontrak_mitra_table.awal_bergabung, kontrak_mitra_table.akhir_kontrak')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = kontrak_mitra_table.mitra_pengajar_id');
+        return $builder->orderBy('data_pengajar_table.nama_lengkap asc');
+    }
+
+    public function getKontrakMitraData()
+    {
         return $this->table($this->table)
-            ->select("kontrak_mitra_table.id,kontrak_mitra_table.mitra_pengajar_id,kontrak_mitra_table.awal_bergabung, kontrak_mitra_table.akhir_kontrak, data_pengajar_table.nama_lengkap")
+            ->select('kontrak_mitra_table.id, data_pengajar_table.nama_lengkap, kontrak_mitra_table.awal_bergabung, kontrak_mitra_table.akhir_kontrak')
             ->join('data_pengajar_table', 'data_pengajar_table.id = kontrak_mitra_table.mitra_pengajar_id')
-            ->orderBy('kontrak_mitra_table.id desc')
+            ->orderBy('data_pengajar_table.nama_lengkap asc')
             ->get()->getResultObject();
     }
 }
