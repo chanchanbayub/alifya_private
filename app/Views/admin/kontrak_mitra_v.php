@@ -65,7 +65,6 @@
                                         <th scope="col">Akhir Kontrak</th>
                                         <th scope="col">Masa Kerja</th>
                                         <th scope="col">Masa Berlaku Kontrak</th>
-                                        <th scope="col">Keterangan</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
