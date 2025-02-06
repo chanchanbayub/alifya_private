@@ -64,19 +64,22 @@
                                         <th scope="col">Awal Bergabung</th>
                                         <th scope="col">Akhir Kontrak</th>
                                         <th scope="col">Masa Kerja</th>
+                                        <th scope="col">Masa Berlaku Kontrak</th>
+                                        <th scope="col">Keterangan</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1; ?>
-                                    <?php foreach ($kontrak_mitra as $kontrak_mitra) : ?>
+                                    <?php foreach ($data_kontrak_mitra as $kontrak_mitra) : ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= $kontrak_mitra->nama_lengkap ?></td>
-                                            <td><?= bulan(date('m', strtotime($kontrak_mitra->awal_bergabung))) ?> <?= date('Y', strtotime($kontrak_mitra->awal_bergabung)) ?></td>
-                                            <td><?= bulan(date('m', strtotime($kontrak_mitra->akhir_kontrak))) ?> <?= date('Y', strtotime($kontrak_mitra->akhir_kontrak)) ?></td>
-                                            <td>1 </td>
-                                            <td>1 </td>
+                                            <td><?= $kontrak_mitra["nama_lengkap"] ?></td>
+                                            <td><?= bulan(date('n', strtotime($kontrak_mitra["awal_bergabung"]))) ?> <?= $kontrak_mitra["tahun_bergabung"] ?> </td>
+                                            <td><?= bulan(date('n', strtotime($kontrak_mitra["akhir_kontrak"]))) ?> <?= $kontrak_mitra["tahun_akhir_kontrak"] ?></td>
+                                            <td> <span class="badge text-bg-primary"><?= $kontrak_mitra["masa_kerja"] ?></span> </td>
+                                            <td> <span class="badge text-bg-warning"><?= $kontrak_mitra["masa_berlaku_kontrak"] ?></span></td>
+                                            <td>-</td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

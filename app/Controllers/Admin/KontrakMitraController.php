@@ -23,43 +23,60 @@ class KontrakMitraController extends BaseController
 
     public function index()
     {
-
         helper(['format']);
-        $mitra_pengajar = $this->dataPengajarModel->getDataPengajarStatusAktif();
+
         $kontrak_mitra = $this->kontrakMitraModel->getKontrakMitraData();
-        // dd($kontrak_mitra);
+
+        $hari_ini = date('Y-m-d');
+
+        $tanggal_hari_ini = date_create($hari_ini);
+
+        $data_kontrak_mitra = [];
+
+        foreach ($kontrak_mitra as $kontrak_mitra) {
+            $awal_bergabung_data = date_create($kontrak_mitra->awal_bergabung);
+            $akhir_kontrak_data = date_create($kontrak_mitra->akhir_kontrak);
+            // dd($akhir_kontrak_data);
+            $masa_kerja = date_diff($tanggal_hari_ini, $awal_bergabung_data);
+
+            $masa_berlaku_kontrak = date_diff($tanggal_hari_ini, $akhir_kontrak_data);
+
+            // $keterangan = '';
+
+            // if ($masa_berlaku_kontrak->format('%m %y') == 0) {
+            //     $keterangan = 'Habis Kontrak';
+            // } else {
+            //     $keterangan = 'Masih Berlaku';
+            // }
+
+            $data_kontrak_mitra[] = [
+                'nama_lengkap' => $kontrak_mitra->nama_lengkap,
+
+                'awal_bergabung' => $awal_bergabung_data->format('Y-m'),
+                'tahun_bergabung' => $awal_bergabung_data->format('Y'),
+
+                'akhir_kontrak' => $akhir_kontrak_data->format('Y-m'),
+                'tahun_akhir_kontrak' => $akhir_kontrak_data->format('Y'),
+
+                'masa_kerja' => $masa_kerja->format('%y Tahun %m Bulan'),
+                'masa_berlaku_kontrak' => $masa_berlaku_kontrak->format('%y Tahun %m Bulan'),
+
+                // 'keterangan' => $keterangan
+
+            ];
+        }
+
+        // dd($data_kontrak_mitra);
 
         $data = [
             'title' => 'Kontrak Mitra Pengajar',
-            'mitra_pengajar' => $mitra_pengajar,
-            'kontrak_mitra' => $kontrak_mitra
-            // 'jenis_media' => $this->jenisMediaBelajarModel->getJenisMediaBelajar()
+            'mitra_pengajar' => $this->dataPengajarModel->getDataPengajarStatusAktif(),
+            'data_kontrak_mitra' => $data_kontrak_mitra
         ];
 
         return view('admin/kontrak_mitra_v', $data);
     }
 
-    public function getKontrakMitra()
-    {
-        if ($this->request->isAjax()) {
-            // $harga_perjam = $this->hargaModel->getHarga();
-
-            $kontrak_mitra = $this->kontrakMitraModel->getKontrakMitra();
-
-            return DataTable::of($kontrak_mitra)
-
-                ->add('action', function ($row) {
-                    return '<button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="' .  $row->id . '" type="button">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
-                            <button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="' .  $row->id . '" type="button">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>';
-                })
-                ->setSearchableColumns(['nama_lengkap_anak', 'bulan', 'harga', 'tahun'])
-                ->addNumbering('no')->toJson(true);
-        }
-    }
 
     public function insert()
     {
