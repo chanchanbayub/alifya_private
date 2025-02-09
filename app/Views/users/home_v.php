@@ -14,8 +14,25 @@
             </p>
             <a href="/program_belajar" class="btn btn-secondary btn-sm mt-1 py-3 px-5">Program Belajar</a>
         </div>
-        <div class="col-lg-6 text-center text-lg-right">
-            <img class="img-fluid mt-5" src="/users/img/header.png" alt="" />
+        <div class="col-lg-6 text-center">
+            <div class="row">
+                <div class="container">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/users/img/slidder/2.jpg" class="img-fluid img-thumbnail w-75 mt-5 mb-5" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/users/img/slidder/3.jpeg" class="img-fluid img-thumbnail w-75 mt-5 mb-5" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/users/img/slidder/5.jpeg" class="img-fluid img-thumbnail w-75 mt-5 mb-5" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <img class="img-fluid mt-5" src="/users/img/header.png" alt="" /> -->
+            </div>
         </div>
     </div>
 </div>
