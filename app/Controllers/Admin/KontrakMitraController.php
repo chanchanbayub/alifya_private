@@ -50,6 +50,7 @@ class KontrakMitraController extends BaseController
             // }
 
             $data_kontrak_mitra[] = [
+                'id' => $kontrak_mitra->id,
                 'nama_lengkap' => $kontrak_mitra->nama_lengkap,
 
                 'awal_bergabung' => $awal_bergabung_data->format('Y-m'),
@@ -60,9 +61,6 @@ class KontrakMitraController extends BaseController
 
                 'masa_kerja' => $masa_kerja->format('%y Tahun %m Bulan'),
                 'masa_berlaku_kontrak' => $masa_berlaku_kontrak->format('%y Tahun %m Bulan'),
-
-                // 'keterangan' => $keterangan
-
             ];
         }
 
@@ -141,12 +139,13 @@ class KontrakMitraController extends BaseController
 
             $id = $this->request->getVar('id');
 
-            $harga = $this->hargaModel->where(["id" => $id])->first();
-            $peserta_didik = $this->muridModel->getDataMuridAktif();
+            $kontrak_mitra = $this->kontrakMitraModel->where(["id" => $id])->first();
+
+            $mitra_pengajar = $this->dataPengajarModel->getDataPengajarStatusAktif();
 
             $data = [
-                'harga' => $harga,
-                'peserta_didik' => $peserta_didik,
+                'kontrak_mitra' => $kontrak_mitra,
+                'mitra_pengajar' => $mitra_pengajar,
             ];
 
             return json_encode($data);
@@ -159,12 +158,12 @@ class KontrakMitraController extends BaseController
 
             $id = $this->request->getVar('id');
 
-            $harga = $this->hargaModel->where(["id" => $id])->first();
+            $kontrak_mitra = $this->kontrakMitraModel->where(["id" => $id])->first();
 
-            $this->hargaModel->delete($harga["id"]);
+            $this->kontrakMitraModel->delete($kontrak_mitra["id"]);
 
             $alert = [
-                'success' => 'Upah Berhasil di Hapus !'
+                'success' => 'Kontrak Mitra Berhasil di Hapus !'
             ];
 
             return json_encode($alert);
@@ -176,24 +175,22 @@ class KontrakMitraController extends BaseController
         if ($this->request->isAJAX()) {
 
             if (!$this->validate([
-                'peserta_didik_id' => [
+                'mitra_pengajar_id' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Peserta Didik Tidak Boleh Kosong !'
+                        'required' => 'Mitra Pengajar Tidak Boleh Kosong !'
                     ]
                 ],
-
-                'bulan' => [
+                'awal_bergabung' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
+                        'required' => 'Awal bergabung Tidak Boleh Kosong !'
                     ]
                 ],
-
-                'harga' => [
+                'akhir_kontrak' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Harga Tidak Boleh Kosong !'
+                        'required' => 'akhir_kontrak Tidak Boleh Kosong !'
                     ]
                 ],
 
@@ -201,38 +198,30 @@ class KontrakMitraController extends BaseController
             ])) {
                 $alert = [
                     'error' => [
-                        'peserta_didik_id' => $this->validation->getError('peserta_didik_id'),
-                        'harga' => $this->validation->getError('harga'),
-                        'bulan' => $this->validation->getError('bulan'),
+                        'mitra_pengajar_id' => $this->validation->getError('mitra_pengajar_id'),
+                        'akhir_kontrak' => $this->validation->getError('akhir_kontrak'),
+                        'awal_bergabung' => $this->validation->getError('awal_bergabung'),
 
                     ]
                 ];
             } else {
                 $id = $this->request->getPost('id');
 
-                $peserta_didik_id = $this->request->getPost('peserta_didik_id');
+                $mitra_pengajar_id = $this->request->getPost('mitra_pengajar_id');
 
-                $bulan = $this->request->getPost('bulan');
+                $awal_bergabung = $this->request->getPost('awal_bergabung');
 
-                $tahun = $this->request->getPost('tahun');
+                $akhir_kontrak = $this->request->getPost('akhir_kontrak');
 
-                $harga = $this->request->getPost('harga');
-
-                if ($tahun == null) {
-                    $tahun = date('Y');
-                }
-
-
-                $this->hargaModel->update($id, [
-                    'peserta_didik_id' => strtolower($peserta_didik_id),
-                    'bulan' => $bulan,
-                    'tahun' => $tahun,
-                    'harga' => strtolower($harga),
+                $this->kontrakMitraModel->update($id, [
+                    'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
+                    'awal_bergabung' => $awal_bergabung,
+                    'akhir_kontrak' => strtolower($akhir_kontrak),
 
                 ]);
 
                 $alert = [
-                    'success' => 'Upah Anak Berhasil di Ubah !'
+                    'success' => 'Kontrak Mitra Berhasil di Ubah !'
                 ];
             }
 
@@ -240,55 +229,8 @@ class KontrakMitraController extends BaseController
         }
     }
 
-    public function update_harga()
-    {
-        if ($this->request->isAJAX()) {
 
-            if (!$this->validate([
-                'bulan' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
-                    ]
-                ],
-            ])) {
-                $alert = [
-                    'error' => [
-                        'bulan' => $this->validation->getError('bulan'),
-                    ]
-                ];
-            } else {
-                $bulan = $this->request->getPost('bulan');
-                $tahun = date('Y');
-
-                $peserta_didik = $this->muridModel->getDataMuridAktif();
-                // dd($peserta_didik);
-
-                foreach ($peserta_didik as $peserta) {
-                    $data_harga = $this->hargaModel->where(["peserta_didik_id" => $peserta->id])->orderBy('id')->get()->getRowObject();
-                    if ($data_harga != null) {
-                        if ($data_harga->peserta_didik_id != null) {
-                            if ($bulan != $data_harga->bulan) {
-                                $this->hargaModel->save([
-                                    'peserta_didik_id' => strtolower($data_harga->peserta_didik_id),
-                                    'harga' => strtolower($data_harga->harga),
-                                    'bulan' => $bulan,
-                                    'tahun' => $tahun
-                                ]);
-                            }
-                        }
-                        $alert = [
-                            'success' => 'Upah Anak Berhasil di Simpan !'
-                        ];
-                    }
-                }
-            }
-
-            return json_encode($alert);
-        }
-    }
-
-    public function harga_perbulan()
+    public function kontrak_perbulan()
     {
         if ($this->request->isAJAX()) {
 
@@ -299,11 +241,39 @@ class KontrakMitraController extends BaseController
             $inputan_bulan = $data_bulan[1];
             $inputan_tahun = $data_bulan[0];
 
-            $harga = $this->hargaModel->getHargaPerbulanData($inputan_bulan, $inputan_tahun);
+            $kontrak_mitra = $this->kontrakMitraModel->getKontrakMitraPerbulan($inputan_bulan, $inputan_tahun);
 
+            $hari_ini = date('Y-m-d');
+
+            $tanggal_hari_ini = date_create($hari_ini);
+
+            $data_kontrak_mitra = [];
+
+            foreach ($kontrak_mitra as $kontrak_mitra) {
+
+                $awal_bergabung_data = date_create($kontrak_mitra->awal_bergabung);
+                $akhir_kontrak_data = date_create($kontrak_mitra->akhir_kontrak);
+                $masa_kerja = date_diff($tanggal_hari_ini, $awal_bergabung_data);
+
+                $masa_berlaku_kontrak = date_diff($tanggal_hari_ini, $akhir_kontrak_data);
+
+                $data_kontrak_mitra[] = [
+                    'id' => $kontrak_mitra->id,
+                    'nama_lengkap' => $kontrak_mitra->nama_lengkap,
+
+                    'awal_bergabung' => $awal_bergabung_data->format('Y-m'),
+                    'tahun_bergabung' => $awal_bergabung_data->format('Y'),
+
+                    'akhir_kontrak' => $akhir_kontrak_data->format('Y-m'),
+                    'tahun_akhir_kontrak' => $akhir_kontrak_data->format('Y'),
+
+                    'masa_kerja' => $masa_kerja->format('%y Tahun %m Bulan'),
+                    'masa_berlaku_kontrak' => $masa_berlaku_kontrak->format('%y Tahun %m Bulan'),
+                ];
+            }
 
             $data = [
-                'harga' => $harga,
+                'kontrak_mitra_data' => $data_kontrak_mitra,
             ];
 
             return json_encode($data);

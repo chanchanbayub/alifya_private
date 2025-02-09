@@ -24,16 +24,16 @@
                         <div class="card-body">
                             <h5 class="card-title">Cek Kontrak Mitra</h5>
                             <!-- Browser Default Validation -->
-                            <form class="row g-3 text-capitalize" id="cek_harga_perbulan">
+                            <form class="row g-3 text-capitalize" id="cek_kontrak_mitra">
                                 <?= csrf_field(); ?>
                                 <div class="col-md-12">
-                                    <label for="bulan_table" class="form-label">Pilih Bulan :</label>
-                                    <input type="month" name="bulan_table" id="bulan_table" class="form-control">
-                                    <div class="invalid-feedback error-bulan-table">
+                                    <label for="bulan" class="form-label">Pilih Bulan Berdasarkan Masa Akhir Kontrak :</label>
+                                    <input type="month" name="bulan" id="bulan" class="form-control" required>
+                                    <div class="invalid-feedback error-bulan">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-outline-primary btn-block save" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cari</button>
+                                    <button class="btn btn-outline-primary btn-block search" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cari</button>
                                 </div>
                             </form>
                             <!-- End Browser Default Validation -->
@@ -72,13 +72,20 @@
                                     <?php $no = 1; ?>
                                     <?php foreach ($data_kontrak_mitra as $kontrak_mitra) : ?>
                                         <tr>
-                                            <td><?= $no++; ?></td>
+                                            <td><?= $no++; ?>.</td>
                                             <td><?= $kontrak_mitra["nama_lengkap"] ?></td>
                                             <td><?= bulan(date('n', strtotime($kontrak_mitra["awal_bergabung"]))) ?> <?= $kontrak_mitra["tahun_bergabung"] ?> </td>
                                             <td><?= bulan(date('n', strtotime($kontrak_mitra["akhir_kontrak"]))) ?> <?= $kontrak_mitra["tahun_akhir_kontrak"] ?></td>
                                             <td> <span class="badge text-bg-primary"><?= $kontrak_mitra["masa_kerja"] ?></span> </td>
                                             <td> <span class="badge text-bg-warning"><?= $kontrak_mitra["masa_berlaku_kontrak"] ?></span></td>
-                                            <td>-</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $kontrak_mitra["id"] ?>" type="button">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $kontrak_mitra["id"] ?>" type="button">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -155,44 +162,26 @@
                     <div class="form_group">
                         <div class="mb-3">
                             <input type="hidden" class="form-control" id="id_edit" name="id">
-                            <input type="hidden" class="form-control" id="tahun_edit" name="tahun">
-                            <label for="peserta_didik_id_edit" class="col-form-label">Peserta Didik :</label>
-                            <select name="peserta_didik_id" id="peserta_didik_id_edit" class="form-select">
+                            <label for="mitra_pengajar_id_edit" class="col-form-label">Mitra Pengajar :</label>
+                            <select name="mitra_pengajar_id" id="mitra_pengajar_id_edit" class="form-select">
                                 <option value="">--Silahkan Pilih--</option>
 
                             </select>
-                            <div class="invalid-feedback error-peserta-didik-edit">
+                            <div class="invalid-feedback error-mitra-pengajar-edit">
                             </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="awal_bergabung_edit" class="col-form-label">Awal Bergabung :</label>
+                        <input type="date" name="awal_bergabung" id="awal_bergabung_edit" class="form-control">
+                        <div class="invalid-feedback error-awal-bergabung-edit">
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="bulan_edit" class="form-label">Pilih Bulan :</label>
-                        <select name="bulan" id="bulan_edit" class="form-control">
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="1">Januari</option>
-                            <option value="2">Februari</option>
-                            <option value="3">Maret</option>
-                            <option value="4">April</option>
-                            <option value="5">Mei</option>
-                            <option value="6">Juni</option>
-                            <option value="7">Juli</option>
-                            <option value="8">Agustus</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
-                        <div class="invalid-feedback error-bulan-edit">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="harga_edit" class="col-form-label"><?= $title ?> :</label>
-                        <input type="number" class="form-control" id="harga_edit" name="harga">
-                        <div class="invalid-feedback error-harga-edit">
-
+                        <label for="akhir_kontrak_edit" class="col-form-label">Akhir Kontrak:</label>
+                        <input type="date" name="akhir_kontrak" id="akhir_kontrak_edit" class="form-control">
+                        <div class="invalid-feedback error-akhir-kontrak-edit">
                         </div>
                     </div>
 
@@ -232,6 +221,38 @@
     </div>
 </div>
 <!-- End hapus Modal-->
+
+<!-- modal save-->
+<div class="modal fade" id="kontrakModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $title ?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Awal Bergabung</th>
+                                <th scope="col">Akhir Kontrak</th>
+                                <th scope="col">Masa Kerja</th>
+                            </tr>
+                        </thead>
+                        <tbody class="kontrak_table">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Modal Save -->
 
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -325,7 +346,7 @@
         e.preventDefault();
         let id = $(this).attr('data-id');
         $.ajax({
-            url: '/admin/harga/edit',
+            url: '/admin/kontrak_mitra/edit',
             method: 'get',
             dataType: 'JSON',
             data: {
@@ -334,21 +355,21 @@
             },
             success: function(response) {
                 // console.log(response);
-                $("#id_edit").val(response.harga.id);
-                $("#harga_edit").val(response.harga.harga);
-                $("#bulan_edit").val(response.harga.bulan).trigger('change');
-                $("#tahun_edit").val(response.harga.tahun);
+                $("#id_edit").val(response.kontrak_mitra.id);
+                $("#awal_bergabung_edit").val(response.kontrak_mitra.awal_bergabung);
+                $("#akhir_kontrak_edit").val(response.kontrak_mitra.akhir_kontrak);
 
 
-                let peserta_didik_data = `<option value="">--Silahkan Pilih--</option>`;
+                let mitra_pengajar_data = `<option value="">--Silahkan Pilih--</option>`;
 
-                response.peserta_didik.forEach(function(e) {
-                    peserta_didik_data += `<option value="${e.id}"> ${e.nama_lengkap_anak} </option>`
+                response.mitra_pengajar.forEach(function(e) {
+                    mitra_pengajar_data
+                        += `<option value="${e.id}"> ${e.nama_lengkap} </option>`
                 });
 
-                $("#peserta_didik_id_edit").html(peserta_didik_data);
+                $("#mitra_pengajar_id_edit").html(mitra_pengajar_data);
 
-                $("#peserta_didik_id_edit").val(response.harga.peserta_didik_id).trigger('change');
+                $("#mitra_pengajar_id_edit").val(response.kontrak_mitra.mitra_pengajar_id).trigger('change');
 
 
             }
@@ -358,51 +379,50 @@
     $("#edit_form").submit(function(e) {
         e.preventDefault();
         let id = $("#id_edit").val();
-        let peserta_didik_id = $("#peserta_didik_id_edit").val();
-        let bulan = $("#bulan_edit").val();
-        let harga = $("#harga_edit").val();
-        let tahun = $("#tahun_edit").val();
+        let mitra_pengajar_id = $("#mitra_pengajar_id_edit").val();
+        let awal_bergabung = $("#awal_bergabung_edit").val();
+        let akhir_kontrak = $("#akhir_kontrak_edit").val();
 
         $.ajax({
-            url: '/admin/harga/update',
+            url: '/admin/kontrak_mitra/update',
             method: 'post',
             dataType: 'JSON',
             data: {
                 id: id,
-                peserta_didik_id: peserta_didik_id,
-                bulan: bulan,
-                harga: harga,
-                tahun: tahun
+                mitra_pengajar_id: mitra_pengajar_id,
+                awal_bergabung: awal_bergabung,
+                akhir_kontrak: akhir_kontrak,
+
             },
             beforeSend: function() {
-                $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
-                $('.save').prop('disabled', true);
+                $('.update').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
+                $('.update').prop('disabled', true);
             },
             success: function(response) {
                 $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
                 $('.update').prop('disabled', false);
                 if (response.error) {
-                    if (response.error.peserta_didik_id) {
-                        $("#peserta_didik_id_edit").addClass('is-invalid');
-                        $(".error-peserta-didik-edit").html(response.error.peserta_didik_id);
+                    if (response.error.mitra_pengajar_id) {
+                        $("#mitra_pengajar_id_edit").addClass('is-invalid');
+                        $(".error-mitra-pengajar-edit").html(response.error.mitra_pengajar_id);
                     } else {
-                        $("#peserta_didik_id_edit").removeClass('is-invalid');
-                        $(".error-peserta-didik-edit").html('');
+                        $("#mitra_pengajar_id_edit").removeClass('is-invalid');
+                        $(".error-mitra-pengajar-edit").html('');
                     }
-                    if (response.error.bulan) {
-                        $("#bulan_edit").addClass('is-invalid');
-                        $(".error-bulan-edit").html(response.error.bulan);
+                    if (response.error.awal_bergabung) {
+                        $("#awal_bergabung_edit").addClass('is-invalid');
+                        $(".error-awal-bergabung-edit").html(response.error.awal_bergabung);
                     } else {
-                        $("#bulan_edit").removeClass('is-invalid');
-                        $(".error-bulan-edit").html('');
+                        $("#awal_bergabung_edit").removeClass('is-invalid');
+                        $(".error-awal-bergabung-edit").html('');
                     }
 
-                    if (response.error.harga) {
-                        $("#harga_edit").addClass('is-invalid');
-                        $(".error-harga-edit").html(response.error.harga);
+                    if (response.error.akhir_kontrak) {
+                        $("#akhir_kontrak_edit").addClass('is-invalid');
+                        $(".error-akhir-kontrak-edit").html(response.error.akhir_kontrak);
                     } else {
-                        $("#harga_edit").removeClass('is-invalid');
-                        $(".error-harga-edit").html('');
+                        $("#akhir_kontrak_edit").removeClass('is-invalid');
+                        $(".error-akhir-kontrak-edit").html('');
                     }
 
                 } else {
@@ -420,8 +440,8 @@
                     icon: 'error',
                     title: `Data Belum Tersimpan!`,
                 });
-                $('.save').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
-                $('.save').prop('disabled', false);
+                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
+                $('.update').prop('disabled', false);
             }
         });
     });
@@ -432,14 +452,14 @@
         e.preventDefault();
         let id = $(this).attr('data-id');
         $.ajax({
-            url: '/admin/harga/edit',
+            url: '/admin/kontrak_mitra/edit',
             method: 'get',
             dataType: 'JSON',
             data: {
                 id: id,
             },
             success: function(response) {
-                $("#id_delete").val(response.harga.id);
+                $("#id_delete").val(response.kontrak_mitra.id);
             }
         });
     });
@@ -448,7 +468,7 @@
         e.preventDefault();
         let id = $("#id_delete").val();
         $.ajax({
-            url: '/admin/harga/delete',
+            url: '/admin/kontrak_mitra/delete',
             method: 'post',
             dataType: 'JSON',
             data: {
@@ -486,42 +506,45 @@
 
     // End Aksi Hapus
 
+
+
     $(document).ready(function(e) {
-        $("#cek_harga_perbulan").submit(function(e) {
+        $("#cek_kontrak_mitra").submit(function(e) {
             e.preventDefault();
-            let bulan = $("#bulan_table").val();
+            let bulan = $("#bulan").val();
             $.ajax({
-                url: '/admin/harga/harga_perbulan',
+                url: '/admin/kontrak_mitra/kontrak_perbulan',
                 data: {
                     bulan: bulan
                 },
                 dataType: 'json',
                 type: 'POST',
                 beforeSend: function() {
-                    $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
-                    $('.save').prop('disabled', true);
+                    $('.search').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
+                    $('.search').prop('disabled', true);
                 },
                 success: function(response) {
                     let no = 1;
                     let table_data = ``;
-                    $('.save').html('<i class="bi bi-search"></i> Search');
-                    $('.save').prop('disabled', false);
-                    if (response.harga.length >= 1) {
-                        response.harga.forEach(function(e) {
+                    $('.search').html('<i class="bi bi-search"></i> Search');
+                    $('.search').prop('disabled', false);
+                    if (response.kontrak_mitra_data.length >= 1) {
+                        $("#kontrakModal").modal('show');
+                        response.kontrak_mitra_data.forEach(function(e) {
                             table_data += `<tr>
                                 <td>${no++}</td>
-                                <td>${e.nama_lengkap_anak}</td>
-                                <td>${e.bulan}</td>
-                                <td>${e.tahun}</td>
-                                <td>Rp. ${new Intl.NumberFormat().format(e.harga)} </td>
+                                <td>${e.nama_lengkap}</td>
+                                <td>${e.awal_bergabung}</td>
+                                <td>${e.akhir_kontrak}</td>
+                                <td> <span class="badge text-bg-primary">${e.masa_kerja}</span></td>
                             </tr>`;
                         });
-                        $("#harga_table_data").html(table_data);
+                        $(".kontrak_table").html(table_data);
                     } else {
-                        table_data += `<tr>
-                                <td colspan="5" style="text-align:center">Data Tidak ditemukan</td>
-                            </tr>`;
-                        $("#harga_table_data").html(table_data);
+                        Swal.fire({
+                            icon: 'error',
+                            title: `Data Tidak di Temukan`,
+                        });
                     }
 
                 },
@@ -530,8 +553,8 @@
                         icon: 'error',
                         title: `Data Belum Tersimpan!`,
                     });
-                    $('.save').html('<i class="bi bi-search"></i> Search');
-                    $('.save').prop('disabled', false);
+                    $('.search').html('<i class="bi bi-search"></i> Search');
+                    $('.search').prop('disabled', false);
                 }
             });
         })

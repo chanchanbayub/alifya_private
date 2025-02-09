@@ -127,7 +127,7 @@ $routes->group('admin', static function ($routes) {
     $routes->get('kontrak_mitra/edit', 'Admin\KontrakMitraController::edit');
     $routes->post('kontrak_mitra/update', 'Admin\KontrakMitraController::update');
     $routes->post('kontrak_mitra/delete', 'Admin\KontrakMitraController::delete');
-    $routes->post('kontrak_mitra/getKontrakMitra', 'Admin\KontrakMitraController::getKontrakMitra');
+    $routes->post('kontrak_mitra/kontrak_perbulan', 'Admin\KontrakMitraController::kontrak_perbulan');
 
     $routes->get('harga_mitra', 'Admin\HargaMitraController::index');
     $routes->post('harga_mitra/insert', 'Admin\HargaMitraController::insert');

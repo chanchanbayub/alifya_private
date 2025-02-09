@@ -36,4 +36,14 @@ class KontrakMitraModel extends Model
             ->orderBy('data_pengajar_table.nama_lengkap asc')
             ->get()->getResultObject();
     }
+
+    public function getKontrakMitraPerbulan($bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select('kontrak_mitra_table.id, data_pengajar_table.nama_lengkap, kontrak_mitra_table.awal_bergabung, kontrak_mitra_table.akhir_kontrak')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = kontrak_mitra_table.mitra_pengajar_id')
+            ->where('MONTH(kontrak_mitra_table.akhir_kontrak)', $bulan)
+            ->where('YEAR(kontrak_mitra_table.akhir_kontrak)', $tahun)
+            ->orderBy('data_pengajar_table.nama_lengkap asc')->get()->getResultObject();
+    }
 }
