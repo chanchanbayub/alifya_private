@@ -173,7 +173,7 @@
             <?php foreach ($program_belajar as $program) : ?>
                 <div class="col-lg-4 mb-5">
                     <div class="card border-0 bg-light shadow-sm pb-2">
-                        <img class="card-img-top mb-2" style="height: 450px;" src="/banner/<?= $program->banner ?>" alt="" />
+                        <img class="card-img-top mb-2 img-thumbnail" style="object-fit: scale-down; height:450px" src="/banner/<?= $program->banner ?>" alt="" />
                         <div class="card-body text-center">
                             <h3 class="card-title text-capitalize"><?= $program->nama_program ?></h3>
                             <p class="card-text">
