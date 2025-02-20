@@ -152,6 +152,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('data_murid/data_ulang_tahun_murid', 'Admin\MuridController::data_ulang_tahun_murid');
     $routes->get('data_murid/view/(:any)', 'Admin\MuridController::view/$1');
 
+    $routes->get('kontrak_peserta', 'Admin\KontrakPesertaController::index');
+    $routes->post('kontrak_peserta/insert', 'Admin\KontrakPesertaController::insert');
+    $routes->get('kontrak_peserta/edit', 'Admin\KontrakPesertaController::edit');
+    $routes->post('kontrak_peserta/update', 'Admin\KontrakPesertaController::update');
+    $routes->post('kontrak_peserta/delete', 'Admin\KontrakPesertaController::delete');
+    $routes->post('kontrak_peserta/kontrak_perbulan', 'Admin\KontrakPesertaController::kontrak_perbulan');
+
     $routes->get('kelompok_belajar', 'Admin\KelompokBelajarController::index');
     $routes->post('kelompok_belajar/insert', 'Admin\KelompokBelajarController::insert');
     $routes->get('kelompok_belajar/edit', 'Admin\KelompokBelajarController::edit');

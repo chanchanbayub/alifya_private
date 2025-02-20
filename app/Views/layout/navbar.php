@@ -160,6 +160,11 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/kontrak_peserta">
+                         <i class="bi bi-circle"></i><span>Kontrak Peserta Didik</span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="/admin/klaim_media_belajar">
                          <i class="bi bi-circle"></i><span>Klaim Media Belajar</span>
                      </a>
