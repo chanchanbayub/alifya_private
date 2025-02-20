@@ -26,4 +26,14 @@ class KontrakPesertaModel extends Model
             ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->orderBy('data_murid_table.nama_lengkap_anak asc')->get()->getResultObject();
     }
+
+    public function getKontrakPesertaPerbulan($bulan)
+    {
+        return $this->table($this->table)
+            ->select('kontrak_peserta_table.id, data_murid_table.nama_lengkap_anak, kontrak_peserta_table.bulan_masuk, status_murid_table.status_murid, data_murid_table.status_murid_id')
+            ->join('data_murid_table', 'data_murid_table.id = kontrak_peserta_table.peserta_didik_id')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->where('MONTH(kontrak_peserta_table.bulan_masuk)', $bulan)
+            ->orderBy('data_murid_table.nama_lengkap_anak asc')->get()->getResultObject();
+    }
 }

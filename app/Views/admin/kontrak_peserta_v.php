@@ -24,10 +24,10 @@
                         <div class="card-body">
                             <h5 class="card-title">Cek Kontrak Peserta</h5>
                             <!-- Browser Default Validation -->
-                            <form class="row g-3 text-capitalize" id="cek_kontrak_mitra">
+                            <form class="row g-3 text-capitalize" id="cek_kontrak_peserta">
                                 <?= csrf_field(); ?>
                                 <div class="col-md-12">
-                                    <label for="bulan" class="form-label">Pilih Bulan Berdasarkan Masa Akhir Kontrak :</label>
+                                    <label for="bulan" class="form-label">Pilih Bulan Berdasarkan Bulan Bergabung :</label>
                                     <input type="month" name="bulan" id="bulan" class="form-control" required>
                                     <div class="invalid-feedback error-bulan">
                                     </div>
@@ -220,9 +220,8 @@
                         <thead class="table-light">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nama</th>
+                                <th scope="col">Nama Lengkap Anak</th>
                                 <th scope="col">Awal Bergabung</th>
-                                <th scope="col">Akhir Kontrak</th>
                                 <th scope="col">Masa Kerja</th>
                             </tr>
                         </thead>
@@ -469,11 +468,11 @@
 
 
     $(document).ready(function(e) {
-        $("#cek_kontrak_mitra").submit(function(e) {
+        $("#cek_kontrak_peserta").submit(function(e) {
             e.preventDefault();
             let bulan = $("#bulan").val();
             $.ajax({
-                url: '/admin/kontrak_mitra/kontrak_perbulan',
+                url: '/admin/kontrak_peserta/kontrak_perbulan',
                 data: {
                     bulan: bulan
                 },
@@ -488,14 +487,13 @@
                     let table_data = ``;
                     $('.search').html('<i class="bi bi-search"></i> Search');
                     $('.search').prop('disabled', false);
-                    if (response.kontrak_mitra_data.length >= 1) {
+                    if (response.kontrak_peserta_data.length >= 1) {
                         $("#kontrakModal").modal('show');
-                        response.kontrak_mitra_data.forEach(function(e) {
+                        response.kontrak_peserta_data.forEach(function(e) {
                             table_data += `<tr>
                                 <td>${no++}</td>
-                                <td>${e.nama_lengkap}</td>
+                                <td>${e.nama_lengkap_anak}</td>
                                 <td>${e.awal_bergabung}</td>
-                                <td>${e.akhir_kontrak}</td>
                                 <td> <span class="badge text-bg-primary">${e.masa_kerja}</span></td>
                             </tr>`;
                         });

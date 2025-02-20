@@ -210,41 +210,36 @@ class KontrakPesertaController extends BaseController
             $data_bulan = explode("-", $bulan);
 
             $inputan_bulan = $data_bulan[1];
-            $inputan_tahun = $data_bulan[0];
 
-            $kontrak_mitra = $this->kontrakMitraModel->getKontrakMitraPerbulan($inputan_bulan, $inputan_tahun);
+            $kontrak_peserta = $this->kontrakPesertaModel->getKontrakPesertaPerbulan($inputan_bulan);
 
             $hari_ini = date('Y-m-d');
 
             $tanggal_hari_ini = date_create($hari_ini);
 
-            $data_kontrak_mitra = [];
+            $data_kontrak_peserta = [];
 
-            foreach ($kontrak_mitra as $kontrak_mitra) {
-
-                $awal_bergabung_data = date_create($kontrak_mitra->awal_bergabung);
-                $akhir_kontrak_data = date_create($kontrak_mitra->akhir_kontrak);
+            foreach ($kontrak_peserta as $kontrak_peserta) {
+                $awal_bergabung_data = date_create($kontrak_peserta->bulan_masuk);
                 $masa_kerja = date_diff($tanggal_hari_ini, $awal_bergabung_data);
 
-                $masa_berlaku_kontrak = date_diff($tanggal_hari_ini, $akhir_kontrak_data);
 
-                $data_kontrak_mitra[] = [
-                    'id' => $kontrak_mitra->id,
-                    'nama_lengkap' => $kontrak_mitra->nama_lengkap,
+                $data_kontrak_peserta[] = [
+                    'id' => $kontrak_peserta->id,
+                    'nama_lengkap_anak' => $kontrak_peserta->nama_lengkap_anak,
 
                     'awal_bergabung' => $awal_bergabung_data->format('Y-m'),
                     'tahun_bergabung' => $awal_bergabung_data->format('Y'),
 
-                    'akhir_kontrak' => $akhir_kontrak_data->format('Y-m'),
-                    'tahun_akhir_kontrak' => $akhir_kontrak_data->format('Y'),
-
                     'masa_kerja' => $masa_kerja->format('%y Tahun %m Bulan'),
-                    'masa_berlaku_kontrak' => $masa_berlaku_kontrak->format('%y Tahun %m Bulan'),
+
+                    'status_murid_id' => $kontrak_peserta->status_murid_id,
+                    'status_murid' => $kontrak_peserta->status_murid
                 ];
             }
 
             $data = [
-                'kontrak_mitra_data' => $data_kontrak_mitra,
+                'kontrak_peserta_data' => $data_kontrak_peserta,
             ];
 
             return json_encode($data);
