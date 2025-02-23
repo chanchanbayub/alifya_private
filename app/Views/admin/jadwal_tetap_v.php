@@ -43,6 +43,7 @@
                                         <th scope="col">Mitra Pengajar</th>
                                         <th scope="col">Peserta Didik</th>
                                         <th scope="col">Jam Belajar</th>
+                                        <th scope="col">Status Murid</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -55,6 +56,7 @@
                                             <td><?= $jadwal->nama_lengkap ?></td>
                                             <td><?= $jadwal->nama_lengkap_anak ?></td>
                                             <td><?= $jadwal->jam_belajar ?></td>
+                                            <td> <span class='<?= ($jadwal->status_murid_id == 1) ? "badge bg-success" : "badge bg-warning" ?>'><?= $jadwal->status_murid ?></span></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $jadwal->id ?>" type="button">
                                                     <i class="bi bi-pencil-square"></i>
