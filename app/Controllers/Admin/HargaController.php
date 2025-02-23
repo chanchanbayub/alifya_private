@@ -246,23 +246,33 @@ class HargaController extends BaseController
                 // dd($peserta_didik);
 
                 foreach ($peserta_didik as $peserta) {
-                    $data_harga = $this->hargaModel->where(["peserta_didik_id" => $peserta->id])->where(['bulan' => $bulan])->where(['tahun' => $tahun])->orderBy('id')->get()->getRowObject();
+                    $data_harga = $this->hargaModel->where(["peserta_didik_id" => $peserta->id])->orderBy('id')->get()->getRowObject();
 
-                    if ($data_harga == null) {
-                        $this->hargaModel->save([
-                            'peserta_didik_id' => strtolower($data_harga->peserta_didik_id),
-                            'harga' => strtolower($data_harga->harga),
-                            'bulan' => $bulan,
-                            'tahun' => $tahun
-                        ]);
+                    if ($data_harga != null) {
 
-                        $alert = [
-                            'success' => 'Upah Anak Berhasil di Simpan !'
-                        ];
-                    } elseif ($data_harga != null) {
+                        $data_harga_berdasarkan_bulan = $this->hargaModel->where(["peserta_didik_id" => $data_harga->peserta_didik_id])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->get()->getRowObject();
+
+                        if ($data_harga_berdasarkan_bulan == null) {
+                            $this->hargaModel->save([
+                                'peserta_didik_id' => strtolower($peserta->id),
+                                'harga' => strtolower($data_harga->harga),
+                                'bulan' => $bulan,
+                                'tahun' => $tahun
+                            ]);
+                            $alert = [
+                                'success' => 'Upah Anak Berhasil di Simpan !'
+                            ];
+                        } elseif ($data_harga_berdasarkan_bulan != null) {
+                            $alert = [
+                                'error' => [
+                                    'data' => 'Upah Bulan Tersebut Sudah terdaptar!'
+                                ],
+                            ];
+                        }
+                    } else {
                         $alert = [
                             'error' => [
-                                'data' => 'Media Belajar Bulan Tersebut Sudah terdaptar!'
+                                'data' => 'Upah Bulan Tersebut Sudah terdaptar!'
                             ],
                         ];
                     }

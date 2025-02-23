@@ -60,6 +60,11 @@ class KlaimMediaPesertaController extends BaseController
                         </i> Lihat Faktur </a>';
                     }
                 })
+                ->add('action', function ($row) {
+                    return '<button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="' .  $row->id . '" type="button">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </button>';
+                })
                 ->setSearchableColumns(['nama_lengkap_anak', 'bulan', 'harga_media', 'nama_media', 'tahun'])
                 ->addNumbering('no')->toJson(true);
         }
@@ -276,9 +281,9 @@ class KlaimMediaPesertaController extends BaseController
                     'tahun' => strtolower($tahun),
                     'jenis_media_id' => $jenis_media_id,
                     'harga_media' => $harga_media,
+                    'lain_lain' => 0,
                     'faktur' => $namaFaktur,
                 ]);
-
 
                 $alert = [
                     'success' => 'Harga Media Belajar Berhasil di Ubah !'

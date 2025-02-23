@@ -23,7 +23,7 @@
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
 
-                        <div class="filter">
+                        <!-- <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                 <li class="dropdown-header text-start">
@@ -31,7 +31,7 @@
                                 </li>
                                 <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
                             </ul>
-                        </div>
+                        </div> -->
 
                         <div class="card-body">
                             <h5 class="card-title"><?= $title ?> <span>| Table </span></h5>
@@ -45,6 +45,7 @@
                                         <th scope="col">Jenis Media</th>
                                         <th scope="col">Harga Media</th>
                                         <th scope="col">Cek Faktur</th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -292,6 +293,11 @@
 
                 {
                     data: 'faktur',
+                    orderable: false
+                },
+
+                {
+                    data: 'action',
                     orderable: false
                 },
 
