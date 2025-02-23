@@ -312,4 +312,57 @@ class KlaimMediaPesertaController extends BaseController
             return json_encode($alert);
         }
     }
+
+    public function update_media()
+    {
+        if ($this->request->isAJAX()) {
+
+            if (!$this->validate([
+                'bulan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bulan Tidak Boleh Kosong !'
+                    ]
+                ],
+            ])) {
+                $alert = [
+                    'error' => [
+                        'bulan' => $this->validation->getError('bulan'),
+                    ]
+                ];
+            } else {
+                $bulan = $this->request->getPost('bulan');
+                $tahun = date('Y');
+
+                $peserta_didik = $this->muridModel->getDataMuridAktif();
+
+                foreach ($peserta_didik as $peserta) {
+                    $media_belajar = $this->klaimMediaBelajarModel->where(["peserta_didik_id" => $peserta->id])->where(['bulan' => $bulan])->where(['tahun' => $tahun])->orderBy('id')->get()->getRowObject();
+
+                    if ($media_belajar == null) {
+                        $this->klaimMediaBelajarModel->save([
+                            'peserta_didik_id' => $peserta->id,
+                            'bulan' => $bulan,
+                            'tahun' => $tahun,
+                            'jenis_media_id' => '4',
+                            'harga_media' => 0,
+                            'lain_lain' => 0,
+                            'faktur' => null,
+                        ]);
+
+                        $alert = [
+                            'success' => 'Media Belajar Anak Berhasil di Simpan !'
+                        ];
+                    } elseif ($media_belajar != null) {
+                        $alert = [
+                            'error' => [
+                                'data' => 'Media Belajar Bulan Tersebut Sudah terdaptar!'
+                            ],
+                        ];
+                    }
+                }
+            }
+        }
+        return json_encode($alert);
+    }
 }

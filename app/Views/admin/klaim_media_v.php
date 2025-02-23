@@ -30,6 +30,7 @@
                                     <h6>Aksi</h6>
                                 </li>
                                 <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
+                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateMediaModal"><i class="bi bi-plus"></i> Update Media Bulan Ini </a></li>
                             </ul>
                         </div>
 
@@ -271,6 +272,48 @@
 <!-- End hapus Modal-->
 
 
+<!-- Modal -->
+<div class="modal fade" id="updateMediaModal" tabindex="-1" aria-labelledby="updateHargaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateHargaModalLabel">Update Upah Peserta Didik</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="update_media_form">
+                    <div class="mb-3">
+                        <label for="bulan_data" class="col-form-label">Silahkan Pilih Bulan:</label>
+                        <select name="bulan" id="bulan_data" class="form-control">
+                            <option value="">--Silahkan Pilih--</option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <div class="invalid-feedback error-bulan-data">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
+                        <button type="submit" class="btn btn-outline-success update"> <i class="bi bi-arrow-right"></i> Update Media Belajar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script>
@@ -326,6 +369,11 @@
     });
 
     $(document).ready(function(e) {
+
+        $('#bulan_data').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#updateMediaModal')
+        });
 
         $('#peserta_didik_id').select2({
             theme: 'bootstrap-5',
@@ -426,11 +474,11 @@
                             $(".error-harga-media").html('');
                         }
 
-                        if (response.error.lain - lain) {
-                            $("#lain-lain").addClass('is-invalid');
+                        if (response.error.lain_lain) {
+                            $("#lain_lain").addClass('is-invalid');
                             $(".error-harga-media").html(response.error.lain_lain);
                         } else {
-                            $("#lain-lain").removeClass('is-invalid');
+                            $("#lain_lain").removeClass('is-invalid');
                             $(".error-lain-lain").html('');
                         }
 
@@ -669,6 +717,61 @@
         });
     });
     // End Aksi Hapus
+
+    $("#update_media_form").submit(function(e) {
+        e.preventDefault();
+        let bulan = $("#bulan_data").val();
+
+        $.ajax({
+            url: '/admin/klaim_media_belajar/update_media_belajar',
+            method: 'post',
+            dataType: 'JSON',
+            data: {
+                bulan: bulan,
+            },
+            beforeSend: function() {
+                $('.update').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
+                $('.update').prop('disabled', true);
+            },
+            success: function(response) {
+                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Update Upah Peserta');
+                $('.update').prop('disabled', false);
+                if (response.error) {
+
+                    if (response.error.bulan) {
+                        $("#bulan_data").addClass('is-invalid');
+                        $(".error-bulan-data").html(response.error.bulan);
+                    } else {
+                        $("#bulan_data").removeClass('is-invalid');
+                        $(".error-bulan-data").html('');
+                    }
+                    if (response.error.data) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `${response.error.data}`,
+                        });
+                    }
+
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: `${response.success}`,
+                    });
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000)
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: `Data Belum Tersimpan!`,
+                });
+                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
+                $('.update').prop('disabled', false);
+            }
+        });
+    })
 </script>
 
 <?= $this->endSection(); ?>

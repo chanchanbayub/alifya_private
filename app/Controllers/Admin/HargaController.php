@@ -246,20 +246,24 @@ class HargaController extends BaseController
                 // dd($peserta_didik);
 
                 foreach ($peserta_didik as $peserta) {
-                    $data_harga = $this->hargaModel->where(["peserta_didik_id" => $peserta->id])->orderBy('id')->get()->getRowObject();
-                    if ($data_harga != null) {
-                        if ($data_harga->peserta_didik_id != null) {
-                            if ($bulan != $data_harga->bulan) {
-                                $this->hargaModel->save([
-                                    'peserta_didik_id' => strtolower($data_harga->peserta_didik_id),
-                                    'harga' => strtolower($data_harga->harga),
-                                    'bulan' => $bulan,
-                                    'tahun' => $tahun
-                                ]);
-                            }
-                        }
+                    $data_harga = $this->hargaModel->where(["peserta_didik_id" => $peserta->id])->where(['bulan' => $bulan])->where(['tahun' => $tahun])->orderBy('id')->get()->getRowObject();
+
+                    if ($data_harga == null) {
+                        $this->hargaModel->save([
+                            'peserta_didik_id' => strtolower($data_harga->peserta_didik_id),
+                            'harga' => strtolower($data_harga->harga),
+                            'bulan' => $bulan,
+                            'tahun' => $tahun
+                        ]);
+
                         $alert = [
                             'success' => 'Upah Anak Berhasil di Simpan !'
+                        ];
+                    } elseif ($data_harga != null) {
+                        $alert = [
+                            'error' => [
+                                'data' => 'Media Belajar Bulan Tersebut Sudah terdaptar!'
+                            ],
                         ];
                     }
                 }

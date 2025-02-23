@@ -46,6 +46,7 @@ $routes->group('admin', static function ($routes) {
     $routes->post('klaim_media_belajar/update', 'Admin\KlaimMediaPesertaController::update');
     $routes->post('klaim_media_belajar/delete', 'Admin\KlaimMediaPesertaController::delete');
     $routes->post('klaim_media_belajar/getDataHargaMedia', 'Admin\KlaimMediaPesertaController::getDataHargaMedia');
+    $routes->post('klaim_media_belajar/update_media_belajar', 'Admin\KlaimMediaPesertaController::update_media');
 
 
     $routes->get('harga', 'Admin\HargaController::index');

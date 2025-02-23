@@ -645,6 +645,13 @@
                         $(".error-bulan-data").html('');
                     }
 
+                    if (response.error.data) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `${response.error.data}`,
+                        });
+                    }
+
                 } else {
                     Swal.fire({
                         icon: 'success',
