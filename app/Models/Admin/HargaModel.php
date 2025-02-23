@@ -22,25 +22,27 @@ class HargaModel extends Model
         $db = db_connect();
         $builder = $db->table($this->table);
 
-        $builder = $builder->select('harga_table.id, harga_table.peserta_didik_id, harga_table.bulan ,harga_table.harga, harga_table.tahun ,data_murid_table.nama_lengkap_anak')
-            ->join('data_murid_table', 'data_murid_table.id = harga_table.peserta_didik_id');
+        $builder = $builder->select('harga_table.id, harga_table.peserta_didik_id, harga_table.bulan ,harga_table.harga, harga_table.tahun ,data_murid_table.nama_lengkap_anak, data_murid_table.status_murid_id, status_murid_table.status_murid')
+            ->join('data_murid_table', 'data_murid_table.id = harga_table.peserta_didik_id')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->where(["data_murid_table.status_murid_id" => 1]);
         return $builder->orderBy('data_murid_table.nama_lengkap_anak asc');
     }
 
-    public function getHargaPerbulan($peserta_didik_id, $bulan, $tahun)
-    {
+    // public function getHargaPerbulan($peserta_didik_id, $bulan, $tahun)
+    // {
 
-        $db = db_connect();
-        $builder = $db->table($this->table);
+    //     $db = db_connect();
+    //     $builder = $db->table($this->table);
 
-        $builder = $builder->select('harga_table.id, harga_table.peserta_didik_id, harga_table.bulan ,harga_table.harga, harga_table.tahun ,data_murid_table.nama_lengkap_anak, media_belajar_anak_table.harga_media, media_belajar_anak_table.lain_lain')
-            ->join('data_murid_table', 'data_murid_table.id = harga_table.peserta_didik_id')
-            ->join('media_belajar_anak_table', 'media_belajar_anak_table.peserta_didik_id = harga_table.peserta_didik_id')
-            ->where(["harga_table.peserta_didik_id" => $peserta_didik_id])
-            ->where(['harga_table.bulan' => $bulan])
-            ->where(['harga_table.tahun' => $tahun]);
-        return $builder->orderBy('id desc')->get()->getRowObject();
-    }
+    //     $builder = $builder->select('harga_table.id, harga_table.peserta_didik_id, harga_table.bulan ,harga_table.harga, harga_table.tahun ,data_murid_table.nama_lengkap_anak, media_belajar_anak_table.harga_media, media_belajar_anak_table.lain_lain')
+    //         ->join('data_murid_table', 'data_murid_table.id = harga_table.peserta_didik_id')
+    //         ->join('media_belajar_anak_table', 'media_belajar_anak_table.peserta_didik_id = harga_table.peserta_didik_id')
+    //         ->where(["harga_table.peserta_didik_id" => $peserta_didik_id])
+    //         ->where(['harga_table.bulan' => $bulan])
+    //         ->where(['harga_table.tahun' => $tahun]);
+    //     return $builder->orderBy('id desc')->get()->getRowObject();
+    // }
 
     public function getHargaData()
     {
@@ -56,10 +58,12 @@ class HargaModel extends Model
     {
 
         return $this->table($this->table)
-            ->select('harga_table.id, harga_table.peserta_didik_id, harga_table.bulan ,harga_table.harga,  data_murid_table.nama_lengkap_anak, harga_table.tahun')
+            ->select('harga_table.id, harga_table.peserta_didik_id, harga_table.bulan ,harga_table.harga,  data_murid_table.nama_lengkap_anak, harga_table.tahun, status_murid_table.status_murid')
             ->join('data_murid_table', 'data_murid_table.id = harga_table.peserta_didik_id')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->where(['harga_table.bulan' => $bulan])
             ->where(['harga_table.tahun' => $tahun])
+            ->where(["data_murid_table.status_murid_id" => 1])
             ->orderBy('data_murid_table.nama_lengkap_anak asc')->get()->getResultObject();
     }
 

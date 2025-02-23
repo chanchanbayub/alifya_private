@@ -53,11 +53,12 @@
                                         <th scope="col">Bulan</th>
                                         <th scope="col">Tahun</th>
                                         <th scope="col"><?= $title ?></th>
+                                        <th scope="col">Status Murid</th>
                                     </tr>
                                 </thead>
                                 <tbody id="harga_table_data">
                                     <tr>
-                                        <td colspan="5" style="text-align: center;">Tidak Ada Data</td>
+                                        <td colspan="6" style="text-align: center;">Tidak Ada Data</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -92,6 +93,7 @@
                                         <th scope="col">Bulan</th>
                                         <th scope="col">Tahun</th>
                                         <th scope="col"><?= $title ?></th>
+                                        <th scope="col">Status Murid</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -341,6 +343,9 @@
                 {
                     data: 'harga',
                     render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'status_murid',
                 },
 
                 {
@@ -701,12 +706,13 @@
                                 <td>${e.bulan}</td>
                                 <td>${e.tahun}</td>
                                 <td>Rp. ${new Intl.NumberFormat().format(e.harga)} </td>
+                                <td>${e.status_murid} </td>
                             </tr>`;
                         });
                         $("#harga_table_data").html(table_data);
                     } else {
                         table_data += `<tr>
-                                <td colspan="5" style="text-align:center">Data Tidak ditemukan</td>
+                                <td colspan="6" style="text-align:center">Data Tidak ditemukan</td>
                             </tr>`;
                         $("#harga_table_data").html(table_data);
                     }
