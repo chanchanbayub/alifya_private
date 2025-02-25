@@ -59,7 +59,7 @@ class InvoiceController extends BaseController
             }
         }
 
-        // dd($data_presensi);
+
         $total_harga = $this->presensiModel->SumHargaPresensi($bulan, $tahun);
         $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($bulan, $tahun);
         // dd($total_harga);
@@ -70,7 +70,8 @@ class InvoiceController extends BaseController
         $data = [
             'data_presensi' => $data_presensi,
             'title' => 'Invoice Peserta Didik',
-            'total_pemasukan' => $total_pemasukan
+            'total_pemasukan' => $total_pemasukan,
+            'jumlah_data_presensi' => count($data_presensi)
         ];
 
         return view('admin/invoice_v', $data);
