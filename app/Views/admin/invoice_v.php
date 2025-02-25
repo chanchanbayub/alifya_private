@@ -63,36 +63,26 @@
                         <tbody>
                             <?php $no = 1; ?>
                             <?php foreach ($data_presensi as $peserta_didik) : ?>
-                                <?php if ($peserta_didik->harga == null && $peserta_didik->harga_media == null && $peserta_didik->lain_lain == null) : ?>
-                                    <tr>
-                                        <td colspan="10" align="center">Silahkan Update Harga Terlebih dahulu di halaman harga & media belajar</td>
-                                    </tr>
-                                <?php else : ?>
-                                    <tr>
-                                        <td scope="col"><?= $no++ ?></td>
-                                        <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik->nama_lengkap ?></td>
-                                        <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik->nama_lengkap_anak ?></td>
-                                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= $peserta_didik->total_presensi_perbulan ?></td>
-                                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga)  ?></td>
-                                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga * $peserta_didik->total_presensi_perbulan) ?></td>
-                                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->harga_media) ?></td>
-                                        <?php if ($peserta_didik->lain_lain == null) : ?>
-                                            <td scope="col" style="text-transform: capitalize; text-align:center">Rp. 0</td>
-                                        <?php else : ?>
-                                            <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= $peserta_didik->lain_lain ?></td>
-                                        <?php endif; ?>
-                                        <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold">Rp. <?= $peserta_didik->total_presensi_perbulan * $peserta_didik->harga + $peserta_didik->harga_media + $peserta_didik->lain_lain ?></td>
-                                        <?php if ($peserta_didik->mitra_pengajar_id == null) : ?>
-                                            <td scope="col" style="text-transform: capitalize; text-align:center">
-                                                <button target="_blank" class="btn btn-sm btn-outline-primary" disabled> Cetak Invoice</button>
-                                            </td>
-                                        <?php else : ?>
-                                            <td scope="col" style="text-transform: capitalize; text-align:center">
-                                                <a href="/admin/cetak_invoice/pdf/<?= $peserta_didik->mitra_pengajar_id ?>/<?= $peserta_didik->id ?>/<?= $peserta_didik->bulan ?>" target="_blank" class="btn btn-sm btn-outline-primary"> Cetak Invoice</a>
-                                            </td>
-                                        <?php endif; ?>
-                                    </tr>
-                                <?php endif; ?>
+                                <tr>
+                                    <td scope="col"><?= $no++ ?></td>
+                                    <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik["nama_lengkap"] ?></td>
+                                    <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik["nama_lengkap_anak"] ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= $peserta_didik["total_presensi_perbulan"] ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= ($peserta_didik["harga"] == null ? "0" : number_format($peserta_didik["harga"])) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= ($peserta_didik["jumlah_upah"] == null ? "0" : number_format($peserta_didik["jumlah_upah"])) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= ($peserta_didik["media_belajar"] == null ? "0" : number_format($peserta_didik["media_belajar"])) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= ($peserta_didik["lain_lain"] == null ? "0" : number_format($peserta_didik["lain_lain"])) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= ($peserta_didik["total_akhir"] == null ? "0" : number_format($peserta_didik["total_akhir"])) ?></td>
+                                    <?php if ($peserta_didik["mitra_pengajar_id"] == null) : ?>
+                                        <td scope="col" style="text-transform: capitalize; text-align:center">
+                                            <button target="_blank" class="btn btn-sm btn-outline-primary" disabled> Cetak Invoice</button>
+                                        </td>
+                                    <?php else : ?>
+                                        <td scope="col" style="text-transform: capitalize; text-align:center">
+                                            <a href="/admin/cetak_invoice/pdf/<?= $peserta_didik["mitra_pengajar_id"] ?>/<?= $peserta_didik["id"] ?>/<?= $peserta_didik["bulan"] ?>" target="_blank" class="btn btn-sm btn-outline-primary"> Cetak Invoice</a>
+                                        </td>
+                                    <?php endif; ?>
+                                </tr>
                         </tbody>
                     <?php endforeach; ?>
                     <tfoot>
