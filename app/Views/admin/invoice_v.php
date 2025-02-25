@@ -68,11 +68,11 @@
                                     <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik["nama_lengkap"] ?></td>
                                     <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik["nama_lengkap_anak"] ?></td>
                                     <td scope="col" style="text-transform: capitalize; text-align:center"><?= $peserta_didik["total_presensi_perbulan"] ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= ($peserta_didik["harga"] == null ? "0" : number_format($peserta_didik["harga"])) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= ($peserta_didik["jumlah_upah"] == null ? "0" : number_format($peserta_didik["jumlah_upah"])) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= ($peserta_didik["media_belajar"] == null ? "0" : number_format($peserta_didik["media_belajar"])) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= ($peserta_didik["lain_lain"] == null ? "0" : number_format($peserta_didik["lain_lain"])) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= ($peserta_didik["total_akhir"] == null ? "0" : number_format($peserta_didik["total_akhir"])) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= ($peserta_didik["harga"] == null ? "0" : number_format($peserta_didik["harga"])) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= ($peserta_didik["jumlah_upah"] == null ? "0" : number_format($peserta_didik["jumlah_upah"])) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= ($peserta_didik["media_belajar"] == null ? "0" : number_format($peserta_didik["media_belajar"])) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= ($peserta_didik["lain_lain"] == null ? "0" : number_format($peserta_didik["lain_lain"])) ?></td>
+                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= ($peserta_didik["total_akhir"] == null ? "0" : number_format($peserta_didik["total_akhir"])) ?></td>
                                     <?php if ($peserta_didik["mitra_pengajar_id"] == null) : ?>
                                         <td scope="col" style="text-transform: capitalize; text-align:center">
                                             <button target="_blank" class="btn btn-sm btn-outline-primary" disabled> Cetak Invoice</button>

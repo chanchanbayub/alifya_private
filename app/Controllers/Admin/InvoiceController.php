@@ -56,32 +56,71 @@ class InvoiceController extends BaseController
             $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $bulan, $tahun);
             // dd($presensi_data);
             foreach ($presensi_data as $data_peserta) {
+
+                if ($data_peserta->harga == null) {
+                    $harga = 0;
+                } else {
+                    $harga = $data_peserta->harga;
+                }
+
+                if ($data_peserta->harga_media == null) {
+                    $harga_media = 0;
+                } else {
+                    $harga_media  = $data_peserta->harga_media;
+                }
+
+                if ($data_peserta->lain_lain == null) {
+                    $lain_lain = 0;
+                } else {
+                    $lain_lain  = $data_peserta->lain_lain;
+                }
+
+
+
                 $data_presensi[] = [
                     'id' => $data_peserta->id,
                     'mitra_pengajar_id' => $data_peserta->mitra_pengajar_id,
                     'bulan' => $data_peserta->bulan,
-                    // 'tahun' => $data_peserta->tahun,
                     'nama_lengkap' => $data_peserta->nama_lengkap,
                     'nama_lengkap_anak' => $data_peserta->nama_lengkap_anak,
                     'total_presensi_perbulan' => $data_peserta->total_presensi_perbulan,
-                    'harga' => $data_peserta->harga,
-                    'jumlah_upah' => $data_peserta->harga * $data_peserta->total_presensi_perbulan,
-                    'media_belajar' => $data_peserta->harga_media,
-                    'lain_lain' => $data_peserta->lain_lain,
-                    'total_akhir' => $data_peserta->total_presensi_perbulan * $data_peserta->harga + $data_peserta->harga_media + $data_peserta->lain_lain
+                    'harga' => $harga,
+                    'jumlah_upah' => $harga * $data_peserta->total_presensi_perbulan,
+                    'media_belajar' => $harga_media,
+                    'lain_lain' => $lain_lain,
+                    'total_akhir' => $data_peserta->total_presensi_perbulan * $harga + $harga_media + $lain_lain
 
                 ];
             }
         }
 
-
         // dd($data_presensi);
+
         $total_harga = $this->presensiModel->SumHargaPresensi($bulan, $tahun);
         $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($bulan, $tahun);
-        // dd($total_harga);
 
-        $total_pemasukan = $total_harga->total_harga + $total_harga_media->total_harga_media + $total_harga_media->total_lain_lain;
+        // dd($total_harga_media);
 
+        if ($total_harga->total_harga == null) {
+            $total_bayar = "0";
+        } else {
+            $total_bayar = $total_harga->total_harga;
+        }
+
+        if ($total_harga_media->total_harga_media == null) {
+            $total_media = "0";
+        } else {
+            $total_media = $total_harga_media->total_harga_media;
+        }
+
+        if ($total_harga_media->total_lain_lain == null) {
+            $total_lain_lain = "0";
+        } else {
+            $total_lain_lain = $total_harga_media->total_lain_lain;
+        }
+
+        $total_pemasukan = $total_bayar + $total_media + $total_lain_lain;
+        // dd($total_pemasukan);
 
         $data = [
             'data_presensi' => $data_presensi,
