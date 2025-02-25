@@ -75,6 +75,12 @@ class InvoiceController extends BaseController
                     $lain_lain  = $data_peserta->lain_lain;
                 }
 
+                if ($data_peserta->total_presensi_perbulan == null) {
+                    $total_presensi_perbulan = 0;
+                } else {
+                    $total_presensi_perbulan  = $data_peserta->total_presensi_perbulan;
+                }
+
 
 
                 $data_presensi[] = [
@@ -83,13 +89,12 @@ class InvoiceController extends BaseController
                     'bulan' => $data_peserta->bulan,
                     'nama_lengkap' => $data_peserta->nama_lengkap,
                     'nama_lengkap_anak' => $data_peserta->nama_lengkap_anak,
-                    'total_presensi_perbulan' => $data_peserta->total_presensi_perbulan,
-                    'harga' => $harga,
-                    'jumlah_upah' => $harga * $data_peserta->total_presensi_perbulan,
-                    'media_belajar' => $harga_media,
-                    'lain_lain' => $lain_lain,
-                    'total_akhir' => $data_peserta->total_presensi_perbulan * $harga + $harga_media + $lain_lain
-
+                    'total_presensi_perbulan' => intval($total_presensi_perbulan),
+                    'harga' =>  intval($harga),
+                    'jumlah_upah' => intval($harga) * intval($total_presensi_perbulan),
+                    'media_belajar' => intval($harga_media),
+                    'lain_lain' => intval($lain_lain),
+                    'total_akhir' => intval($total_presensi_perbulan) * intval($harga) + intval($harga_media) + intval($lain_lain)
                 ];
             }
         }
@@ -119,7 +124,7 @@ class InvoiceController extends BaseController
             $total_lain_lain = $total_harga_media->total_lain_lain;
         }
 
-        $total_pemasukan = $total_bayar + $total_media + $total_lain_lain;
+        $total_pemasukan = intval($total_bayar) + intval($total_media) + intval($total_lain_lain);
         // dd($total_pemasukan);
 
         $data = [
