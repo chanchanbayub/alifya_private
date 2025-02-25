@@ -79,9 +79,9 @@
                                         <?php if ($peserta_didik->lain_lain == null) : ?>
                                             <td scope="col" style="text-transform: capitalize; text-align:center">Rp. 0</td>
                                         <?php else : ?>
-                                            <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($peserta_didik->lain_lain) ?></td>
+                                            <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= $peserta_didik->lain_lain ?></td>
                                         <?php endif; ?>
-                                        <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold">Rp. <?= number_format($peserta_didik->total_presensi_perbulan * $peserta_didik->harga + $peserta_didik->harga_media + $peserta_didik->lain_lain) ?></td>
+                                        <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold">Rp. <?= $peserta_didik->total_presensi_perbulan * $peserta_didik->harga + $peserta_didik->harga_media + $peserta_didik->lain_lain ?></td>
                                         <?php if ($peserta_didik->mitra_pengajar_id == null) : ?>
                                             <td scope="col" style="text-transform: capitalize; text-align:center">
                                                 <button target="_blank" class="btn btn-sm btn-outline-primary" disabled> Cetak Invoice</button>
