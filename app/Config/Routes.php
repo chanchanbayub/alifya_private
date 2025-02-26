@@ -48,6 +48,15 @@ $routes->group('admin', static function ($routes) {
     $routes->post('klaim_media_belajar/getDataHargaMedia', 'Admin\KlaimMediaPesertaController::getDataHargaMedia');
     $routes->post('klaim_media_belajar/update_media_belajar', 'Admin\KlaimMediaPesertaController::update_media');
 
+    $routes->get('klaim_lain_lain', 'Admin\KlaimLainLainMitraController::index');
+    $routes->post('klaim_lain_lain/insert', 'Admin\KlaimLainLainMitraController::insert');
+    $routes->get('klaim_lain_lain/edit', 'Admin\KlaimLainLainMitraController::edit');
+    $routes->post('klaim_lain_lain/update', 'Admin\KlaimLainLainMitraController::update');
+    $routes->post('klaim_lain_lain/delete', 'Admin\KlaimLainLainMitraController::delete');
+    $routes->post('klaim_lain_lain/getLainLain', 'Admin\KlaimLainLainMitraController::getLainLain');
+    $routes->post('klaim_lain_lain/lain_lain_perbulan', 'Admin\KlaimLainLainMitraController::getLainLainPerbulan');
+    $routes->post('klaim_lain_lain/update_lain_lain', 'Admin\KlaimLainLainMitraController::update_lain_lain');
+
 
     $routes->get('harga', 'Admin\HargaController::index');
     $routes->post('harga/update_harga', 'Admin\HargaController::update_harga');

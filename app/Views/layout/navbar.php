@@ -131,6 +131,11 @@
                          <i class="bi bi-circle"></i><span>Kontrak Mitra</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="/admin/klaim_lain_lain">
+                         <i class="bi bi-circle"></i><span>Klaim Lain-Lain Mitra</span>
+                     </a>
+                 </li>
              </ul>
          </li>
 
