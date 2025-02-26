@@ -30,6 +30,7 @@
                                     <h6>Aksi</h6>
                                 </li>
                                 <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
+                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateHargaModal"><i class="bi bi-plus"></i> Update Harga Bulan Ini</a></li>
                             </ul>
                         </div>
 
@@ -41,6 +42,8 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Mitra Pengajar</th>
                                         <th scope="col">Peserta Didik</th>
+                                        <th scope="col">Bulan</th>
+                                        <th scope="col">Tahun</th>
                                         <th scope="col"><?= $title ?></th>
                                         <th scope="col">Booster Media</th>
 
@@ -54,6 +57,8 @@
                                             <th scope="row"><a href="#"><?= $no++ ?>.</a></th>
                                             <td> <?= $harga_perjam->nama_lengkap ?></td>
                                             <td><?= $harga_perjam->nama_lengkap_anak ?></td>
+                                            <td><?= $harga_perjam->bulan ?></td>
+                                            <td><?= $harga_perjam->tahun ?></td>
                                             <td>Rp. <?= number_format($harga_perjam->harga_mitra) ?></td>
                                             <td>Rp. <?= number_format($harga_perjam->booster_media) ?></td>
                                             <td>
@@ -110,6 +115,27 @@
 
                         </select>
                         <div class="invalid-feedback error-peserta-didik">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="bulan" class="col-form-label">Silahkan Pilih Bulan:</label>
+                        <select name="bulan" id="bulan" class="form-control">
+                            <option value="">--Silahkan Pilih--</option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <div class="invalid-feedback error-bulan">
                         </div>
                     </div>
 
@@ -175,6 +201,35 @@
                         </div>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="bulan_edit" class="col-form-label">Silahkan Pilih Bulan:</label>
+                        <select name="bulan" id="bulan_edit" class="form-control">
+                            <option value="">--Silahkan Pilih--</option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <div class="invalid-feedback error-bulan-edit">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tahun_edit" class="col-form-label">Tahun :</label>
+                        <input type="number" class="form-control" id="tahun_edit" name="tahun">
+                        <div class="invalid-feedback error-tahun-edit">
+
+                        </div>
+                    </div>
+
                     <div class="form-group">
 
                         <label for="harga_mitra_edit" class="col-form-label"><?= $title ?> :</label>
@@ -229,12 +284,58 @@
 </div>
 <!-- End hapus Modal-->
 
+<!-- Modal -->
+<div class="modal fade" id="updateHargaModal" tabindex="-1" aria-labelledby="updateHargaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateHargaModalLabel">Update Upah Mitra Pengajar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="update_harga_form">
+                    <div class="mb-3">
+                        <label for="bulan_data" class="col-form-label">Silahkan Pilih Bulan:</label>
+                        <select name="bulan" id="bulan_data" class="form-control">
+                            <option value="">--Silahkan Pilih--</option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <div class="invalid-feedback error-bulan-data">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
+                        <button type="submit" class="btn btn-outline-success update"> <i class="bi bi-arrow-right"></i> Update Upah Peserta</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function(e) {
 
         $('#mitra_pengajar_id').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#exampleModal')
+        });
+
+        $('#bulan').select2({
             theme: 'bootstrap-5',
             dropdownParent: $('#exampleModal')
         });
@@ -254,13 +355,24 @@
             dropdownParent: $('#editModal')
         });
 
+        $('#bulan_edit').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#editModal')
+        });
+
+        $('#bulan_data').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#updateHargaModal')
+        });
+
 
         $("#add_form").submit(function(e) {
             e.preventDefault();
 
-            let harga_mitra = $("#harga_mitra").val();
             let mitra_pengajar_id = $("#mitra_pengajar_id").val();
             let peserta_didik_id = $("#peserta_didik_id").val();
+            let bulan = $("#bulan").val();
+            let harga_mitra = $("#harga_mitra").val();
             let booster_media = $("#booster_media").val();
 
             $.ajax({
@@ -268,9 +380,10 @@
                 method: 'post',
                 dataType: 'JSON',
                 data: {
-                    harga_mitra: harga_mitra,
                     mitra_pengajar_id: mitra_pengajar_id,
                     peserta_didik_id: peserta_didik_id,
+                    harga_mitra: harga_mitra,
+                    bulan: bulan,
                     booster_media: booster_media,
 
                 },
@@ -296,6 +409,15 @@
                             $("#peserta_didik_id").removeClass('is-invalid');
                             $(".error-peserta-didik").html('');
                         }
+
+                        if (response.error.bulan) {
+                            $("#bulan").addClass('is-invalid');
+                            $(".error-bulan").html(response.error.bulan);
+                        } else {
+                            $("#bulan").removeClass('is-invalid');
+                            $(".error-bulan").html('');
+                        }
+
                         if (response.error.booster_media) {
                             $("#booster_media").addClass('is-invalid');
                             $(".error-booster-media").html(response.error.booster_media);
@@ -345,10 +467,10 @@
                 id: id,
             },
             success: function(response) {
-                console.log(response.harga_mitra);
 
                 $("#id_edit").val(response.harga_mitra.id);
                 $("#harga_mitra_edit").val(response.harga_mitra.harga_mitra);
+                $("#tahun_edit").val(response.harga_mitra.tahun);
 
                 $("#booster_media_edit").val(response.harga_mitra.booster_media).trigger('change');
 
@@ -361,6 +483,9 @@
                 $("#mitra_pengajar_id_edit").html(mitra_pengajar_data);
 
                 $("#mitra_pengajar_id_edit").val(response.harga_mitra.mitra_pengajar_id).trigger('change');
+
+                $("#bulan_edit").val(response.harga_mitra.bulan).trigger('change');
+
 
 
                 let peserta_didik_data = `<option value="">--Silahkan Pilih--</option>`;
@@ -384,6 +509,8 @@
         let peserta_didik_id = $('#peserta_didik_id_edit').val();
         let booster_media = $('#booster_media_edit').val();
         let harga = $('#harga_mitra_edit').val();
+        let bulan = $('#bulan_edit').val();
+        let tahun = $('#tahun_edit').val();
 
         $.ajax({
             url: '/admin/harga_mitra/update',
@@ -395,6 +522,8 @@
                 peserta_didik_id: peserta_didik_id,
                 booster_media: booster_media,
                 harga_mitra: harga,
+                bulan: bulan,
+                tahun: tahun,
 
             },
             beforeSend: function() {
@@ -433,6 +562,21 @@
                     } else {
                         $("#harga_mitra_edit").removeClass('is-invalid');
                         $(".error-harga-mitra-edit").html('');
+                    }
+
+                    if (response.error.bulan) {
+                        $("#bulan_edit").addClass('is-invalid');
+                        $(".error-bulan-edit").html(response.error.bulan);
+                    } else {
+                        $("#bulan_edit").removeClass('is-invalid');
+                        $(".error-bulan-edit").html('');
+                    }
+                    if (response.error.tahun) {
+                        $("#tahun_edit").addClass('is-invalid');
+                        $(".error-tahun-edit").html(response.error.tahun);
+                    } else {
+                        $("#tahun_edit").removeClass('is-invalid');
+                        $(".error-tahun-edit").html('');
                     }
 
                 } else {
@@ -543,8 +687,62 @@
             },
         });
     });
-</script>
 
+    $("#update_harga_form").submit(function(e) {
+        e.preventDefault();
+        let bulan = $("#bulan_data").val();
+
+        $.ajax({
+            url: '/admin/harga_mitra/update_harga',
+            method: 'post',
+            dataType: 'JSON',
+            data: {
+                bulan: bulan,
+            },
+            beforeSend: function() {
+                $('.update').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
+                $('.update').prop('disabled', true);
+            },
+            success: function(response) {
+                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Update Upah Peserta');
+                $('.update').prop('disabled', false);
+                if (response.error) {
+
+                    if (response.error.bulan) {
+                        $("#bulan_data").addClass('is-invalid');
+                        $(".error-bulan-data").html(response.error.bulan);
+                    } else {
+                        $("#bulan_data").removeClass('is-invalid');
+                        $(".error-bulan-data").html('');
+                    }
+
+                    if (response.error.data) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `${response.error.data}`,
+                        });
+                    }
+
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: `${response.success}`,
+                    });
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000)
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: `Data Belum Tersimpan!`,
+                });
+                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
+                $('.update').prop('disabled', false);
+            }
+        });
+    })
 </script>
 
 <?= $this->endSection(); ?>

@@ -145,6 +145,7 @@ $routes->group('admin', static function ($routes) {
     $routes->post('harga_mitra/update', 'Admin\HargaMitraController::update');
     $routes->post('harga_mitra/delete', 'Admin\HargaMitraController::delete');
     $routes->get('harga_mitra/getPesertaDidik', 'Admin\HargaMitraController::getPesertaDidik');
+    $routes->post('harga_mitra/update_harga', 'Admin\HargaMitraController::update_harga');
 
     $routes->get('status_murid', 'Admin\StatusMuridController::index');
     $routes->post('status_murid/insert', 'Admin\StatusMuridController::insert');

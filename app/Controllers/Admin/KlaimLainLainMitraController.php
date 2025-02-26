@@ -82,8 +82,7 @@ class KlaimLainLainMitraController extends BaseController
                     $data_lain_lain = $this->klaimLainLainModel->where(["mitra_pengajar_id" => $mitra_pengajar->id])->orderBy('id')->get()->getRowObject();
 
                     if ($data_lain_lain != null) {
-
-                        $data_lain_lain_berdasarkan_bulan = $this->klaimLainLainModel->where(["mitra_pengajar_id" => $data_lain_lain])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->get()->getRowObject();
+                        $data_lain_lain_berdasarkan_bulan = $this->klaimLainLainModel->where(["mitra_pengajar_id" => $data_lain_lain->mitra_pengajar_id])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->get()->getRowObject();
 
                         if ($data_lain_lain_berdasarkan_bulan == null) {
                             $this->klaimLainLainModel->save([
@@ -103,6 +102,7 @@ class KlaimLainLainMitraController extends BaseController
                             ];
                         }
                     } elseif ($data_lain_lain == null) {
+
                         $data_lain_lain_berdasarkan_bulan = $this->klaimLainLainModel->where(["mitra_pengajar_id" => $data_lain_lain])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->get()->getRowObject();
 
                         if ($data_lain_lain_berdasarkan_bulan == null) {
