@@ -61,8 +61,8 @@
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Harga Presensi</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Harga Booster</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Media Belajar (Opsional)</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain (Opsional)</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Media Belajar</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Link</th>
                                     </tr>
@@ -73,7 +73,8 @@
                                     <tr>
                                         <th colspan="2" style="text-align: center;">JUMLAH :</th>
                                         <th colspan="1" class="total_anak" style="text-align: center;">0</th>
-                                        <th colspan="6" style="text-align: center;">TOTAL PEMASUKAN :</th>
+                                        <th colspan="1" class="total_presensi_perbulan" style="text-align: center;">0</th>
+                                        <th colspan="5" style="text-align: center;">TOTAL PEMASUKAN :</th>
                                         <th colspan="2" id="total_pemasukan" style="text-align: left;">Rp. 0 </th>
 
                                     </tr>
@@ -190,6 +191,7 @@
                                 $(".table_invoice").html(table_invoice_data);
                                 $("#total_pemasukan").html('oke');
                                 $(".total_anak").html(response.total_anak_aktif);
+                                $(".total_presensi_perbulan").html(response.total_presensi_perbulan);
                             } else {
                                 let no = 1;
                                 let table_invoice_data = ``;

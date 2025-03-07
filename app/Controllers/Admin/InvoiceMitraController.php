@@ -98,26 +98,18 @@ class InvoiceMitraController extends BaseController
                 $inputan_bulan = intval($data_bulan[1]);
                 $inputan_tahun = intval($data_bulan[0]);
 
-                // DD($inputan_bulan);
-
                 $pengajar_data = $this->kelompokModel->getKelompokPengajar();
-
-
 
                 $data_presensi = [];
 
                 foreach ($pengajar_data as $mitra_pengajar) {
 
                     $presensi_data = $this->presensiModel->getInvoiceMitraData($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
-                    $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan);
-                    $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan);
+                    $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
+                    $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
                     $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
 
                     $media_belajar_anak = $this->klaimMediaPesertaModel->SumHargaMediaWithMitra($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
-
-                    // $jumlah_anak = $this->presensiModel->SumPesertaDidikPerbulan($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
-
-
 
                     foreach ($presensi_data as $data_peserta) {
 
@@ -154,7 +146,7 @@ class InvoiceMitraController extends BaseController
                         $data_presensi[] = [
                             'data_pengajar_id' => $data_peserta->id,
                             'mitra_pengajar_id' => $data_peserta->id,
-                            // 'jumlah_anak' => $data_peserta->jumlah_anak,
+                            'jumlah_anak' => $data_peserta->jumlah_anak,
                             'nama_lengkap' => $data_peserta->nama_lengkap,
                             'total_presensi' => intval($total_presensi),
                             'harga_mitra' => intval($harga_mitra),
@@ -168,15 +160,23 @@ class InvoiceMitraController extends BaseController
 
 
 
-                $total_anak_aktif = $this->kelompokBelajarModel->sumTotalAnak();
-
+                $total_data = $this->presensiModel->sumTotalAnak($inputan_bulan, $inputan_tahun);
 
                 // $total_harga = $this->presensiModel->SumHargaPresensi($bulan, $tahun);
                 // dd($total_harga);
                 // $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($bulan, $tahun);
 
+                if ($total_data->total_anak == null) {
+                    $total_anak = intval(0);
+                } else {
+                    $total_anak =  intval($total_data->total_anak);
+                }
 
-
+                if ($total_data->total_presensi_perbulan == null) {
+                    $total_presensi_perbulan = intval(0);
+                } else {
+                    $total_presensi_perbulan = intval($total_data->total_presensi_perbulan);
+                }
                 // if ($total_harga->total_harga == null) {
                 //     $total_bayar = "0";
                 // } else {
@@ -200,9 +200,8 @@ class InvoiceMitraController extends BaseController
 
                 $alert = [
                     'data_presensi' => $data_presensi,
-                    'total_anak_aktif' => $total_anak_aktif->total_anak,
-                    // 'jumlah_anak' => $jumlah_anak
-
+                    'total_anak_aktif' => $total_anak,
+                    'total_presensi_perbulan' => $total_presensi_perbulan
                 ];
             }
 

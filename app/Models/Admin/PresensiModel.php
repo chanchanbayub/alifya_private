@@ -93,7 +93,7 @@ class PresensiModel extends Model
             ->get()->getResultObject();
     }
 
-    public function getInvoiceMitraWithMonthSum($mitra_pengajar_id, $bulan)
+    public function getInvoiceMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun)
     {
         return $this->table($this->table)
             ->select('sum(harga_mitra_table.harga_mitra) as total')
@@ -104,12 +104,14 @@ class PresensiModel extends Model
             // ->join('harga_mitra_table', 'presensi_table.mitra_pengajar_id = harga_mitra_table.mitra_pengajar_id ')
             ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
+
 
             ->orderBy('data_murid_table.nama_lengkap_anak asc')
             ->get()->getRowObject();
     }
 
-    public function getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan)
+    public function getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun)
     {
         return $this->table($this->table)
             ->select('sum(harga_mitra_table.booster_media) as total_media')
@@ -120,6 +122,8 @@ class PresensiModel extends Model
             // ->join('harga_mitra_table', 'presensi_table.mitra_pengajar_id = harga_mitra_table.mitra_pengajar_id ')
             ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
+
             ->orderBy('data_murid_table.nama_lengkap_anak asc')
             ->get()->getRowObject();
     }
@@ -207,7 +211,7 @@ class PresensiModel extends Model
     public function getInvoiceMitraData($mitra_pengajar_id, $bulan, $tahun)
     {
         return $this->table($this->table)
-            ->select("data_pengajar_table.id, COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi, kelompok_table.mitra_pengajar_id, data_pengajar_table.nama_lengkap")
+            ->select("data_pengajar_table.id, COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi, kelompok_table.mitra_pengajar_id, data_pengajar_table.nama_lengkap, COUNT(DISTINCT(presensi_table.peserta_didik_id)) as jumlah_anak")
             ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
             ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
@@ -235,5 +239,18 @@ class PresensiModel extends Model
             ->where(['media_belajar_anak_table.tahun' => $tahun])
             ->orderBy('data_pengajar_table.nama_lengkap desc')
             ->get()->getResultObject();
+    }
+
+    public function SumTotalAnak($bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi_perbulan, COUNT(DISTINCT(presensi_table.peserta_didik_id)) as total_anak")
+            ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
+            ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
+            ->orderBy('data_pengajar_table.nama_lengkap desc')
+            ->get()->getRowObject();
     }
 }
