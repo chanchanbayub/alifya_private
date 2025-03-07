@@ -202,7 +202,8 @@ $routes->group('admin', static function ($routes) {
     $routes->get('invoice/getHargaPeserta', 'Admin\InvoiceController::getHargaPeserta');
 
     $routes->get('invoice_mitra', 'Admin\InvoiceMitraController::index');
-    $routes->post('invoice_mitra/cek_invoice', 'Admin\InvoiceMitraController::cek_invoice');
+    // $routes->post('invoice_mitra/cek_invoice', 'Admin\InvoiceMitraController::cek_invoice');
+    $routes->post('invoice_mitra/cek_invoice', 'Admin\InvoiceMitraController::getInvoiceMitra');
     $routes->get('invoice_mitra/getPesertaDidik', 'Admin\InvoiceMitraController::getPesertaDidik');
 
     // invoice orang tua

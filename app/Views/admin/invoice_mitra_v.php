@@ -29,66 +29,71 @@
                             <form class="row g-3 text-capitalize" id="cek_invoice">
                                 <!-- action="invoice_mitra/pdf" -->
                                 <?= csrf_field(); ?>
-                                <div class="col-md-4">
-                                    <label for="mitra_pengajar_id" class="form-label">Pilih Mitra Pengajar :</label>
-                                    <select name="mitra_pengajar_id" id="mitra_pengajar_id" class="form-control">
-                                        <option value="">--Silahkan Pilih--</option>
-                                        <?php foreach ($mitra_pengajar as $mitra_pengajar) : ?>
-                                            <option value="<?= $mitra_pengajar->mitra_pengajar_id ?>"> <?= $mitra_pengajar->nama_lengkap ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <div class="invalid-feedback error-mitra-pengajar">
-                                    </div>
-                                </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <label for="bulan" class="form-label">Pilih Bulan :</label>
-                                    <select name="bulan" id="bulan" class="form-control">
-                                        <option value="">--Silahkan Pilih--</option>
-                                        <option value="1">Januari</option>
-                                        <option value="2">Februari</option>
-                                        <option value="3">Maret</option>
-                                        <option value="4">April</option>
-                                        <option value="5">Mei</option>
-                                        <option value="6">Juni</option>
-                                        <option value="7">Juli</option>
-                                        <option value="8">Agustus</option>
-                                        <option value="9">September</option>
-                                        <option value="10">Oktober</option>
-                                        <option value="11">November</option>
-                                        <option value="12">Desember</option>
-                                    </select>
+                                    <input type="month" name="bulan" id="bulan" class="form-control">
+
                                     <div class="invalid-feedback error-bulan">
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <label for="lain_lain" class="form-label">Lain-Lain :</label>
-                                    <input type="number" name="lain_lain" id="lain_lain" class="form-control" placeholder=" cth : 10000">
-                                    <div class="invalid-feedback error-lain-lain">
-                                    </div>
-                                </div>
-
                                 <div class="col-md-6">
-                                    <button class="btn btn-outline-primary" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cek Invoice</button>
+                                    <button class="btn btn-outline-primary search" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cek Invoice</button>
                                 </div>
                             </form>
                             <!-- End Browser Default Validation -->
                         </div>
                     </div>
                 </div><!-- End Recent Sales -->
+
+                <div class="col-md-12">
+                    <div class="card recent-sales overflow-auto">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Rekap Invoice Mitra Bulan Tersebut <span>| Table </span></h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">No</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Mitra Pengajar</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Anak Aktif</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Harga Presensi</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Harga Booster</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Media Belajar (Opsional)</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain (Opsional)</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Link</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table_invoice">
+
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="2" style="text-align: center;">JUMLAH :</th>
+                                        <th colspan="1" class="total_anak" style="text-align: center;">0</th>
+                                        <th colspan="6" style="text-align: center;">TOTAL PEMASUKAN :</th>
+                                        <th colspan="2" id="total_pemasukan" style="text-align: left;">Rp. 0 </th>
+
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div><!-- End Left side columns -->
+    </div><!-- End Left side columns
 </section>
 
 <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Launch demo modal
 </button> -->
 
-<!-- Modal -->
-<div class="modal fade" id="invoice_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal -->
+    <!-- <div class="modal fade" id="invoice_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -114,102 +119,99 @@
 
         </div>
     </div>
-</div>
+</div> -->
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function(e) {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(e) {
 
-        const rupiah = (number) => {
-            return new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR"
-            }).format(number);
-        }
+            const rupiah = (number) => {
+                return new Intl.NumberFormat("id-ID", {
+                    style: "currency",
+                    currency: "IDR"
+                }).format(number);
+            }
 
-        $('#mitra_pengajar_id').select2({
-            theme: 'bootstrap-5',
-        });
-
-        $('#bulan').select2({
-            theme: 'bootstrap-5',
-        });
-
-        $('#harga').select2({
-            theme: 'bootstrap-5',
-        });
-
-        $("#cek_invoice").submit(function(e) {
-            e.preventDefault();
-            let mitra_pengajar_id = $("#mitra_pengajar_id").val();
-            let bulan = $("#bulan").val();
-            let lain_lain = $("#lain_lain").val();
-
-            $.ajax({
-                url: 'invoice_mitra/cek_invoice',
-                method: 'post',
-                dataType: 'JSON',
-                data: {
-                    mitra_pengajar_id: mitra_pengajar_id,
-                    bulan: bulan,
-                    lain_lain: lain_lain
-                },
-                beforeSend: function() {
-                    $('.save').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
-                    $('.save').prop('disabled', true);
-                },
-                success: function(response) {
-
-                    // console.log(response);
-                    $('.save').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
-                    $('.save').prop('disabled', false);
-                    if (response.error) {
-                        if (response.error.mitra_pengajar_id) {
-                            $("#mitra_pengajar_id").addClass('is-invalid');
-                            $(".error-mitra-pengajar").html(response.error.mitra_pengajar_id);
-                        } else {
-                            $("#mitra_pengajar_id").removeClass('is-invalid');
-                            $(".error-mitra-pengajar").html('');
-                        }
-                        if (response.error.bulan) {
-                            $("#bulan").addClass('is-invalid');
-                            $(".error-bulan").html(response.error.bulan);
-                        } else {
-                            $("#bulan").removeClass('is-invalid');
-                            $(".error-bulan").html('');
-                        }
-                        if (response.error.lain_lain) {
-                            $("#lain_lain").addClass('is-invalid');
-                            $(".error-lain-lain").html(response.error.lain_lain);
-                        } else {
-                            $("#lain_lain").removeClass('is-invalid');
-                            $(".error-lain-lain").html('');
-                        }
-                    } else {
-                        $("#invoice_modal").modal('show');
-                        let table_data = `<tr>
-                        <td>1. </td>
-                        <td>${response.media_belajar.nama_lengkap} </td>
-                        <td>${response.jumlah_pertemuan} Kali </td>
-                        <td>${rupiah(response.media_belajar.harga_media)} </td>
-                        <td> <a href="invoice_mitra/pdf/${response.media_belajar.mitra_pengajar_id}/${response.media_belajar.bulan_media}" class="btn btn-primary btn-sm" target="_blank" id="cetak">Cetak Invoice</a> </td>
-                        </tr>`;
-
-                        $("#data").html(table_data);
-
-                    }
-                },
-                error: function() {
-                    Swal.fire({
-                        icon: 'error',
-                        title: `Data Belum Tersimpan!`,
-                    });
-                    $('.save').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
-                    $('.save').prop('disabled', false);
-                }
+            $('#mitra_pengajar_id').select2({
+                theme: 'bootstrap-5',
             });
-        })
-    });
-</script>
 
-<?= $this->endSection(); ?>
+            $('#harga').select2({
+                theme: 'bootstrap-5',
+            });
+
+            $("#cek_invoice").submit(function(e) {
+                e.preventDefault();
+                let bulan = $("#bulan").val();
+
+                $.ajax({
+                    url: 'invoice_mitra/cek_invoice',
+                    method: 'post',
+                    dataType: 'JSON',
+                    data: {
+                        bulan: bulan,
+                    },
+                    beforeSend: function() {
+                        $('.search').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
+                        $('.search').prop('disabled', true);
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
+                        $('.search').prop('disabled', false);
+                        if (response.error) {
+
+                            if (response.error.bulan) {
+                                $("#bulan").addClass('is-invalid');
+                                $(".error-bulan").html(response.error.bulan);
+                            } else {
+                                $("#bulan").removeClass('is-invalid');
+                                $(".error-bulan").html('');
+                            }
+
+                        } else {
+                            let no = 1;
+                            let table_invoice_data = ``;
+                            if (response.data_presensi.length >= 1) {
+                                response.data_presensi.forEach(function(e) {
+                                    table_invoice_data += `<tr>
+                                <td>${no++}</td>
+                                <td>${e.nama_lengkap}</td>
+                                <td align="center">${e.jumlah_anak}</td>
+                                <td align="center">${e.total_presensi}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.harga_mitra)}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.booster_media)}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_media_belajar)}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_lain_lain)}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
+                                <td align="center">Link </td>
+                            </tr>`;
+                                });
+                                $(".table_invoice").html(table_invoice_data);
+                                $("#total_pemasukan").html('oke');
+                                $(".total_anak").html(response.total_anak_aktif);
+                            } else {
+                                let no = 1;
+                                let table_invoice_data = ``;
+                                table_invoice_data += `<tr>
+                                <td colspan="10"> Tidak Ada Data </td>
+                            </tr>`;
+
+                                $(".table_invoice").html(table_invoice_data);
+                            }
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `Data Belum Tersimpan!`,
+                        });
+                        $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
+                        $('.search').prop('disabled', false);
+                    }
+                });
+            })
+        });
+    </script>
+
+    <?= $this->endSection(); ?>

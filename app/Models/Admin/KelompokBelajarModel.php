@@ -36,6 +36,7 @@ class KelompokBelajarModel extends Model
             ->join('data_murid_table', 'data_murid_table.id = kelompok_belajar_table.peserta_didik_id')
             ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->where(["kelompok_belajar_table.kelompok_id" => $kelompok_id])
+            ->where(["data_murid_table.status_murid_id" => 1])
             ->orderBy('kelompok_belajar_table.id desc')
             ->get()->getResultObject();
     }
@@ -62,9 +63,22 @@ class KelompokBelajarModel extends Model
             ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = kelompok_belajar_table.peserta_didik_id')
             ->join('paket_belajar_table', 'paket_belajar_table.id = data_murid_table.paket_belajar_id')
-            // ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->where(["kelompok_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where(["data_murid_table.status_murid_id" => 1])
+            ->orderBy('kelompok_belajar_table.id desc')
+            ->get()->getRowObject();
+    }
 
+
+    public function sumTotalAnak()
+    {
+        return $this->table($this->table)
+            ->select("COUNT(kelompok_belajar_table.peserta_didik_id) as total_anak")
+            ->join('kelompok_table', 'kelompok_table.id = kelompok_belajar_table.kelompok_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
+            ->join('data_murid_table', 'data_murid_table.id = kelompok_belajar_table.peserta_didik_id')
+            // ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->orderBy('kelompok_belajar_table.id desc')
             ->get()->getRowObject();
     }

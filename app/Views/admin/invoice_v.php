@@ -21,17 +21,21 @@
                 <div class="col-md-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title">Export <?= $title ?></h5>
+                            <h5 class="card-title">Export & Filter <?= $title ?></h5>
                             <!-- Browser Default Validation -->
-                            <form class="row g-3 text-capitalize" action="export_excel" method="get">
+                            <!-- <form class="row g-3 text-capitalize" action="export_excel" method="get"> -->
+                            <form class="row g-3 text-capitalize" id="cek_data">
                                 <?= csrf_field(); ?>
                                 <div class="col-md-12">
                                     <label for="bulan" class="form-label">Pilih Bulan :</label>
-                                    <input type="month" name="bulan" id="bulan" class="form-control" required>
+                                    <input type="month" name="bulan" id="bulan" class="form-control">
+                                    <div class="invalid-feedback error-bulan">
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <button class="btn btn-outline-primary" id="cek_data" type="submit"> <i class="bi bi-file-excel"></i> Export Excel</button>
+                                    <button class="btn btn-success" id="search" type="submit"> <i class="bi bi-search"></i> Search</button>
+                                    <button class="btn btn-primary" id="cek_data" type="submit"> <i class="bi bi-file-excel"></i> Export Excel</button>
                                 </div>
                             </form>
                             <!-- End Browser Default Validation -->
@@ -60,38 +64,15 @@
                                 <th scope="col" style="text-transform: capitalize; text-align:center">Link</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php $no = 1; ?>
-                            <?php foreach ($data_presensi as $peserta_didik) : ?>
-                                <tr>
-                                    <td scope="col"><?= $no++ ?></td>
-                                    <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik["nama_lengkap"] ?></td>
-                                    <td scope="col" style="text-transform: capitalize;"><?= $peserta_didik["nama_lengkap_anak"] ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center"><?= $peserta_didik["total_presensi_perbulan"] ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= ($peserta_didik["harga"] == null ? "0" : number_format($peserta_didik["harga"])) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= ($peserta_didik["jumlah_upah"] == null ? "0" : number_format($peserta_didik["jumlah_upah"])) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= ($peserta_didik["media_belajar"] == null ? "0" : number_format($peserta_didik["media_belajar"])) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= ($peserta_didik["lain_lain"] == null ? "0" : number_format($peserta_didik["lain_lain"])) ?></td>
-                                    <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= ($peserta_didik["total_akhir"] == null ? "0" : number_format($peserta_didik["total_akhir"])) ?></td>
-                                    <?php if ($peserta_didik["mitra_pengajar_id"] == null) : ?>
-                                        <td scope="col" style="text-transform: capitalize; text-align:center">
-                                            <button target="_blank" class="btn btn-sm btn-outline-primary" disabled> Cetak Invoice</button>
-                                        </td>
-                                    <?php else : ?>
-                                        <td scope="col" style="text-transform: capitalize; text-align:center">
-                                            <a href="/admin/cetak_invoice/pdf/<?= $peserta_didik["mitra_pengajar_id"] ?>/<?= $peserta_didik["id"] ?>/<?= $peserta_didik["bulan"] ?>" target="_blank" class="btn btn-sm btn-outline-primary"> Cetak Invoice</a>
-                                        </td>
-                                    <?php endif; ?>
-                                </tr>
-                        </tbody>
-                    <?php endforeach; ?>
-                    <tfoot>
-                        <tr>
-                            <th colspan="8" style="text-align: center;">TOTAL PEMASUKAN :</th>
-                            <th colspan="2" style="text-align: left;">Rp. <?= number_format($total_pemasukan) ?> </th>
+                        <tbody id="table_invoice_peserta">
 
-                        </tr>
-                    </tfoot>
+                        <tfoot>
+                            <tr>
+                                <th colspan="8" style="text-align: center;">TOTAL PEMASUKAN :</th>
+                                <th colspan="2" id="total_pemasukan" style="text-align: left;">Rp. 0 </th>
+
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -100,6 +81,90 @@
 </section>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(e) {
 
+        const rupiah = (number) => {
+            return new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR"
+            }).format(number);
+        }
+
+        $('#mitra_pengajar_id').select2({
+            theme: 'bootstrap-5',
+        });
+
+        $('#harga').select2({
+            theme: 'bootstrap-5',
+        });
+
+        $("#cek_data").submit(function(e) {
+            e.preventDefault();
+
+            let bulan = $("#bulan").val();
+
+            $.ajax({
+                url: '/admin/invoice/cek_invoice',
+                method: 'post',
+                dataType: 'JSON',
+                data: {
+                    bulan: bulan,
+                },
+                beforeSend: function() {
+                    $('.search').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
+                    $('.search').prop('disabled', true);
+                },
+                success: function(response) {
+                    console.log(response);
+                    $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
+                    $('.search').prop('disabled', false);
+                    if (response.error) {
+
+                        if (response.error.bulan) {
+                            $("#bulan").addClass('is-invalid');
+                            $(".error-bulan").html(response.error.bulan);
+                        } else {
+                            $("#bulan").removeClass('is-invalid');
+                            $(".error-bulan").html('');
+                        }
+
+                    } else {
+                        let no = 1;
+                        let table_invoice_data = ``;
+                        if (response.data_presensi.length >= 1) {
+                            response.data_presensi.forEach(function(e) {
+                                table_invoice_data += `<tr>
+                                <td>${no++}</td>
+                                <td>${e.nama_lengkap}</td>
+                                <td>${e.nama_lengkap_anak}</td>
+                                <td align="center">${e.total_presensi_perbulan}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.harga)}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.jumlah_upah)}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.media_belajar)}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.lain_lain)}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
+                                <td align="center"><a href="/admin/cetak_invoice/pdf/${e.mitra_pengajar_id}/${e.id}/${e.bulan}" data-id="${e.mitra_pengajar_id}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td >
+                                    </tr>`;
+                            });
+                            $("#table_invoice_peserta").html(table_invoice_data);
+                            $("#total_pemasukan").html(`Rp. ${new Intl.NumberFormat().format(response.total_pemasukan)}`);
+
+
+                        }
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: `Data Belum Tersimpan!`,
+                    });
+                    $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
+                    $('.search').prop('disabled', false);
+                }
+            });
+        })
+    });
+</script>
 
 <?= $this->endSection(); ?>

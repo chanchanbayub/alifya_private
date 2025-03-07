@@ -68,4 +68,18 @@ class KlaimMediaPesertaModel extends Model
             ->where(['media_belajar_anak_table.tahun' => $tahun])
             ->get()->getRowObject();
     }
+
+    public function SumHargaMediaWithMitra($mitra_pengajar_id, $bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("data_murid_table.nama_lengkap_anak, SUM(media_belajar_anak_table.harga_media) as total_harga_media")
+            ->join('kelompok_belajar_table', 'kelompok_belajar_table.peserta_didik_id = media_belajar_anak_table.peserta_didik_id')
+            ->join('kelompok_table', 'kelompok_table.id = kelompok_belajar_table.kelompok_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
+            ->join('data_murid_table', 'data_murid_table.id = media_belajar_anak_table.peserta_didik_id')
+            ->where(["data_pengajar_table.id" => $mitra_pengajar_id])
+            ->where(['media_belajar_anak_table.bulan' => $bulan])
+            ->where(['media_belajar_anak_table.tahun' => $tahun])
+            ->get()->getRowObject();
+    }
 }

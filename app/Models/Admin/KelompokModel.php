@@ -22,7 +22,7 @@ class KelompokModel extends Model
         return $this->table($this->table)
             ->select("kelompok_table.id, kelompok_table.kelompok, kelompok_table.mitra_pengajar_id, data_pengajar_table.nama_lengkap")
             ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
-            ->orderBy('kelompok_table.id desc')
+            ->orderBy('data_pengajar_table.nama_lengkap asc')
             ->get()->getResultObject();
     }
 

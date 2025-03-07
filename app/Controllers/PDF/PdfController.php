@@ -168,8 +168,6 @@ class PdfController extends BaseController
 
         $jumlah_pertemuan = count($invoice);
 
-        // dd($total_media);
-
         $data = [
             'invoice' =>  $invoice,
             'mitra_pengajar' => $pengajar,
