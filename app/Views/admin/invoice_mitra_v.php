@@ -157,7 +157,6 @@ Button trigger modal -->
                     $('.search').prop('disabled', true);
                 },
                 success: function(response) {
-                    console.log(response);
                     $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
                     $('.search').prop('disabled', false);
                     if (response.error) {
