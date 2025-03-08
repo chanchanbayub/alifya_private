@@ -92,7 +92,6 @@ class InvoiceMitraController extends BaseController
 
                 $bulan = $this->request->getVar('bulan');
 
-
                 $data_bulan = explode("-", $bulan);
 
                 $inputan_bulan = intval($data_bulan[1]);
@@ -145,6 +144,8 @@ class InvoiceMitraController extends BaseController
 
                         $data_presensi[] = [
                             'data_pengajar_id' => $data_peserta->id,
+                            'bulan' => $inputan_bulan,
+                            'tahun' => $inputan_tahun,
                             'mitra_pengajar_id' => $data_peserta->id,
                             'jumlah_anak' => $data_peserta->jumlah_anak,
                             'nama_lengkap' => $data_peserta->nama_lengkap,
@@ -162,9 +163,12 @@ class InvoiceMitraController extends BaseController
 
                 $total_data = $this->presensiModel->sumTotalAnak($inputan_bulan, $inputan_tahun);
 
-                // $total_harga = $this->presensiModel->SumHargaPresensi($bulan, $tahun);
-                // dd($total_harga);
-                // $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($bulan, $tahun);
+                $total_harga_mitra = $this->presensiModel->SumHargaPresensiMitra($inputan_bulan, $inputan_tahun);
+
+                $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
+
+                $total_lain_lain_mitra = $this->klaimLainLainModel->SumLainLainPerbulan($inputan_bulan, $inputan_tahun);
+
 
                 if ($total_data->total_anak == null) {
                     $total_anak = intval(0);
@@ -177,17 +181,30 @@ class InvoiceMitraController extends BaseController
                 } else {
                     $total_presensi_perbulan = intval($total_data->total_presensi_perbulan);
                 }
-                // if ($total_harga->total_harga == null) {
-                //     $total_bayar = "0";
-                // } else {
-                //     $total_bayar = $total_harga->total_harga;
-                // }
 
-                // if ($total_harga_media->total_harga_media == null) {
-                //     $total_media = "0";
-                // } else {
-                //     $total_media = $total_harga_media->total_harga_media;
-                // }
+                if ($total_harga_mitra->total_harga_mitra == null) {
+                    $total_harga = intval(0);
+                } else {
+                    $total_harga = intval($total_harga_mitra->total_harga_mitra);
+                }
+
+                if ($total_harga_mitra->total_booster == null) {
+                    $total_booster = intval(0);
+                } else {
+                    $total_booster = intval($total_harga_mitra->total_booster);
+                }
+
+                if ($total_harga_media->total_harga_media == null) {
+                    $total_media = intval(0);
+                } else {
+                    $total_media = intval($total_harga_media->total_harga_media);
+                }
+
+                if ($total_lain_lain_mitra->total_lain_lain == null) {
+                    $total_lain_lain = intval(0);
+                } else {
+                    $total_lain_lain = intval($total_lain_lain_mitra->total_lain_lain);
+                }
 
                 // if ($total_harga_media->total_lain_lain == null) {
                 //     $total_lain_lain = "0";
@@ -197,11 +214,13 @@ class InvoiceMitraController extends BaseController
 
                 // $total_pemasukan = intval($total_bayar) + intval($total_media) + intval($total_lain_lain);
                 // dd($total_pemasukan);
+                $total_pemasukan = $total_harga + $total_booster + $total_media + $total_lain_lain;
 
                 $alert = [
                     'data_presensi' => $data_presensi,
                     'total_anak_aktif' => $total_anak,
-                    'total_presensi_perbulan' => $total_presensi_perbulan
+                    'total_presensi_perbulan' => $total_presensi_perbulan,
+                    'total_pemasukan' => $total_pemasukan
                 ];
             }
 

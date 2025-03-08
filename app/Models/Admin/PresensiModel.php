@@ -77,7 +77,7 @@ class PresensiModel extends Model
             ->get()->getResultObject();
     }
 
-    public function getInvoiceMitraWithMonth($mitra_pengajar_id, $bulan)
+    public function getInvoiceMitraWithMonth($mitra_pengajar_id, $bulan, $tahun)
     {
         return $this->table($this->table)
             ->select("presensi_table.id, presensi_table.mitra_pengajar_id ,presensi_table.tanggal_masuk, presensi_table.jam_masuk,  data_murid_table.nama_lengkap_anak, harga_mitra_table.harga_mitra, harga_mitra_table.booster_media")
@@ -88,6 +88,7 @@ class PresensiModel extends Model
             // ->join('harga_mitra_table', 'presensi_table.mitra_pengajar_id = harga_mitra_table.mitra_pengajar_id ')
             ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
 
             ->orderBy('data_murid_table.nama_lengkap_anak asc')
             ->get()->getResultObject();
@@ -195,16 +196,13 @@ class PresensiModel extends Model
     public function SumHargaPresensiMitra($bulan, $tahun)
     {
         return $this->table($this->table)
-            ->select("SUM(harga_mitra_table.harga_mitra) as total_harga")
+            ->select("SUM(harga_mitra_table.harga_mitra) as total_harga_mitra")
+            ->select("SUM(harga_mitra_table.booster_media) as total_booster")
             ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
-            ->join('harga_mitra_table', 'harga_mitra_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
-            ->join('media_belajar_anak_table', 'media_belajar_anak_table.peserta_didik_id = data_murid_table.id')
+            ->join('harga_mitra_table', 'harga_mitra_table.peserta_didik_id = data_murid_table.id', 'left')
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
-            ->where(['media_belajar_anak_table.bulan' => $bulan])
-            ->where(['media_belajar_anak_table.tahun' => $tahun])
-            ->where(['harga_mitra_table.bulan' => $bulan])
-            ->where(['harga_mitra_table.tahun' => $tahun])
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
             ->get()->getRowObject();
     }
 

@@ -74,8 +74,7 @@
                                         <th colspan="2" style="text-align: center;">JUMLAH :</th>
                                         <th colspan="1" class="total_anak" style="text-align: center;">0</th>
                                         <th colspan="1" class="total_presensi_perbulan" style="text-align: center;">0</th>
-                                        <th colspan="5" style="text-align: center;">TOTAL PEMASUKAN :</th>
-                                        <th colspan="2" id="total_pemasukan" style="text-align: left;">Rp. 0 </th>
+                                        <th colspan="6" style="text-align: center;" id="total_pemasukan">0</th>
 
                                     </tr>
                                 </tfoot>
@@ -85,16 +84,17 @@
                 </div>
             </div>
         </div>
-    </div><!-- End Left side columns
+    </div>
 </section>
+<!-- End Left side columns
 
-<!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Launch demo modal
 </button> -->
 
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="invoice_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal -->
+<!-- <div class="modal fade" id="invoice_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -122,60 +122,60 @@
     </div>
 </div> -->
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function(e) {
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(e) {
 
-            const rupiah = (number) => {
-                return new Intl.NumberFormat("id-ID", {
-                    style: "currency",
-                    currency: "IDR"
-                }).format(number);
-            }
+        const rupiah = (number) => {
+            return new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR"
+            }).format(number);
+        }
 
-            $('#mitra_pengajar_id').select2({
-                theme: 'bootstrap-5',
-            });
+        $('#mitra_pengajar_id').select2({
+            theme: 'bootstrap-5',
+        });
 
-            $('#harga').select2({
-                theme: 'bootstrap-5',
-            });
+        $('#harga').select2({
+            theme: 'bootstrap-5',
+        });
 
-            $("#cek_invoice").submit(function(e) {
-                e.preventDefault();
-                let bulan = $("#bulan").val();
+        $("#cek_invoice").submit(function(e) {
+            e.preventDefault();
+            let bulan = $("#bulan").val();
 
-                $.ajax({
-                    url: 'invoice_mitra/cek_invoice',
-                    method: 'post',
-                    dataType: 'JSON',
-                    data: {
-                        bulan: bulan,
-                    },
-                    beforeSend: function() {
-                        $('.search').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
-                        $('.search').prop('disabled', true);
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
-                        $('.search').prop('disabled', false);
-                        if (response.error) {
+            $.ajax({
+                url: 'invoice_mitra/cek_invoice',
+                method: 'post',
+                dataType: 'JSON',
+                data: {
+                    bulan: bulan,
+                },
+                beforeSend: function() {
+                    $('.search').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
+                    $('.search').prop('disabled', true);
+                },
+                success: function(response) {
+                    console.log(response);
+                    $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
+                    $('.search').prop('disabled', false);
+                    if (response.error) {
 
-                            if (response.error.bulan) {
-                                $("#bulan").addClass('is-invalid');
-                                $(".error-bulan").html(response.error.bulan);
-                            } else {
-                                $("#bulan").removeClass('is-invalid');
-                                $(".error-bulan").html('');
-                            }
-
+                        if (response.error.bulan) {
+                            $("#bulan").addClass('is-invalid');
+                            $(".error-bulan").html(response.error.bulan);
                         } else {
-                            let no = 1;
-                            let table_invoice_data = ``;
-                            if (response.data_presensi.length >= 1) {
-                                response.data_presensi.forEach(function(e) {
-                                    table_invoice_data += `<tr>
+                            $("#bulan").removeClass('is-invalid');
+                            $(".error-bulan").html('');
+                        }
+
+                    } else {
+                        let no = 1;
+                        let table_invoice_data = ``;
+                        if (response.data_presensi.length >= 1) {
+                            response.data_presensi.forEach(function(e) {
+                                table_invoice_data += `<tr>
                                 <td>${no++}</td>
                                 <td>${e.nama_lengkap}</td>
                                 <td align="center">${e.jumlah_anak}</td>
@@ -185,35 +185,35 @@
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_media_belajar)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_lain_lain)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
-                                <td align="center">Link </td>
+                                <td align="center"><a href="/admin/invoice_mitra/pdf/${e.mitra_pengajar_id}/${e.bulan}/${e.tahun}" data-id="${e.mitra_pengajar_id}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td> </td>
                             </tr>`;
-                                });
-                                $(".table_invoice").html(table_invoice_data);
-                                $("#total_pemasukan").html('oke');
-                                $(".total_anak").html(response.total_anak_aktif);
-                                $(".total_presensi_perbulan").html(response.total_presensi_perbulan);
-                            } else {
-                                let no = 1;
-                                let table_invoice_data = ``;
-                                table_invoice_data += `<tr>
+                            });
+                            $(".table_invoice").html(table_invoice_data);
+                            $("#total_pemasukan").html('Rp. ' + new Intl.NumberFormat().format(response.total_pemasukan));
+                            $(".total_anak").html(response.total_anak_aktif);
+                            $(".total_presensi_perbulan").html(response.total_presensi_perbulan);
+                        } else {
+                            let no = 1;
+                            let table_invoice_data = ``;
+                            table_invoice_data += `<tr>
                                 <td colspan="10"> Tidak Ada Data </td>
                             </tr>`;
 
-                                $(".table_invoice").html(table_invoice_data);
-                            }
+                            $(".table_invoice").html(table_invoice_data);
                         }
-                    },
-                    error: function() {
-                        Swal.fire({
-                            icon: 'error',
-                            title: `Data Belum Tersimpan!`,
-                        });
-                        $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
-                        $('.search').prop('disabled', false);
                     }
-                });
-            })
-        });
-    </script>
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: `Data Belum Tersimpan!`,
+                    });
+                    $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
+                    $('.search').prop('disabled', false);
+                }
+            });
+        })
+    });
+</script>
 
-    <?= $this->endSection(); ?>
+<?= $this->endSection(); ?>

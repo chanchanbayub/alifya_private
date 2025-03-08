@@ -207,7 +207,7 @@ $routes->group('admin', static function ($routes) {
     $routes->get('invoice_mitra/getPesertaDidik', 'Admin\InvoiceMitraController::getPesertaDidik');
 
     // invoice orang tua
-    $routes->get('cetak_invoice/pdf', 'PDF\PdfController::index');
+    // $routes->get('cetak_invoice/pdf', 'PDF\PdfController::index');
     $routes->get('cetak_invoice/pdf/(:any)', 'PDF\PdfController::invoice_peserta_didik/$1');
     // invoice mitra
     $routes->get('invoice_mitra/pdf/(:any)', 'PDF\PdfController::mitra/$1');

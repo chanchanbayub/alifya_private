@@ -22,6 +22,8 @@ class KelompokModel extends Model
         return $this->table($this->table)
             ->select("kelompok_table.id, kelompok_table.kelompok, kelompok_table.mitra_pengajar_id, data_pengajar_table.nama_lengkap")
             ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
+            ->join('status_pengajar_table', 'status_pengajar_table.id = data_pengajar_table.status_id')
+            ->where(["data_pengajar_table.status_id" => 1])
             ->orderBy('data_pengajar_table.nama_lengkap asc')
             ->get()->getResultObject();
     }

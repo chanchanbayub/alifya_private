@@ -5,6 +5,8 @@ namespace App\Controllers\PDF;
 use App\Controllers\BaseController;
 use App\Models\Admin\HargaMitraModel;
 use App\Models\Admin\HargaModel;
+use App\Models\Admin\KlaimLainLainMitraModel;
+use App\Models\Admin\KlaimMediaPesertaModel;
 use App\Models\Admin\MediaBelajarModel;
 use App\Models\Admin\MuridModel;
 use App\Models\Admin\PengajarModel;
@@ -20,6 +22,8 @@ class PdfController extends BaseController
     protected $hargaMitraModel;
     protected $muridModel;
     protected $mediaBelajarModel;
+    protected $klaimLainLainModel;
+    protected $klaimMediaPesertaModel;
 
     public function __construct()
     {
@@ -30,51 +34,9 @@ class PdfController extends BaseController
         $this->hargaMitraModel = new HargaMitraModel();
         $this->mediaBelajarModel = new MediaBelajarModel();
         $this->muridModel = new MuridModel();
+        $this->klaimLainLainModel = new KlaimLainLainMitraModel();
+        $this->klaimMediaPesertaModel = new KlaimMediaPesertaModel();
     }
-
-    // public function index()
-    // {
-    //     $this->mpdf->showImageErrors = true;
-    //     $mitra_pengajar_id = $this->request->getVar('mitra_pengajar_id');
-    //     $peserta_didik = $this->request->getVar('peserta_didik_id');
-    //     $bulan = $this->request->getVar('bulan');
-    //     $media_belajar = $this->request->getVar('media_belajar');
-
-
-    //     $harga = $this->hargaModel->where(["peserta_didik_id" => $peserta_didik])->get()->getRowObject();
-
-    //     $this->hargaModel->update($harga->id, [
-    //         'media_belajar' => $media_belajar
-    //     ]);
-    //     // $this->hargaModel->update()
-    //     helper(['format']);
-
-    //     $invoice = $this->presensiModel->getPresensiWithMonth($mitra_pengajar_id, $bulan, $peserta_didik);
-    //     $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
-
-    //     $harga_perjam = $this->hargaModel->getHargaPerbulan($peserta_didik);
-
-    //     $total = count($invoice);
-
-    //     $peserta_didik_data = $this->muridModel->where(["id" => $peserta_didik])->get()->getRowObject();
-    //     $jumlah_pertemuan = count($invoice);
-
-    //     $data = [
-    //         'invoice' =>  $invoice,
-    //         'mitra_pengajar' => $pengajar,
-    //         'peserta_didik' => $peserta_didik_data->nama_lengkap_anak,
-    //         'harga' => $harga_perjam->harga,
-    //         'media_belajar' => $harga_perjam->media_belajar,
-    //         'jumlah_pertemuan' => $jumlah_pertemuan,
-    //         'total' => $total,
-    //     ];
-
-    //     $html = view('pdf/invoice_pdf', $data);
-    //     $this->mpdf->WriteHTML($html);
-
-    //     $this->response->setHeader('Content-Type', 'application/pdf');;
-    //     $this->mpdf->output('Invoice-' . $peserta_didik_data->nama_lengkap_anak . '.pdf', 'I');
-    // }
 
     public function invoice_peserta_didik($mitra_pengajar_id, $peserta_didik_id, $bulan)
     {
@@ -85,12 +47,9 @@ class PdfController extends BaseController
         $mitra = $this->pengajarModel->where(["id" => $mitra_pengajar_id])->get()->getRowObject();
         $peserta = $this->muridModel->where(["id" => $peserta_didik_id])->get()->getRowObject();
 
-
-
         if ($mitra == null || $peserta == null || $bulan == null) {
             return redirect()->back();
         }
-
 
         $mitra_data = $mitra->id;
         $peserta_data = $peserta->id;
@@ -133,7 +92,7 @@ class PdfController extends BaseController
 
 
 
-    public function mitra($mitra_pengajar_id, $bulan)
+    public function mitra($mitra_pengajar_id, $bulan, $tahun)
     {
 
         $this->mpdf->showImageErrors = true;
@@ -142,46 +101,75 @@ class PdfController extends BaseController
 
         $bulan = $bulan;
 
+        $tahun = $tahun;
+
+
         helper(['format']);
 
-        $invoice = $this->presensiModel->getInvoiceMitraWithMonth($mitra_pengajar_id, $bulan);
+        $invoice = $this->presensiModel->getInvoiceMitraWithMonth($mitra_pengajar_id, $bulan, $tahun);
 
-        if ($invoice == null) {
+        // dd($invoice);
+
+        if (count($invoice) == 0) {
 
             $error = [
                 'error' => 'Data Tidak Ditemukan!'
             ];
+
             session()->setFlashdata($error);
             return redirect()->back()->withInput($error);
+        } else {
+
+            $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
+
+            $total = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun);
+
+            $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun);
+
+            $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar_id, $bulan, $tahun);
+
+            $media_belajar_anak = $this->klaimMediaPesertaModel->SumHargaMediaWithMitra($mitra_pengajar_id, $bulan, $tahun);
+
+            if ($total->total == null) {
+                $total = intval(0);
+            } else {
+                $total = intval($total->total);
+            }
+
+            if ($booster_media->total_media == null) {
+                $total_media = intval(0);
+            } else {
+                $total_media = intval($booster_media->total_media);
+            }
+
+            if ($lain_lain->total_lain_lain == null) {
+                $total_lain_lain = intval(0);
+            } else {
+                $total_lain_lain = intval($lain_lain->total_lain_lain);
+            }
+
+            if ($media_belajar_anak->total_harga_media == null) {
+                $total_harga_media = intval(0);
+            } else {
+                $total_harga_media = intval($media_belajar_anak->total_harga_media);
+            }
+
+
+            $data = [
+                'invoice' =>  $invoice,
+                'mitra_pengajar' => $pengajar,
+                'total' => $total,
+                'booster_media' => $total_media,
+                'lain_lain' => $total_lain_lain,
+                'media_belajar' => $total_harga_media,
+
+            ];
+
+            $html = view('pdf/invoice_mitra_pdf', $data);
+            $this->mpdf->WriteHTML($html);
+
+            $this->response->setHeader('Content-Type', 'application/pdf');;
+            $this->mpdf->output('Invoice-' . $pengajar->nama_lengkap  . '.pdf', 'I');
         }
-
-        $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
-
-        $harga = $this->hargaMitraModel->getInvoiceData($mitra_pengajar_id);
-        // dd($harga);
-
-        $media_belajar = $this->mediaBelajarModel->getMediaBelajar($mitra_pengajar_id, $bulan);
-
-        $total = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar_id, $bulan);
-
-        $media_pengajar = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan);
-
-        $jumlah_pertemuan = count($invoice);
-
-        $data = [
-            'invoice' =>  $invoice,
-            'mitra_pengajar' => $pengajar,
-            'harga' => $harga,
-            'total' => $total,
-            'media_pengajar' => $media_pengajar,
-            'media_belajar' => $media_belajar,
-            'jumlah_pertemuan' => $jumlah_pertemuan
-        ];
-
-        $html = view('pdf/invoice_mitra_pdf', $data);
-        $this->mpdf->WriteHTML($html);
-
-        $this->response->setHeader('Content-Type', 'application/pdf');;
-        $this->mpdf->output('Invoice-' . $pengajar->nama_lengkap  . '.pdf', 'I');
     }
 }

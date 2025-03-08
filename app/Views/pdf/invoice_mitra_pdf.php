@@ -96,19 +96,23 @@
             <tfoot>
                 <tr>
                     <th colspan="3">Jumlah Pertemuan</th>
-                    <th>Rp. <?= number_format($total->total) ?></th>
+                    <th>Rp. <?= number_format($total) ?></th>
                 </tr>
                 <tr>
                     <th colspan="3">Media Belajar</th>
-                    <th>Rp. <?= number_format($media_pengajar->total_media) ?></th>
+                    <th>Rp. <?= number_format($media_belajar) ?></th>
                 </tr>
                 <tr>
                     <th colspan="3">Lain-Lain</th>
-                    <th>Rp. <?= number_format($media_belajar->harga_media) ?></th>
+                    <th>Rp. <?= number_format($lain_lain) ?></th>
+                </tr>
+                <tr>
+                    <th colspan="3">Booster Media</th>
+                    <th>Rp. <?= number_format($booster_media) ?></th>
                 </tr>
                 <tr>
                     <th colspan="3">Total Pembayaran</th>
-                    <th>Rp. <?= number_format($total->total + $media_belajar->harga_media + $media_pengajar->total_media) ?></th>
+                    <th>Rp. <?= number_format($total + $media_belajar + $lain_lain + $booster_media) ?></th>
                 </tr>
 
                 <tr>
