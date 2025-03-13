@@ -233,7 +233,7 @@ class InvoiceController extends BaseController
                             'mitra_pengajar_id' => $data_anak->mitra_pengajar_id,
                             'bulan' => $data_peserta->bulan,
                             'nama_lengkap' => $data_anak->nama_lengkap,
-                            'nama_lengkap_anak' => $data_peserta->nama_lengkap_anak,
+                            'nama_lengkap_anak' => $data_anak->nama_lengkap_anak,
                             'total_presensi_perbulan' => intval($total_presensi_perbulan),
                             'harga' =>  intval($harga),
                             'jumlah_upah' => intval($harga) * intval($total_presensi_perbulan),
