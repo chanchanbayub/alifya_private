@@ -35,7 +35,7 @@
 
                                 <div class="col-md-6">
                                     <button class="btn btn-success" id="search" type="submit"> <i class="bi bi-search"></i> Search</button>
-                                    <button class="btn btn-primary" id="cek_data" type="submit"> <i class="bi bi-file-excel"></i> Export Excel</button>
+                                    <button class="btn btn-primary" id="export"> <i class="bi bi-file-excel"></i> Export Excel</button>
                                 </div>
                             </form>
                             <!-- End Browser Default Validation -->
@@ -48,7 +48,7 @@
             <div class="card recent-sales overflow-auto">
 
                 <div class="card-body">
-                    <h5 class="card-title">Rekap Peserta Didik Bulan <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> <span>| Table </span></h5>
+                    <h5 class="card-title">Rekap Peserta Didik Bulan Tersebut <span>| Table </span></h5>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -68,8 +68,9 @@
 
                         <tfoot>
                             <tr>
-                                <th colspan="8" style="text-align: center;">TOTAL PEMASUKAN :</th>
-                                <th colspan="2" id="total_pemasukan" style="text-align: left;">Rp. 0 </th>
+                                <th colspan="3" style="text-align: center;">Jumlah :</th>
+                                <th class="total_presensi_perbulan" style="text-align: center;">0</th>
+                                <th colspan="6" id="total_pemasukan" style="text-align: center;">Rp. 0 </th>
 
                             </tr>
                         </tfoot>
@@ -101,9 +102,7 @@
 
         $("#cek_data").submit(function(e) {
             e.preventDefault();
-
             let bulan = $("#bulan").val();
-
             $.ajax({
                 url: '/admin/invoice/cek_invoice',
                 method: 'post',
@@ -149,6 +148,7 @@
                             });
                             $("#table_invoice_peserta").html(table_invoice_data);
                             $("#total_pemasukan").html(`Rp. ${new Intl.NumberFormat().format(response.total_pemasukan)}`);
+                            $(".total_presensi_perbulan").html(`${response.total_presensi_perbulan}`);
 
 
                         }

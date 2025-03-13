@@ -201,6 +201,7 @@ class InvoiceController extends BaseController
                 foreach ($peserta_didik as $data_anak) {
 
                     $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $inputan_bulan, $inputan_tahun);
+
                     foreach ($presensi_data as $data_peserta) {
 
                         if ($data_peserta->harga == null) {
@@ -229,9 +230,9 @@ class InvoiceController extends BaseController
 
                         $data_presensi[] = [
                             'id' => $data_peserta->id,
-                            'mitra_pengajar_id' => $data_peserta->mitra_pengajar_id,
+                            'mitra_pengajar_id' => $data_anak->mitra_pengajar_id,
                             'bulan' => $data_peserta->bulan,
-                            'nama_lengkap' => $data_peserta->nama_lengkap,
+                            'nama_lengkap' => $data_anak->nama_lengkap,
                             'nama_lengkap_anak' => $data_peserta->nama_lengkap_anak,
                             'total_presensi_perbulan' => intval($total_presensi_perbulan),
                             'harga' =>  intval($harga),
@@ -243,7 +244,7 @@ class InvoiceController extends BaseController
                     }
                 }
 
-
+                $total_data = $this->presensiModel->sumTotalAnak($inputan_bulan, $inputan_tahun);
                 $total_harga = $this->presensiModel->SumHargaPresensi($inputan_bulan, $inputan_tahun);
                 $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
 
@@ -265,13 +266,19 @@ class InvoiceController extends BaseController
                     $total_lain_lain = $total_harga_media->total_lain_lain;
                 }
 
+                if ($total_data->total_presensi_perbulan == null) {
+                    $total_presensi_perbulan = intval(0);
+                } else {
+                    $total_presensi_perbulan = intval($total_data->total_presensi_perbulan);
+                }
+
                 $total_pemasukan = intval($total_bayar) + intval($total_media) + intval($total_lain_lain);
 
                 $alert = [
                     'data_presensi' => $data_presensi,
                     'title' => 'Invoice Peserta Didik',
                     'total_pemasukan' => $total_pemasukan,
-                    'jumlah_data_presensi' => count($data_presensi)
+                    'total_presensi_perbulan' => $total_presensi_perbulan
                 ];
             }
         }

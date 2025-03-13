@@ -146,7 +146,7 @@ Button trigger modal -->
             let bulan = $("#bulan").val();
 
             $.ajax({
-                url: 'invoice_mitra/cek_invoice',
+                url: '/admin/invoice_mitra/cek_invoice',
                 method: 'post',
                 dataType: 'JSON',
                 data: {
