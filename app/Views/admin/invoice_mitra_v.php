@@ -86,41 +86,10 @@
         </div>
     </div>
 </section>
-<!-- End Left side columns
+<!-- End Left side columns -->
 
-Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-</button> -->
 
-<!-- Modal -->
-<!-- <div class="modal fade" id="invoice_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Invoice Mitra Pengajar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Mitra Pengajar</th>
-                            <th scope="col">Jumlah Pertemuan</th>
-                            <th scope="col">Lain-Lain</th>
-                            <th scope="col">Cetak Invoice</th>
-                        </tr>
-                    </thead>
-                    <tbody id="data">
-
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-</div> -->
+<!-- </div> -->
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
@@ -157,6 +126,7 @@ Button trigger modal -->
                     $('.search').prop('disabled', true);
                 },
                 success: function(response) {
+                    console.log(response.harga_mitra);
                     $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
                     $('.search').prop('disabled', false);
                     if (response.error) {

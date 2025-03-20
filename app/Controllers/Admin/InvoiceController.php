@@ -276,7 +276,6 @@ class InvoiceController extends BaseController
 
                 $alert = [
                     'data_presensi' => $data_presensi,
-                    'title' => 'Invoice Peserta Didik',
                     'total_pemasukan' => $total_pemasukan,
                     'total_presensi_perbulan' => $total_presensi_perbulan
                 ];

@@ -104,8 +104,11 @@ class InvoiceMitraController extends BaseController
                 foreach ($pengajar_data as $mitra_pengajar) {
 
                     $presensi_data = $this->presensiModel->getInvoiceMitraData($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
+
                     $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
+
                     $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
+
                     $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
 
                     $media_belajar_anak = $this->klaimMediaPesertaModel->SumHargaMediaWithMitra($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
@@ -143,12 +146,12 @@ class InvoiceMitraController extends BaseController
                         }
 
                         $data_presensi[] = [
-                            'data_pengajar_id' => $data_peserta->id,
+                            'data_pengajar_id' => $mitra_pengajar->mitra_pengajar_id,
                             'bulan' => $inputan_bulan,
                             'tahun' => $inputan_tahun,
-                            'mitra_pengajar_id' => $data_peserta->id,
+                            'mitra_pengajar_id' => $mitra_pengajar->mitra_pengajar_id,
                             'jumlah_anak' => $data_peserta->jumlah_anak,
-                            'nama_lengkap' => $data_peserta->nama_lengkap,
+                            'nama_lengkap' => $mitra_pengajar->nama_lengkap,
                             'total_presensi' => intval($total_presensi),
                             'harga_mitra' => intval($harga_mitra),
                             'booster_media' => intval($total_media),
@@ -159,47 +162,50 @@ class InvoiceMitraController extends BaseController
                     }
                 }
 
-
-
                 $total_data = $this->presensiModel->sumTotalAnak($inputan_bulan, $inputan_tahun);
 
                 $total_harga_mitra = $this->presensiModel->SumHargaPresensiMitra($inputan_bulan, $inputan_tahun);
+                // dd($total_harga_mitra->total_harga_mitra);
 
                 $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
 
                 $total_lain_lain_mitra = $this->klaimLainLainModel->SumLainLainPerbulan($inputan_bulan, $inputan_tahun);
 
-
+                // data anak
                 if ($total_data->total_anak == null) {
                     $total_anak = intval(0);
                 } else {
                     $total_anak =  intval($total_data->total_anak);
                 }
-
+                // data Presensi perbulan
                 if ($total_data->total_presensi_perbulan == null) {
                     $total_presensi_perbulan = intval(0);
                 } else {
                     $total_presensi_perbulan = intval($total_data->total_presensi_perbulan);
                 }
 
+                // harga_mitra
                 if ($total_harga_mitra->total_harga_mitra == null) {
                     $total_harga = intval(0);
                 } else {
                     $total_harga = intval($total_harga_mitra->total_harga_mitra);
                 }
 
+                // booster_media
                 if ($total_harga_mitra->total_booster == null) {
                     $total_booster = intval(0);
                 } else {
                     $total_booster = intval($total_harga_mitra->total_booster);
                 }
 
+                // media belajar
                 if ($total_harga_media->total_harga_media == null) {
                     $total_media = intval(0);
                 } else {
                     $total_media = intval($total_harga_media->total_harga_media);
                 }
 
+                // lain_lain
                 if ($total_lain_lain_mitra->total_lain_lain == null) {
                     $total_lain_lain = intval(0);
                 } else {
@@ -214,13 +220,17 @@ class InvoiceMitraController extends BaseController
 
                 // $total_pemasukan = intval($total_bayar) + intval($total_media) + intval($total_lain_lain);
                 // dd($total_pemasukan);
+
+
                 $total_pemasukan = $total_harga + $total_booster + $total_media + $total_lain_lain;
+                // dd($total_harga);
 
                 $alert = [
                     'data_presensi' => $data_presensi,
                     'total_anak_aktif' => $total_anak,
                     'total_presensi_perbulan' => $total_presensi_perbulan,
-                    'total_pemasukan' => $total_pemasukan
+                    'total_pemasukan' => $total_pemasukan,
+                    'harga_mitra' => $harga_mitra
                 ];
             }
 
