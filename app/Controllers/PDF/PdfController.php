@@ -109,7 +109,7 @@ class PdfController extends BaseController
 
         $invoice = $this->presensiModel->getInvoiceMitraWithMonth($mitra_pengajar_id, $bulan, $tahun);
 
-        dd($invoice);
+        // dd($invoice);
 
         if (count($invoice) == 0) {
 
