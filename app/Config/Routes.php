@@ -212,6 +212,13 @@ $routes->group('admin', static function ($routes) {
     // invoice mitra
     $routes->get('invoice_mitra/pdf/(:any)', 'PDF\PdfController::mitra/$1');
 
+    // Testtimonial
+    $routes->get('testimonial', 'Admin\TestimonialController::index');
+    $routes->post('testimonial/insert', 'Admin\TestimonialController::insert');
+    $routes->get('testimonial/edit', 'Admin\TestimonialController::edit');
+    $routes->post('testimonial/update', 'Admin\TestimonialController::update');
+    $routes->post('testimonial/delete', 'Admin\TestimonialController::delete');
+
 
     // export excel peserta
 
