@@ -9,7 +9,7 @@ class TestimonialModel extends Model
     protected $table            = 'testimonial_table';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['link_instagram', 'foto_1', 'foto_2', 'foto_3'];
+    protected $allowedFields    = ['link_instagram', 'foto_1'];
 
     // Dates
     protected $useTimestamps = true;

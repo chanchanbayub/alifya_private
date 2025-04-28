@@ -49,32 +49,14 @@ class TestimonialController extends BaseController
                         'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
                     ]
                 ],
-                'foto_2' => [
-                    'rules' => 'uploaded[foto_2]|max_size[foto_2,5048]|is_image[foto_2]|mime_in[foto_2,image/png,image/jpeg,image.jpg]',
-                    'errors' => [
-                        'uploaded' => 'Foto Tidak Boleh Kosong !',
-                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
-                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
-                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
-                    ]
-                ],
-                'foto_3' => [
-                    'rules' => 'uploaded[foto_3]|max_size[foto_3,5048]|is_image[foto_3]|mime_in[foto_3,image/png,image/jpeg,image.jpg]',
-                    'errors' => [
-                        'uploaded' => 'Foto Tidak Boleh Kosong !',
-                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
-                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
-                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
-                    ]
-                ],
+
 
             ])) {
                 $alert = [
                     'error' => [
                         'link_instagram' => $this->validation->getError('link_instagram'),
                         'foto_1' => $this->validation->getError('foto_1'),
-                        'foto_2' => $this->validation->getError('foto_2'),
-                        'foto_3' => $this->validation->getError('foto_3'),
+
                     ]
                 ];
             } else {
@@ -85,25 +67,58 @@ class TestimonialController extends BaseController
                 $nama_foto_1 = $foto_1->getRandomName();
                 $foto_1->move('testimoni', $nama_foto_1);
 
-                $foto_2 = $this->request->getFile('foto_2');
-                $nama_foto_2 = $foto_2->getRandomName();
-                $foto_2->move('testimoni', $nama_foto_2);
-
-                $foto_3 = $this->request->getFile('foto_3');
-                $nama_foto_3 = $foto_3->getRandomName();
-                $foto_3->move('testimoni', $nama_foto_3);
 
                 $this->testimonialModel->save([
                     'link_instagram' => $link_instagram,
                     'foto_1' => $nama_foto_1,
-                    'foto_2' => $nama_foto_2,
-                    'foto_3' => $nama_foto_3,
 
                 ]);
 
                 $alert = [
                     'success' => 'Testimonial Berhasil di Simpan!'
                 ];
+            }
+
+            return json_encode($alert);
+        }
+    }
+
+    public function edit()
+    {
+        if ($this->request->isAJAX()) {
+
+            $id = $this->request->getVar('id');
+
+            $testimonial = $this->testimonialModel->where(["id" => $id])->first();
+
+            $data = [
+                'testimonial' => $testimonial
+            ];
+
+            return json_encode($data);
+        }
+    }
+
+    public function delete()
+    {
+        if ($this->request->isAJAX()) {
+
+            $id = $this->request->getVar('id');
+
+            $testimonial = $this->testimonialModel->where(["id" => $id])->first();
+
+            $path_foto_1 = 'testimoni/' . $testimonial["foto_1"];
+
+            $this->testimonialModel->delete($testimonial["id"]);
+
+            $alert = [
+                'success' => 'Testimoni Berhasil di Hapus !'
+            ];
+
+            if ($testimonial['foto_1'] != null) {
+                if (file_exists($path_foto_1)) {
+                    unlink($path_foto_1);
+                }
             }
 
             return json_encode($alert);

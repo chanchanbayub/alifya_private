@@ -26,16 +26,6 @@ class TestimonialTable extends Migration
                 'constraint' => '255',
                 'null'      => true
             ],
-            'foto_2' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null'      => true
-            ],
-            'foto_3' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null'      => true
-            ],
 
             'created_at' => [
                 'type' => 'datetime',

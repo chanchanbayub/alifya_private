@@ -39,10 +39,8 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Link </th>
+                                        <th scope="col">Link Testimoni</th>
                                         <th scope="col">Photo Ke-1</th>
-                                        <th scope="col">Photo Ke-2</th>
-                                        <th scope="col">Photo Ke-3</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -53,8 +51,6 @@
                                             <th scope="row"><a href="#"><?= $no++ ?></a></th>
                                             <td><a href="<?= $testimonial->link_instagram ?>" target="_blank"><?= $testimonial->link_instagram ?></a> </td>
                                             <td><a href="../testimoni/<?= $testimonial->foto_1 ?>" target="_blank"> Lihat Foto 1</a></td>
-                                            <td><a href="../testimoni/<?= $testimonial->foto_2 ?>" target="_blank"> Lihat Foto 2</a></td>
-                                            <td><a href="../testimoni/<?= $testimonial->foto_3 ?>" target="_blank"> Lihat Foto 3</a></td>
 
                                             <td>
                                                 <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $testimonial->id ?>" type="button">
@@ -102,19 +98,6 @@
                         <label for="foto_1" class="col-form-label">Foto 1 :</label>
                         <input type="file" class="form-control" id="foto_1" name="foto_1">
                         <div class="invalid-feedback error-foto-1">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="foto_2" class="col-form-label">Foto 2 :</label>
-                        <input type="file" class="form-control" id="foto_2" name="foto_2">
-                        <div class="invalid-feedback error-foto-2">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="foto_3" class="col-form-label">Foto 3 :</label>
-                        <input type="file" class="form-control" id="foto_3" name="foto_3">
-                        <div class="invalid-feedback error-foto-3">
                         </div>
                     </div>
 
@@ -361,15 +344,12 @@
 
             let link_instagram = $("#link_instagram").val();
             let foto_1 = $("#foto_1").val();
-            let foto_2 = $("#foto_2").val();
-            let foto_3 = $("#foto_3").val();
 
             let formData = new FormData(this);
 
             formData.append('link_instagram', link_instagram);
             formData.append('foto_1', foto_1);
-            formData.append('foto_2', foto_2);
-            formData.append('foto_3', foto_3);
+
 
             $.ajax({
                 url: '/admin/testimonial/insert',
@@ -404,21 +384,6 @@
                             $(".error-foto-1").html('');
                         }
 
-                        if (response.error.foto_2) {
-                            $("#foto_2").addClass('is-invalid');
-                            $(".error-foto-2").html(response.error.foto_2);
-                        } else {
-                            $("#foto_2").removeClass('is-invalid');
-                            $(".error-foto-2").html('');
-                        }
-
-                        if (response.error.foto_3) {
-                            $("#foto_3").addClass('is-invalid');
-                            $(".error-foto-3").html(response.error.foto_3);
-                        } else {
-                            $("#foto_3").removeClass('is-invalid');
-                            $(".error-foto-3").html('');
-                        }
 
                     } else {
                         Swal.fire({
@@ -447,7 +412,7 @@
         e.preventDefault();
         let id = $(this).attr('data-id');
         $.ajax({
-            url: '/admin/data_pengajar/edit',
+            url: '/admin/testimonial/edit',
             method: 'get',
             dataType: 'JSON',
             data: {
@@ -757,14 +722,14 @@
         e.preventDefault();
         let id = $(this).attr('data-id');
         $.ajax({
-            url: '/admin/data_pengajar/edit',
+            url: '/admin/testimonial/edit',
             method: 'get',
             dataType: 'JSON',
             data: {
                 id: id,
             },
             success: function(response) {
-                $("#id_delete").val(response.pengajar.id);
+                $("#id_delete").val(response.testimonial.id);
             }
         });
     });
@@ -773,7 +738,7 @@
         e.preventDefault();
         let id = $("#id_delete").val();
         $.ajax({
-            url: '/admin/data_pengajar/delete',
+            url: '/admin/testimonial/delete',
             method: 'post',
             dataType: 'JSON',
             data: {
