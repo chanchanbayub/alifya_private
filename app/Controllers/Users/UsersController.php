@@ -8,6 +8,7 @@ use App\Models\Admin\MuridModel;
 use App\Models\Admin\PaketBelajarModel;
 use App\Models\Admin\PengajarModel;
 use App\Models\Admin\ProgramBelajarModel;
+use App\Models\Admin\TestimonialModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class UsersController extends BaseController
@@ -19,6 +20,7 @@ class UsersController extends BaseController
     protected $dataPendukungMuridModel;
     protected $validation;
     protected $paketBelajarModel;
+    protected $testimonialModel;
     protected $muridModel;
 
     public function __construct()
@@ -29,6 +31,7 @@ class UsersController extends BaseController
         $this->materiBelajarModel = new MateriBelajarModel();
         $this->muridModel = new MuridModel();
         $this->paketBelajarModel = new PaketBelajarModel();
+        $this->testimonialModel = new TestimonialModel();
     }
 
     public function index()
@@ -36,12 +39,16 @@ class UsersController extends BaseController
         $program_belajar = $this->programBelajarModel->getProgramBelajar();
         $paketBelajar = $this->paketBelajarModel->getPaketBelajar();
         $data_pengajar = $this->pengajarModel->getDatPengajarLimitData();
+        $testimonial = $this->testimonialModel->getTestimonial();
+        $data_slidder = $this->testimonialModel->getTestimonial();
 
         $data = [
             'title' => 'Alifya Private',
             'program_belajar' => $program_belajar,
             'paket_belajar' => $paketBelajar,
-            'data_pengajar' => $data_pengajar
+            'data_pengajar' => $data_pengajar,
+            'testimonial' => $testimonial,
+            'slidder' => $data_slidder
 
         ];
         return view('users/home_v', $data);

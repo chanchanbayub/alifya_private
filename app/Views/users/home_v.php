@@ -247,69 +247,27 @@
             </p>
             <h1 class="mb-4">Apa Kata Orang Tua</h1>
         </div>
-        <div class="owl-carousel testimonial-carousel">
-            <div class="testimonial-item px-3">
-                <div class="bg-light shadow-sm rounded mb-4 p-4">
-                    <h3 class="fas fa-quote-left text-primary mr-3"></h3>
-                    Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
-                    eirmod clita lorem. Dolor tempor ipsum clita
-                </div>
-                <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src="/users/img/testimonial-1.jpg" style="width: 70px; height: 70px" alt="Image" />
-                    <div class="pl-3">
-                        <h5>Parent Name</h5>
-                        <i>Profession</i>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item px-3">
-                <div class="bg-light shadow-sm rounded mb-4 p-4">
-                    <h3 class="fas fa-quote-left text-primary mr-3"></h3>
-                    Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
-                    eirmod clita lorem. Dolor tempor ipsum clita
-                </div>
-                <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src="/users/img/testimonial-2.jpg" style="width: 70px; height: 70px" alt="Image" />
-                    <div class="pl-3">
-                        <h5>Parent Name</h5>
-                        <i>Profession</i>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item px-3">
-                <div class="bg-light shadow-sm rounded mb-4 p-4">
-                    <h3 class="fas fa-quote-left text-primary mr-3"></h3>
-                    Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
-                    eirmod clita lorem. Dolor tempor ipsum clita
-                </div>
-                <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src="/users/img/testimonial-3.jpg" style="width: 70px; height: 70px" alt="Image" />
-                    <div class="pl-3">
-                        <h5>Parent Name</h5>
-                        <i>Profession</i>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item px-3">
-                <div class="bg-light shadow-sm rounded mb-4 p-4">
-                    <h3 class="fas fa-quote-left text-primary mr-3"></h3>
-                    Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
-                    eirmod clita lorem. Dolor tempor ipsum clita
-                </div>
-                <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src="/users/img/testimonial-4.jpg" style="width: 70px; height: 70px" alt="Image" />
-                    <div class="pl-3">
-                        <h5>Parent Name</h5>
-                        <i>Profession</i>
-                    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme owl-loaded">
+                    <?php if (count($slidder) > 0) : ?>
+                        <?php foreach ($slidder as $item) : ?>
+                            <div class="card shadow">
+                                <div class="card body">
+                                    <a href="<?= $item->link_instagram ?>" target="_blank"> <img src="/testimoni/<?= $item->foto_1 ?>" class="img-thumbnail" style="object-fit: scale-down; height:250px " alt="Klik Gambar Untuk Link"></a>
+                                    <div class="card shadow">
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <!-- Button trigger modal -->
-
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -334,9 +292,20 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 <script>
     $(document).ready(function(e) {
+
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                // loop: true,
+                slideBy: 3,
+                margin: 10,
+                nav: true
+            });
+        });
+
         $(document).on('click', '#materi', function(e) {
             e.preventDefault();
             let id = $(this).attr('data-id');

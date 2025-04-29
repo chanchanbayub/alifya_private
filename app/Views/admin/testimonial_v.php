@@ -49,7 +49,7 @@
                                     <?php foreach ($testimonial as $testimonial) : ?>
                                         <tr>
                                             <th scope="row"><a href="#"><?= $no++ ?></a></th>
-                                            <td><a href="<?= $testimonial->link_instagram ?>" target="_blank"><?= $testimonial->link_instagram ?></a> </td>
+                                            <td><a href="<?= $testimonial->link_instagram ?>" target="_blank">Klik Untuk Melihat</a> </td>
                                             <td><a href="../testimoni/<?= $testimonial->foto_1 ?>" target="_blank"> Lihat Foto 1</a></td>
 
                                             <td>
