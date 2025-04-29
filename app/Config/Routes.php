@@ -222,8 +222,10 @@ $routes->group('admin', static function ($routes) {
 
     // export excel peserta
 
-    $routes->get('export_excel/', 'Excel\ExcelController::index');
+    // $routes->post('export_excel/', 'Excel\ExcelController::index');
 });
+
+$routes->post('export_excel/', 'Excel\ExcelController::index');
 
 $routes->group('auth', static function ($routes) {
 

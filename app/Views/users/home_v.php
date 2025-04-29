@@ -25,9 +25,6 @@
                             <div class="carousel-item">
                                 <img src="/users/img/slidder/3.jpeg" class="img-fluid img-thumbnail w-75 mt-5 mb-5" alt="...">
                             </div>
-                            <div class="carousel-item">
-                                <img src="/users/img/slidder/5.jpeg" class="img-fluid img-thumbnail w-75 mt-5 mb-5" alt="...">
-                            </div>
                         </div>
                     </div>
                 </div>

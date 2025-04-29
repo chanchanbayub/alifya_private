@@ -27,21 +27,20 @@ class ExcelController extends BaseController
     {
         helper(['format']);
 
-        $bulan = date('n');
-        // dd($bulan);
+        $bulan = $this->request->getVar('bulan');
 
-        $tahun = date('Y');
-        // dd($tahun);
+        $data_bulan = explode("-", $bulan);
 
-        // $peserta_didik = $this->muridModel->getPesertaDidikData();
+        $inputan_bulan = intval($data_bulan[1]);
+        $inputan_tahun = intval($data_bulan[0]);
+
         $peserta_didik = $this->kelompokBelajarModel->getKelompokBelajar();
-
 
         $data_presensi = [];
         foreach ($peserta_didik as $data_anak) {
 
-            $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $bulan, $tahun);
-            // dd($presensi_data);
+            $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $inputan_bulan, $inputan_tahun);
+
             foreach ($presensi_data as $data_peserta) {
 
                 if ($data_peserta->harga == null) {
@@ -84,8 +83,8 @@ class ExcelController extends BaseController
             }
         }
 
-        $total_harga = $this->presensiModel->SumHargaPresensi($bulan, $tahun);
-        $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($bulan, $tahun);
+        $total_harga = $this->presensiModel->SumHargaPresensi($inputan_bulan, $inputan_tahun);
+        $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
 
         if ($total_harga->total_harga == null) {
             $total_bayar = "0";
@@ -111,7 +110,7 @@ class ExcelController extends BaseController
             'data_presensi' => $data_presensi,
             'title' => 'Invoice Peserta Didik',
             'total_pemasukan' => $total_pemasukan,
-            'bulan_indo' => $bulan
+            'bulan_indo' => $inputan_bulan
         ];
 
         return view('excel/export_excel', $data);

@@ -18,10 +18,10 @@
         <div class="col-lg-12">
             <div class="row">
                 <!-- Recent Sales -->
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title">Export & Filter <?= $title ?></h5>
+                            <h5 class="card-title">Filter <?= $title ?></h5>
                             <!-- Browser Default Validation -->
                             <!-- <form class="row g-3 text-capitalize" action="export_excel" method="get"> -->
                             <form class="row g-3 text-capitalize" id="cek_data">
@@ -32,16 +32,38 @@
                                     <div class="invalid-feedback error-bulan">
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
-                                    <button class="btn btn-success" id="search" type="submit"> <i class="bi bi-search"></i> Search</button>
-                                    <button class="btn btn-primary" id="export"> <i class="bi bi-file-excel"></i> Export Excel</button>
+                                    <button class="btn btn-outline-success" id="search" type="submit"> <i class="bi bi-search"></i> Search</button>
                                 </div>
                             </form>
                             <!-- End Browser Default Validation -->
                         </div>
                     </div>
-                </div><!-- End Recent Sales -->
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Export <?= $title ?></h5>
+                            <!-- Browser Default Validation -->
+                            <!-- <form class="row g-3 text-capitalize" action="export_excel" method="get"> -->
+                            <form class="row g-3 text-capitalize" id="export_excel" method="post" action="/export_excel">
+                                <?= csrf_field(); ?>
+                                <div class="col-md-12">
+                                    <label for="bulan" class="form-label">Pilih Bulan :</label>
+                                    <input type="month" name="bulan" id="bulan" class="form-control" required>
+                                    <div class="invalid-feedback error-bulan">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-outline-primary" id="export" type="submit"> <i class="bi bi-download"></i> Export</button>
+                                </div>
+                            </form>
+                            <!-- End Browser Default Validation -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Recent Sales -->
             </div>
         </div>
         <div class="col-md-12">
