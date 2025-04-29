@@ -124,4 +124,58 @@ class TestimonialController extends BaseController
             return json_encode($alert);
         }
     }
+
+    public function update()
+    {
+        if ($this->request->isAJAX()) {
+
+            if (!$this->validate([
+                'link_instagram' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Links Tidak Boleh Kosong !'
+                    ]
+                ],
+
+            ])) {
+                $alert = [
+                    'error' => [
+                        'link_instagram' => $this->validation->getError('link_instagram'),
+                    ]
+                ];
+            } else {
+
+                $id = $this->request->getVar('id');
+                $fotoLama = $this->request->getVar('fotoLama');
+
+                $link_instagram = $this->request->getPost('link_instagram');
+
+                $foto_1 = $this->request->getFile('foto_1');
+
+                $path_foto_lama = 'testimoni/' . $fotoLama;
+
+
+                if ($foto_1->getError() == 4) {
+                    $nama_foto = $fotoLama;
+                } else {
+                    if (file_exists($path_foto_lama)) {
+                        unlink($path_foto_lama);
+                    }
+                    $nama_foto = $foto_1->getRandomName();
+                    $foto_1->move('testimoni', $nama_foto);
+                }
+
+                $this->testimonialModel->update($id, [
+                    'link_instagram' => strtolower($link_instagram),
+                    'foto_1' => $nama_foto,
+                ]);
+
+                $alert = [
+                    'success' => 'Testimoni Berhasil di Ubah !'
+                ];
+            }
+
+            return json_encode($alert);
+        }
+    }
 }
