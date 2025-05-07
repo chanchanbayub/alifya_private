@@ -225,7 +225,7 @@ $routes->group('admin', static function ($routes) {
     // $routes->post('export_excel/', 'Excel\ExcelController::index');
 });
 
-$routes->post('export_excel/', 'Excel\ExcelController::index');
+$routes->get('export_excel/', 'Excel\ExcelController::invoice_mitra');
 
 $routes->group('auth', static function ($routes) {
 
