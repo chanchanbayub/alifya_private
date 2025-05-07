@@ -47,7 +47,7 @@
                             <h5 class="card-title">Export <?= $title ?></h5>
                             <!-- Browser Default Validation -->
                             <!-- <form class="row g-3 text-capitalize" action="export_excel" method="get"> -->
-                            <form class="row g-3 text-capitalize" id="export_excel" action="/export_excel">
+                            <form class="row g-3 text-capitalize" id="export_excel" action="/export_excel_peserta_didik/">
                                 <?= csrf_field(); ?>
                                 <div class="col-md-12">
                                     <label for="bulan" class="form-label">Pilih Bulan :</label>
