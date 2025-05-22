@@ -69,11 +69,11 @@ header("Content-Disposition: attachment; filename=pembukuan_mitra.xls");
                         <td scope="col" style="text-transform: capitalize;"><?= $presensi["nama_lengkap"] ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center"><?= $presensi["jumlah_anak"] ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center"><?= $presensi["total_presensi"] ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($presensi["harga_mitra"])  ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($presensi["booster_media"]) ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($presensi["total_media_belajar"]) ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($presensi["total_lain_lain"]) ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold">Rp. <?= number_format($presensi["total_akhir"]) ?>.</td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["harga_mitra"], 0, ",", ".") ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["booster_media"], 0, ",", ".")  ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["total_media_belajar"], 0, ",", ".") ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["total_lain_lain"], 0, ",", ".") ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold"> <?= number_format($presensi["total_akhir"], 0, ",", ".") ?></td>
                         <td></td>
                         <td></td>
                     </tr>

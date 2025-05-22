@@ -212,18 +212,7 @@ class InvoiceMitraController extends BaseController
                     $total_lain_lain = intval($total_lain_lain_mitra->total_lain_lain);
                 }
 
-                // if ($total_harga_media->total_lain_lain == null) {
-                //     $total_lain_lain = "0";
-                // } else {
-                //     $total_lain_lain = $total_harga_media->total_lain_lain;
-                // }
-
-                // $total_pemasukan = intval($total_bayar) + intval($total_media) + intval($total_lain_lain);
-                // dd($total_pemasukan);
-
-
                 $total_pemasukan = $total_harga + $total_booster + $total_media + $total_lain_lain;
-                // dd($total_harga);
 
                 $alert = [
                     'data_presensi' => $data_presensi,
