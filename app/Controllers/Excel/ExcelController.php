@@ -186,9 +186,12 @@ class ExcelController extends BaseController
         $data_presensi = [];
         foreach ($peserta_didik as $data_anak) {
 
-            $presensi_data = $this->presensiModel->getPresensiPerAnak($data_anak->peserta_didik_id, $inputan_bulan, $inputan_tahun);
+            $presensi_data = $this->presensiModel->getInvoicePerAnak($data_anak->peserta_didik_id, $inputan_bulan, $inputan_tahun);
+
+            // dd($presensi_data);
 
             foreach ($presensi_data as $data_peserta) {
+
 
                 if ($data_peserta->harga == null) {
                     $harga = 0;
@@ -208,10 +211,10 @@ class ExcelController extends BaseController
                     $lain_lain  = $data_peserta->lain_lain;
                 }
 
-                if ($data_peserta->total_presensi_perbulan == null) {
-                    $total_presensi_perbulan = 0;
+                if ($data_peserta->total_presensi == null) {
+                    $total_presensi = 0;
                 } else {
-                    $total_presensi_perbulan  = $data_peserta->total_presensi_perbulan;
+                    $total_presensi  = $data_peserta->total_presensi;
                 }
 
                 $data_presensi[] = [
@@ -220,18 +223,22 @@ class ExcelController extends BaseController
                     'bulan' => $data_peserta->bulan,
                     'nama_lengkap' => $data_anak->nama_lengkap,
                     'nama_lengkap_anak' => $data_anak->nama_lengkap_anak,
-                    'total_presensi_perbulan' => intval($total_presensi_perbulan),
+                    'total_presensi' => intval($total_presensi),
                     'harga' =>  intval($harga),
-                    'jumlah_upah' => intval($harga) * intval($total_presensi_perbulan),
+                    'jumlah_upah' => intval($harga) * intval($total_presensi),
                     'media_belajar' => intval($harga_media),
                     'lain_lain' => intval($lain_lain),
-                    'total_akhir' => intval($total_presensi_perbulan) * intval($harga) + intval($harga_media) + intval($lain_lain)
+                    'total_akhir' => intval($total_presensi) * intval($harga) + intval($harga_media) + intval($lain_lain)
                 ];
             }
         }
 
+
+
         $total_data = $this->presensiModel->sumTotalAnak($inputan_bulan, $inputan_tahun);
+
         $total_harga = $this->presensiModel->SumHargaPresensi($inputan_bulan, $inputan_tahun);
+
         $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
 
         if ($total_harga->total_harga == null) {
@@ -259,7 +266,6 @@ class ExcelController extends BaseController
         }
 
         $total_pemasukan = intval($total_bayar) + intval($total_media) + intval($total_lain_lain);
-
 
 
         $data = [

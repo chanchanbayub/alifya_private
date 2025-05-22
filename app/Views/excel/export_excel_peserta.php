@@ -70,12 +70,12 @@ header("Content-Disposition: attachment; filename=pembukuan_peserta_didik.xls");
                         <td scope="col"><?= $no++ ?></td>
                         <td scope="col" style="text-transform: capitalize;"><?= $presensi["nama_lengkap"] ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center"><?= $presensi["nama_lengkap_anak"] ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= $presensi["total_presensi_perbulan"] ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($presensi["harga"])  ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($presensi["jumlah_upah"]) ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($presensi["media_belajar"]) ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center">Rp. <?= number_format($presensi["lain_lain"]) ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold">Rp. <?= number_format($presensi["total_akhir"]) ?>.</td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= $presensi["total_presensi"] ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["harga"], 0, ",", ".")  ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["jumlah_upah"], 0, ",", ".") ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["media_belajar"], 0, ",", ".") ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["lain_lain"], 0, ",", ".") ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold"><?= number_format($presensi["total_akhir"], 0, ",", ".") ?></td>
                         <td></td>
                         <td></td>
                     </tr>

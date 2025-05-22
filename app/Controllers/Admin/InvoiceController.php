@@ -272,7 +272,7 @@ class InvoiceController extends BaseController
                     $total_presensi_perbulan = intval($total_data->total_presensi_perbulan);
                 }
 
-                $total_pemasukan = intval($total_bayar) + intval($total_media) + intval($total_lain_lain);
+                $total_pemasukan =  $total_bayar + $total_media + $total_lain_lain;
 
                 $alert = [
                     'data_presensi' => $data_presensi,
