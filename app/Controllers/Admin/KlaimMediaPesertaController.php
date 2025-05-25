@@ -345,11 +345,10 @@ class KlaimMediaPesertaController extends BaseController
                             'bulan' => $bulan,
                             'tahun' => $tahun,
                             'jenis_media_id' => '4',
-                            'harga_media' => 0,
-                            'lain_lain' => 0,
+                            'harga_media' => '0',
+                            'lain_lain' => '0',
                             'faktur' => null,
                         ]);
-
                         $alert = [
                             'success' => 'Media Belajar Anak Berhasil di Simpan !'
                         ];
