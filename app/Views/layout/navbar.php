@@ -41,6 +41,12 @@
                      </a>
                  </li>
 
+                 <li>
+                     <a href="/admin/status_invoice">
+                         <i class="bi bi-circle"></i><span>Status Invoice</span>
+                     </a>
+                 </li>
+
              </ul>
          </li><!-- End Icons Nav -->
 

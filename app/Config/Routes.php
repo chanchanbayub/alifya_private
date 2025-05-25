@@ -33,6 +33,12 @@ $routes->group('admin', static function ($routes) {
     $routes->post('jenis_media_belajar/update', 'Admin\JenisMediaBelajarController::update');
     $routes->post('jenis_media_belajar/delete', 'Admin\JenisMediaBelajarController::delete');
 
+    $routes->get('status_invoice', 'Admin\StatusInvoiceController::index');
+    $routes->post('status_invoice/insert', 'Admin\StatusInvoiceController::insert');
+    $routes->get('status_invoice/edit', 'Admin\StatusInvoiceController::edit');
+    $routes->post('status_invoice/update', 'Admin\StatusInvoiceController::update');
+    $routes->post('status_invoice/delete', 'Admin\StatusInvoiceController::delete');
+
     $routes->get('user_management', 'Admin\UserManagementController::index');
     $routes->post('user_management/insert', 'Admin\UserManagementController::insert');
     $routes->get('user_management/getMitra', 'Admin\UserManagementController::getMitra');
