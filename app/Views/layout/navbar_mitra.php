@@ -106,6 +106,21 @@
              </ul>
          </li>
 
+         <li class="nav-heading">Konfirmasi Invoice</li>
+
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#konfirmasi-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-patch-check"></i><span>Konfirmasi Invoice</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="konfirmasi-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/mitra_pengajar/invoice">
+                         <i class="bi bi-circle"></i><span>Konfirmasi Invoice</span>
+                     </a>
+                 </li>
+
+             </ul>
+         </li>
      </ul>
 
  </aside><!-- End Sidebar-->

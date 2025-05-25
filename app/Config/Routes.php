@@ -286,4 +286,11 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('absensi/getPesertaDidik', 'Mitra\AbsensiController::getPesertaDidik');
 
     $routes->get('alat_pengajaran', 'Mitra\AlatPengajaranController::index');
+
+    $routes->get('invoice', 'Mitra\InvoiceKonfirmasiController::index');
+    $routes->post('invoice/cek_invoice', 'Mitra\InvoiceKonfirmasiController::cek_invoice');
+    $routes->post('invoice/insert', 'Mitra\InvoiceKonfirmasiController::insert');
+    $routes->get('invoice/edit', 'Mitra\InvoiceKonfirmasiController::edit');
+    $routes->post('invoice/update', 'Mitra\InvoiceKonfirmasiController::update');
+    $routes->post('invoice/delete', 'Mitra\InvoiceKonfirmasiController::delete');
 });

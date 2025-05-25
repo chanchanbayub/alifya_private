@@ -39,7 +39,7 @@
 
                     </div>
                 </div>
-                <hr>
+
                 <!-- Sales Card -->
 
                 <!-- End Sales Card -->
