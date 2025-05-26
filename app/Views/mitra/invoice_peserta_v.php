@@ -56,7 +56,7 @@
                                 <th scope="col" style="text-transform: capitalize; text-align:center">Mitra Pengajar</th>
                                 <th scope="col" style="text-transform: capitalize; text-align:center">Nama Anak</th>
                                 <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi</th>
-                                <th scope="col" style="text-transform: capitalize; text-align:center">Aksi </th>
+                                <!-- <th scope="col" style="text-transform: capitalize; text-align:center">Aksi</th> -->
                             </tr>
                         </thead>
                         <tbody id="table_invoice_peserta">
@@ -73,6 +73,61 @@
         </div>
     </div><!-- End Left side columns -->
 </section>
+
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> Form <small> <?= $title ?></small> </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit_form" autocomplete="off">
+                    <?= csrf_field(); ?>
+                    <div class="mb-3">
+                        <input type="hidden" class="form-control" id="id_edit" name="id">
+                        <label for="mitra_pengajar_id" class="col-form-label">Pilih Mitra Pengajar Id :</label>
+                        <select name="mitra_pengajar_id" id="mitra_pengajar_id" class="form-control">
+                            <option value="">--Silahkan Pilih--</option>
+
+                        </select>
+                        <div class="invalid-feedback error-mitra-pengajar">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="peserta_didik_id" class="col-form-label">Pilih Peserta Didik :</label>
+                        <select name="peserta_didik_id" id="peserta_didik_id" class="form-control">
+                            <option value="">--Silahkan Pilih--</option>
+
+                        </select>
+                        <div class="invalid-feedback error-peserta-didik">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="bulan_invoice" class="col-form-label">Pilih Bulan :</label>
+                        <input type="month" name="bulan_invoice" id="bulan_invoice" class="form-control">
+                        <div class="invalid-feedback error-bulan">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="jumlah_kehadiran" class="col-form-label">Jumlah Kehadiran :</label>
+                        <input type="text" name="jumlah_kehadiran" id="jumlah_kehadiran" class="form-control">
+                        <div class="invalid-feedback error-jumlah-kehadiran">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"> <i class="bi bi-x-lg"></i> Batal</button>
+                        <button type="submit" class="btn btn-outline-success update"> <i class="bi bi-arrow-right"></i> Ubah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
@@ -117,10 +172,10 @@
                                 <td>${no++}</td>
                                 <td>${e.nama_lengkap}</td>
                                 <td>${e.nama_lengkap_anak}</td>
-                                <td align="center">${e.total_presensi}</td>
-
-                                <td align="center">Konfirmasi Jika Sudah Sesuai</td >
-                                    </tr>`;
+                                <td align="center">${e.total_presensi}</td>;`;
+                                // <td align="center"><button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="${e.mitra_pengajar_id} ${e.peserta_didik_id} ${e.total_presensi}" type="button">
+                                //                     <i class="bi bi-pencil-square"></i>
+                                //                 </button></td>`;
                             });
                             $("#table_invoice_peserta").html(table_invoice_data);
                             $(".total_presensi_perbulan").html(`${response.total_presensi_perbulan}`);
