@@ -130,25 +130,19 @@
             <div class="modal-body">
                 <form id="update_harga_form">
                     <div class="mb-3">
-                        <label for="bulan_data" class="col-form-label">Silahkan Pilih Bulan:</label>
-                        <select name="bulan" id="bulan_data" class="form-control">
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="1">Januari</option>
-                            <option value="2">Februari</option>
-                            <option value="3">Maret</option>
-                            <option value="4">April</option>
-                            <option value="5">Mei</option>
-                            <option value="6">Juni</option>
-                            <option value="7">Juli</option>
-                            <option value="8">Agustus</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
+                        <label for="bulan_data" class="col-form-label">Silahkan Pilih Bulan Sebelumnya :</label>
+                        <input type="month" name="bulan" id="bulan_data" class="form-control">
                         <div class="invalid-feedback error-bulan-data">
                         </div>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="bulan_data_update" class="col-form-label">Silahkan Pilih Bulan Sekarang :</label>
+                        <input type="month" name="bulan_update" id="bulan_data_update" class="form-control">
+                        <div class="invalid-feedback error-bulan-data-update">
+                        </div>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
                         <button type="submit" class="btn btn-outline-success update"> <i class="bi bi-arrow-right"></i> Update Upah Peserta</button>
@@ -314,6 +308,24 @@
 </div>
 <!-- End hapus Modal-->
 
+<!-- Notification Modal -->
+<div class="modal fade" id="notifModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 badge text-bg-danger" id="exampleModalLabel">Perhatian !! </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-body-secondary" style="text-align: justify;">Sebelum melakukan update harga, diharapkan melakukan pengecekan terlebih dahulu pada halaman ini, dengan menggunakan fitur filter !!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Ok, mengerti</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
@@ -355,6 +367,9 @@
 
             ],
         });
+
+        $("#notifModal").modal('show');
+
     });
 
     $(document).ready(function(e) {
@@ -372,11 +387,6 @@
         $('#bulan').select2({
             theme: 'bootstrap-5',
             dropdownParent: $('#exampleModal')
-        });
-
-        $('#bulan_data').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#updateHargaModal')
         });
 
         $('#bulan_edit').select2({
@@ -625,6 +635,7 @@
     $("#update_harga_form").submit(function(e) {
         e.preventDefault();
         let bulan = $("#bulan_data").val();
+        let bulan_update = $("#bulan_data_update").val();
 
         $.ajax({
             url: '/admin/harga/update_harga',
@@ -632,6 +643,7 @@
             dataType: 'JSON',
             data: {
                 bulan: bulan,
+                bulan_update: bulan_update,
             },
             beforeSend: function() {
                 $('.update').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
