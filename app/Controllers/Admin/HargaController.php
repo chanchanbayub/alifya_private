@@ -229,13 +229,13 @@ class HargaController extends BaseController
                 'bulan' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
+                        'required' => 'Bulan Sebelumnya Tidak Boleh Kosong !'
                     ]
                 ],
                 'bulan_update' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
+                        'required' => 'Bulan Sekarang Tidak Boleh Kosong !'
                     ]
                 ]
             ])) {
@@ -305,27 +305,6 @@ class HargaController extends BaseController
 
             return json_encode($alert);
         }
-
-        // $data_harga_bulan_update = $this->hargaModel->where(["peserta_didik_id" => $data_harga->peserta_didik_id])->where(["bulan" => $inputan_bulan_terbaru])->where(["tahun" => $inputan_tahun_terbaru])->get()->getRowObject();
-
-
-        // if ($data_harga_bulan_sebelumnya == null) {
-        //     $this->hargaModel->save([
-        //         'peserta_didik_id' => strtolower($data_harga_bulan_sebelumnya->peserta_didik_id),
-        //         'harga' => strtolower($data_harga_bulan_sebelumnya->harga),
-        //         'bulan' => $inputan_bulan_terbaru,
-        //         'tahun' => $inputan_tahun_terbaru
-        //     ]);
-        //     $alert = [
-        //         'success' => 'Upah Anak Berhasil di Simpan !'
-        //     ];
-        // } else if ($data_harga_bulan_sebelumnya != null) {
-        //     $alert = [
-        //         'error' => [
-        //             'data' => 'Upah Bulan Tersebut Sudah terdaptar!'
-        //         ],
-        //     ];
-        // }
     }
 
     public function harga_perbulan()

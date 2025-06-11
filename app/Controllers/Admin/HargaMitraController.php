@@ -262,50 +262,79 @@ class HargaMitraController extends BaseController
                 'bulan' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
+                        'required' => 'Bulan Sebelumnya Tidak Boleh Kosong !'
+                    ]
+                ],
+                'bulan_update' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bulan Sekarang Tidak Boleh Kosong !'
                     ]
                 ],
             ])) {
                 $alert = [
                     'error' => [
                         'bulan' => $this->validation->getError('bulan'),
+                        'bulan_update' => $this->validation->getError('bulan_update'),
                     ]
                 ];
             } else {
 
                 $bulan = $this->request->getPost('bulan');
-                $tahun = date('Y');
+
+                $bulan_sebelumnya = explode("-", $bulan);
+
+                $inputan_bulan_sebelumnya = intval($bulan_sebelumnya[1]);
+                $inputan_tahun_sebelumnya = intval($bulan_sebelumnya[0]);
+
+                $bulan_update = $this->request->getPost('bulan_update');
+
+                $bulan_terbaru = explode("-", $bulan_update);
+
+                $inputan_bulan_terbaru = intval($bulan_terbaru[1]);
+                $inputan_tahun_terbaru = intval($bulan_terbaru[0]);
 
                 $peserta_didik = $this->muridModel->getDataMuridAktif();
-                // dd($peserta_didik);
 
                 foreach ($peserta_didik as $peserta) {
 
-                    $data_harga = $this->hargaMitraModel->where(["peserta_didik_id" => $peserta->id])->orderBy('id')->get()->getRowObject();
+                    $data_harga_bulan_sebelumnya = $this->hargaMitraModel->where(["peserta_didik_id" => $peserta->id])->where(["bulan" => $inputan_bulan_sebelumnya])->where(["tahun" => $inputan_tahun_sebelumnya])->get()->getRowObject();
 
-                    if ($data_harga != null) {
+                    if ($data_harga_bulan_sebelumnya != null) {
 
-                        $data_harga_berdasarkan_bulan = $this->hargaMitraModel->where(["peserta_didik_id" => $peserta->id])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->get()->getRowObject();
+                        $data_harga_bulan_terbaru = $this->hargaMitraModel->where(["peserta_didik_id" => $peserta->id])->where(["bulan" => $inputan_bulan_terbaru])->where(["tahun" => $inputan_tahun_terbaru])->get()->getRowObject();
 
-                        if ($data_harga_berdasarkan_bulan == null) {
+                        if ($data_harga_bulan_terbaru == null) {
                             $this->hargaMitraModel->save([
-                                'mitra_pengajar_id' => strtolower($data_harga->mitra_pengajar_id),
-                                'peserta_didik_id' => strtolower($data_harga->peserta_didik_id),
-                                'bulan' => $bulan,
-                                'tahun' => $tahun,
-                                'harga_mitra' => strtolower($data_harga->harga_mitra),
-                                'booster_media' => strtolower($data_harga->booster_media),
+                                'mitra_pengajar_id' => strtolower($data_harga_bulan_sebelumnya->mitra_pengajar_id),
+                                'peserta_didik_id' => strtolower($data_harga_bulan_sebelumnya->peserta_didik_id),
+                                'bulan' => $inputan_bulan_terbaru,
+                                'tahun' => $inputan_tahun_terbaru,
+                                'harga_mitra' => strtolower($data_harga_bulan_sebelumnya->harga_mitra),
+                                'booster_media' => strtolower($data_harga_bulan_sebelumnya->booster_media),
                             ]);
                             $alert = [
                                 'success' => 'Upah Mitra Berhasil di Simpan !'
                             ];
-                        } elseif ($data_harga_berdasarkan_bulan != null) {
+                        } elseif ($data_harga_bulan_terbaru != null) {
                             $alert = [
                                 'error' => [
                                     'data' => 'Upah Bulan Tersebut Sudah terdaptar!'
                                 ],
                             ];
                         }
+                    } elseif ($data_harga_bulan_sebelumnya == null) {
+                        $this->hargaMitraModel->save([
+                            'mitra_pengajar_id' => strtolower($peserta->mitra_pengajar_id),
+                            'peserta_didik_id' => strtolower($peserta->peserta_didik_id),
+                            'bulan' => $inputan_bulan_terbaru,
+                            'tahun' => $inputan_tahun_terbaru,
+                            'harga_mitra' => "0",
+                            'booster_media' => "0",
+                        ]);
+                        $alert = [
+                            'success' => 'Upah Mitra Berhasil di Simpan !'
+                        ];
                     }
                 }
             }

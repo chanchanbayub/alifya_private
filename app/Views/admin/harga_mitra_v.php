@@ -348,25 +348,19 @@
             <div class="modal-body">
                 <form id="update_harga_form">
                     <div class="mb-3">
-                        <label for="bulan_data" class="col-form-label">Silahkan Pilih Bulan:</label>
-                        <select name="bulan" id="bulan_data" class="form-control">
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="1">Januari</option>
-                            <option value="2">Februari</option>
-                            <option value="3">Maret</option>
-                            <option value="4">April</option>
-                            <option value="5">Mei</option>
-                            <option value="6">Juni</option>
-                            <option value="7">Juli</option>
-                            <option value="8">Agustus</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
+                        <label for="bulan_data" class="col-form-label">Silahkan Pilih Bulan Sebelumnya:</label>
+                        <input type="month" name="bulan" id="bulan_data" class="form-control">
                         <div class="invalid-feedback error-bulan-data">
                         </div>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="bulan_data_update" class="col-form-label">Silahkan Pilih Bulan Sekarang :</label>
+                        <input type="month" name="bulan_update" id="bulan_data_update" class="form-control">
+                        <div class="invalid-feedback error-bulan-data-update">
+                        </div>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
                         <button type="submit" class="btn btn-outline-success update"> <i class="bi bi-arrow-right"></i> Update Upah Peserta</button>
@@ -429,11 +423,6 @@
         $('#bulan_edit').select2({
             theme: 'bootstrap-5',
             dropdownParent: $('#editModal')
-        });
-
-        $('#bulan_data').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#updateHargaModal')
         });
 
         $("#notifModal").modal('show');
@@ -764,6 +753,7 @@
     $("#update_harga_form").submit(function(e) {
         e.preventDefault();
         let bulan = $("#bulan_data").val();
+        let bulan_update = $("#bulan_data_update").val();
 
         $.ajax({
             url: '/admin/harga_mitra/update_harga',
@@ -771,6 +761,7 @@
             dataType: 'JSON',
             data: {
                 bulan: bulan,
+                bulan_update: bulan_update,
             },
             beforeSend: function() {
                 $('.update').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
@@ -787,6 +778,13 @@
                     } else {
                         $("#bulan_data").removeClass('is-invalid');
                         $(".error-bulan-data").html('');
+                    }
+                    if (response.error.bulan_update) {
+                        $("#bulan_data_update").addClass('is-invalid');
+                        $(".error-bulan-data-update").html(response.error.bulan_update);
+                    } else {
+                        $("#bulan_data_update").removeClass('is-invalid');
+                        $(".error-bulan-data-update").html('');
                     }
 
                     if (response.error.data) {

@@ -662,6 +662,13 @@
                         $("#bulan_data").removeClass('is-invalid');
                         $(".error-bulan-data").html('');
                     }
+                    if (response.error.bulan_update) {
+                        $("#bulan_data_update").addClass('is-invalid');
+                        $(".error-bulan-data-update").html(response.error.bulan_update);
+                    } else {
+                        $("#bulan_data_update").removeClass('is-invalid');
+                        $(".error-bulan-data-update").html('');
+                    }
 
                     if (response.error.data) {
                         Swal.fire({
