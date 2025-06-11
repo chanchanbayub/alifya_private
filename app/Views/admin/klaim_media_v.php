@@ -19,6 +19,59 @@
         <div class="col-lg-12">
             <div class="row">
 
+                <div class="col-md-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Cek Media Belajar Peserta Didik Perbulan</h5>
+                            <!-- Browser Default Validation -->
+                            <form class="row g-3 text-capitalize" id="cek_harga_perbulan">
+                                <?= csrf_field(); ?>
+                                <div class="col-md-12">
+                                    <label for="bulan_table" class="form-label">Pilih Bulan :</label>
+                                    <input type="month" name="bulan_table" id="bulan_table" class="form-control">
+                                    <div class="invalid-feedback error-bulan-table">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-outline-primary btn-block save" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cari</button>
+                                </div>
+                            </form>
+                            <!-- End Browser Default Validation -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $title ?> <span>| Bulan Tersebut </span></h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Peserta Didik</th>
+                                        <th scope="col">Bulan</th>
+                                        <th scope="col">Tahun</th>
+                                        <th scope="col">Jenis Media</th>
+                                        <th scope="col">Harga Media</th>
+                                        <th scope="col">Lain-Lain</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="harga_table_data">
+                                    <tr>
+                                        <td colspan="8" style="text-align: center;">Tidak Ada Data</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- End Recent Sales -->
+
                 <!-- Recent Sales -->
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
@@ -283,25 +336,19 @@
             <div class="modal-body">
                 <form id="update_media_form">
                     <div class="mb-3">
-                        <label for="bulan_data" class="col-form-label">Silahkan Pilih Bulan:</label>
-                        <select name="bulan" id="bulan_data" class="form-control">
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="1">Januari</option>
-                            <option value="2">Februari</option>
-                            <option value="3">Maret</option>
-                            <option value="4">April</option>
-                            <option value="5">Mei</option>
-                            <option value="6">Juni</option>
-                            <option value="7">Juli</option>
-                            <option value="8">Agustus</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
+                        <label for="bulan_data" class="col-form-label">Silahkan Pilih Bulan Sebelumnya :</label>
+                        <input type="month" name="bulan" id="bulan_data" class="form-control">
                         <div class="invalid-feedback error-bulan-data">
                         </div>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="bulan_data_update" class="col-form-label">Silahkan Pilih Bulan Sekarang :</label>
+                        <input type="month" name="bulan_update" id="bulan_data_update" class="form-control">
+                        <div class="invalid-feedback error-bulan-data-update">
+                        </div>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
                         <button type="submit" class="btn btn-outline-success update"> <i class="bi bi-arrow-right"></i> Update Media Belajar</button>
@@ -312,6 +359,25 @@
         </div>
     </div>
 </div>
+
+<!-- Notification Modal -->
+<div class="modal fade" id="notifModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 badge text-bg-danger" id="exampleModalLabel">Perhatian !! </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-body-secondary" style="text-align: justify;">Sebelum melakukan update media belajar, diharapkan melakukan pengecekan terlebih dahulu pada halaman ini, dengan menggunakan fitur filter !!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Ok, mengerti</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -370,10 +436,7 @@
 
     $(document).ready(function(e) {
 
-        $('#bulan_data').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#updateMediaModal')
-        });
+        $("#notifModal").modal('show');
 
         $('#peserta_didik_id').select2({
             theme: 'bootstrap-5',
@@ -721,6 +784,7 @@
     $("#update_media_form").submit(function(e) {
         e.preventDefault();
         let bulan = $("#bulan_data").val();
+        let bulan_update = $("#bulan_data_update").val();
 
         $.ajax({
             url: '/admin/klaim_media_belajar/update_media_belajar',
@@ -728,6 +792,7 @@
             dataType: 'JSON',
             data: {
                 bulan: bulan,
+                bulan_update: bulan_update,
             },
             beforeSend: function() {
                 $('.update').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
@@ -745,6 +810,14 @@
                         $("#bulan_data").removeClass('is-invalid');
                         $(".error-bulan-data").html('');
                     }
+                    if (response.error.bulan_update) {
+                        $("#bulan_data_update").addClass('is-invalid');
+                        $(".error-bulan-data-update").html(response.error.bulan_update);
+                    } else {
+                        $("#bulan_data_update").removeClass('is-invalid');
+                        $(".error-bulan-data-update").html('');
+                    }
+
                     if (response.error.data) {
                         Swal.fire({
                             icon: 'error',
@@ -772,6 +845,62 @@
             }
         });
     })
+
+    $(document).ready(function(e) {
+        $("#cek_harga_perbulan").submit(function(e) {
+            e.preventDefault();
+            let bulan = $("#bulan_table").val();
+            $.ajax({
+                url: '/admin/klaim_media_belajar/cek_media_belajar',
+                data: {
+                    bulan: bulan
+                },
+                dataType: 'json',
+                type: 'POST',
+                beforeSend: function() {
+                    $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
+                    $('.save').prop('disabled', true);
+                },
+                success: function(response) {
+                    $('.save').html('<i class="bi bi-search"></i> Search');
+                    $('.save').prop('disabled', false);
+
+                    // console.log(response)
+                    let no = 1;
+                    let table_data = ``;
+
+                    if (response.media_belajar.length >= 1) {
+                        response.media_belajar.forEach(function(e) {
+                            table_data += `<tr>
+                                <td>${no++}</td>
+                                <td>${e.nama_lengkap_anak}</td>
+                                <td>${e.bulan}</td>
+                                <td>${e.tahun}</td>
+                                <td>${e.nama_media}</td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.harga_media)} </td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.lain_lain)} </td>
+                            </tr>`;
+                        });
+                        $("#harga_table_data").html(table_data);
+                    } else {
+                        table_data += `<tr>
+                                <td colspan="8" style="text-align:center">Data Tidak ditemukan</td>
+                            </tr>`;
+                        $("#harga_table_data").html(table_data);
+                    }
+
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: `Data Belum Tersimpan!`,
+                    });
+                    $('.save').html('<i class="bi bi-search"></i> Search');
+                    $('.save').prop('disabled', false);
+                }
+            });
+        })
+    });
 </script>
 
 <?= $this->endSection(); ?>

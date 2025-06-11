@@ -321,29 +321,73 @@ class KlaimMediaPesertaController extends BaseController
                 'bulan' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
+                        'required' => 'Bulan Sebelumnya Tidak Boleh Kosong !'
                     ]
                 ],
+                'bulan_update' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bulan Sekarang Tidak Boleh Kosong !'
+                    ]
+                ]
             ])) {
                 $alert = [
                     'error' => [
                         'bulan' => $this->validation->getError('bulan'),
+                        'bulan_update' => $this->validation->getError('bulan_update'),
                     ]
                 ];
             } else {
                 $bulan = $this->request->getPost('bulan');
-                $tahun = date('Y');
+
+                $bulan_sebelumnya = explode("-", $bulan);
+
+                $inputan_bulan_sebelumnya = intval($bulan_sebelumnya[1]);
+
+                $inputan_tahun_sebelumnya = intval($bulan_sebelumnya[0]);
+
+                $bulan_update = $this->request->getPost('bulan_update');
+
+                $bulan_terbaru = explode("-", $bulan_update);
+
+                $inputan_bulan_terbaru = intval($bulan_terbaru[1]);
+                $inputan_tahun_terbaru = intval($bulan_terbaru[0]);
+
 
                 $peserta_didik = $this->muridModel->getDataMuridAktif();
 
                 foreach ($peserta_didik as $peserta) {
-                    $media_belajar = $this->klaimMediaBelajarModel->where(["peserta_didik_id" => $peserta->id])->where(['bulan' => $bulan])->where(['tahun' => $tahun])->orderBy('id')->get()->getRowObject();
+                    $media_belajar_sebelumnya = $this->klaimMediaBelajarModel->where(["peserta_didik_id" => $peserta->id])->where(['bulan' => $inputan_bulan_sebelumnya])->where(['tahun' => $inputan_tahun_sebelumnya])->orderBy('id')->get()->getRowObject();
 
-                    if ($media_belajar == null) {
+                    if ($media_belajar_sebelumnya != null) {
+
+                        $media_belajar_terbaru = $this->klaimMediaBelajarModel->where(["peserta_didik_id" => $media_belajar_sebelumnya->peserta_didik_id])->where(['bulan' => $inputan_bulan_terbaru])->where(['tahun' => $inputan_tahun_terbaru])->orderBy('id')->get()->getRowObject();
+
+                        if ($media_belajar_terbaru == null) {
+                            $this->klaimMediaBelajarModel->save([
+                                'peserta_didik_id' => $peserta->id,
+                                'bulan' => $inputan_bulan_terbaru,
+                                'tahun' => $inputan_tahun_terbaru,
+                                'jenis_media_id' => '4',
+                                'harga_media' => '0',
+                                'lain_lain' => '0',
+                                'faktur' => null,
+                            ]);
+                            $alert = [
+                                'success' => 'Media Belajar Anak Berhasil di Simpan !'
+                            ];
+                        } elseif ($media_belajar_terbaru != null) {
+                            $alert = [
+                                'error' => [
+                                    'data' => 'Media Belajar Bulan Tersebut Sudah terdaptar!'
+                                ],
+                            ];
+                        }
+                    } elseif ($media_belajar_sebelumnya == null) {
                         $this->klaimMediaBelajarModel->save([
                             'peserta_didik_id' => $peserta->id,
-                            'bulan' => $bulan,
-                            'tahun' => $tahun,
+                            'bulan' => $inputan_bulan_terbaru,
+                            'tahun' => $inputan_tahun_terbaru,
                             'jenis_media_id' => '4',
                             'harga_media' => '0',
                             'lain_lain' => '0',
@@ -352,16 +396,31 @@ class KlaimMediaPesertaController extends BaseController
                         $alert = [
                             'success' => 'Media Belajar Anak Berhasil di Simpan !'
                         ];
-                    } elseif ($media_belajar != null) {
-                        $alert = [
-                            'error' => [
-                                'data' => 'Media Belajar Bulan Tersebut Sudah terdaptar!'
-                            ],
-                        ];
                     }
                 }
             }
         }
         return json_encode($alert);
+    }
+
+    public function cek_media_perbulan()
+    {
+        if ($this->request->isAJAX()) {
+
+            $bulan = $this->request->getVar('bulan');
+
+            $data_bulan = explode("-", $bulan);
+
+            $inputan_bulan = intval($data_bulan[1]);
+            $inputan_tahun = intval($data_bulan[0]);
+
+            $media_belajar = $this->klaimMediaBelajarModel->getHargaMediaPerbulanData($inputan_bulan, $inputan_tahun);
+
+            $data = [
+                'media_belajar' => $media_belajar,
+            ];
+
+            return json_encode($data);
+        }
     }
 }

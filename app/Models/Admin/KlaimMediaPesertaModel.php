@@ -82,4 +82,16 @@ class KlaimMediaPesertaModel extends Model
             ->where(['media_belajar_anak_table.tahun' => $tahun])
             ->get()->getRowObject();
     }
+
+    public function getHargaMediaPerbulanData($bulan, $tahun)
+    {
+
+        return $this->table($this->table)
+            ->select('media_belajar_anak_table.id, media_belajar_anak_table.peserta_didik_id, media_belajar_anak_table.bulan, media_belajar_anak_table.tahun, media_belajar_anak_table.harga_media, media_belajar_anak_table.lain_lain, media_belajar_anak_table.faktur, data_murid_table.nama_lengkap_anak, jenis_media_table.nama_media')
+            ->join('data_murid_table', 'data_murid_table.id = media_belajar_anak_table.peserta_didik_id')
+            ->join('jenis_media_table', 'jenis_media_table.id = media_belajar_anak_table.jenis_media_id')
+            ->where(["media_belajar_anak_table.bulan" => $bulan])
+            ->where(["media_belajar_anak_table.tahun" => $tahun])
+            ->orderBy('id desc')->get()->getResultObject();
+    }
 }

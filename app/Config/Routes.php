@@ -53,6 +53,7 @@ $routes->group('admin', static function ($routes) {
     $routes->post('klaim_media_belajar/delete', 'Admin\KlaimMediaPesertaController::delete');
     $routes->post('klaim_media_belajar/getDataHargaMedia', 'Admin\KlaimMediaPesertaController::getDataHargaMedia');
     $routes->post('klaim_media_belajar/update_media_belajar', 'Admin\KlaimMediaPesertaController::update_media');
+    $routes->post('klaim_media_belajar/cek_media_belajar', 'Admin\KlaimMediaPesertaController::cek_media_perbulan');
 
     $routes->get('klaim_lain_lain', 'Admin\KlaimLainLainMitraController::index');
     $routes->post('klaim_lain_lain/insert', 'Admin\KlaimLainLainMitraController::insert');
