@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title">Cek Lain Lain Perbulan Lain Lain</h5>
+                            <h5 class="card-title">Cek Lain Lain Perbulan </h5>
                             <!-- Browser Default Validation -->
                             <form class="row g-3 text-capitalize" id="cek_harga_perbulan">
                                 <?= csrf_field(); ?>
@@ -314,6 +314,24 @@
 </div>
 <!-- End hapus Modal-->
 
+<!-- Notification Modal -->
+<div class="modal fade" id="notifModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 badge text-bg-danger" id="exampleModalLabel">Perhatian !! </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-body-secondary" style="text-align: justify;">Sebelum melakukan update lain-lain, diharapkan melakukan pengecekan terlebih dahulu pada halaman ini, dengan menggunakan fitur filter !!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Ok, mengerti</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
@@ -383,6 +401,8 @@
             theme: 'bootstrap-5',
             dropdownParent: $('#editModal')
         });
+
+        $("#notifModal").modal('show');
 
         $("#add_form").submit(function(e) {
             e.preventDefault();
