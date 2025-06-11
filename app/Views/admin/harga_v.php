@@ -68,6 +68,7 @@
                     </div>
 
                 </div><!-- End Recent Sales -->
+
                 <!-- Recent Sales -->
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">

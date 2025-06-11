@@ -68,4 +68,18 @@ class HargaMitraModel extends Model
             ->where(["harga_mitra_table.tahun" => $tahun])
             ->orderBy('harga_mitra_table.bulan desc')->get()->getRowObject();
     }
+
+    public function getHargaPerbulanData($bulan, $tahun)
+    {
+
+        return $this->table($this->table)
+            ->select('harga_mitra_table.id, harga_mitra_table.bulan, harga_mitra_table.tahun, harga_mitra_table.harga_mitra, harga_mitra_table.booster_media, data_murid_table.nama_lengkap_anak, data_pengajar_table.nama_lengkap, status_murid_table.status_murid')
+            ->join('data_murid_table', 'data_murid_table.id = harga_mitra_table.peserta_didik_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = harga_mitra_table.mitra_pengajar_id')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->where(['harga_mitra_table.bulan' => $bulan])
+            ->where(['harga_mitra_table.tahun' => $tahun])
+            ->where(["data_murid_table.status_murid_id" => 1])
+            ->orderBy('data_pengajar_table.nama_lengkap asc')->get()->getResultObject();
+    }
 }
