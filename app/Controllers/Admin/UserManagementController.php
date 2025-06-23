@@ -26,7 +26,6 @@ class UserManagementController extends BaseController
 
     public function index()
     {
-
         $data = [
             'title' => 'User Management',
             'user_management' => $this->userManagementModel->getUserManagement(),

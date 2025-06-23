@@ -58,44 +58,55 @@ class LoginController extends BaseController
 
                 $user_mangement = $this->userManagementModel->getUserManagementData($email, $password);
 
-
                 if ($user_mangement == null) {
                     $alert = [
                         'errors' => 'Username / Password Tidak ditemukan!'
                     ];
                 } else {
                     if ($user_mangement->role_management_id == 1 || $user_mangement->role_management_id == 2) {
-                        $data = [
-                            'id' => $user_mangement->id,
-                            'nama_lengkap' => $user_mangement->nama_lengkap,
-                            'email' => $user_mangement->email,
-                            'mitra_pengajar_id' => $user_mangement->mitra_pengajar_id,
-                            'role_management' => $user_mangement->role_management,
-                            'role_management_id' => $user_mangement->role_management_id,
-                            'foto' => $user_mangement->foto,
-                            'isLogedIn' => true
-                        ];
-                        session()->set($data);
-                        $alert = [
-                            'success' => 'Berhasil Login !',
-                            'url' => '/admin/dashboard'
-                        ];
+                        if ($user_mangement->status_id == 1) {
+                            $data = [
+                                'id' => $user_mangement->id,
+                                'nama_lengkap' => $user_mangement->nama_lengkap,
+                                'email' => $user_mangement->email,
+                                'mitra_pengajar_id' => $user_mangement->mitra_pengajar_id,
+                                'role_management' => $user_mangement->role_management,
+                                'role_management_id' => $user_mangement->role_management_id,
+                                'foto' => $user_mangement->foto,
+                                'isLogedIn' => true
+                            ];
+                            session()->set($data);
+                            $alert = [
+                                'success' => 'Berhasil Login !',
+                                'url' => '/admin/dashboard'
+                            ];
+                        } elseif ($user_mangement->status_id == 3) {
+                            $alert = [
+                                'errors' => 'silahkan aktifkan akun anda kepada admin!',
+                            ];
+                        }
                     } else if ($user_mangement->role_management_id == 3) {
-                        $data = [
-                            'id' => $user_mangement->id,
-                            'nama_lengkap' => $user_mangement->nama_lengkap,
-                            'email' => $user_mangement->email,
-                            'mitra_pengajar_id' => $user_mangement->mitra_pengajar_id,
-                            'role_management' => $user_mangement->role_management,
-                            'role_management_id' => $user_mangement->role_management_id,
-                            'foto' => $user_mangement->foto,
-                            'isLogedIn' => true
-                        ];
-                        session()->set($data);
-                        $alert = [
-                            'success' => 'Berhasil Login !',
-                            'url' => '/mitra_pengajar/dashboard'
-                        ];
+                        if ($user_mangement->status_id == 1) {
+                            $data = [
+                                'id' => $user_mangement->id,
+                                'nama_lengkap' => $user_mangement->nama_lengkap,
+                                'email' => $user_mangement->email,
+                                'mitra_pengajar_id' => $user_mangement->mitra_pengajar_id,
+                                'role_management' => $user_mangement->role_management,
+                                'role_management_id' => $user_mangement->role_management_id,
+                                'foto' => $user_mangement->foto,
+                                'isLogedIn' => true
+                            ];
+                            session()->set($data);
+                            $alert = [
+                                'success' => 'Berhasil Login !',
+                                'url' => '/mitra_pengajar/dashboard'
+                            ];
+                        } elseif ($user_mangement->status_id == 3) {
+                            $alert = [
+                                'errors' => 'silahkan aktifkan akun anda kepada admin!',
+                            ];
+                        }
                     }
                 }
             };
