@@ -24,6 +24,7 @@ class UserManagementModel extends Model
             ->join('data_pengajar_table', 'data_pengajar_table.id = users_management_table.mitra_pengajar_id')
             ->join('status_pengajar_table', 'status_pengajar_table.id = data_pengajar_table.status_id')
             ->join('role_management_table', 'role_management_table.id = users_management_table.role_management_id')
+            ->where(['data_pengajar_table.status_id' => 1])
             ->orderBy('id desc')
             ->get()->getResultObject();
     }
