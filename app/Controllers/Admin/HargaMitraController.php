@@ -30,6 +30,7 @@ class HargaMitraController extends BaseController
     {
 
         $harga_perjam = $this->hargaMitraModel->getHargaMitra();
+        // dd($harga_perjam);
         $mitra_pengajar = $this->pengajarModel->getDataPengajarStatusAktif();
 
         $data = [

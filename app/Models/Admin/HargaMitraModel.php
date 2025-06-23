@@ -20,9 +20,11 @@ class HargaMitraModel extends Model
     public function getHargaMitra()
     {
         return $this->table($this->table)
-            ->select('harga_mitra_table.id, harga_mitra_table.mitra_pengajar_id, harga_mitra_table.harga_mitra, harga_mitra_table.booster_media ,data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak, harga_mitra_table.bulan, harga_mitra_table.tahun')
+            ->select('harga_mitra_table.id, harga_mitra_table.mitra_pengajar_id, harga_mitra_table.harga_mitra, harga_mitra_table.booster_media ,data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak, harga_mitra_table.bulan, harga_mitra_table.tahun, data_pengajar_table.status_id, data_pengajar_table.status_id, status_pengajar_table.status_pengajar')
             ->join('data_pengajar_table', 'data_pengajar_table.id = harga_mitra_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = harga_mitra_table.peserta_didik_id')
+            ->join('status_pengajar_table', 'status_pengajar_table.id = data_pengajar_table.status_id')
+            ->where(['data_pengajar_table.status_id' => 1])
             ->orderBy('data_pengajar_table.nama_lengkap asc')->get()->getResultObject();
     }
 

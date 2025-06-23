@@ -31,8 +31,10 @@ class KontrakMitraModel extends Model
     public function getKontrakMitraData()
     {
         return $this->table($this->table)
-            ->select('kontrak_mitra_table.id, data_pengajar_table.nama_lengkap, kontrak_mitra_table.awal_bergabung, kontrak_mitra_table.akhir_kontrak')
+            ->select('kontrak_mitra_table.id, data_pengajar_table.nama_lengkap, kontrak_mitra_table.awal_bergabung, kontrak_mitra_table.akhir_kontrak, data_pengajar_table.status_id, data_pengajar_table.status_id, status_pengajar_table.status_pengajar')
             ->join('data_pengajar_table', 'data_pengajar_table.id = kontrak_mitra_table.mitra_pengajar_id')
+            ->join('status_pengajar_table', 'status_pengajar_table.id = data_pengajar_table.status_id')
+            ->where(['data_pengajar_table.status_id' => 1])
             ->orderBy('data_pengajar_table.nama_lengkap asc')
             ->get()->getResultObject();
     }
