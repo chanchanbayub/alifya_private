@@ -20,8 +20,9 @@ class UserManagementModel extends Model
     public function getUserManagement()
     {
         return $this->table($this->table)
-            ->select('users_management_table.id, users_management_table.mitra_pengajar_id, users_management_table.email,users_management_table.password, users_management_table.role_management_id, data_pengajar_table.nama_lengkap, role_management_table.role_management')
+            ->select('users_management_table.id, users_management_table.mitra_pengajar_id, users_management_table.email,users_management_table.password, users_management_table.role_management_id, data_pengajar_table.nama_lengkap, role_management_table.role_management, data_pengajar_table.status_id, data_pengajar_table.status_id, status_pengajar_table.status_pengajar')
             ->join('data_pengajar_table', 'data_pengajar_table.id = users_management_table.mitra_pengajar_id')
+            ->join('status_pengajar_table', 'status_pengajar_table.id = data_pengajar_table.status_id')
             ->join('role_management_table', 'role_management_table.id = users_management_table.role_management_id')
             ->orderBy('id desc')
             ->get()->getResultObject();

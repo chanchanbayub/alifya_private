@@ -43,6 +43,7 @@
                                         <th scope="col">Email</th>
                                         <th scope="col">Password</th>
                                         <th scope="col">Role Management</th>
+                                        <th scope="col">Status Mitra</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -55,6 +56,7 @@
                                             <td><?= $user_management->email ?></td>
                                             <td><?= $user_management->password ?></td>
                                             <td><?= $user_management->role_management ?></td>
+                                            <td><span class="<?= ($user_management->status_id == 1) ? "badge bg-success" : "badge bg-warning" ?> "><?= $user_management->status_pengajar ?></span></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $user_management->id ?>" type="button">
                                                     <i class="bi bi-trash"></i>
@@ -200,7 +202,7 @@
 <script>
     $(document).ready(function(e) {
 
-        $('#mitra_pengajar_id').select2({
+        $(' #mitra_pengajar_id').select2({
             theme: 'bootstrap-5',
             dropdownParent: $('#exampleModal')
         });
