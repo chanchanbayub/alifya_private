@@ -236,15 +236,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="status_murid_id_edit" class="col-form-label">Status Murid:</label>
-                        <select name="status_murid_id" id="status_murid_id_edit" class="form-select" disabled>
-                            <option value="">--Silahkan Pilih--</option>
-                        </select>
-                        <div class="invalid-feedback error-status-murid-edit">
-                        </div>
-                    </div>
-
                     <div class="mb-3">
                         <label for="data_edit" class="col-form-label">Saya Sudah Mengisi data diatas dengan benar, jujur, dan dapat dipertanggung jawabkan :</label>
                         <select name="data" id="data_edit" class="form-control">
