@@ -238,7 +238,7 @@
 
                     <div class="form-group">
                         <label for="status_murid_id_edit" class="col-form-label">Status Murid:</label>
-                        <select name="status_murid_id" id="status_murid_id_edit" class="form-select">
+                        <select name="status_murid_id" id="status_murid_id_edit" class="form-select" disabled>
                             <option value="">--Silahkan Pilih--</option>
                         </select>
                         <div class="invalid-feedback error-status-murid-edit">
@@ -333,13 +333,6 @@
 
                 let status = `<option value="">--Silahkan Pilih--</option>`;
 
-                response.status_murid.forEach(function(e) {
-                    status += `<option value="${e.id}"> ${e.status_murid} </option>`
-                });
-
-                $("#status_murid_id_edit").html(status);
-
-                $("#status_murid_id_edit").val(response.murid.status_murid_id).trigger('change');
             }
         });
     });
@@ -367,7 +360,6 @@
         let hari_belajar = $("#hari_belajar_edit").val();
         let waktu_belajar = $("#waktu_belajar_edit").val();
         let foto_anak = $("#foto_anak_edit").val();
-        let status_murid_id = $("#status_murid_id_edit").val();
         let brosur = $("#brosur_edit").val();
         let data = $("#data_edit").val();
 
@@ -394,7 +386,6 @@
         formData.append('hari_belajar', hari_belajar);
         formData.append('waktu_belajar', waktu_belajar);
         formData.append('foto_anak', foto_anak);
-        formData.append('status_murid_id', status_murid_id);
         formData.append('brosur', brosur);
         formData.append('data', data);
 
@@ -521,13 +512,6 @@
                     } else {
                         $("#foto_anak_edit").removeClass('is-invalid');
                         $(".error-foto-anak-edit").html('');
-                    }
-                    if (response.error.status_murid_id) {
-                        $("#status_murid_id_edit").addClass('is-invalid');
-                        $(".error-status-murid-edit").html(response.error.status_murid_id);
-                    } else {
-                        $("#status_murid_id_edit").removeClass('is-invalid');
-                        $(".error-status-murid-edit").html('');
                     }
                     if (response.error.brosur) {
                         $("#brosur_edit").addClass('is-invalid');

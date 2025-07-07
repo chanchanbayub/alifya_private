@@ -81,14 +81,12 @@ class MuridController extends BaseController
             $id = $this->request->getVar('id');
 
             $murid = $this->muridModel->where(["id" => $id])->first();
-            $status_murid = $this->statusMuridModel->getStatusMurid();
             $program_belajar = $this->programBelajarModel->getProgramBelajar();
             $materi_belajar = $this->materiBelajarModel->getMateriBelajar();
             $paket_belajar = $this->paketBelajarModel->getPaketBelajar();
 
             $data = [
                 'murid' => $murid,
-                'status_murid' => $status_murid,
                 'program_belajar' => $program_belajar,
                 'paket_belajar' => $paket_belajar,
                 'materi_belajar' => $materi_belajar
@@ -209,12 +207,6 @@ class MuridController extends BaseController
                     ]
                 ],
 
-                'status_murid_id' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Status Murid Tidak Boleh Kosong !'
-                    ]
-                ],
                 'brosur' => [
                     'rules' => 'required',
                     'errors' => [
@@ -249,8 +241,6 @@ class MuridController extends BaseController
                         'materi_belajar_id' => $this->validation->getError('materi_belajar_id'),
                         'hari_belajar' => $this->validation->getError('hari_belajar'),
                         'waktu_belajar' => $this->validation->getError('waktu_belajar'),
-
-                        'status_murid_id' => $this->validation->getError('status_murid_id'),
                         'brosur' => $this->validation->getError('brosur'),
                         'data' => $this->validation->getError('data'),
                     ]
@@ -297,8 +287,6 @@ class MuridController extends BaseController
                     $foto_anak->move('foto_profil_anak', $nama_foto);
                 }
 
-                $status_murid_id = $this->request->getPost('status_murid_id');
-
                 $this->muridModel->update($id, [
                     'uid_murid' => $uid_murid,
                     'nama_lengkap_anak' => strtolower($nama_lengkap_anak),
@@ -319,7 +307,6 @@ class MuridController extends BaseController
                     'hari_belajar' => strtolower($hari_belajar),
                     'waktu_belajar' => strtolower($waktu_belajar),
                     'foto_anak' => strtolower($nama_foto),
-                    'status_murid_id' => strtolower($status_murid_id),
                     'brosur' => strtolower($brosur),
                     'data' => strtolower($data),
                 ]);
