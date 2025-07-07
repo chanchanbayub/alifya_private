@@ -35,6 +35,12 @@
                         </div>
 
                         <div class="control-group">
+                            <label for="tanggal_lahir_mitra">Tanggal Lahir :</label>
+                            <input type="date" class="form-control" id="tanggal_lahir_mitra" name="tanggal_lahir_mitra" />
+                            <p class="help-block text-danger error-tanggal-lahir"></p>
+                        </div>
+
+                        <div class="control-group">
                             <label for="usia">Usia :</label>
                             <input type="number" class="form-control" id="usia" name="usia" placeholder="contoh : 23" />
                             <p class="help-block text-danger error-email"></p>
@@ -172,6 +178,7 @@
         let nomor_whatsapp = $("#nomor_whatsapp").val();
         let email = $("#email").val();
         let usia = $("#usia").val();
+        let tanggal_lahir_mitra = $("#tanggal_lahir_mitra").val();
         let alamat_domisili = $("#alamat_domisili").val();
         let pendidikan_terakhir = $("#pendidikan_terakhir").val();
         let jurusan = $("#jurusan").val();
@@ -197,6 +204,7 @@
         formData.append('nomor_whatsapp', nomor_whatsapp);
         formData.append('email', email);
         formData.append('usia', usia);
+        formData.append('tanggal_lahir_mitra', tanggal_lahir_mitra);
         formData.append('alamat_domisili', alamat_domisili);
         formData.append('pendidikan_terakhir', pendidikan_terakhir);
         formData.append('jurusan', jurusan);
@@ -252,6 +260,13 @@
                     } else {
                         $("#email").removeClass('is-invalid');
                         $(".error-email").html('');
+                    }
+                    if (response.error.tanggal_lahir_mitra) {
+                        $("#tanggal_lahir_mitra").addClass('is-invalid');
+                        $(".error-tanggal-lahir").html(response.error.tanggal_lahir_mitra);
+                    } else {
+                        $("#tanggal_lahir_mitra").removeClass('is-invalid');
+                        $(".error-tanggal-lahir").html('');
                     }
                     if (response.error.usia) {
                         $("#usia").addClass('is-invalid');
