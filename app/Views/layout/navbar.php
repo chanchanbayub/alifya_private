@@ -92,6 +92,41 @@
              </ul>
          </li><!-- End Icons Nav -->
 
+         <li class="nav-heading">Alifya Home Learning</li>
+
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#home_learning" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-house"></i><span>AHL <span class="badge bg-success">Coming Soon!!</span></span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="home_learning" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="#">
+                         <i class="bi bi-circle"></i><span>Layanan</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="#">
+                         <i class="bi bi-circle"></i><span>Jenis Pekerjaan</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="#">
+                         <i class="bi bi-circle"></i><span>Upah AHL</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="#">
+                         <i class="bi bi-circle"></i><span>Mitra Pengajar AHL</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="#">
+                         <i class="bi bi-circle"></i><span>Presensi AHL</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+
          <li class="nav-heading">DATA MANAGEMENT</li>
 
          <li class="nav-item">
