@@ -227,6 +227,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('testimonial/update', 'Admin\TestimonialController::update');
     $routes->post('testimonial/delete', 'Admin\TestimonialController::delete');
 
+    // AHL
+    $routes->get('layanan', 'Ahl\LayananAHLController::index');
+    $routes->post('layanan/insert', 'Ahl\LayananAHLController::insert');
+    $routes->get('layanan/edit', 'Ahl\LayananAHLController::edit');
+    $routes->post('layanan/update', 'Ahl\LayananAHLController::update');
+    $routes->post('layanan/delete', 'Ahl\LayananAHLController::delete');
+
 
     // export excel peserta
 

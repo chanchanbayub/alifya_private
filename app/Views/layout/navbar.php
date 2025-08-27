@@ -100,8 +100,8 @@
              </a>
              <ul id="home_learning" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                  <li>
-                     <a href="#">
-                         <i class="bi bi-circle"></i><span>Layanan</span>
+                     <a href="/admin/layanan">
+                         <i class="bi bi-circle"></i><span>Layanan AHL</span>
                      </a>
                  </li>
                  <li>
