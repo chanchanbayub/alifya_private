@@ -326,7 +326,7 @@ class HargaMitraController extends BaseController
                         }
                     } elseif ($data_harga_bulan_sebelumnya == null) {
                         $this->hargaMitraModel->save([
-                            'mitra_pengajar_id' => strtolower($peserta->mitra_pengajar_id),
+                            'mitra_pengajar_id' => strtolower($data_harga_bulan_sebelumnya->mitra_pengajar_id),
                             'peserta_didik_id' => strtolower($peserta->peserta_didik_id),
                             'bulan' => $inputan_bulan_terbaru,
                             'tahun' => $inputan_tahun_terbaru,
