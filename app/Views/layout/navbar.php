@@ -105,7 +105,7 @@
                      </a>
                  </li>
                  <li>
-                     <a href="#">
+                     <a href="/admin/jenis_pekerjaan">
                          <i class="bi bi-circle"></i><span>Jenis Pekerjaan</span>
                      </a>
                  </li>

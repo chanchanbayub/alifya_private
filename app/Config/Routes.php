@@ -228,11 +228,19 @@ $routes->group('admin', static function ($routes) {
     $routes->post('testimonial/delete', 'Admin\TestimonialController::delete');
 
     // AHL
+    // layanan AHL
     $routes->get('layanan', 'Ahl\LayananAHLController::index');
     $routes->post('layanan/insert', 'Ahl\LayananAHLController::insert');
     $routes->get('layanan/edit', 'Ahl\LayananAHLController::edit');
     $routes->post('layanan/update', 'Ahl\LayananAHLController::update');
     $routes->post('layanan/delete', 'Ahl\LayananAHLController::delete');
+
+    // Jenis Pekerjaan
+    $routes->get('jenis_pekerjaan', 'Ahl\JenisPekerjaanController::index');
+    $routes->post('jenis_pekerjaan/insert', 'Ahl\JenisPekerjaanController::insert');
+    $routes->get('jenis_pekerjaan/edit', 'Ahl\JenisPekerjaanController::edit');
+    $routes->post('jenis_pekerjaan/update', 'Ahl\JenisPekerjaanController::update');
+    $routes->post('jenis_pekerjaan/delete', 'Ahl\JenisPekerjaanController::delete');
 
 
     // export excel peserta
