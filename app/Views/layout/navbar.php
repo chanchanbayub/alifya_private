@@ -110,6 +110,11 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/status_presensi">
+                         <i class="bi bi-circle"></i><span>Status Presensi</span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="/admin/jam_masuk_ahl">
                          <i class="bi bi-circle"></i><span>Jadwal AHL</span>
                      </a>

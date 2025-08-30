@@ -249,6 +249,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('jam_masuk_ahl/update', 'Ahl\JamMasukAhlController::update');
     $routes->post('jam_masuk_ahl/delete', 'Ahl\JamMasukAhlController::delete');
 
+    // Status Presensi
+    $routes->get('status_presensi', 'Ahl\StatusPresensiController::index');
+    $routes->post('status_presensi/insert', 'Ahl\StatusPresensiController::insert');
+    $routes->get('status_presensi/edit', 'Ahl\StatusPresensiController::edit');
+    $routes->post('status_presensi/update', 'Ahl\StatusPresensiController::update');
+    $routes->post('status_presensi/delete', 'Ahl\StatusPresensiController::delete');
+
 
     // export excel peserta
 
