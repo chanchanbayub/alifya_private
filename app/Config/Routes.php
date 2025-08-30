@@ -242,6 +242,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('jenis_pekerjaan/update', 'Ahl\JenisPekerjaanController::update');
     $routes->post('jenis_pekerjaan/delete', 'Ahl\JenisPekerjaanController::delete');
 
+    // Jam Masuk AHL
+    $routes->get('jam_masuk_ahl', 'Ahl\JamMasukAhlController::index');
+    $routes->post('jam_masuk_ahl/insert', 'Ahl\JamMasukAhlController::insert');
+    $routes->get('jam_masuk_ahl/edit', 'Ahl\JamMasukAhlController::edit');
+    $routes->post('jam_masuk_ahl/update', 'Ahl\JamMasukAhlController::update');
+    $routes->post('jam_masuk_ahl/delete', 'Ahl\JamMasukAhlController::delete');
+
 
     // export excel peserta
 

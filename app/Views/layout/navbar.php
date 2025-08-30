@@ -110,6 +110,11 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/jam_masuk_ahl">
+                         <i class="bi bi-circle"></i><span>Jadwal AHL</span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="#">
                          <i class="bi bi-circle"></i><span>Upah AHL</span>
                      </a>
