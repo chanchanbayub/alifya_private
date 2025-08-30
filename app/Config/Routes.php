@@ -263,6 +263,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('lokasi/update', 'Ahl\LokasiController::update');
     $routes->post('lokasi/delete', 'Ahl\LokasiController::delete');
 
+    // Mitra Ahl 
+    $routes->get('mitra_ahl', 'Ahl\MitraPengajarAhlController::index');
+    $routes->post('mitra_ahl/insert', 'Ahl\MitraPengajarAhlController::insert');
+    $routes->get('mitra_ahl/edit', 'Ahl\MitraPengajarAhlController::edit');
+    $routes->post('mitra_ahl/update', 'Ahl\MitraPengajarAhlController::update');
+    $routes->post('mitra_ahl/delete', 'Ahl\MitraPengajarAhlController::delete');
+
 
     // export excel peserta
 
