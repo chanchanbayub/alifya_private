@@ -256,6 +256,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('status_presensi/update', 'Ahl\StatusPresensiController::update');
     $routes->post('status_presensi/delete', 'Ahl\StatusPresensiController::delete');
 
+    // Lokasi
+    $routes->get('lokasi', 'Ahl\LokasiController::index');
+    $routes->post('lokasi/insert', 'Ahl\LokasiController::insert');
+    $routes->get('lokasi/edit', 'Ahl\LokasiController::edit');
+    $routes->post('lokasi/update', 'Ahl\LokasiController::update');
+    $routes->post('lokasi/delete', 'Ahl\LokasiController::delete');
+
 
     // export excel peserta
 

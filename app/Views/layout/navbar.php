@@ -115,23 +115,28 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/lokasi">
+                         <i class="bi bi-circle"></i><span>Lokasi Presensi</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/admin/mitra_ahl">
+                         <i class="bi bi-circle"></i><span>Mitra Pengajar AHL</span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="/admin/jam_masuk_ahl">
                          <i class="bi bi-circle"></i><span>Jadwal AHL</span>
                      </a>
                  </li>
                  <li>
                      <a href="#">
-                         <i class="bi bi-circle"></i><span>Upah AHL</span>
+                         <i class="bi bi-circle"></i><span>Upah AHL <span class="badge bg-success">Coming Soon!!</span></span>
                      </a>
                  </li>
                  <li>
                      <a href="#">
-                         <i class="bi bi-circle"></i><span>Mitra Pengajar AHL</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="#">
-                         <i class="bi bi-circle"></i><span>Presensi AHL</span>
+                         <i class="bi bi-circle"></i><span>Presensi AHL <span class="badge bg-success">Coming Soon!!</span></span>
                      </a>
                  </li>
              </ul>
