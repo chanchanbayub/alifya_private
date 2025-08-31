@@ -205,7 +205,8 @@
                     <?= csrf_field(); ?>
                     <div class="mb-3">
                         <input type="hidden" class="form-control" id="id_edit" name="id">
-                        <label for="mitra_id_edit" class="col-form-label"><?= $title ?> :</label>
+                        <input type="hidden" class="form-control" id="foto_lama" name="foto_lama">
+                        <label for="mitra_id_edit" class="col-form-label">Mitra Pengajar :</label>
                         <select name="mitra_id" id="mitra_id_edit" class="form-control">
                             <option value="">Silahkan Pilih</option>
                         </select>
@@ -214,11 +215,61 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="jenis_layanan_id_edit" class="col-form-label">Jenis Layanan : </label>
-                        <select name="jenis_layanan_id" id="jenis_layanan_id_edit" class="form-control">
+                        <label for="jenis_pekerjaan_id" class="col-form-label">Jenis Pekerjaan :</label>
+                        <select name="jenis_pekerjaan_id" id="jenis_pekerjaan_id_edit" class="form-control">
                             <option value="">Silahkan Pilih</option>
+
                         </select>
-                        <div class="invalid-feedback error-layanan-edit">
+                        <div class="invalid-feedback error-jenis-pekerjaan-edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tanggal" class="col-form-label">Tanggal :</label>
+                        <input type="date" name="tanggal" id="tanggal_edit" class="form-control">
+                        <div class="invalid-feedback error-tanggal-edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="jam" class="col-form-label">Jam :</label>
+                        <input type="time" name="jam" id="jam_edit" class="form-control">
+                        <div class="invalid-feedback error-jam-edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lokasi_id" class="col-form-label">Lokasi :</label>
+                        <select name="lokasi_id" id="lokasi_id_edit" class="form-control">
+                            <option value="">Silahkan Pilih</option>
+
+                        </select>
+                        <div class="invalid-feedback error-lokasi-edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lain_lain" class="col-form-label">Lain-Lain :</label>
+                        <input type="text" name="lain_lain" id="lain_lain_edit" class="form-control">
+                        <span class="text-danger font-weight-bold">hanya diisi saat lokasi bukan perum casablanca</span>
+                        <div class="invalid-feedback error-lain-lain-edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="status_presensi_id" class="col-form-label">Status Presensi :</label>
+                        <select name="status_presensi_id" id="status_presensi_id_edit" class="form-select">
+                            <option value="">Silahkan Pilih</option>
+
+                        </select>
+                        <div class="invalid-feedback error-status-edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dokumentasi" class="col-form-label">Dokumentasi :</label>
+                        <input type="file" name="dokumentasi" id="dokumentasi_edit" class="form-control">
+                        <div class="invalid-feedback error-dokumentasi-edit">
                         </div>
                     </div>
 
@@ -282,6 +333,16 @@
 
 
         $('#mitra_id_edit').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#editModal')
+        });
+
+        $('#jenis_pekerjaan_id_edit').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#editModal')
+        });
+
+        $('#lokasi_id_edit').select2({
             theme: 'bootstrap-5',
             dropdownParent: $('#editModal')
         });
@@ -392,6 +453,7 @@
                         }
 
                     } else {
+                        $("#exampleModal").modal('hide');
                         Swal.fire({
                             icon: 'success',
                             title: `${response.success}`,
@@ -427,27 +489,55 @@
             success: function(response) {
 
 
-                // $("#id_edit").val(response.mitra_ahl.id);
+                $("#id_edit").val(response.presensi_ahl.id);
+                $("#tanggal_edit").val(response.presensi_ahl.tanggal);
+                $("#jam_edit").val(response.presensi_ahl.jam);
+                $("#lain_lain_edit").val(response.presensi_ahl.lain_lain);
+                $("#foto_lama").val(response.presensi_ahl.dokumentasi);
 
-                // let jenis_layanan_data = `<option value="">--Silahkan Pilih--</option>`;
 
-                // response.layanan.forEach(function(e) {
-                //     jenis_layanan_data += `<option value="${e.id}"> ${e.nama_layanan} </option>`
-                // });
+                let mitra_pengajar_data = `<option value="">--Silahkan Pilih--</option>`;
 
-                // $("#jenis_layanan_id_edit").html(jenis_layanan_data);
+                response.mitra_pengajar_ahl.forEach(function(e) {
+                    mitra_pengajar_data += `<option value="${e.mitra_id}"> ${e.nama_lengkap} </option>`
+                });
 
-                // $("#jenis_layanan_id_edit").val(response.mitra_ahl.jenis_layanan_id).trigger('change');
+                $("#mitra_id_edit").html(mitra_pengajar_data);
 
-                // let data_pengajar = `<option value="">--Silahkan Pilih--</option>`;
+                $("#mitra_id_edit").val(response.presensi_ahl.mitra_id).trigger('change');
 
-                // response.pengajar.forEach(function(e) {
-                //     data_pengajar += `<option value="${e.id}"> ${e.nama_lengkap} </option>`
-                // });
 
-                // $("#mitra_id_edit").html(data_pengajar);
+                let jenis_pekerjaan_data = `<option value="">--Silahkan Pilih--</option>`;
 
-                // $("#mitra_id_edit").val(response.mitra_ahl.mitra_id).trigger('change');
+                response.jenis_pekerjaan.forEach(function(e) {
+                    jenis_pekerjaan_data += `<option value="${e.id}"> ${e.jenis_pekerjaan} </option>`
+                });
+
+                $("#jenis_pekerjaan_id_edit").html(jenis_pekerjaan_data);
+
+                $("#jenis_pekerjaan_id_edit").val(response.presensi_ahl.jenis_pekerjaan_id).trigger('change');
+
+                let lokasi_data = `<option value="">--Silahkan Pilih--</option>`;
+
+                response.lokasi.forEach(function(e) {
+                    lokasi_data += `<option value="${e.id}"> ${e.lokasi} </option>`
+                });
+
+                $("#lokasi_id_edit").html(lokasi_data);
+
+                $("#lokasi_id_edit").val(response.presensi_ahl.lokasi_id).trigger('change');
+
+                let status_presensi_data = `<option value="">--Silahkan Pilih--</option>`;
+
+                response.status_presensi.forEach(function(e) {
+                    status_presensi_data += `<option value="${e.id}"> ${e.status_presensi} </option>`
+                });
+
+                $("#status_presensi_id_edit").html(status_presensi_data);
+
+                $("#status_presensi_id_edit").val(response.presensi_ahl.status_presensi_id).trigger('change');
+
+
 
             }
         });
@@ -457,18 +547,38 @@
     $("#edit_form").submit(function(e) {
         e.preventDefault();
         let id = $('#id_edit').val();
+        let foto_lama = $('#foto_lama').val();
         let mitra_id = $("#mitra_id_edit").val();
-        let jenis_layanan_id = $("#jenis_layanan_id_edit").val();
+        let jenis_pekerjaan_id = $("#jenis_pekerjaan_id_edit").val();
+        let tanggal = $("#tanggal_edit").val();
+        let jam = $("#jam_edit").val();
+        let lain_lain = $("#lain_lain_edit").val();
+        let lokasi_id = $("#lokasi_id_edit").val();
+        let status_presensi_id = $("#status_presensi_id_edit").val();
+        let dokumentasi = $("#dokumentasi_edit").val();
+
+        let formData = new FormData(this);
+
+        formData.append('id', id);
+        formData.append('foto_lama', foto_lama);
+        formData.append('mitra_id', mitra_id);
+        formData.append('jenis_pekerjaan_id', jenis_pekerjaan_id);
+        formData.append('tanggal', tanggal);
+        formData.append('jam', jam);
+        formData.append('lain_lain', lain_lain);
+        formData.append('lokasi_id', lokasi_id);
+        formData.append('status_presensi_id', status_presensi_id);
+        formData.append('dokumentasi', dokumentasi);
 
         $.ajax({
-            url: '/admin/mitra_ahl/update',
-            method: 'post',
-            dataType: 'JSON',
-            data: {
-                id: id,
-                mitra_id: mitra_id,
-                jenis_layanan_id: jenis_layanan_id,
-            },
+            url: '/admin/presensi_ahl/update',
+            data: formData,
+            dataType: 'json',
+            enctype: 'multipart/form-data',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            cache: false,
             beforeSend: function() {
                 $('.update').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
                 $('.update').prop('disabled', true);
@@ -477,7 +587,6 @@
                 $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Ubah');
                 $('.update').prop('disabled', false);
                 if (response.error) {
-
                     if (response.error.mitra_id) {
                         $("#mitra_id_edit").addClass('is-invalid');
                         $(".error-mitra-edit").html(response.error.mitra_id);
@@ -486,13 +595,52 @@
                         $(".error-mitra-edit").html('');
                     }
 
-                    if (response.error.jenis_layanan_id) {
-                        $("#jenis_layanan_id_edit").addClass('is-invalid');
-                        $(".error-layanan-edit").html(response.error.jenis_layanan_id);
+                    if (response.error.jenis_pekerjaan_id) {
+                        $("#jenis_pekerjaan_id_edit").addClass('is-invalid');
+                        $(".error-jenis-pekerjaan-edit").html(response.error.jenis_pekerjaan_id);
                     } else {
-                        $("#jenis_layanan_id_edit").removeClass('is-invalid');
-                        $(".error-layanan-edit").html('');
+                        $("#jenis_pekerjaan_id_edit").removeClass('is-invalid');
+                        $(".error-jenis-pekerjaan-edit").html('');
                     }
+
+                    if (response.error.tanggal) {
+                        $("#tanggal_edit").addClass('is-invalid');
+                        $(".error-tanggal-edit").html(response.error.tanggal);
+                    } else {
+                        $("#tanggal_edit").removeClass('is-invalid');
+                        $(".error-tanggal-edit").html('');
+                    }
+
+                    if (response.error.jam) {
+                        $("#jam_edit").addClass('is-invalid');
+                        $(".error-jam-edit").html(response.error.jam);
+                    } else {
+                        $("#jam_edit").removeClass('is-invalid');
+                        $(".error-jam-edit").html('');
+                    }
+                    if (response.error.lain_lain) {
+                        $("#lain_lain_edit").addClass('is-invalid');
+                        $(".error-lain-lain-edit").html(response.error.lain_lain);
+                    } else {
+                        $("#lain_lain_edit").removeClass('is-invalid');
+                        $(".error-lain-lain-edit").html('');
+                    }
+                    if (response.error.lokasi_id) {
+                        $("#lokasi_id_edit").addClass('is-invalid');
+                        $(".error-lokasi-edit").html(response.error.lokasi_id);
+                    } else {
+                        $("#lokasi_id_edit").removeClass('is-invalid');
+                        $(".error-lokasi-edit").html('');
+                    }
+                    if (response.error.status_presensi_id) {
+                        $("#status_presensi_id_edit").addClass('is-invalid');
+                        $(".error-status-edit").html(response.error.status_presensi_id);
+                    } else {
+                        $("#status_presensi_id-_edit").removeClass('is-invalid');
+                        $(".error-status-edit").html('');
+                    }
+
+
                 } else {
                     Swal.fire({
                         icon: 'success',
