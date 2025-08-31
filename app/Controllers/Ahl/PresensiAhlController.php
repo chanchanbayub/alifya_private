@@ -99,6 +99,15 @@ class PresensiAhlController extends BaseController
                         'required' => 'Status Presensi Tidak Boleh Kosong!'
                     ]
                 ],
+                'dokumentasi' => [
+                    'rules' => 'uploaded[dokumentasi]|max_size[dokumentasi,2048]|is_image[dokumentasi]|mime_in[dokumentasi,image/png,image/jpeg]',
+                    'errors' => [
+                        'uploaded' => 'Dokumentasi Tidak Boleh Kosong !',
+                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
+                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
+                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
+                    ]
+                ],
 
 
 
@@ -111,6 +120,7 @@ class PresensiAhlController extends BaseController
                         'jam' => $this->validation->getError('jam'),
                         'lokasi_id' => $this->validation->getError('lokasi_id'),
                         'status_presensi_id' => $this->validation->getError('status_presensi_id'),
+                        'dokumentasi' => $this->validation->getError('dokumentasi'),
 
                     ]
                 ];
@@ -123,7 +133,10 @@ class PresensiAhlController extends BaseController
                 $lokasi_id = $this->request->getPost('lokasi_id');
                 $lain_lain = $this->request->getPost('lain_lain');
                 $status_presensi_id = $this->request->getPost('status_presensi_id');
-                $dokumentasi = $this->request->getPost('dokumentasi');
+
+                $dokumentasi = $this->request->getFile('dokumentasi');
+                $nama_foto = $dokumentasi->getRandomName();
+
 
                 $jenis_pekerjaan_data = $this->jamMasukAhlModel->where(["id" => $jenis_pekerjaan_id])->get()->getRowObject();
 
@@ -182,9 +195,11 @@ class PresensiAhlController extends BaseController
                     'lokasi_id' => strtolower($lokasi_id),
                     'status_presensi_id' => strtolower($status_presensi_id),
                     'keterangan' => $interval,
-                    'dokumentasi' => strtolower($dokumentasi),
+                    'dokumentasi' => $nama_foto,
 
                 ]);
+
+                $dokumentasi->move('dokumentasi_ahl', $nama_foto);
 
                 $alert = [
                     'success' => 'Presensi Berhasil di Simpan!'
@@ -229,6 +244,13 @@ class PresensiAhlController extends BaseController
             $presensi_ahl = $this->presensiAhlModel->where(["id" => $id])->first();
 
             $this->presensiAhlModel->delete($presensi_ahl["id"]);
+
+            if ($presensi_ahl["dokumentasi"] != null) {
+                $path_dokumentasi =  'dokumentasi_ahl/' . $presensi_ahl['dokumentasi'];
+                if (file_exists($path_dokumentasi)) {
+                    unlink($path_dokumentasi);
+                }
+            }
 
             $alert = [
                 'success' => 'Presensi Berhasil di Hapus!'

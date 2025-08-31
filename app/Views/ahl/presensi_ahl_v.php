@@ -64,7 +64,7 @@
                                             <td><?= $presensi_ahl->lain_lain ?></td>
                                             <td><?= $presensi_ahl->status_presensi ?></td>
                                             <td><?= date('H:i', strtotime($presensi_ahl->keterangan))  ?></td>
-                                            <td> <a href="#" class="btn btn-outline-primary btn-sm">Lihat</a> <?= $presensi_ahl->dokumentasi ?></td>
+                                            <td> <a href="../dokumentasi_ahl/<?= $presensi_ahl->dokumentasi ?>" target="_blank" class="btn btn-outline-primary btn-sm">Lihat</a> </td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $presensi_ahl->id ?>" type="button">
                                                     <i class="bi bi-pencil-square"></i>
@@ -162,7 +162,7 @@
 
                     <div class="mb-3">
                         <label for="status_presensi_id" class="col-form-label">Status Presensi :</label>
-                        <select name="status_presensi_id" id="status_presensi_id" class="form-control">
+                        <select name="status_presensi_id" id="status_presensi_id" class="form-select">
                             <option value="">Silahkan Pilih</option>
                             <?php foreach ($status_presensi as $status_presensi) : ?>
                                 <option value="<?= $status_presensi->id ?>"><?= $status_presensi->status_presensi ?></option>
@@ -174,7 +174,7 @@
 
                     <div class="mb-3">
                         <label for="dokumentasi" class="col-form-label">Dokumentasi :</label>
-                        <input type="text" name="dokumentasi" id="dokumentasi" class="form-control">
+                        <input type="file" name="dokumentasi" id="dokumentasi" class="form-control">
                         <div class="invalid-feedback error-dokumentasi">
                         </div>
                     </div>
@@ -279,10 +279,7 @@
             dropdownParent: $('#exampleModal')
         });
 
-        // $('#status_presensi_id').select2({
-        //     theme: 'bootstrap-5',
-        //     dropdownParent: $('#exampleModal')
-        // });
+
 
         $('#mitra_id_edit').select2({
             theme: 'bootstrap-5',
@@ -303,21 +300,26 @@
             let status_presensi_id = $("#status_presensi_id").val();
             let dokumentasi = $("#dokumentasi").val();
 
+            let formData = new FormData(this);
+
+            formData.append('mitra_id', mitra_id);
+            formData.append('jenis_pekerjaan_id', jenis_pekerjaan_id);
+            formData.append('tanggal', tanggal);
+            formData.append('jam', jam);
+            formData.append('lain_lain', lain_lain);
+            formData.append('lokasi_id', lokasi_id);
+            formData.append('status_presensi_id', status_presensi_id);
+            formData.append('dokumentasi', dokumentasi);
+
             $.ajax({
                 url: '/admin/presensi_ahl/insert',
-                method: 'post',
-                dataType: 'JSON',
-                data: {
-                    mitra_id: mitra_id,
-                    jenis_pekerjaan_id: jenis_pekerjaan_id,
-                    tanggal: tanggal,
-                    jam: jam,
-                    lain_lain: lain_lain,
-                    lokasi_id: lokasi_id,
-                    status_presensi_id: status_presensi_id,
-                    dokumentasi: dokumentasi,
-
-                },
+                data: formData,
+                dataType: 'json',
+                enctype: 'multipart/form-data',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                cache: false,
                 beforeSend: function() {
                     $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
                     $('.save').prop('disabled', true);
@@ -424,7 +426,7 @@
             },
             success: function(response) {
 
-                console.log(response);
+
                 // $("#id_edit").val(response.mitra_ahl.id);
 
                 // let jenis_layanan_data = `<option value="">--Silahkan Pilih--</option>`;
@@ -525,7 +527,6 @@
                 id: id,
             },
             success: function(response) {
-                console.log(response);
                 $("#id_delete").val(response.presensi_ahl.id);
             }
         });
