@@ -270,6 +270,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('mitra_ahl/update', 'Ahl\MitraPengajarAhlController::update');
     $routes->post('mitra_ahl/delete', 'Ahl\MitraPengajarAhlController::delete');
 
+    // Presensi AHL
+    $routes->get('presensi_ahl', 'Ahl\PresensiAhlController::index');
+    $routes->post('presensi_ahl/insert', 'Ahl\PresensiAhlController::insert');
+    $routes->get('presensi_ahl/edit', 'Ahl\PresensiAhlController::edit');
+    $routes->post('presensi_ahl/update', 'Ahl\PresensiAhlController::update');
+    $routes->post('presensi_ahl/delete', 'Ahl\PresensiAhlController::delete');
+
 
     // export excel peserta
 

@@ -135,7 +135,7 @@
                      </a>
                  </li>
                  <li>
-                     <a href="#">
+                     <a href="/admin/presensi_ahl">
                          <i class="bi bi-circle"></i><span>Presensi AHL <span class="badge bg-success">Coming Soon!!</span></span>
                      </a>
                  </li>
