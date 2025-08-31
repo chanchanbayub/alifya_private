@@ -1,0 +1,213 @@
+<?php
+
+namespace App\Controllers\Mitra;
+
+use App\Controllers\BaseController;
+use App\Models\Ahl\JamMasukAhlModel;
+use App\Models\Ahl\JenisPekerjaanModel;
+use App\Models\Ahl\LokasiModel;
+use App\Models\Ahl\MitraPengajarAhlModel;
+use App\Models\Ahl\StatusPresensiModel;
+use App\Models\Mitra\PresensiAHLModel as MitraPresensiAHLModel;
+use CodeIgniter\HTTP\ResponseInterface;
+
+class PresensiAHLController extends BaseController
+{
+    protected $mitraPengajarAhlModel;
+    protected $pengajarModel;
+    protected $jenisPekerjaanModel;
+    protected $statusPresensiModel;
+    protected $presensiAhlModel;
+    protected $jamMasukAhlModel;
+    protected $lokasiModel;
+    protected $validation;
+
+    public function __construct()
+    {
+        $this->mitraPengajarAhlModel = new MitraPengajarAhlModel();
+        $this->jamMasukAhlModel = new JamMasukAhlModel();
+        $this->presensiAhlModel = new MitraPresensiAHLModel();
+        $this->lokasiModel = new LokasiModel();
+        $this->jenisPekerjaanModel = new JenisPekerjaanModel();
+        $this->statusPresensiModel = new StatusPresensiModel();
+        $this->validation = \Config\Services::validation();
+
+        helper(['format']);
+    }
+
+
+    public function index()
+    {
+
+        $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhlById(session('mitra_pengajar_id'));
+        $presensi_ahl =  $this->presensiAhlModel->getPresensiAhlByid(session('mitra_pengajar_id'));
+
+        $data = [
+            'title' => 'Presensi AHL',
+            'presensi_ahl' => $presensi_ahl,
+            'lokasi' => $this->lokasiModel->getLokasi(),
+            'jenis_pekerjaan' => $this->jenisPekerjaanModel->getJenisPekerjaan(),
+            'status_presensi' => $this->statusPresensiModel->getStatusPresensi(),
+            'mitra_pengajar_ahl' => $mitra_pengajar_ahl,
+        ];
+
+        return view('mitra/presensi_ahl_v', $data);
+    }
+
+    public function insert()
+    {
+        if ($this->request->isAJAX()) {
+
+            if (!$this->validate([
+                'mitra_id' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Mitra Pengajar Tidak Boleh Kosong!'
+                    ]
+                ],
+
+                'jenis_pekerjaan_id' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Jenis Pekerjaan Tidak Boleh Kosong!'
+                    ]
+                ],
+
+                'tanggal' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tanggal Tidak Boleh Kosong!'
+                    ]
+                ],
+
+                'jam' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Jam Tidak Boleh Kosong!'
+                    ]
+                ],
+
+                'lokasi_id' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lokasi Tidak Boleh Kosong!'
+                    ]
+                ],
+
+                'status_presensi_id' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Status Presensi Tidak Boleh Kosong!'
+                    ]
+                ],
+                'dokumentasi' => [
+                    'rules' => 'uploaded[dokumentasi]|max_size[dokumentasi,2048]|is_image[dokumentasi]|mime_in[dokumentasi,image/png,image/jpeg]',
+                    'errors' => [
+                        'uploaded' => 'Dokumentasi Tidak Boleh Kosong !',
+                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
+                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
+                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
+                    ]
+                ],
+
+
+
+            ])) {
+                $alert = [
+                    'error' => [
+                        'mitra_id' => $this->validation->getError('mitra_id'),
+                        'jenis_pekerjaan_id' => $this->validation->getError('jenis_pekerjaan_id'),
+                        'tanggal' => $this->validation->getError('tanggal'),
+                        'jam' => $this->validation->getError('jam'),
+                        'lokasi_id' => $this->validation->getError('lokasi_id'),
+                        'status_presensi_id' => $this->validation->getError('status_presensi_id'),
+                        'dokumentasi' => $this->validation->getError('dokumentasi'),
+
+                    ]
+                ];
+            } else {
+
+                $mitra_id = $this->request->getPost('mitra_id');
+                $jenis_pekerjaan_id = $this->request->getPost('jenis_pekerjaan_id');
+                $tanggal = $this->request->getPost('tanggal');
+                $jam = $this->request->getPost('jam');
+                $lokasi_id = $this->request->getPost('lokasi_id');
+                $lain_lain = $this->request->getPost('lain_lain');
+                $status_presensi_id = $this->request->getPost('status_presensi_id');
+
+                $dokumentasi = $this->request->getFile('dokumentasi');
+                $nama_foto = $dokumentasi->getRandomName();
+
+
+                $jenis_pekerjaan_data = $this->jamMasukAhlModel->where(["id" => $jenis_pekerjaan_id])->get()->getRowObject();
+
+                if ($status_presensi_id == 1) {
+
+                    // Jam Jadwal
+                    $tanggal_hari_ini = date_create();
+                    $format_tanggal = date_format($tanggal_hari_ini, "Y-m-d");
+                    $data_waktu = $format_tanggal . ' ' . $jenis_pekerjaan_data->jam_masuk_ahl;
+                    $waktu_hari_ini = date_create($data_waktu);
+
+                    // jam presensi
+                    $tanggal_inputan = date_create($tanggal);
+                    $tanggal_presensi = date_format($tanggal_inputan, "Y-m-d");
+                    $gabung_waktu = $tanggal_presensi . ' ' . $jam;
+                    $waktu_presensi = date_create($gabung_waktu);
+
+                    $selisih = date_diff($waktu_presensi, $waktu_hari_ini);
+
+                    if ($waktu_presensi <= $waktu_hari_ini) {
+                        $interval = "00:00:00";
+                    } else {
+                        $interval = $selisih->format("%H:%I:%S");
+                    }
+                } elseif ($status_presensi_id == 2) {
+                    // Jam Jadwal
+                    $tanggal_hari_ini = date_create();
+                    $format_tanggal = date_format($tanggal_hari_ini, "Y-m-d");
+                    $data_waktu = $format_tanggal . ' ' . $jenis_pekerjaan_data->jam_pulang_ahl;
+                    $waktu_hari_ini = date_create($data_waktu);
+
+                    // jam presensi
+                    $tanggal_inputan = date_create($tanggal);
+                    $tanggal_presensi = date_format($tanggal_inputan, "Y-m-d");
+                    $gabung_waktu = $tanggal_presensi . ' ' . $jam;
+                    $waktu_presensi = date_create($gabung_waktu);
+
+                    $selisih = date_diff($waktu_presensi, $waktu_hari_ini);
+
+                    if ($waktu_presensi >= $waktu_hari_ini) {
+                        $interval = "00:00:00";
+                    } else {
+                        $interval = $selisih->format("%H:%I:%S");
+                    }
+                } elseif ($status_presensi_id == 3) {
+
+                    $interval = "00:00:00";
+                }
+
+                $this->presensiAhlModel->save([
+                    'mitra_id' => strtolower($mitra_id),
+                    'jenis_pekerjaan_id' => strtolower($jenis_pekerjaan_id),
+                    'tanggal' => strtolower($tanggal),
+                    'jam' => strtolower($jam),
+                    'lain_lain' => strtolower($lain_lain),
+                    'lokasi_id' => strtolower($lokasi_id),
+                    'status_presensi_id' => strtolower($status_presensi_id),
+                    'keterangan' => $interval,
+                    'dokumentasi' => $nama_foto,
+
+                ]);
+
+                $dokumentasi->move('dokumentasi_ahl', $nama_foto);
+
+                $alert = [
+                    'success' => 'Presensi Berhasil di Simpan!'
+                ];
+            }
+
+            return json_encode($alert);
+        }
+    }
+}

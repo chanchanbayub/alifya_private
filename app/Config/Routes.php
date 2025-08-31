@@ -345,4 +345,11 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('invoice/edit', 'Mitra\InvoiceKonfirmasiController::edit');
     $routes->post('invoice/update', 'Mitra\InvoiceKonfirmasiController::update');
     $routes->post('invoice/delete', 'Mitra\InvoiceKonfirmasiController::delete');
+
+    // Presensi AHL
+    $routes->get('presensi_ahl_mitra', 'Mitra\PresensiAHLController::index');
+    $routes->post('presensi_ahl_mitra/insert', 'Mitra\PresensiAHLController::insert');
+    $routes->get('presensi_ahl_mitra/edit', 'Mitra\PresensiAHLController::edit');
+    $routes->post('presensi_ahl_mitra/update', 'Mitra\PresensiAHLController::update');
+    $routes->post('presensi_ahl_mitra/delete', 'Mitra\PresensiAHLController::delete');
 });

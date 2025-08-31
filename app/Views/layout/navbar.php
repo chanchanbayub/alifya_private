@@ -130,15 +130,16 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/presensi_ahl">
+                         <i class="bi bi-circle"></i><span>Presensi AHL </span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="#">
                          <i class="bi bi-circle"></i><span>Upah AHL <span class="badge bg-success">Coming Soon!!</span></span>
                      </a>
                  </li>
-                 <li>
-                     <a href="/admin/presensi_ahl">
-                         <i class="bi bi-circle"></i><span>Presensi AHL <span class="badge bg-success">Coming Soon!!</span></span>
-                     </a>
-                 </li>
+
              </ul>
          </li>
 

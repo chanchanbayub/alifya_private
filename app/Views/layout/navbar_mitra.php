@@ -25,6 +25,22 @@
              </ul>
          </li><!-- End Icons Nav -->
 
+         <li class="nav-heading">ALIFYA HOME LEARNING</li>
+
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#ahl-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-house"></i><span>AHL<span class="badge bg-success">Coming Soon!!</span></span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="ahl-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/mitra_pengajar/presensi_ahl_mitra">
+                         <i class=" bi bi-circle"></i><span>Presensi AHL</span>
+                     </a>
+                 </li>
+
+             </ul>
+         </li>
+
          <li class="nav-heading">DATA MANAGEMENT</li>
 
          <li class="nav-item">
