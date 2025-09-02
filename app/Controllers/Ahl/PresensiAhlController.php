@@ -100,10 +100,10 @@ class PresensiAhlController extends BaseController
                     ]
                 ],
                 'dokumentasi' => [
-                    'rules' => 'uploaded[dokumentasi]|max_size[dokumentasi,2048]|is_image[dokumentasi]|mime_in[dokumentasi,image/png,image/jpeg]',
+                    'rules' => 'uploaded[dokumentasi]|max_size[dokumentasi,10000]|is_image[dokumentasi]|mime_in[dokumentasi,image/png,image/jpeg]',
                     'errors' => [
                         'uploaded' => 'Dokumentasi Tidak Boleh Kosong !',
-                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
+                        'max_size' => 'Ukuran Terlalu Besar (max : 10MB) !',
                         'is_image' => 'Yang Anda Upload Bukan Gambar !',
                         'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
                     ]
