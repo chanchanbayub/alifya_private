@@ -300,7 +300,6 @@ class HargaMitraController extends BaseController
                 foreach ($peserta_didik as $peserta) {
 
                     $data_harga_bulan_sebelumnya = $this->hargaMitraModel->where(["peserta_didik_id" => $peserta->id])->where(["bulan" => $inputan_bulan_sebelumnya])->where(["tahun" => $inputan_tahun_sebelumnya])->get()->getRowObject();
-
                     if ($data_harga_bulan_sebelumnya != null) {
 
                         $data_harga_bulan_terbaru = $this->hargaMitraModel->where(["peserta_didik_id" => $peserta->id])->where(["bulan" => $inputan_bulan_terbaru])->where(["tahun" => $inputan_tahun_terbaru])->get()->getRowObject();
@@ -312,7 +311,7 @@ class HargaMitraController extends BaseController
                                 'bulan' => $inputan_bulan_terbaru,
                                 'tahun' => $inputan_tahun_terbaru,
                                 'harga_mitra' => strtolower($data_harga_bulan_sebelumnya->harga_mitra),
-                                'booster_media' => strtolower($data_harga_bulan_sebelumnya->booster_media),
+                                'booster_media' => 0,
                             ]);
                             $alert = [
                                 'success' => 'Upah Mitra Berhasil di Simpan !'
@@ -325,9 +324,12 @@ class HargaMitraController extends BaseController
                             ];
                         }
                     } elseif ($data_harga_bulan_sebelumnya == null) {
+
+                        $mitra_pengajar = $this->kelompokBelajarModel->getWhereMitraPengajarbyPesertaDidik($peserta->id);
+
                         $this->hargaMitraModel->save([
-                            'mitra_pengajar_id' => strtolower($data_harga_bulan_sebelumnya->mitra_pengajar_id),
-                            'peserta_didik_id' => strtolower($peserta->peserta_didik_id),
+                            'mitra_pengajar_id' => strtolower($mitra_pengajar->mitra_pengajar_id),
+                            'peserta_didik_id' => strtolower($peserta->id),
                             'bulan' => $inputan_bulan_terbaru,
                             'tahun' => $inputan_tahun_terbaru,
                             'harga_mitra' => "0",
