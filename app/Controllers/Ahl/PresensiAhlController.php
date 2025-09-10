@@ -137,54 +137,60 @@ class PresensiAhlController extends BaseController
                 $dokumentasi = $this->request->getFile('dokumentasi');
                 $nama_foto = $dokumentasi->getRandomName();
 
-
                 $jenis_pekerjaan_data = $this->jamMasukAhlModel->where(["id" => $jenis_pekerjaan_id])->get()->getRowObject();
 
-                if ($status_presensi_id == 1) {
+                if ($jenis_pekerjaan_data->jenis_pekerjaan_id == 1) {
+                    if ($status_presensi_id == 1) {
 
-                    // Jam Jadwal
-                    $tanggal_hari_ini = date_create();
-                    $format_tanggal = date_format($tanggal_hari_ini, "Y-m-d");
-                    $data_waktu = $format_tanggal . ' ' . $jenis_pekerjaan_data->jam_masuk_ahl;
-                    $waktu_hari_ini = date_create($data_waktu);
+                        // Jam Jadwal
+                        $tanggal_hari_ini = date_create();
+                        $format_tanggal = date_format($tanggal_hari_ini, "Y-m-d");
+                        $data_waktu = $format_tanggal . ' ' . $jenis_pekerjaan_data->jam_masuk_ahl;
+                        $waktu_hari_ini = date_create($data_waktu);
 
-                    // jam presensi
-                    $tanggal_inputan = date_create($tanggal);
-                    $tanggal_presensi = date_format($tanggal_inputan, "Y-m-d");
-                    $gabung_waktu = $tanggal_presensi . ' ' . $jam;
-                    $waktu_presensi = date_create($gabung_waktu);
+                        // jam presensi
+                        $tanggal_inputan = date_create($tanggal);
+                        $tanggal_presensi = date_format($tanggal_inputan, "Y-m-d");
+                        $gabung_waktu = $tanggal_presensi . ' ' . $jam;
+                        $waktu_presensi = date_create($gabung_waktu);
 
-                    $selisih = date_diff($waktu_presensi, $waktu_hari_ini);
+                        $selisih = date_diff($waktu_presensi, $waktu_hari_ini);
 
-                    if ($waktu_presensi <= $waktu_hari_ini) {
+                        if ($waktu_presensi <= $waktu_hari_ini) {
+                            $interval = "00:00:00";
+                        } else {
+                            $interval = $selisih->format("%H:%I:%S");
+                        }
+                    } elseif ($status_presensi_id == 2) {
+                        // Jam Jadwal
+                        $tanggal_hari_ini = date_create();
+                        $format_tanggal = date_format($tanggal_hari_ini, "Y-m-d");
+                        $data_waktu = $format_tanggal . ' ' . $jenis_pekerjaan_data->jam_pulang_ahl;
+                        $waktu_hari_ini = date_create($data_waktu);
+
+                        // jam presensi
+                        $tanggal_inputan = date_create($tanggal);
+                        $tanggal_presensi = date_format($tanggal_inputan, "Y-m-d");
+                        $gabung_waktu = $tanggal_presensi . ' ' . $jam;
+                        $waktu_presensi = date_create($gabung_waktu);
+
+                        $selisih = date_diff($waktu_presensi, $waktu_hari_ini);
+
+                        if ($waktu_presensi >= $waktu_hari_ini) {
+                            $interval = "00:00:00";
+                        } else {
+                            $interval = $selisih->format("%H:%I:%S");
+                        }
+                    } elseif ($status_presensi_id == 3) {
+
                         $interval = "00:00:00";
-                    } else {
-                        $interval = $selisih->format("%H:%I:%S");
                     }
-                } elseif ($status_presensi_id == 2) {
-                    // Jam Jadwal
-                    $tanggal_hari_ini = date_create();
-                    $format_tanggal = date_format($tanggal_hari_ini, "Y-m-d");
-                    $data_waktu = $format_tanggal . ' ' . $jenis_pekerjaan_data->jam_pulang_ahl;
-                    $waktu_hari_ini = date_create($data_waktu);
-
-                    // jam presensi
-                    $tanggal_inputan = date_create($tanggal);
-                    $tanggal_presensi = date_format($tanggal_inputan, "Y-m-d");
-                    $gabung_waktu = $tanggal_presensi . ' ' . $jam;
-                    $waktu_presensi = date_create($gabung_waktu);
-
-                    $selisih = date_diff($waktu_presensi, $waktu_hari_ini);
-
-                    if ($waktu_presensi >= $waktu_hari_ini) {
-                        $interval = "00:00:00";
-                    } else {
-                        $interval = $selisih->format("%H:%I:%S");
-                    }
-                } elseif ($status_presensi_id == 3) {
+                } elseif ($jenis_pekerjaan_data->jenis_pekerjaan_id == 2) {
 
                     $interval = "00:00:00";
                 }
+
+
 
                 $this->presensiAhlModel->save([
                     'mitra_id' => strtolower($mitra_id),
@@ -351,49 +357,53 @@ class PresensiAhlController extends BaseController
 
                 $jenis_pekerjaan_data = $this->jamMasukAhlModel->where(["id" => $jenis_pekerjaan_id])->get()->getRowObject();
 
-                if ($status_presensi_id == 1) {
+                if ($jenis_pekerjaan_data->jenis_pekerjaan_id == 1) {
+                    if ($status_presensi_id == 1) {
 
-                    // Jam Jadwal
-                    $tanggal_hari_ini = date_create();
-                    $format_tanggal = date_format($tanggal_hari_ini, "Y-m-d");
-                    $data_waktu = $format_tanggal . ' ' . $jenis_pekerjaan_data->jam_masuk_ahl;
-                    $waktu_hari_ini = date_create($data_waktu);
+                        // Jam Jadwal
+                        $tanggal_hari_ini = date_create();
+                        $format_tanggal = date_format($tanggal_hari_ini, "Y-m-d");
+                        $data_waktu = $format_tanggal . ' ' . $jenis_pekerjaan_data->jam_masuk_ahl;
+                        $waktu_hari_ini = date_create($data_waktu);
 
-                    // jam presensi
-                    $tanggal_inputan = date_create($tanggal);
-                    $tanggal_presensi = date_format($tanggal_inputan, "Y-m-d");
-                    $gabung_waktu = $tanggal_presensi . ' ' . $jam;
-                    $waktu_presensi = date_create($gabung_waktu);
+                        // jam presensi
+                        $tanggal_inputan = date_create($tanggal);
+                        $tanggal_presensi = date_format($tanggal_inputan, "Y-m-d");
+                        $gabung_waktu = $tanggal_presensi . ' ' . $jam;
+                        $waktu_presensi = date_create($gabung_waktu);
 
-                    $selisih = date_diff($waktu_presensi, $waktu_hari_ini);
+                        $selisih = date_diff($waktu_presensi, $waktu_hari_ini);
 
-                    if ($waktu_presensi <= $waktu_hari_ini) {
+                        if ($waktu_presensi <= $waktu_hari_ini) {
+                            $interval = "00:00:00";
+                        } else {
+                            $interval = $selisih->format("%H:%I:%S");
+                        }
+                    } elseif ($status_presensi_id == 2) {
+                        // Jam Jadwal
+                        $tanggal_hari_ini = date_create();
+                        $format_tanggal = date_format($tanggal_hari_ini, "Y-m-d");
+                        $data_waktu = $format_tanggal . ' ' . $jenis_pekerjaan_data->jam_pulang_ahl;
+                        $waktu_hari_ini = date_create($data_waktu);
+
+                        // jam presensi
+                        $tanggal_inputan = date_create($tanggal);
+                        $tanggal_presensi = date_format($tanggal_inputan, "Y-m-d");
+                        $gabung_waktu = $tanggal_presensi . ' ' . $jam;
+                        $waktu_presensi = date_create($gabung_waktu);
+
+                        $selisih = date_diff($waktu_presensi, $waktu_hari_ini);
+
+                        if ($waktu_presensi >= $waktu_hari_ini) {
+                            $interval = "00:00:00";
+                        } else {
+                            $interval = $selisih->format("%H:%I:%S");
+                        }
+                    } elseif ($status_presensi_id == 3) {
+
                         $interval = "00:00:00";
-                    } else {
-                        $interval = $selisih->format("%H:%I:%S");
                     }
-                } elseif ($status_presensi_id == 2) {
-                    // Jam Jadwal
-                    $tanggal_hari_ini = date_create();
-                    $format_tanggal = date_format($tanggal_hari_ini, "Y-m-d");
-                    $data_waktu = $format_tanggal . ' ' . $jenis_pekerjaan_data->jam_pulang_ahl;
-                    $waktu_hari_ini = date_create($data_waktu);
-
-                    // jam presensi
-                    $tanggal_inputan = date_create($tanggal);
-                    $tanggal_presensi = date_format($tanggal_inputan, "Y-m-d");
-                    $gabung_waktu = $tanggal_presensi . ' ' . $jam;
-                    $waktu_presensi = date_create($gabung_waktu);
-
-                    $selisih = date_diff($waktu_presensi, $waktu_hari_ini);
-
-                    if ($waktu_presensi >= $waktu_hari_ini) {
-                        $interval = "00:00:00";
-                    } else {
-                        $interval = $selisih->format("%H:%I:%S");
-                    }
-                } elseif ($status_presensi_id == 3) {
-
+                } elseif ($jenis_pekerjaan_data->jenis_pekerjaan_id == 2) {
                     $interval = "00:00:00";
                 }
 
