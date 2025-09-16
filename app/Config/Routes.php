@@ -13,6 +13,8 @@ $routes->get('/daftar_peserta_didik', 'Users\UsersController::daftar_peserta_did
 $routes->post('/daftar_mitra_pengajar/insert', 'Users\UsersController::daftar_mitra_pengajar');
 $routes->post('/daftar_peserta_didik/insert', 'Users\UsersController::daftar_peserta');
 
+$routes->get('/daftar_ahl', 'Users\UsersController::daftar_ahl');
+
 $routes->get('/profil', 'Users\ProfilController::index');
 $routes->get('/program_belajar', 'Users\ProgramBelajarController::index');
 $routes->get('/materi_belajar', 'Users\MateriBelajarController::index');

@@ -20,6 +20,7 @@
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="/daftar_mitra_pengajar" class="dropdown-item">Daftar Mitra Pengajar</a>
                         <a href="/daftar_peserta_didik" class="dropdown-item">Daftar Peserta Didik</a>
+                        <a href="/daftar_ahl" class="dropdown-item">Daftar Peserta AHL</a>
                         <!-- <a href="/daftar_peserta_didik" class="dropdown-item">Daftar Peserta Didik</a> -->
                     </div>
                 </div>

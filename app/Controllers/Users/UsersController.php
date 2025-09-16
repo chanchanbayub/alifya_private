@@ -565,4 +565,13 @@ class UsersController extends BaseController
             return json_encode($alert);
         }
     }
+
+    public function daftar_ahl()
+    {
+        $data = [
+            'title' => 'Alifya Home Learning | Daftar AHL',
+            'peserta_didik' => $this->muridModel->getDataMuridAktif()
+        ];
+        return view('users/daftar_peserta_ahl', $data);
+    }
 }
