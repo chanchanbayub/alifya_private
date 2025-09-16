@@ -105,6 +105,11 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/program_ahl">
+                         <i class="bi bi-circle"></i><span>Program Belajar AHL</span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="/admin/jenis_pekerjaan">
                          <i class="bi bi-circle"></i><span>Jenis Pekerjaan</span>
                      </a>

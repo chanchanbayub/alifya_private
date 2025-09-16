@@ -279,6 +279,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('presensi_ahl/update', 'Ahl\PresensiAhlController::update');
     $routes->post('presensi_ahl/delete', 'Ahl\PresensiAhlController::delete');
 
+    // Program AHL
+    $routes->get('program_ahl', 'Ahl\ProgramAHLController::index');
+    $routes->post('program_ahl/insert', 'Ahl\ProgramAHLController::insert');
+    $routes->get('program_ahl/edit', 'Ahl\ProgramAHLController::edit');
+    $routes->post('program_ahl/update', 'Ahl\ProgramAHLController::update');
+    $routes->post('program_ahl/delete', 'Ahl\ProgramAHLController::delete');
+
 
     // export excel peserta
 
