@@ -20,7 +20,6 @@ class ProgramAHLModel extends Model
     public function getProgramAHL()
     {
         return $this->table($this->table)
-            ->select("*")
             ->orderBy('program_ahl_table.id desc')
             ->get()->getResultObject();
     }

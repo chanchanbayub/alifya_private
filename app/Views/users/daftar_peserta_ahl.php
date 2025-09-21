@@ -217,14 +217,19 @@
                         <br>
 
                         <div class="control-group">
-                            <label for="program_belajar_id">Brosur Alifya Home Learning :</label>
-                            <img src="" alt="brosur" width="350">
+                            <label for="program_belajar_id">Brosur Alifya Home Learning (<a href="/assets/img/price_list.jpg" target="_blank">Lihat Brosur</a>) :</label>
+                            <br>
+                            <img src="/assets/img/price_list.jpg" alt="brosur" width="350">
                         </div>
+                        <br>
 
                         <div class="control-group">
                             <label for="program_belajar_id">Program Belajar :</label>
                             <select name="program_belajar_id" id="program_belajar_id" class="form-control">
                                 <option value="">--Silahkan Pilih</option>
+                                <?php foreach ($program_ahl as $program_ahl) : ?>
+                                    <option value="<?= $program_ahl->id ?>"><?= $program_ahl->nama_program ?> (<?= $program_ahl->usia_anak ?>)</option>
+                                <?php endforeach; ?>
 
                             </select>
                             <p class="help-block text-danger error-program-belajar"></p>
