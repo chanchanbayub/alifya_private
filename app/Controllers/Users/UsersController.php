@@ -9,6 +9,7 @@ use App\Models\Admin\PaketBelajarModel;
 use App\Models\Admin\PengajarModel;
 use App\Models\Admin\ProgramBelajarModel;
 use App\Models\Admin\TestimonialModel;
+use App\Models\Ahl\PesertaDidikAhlModel;
 use App\Models\Ahl\ProgramAHLModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -24,6 +25,7 @@ class UsersController extends BaseController
     protected $testimonialModel;
     protected $muridModel;
     protected $programAHLModel;
+    protected $pesertaDidikAhlModel;
 
     public function __construct()
     {
@@ -35,6 +37,7 @@ class UsersController extends BaseController
         $this->paketBelajarModel = new PaketBelajarModel();
         $this->testimonialModel = new TestimonialModel();
         $this->programAHLModel = new ProgramAHLModel();
+        $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
     }
 
     public function index()
@@ -571,12 +574,273 @@ class UsersController extends BaseController
 
     public function daftar_ahl()
     {
-
         $data = [
             'title' => 'Alifya Home Learning | Daftar AHL',
             'peserta_didik' => $this->muridModel->getDataMuridAktif(),
             'program_ahl' => $this->programAHLModel->getProgramAHL()
         ];
         return view('users/daftar_peserta_ahl', $data);
+    }
+
+    public function daftar_peserta_ahl()
+    {
+        if ($this->request->isAJAX()) {
+
+            if (!$this->validate([
+                'ketersediaan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pilih Salah Satu'
+                    ]
+                ],
+                // data orang tua
+                'nama_ayah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'nama_ibu' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'pekerjaan_ibu' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'pekerjaan_ayah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'usersname_instagram' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'nomor_whatsapp_orang_tua' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'alamat_domisili_anak' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+
+                // data murid
+                'nama_lengkap_anak' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !',
+                    ]
+                ],
+                'nama_panggilan_anak' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !',
+                    ]
+                ],
+                'tanggal_lahir_anak' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'jenis_kelamin' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'pendidikan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'sekolah_anak' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'ukuran_baju' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+
+                'program_belajar_ahl_id' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+
+
+                'foto_anak' => [
+                    'rules' => 'uploaded[foto_anak]|max_size[foto_anak,2048]|is_image[foto_anak]|mime_in[foto_anak,image/png,image/jpeg]',
+                    'errors' => [
+                        'uploaded' => 'Foto Tidak Boleh Kosong !',
+                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
+                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
+                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
+                    ]
+                ],
+                'bukti_tf' => [
+                    'rules' => 'uploaded[bukti_tf]|max_size[bukti_tf,2048]|is_image[bukti_tf]|mime_in[bukti_tf,image/png,image/jpeg]',
+                    'errors' => [
+                        'uploaded' => 'Foto Tidak Boleh Kosong !',
+                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
+                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
+                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
+                    ]
+                ],
+
+                'izin_dokumentasi' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pilih Salah Satu'
+                    ]
+                ],
+
+                'info_alifya' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'data_1' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'data_2' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+
+
+
+            ])) {
+                $alert = [
+                    'error' => [
+                        'ketersediaan' => $this->validation->getError('ketersediaan'),
+                        // data orang_tua
+                        'nama_ayah' => $this->validation->getError('nama_ayah'),
+                        'pekerjaan_ayah' => $this->validation->getError('pekerjaan_ayah'),
+
+                        'nama_ibu' => $this->validation->getError('nama_ibu'),
+                        'pekerjaan_ibu' => $this->validation->getError('pekerjaan_ibu'),
+                        'usersname_instagram' => $this->validation->getError('usersname_instagram'),
+                        'nomor_whatsapp_orang_tua' => $this->validation->getError('nomor_whatsapp_orang_tua'),
+                        'alamat_domisili_anak' => $this->validation->getError('alamat_domisili_anak'),
+
+                        'nama_lengkap_anak' => $this->validation->getError('nama_lengkap_anak'),
+                        'nama_panggilan_anak' => $this->validation->getError('nama_panggilan_anak'),
+                        'tanggal_lahir_anak' => $this->validation->getError('tanggal_lahir_anak'),
+                        'jenis_kelamin' => $this->validation->getError('jenis_kelamin'),
+                        'pendidikan' => $this->validation->getError('pendidikan'),
+                        'sekolah_anak' => $this->validation->getError('sekolah_anak'),
+                        'ukuran_baju' => $this->validation->getError('ukuran_baju'),
+
+                        'program_belajar_ahl_id' => $this->validation->getError('program_belajar_ahl_id'),
+                        'foto_anak' => $this->validation->getError('foto_anak'),
+                        'bukti_tf' => $this->validation->getError('bukti_tf'),
+
+                        'izin_dokumentasi' => $this->validation->getError('izin_dokumentasi'),
+                        'info_alifya' => $this->validation->getError('info_alifya'),
+                        'data_1' => $this->validation->getError('data_1'),
+                        'data_2' => $this->validation->getError('data_2'),
+
+
+                    ]
+                ];
+            } else {
+
+                $ketersediaan = $this->request->getPost('ketersediaan');
+
+                // data orang tua
+                $nama_ibu = $this->request->getPost('nama_ibu');
+                $nama_ayah = $this->request->getPost('nama_ayah');
+                $pekerjaan_ayah = $this->request->getPost('pekerjaan_ayah');
+                $pekerjaan_ibu = $this->request->getPost('pekerjaan_ibu');
+                $usersname_instagram = $this->request->getPost('usersname_instagram');
+                $nomor_whatsapp_orang_tua = $this->request->getPost('nomor_whatsapp_orang_tua');
+                $alamat_domisili_anak = $this->request->getPost('alamat_domisili_anak');
+
+                $nama_lengkap_anak = $this->request->getPost('nama_lengkap_anak');
+                $nama_panggilan_anak = $this->request->getPost('nama_panggilan_anak');
+                $tanggal_lahir_anak = $this->request->getPost('tanggal_lahir_anak');
+                $jenis_kelamin = $this->request->getPost('jenis_kelamin');
+                $pendidikan = $this->request->getPost('pendidikan');
+                $sekolah_anak = $this->request->getPost('sekolah_anak');
+                $ukuran_baju = $this->request->getPost('ukuran_baju');
+
+                $program_belajar_ahl_id = $this->request->getPost('program_belajar_ahl_id');
+
+                $foto_anak = $this->request->getFile('foto_anak');
+                $nama_foto = $foto_anak->getRandomName();
+
+                $bukti_tf = $this->request->getFile('bukti_tf');
+                $nama_foto_tf = $bukti_tf->getRandomName();
+
+                $izin_dokumentasi = $this->request->getPost('izin_dokumentasi');
+                $info_alifya = $this->request->getPost('info_alifya');
+                $data_1 = $this->request->getPost('data_1');
+                $data_2 = $this->request->getPost('data_2');
+
+                $status_peserta_id = 3;
+
+                $this->pesertaDidikAhlModel->save([
+                    'ketersediaan' => strtolower($ketersediaan),
+                    'nama_ayah' => strtolower($nama_ayah),
+                    'pekerjaan_ayah' => strtolower($pekerjaan_ayah),
+                    'nama_ibu' => strtolower($nama_ibu),
+                    'pekerjaan_ibu' => strtolower($pekerjaan_ibu),
+                    'usersname_instagram' => strtolower($usersname_instagram),
+                    'nomor_whatsapp_orang_tua' => strtolower($nomor_whatsapp_orang_tua),
+                    'alamat_domisili_anak' => strtolower($alamat_domisili_anak),
+                    'nama_lengkap_anak' => strtolower($nama_lengkap_anak),
+                    'nama_panggilan_anak' => strtolower($nama_panggilan_anak),
+                    'tanggal_lahir_anak' => strtolower($tanggal_lahir_anak),
+                    'jenis_kelamin' => strtolower($jenis_kelamin),
+                    'pendidikan' => strtolower($pendidikan),
+                    'sekolah_anak' => strtolower($sekolah_anak),
+                    'ukuran_baju' => strtolower($ukuran_baju),
+                    'program_belajar_ahl_id' => strtolower($program_belajar_ahl_id),
+                    'foto_anak' => $nama_foto,
+                    'bukti_tf' => $nama_foto_tf,
+                    'izin_dokumentasi' => strtolower($izin_dokumentasi),
+                    'info_alifya' => strtolower($info_alifya),
+                    'data_1' => strtolower($data_1),
+                    'data_2' => strtolower($data_2),
+                    'status_peserta_id' => strtolower($status_peserta_id),
+                ]);
+
+                $foto_anak->move('foto_profil_anak_ahl', $nama_foto);
+                $bukti_tf->move('bukti_tf', $nama_foto_tf);
+
+                $alert = [
+                    'success' => 'Data Berhasil Tersimpan, Silahkan Tunggu informasi dari admin, Terima kasih!'
+                ];
+            }
+
+            return json_encode($alert);
+        }
     }
 }

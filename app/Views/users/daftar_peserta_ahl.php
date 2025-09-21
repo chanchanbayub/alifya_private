@@ -30,14 +30,12 @@
                         <?= csrf_field(); ?>
                         <div class="control-group">
                             <label for="ketersediaan">Apakah Mom/Pap bersedia untuk Ananda ikut berproses bersama Alifya? :</label>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id="ketersediaan1" name="customRadio" class="custom-control-input">
-                                <label class="custom-control-label" for="ketersediaan1">Ya, Bersedia</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id="ketersediaan2" name="customRadio" class="custom-control-input">
-                                <label class="custom-control-label" for="ketersediaan2">Tidak Bersedia</label>
-                            </div>
+                            <select name="ketersediaan" id="ketersediaan" class="form-control">
+                                <option value="">--Silahkan Pilih--</option>
+                                <option value="ya, bersedia">Ya, Bersedia</option>
+                                <option value="tidak bersedia">Tidak Bersedia</option>
+                            </select>
+
                             <p class="help-block text-danger error-ketersediaan"></p>
                         </div>
 
@@ -61,7 +59,7 @@
                         <div class="control-group">
                             <label for="pekerjaan_ayah">Pekerjaan Ayah :</label>
                             <input type="text" class="form-control" id="pekerjaan_ayah" name="pekerjaan_ayah" placeholder="Masukan Pekerjaan Ayah" />
-                            <p class="help-block text-danger error-nama-ayah"></p>
+                            <p class="help-block text-danger error-pekerjaan-ayah"></p>
                         </div>
 
                         <div class="control-group">
@@ -73,19 +71,19 @@
                         <div class="control-group">
                             <label for="pekerjaan_ibu">Pekerjaan Ibu :</label>
                             <input type="text" class="form-control" id="pekerjaan_ibu" name="pekerjaan_ibu" placeholder="Masukan Pekerjaan ibu" />
-                            <p class="help-block text-danger error-nama-ayah"></p>
+                            <p class="help-block text-danger error-pekerjaan-ibu"></p>
                         </div>
 
                         <div class="control-group">
-                            <label for="username_instagram">Username Instagram Orang Tua :</label>
-                            <input type="text" class="form-control" id="username_instagram" name="username_instagram" placeholder="Masukan Username Instagram" />
-                            <p class="help-block text-danger error-username-instagram"></p>
+                            <label for="usersname_instagram">Username Instagram Orang Tua :</label>
+                            <input type="text" class="form-control" id="usersname_instagram" name="username_instagram" placeholder="Masukan Username Instagram" />
+                            <p class="help-block text-danger error-usersname-instagram"></p>
                         </div>
 
                         <div class="control-group">
                             <label for="nomor_whatsapp_orang_tua">Nomor Whatssapp aktif :</label>
                             <input type="number" class="form-control" id="nomor_whatsapp_orang_tua" name="nomor_whatsapp_orang_tua" placeholder="6281xxxxxx" />
-                            <p class="help-block text-danger error-usia-anak"></p>
+                            <p class="help-block text-danger error-wa-anak"></p>
                         </div>
 
                         <div class="control-group">
@@ -121,12 +119,6 @@
                             <label for="tanggal_lahir_anak">Tanggal Lahir Anak :</label>
                             <input type="date" class="form-control" id="tanggal_lahir_anak" name="tanggal_lahir_anak" />
                             <p class="help-block text-danger error-tanggal_lahir_anak"></p>
-                        </div>
-
-                        <div class="control-group">
-                            <label for="usia_anak">Usia Anak :</label>
-                            <input type="text" class="form-control" id="usia_anak" name="usia_anak" disabled />
-                            <p class="help-block text-danger error-usia-anak"></p>
                         </div>
 
                         <div class="control-group">
@@ -224,8 +216,8 @@
                         <br>
 
                         <div class="control-group">
-                            <label for="program_belajar_id">Program Belajar :</label>
-                            <select name="program_belajar_id" id="program_belajar_id" class="form-control">
+                            <label for="program_belajar_ahl_id">Program Belajar :</label>
+                            <select name="program_belajar_ahl_id" id="program_belajar_ahl_id" class="form-control">
                                 <option value="">--Silahkan Pilih</option>
                                 <?php foreach ($program_ahl as $program_ahl) : ?>
                                     <option value="<?= $program_ahl->id ?>"><?= $program_ahl->nama_program ?> (<?= $program_ahl->usia_anak ?>)</option>
@@ -269,14 +261,11 @@
                                     <label>
                                         Dokumentasi akan ditampilkan dengan tetap menjaga etika, kenyamanan, dan privasi Ananda
                                     </label>
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="izin_dokumentasi1" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="izin_dokumentasi1">Ya, Berkenan</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="izin_dokumentasi2" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="izin_dokumentasi2">Tidak, Saya Tidak Berkenan</label>
-                                    </div>
+                                    <select name="izin_dokumentasi" id="izin_dokumentasi" class="form-control">
+                                        <option value="">--Silahkan Pilih--</option>
+                                        <option value="ya, berkenan">Ya, Berkenan</option>
+                                        <option value="Tidak, Saya Tidak Berkenan">Tidak, Saya Tidak Berkenan</option>
+                                    </select>
                                     <p class="help-block text-danger error-izin-dokumentasi"></p>
                                 </div>
 
@@ -287,36 +276,36 @@
                 <div class="control-group">
                     <label for="info_alifya">Dari mana Mom/Pap mengetahui Alifya Learning? :</label>
                     <input type="text" class="form-control" id="info_alifya" name="info_alifya" placeholder="Boleh sebutkan nama orang yang merekomendasikan, akun media sosial, atau sumber lainnya" />
-                    <p class="help-block text-danger error-sekolah-anak"></p>
+                    <p class="help-block text-danger error-info-alifya"></p>
                 </div>
 
                 <div class="control-group">
-                    <label for="data">Saya Menyatakan Bahwa :</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                            Saya mengisi data ini dengan jujur dan dapat dipertanggung jawabkan
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                            Saya memahami dan menyetujui proses belajar di Alifya
-                        </label>
-                    </div>
-                    <p class="help-block text-danger error-data"></p>
+                    <label for="data_1">Saya Menyatakan Bahwa :</label>
+                    <select name="data_1" id="data_1" class="form-control">
+                        <option value="">--Silahkan Pilih--</option>
+                        <option value="Saya mengisi data ini dengan jujur dan dapat dipertanggung jawabkan">Saya mengisi data ini dengan jujur dan dapat dipertanggung jawabkan</option>
+                    </select>
+                    <p class="help-block text-danger error-data1"></p>
                 </div>
-
-                <div>
-                    <button class="btn btn-primary btn-lg save" type="submit" id="sendMessageButton">
-                        Kirim Lamaran
-                    </button>
+                <div class="control-group">
+                    <label for="data_2">Saya Menyatakan Bahwa :</label>
+                    <select name="data_2" id="data_2" class="form-control">
+                        <option value="">--Silahkan Pilih--</option>
+                        <option value="Saya memahami dan menyetujui proses belajar di Alifya">Saya memahami dan menyetujui proses belajar di Alifya</option>
+                    </select>
+                    <p class="help-block text-danger error-data2"></p>
                 </div>
-                </form>
             </div>
+            <div>
+                <button class="btn btn-primary btn-lg save" type="submit" id="sendMessageButton">
+                    Kirim
+                </button>
+            </div>
+            </form>
         </div>
-
     </div>
+
+</div>
 </div>
 </div>
 <!-- Contact End -->
@@ -324,91 +313,65 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script>
-    $(document).ready(function(e) {
-        $('#program_belajar_id').change(function(e) {
-            e.preventDefault();
-            let program_belajar_id = $(this).val();
-
-            $.ajax({
-                url: '/getMateriBelajar',
-                method: 'get',
-                dataType: 'JSON',
-                data: {
-                    program_belajar_id: program_belajar_id,
-                },
-                success: function(response) {
-                    let materi_belajar_data = `<option value="">--Silahkan Pilih-- </option>`;
-
-                    if (response.materi_belajar.length >= 1) {
-                        response.materi_belajar.forEach(function(e) {
-                            $("#materi_belajar_id").removeAttr('disabled', false);
-                            materi_belajar_data += `<option value="${e.id}"> ${e.level} </option>`;
-                        });
-                    } else {
-                        $("#materi_belajar_id").attr('disabled', 'disabled');
-                        $("#materi_belajar_id").html(materi_belajar_data);
-                    }
-                    $("#materi_belajar_id").html(materi_belajar_data);
-
-                },
-            });
-        });
-    })
-
     $("#sendLamaran").submit(function(e) {
         e.preventDefault();
 
-        let nama_lengkap_anak = $("#nama_lengkap_anak").val();
-        let tanggal_lahir_anak = $("#tanggal_lahir_anak").val();
-        let usia_anak = $("#usia_anak").val();
-        let alamat_domisili_anak = $("#alamat_domisili_anak").val();
-        let sekolah_anak = $("#sekolah_anak").val();
-        let nomor_whatsapp_wali = $("#nomor_whatsapp_wali").val();
-        let username_instagram_wali = $("#username_instagram_wali").val();
-        let paket_belajar_id = $("#paket_belajar_id").val();
-        let program_belajar_id = $("#program_belajar_id").val();
-        let materi_belajar_id = $("#materi_belajar_id").val();
+        let ketersediaan = $("#ketersediaan").val();
 
-        let hari_belajar = $("#hari_belajar").val();
-
+        // Data Orang Tua
         let nama_ayah = $("#nama_ayah").val();
         let pekerjaan_ayah = $("#pekerjaan_ayah").val();
         let nama_ibu = $("#nama_ibu").val();
         let pekerjaan_ibu = $("#pekerjaan_ibu").val();
+        let usersname_instagram = $("#usersname_instagram").val();
+        let nomor_whatsapp_orang_tua = $("#nomor_whatsapp_orang_tua").val();
+        let alamat_domisili_anak = $("#alamat_domisili_anak").val();
 
-        let waktu_belajar = $("#waktu_belajar").val();
+        // Data Murid
+        let nama_lengkap_anak = $("#nama_lengkap_anak").val();
+        let nama_panggilan_anak = $("#nama_panggilan_anak").val();
+        let tanggal_lahir_anak = $("#tanggal_lahir_anak").val();
+        let jenis_kelamin = $("#jenis_kelamin").val();
+        let pendidikan = $("#pendidikan").val();
+        let sekolah_anak = $("#sekolah_anak").val();
+        let ukuran_baju = $("#ukuran_baju").val();
+
+        // 
+        let program_belajar_ahl_id = $("#program_belajar_ahl_id").val();
         let foto_anak = $("#foto_anak").val();
-        let data = $("#data").val();
-        let brosur = $("#brosur").val();
-        let info_les = $("#info_les").val();
+        let bukti_tf = $("#bukti_tf").val();
+        let izin_dokumentasi = $("#izin_dokumentasi").val();
+        let info_alifya = $("#info_alifya").val();
+        let data_1 = $("#data_1").val();
+        let data_2 = $("#data_2").val();
 
         let formData = new FormData(this);
 
-        formData.append('nama_lengkap_anak', nama_lengkap_anak);
-        formData.append('tanggal_lahir_anak', tanggal_lahir_anak);
-        formData.append('usia_anak', usia_anak);
-        formData.append('alamat_domisili_anak', alamat_domisili_anak);
-        formData.append('sekolah_anak', sekolah_anak);
-        formData.append('nomor_whatsapp_wali', nomor_whatsapp_wali);
-        formData.append('username_instagram_wali', username_instagram_wali);
-        formData.append('paket_belajar_id', paket_belajar_id);
-        formData.append('program_belajar_id', program_belajar_id);
-        formData.append('materi_belajar_id', materi_belajar_id);
-        formData.append('hari_belajar', hari_belajar);
-
+        formData.append('ketersediaan', ketersediaan);
         formData.append('nama_ayah', nama_ayah);
         formData.append('pekerjaan_ayah', pekerjaan_ayah);
         formData.append('nama_ibu', nama_ibu);
         formData.append('pekerjaan_ibu', pekerjaan_ibu);
-
-        formData.append('waktu_belajar', waktu_belajar);
+        formData.append('usersname_instagram', usersname_instagram);
+        formData.append('nomor_whatsapp_orang_tua', nomor_whatsapp_orang_tua);
+        formData.append('alamat_domisili_anak', alamat_domisili_anak);
+        formData.append('nama_lengkap_anak', nama_lengkap_anak);
+        formData.append('nama_panggilan_anak', nama_panggilan_anak);
+        formData.append('tanggal_lahir_anak', tanggal_lahir_anak);
+        formData.append('jenis_kelamin', jenis_kelamin);
+        formData.append('pendidikan', pendidikan);
+        formData.append('ukuran_baju', ukuran_baju);
+        formData.append('program_belajar_ahl_id', program_belajar_ahl_id);
         formData.append('foto_anak', foto_anak);
-        formData.append('brosur', brosur);
-        formData.append('data', data);
-        formData.append('info_les', info_les);
+        formData.append('bukti_tf', bukti_tf);
+        formData.append('izin_dokumentasi', izin_dokumentasi);
+        formData.append('info_alifya', info_alifya);
+        formData.append('data_1', data_1);
+        formData.append('data_2', data_2);
+
 
         $.ajax({
-            url: '/daftar_peserta_didik/insert',
+            url: '/daftar_peserta_ahl/insert',
             data: formData,
             dataType: 'json',
             enctype: 'multipart/form-data',
@@ -421,36 +384,57 @@
                 $('.save').prop('disabled', true);
             },
             success: function(response) {
-                $('.save').html(`Kirim Lamaran`)
+                $('.save').html(`Kirim`)
                 $('.save').prop('disabled', false);
                 if (response.error) {
-                    if (response.error.nama_lengkap_anak) {
-                        $("#nama_lengkap_anak").addClass('is-invalid');
-                        $(".error-nama-lengkap-anak").html(response.error.nama_lengkap_anak);
+                    if (response.error.ketersediaan) {
+                        $("#ketersediaan").addClass('is-invalid');
+                        $(".error-ketersediaan").html(response.error.ketersediaan);
                     } else {
-                        $("#nama_lengkap_anak").removeClass('is-invalid');
-                        $(".error-nama-lengkap-anak").html('');
+                        $("#ketersediaan").removeClass('is-invalid');
+                        $(".error-ketersediaan").html('');
                     }
-                    if (response.error.tanggal_lahir_anak) {
-                        $("#tanggal_lahir_anak").addClass('is-invalid');
-                        $(".error-tanggal-lahir-anak").html(response.error.tanggal_lahir_anak);
+                    if (response.error.nama_ayah) {
+                        $("#nama_ayah").addClass('is-invalid');
+                        $(".error-nama-ayah").html(response.error.nama_ayah);
                     } else {
-                        $("#tanggal_lahir_anak").removeClass('is-invalid');
-                        $(".error-tanggal-lahir-anak").html('');
+                        $("#nama_ayah").removeClass('is-invalid');
+                        $(".error-nama-ayah").html('');
                     }
-                    if (response.error.nomor_whatsapp_wali) {
-                        $("#nomor_whatsapp_wali").addClass('is-invalid');
-                        $(".error-nomor-whatsapp-wali").html(response.error.nomor_whatsapp_wali);
+                    if (response.error.pekerjaan_ayah) {
+                        $("#pekerjaan_ayah").addClass('is-invalid');
+                        $(".error-pekerjaan-ayah").html(response.error.pekerjaan_ayah);
                     } else {
-                        $("#nomor_whatsapp_wali").removeClass('is-invalid');
-                        $(".error-nomor-whatsapp-wali").html('');
+                        $("#pekerjaan_ayah").removeClass('is-invalid');
+                        $(".error-pekerjaan-ayah").html('');
                     }
-                    if (response.error.usia_anak) {
-                        $("#usia_anak").addClass('is-invalid');
-                        $(".error-usia-anak").html(response.error.usia_anak);
+                    if (response.error.nama_ibu) {
+                        $("#nama_ibu").addClass('is-invalid');
+                        $(".error-nama-ibu").html(response.error.nama_ibu);
                     } else {
-                        $("#usia_anak").removeClass('is-invalid');
-                        $(".error-usia-anak").html('');
+                        $("#nama_ibu").removeClass('is-invalid');
+                        $(".error-nama-ibu").html('');
+                    }
+                    if (response.error.pekerjaan_ibu) {
+                        $("#pekerjaan_ibu").addClass('is-invalid');
+                        $(".error-pekerjaan-ibu").html(response.error.pekerjaan_ibu);
+                    } else {
+                        $("#pekerjaan_ibu").removeClass('is-invalid');
+                        $(".error-pekerjaan-ibu").html('');
+                    }
+                    if (response.error.usersname_instagram) {
+                        $("#usersname_instagram").addClass('is-invalid');
+                        $(".error-usersname-instagram").html(response.error.usersname_instagram);
+                    } else {
+                        $("#usersname_instagram").removeClass('is-invalid');
+                        $(".error-usersname-instagram").html('');
+                    }
+                    if (response.error.nomor_whatsapp_orang_tua) {
+                        $("#nomor_whatsapp_orang_tua").addClass('is-invalid');
+                        $(".error-wa-anak").html(response.error.nomor_whatsapp_orang_tua);
+                    } else {
+                        $("#nomor_whatsapp_orang_tua").removeClass('is-invalid');
+                        $(".error-wa-anak").html('');
                     }
                     if (response.error.alamat_domisili_anak) {
                         $("#alamat_domisili_anak").addClass('is-invalid');
@@ -459,104 +443,62 @@
                         $("#alamat_domisili_anak").removeClass('is-invalid');
                         $(".error-alamat-domisili-anak").html('');
                     }
+                    if (response.error.nama_lengkap_anak) {
+                        $("#nama_lengkap_anak").addClass('is-invalid');
+                        $(".error-nama-lengkap-anak").html(response.error.nama_lengkap_anak);
+                    } else {
+                        $("#nama_lengkap_anak").removeClass('is-invalid');
+                        $(".error-nama-lengkap-anak").html('');
+                    }
+                    if (response.error.nama_panggilan_anak) {
+                        $("#nama_panggilan_anak").addClass('is-invalid');
+                        $(".error-nama-panggilan-anak").html(response.error.nama_panggilan_anak);
+                    } else {
+                        $("#nama_panggilan_anak").removeClass('is-invalid');
+                        $(".error-nama-panggilan-anak").html('');
+                    }
+                    if (response.error.tanggal_lahir_anak) {
+                        $("#tanggal_lahir_anak").addClass('is-invalid');
+                        $(".error-tanggal-lahir-anak").html(response.error.tanggal_lahir_anak);
+                    } else {
+                        $("#tanggal_lahir_anak").removeClass('is-invalid');
+                        $(".error-tanggal-lahir-anak").html('');
+                    }
+                    if (response.error.jenis_kelamin) {
+                        $("#jenis_kelamin").addClass('is-invalid');
+                        $(".error-jenis-kelamin").html(response.error.jenis_kelamin);
+                    } else {
+                        $("#jenis_kelamin").removeClass('is-invalid');
+                        $(".error-jenis-kelamin").html('');
+                    }
+                    if (response.error.pendidikan) {
+                        $("#pendidikan").addClass('is-invalid');
+                        $(".error-pendidikan").html(response.error.pendidikan);
+                    } else {
+                        $("#pendidikan").removeClass('is-invalid');
+                        $(".error-pendidikan").html('');
+                    }
                     if (response.error.sekolah_anak) {
                         $("#sekolah_anak").addClass('is-invalid');
-                        $(".error-sekolah-anak").html(response.error.sekolah_anak);
+                        $(".error-sekolah_anak").html(response.error.sekolah_anak);
                     } else {
                         $("#sekolah_anak").removeClass('is-invalid');
-                        $(".error-sekolah-anak").html('');
+                        $(".error-sekolah_anak").html('');
                     }
-                    if (response.error.username_instagram_wali) {
-                        $("#username_instagram_wali").addClass('is-invalid');
-                        $(".error-username-instagram-wali").html(response.error.username_instagram_wali);
+                    if (response.error.ukuran_baju) {
+                        $("#ukuran_baju").addClass('is-invalid');
+                        $(".error-ukuran-baju").html(response.error.ukuran_baju);
                     } else {
-                        $("#username_instagram_wali").removeClass('is-invalid');
-                        $(".error-username-instagram-wali").html('');
+                        $("#ukuran_baju").removeClass('is-invalid');
+                        $(".error-ukuran-baju").html('');
                     }
-                    if (response.error.info_les) {
-                        $("#info_les").addClass('is-invalid');
-                        $(".error-info_les").html(response.error.info_les);
+                    if (response.error.program_belajar_ahl_id) {
+                        $("#program_belajar_ahl_id").addClass('is-invalid');
+                        $(".error-program-belajar").html(response.error.program_belajar_ahl_id);
                     } else {
-                        $("#info_les").removeClass('is-invalid');
-                        $(".error-info_les").html('');
-                    }
-                    if (response.error.paket_belajar_id) {
-                        $("#paket_belajar_id").addClass('is-invalid');
-                        $(".error-paket-belajar").html(response.error.paket_belajar_id);
-                    } else {
-                        $("#paket_belajar_id").removeClass('is-invalid');
-                        $(".error-paket-belajar").html('');
-                    }
-
-                    if (response.error.program_belajar_id) {
-                        $("#program_belajar_id").addClass('is-invalid');
-                        $(".error-program-belajar").html(response.error.program_belajar_id);
-                    } else {
-                        $("#program_belajar_id").removeClass('is-invalid');
+                        $("#program_belajar_ahl_id").removeClass('is-invalid');
                         $(".error-program-belajar").html('');
                     }
-                    if (response.error.materi_belajar_id) {
-                        $("#materi_belajar_id").addClass('is-invalid');
-                        $(".error-materi-belajar").html(response.error.materi_belajar_id);
-                    } else {
-                        $("#materi_belajar_id").removeClass('is-invalid');
-                        $(".error-materi-belajar").html('');
-                    }
-                    if (response.error.hari_belajar) {
-                        $("#hari_belajar").addClass('is-invalid');
-                        $(".error-hari-belajar").html(response.error.hari_belajar);
-                    } else {
-                        $("#hari_belajar").removeClass('is-invalid');
-                        $(".error-hari-belajar").html('');
-                    }
-                    if (response.error.waktu_belajar) {
-                        $("#waktu_belajar").addClass('is-invalid');
-                        $(".error-waktu-belajar").html(response.error.waktu_belajar);
-                    } else {
-                        $("#waktu_belajar").removeClass('is-invalid');
-                        $(".error-waktu-belajar").html('');
-                    }
-
-                    if (response.error.nama_ayah) {
-                        $("#nama_ayah").addClass('is-invalid');
-                        $(".error-nama-ayah").html(response.error.nama_ayah);
-                    } else {
-                        $("#nama_ayah").removeClass('is-invalid');
-                        $(".error-nama-ayah").html('');
-                    }
-
-                    if (response.error.pekerjaan_ayah) {
-                        $("#pekerjaan_ayah").addClass('is-invalid');
-                        $(".error-pekerjaan-ayah").html(response.error.pekerjaan_ayah);
-                    } else {
-                        $("#pekerjaan_ayah").removeClass('is-invalid');
-                        $(".error-pekerjaan-ayah").html('');
-                    }
-
-                    if (response.error.nama_ibu) {
-                        $("#nama_ibu").addClass('is-invalid');
-                        $(".error-nama-ibu").html(response.error.nama_ibu);
-                    } else {
-                        $("#nama_ibu").removeClass('is-invalid');
-                        $(".error-nama-ibu").html('');
-                    }
-
-                    if (response.error.pekerjaan_ibu) {
-                        $("#pekerjaan_ibu").addClass('is-invalid');
-                        $(".error-pekerjaan-ibu").html(response.error.pekerjaan_ibu);
-                    } else {
-                        $("#pekerjaan_ibu").removeClass('is-invalid');
-                        $(".error-pekerjaan-ibu").html('');
-                    }
-
-                    if (response.error.pekerjaan_ayah) {
-                        $("#pekerjaan_ayah").addClass('is-invalid');
-                        $(".error-pekerjaan-ayah").html(response.error.pekerjaan_ayah);
-                    } else {
-                        $("#pekerjaan_ayah").removeClass('is-invalid');
-                        $(".error-pekerjaan-ayah").html('');
-                    }
-
                     if (response.error.foto_anak) {
                         $("#foto_anak").addClass('is-invalid');
                         $(".error-foto-anak").html(response.error.foto_anak);
@@ -564,21 +506,41 @@
                         $("#foto_anak").removeClass('is-invalid');
                         $(".error-foto-anak").html('');
                     }
-                    if (response.error.brosur) {
-                        $("#brosur").addClass('is-invalid');
-                        $(".error-brosur").html(response.error.brosur);
+                    if (response.error.bukti_tf) {
+                        $("#bukti_tf").addClass('is-invalid');
+                        $(".error-bukti-tf").html(response.error.bukti_tf);
                     } else {
-                        $("#brosur").removeClass('is-invalid');
-                        $(".error-brosur").html('');
+                        $("#bukti_tf").removeClass('is-invalid');
+                        $(".error-bukti-tf").html('');
                     }
-                    if (response.error.data) {
-                        $("#data").addClass('is-invalid');
-                        $(".error-data").html(response.error.data);
+                    if (response.error.izin_dokumentasi) {
+                        $("#izin_dokumentasi").addClass('is-invalid');
+                        $(".error-izin-dokumentasi").html(response.error.izin_dokumentasi);
                     } else {
-                        $("#data").removeClass('is-invalid');
-                        $(".error-data").html('');
+                        $("#izin_dokumentasi").removeClass('is-invalid');
+                        $(".error-izin-dokumentasi").html('');
                     }
-
+                    if (response.error.info_alifya) {
+                        $("#info_alifya").addClass('is-invalid');
+                        $(".error-info-alifya").html(response.error.info_alifya);
+                    } else {
+                        $("#info_alifya").removeClass('is-invalid');
+                        $(".error-info-alifya").html('');
+                    }
+                    if (response.error.data_1) {
+                        $("#data_1").addClass('is-invalid');
+                        $(".error-data1").html(response.error.data_1);
+                    } else {
+                        $("#data_1").removeClass('is-invalid');
+                        $(".error-data1").html('');
+                    }
+                    if (response.error.data_2) {
+                        $("#data_2").addClass('is-invalid');
+                        $(".error-data2").html(response.error.data_1);
+                    } else {
+                        $("#data_2").removeClass('is-invalid');
+                        $(".error-data2").html('');
+                    }
                 } else {
                     Swal.fire({
                         icon: 'success',
@@ -595,7 +557,7 @@
                     title: `Data Belum Tersimpan!`,
                 });
                 $('.save').html(`<button class="btn btn-primary py-2 px-10 save" type="submit" id="sendMessageButton">
-                                Kirim Lamaran
+                                Kirim 
                             </button>`)
                 $('.save').prop('disabled', false);
             }

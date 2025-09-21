@@ -14,6 +14,7 @@ $routes->post('/daftar_mitra_pengajar/insert', 'Users\UsersController::daftar_mi
 $routes->post('/daftar_peserta_didik/insert', 'Users\UsersController::daftar_peserta');
 
 $routes->get('/daftar_ahl', 'Users\UsersController::daftar_ahl');
+$routes->post('/daftar_peserta_ahl/insert', 'Users\UsersController::daftar_peserta_ahl');
 
 $routes->get('/profil', 'Users\ProfilController::index');
 $routes->get('/program_belajar', 'Users\ProgramBelajarController::index');
