@@ -136,7 +136,9 @@
                             <label for="pendidikan">Tingkat pendidikan formal saat ini :</label>
                             <select name="pendidikan" id="pendidikan" class="form-control">
                                 <option value="">Silahkan Pilih</option>
-
+                                <?php foreach ($pendidikan as $pendidikan) : ?>
+                                    <option value="<?= $pendidikan->id ?>"><?= $pendidikan->pendidikan ?></option>
+                                <?php endforeach; ?>
                             </select>
 
                             <p class="help-block text-danger error-pendidikan"></p>

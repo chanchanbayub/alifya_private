@@ -287,6 +287,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('program_ahl/update', 'Ahl\ProgramAHLController::update');
     $routes->post('program_ahl/delete', 'Ahl\ProgramAHLController::delete');
 
+    // Pendidikan AHL
+    $routes->get('pendidikan', 'Ahl\TingkatPendidikanController::index');
+    $routes->post('pendidikan/insert', 'Ahl\TingkatPendidikanController::insert');
+    $routes->get('pendidikan/edit', 'Ahl\TingkatPendidikanController::edit');
+    $routes->post('pendidikan/update', 'Ahl\TingkatPendidikanController::update');
+    $routes->post('pendidikan/delete', 'Ahl\TingkatPendidikanController::delete');
+
 
     // export excel peserta
 

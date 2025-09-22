@@ -11,6 +11,8 @@ use App\Models\Admin\ProgramBelajarModel;
 use App\Models\Admin\TestimonialModel;
 use App\Models\Ahl\PesertaDidikAhlModel;
 use App\Models\Ahl\ProgramAHLModel;
+use App\Models\Ahl\TinggalPendidikanModel;
+use App\Models\Ahl\TingkatPendidikanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class UsersController extends BaseController
@@ -26,6 +28,7 @@ class UsersController extends BaseController
     protected $muridModel;
     protected $programAHLModel;
     protected $pesertaDidikAhlModel;
+    protected $tingkatPendidikanModel;
 
     public function __construct()
     {
@@ -38,6 +41,7 @@ class UsersController extends BaseController
         $this->testimonialModel = new TestimonialModel();
         $this->programAHLModel = new ProgramAHLModel();
         $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
+        $this->tingkatPendidikanModel = new TingkatPendidikanModel();
     }
 
     public function index()
@@ -577,7 +581,9 @@ class UsersController extends BaseController
         $data = [
             'title' => 'Alifya Home Learning | Daftar AHL',
             'peserta_didik' => $this->muridModel->getDataMuridAktif(),
-            'program_ahl' => $this->programAHLModel->getProgramAHL()
+            'program_ahl' => $this->programAHLModel->getProgramAHL(),
+            'pendidikan' => $this->tingkatPendidikanModel->getPendidikan()
+
         ];
         return view('users/daftar_peserta_ahl', $data);
     }

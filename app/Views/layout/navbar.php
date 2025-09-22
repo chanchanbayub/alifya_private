@@ -42,6 +42,12 @@
                  </li>
 
                  <li>
+                     <a href="/admin/pendidikan">
+                         <i class="bi bi-circle"></i><span>Tingkatan Pendidikan</span>
+                     </a>
+                 </li>
+
+                 <li>
                      <a href="/admin/status_invoice">
                          <i class="bi bi-circle"></i><span>Status Invoice</span>
                      </a>
