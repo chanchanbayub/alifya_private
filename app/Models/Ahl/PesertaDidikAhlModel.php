@@ -16,4 +16,14 @@ class PesertaDidikAhlModel extends Model
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
+
+    public function getPesertaAhl()
+    {
+        $db = db_connect();
+        $builder = $db->table($this->table);
+
+        $builder = $builder->select('peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.status_peserta_id, status_murid_table.status_murid')
+            ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id');
+        return $builder->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc');
+    }
 }

@@ -136,6 +136,11 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/peserta_ahl">
+                         <i class="bi bi-circle"></i><span>Peserta Didik AHL</span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="/admin/jam_masuk_ahl">
                          <i class="bi bi-circle"></i><span>Jadwal AHL</span>
                      </a>
