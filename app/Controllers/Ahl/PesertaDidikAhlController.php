@@ -45,7 +45,7 @@ class PesertaDidikAhlController extends BaseController
                                                 </button>';
                 })
                 ->add('lihat_profil', function ($row) {
-                    return '<a href="/admin/peserta_ahl/profil/' .  $row->id . '"" class="btn btn-sm btn-outline-primary" target="_blank" >
+                    return '<a href="/admin/peserta_ahl/getProfil/' .  $row->id . '"" class="btn btn-sm btn-outline-primary" target="_blank" >
                                                     <i class="bi bi-eye"></i> Lihat Profil
                                                 </a>
                            ';
@@ -54,6 +54,35 @@ class PesertaDidikAhlController extends BaseController
                 ->addNumbering('no')->toJson(true);
         }
     }
+
+
+    public function getProfil($id)
+    {
+        if ($id == null) {
+            dd($id);
+            return redirect()->to('/admin/data_murid');
+        }
+
+        $profil = $this->pesertaDidikAhlModel->getProfil($id);
+        // dd($profil);
+        $hari_ini = date_create();
+        $tanggal_lahir = date_create($profil->tanggal_lahir_anak);
+
+        $usia = date_diff($hari_ini, $tanggal_lahir);
+
+        if ($profil == null) {
+            return redirect()->to('/admin/data_murid');
+        }
+
+        $data = [
+            'title' => 'Profil Peserta Didik AHL',
+            'profil' => $profil,
+            'usia' => $usia
+        ];
+
+        return view('ahl/profil_ahl_v', $data);
+    }
+
 
     public function insert()
     {

@@ -668,7 +668,7 @@ class UsersController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
-                'pendidikan' => [
+                'pendidikan_id' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'Tidak Boleh Kosong !'
@@ -760,7 +760,7 @@ class UsersController extends BaseController
                         'nama_panggilan_anak' => $this->validation->getError('nama_panggilan_anak'),
                         'tanggal_lahir_anak' => $this->validation->getError('tanggal_lahir_anak'),
                         'jenis_kelamin' => $this->validation->getError('jenis_kelamin'),
-                        'pendidikan' => $this->validation->getError('pendidikan'),
+                        'pendidikan_id' => $this->validation->getError('pendidikan_id'),
                         'sekolah_anak' => $this->validation->getError('sekolah_anak'),
                         'ukuran_baju' => $this->validation->getError('ukuran_baju'),
 
@@ -793,7 +793,7 @@ class UsersController extends BaseController
                 $nama_panggilan_anak = $this->request->getPost('nama_panggilan_anak');
                 $tanggal_lahir_anak = $this->request->getPost('tanggal_lahir_anak');
                 $jenis_kelamin = $this->request->getPost('jenis_kelamin');
-                $pendidikan = $this->request->getPost('pendidikan');
+                $pendidikan_id = $this->request->getPost('pendidikan_id');
                 $sekolah_anak = $this->request->getPost('sekolah_anak');
                 $ukuran_baju = $this->request->getPost('ukuran_baju');
 
@@ -825,7 +825,7 @@ class UsersController extends BaseController
                     'nama_panggilan_anak' => strtolower($nama_panggilan_anak),
                     'tanggal_lahir_anak' => strtolower($tanggal_lahir_anak),
                     'jenis_kelamin' => strtolower($jenis_kelamin),
-                    'pendidikan' => strtolower($pendidikan),
+                    'pendidikan_id' => strtolower($pendidikan_id),
                     'sekolah_anak' => strtolower($sekolah_anak),
                     'ukuran_baju' => strtolower($ukuran_baju),
                     'program_belajar_ahl_id' => strtolower($program_belajar_ahl_id),

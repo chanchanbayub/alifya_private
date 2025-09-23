@@ -133,8 +133,8 @@
                         </div>
 
                         <div class="control-group">
-                            <label for="pendidikan">Tingkat pendidikan formal saat ini :</label>
-                            <select name="pendidikan" id="pendidikan" class="form-control">
+                            <label for="pendidikan_id">Tingkat pendidikan formal saat ini :</label>
+                            <select name="pendidikan_id" id="pendidikan_id" class="form-control">
                                 <option value="">Silahkan Pilih</option>
                                 <?php foreach ($pendidikan as $pendidikan) : ?>
                                     <option value="<?= $pendidikan->id ?>"><?= $pendidikan->pendidikan ?></option>
@@ -334,7 +334,7 @@
         let nama_panggilan_anak = $("#nama_panggilan_anak").val();
         let tanggal_lahir_anak = $("#tanggal_lahir_anak").val();
         let jenis_kelamin = $("#jenis_kelamin").val();
-        let pendidikan = $("#pendidikan").val();
+        let pendidikan_id = $("#pendidikan_id").val();
         let sekolah_anak = $("#sekolah_anak").val();
         let ukuran_baju = $("#ukuran_baju").val();
 
@@ -361,7 +361,7 @@
         formData.append('nama_panggilan_anak', nama_panggilan_anak);
         formData.append('tanggal_lahir_anak', tanggal_lahir_anak);
         formData.append('jenis_kelamin', jenis_kelamin);
-        formData.append('pendidikan', pendidikan);
+        formData.append('pendidikan_id', pendidikan_id);
         formData.append('ukuran_baju', ukuran_baju);
         formData.append('program_belajar_ahl_id', program_belajar_ahl_id);
         formData.append('foto_anak', foto_anak);
@@ -473,11 +473,11 @@
                         $("#jenis_kelamin").removeClass('is-invalid');
                         $(".error-jenis-kelamin").html('');
                     }
-                    if (response.error.pendidikan) {
-                        $("#pendidikan").addClass('is-invalid');
-                        $(".error-pendidikan").html(response.error.pendidikan);
+                    if (response.error.pendidikan_id) {
+                        $("#pendidikan_id").addClass('is-invalid');
+                        $(".error-pendidikan").html(response.error.pendidikan_id);
                     } else {
-                        $("#pendidikan").removeClass('is-invalid');
+                        $("#pendidikan_id").removeClass('is-invalid');
                         $(".error-pendidikan").html('');
                     }
                     if (response.error.sekolah_anak) {

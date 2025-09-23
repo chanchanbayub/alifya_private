@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class PesertaDidikAhl extends Migration
+class PesertaDidikAhlTable extends Migration
 {
     public function up()
     {
@@ -66,9 +66,10 @@ class PesertaDidikAhl extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'pendidikan' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
+            'pendidikan_id' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'unsigned' => true,
             ],
             'sekolah_anak' => [
                 'type'       => 'VARCHAR',
@@ -129,6 +130,7 @@ class PesertaDidikAhl extends Migration
         $this->forge->addKey('id', true);
         $attributes = ['ENGINE' => 'InnoDB'];
         $this->forge->addForeignKey('program_belajar_ahl_id', 'program_ahl_table', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('pendidikan_id', 'tingkat_pendidikan_table', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('status_peserta_id', 'status_murid_table', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('peserta_didik_ahl_table', false, $attributes);
     }

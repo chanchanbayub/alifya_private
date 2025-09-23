@@ -296,6 +296,7 @@ $routes->group('admin', static function ($routes) {
 
     // Pendidikan AHL
     $routes->get('peserta_ahl', 'Ahl\PesertaDidikAhlController::index');
+    $routes->get('peserta_ahl/getProfil/(:any)', 'Ahl\PesertaDidikAhlController::getProfil/$1');
     $routes->post('peserta_ahl/getPesertaAhl', 'Ahl\PesertaDidikAhlController::getPesertaAhl');
     $routes->post('peserta_ahl/insert', 'Ahl\PesertaDidikAhlController::insert');
     $routes->get('peserta_ahl/edit', 'Ahl\PesertaDidikAhlController::edit');
