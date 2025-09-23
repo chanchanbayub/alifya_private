@@ -696,19 +696,19 @@ class UsersController extends BaseController
 
 
                 'foto_anak' => [
-                    'rules' => 'uploaded[foto_anak]|max_size[foto_anak,2048]|is_image[foto_anak]|mime_in[foto_anak,image/png,image/jpeg]',
+                    'rules' => 'uploaded[foto_anak]|max_size[foto_anak,5000]|is_image[foto_anak]|mime_in[foto_anak,image/png,image/jpeg]',
                     'errors' => [
                         'uploaded' => 'Foto Tidak Boleh Kosong !',
-                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
+                        'max_size' => 'Ukuran Terlalu Besar (max : 5MB) !',
                         'is_image' => 'Yang Anda Upload Bukan Gambar !',
                         'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
                     ]
                 ],
                 'bukti_tf' => [
-                    'rules' => 'uploaded[bukti_tf]|max_size[bukti_tf,2048]|is_image[bukti_tf]|mime_in[bukti_tf,image/png,image/jpeg]',
+                    'rules' => 'uploaded[bukti_tf]|max_size[bukti_tf,5000]|is_image[bukti_tf]|mime_in[bukti_tf,image/png,image/jpeg]',
                     'errors' => [
                         'uploaded' => 'Foto Tidak Boleh Kosong !',
-                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
+                        'max_size' => 'Ukuran Terlalu Besar (max : 5MB) !',
                         'is_image' => 'Yang Anda Upload Bukan Gambar !',
                         'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
                     ]
