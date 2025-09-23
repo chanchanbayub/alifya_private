@@ -111,6 +111,9 @@ class PesertaDidikAhlTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
+            'tanggal_bergabung' => [
+                'type' => 'date',
+            ],
 
             'status_peserta_id' => [
                 'type' => 'INT',

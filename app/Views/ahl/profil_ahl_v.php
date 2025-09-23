@@ -141,6 +141,11 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-lg-6 col-md-4 label">Tanggal Bergabung</div>
+                                <div class="col-lg-6 col-md-8"><?= date('d-m-Y', strtotime($profil->tanggal_bergabung))  ?></div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-lg-6 col-md-4 label">Program Belajar</div>
                                 <div class="col-lg-6 col-md-8"><?= $profil->nama_program ?></div>
                             </div>

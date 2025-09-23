@@ -25,12 +25,12 @@
 
                         <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <!-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                 <li class="dropdown-header text-start">
                                     <h6>Aksi</h6>
                                 </li>
                                 <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
-                            </ul>
+                            </ul> -->
                         </div>
 
                         <div class="card-body">
@@ -380,14 +380,14 @@
         e.preventDefault();
         let id = $(this).attr('data-id');
         $.ajax({
-            url: '/admin/mitra_ahl/edit',
+            url: '/admin/peserta_ahl/edit',
             method: 'get',
             dataType: 'JSON',
             data: {
                 id: id,
             },
             success: function(response) {
-                $("#id_delete").val(response.mitra_ahl.id);
+                $("#id_delete").val(response.peserta_ahl.id);
             }
         });
     });
@@ -396,7 +396,7 @@
         e.preventDefault();
         let id = $("#id_delete").val();
         $.ajax({
-            url: '/admin/mitra_ahl/delete',
+            url: '/admin/peserta_ahl/delete',
             method: 'post',
             dataType: 'JSON',
             data: {

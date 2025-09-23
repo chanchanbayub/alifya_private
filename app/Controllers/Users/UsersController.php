@@ -836,6 +836,7 @@ class UsersController extends BaseController
                     'data_1' => strtolower($data_1),
                     'data_2' => strtolower($data_2),
                     'status_peserta_id' => strtolower($status_peserta_id),
+                    'tanggal_bergabung' => date('Y-m-d')
                 ]);
 
                 $foto_anak->move('foto_profil_anak_ahl', $nama_foto);

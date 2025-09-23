@@ -37,12 +37,13 @@ class PesertaDidikAhlController extends BaseController
 
             return DataTable::of($peserta_didik_ahl)
                 ->add('action', function ($row) {
-                    return '<button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="' .  $row->id . '" type="button">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
-                            <button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="' .  $row->id . '" type="button">
+                    return '<button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="' .  $row->id . '" type="button">
                                                     <i class="bi bi-trash"></i>
                                                 </button>';
+
+                    // <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="' .  $row->id . '" type="button">
+                    //     <i class="bi bi-pencil-square"></i>
+                    // </button>
                 })
                 ->add('lihat_profil', function ($row) {
                     return '<a href="/admin/peserta_ahl/getProfil/' .  $row->id . '"" class="btn btn-sm btn-outline-primary" target="_blank" >
@@ -127,9 +128,12 @@ class PesertaDidikAhlController extends BaseController
 
             $id = $this->request->getVar('id');
 
-            $lokasi = $this->pesertaDidikAhlModel->where(["id" => $id])->first();
+            $data = [
+                'peserta_ahl' => $this->pesertaDidikAhlModel->where(["id" => $id])->first()
+            ];
 
-            return json_encode($lokasi);
+
+            return json_encode($data);
         }
     }
 
@@ -137,15 +141,31 @@ class PesertaDidikAhlController extends BaseController
     {
         if ($this->request->isAJAX()) {
 
+
             $id = $this->request->getVar('id');
 
-            $lokasi = $this->pesertaDidikAhlModel->where(["id" => $id])->first();
+            $peserta_didik_ahl = $this->pesertaDidikAhlModel->where(["id" => $id])->first();
 
-            $this->pesertaDidikAhlModel->delete($lokasi["id"]);
+            $path_foto = 'foto_profil_anak_ahl/' . $peserta_didik_ahl['foto_anak'];
+            $path_bukti_tf = 'bukti_tf/' . $peserta_didik_ahl['bukti_tf'];
+
+            $this->pesertaDidikAhlModel->delete($peserta_didik_ahl["id"]);
 
             $alert = [
-                'success' => 'Lokasi Presensi Berhasil di Hapus!'
+                'success' => 'Peserta AHL Berhasil di Hapus!'
             ];
+
+            if ($peserta_didik_ahl['foto_anak'] != null) {
+                if (file_exists($path_foto)) {
+                    unlink($path_foto);
+                }
+            }
+
+            if ($peserta_didik_ahl['bukti_tf'] != null) {
+                if (file_exists($path_bukti_tf)) {
+                    unlink($path_bukti_tf);
+                }
+            }
 
             return json_encode($alert);
         }
