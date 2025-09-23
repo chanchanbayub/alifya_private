@@ -26,6 +26,7 @@
 
                         <a href="https://wa.me/+<?= $profil->nomor_whatsapp_orang_tua  ?>" target="_blank" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
                         <a href="https://www.instagram.com/<?= $profil->usersname_instagram ?>/" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="/../bukti_tf/<?= $profil->bukti_tf ?>" target="_blank" class="instagram"><i class="bi bi-files"></i></a>
 
                     </div>
                 </div>
