@@ -111,6 +111,11 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/price_list_ahl">
+                         <i class="bi bi-circle"></i><span>Price List Paket AHL</span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="/admin/program_ahl">
                          <i class="bi bi-circle"></i><span>Program Belajar AHL</span>
                      </a>

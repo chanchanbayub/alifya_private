@@ -294,7 +294,7 @@ $routes->group('admin', static function ($routes) {
     $routes->post('pendidikan/update', 'Ahl\TingkatPendidikanController::update');
     $routes->post('pendidikan/delete', 'Ahl\TingkatPendidikanController::delete');
 
-    // Pendidikan AHL
+    // Peserta Didik
     $routes->get('peserta_ahl', 'Ahl\PesertaDidikAhlController::index');
     $routes->get('peserta_ahl/getProfil/(:any)', 'Ahl\PesertaDidikAhlController::getProfil/$1');
     $routes->post('peserta_ahl/getPesertaAhl', 'Ahl\PesertaDidikAhlController::getPesertaAhl');
@@ -302,6 +302,14 @@ $routes->group('admin', static function ($routes) {
     $routes->get('peserta_ahl/edit', 'Ahl\PesertaDidikAhlController::edit');
     $routes->post('peserta_ahl/update', 'Ahl\PesertaDidikAhlController::update');
     $routes->post('peserta_ahl/delete', 'Ahl\PesertaDidikAhlController::delete');
+
+    // price_list
+    $routes->get('price_list_ahl', 'Ahl\PriceListController::index');
+    $routes->post('price_list_ahl/getPriceList', 'Ahl\PriceListController::getPriceList');
+    $routes->post('price_list_ahl/insert', 'Ahl\PriceListController::insert');
+    $routes->get('price_list_ahl/edit', 'Ahl\PriceListController::edit');
+    $routes->post('price_list_ahl/update', 'Ahl\PriceListController::update');
+    $routes->post('price_list_ahl/delete', 'Ahl\PriceListController::delete');
 
 
     // export excel peserta
