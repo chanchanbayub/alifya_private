@@ -234,7 +234,7 @@
                             <select name="jumlah_pertemuan_id" id="jumlah_pertemuan_id" class="form-control">
                                 <option value="">--Silahkan Pilih</option>
                                 <?php foreach ($jumlah_pertemuan as $jumlah_pertemuan) : ?>
-                                    <option value="<?= $jumlah_pertemuan->id ?>"><?= $jumlah_pertemuan->jumlah_pertemuan ?> ( x dalam sebulan) (<?= $jumlah_pertemuan->nama_paket ?>) </option>
+                                    <option value="<?= $jumlah_pertemuan->id ?>"><?= $jumlah_pertemuan->jumlah_pertemuan ?> (<?= $jumlah_pertemuan->nama_paket ?>) (<?= $jumlah_pertemuan->nama_program ?> ) </option>
                                 <?php endforeach; ?>
 
                             </select>
