@@ -32,7 +32,7 @@ class PresensiAhlModel extends Model
     public function getPresensiWithMonthInvoice($mitra_id, $bulan, $tahun)
     {
         return $this->table($this->table)
-            ->select("COUNT(MONTH(presensi_ahl_table.tanggal)) as jumlah_presensi_perbulan, presensi_ahl_table.tanggal ,data_pengajar_table.id, data_pengajar_table.nama_lengkap, upah_mitra_ahl_table.upah_mitra, upah_mitra_ahl_table.lain_lain")
+            ->select("COUNT(MONTH(presensi_ahl_table.tanggal)) as jumlah_presensi_perbulan, presensi_ahl_table.tanggal ,data_pengajar_table.id, data_pengajar_table.nama_lengkap, upah_mitra_ahl_table.upah_mitra, upah_mitra_ahl_table.lain_lain, presensi_ahl_table.mitra_id")
             ->join('mitra_pengajar_ahl_table', 'mitra_pengajar_ahl_table.mitra_id = presensi_ahl_table.mitra_id')
             ->join('data_pengajar_table', 'data_pengajar_table.id = mitra_pengajar_ahl_table.mitra_id')
             ->join('upah_mitra_ahl_table', 'upah_mitra_ahl_table.mitra_ahl_id = data_pengajar_table.id', 'left')

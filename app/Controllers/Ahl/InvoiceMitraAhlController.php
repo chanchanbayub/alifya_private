@@ -85,11 +85,9 @@ class InvoiceMitraAhlController extends BaseController
                     $presensi_pulang = $this->presensiAhlModel->getPresensiPulang($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
                     $presensi_dinas_luar = $this->presensiAhlModel->getPresensiDinasLuar($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
 
-
-
-
                     foreach ($presensi as $presensi) {
                         $data_presensi_ahl[] = [
+                            'mitra_id' => $presensi->mitra_id,
                             'nama_lengkap' => $presensi->nama_lengkap,
                             'jumlah_presensi_masuk' => $presensi_masuk->jumlah_presensi_masuk,
                             'jumlah_presensi_pulang' => $presensi_pulang->jumlah_presensi_pulang,
@@ -112,8 +110,9 @@ class InvoiceMitraAhlController extends BaseController
                     'total_presensi_perbulan' => $total_presensi_perbulan->total_presensi_perbulan,
                     'total_presensi_perbulan_masuk' => $total_presensi_perbulan_masuk->total_presensi_perbulan_masuk,
                     'total_presensi_perbulan_pulang' => $total_presensi_perbulan_pulang->total_presensi_perbulan_pulang,
-                    'total_presensi_perbulan_dinas_luar' => $total_presensi_perbulan_dinas_luar->total_presensi_perbulan_dinas_luar
-
+                    'total_presensi_perbulan_dinas_luar' => $total_presensi_perbulan_dinas_luar->total_presensi_perbulan_dinas_luar,
+                    'bulan' => $inputan_bulan,
+                    'tahun' => $inputan_tahun
                 ];
             }
 

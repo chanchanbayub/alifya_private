@@ -328,6 +328,8 @@ $routes->group('admin', static function ($routes) {
     $routes->post('invoice_mitra_ahl/update', 'Ahl\InvoiceMitraAhlController::update');
     $routes->post('invoice_mitra_ahl/delete', 'Ahl\InvoiceMitraAhlController::delete');
 
+    $routes->get('invoice_mitra_ahl/pdf/(:any)', 'PDF\PdfController::mitra_ahl/$1');
+
     // Upah Mitra
     $routes->get('upah_mitra_ahl', 'Ahl\UpahMitraController::index');
     $routes->post('upah_mitra_ahl/getUpahAhl', 'Ahl\UpahMitraController::getUpahAhl');

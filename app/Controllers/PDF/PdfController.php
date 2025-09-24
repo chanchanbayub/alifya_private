@@ -11,6 +11,7 @@ use App\Models\Admin\MediaBelajarModel;
 use App\Models\Admin\MuridModel;
 use App\Models\Admin\PengajarModel;
 use App\Models\Admin\PresensiModel;
+use App\Models\Ahl\PresensiAhlModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class PdfController extends BaseController
@@ -24,6 +25,7 @@ class PdfController extends BaseController
     protected $mediaBelajarModel;
     protected $klaimLainLainModel;
     protected $klaimMediaPesertaModel;
+    protected $presensiAhlModel;
 
     public function __construct()
     {
@@ -36,6 +38,7 @@ class PdfController extends BaseController
         $this->muridModel = new MuridModel();
         $this->klaimLainLainModel = new KlaimLainLainMitraModel();
         $this->klaimMediaPesertaModel = new KlaimMediaPesertaModel();
+        $this->presensiAhlModel = new PresensiAhlModel();
     }
 
     public function invoice_peserta_didik($mitra_pengajar_id, $peserta_didik_id, $bulan)
@@ -167,6 +170,78 @@ class PdfController extends BaseController
             ];
 
             $html = view('pdf/invoice_mitra_pdf', $data);
+            $this->mpdf->WriteHTML($html);
+
+            $this->response->setHeader('Content-Type', 'application/pdf');;
+            $this->mpdf->output('Invoice-' . $pengajar->nama_lengkap  . '.pdf', 'I');
+        }
+    }
+
+    public function mitra_ahl($mitra_pengajar_id, $bulan, $tahun)
+    {
+
+        $this->mpdf->showImageErrors = true;
+
+        $mitra_pengajar_id = $mitra_pengajar_id;
+
+        $bulan = intval($bulan);
+
+        $tahun = intval($tahun);
+
+
+        helper(['format']);
+
+        $mitra_pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
+
+        $presensi = $this->presensiAhlModel->getPresensiWithMonthInvoice($mitra_pengajar_id, $bulan, $tahun);
+
+
+        // dd($invoice);
+
+        if (count($presensi) == 0) {
+
+            $error = [
+                'error' => 'Data Tidak Ditemukan!'
+            ];
+
+            session()->setFlashdata($error);
+            return redirect()->back()->withInput($error);
+        } else {
+
+            $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
+
+            $presensi_masuk = $this->presensiAhlModel->getPresensiMasuk($mitra_pengajar_id, $bulan, $tahun);
+            $presensi_pulang = $this->presensiAhlModel->getPresensiPulang($mitra_pengajar_id, $bulan, $tahun);
+            $presensi_dinas_luar = $this->presensiAhlModel->getPresensiDinasLuar($mitra_pengajar_id, $bulan, $tahun);
+            $presensi = $this->presensiAhlModel->getPresensiWithMonthInvoice($mitra_pengajar_id, $bulan, $tahun);
+
+            foreach ($presensi as $presensi) {
+
+                $mitra_id = $presensi->mitra_id;
+                $nama_lengkap = $presensi->nama_lengkap;
+                $jumlah_presensi_masuk = $presensi_masuk->jumlah_presensi_masuk;
+                $jumlah_presensi_pulang = $presensi_pulang->jumlah_presensi_pulang;
+                $jumlah_presensi_dinas_luar = $presensi_dinas_luar->jumlah_presensi_dinas_luar;
+                $jumlah_presensi_perbulan = $presensi->jumlah_presensi_perbulan;
+                $upah_mitra = $presensi->upah_mitra;
+                $lain_lain = $presensi->lain_lain;
+                $total_akhir = $presensi->upah_mitra + $presensi->lain_lain;
+            }
+
+
+            $data = [
+                'jumlah_presensi_perbulan' =>  $jumlah_presensi_perbulan,
+                'upah_mitra' => $upah_mitra,
+                'lain_lain' => $lain_lain,
+                'total_akhir' => $total_akhir,
+                'mitra_pengajar' => $pengajar,
+                'presensi_masuk' => $presensi_masuk->jumlah_presensi_masuk,
+                'presensi_pulang' => $presensi_pulang->jumlah_presensi_pulang,
+                'presensi_dinas_luar' => $presensi_dinas_luar->jumlah_presensi_dinas_luar,
+
+            ];
+
+            $html = view('pdf/invoice_mitra_ahl_pdf', $data);
             $this->mpdf->WriteHTML($html);
 
             $this->response->setHeader('Content-Type', 'application/pdf');;
