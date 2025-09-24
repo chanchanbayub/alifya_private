@@ -95,7 +95,7 @@
 
                     <div class="mb-3">
                         <label for="jumlah_pertemuan" class="col-form-label">Jumlah Pertemuan :</label>
-                        <input type="text" name="jumlah_pertemuan" id="jumlah_pertemuan" class="form-control">
+                        <input type="number" name="jumlah_pertemuan" id="jumlah_pertemuan" class="form-control">
                         <div class=" invalid-feedback error-jumlah-pertemuan">
                         </div>
                     </div>
@@ -225,7 +225,7 @@
                     data: 'nama_paket',
                 },
                 {
-                    data: 'jumlah_pertemuan',
+                    data: "jumlah_pertemuan",
                 },
                 {
                     data: 'harga_paket',
