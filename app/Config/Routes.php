@@ -313,11 +313,20 @@ $routes->group('admin', static function ($routes) {
 
     // price_list
     $routes->get('invoice_peserta_ahl', 'Ahl\InvoicePesertaController::index');
+    $routes->get('invoice_peserta_ahl/cek_invoice', 'Ahl\InvoicePesertaController::cek_invoice');
     $routes->post('invoice_peserta_ahl/getPriceList', 'Ahl\InvoicePesertaController::getPriceList');
     $routes->post('invoice_peserta_ahl/insert', 'Ahl\InvoicePesertaController::insert');
     $routes->get('invoice_peserta_ahl/edit', 'Ahl\InvoicePesertaController::edit');
     $routes->post('invoice_peserta_ahl/update', 'Ahl\InvoicePesertaController::update');
     $routes->post('invoice_peserta_ahl/delete', 'Ahl\InvoicePesertaController::delete');
+
+    // price_list
+    $routes->get('invoice_mitra_ahl', 'Ahl\InvoiceMitraAhlController::index');
+    $routes->post('invoice_mitra_ahl/cek_invoice', 'Ahl\InvoiceMitraAhlController::cek_invoice');
+    $routes->post('invoice_mitra_ahl/insert', 'Ahl\InvoiceMitraAhlController::insert');
+    $routes->get('invoice_mitra_ahl/edit', 'Ahl\InvoiceMitraAhlController::edit');
+    $routes->post('invoice_mitra_ahl/update', 'Ahl\InvoiceMitraAhlController::update');
+    $routes->post('invoice_mitra_ahl/delete', 'Ahl\InvoiceMitraAhlController::delete');
 
     // Upah Mitra
     $routes->get('upah_mitra_ahl', 'Ahl\UpahMitraController::index');

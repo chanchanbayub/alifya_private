@@ -161,8 +161,8 @@
                      </a>
                  </li>
                  <li>
-                     <a href="/admin/invoice_peserta_ahl">
-                         <i class="bi bi-circle"></i><span>Invoice Peserta AHL</span>
+                     <a href="/admin/invoice_mitra_ahl">
+                         <i class="bi bi-circle"></i><span>Invoice Mitra AHL</span>
                      </a>
                  </li>
              </ul>
