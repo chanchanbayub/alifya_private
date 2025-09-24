@@ -86,6 +86,11 @@ class PesertaDidikAhlTable extends Migration
                 'constraint'     => 11,
                 'unsigned'       => true,
             ],
+            'jumlah_pertemuan_id' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+            ],
             'foto_anak' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
@@ -134,6 +139,7 @@ class PesertaDidikAhlTable extends Migration
         $attributes = ['ENGINE' => 'InnoDB'];
         $this->forge->addForeignKey('program_belajar_ahl_id', 'program_ahl_table', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('pendidikan_id', 'tingkat_pendidikan_table', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('jumlah_pertemuan_id', 'price_list_table', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('status_peserta_id', 'status_murid_table', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('peserta_didik_ahl_table', false, $attributes);
     }

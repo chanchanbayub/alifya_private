@@ -117,9 +117,9 @@
                 <form id="edit_form" autocomplete="off">
                     <?= csrf_field(); ?>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="id_edit" name="id">
-                        <input type="text" class="form-control" id="foto_anak_lama" name="foto_anak_lama">
-                        <input type="text" class="form-control" id="bukti_tf_lama" name="bukti_tf_lama">
+                        <input type="hidden" class="form-control" id="id_edit" name="id">
+                        <input type="hidden" class="form-control" id="foto_anak_lama" name="foto_anak_lama">
+                        <input type="hidden" class="form-control" id="bukti_tf_lama" name="bukti_tf_lama">
                         <label for="ketersediaan" class="col-form-label">Apakah Mom/Pap bersedia untuk Ananda ikut berproses bersama Alifya? :</label>
                         <select name="ketersediaan" id="ketersediaan" class="form-control">
                             <option value="">--Silahkan Pilih--</option>
@@ -275,6 +275,18 @@
                             <?php endforeach; ?>
                         </select>
                         <div class="invalid-feedback error-program-belajar">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="jumlah_pertemuan_id">Jumlah Pertemuan :</label>
+                        <select name="jumlah_pertemuan_id" id="jumlah_pertemuan_id" class="form-select">
+                            <option value="">--Silahkan Pilih--</option>
+                            <?php foreach ($price_list as $price_list) : ?>
+                                <option value="<?= $price_list->id ?>"><?= $price_list->jumlah_pertemuan ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="invalid-feedback error-jumlah-pertemuan">
                         </div>
                     </div>
 
@@ -461,6 +473,8 @@
 
             // 
             let program_belajar_ahl_id = $("#program_belajar_ahl_id").val();
+            let jumlah_pertemuan_id = $("#jumlah_pertemuan_id").val();
+
             let foto_anak = $("#foto_anak").val();
             let bukti_tf = $("#bukti_tf").val();
             let izin_dokumentasi = $("#izin_dokumentasi").val();
@@ -494,6 +508,7 @@
             formData.append('ukuran_baju', ukuran_baju);
 
             formData.append('program_belajar_ahl_id', program_belajar_ahl_id);
+            formData.append('jumlah_pertemuan_id', jumlah_pertemuan_id);
             formData.append('foto_anak', foto_anak);
             formData.append('bukti_tf', bukti_tf);
             formData.append('izin_dokumentasi', izin_dokumentasi);
@@ -632,6 +647,13 @@
                             $("#program_belajar_ahl_id").removeClass('is-invalid');
                             $(".error-program-belajar").html('');
                         }
+                        if (response.error.jumlah_pertemuan_id) {
+                            $("#jumlah_pertemuan_id").addClass('is-invalid');
+                            $(".error-jumlah-pertemuan").html(response.error.jumlah_pertemuan_id);
+                        } else {
+                            $("#jumlah_pertemuan_id").removeClass('is-invalid');
+                            $(".error-jumlah-pertemuan").html('');
+                        }
                         if (response.error.foto_anak) {
                             $("#foto_anak").addClass('is-invalid');
                             $(".error-foto-anak").html(response.error.foto_anak);
@@ -734,6 +756,7 @@
                 $("#tanggal_bergabung").val(response.peserta_ahl.tanggal_bergabung);
                 $("#status_peserta_id").val(response.peserta_ahl.status_peserta_id);
                 $("#program_belajar_ahl_id").val(response.peserta_ahl.program_belajar_ahl_id).trigger('change');
+                $("#jumlah_pertemuan_id").val(response.peserta_ahl.jumlah_pertemuan_id).trigger('change');
 
 
 

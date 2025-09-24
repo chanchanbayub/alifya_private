@@ -230,6 +230,18 @@
                         </div>
 
                         <div class="control-group">
+                            <label for="jumlah_pertemuan_id">Jumlah Pertemuan :</label>
+                            <select name="jumlah_pertemuan_id" id="jumlah_pertemuan_id" class="form-control">
+                                <option value="">--Silahkan Pilih</option>
+                                <?php foreach ($jumlah_pertemuan as $jumlah_pertemuan) : ?>
+                                    <option value="<?= $jumlah_pertemuan->id ?>"><?= $jumlah_pertemuan->jumlah_pertemuan ?> </option>
+                                <?php endforeach; ?>
+
+                            </select>
+                            <p class="help-block text-danger error-jumlah-pertemuan"></p>
+                        </div>
+
+                        <div class="control-group">
                             <div class="card">
                                 <div class="card-header">
                                     <h5>LAMPIRAN TAMBAHAN
@@ -340,6 +352,7 @@
 
         // 
         let program_belajar_ahl_id = $("#program_belajar_ahl_id").val();
+        let jumlah_pertemuan_id = $("#jumlah_pertemuan_id").val();
         let foto_anak = $("#foto_anak").val();
         let bukti_tf = $("#bukti_tf").val();
         let izin_dokumentasi = $("#izin_dokumentasi").val();
@@ -364,6 +377,7 @@
         formData.append('pendidikan_id', pendidikan_id);
         formData.append('ukuran_baju', ukuran_baju);
         formData.append('program_belajar_ahl_id', program_belajar_ahl_id);
+        formData.append('jumlah_pertemuan_id', jumlah_pertemuan_id);
         formData.append('foto_anak', foto_anak);
         formData.append('bukti_tf', bukti_tf);
         formData.append('izin_dokumentasi', izin_dokumentasi);
@@ -500,6 +514,13 @@
                     } else {
                         $("#program_belajar_ahl_id").removeClass('is-invalid');
                         $(".error-program-belajar").html('');
+                    }
+                    if (response.error.jumlah_pertemuan_id) {
+                        $("#jumlah_pertemuan_id").addClass('is-invalid');
+                        $(".error-jumlah-pertemuan").html(response.error.jumlah_pertemuan_id);
+                    } else {
+                        $("#jumlah_pertemuan_id").removeClass('is-invalid');
+                        $(".error-jumlah-pertemuan").html('');
                     }
                     if (response.error.foto_anak) {
                         $("#foto_anak").addClass('is-invalid');

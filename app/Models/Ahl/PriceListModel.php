@@ -26,4 +26,12 @@ class PriceListModel extends Model
             ->join('program_ahl_table', 'program_ahl_table.id = price_list_table.program_belajar_ahl_id');
         return $builder->orderBy('price_list_table.id asc');
     }
+
+    public function getPriceList()
+    {
+        return $this->table($this->table)
+            ->select("*")
+            ->orderBy('price_list_table.id desc')
+            ->get()->getResultObject();
+    }
 }

@@ -150,6 +150,11 @@
                                 <div class="col-lg-6 col-md-8"><?= $profil->nama_program ?></div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-lg-6 col-md-4 label">Jumlah Pertemuan</div>
+                                <div class="col-lg-6 col-md-8"><?= $profil->jumlah_pertemuan ?> x / perbulan</div>
+                            </div>
+
                             <h5 class="card-title">Pesetujuan</h5>
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 label">Apakah Mom/Pap berkenan jika dokumentasi kegiatan belajar Ananda (foto/video) digunakan untuk kebutuhan media sosial Alifya Learning??

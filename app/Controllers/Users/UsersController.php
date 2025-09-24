@@ -10,6 +10,7 @@ use App\Models\Admin\PengajarModel;
 use App\Models\Admin\ProgramBelajarModel;
 use App\Models\Admin\TestimonialModel;
 use App\Models\Ahl\PesertaDidikAhlModel;
+use App\Models\Ahl\PriceListModel;
 use App\Models\Ahl\ProgramAHLModel;
 use App\Models\Ahl\TinggalPendidikanModel;
 use App\Models\Ahl\TingkatPendidikanModel;
@@ -28,6 +29,7 @@ class UsersController extends BaseController
     protected $muridModel;
     protected $programAHLModel;
     protected $pesertaDidikAhlModel;
+    protected $priceListModel;
     protected $tingkatPendidikanModel;
 
     public function __construct()
@@ -42,6 +44,7 @@ class UsersController extends BaseController
         $this->programAHLModel = new ProgramAHLModel();
         $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
         $this->tingkatPendidikanModel = new TingkatPendidikanModel();
+        $this->priceListModel = new PriceListModel();
     }
 
     public function index()
@@ -582,7 +585,8 @@ class UsersController extends BaseController
             'title' => 'Alifya Home Learning | Daftar AHL',
             'peserta_didik' => $this->muridModel->getDataMuridAktif(),
             'program_ahl' => $this->programAHLModel->getProgramAHL(),
-            'pendidikan' => $this->tingkatPendidikanModel->getPendidikan()
+            'pendidikan' => $this->tingkatPendidikanModel->getPendidikan(),
+            'jumlah_pertemuan' => $this->priceListModel->getPriceList()
 
         ];
         return view('users/daftar_peserta_ahl', $data);
@@ -693,6 +697,12 @@ class UsersController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+                'jumlah_pertemuan_id' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
 
 
                 'foto_anak' => [
@@ -765,6 +775,7 @@ class UsersController extends BaseController
                         'ukuran_baju' => $this->validation->getError('ukuran_baju'),
 
                         'program_belajar_ahl_id' => $this->validation->getError('program_belajar_ahl_id'),
+                        'jumlah_pertemuan_id' => $this->validation->getError('jumlah_pertemuan_id'),
                         'foto_anak' => $this->validation->getError('foto_anak'),
                         'bukti_tf' => $this->validation->getError('bukti_tf'),
 
@@ -798,6 +809,7 @@ class UsersController extends BaseController
                 $ukuran_baju = $this->request->getPost('ukuran_baju');
 
                 $program_belajar_ahl_id = $this->request->getPost('program_belajar_ahl_id');
+                $jumlah_pertemuan_id = $this->request->getPost('jumlah_pertemuan_id');
 
                 $foto_anak = $this->request->getFile('foto_anak');
                 $nama_foto = $foto_anak->getRandomName();
@@ -829,6 +841,7 @@ class UsersController extends BaseController
                     'sekolah_anak' => strtolower($sekolah_anak),
                     'ukuran_baju' => strtolower($ukuran_baju),
                     'program_belajar_ahl_id' => strtolower($program_belajar_ahl_id),
+                    'jumlah_pertemuan_id' => strtolower($jumlah_pertemuan_id),
                     'foto_anak' => $nama_foto,
                     'bukti_tf' => $nama_foto_tf,
                     'izin_dokumentasi' => strtolower($izin_dokumentasi),
