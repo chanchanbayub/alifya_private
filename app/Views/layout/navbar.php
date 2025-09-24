@@ -156,11 +156,15 @@
                      </a>
                  </li>
                  <li>
-                     <a href="#">
-                         <i class="bi bi-circle"></i><span>Upah AHL <span class="badge bg-success">Coming Soon!!</span></span>
+                     <a href="/admin/upah_mitra_ahl">
+                         <i class="bi bi-circle"></i><span>Upah AHL</span>
                      </a>
                  </li>
-
+                 <li>
+                     <a href="/admin/invoice_peserta_ahl">
+                         <i class="bi bi-circle"></i><span>Invoice Peserta AHL</span>
+                     </a>
+                 </li>
              </ul>
          </li>
 

@@ -311,6 +311,21 @@ $routes->group('admin', static function ($routes) {
     $routes->post('price_list_ahl/update', 'Ahl\PriceListController::update');
     $routes->post('price_list_ahl/delete', 'Ahl\PriceListController::delete');
 
+    // price_list
+    $routes->get('invoice_peserta_ahl', 'Ahl\InvoicePesertaController::index');
+    $routes->post('invoice_peserta_ahl/getPriceList', 'Ahl\InvoicePesertaController::getPriceList');
+    $routes->post('invoice_peserta_ahl/insert', 'Ahl\InvoicePesertaController::insert');
+    $routes->get('invoice_peserta_ahl/edit', 'Ahl\InvoicePesertaController::edit');
+    $routes->post('invoice_peserta_ahl/update', 'Ahl\InvoicePesertaController::update');
+    $routes->post('invoice_peserta_ahl/delete', 'Ahl\InvoicePesertaController::delete');
+
+    // Upah Mitra
+    $routes->get('upah_mitra_ahl', 'Ahl\UpahMitraController::index');
+    $routes->post('upah_mitra_ahl/getUpahAhl', 'Ahl\UpahMitraController::getUpahAhl');
+    $routes->post('upah_mitra_ahl/insert', 'Ahl\UpahMitraController::insert');
+    $routes->get('upah_mitra_ahl/edit', 'Ahl\UpahMitraController::edit');
+    $routes->post('upah_mitra_ahl/update', 'Ahl\UpahMitraController::update');
+    $routes->post('upah_mitra_ahl/delete', 'Ahl\UpahMitraController::delete');
 
     // export excel peserta
 
