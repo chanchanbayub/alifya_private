@@ -320,6 +320,9 @@ $routes->group('admin', static function ($routes) {
     $routes->post('invoice_peserta_ahl/update', 'Ahl\InvoicePesertaController::update');
     $routes->post('invoice_peserta_ahl/delete', 'Ahl\InvoicePesertaController::delete');
 
+    $routes->get('invoice_pesdik_ahl/pdf/', 'PDF\PdfController::pesdik_ahl');
+
+
     // price_list
     $routes->get('invoice_mitra_ahl', 'Ahl\InvoiceMitraAhlController::index');
     $routes->post('invoice_mitra_ahl/cek_invoice', 'Ahl\InvoiceMitraAhlController::cek_invoice');

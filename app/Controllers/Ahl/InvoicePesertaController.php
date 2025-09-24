@@ -3,35 +3,18 @@
 namespace App\Controllers\Ahl;
 
 use App\Controllers\BaseController;
-use App\Models\Admin\PengajarModel;
-use App\Models\Ahl\JamMasukAhlModel;
-use App\Models\Ahl\JenisPekerjaanModel;
-use App\Models\Ahl\LokasiModel;
-use App\Models\Ahl\MitraPengajarAhlModel;
-use App\Models\Ahl\PresensiAhlModel;
-use App\Models\Ahl\StatusPresensiModel;
+use App\Models\Ahl\PesertaDidikAhlModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class InvoicePesertaController extends BaseController
 {
-    protected $mitraPengajarAhlModel;
-    protected $pengajarModel;
-    protected $jenisPekerjaanModel;
-    protected $statusPresensiModel;
-    protected $presensiAhlModel;
-    protected $jamMasukAhlModel;
-    protected $lokasiModel;
+
     protected $validation;
+    protected $pesertaDidikAhlModel;
 
     public function __construct()
     {
-        $this->mitraPengajarAhlModel = new MitraPengajarAhlModel();
-        $this->jamMasukAhlModel = new JamMasukAhlModel();
-        $this->presensiAhlModel = new PresensiAhlModel();
-        $this->pengajarModel = new PengajarModel();
-        $this->lokasiModel = new LokasiModel();
-        $this->jenisPekerjaanModel = new JenisPekerjaanModel();
-        $this->statusPresensiModel = new StatusPresensiModel();
+        $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
         $this->validation = \Config\Services::validation();
 
         helper(['format']);
@@ -41,15 +24,16 @@ class InvoicePesertaController extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Invoice Mitra Pengajar AHL',
-            'presensi_ahl' => $this->presensiAhlModel->getPresensiAhl(),
-            'lokasi' => $this->lokasiModel->getLokasi(),
-            'jenis_pekerjaan' => $this->jenisPekerjaanModel->getJenisPekerjaan(),
-            'status_presensi' => $this->statusPresensiModel->getStatusPresensi(),
-            'mitra_pengajar_ahl' => $this->mitraPengajarAhlModel->getMitraPengajarAhl(),
+            'title' => 'Invoice Peserta Didik AHL',
+            'peserta_didik' => $this->pesertaDidikAhlModel->getPesertaDidikAhl()
+            // 'presensi_ahl' => $this->presensiAhlModel->getPresensiAhl(),
+            // 'lokasi' => $this->lokasiModel->getLokasi(),
+            // 'jenis_pekerjaan' => $this->jenisPekerjaanModel->getJenisPekerjaan(),
+            // 'status_presensi' => $this->statusPresensiModel->getStatusPresensi(),
+            // 'mitra_pengajar_ahl' => $this->mitraPengajarAhlModel->getMitraPengajarAhl(),
         ];
 
-        return view('ahl/invoice_mitra_ahl_v', $data);
+        return view('ahl/invoice_peserta_ahl_v', $data);
     }
 
     public function cek_invoice()

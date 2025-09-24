@@ -11,8 +11,10 @@ use App\Models\Admin\MediaBelajarModel;
 use App\Models\Admin\MuridModel;
 use App\Models\Admin\PengajarModel;
 use App\Models\Admin\PresensiModel;
+use App\Models\Ahl\PesertaDidikAhlModel;
 use App\Models\Ahl\PresensiAhlModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use DateTime;
 
 class PdfController extends BaseController
 {
@@ -26,6 +28,7 @@ class PdfController extends BaseController
     protected $klaimLainLainModel;
     protected $klaimMediaPesertaModel;
     protected $presensiAhlModel;
+    protected $pesertaDidikAhlModel;
 
     public function __construct()
     {
@@ -39,6 +42,7 @@ class PdfController extends BaseController
         $this->klaimLainLainModel = new KlaimLainLainMitraModel();
         $this->klaimMediaPesertaModel = new KlaimMediaPesertaModel();
         $this->presensiAhlModel = new PresensiAhlModel();
+        $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
     }
 
     public function invoice_peserta_didik($mitra_pengajar_id, $peserta_didik_id, $bulan)
@@ -246,6 +250,44 @@ class PdfController extends BaseController
 
             $this->response->setHeader('Content-Type', 'application/pdf');;
             $this->mpdf->output('Invoice-' . $pengajar->nama_lengkap  . '.pdf', 'I');
+        }
+    }
+
+    public function pesdik_ahl()
+    {
+
+        $this->mpdf->showImageErrors = true;
+
+        $peserta = $this->request->getVar('peserta_didik_id');
+        $bulan = $this->request->getVar('bulan');
+        $lain_lain = $this->request->getVar('lain_lain');
+
+        $time = new DateTime($bulan);
+
+        $peserta_didik = $this->pesertaDidikAhlModel->getProfil($peserta);
+
+        helper(['format']);
+
+        if ($peserta_didik == null) {
+
+            $error = [
+                'error' => 'Data Tidak Ditemukan!'
+            ];
+
+            session()->setFlashdata($error);
+            return redirect()->back()->withInput($error);
+        } else {
+
+            $data = [
+                'peserta_didik' =>  $peserta_didik,
+                'lain_lain' => $lain_lain
+            ];
+
+            $html = view('pdf/invoice_pesdik_ahl_pdf', $data);
+            $this->mpdf->WriteHTML($html);
+
+            $this->response->setHeader('Content-Type', 'application/pdf');;
+            $this->mpdf->output('Invoice-' . $peserta_didik->nama_lengkap_anak  . '.pdf', 'I');
         }
     }
 }

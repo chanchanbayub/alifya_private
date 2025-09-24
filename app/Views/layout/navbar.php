@@ -165,6 +165,11 @@
                          <i class="bi bi-circle"></i><span>Invoice Mitra AHL</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="/admin/invoice_peserta_ahl">
+                         <i class="bi bi-circle"></i><span>Invoice Pesdik AHL</span>
+                     </a>
+                 </li>
              </ul>
          </li>
 
