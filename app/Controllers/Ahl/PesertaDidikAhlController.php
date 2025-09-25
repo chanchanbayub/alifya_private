@@ -61,12 +61,12 @@ class PesertaDidikAhlController extends BaseController
                                                 </button>';
                 })
                 ->add('lihat_profil', function ($row) {
-                    return '<a href="/admin/peserta_ahl/getProfil/' .  $row->id . '"" class="btn btn-sm btn-outline-primary" target="_blank" >
+                    return '<a href="/admin/peserta_ahl/getProfil/' .  $row->id . '" class="btn btn-sm btn-outline-primary" target="_blank" >
                                                     <i class="bi bi-eye"></i> Lihat Profil
                                                 </a>
                            ';
                 })
-                ->setSearchableColumns(['nama_lengkap_anak', 'id', 'status_murid'])
+                ->setSearchableColumns(['nama_lengkap_anak'])
                 ->addNumbering('no')->toJson(true);
         }
     }
