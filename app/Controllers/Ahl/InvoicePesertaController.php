@@ -26,11 +26,6 @@ class InvoicePesertaController extends BaseController
         $data = [
             'title' => 'Invoice Peserta Didik AHL',
             'peserta_didik' => $this->pesertaDidikAhlModel->getPesertaDidikAhl()
-            // 'presensi_ahl' => $this->presensiAhlModel->getPresensiAhl(),
-            // 'lokasi' => $this->lokasiModel->getLokasi(),
-            // 'jenis_pekerjaan' => $this->jenisPekerjaanModel->getJenisPekerjaan(),
-            // 'status_presensi' => $this->statusPresensiModel->getStatusPresensi(),
-            // 'mitra_pengajar_ahl' => $this->mitraPengajarAhlModel->getMitraPengajarAhl(),
         ];
 
         return view('ahl/invoice_peserta_ahl_v', $data);

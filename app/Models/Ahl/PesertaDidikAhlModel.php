@@ -32,11 +32,11 @@ class PesertaDidikAhlModel extends Model
         return $this->table($this->table)
             ->select("peserta_didik_ahl_table.id, peserta_didik_ahl_table.ketersediaan, peserta_didik_ahl_table.nama_ayah, peserta_didik_ahl_table.pekerjaan_ayah, peserta_didik_ahl_table.pekerjaan_ibu, peserta_didik_ahl_table.nama_ibu,, peserta_didik_ahl_table.usersname_instagram, peserta_didik_ahl_table.nomor_whatsapp_orang_tua, peserta_didik_ahl_table.alamat_domisili_anak, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.nama_panggilan_anak, peserta_didik_ahl_table.tanggal_lahir_anak, peserta_didik_ahl_table.jenis_kelamin, peserta_didik_ahl_table.pendidikan_id, peserta_didik_ahl_table.sekolah_anak, peserta_didik_ahl_table.ukuran_baju, peserta_didik_ahl_table.program_belajar_ahl_id,peserta_didik_ahl_table.jumlah_pertemuan_id ,peserta_didik_ahl_table.foto_anak, peserta_didik_ahl_table.bukti_tf, peserta_didik_ahl_table.izin_dokumentasi, peserta_didik_ahl_table.info_alifya, peserta_didik_ahl_table.data_2, peserta_didik_ahl_table.data_1, peserta_didik_ahl_table.status_peserta_id, program_ahl_table.nama_program, status_murid_table.status_murid, tingkat_pendidikan_table.pendidikan, peserta_didik_ahl_table.tanggal_bergabung, price_list_table.jumlah_pertemuan, price_list_table.harga_paket")
             ->join('program_ahl_table', 'program_ahl_table.id = peserta_didik_ahl_table.program_belajar_ahl_id')
-            ->join('tingkat_pendidikan_table', 'tingkat_pendidikan_table.id = peserta_didik_ahl_table.id')
+            ->join('tingkat_pendidikan_table', 'tingkat_pendidikan_table.id = peserta_didik_ahl_table.pendidikan_id')
             ->join('price_list_table', 'price_list_table.id = peserta_didik_ahl_table.jumlah_pertemuan_id')
             ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id')
             ->where(["peserta_didik_ahl_table.id" => $id])
-            ->orderBy('peserta_didik_ahl_table.id desc')
+            ->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc')
             ->get()->getRowObject();
     }
 
@@ -45,10 +45,11 @@ class PesertaDidikAhlModel extends Model
         return $this->table($this->table)
             ->select("peserta_didik_ahl_table.id, peserta_didik_ahl_table.ketersediaan, peserta_didik_ahl_table.nama_ayah, peserta_didik_ahl_table.pekerjaan_ayah, peserta_didik_ahl_table.pekerjaan_ibu, peserta_didik_ahl_table.nama_ibu,, peserta_didik_ahl_table.usersname_instagram, peserta_didik_ahl_table.nomor_whatsapp_orang_tua, peserta_didik_ahl_table.alamat_domisili_anak, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.nama_panggilan_anak, peserta_didik_ahl_table.tanggal_lahir_anak, peserta_didik_ahl_table.jenis_kelamin, peserta_didik_ahl_table.pendidikan_id, peserta_didik_ahl_table.sekolah_anak, peserta_didik_ahl_table.ukuran_baju, peserta_didik_ahl_table.program_belajar_ahl_id,peserta_didik_ahl_table.jumlah_pertemuan_id ,peserta_didik_ahl_table.foto_anak, peserta_didik_ahl_table.bukti_tf, peserta_didik_ahl_table.izin_dokumentasi, peserta_didik_ahl_table.info_alifya, peserta_didik_ahl_table.data_2, peserta_didik_ahl_table.data_1, peserta_didik_ahl_table.status_peserta_id, program_ahl_table.nama_program, status_murid_table.status_murid, tingkat_pendidikan_table.pendidikan, peserta_didik_ahl_table.tanggal_bergabung, price_list_table.jumlah_pertemuan")
             ->join('program_ahl_table', 'program_ahl_table.id = peserta_didik_ahl_table.program_belajar_ahl_id')
-            ->join('tingkat_pendidikan_table', 'tingkat_pendidikan_table.id = peserta_didik_ahl_table.id')
+            ->join('tingkat_pendidikan_table', 'tingkat_pendidikan_table.id = peserta_didik_ahl_table.pendidikan_id')
             ->join('price_list_table', 'price_list_table.id = peserta_didik_ahl_table.jumlah_pertemuan_id')
             ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id')
-            ->orderBy('peserta_didik_ahl_table.id desc')
+            ->where(["peserta_didik_ahl_table.status_peserta_id" => 1])
+            ->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc')
             ->get()->getResultObject();
     }
 }
