@@ -107,7 +107,7 @@ class InvoiceMitraController extends BaseController
 
                     $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
 
-                    $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
+                    // $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
 
                     $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
 
@@ -127,11 +127,11 @@ class InvoiceMitraController extends BaseController
                             $harga_mitra = $harga_mitra->total;
                         }
 
-                        if ($booster_media->total_media == null) {
-                            $total_media = 0;
-                        } else {
-                            $total_media  = $booster_media->total_media;
-                        }
+                        // if ($booster_media->total_media == null) {
+                        //     $total_media = 0;
+                        // } else {
+                        //     $total_media  = $booster_media->total_media;
+                        // }
 
                         if ($media_belajar_anak->total_harga_media == null) {
                             $total_media_anak = 0;
@@ -145,6 +145,12 @@ class InvoiceMitraController extends BaseController
                             $total_lain_lain  = $lain_lain->total_lain_lain;
                         }
 
+                        if ($lain_lain->total_booster == null) {
+                            $total_booster = 0;
+                        } else {
+                            $total_booster  = $lain_lain->total_booster;
+                        }
+
                         $data_presensi[] = [
                             'data_pengajar_id' => $mitra_pengajar->mitra_pengajar_id,
                             'bulan' => $inputan_bulan,
@@ -154,10 +160,11 @@ class InvoiceMitraController extends BaseController
                             'nama_lengkap' => $mitra_pengajar->nama_lengkap,
                             'total_presensi' => intval($total_presensi),
                             'harga_mitra' => intval($harga_mitra),
-                            'booster_media' => intval($total_media),
+                            'booster_mitra' => intval($total_booster),
+                            // 'booster_media' => intval($total_media),
                             'total_media_belajar' => intval($total_media_anak),
                             'total_lain_lain' => intval($total_lain_lain),
-                            'total_akhir' => intval($harga_mitra) + intval($total_media) + intval($total_lain_lain) + intval($total_media_anak)
+                            'total_akhir' => intval($harga_mitra) + intval($total_booster) + intval($total_lain_lain) + intval($total_media_anak)
                         ];
                     }
                 }
@@ -170,6 +177,8 @@ class InvoiceMitraController extends BaseController
                 $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
 
                 $total_lain_lain_mitra = $this->klaimLainLainModel->SumLainLainPerbulan($inputan_bulan, $inputan_tahun);
+
+                $total_booster_media_mitra = $this->klaimLainLainModel->SumBoosterMediaPerbulan($inputan_bulan, $inputan_tahun);
 
                 // data anak
                 if ($total_data->total_anak == null) {
@@ -191,11 +200,17 @@ class InvoiceMitraController extends BaseController
                     $total_harga = intval($total_harga_mitra->total_harga_mitra);
                 }
 
-                // booster_media
-                if ($total_harga_mitra->total_booster == null) {
+                // // booster_media
+                // if ($total_harga_mitra->total_booster == null) {
+                //     $total_booster = intval(0);
+                // } else {
+                //     $total_booster = intval($total_harga_mitra->total_booster);
+                // }
+
+                if ($total_booster_media_mitra->total_booster_media_mitra == null) {
                     $total_booster = intval(0);
                 } else {
-                    $total_booster = intval($total_harga_mitra->total_booster);
+                    $total_booster = intval($total_booster_media_mitra->total_booster_media_mitra);
                 }
 
                 // media belajar
@@ -212,7 +227,7 @@ class InvoiceMitraController extends BaseController
                     $total_lain_lain = intval($total_lain_lain_mitra->total_lain_lain);
                 }
 
-                $total_pemasukan = $total_harga + $total_booster + $total_media + $total_lain_lain;
+                $total_pemasukan = $total_harga + $total_media + $total_lain_lain + $total_booster;
 
                 $alert = [
                     'data_presensi' => $data_presensi,

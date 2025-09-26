@@ -132,7 +132,7 @@ class PdfController extends BaseController
 
             $total = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun);
 
-            $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun);
+            // $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun);
 
             $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar_id, $bulan, $tahun);
 
@@ -144,10 +144,16 @@ class PdfController extends BaseController
                 $total = intval($total->total);
             }
 
-            if ($booster_media->total_media == null) {
-                $total_media = intval(0);
+            // if ($booster_media->total_media == null) {
+            //     $total_media = intval(0);
+            // } else {
+            //     $total_media = intval($booster_media->total_media);
+            // }
+
+            if ($lain_lain->total_booster == null) {
+                $total_booster = 0;
             } else {
-                $total_media = intval($booster_media->total_media);
+                $total_booster  = $lain_lain->total_booster;
             }
 
             if ($lain_lain->total_lain_lain == null) {
@@ -162,12 +168,11 @@ class PdfController extends BaseController
                 $total_harga_media = intval($media_belajar_anak->total_harga_media);
             }
 
-
             $data = [
                 'invoice' =>  $invoice,
                 'mitra_pengajar' => $pengajar,
                 'total' => $total,
-                'booster_media' => $total_media,
+                'booster_media' => $total_booster,
                 'lain_lain' => $total_lain_lain,
                 'media_belajar' => $total_harga_media,
 
