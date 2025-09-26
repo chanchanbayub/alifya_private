@@ -53,12 +53,13 @@
                                         <th scope="col">Bulan</th>
                                         <th scope="col">Tahun</th>
                                         <th scope="col"><?= $title ?></th>
+                                        <th scope="col">Booster Media Mitra</th>
                                         <th scope="col">Status Murid</th>
                                     </tr>
                                 </thead>
                                 <tbody id="lain_lain_table_data">
                                     <tr>
-                                        <td colspan="6" style="text-align: center;">Tidak Ada Data</td>
+                                        <td colspan="7" style="text-align: center;">Tidak Ada Data</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -93,6 +94,7 @@
                                         <th scope="col">Bulan</th>
                                         <th scope="col">Tahun</th>
                                         <th scope="col"><?= $title ?></th>
+                                        <th scope="col">Booster Media</th>
                                         <th scope="col">Status Mitra</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
@@ -210,6 +212,13 @@
                         </div>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="booster_media_mitra" class="col-form-label">Booster Media Mitra :</label>
+                        <input type="number" class="form-control" id="booster_media_mitra" name="booster_media_mitra" placeholder="50000">
+                        <div class="invalid-feedback error-booster">
+                        </div>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
                         <button type="submit" class="btn btn-outline-success save"> <i class="bi bi-arrow-right"></i> Kirim</button>
@@ -273,6 +282,15 @@
                         <label for="lain_lain_edit" class="col-form-label"><?= $title ?> :</label>
                         <input type="number" class="form-control" id="lain_lain_edit" name="lain_lain">
                         <div class="invalid-feedback error-lain-lain-edit">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="booster_media_mitra_edit" class="col-form-label">Booster Media Mitra :</label>
+                        <input type="number" class="form-control" id="booster_media_mitra_edit" name="booster_media_mitra">
+                        <div class="invalid-feedback error-booster-edit">
 
                         </div>
                     </div>
@@ -363,6 +381,10 @@
                     render: $.fn.dataTable.render.number('.', '.', 0, 'Rp. ')
                 },
                 {
+                    data: 'booster_media_mitra',
+                    render: $.fn.dataTable.render.number('.', '.', 0, 'Rp. ')
+                },
+                {
                     data: 'status_pengajar',
                 },
 
@@ -410,6 +432,7 @@
             let mitra_pengajar_id = $("#mitra_pengajar_id").val();
             let bulan = $("#bulan").val();
             let lain_lain = $("#lain_lain").val();
+            let booster_media_mitra = $("#booster_media_mitra").val();
 
             $.ajax({
                 url: '/admin/klaim_lain_lain/insert',
@@ -419,6 +442,7 @@
                     mitra_pengajar_id: mitra_pengajar_id,
                     bulan: bulan,
                     lain_lain: lain_lain,
+                    booster_media_mitra: booster_media_mitra,
 
                 },
                 beforeSend: function() {
@@ -451,6 +475,14 @@
                         } else {
                             $("#lain_lain").removeClass('is-invalid');
                             $(".error-lain-lain").html('');
+                        }
+
+                        if (response.error.booster_media_mitra) {
+                            $("#booster_media_mitra").addClass('is-invalid');
+                            $(".error-booster").html(response.error.booster_media_mitra);
+                        } else {
+                            $("#booster_media_mitra").removeClass('is-invalid');
+                            $(".error-booster").html('');
                         }
 
                     } else {
@@ -491,6 +523,7 @@
 
                 $("#id_edit").val(response.lain_lain.id);
                 $("#lain_lain_edit").val(response.lain_lain.lain_lain);
+                $("#booster_media_mitra_edit").val(response.lain_lain.booster_media_mitra);
                 $("#bulan_edit").val(response.lain_lain.bulan).trigger('change');
                 $("#tahun_edit").val(response.lain_lain.tahun);
 
@@ -515,6 +548,7 @@
         let mitra_pengajar_id = $("#mitra_pengajar_id_edit").val();
         let bulan = $("#bulan_edit").val();
         let lain_lain = $("#lain_lain_edit").val();
+        let booster_media_mitra = $("#booster_media_mitra_edit").val();
         let tahun = $("#tahun_edit").val();
 
         $.ajax({
@@ -526,6 +560,7 @@
                 mitra_pengajar_id: mitra_pengajar_id,
                 bulan: bulan,
                 lain_lain: lain_lain,
+                booster_media_mitra: booster_media_mitra,
                 tahun: tahun
             },
             beforeSend: function() {
@@ -557,6 +592,14 @@
                     } else {
                         $("#lain_lain_edit").removeClass('is-invalid');
                         $(".error-lain-lain-edit").html('');
+                    }
+
+                    if (response.error.booster_media_mitra) {
+                        $("#booster_media_mitra_edit").addClass('is-invalid');
+                        $(".error-booster-edit").html(response.error.booster_media_mitra);
+                    } else {
+                        $("#booster_media_mitra_edit").removeClass('is-invalid');
+                        $(".error-booster-edit").html('');
                     }
 
                 } else {
@@ -723,13 +766,14 @@
                                 <td>${e.bulan}</td>
                                 <td>${e.tahun}</td>
                                 <td>Rp. ${new Intl.NumberFormat().format(e.lain_lain)} </td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.booster_media_mitra)} </td>
                                 <td>${e.status_pengajar} </td>
                             </tr>`;
                         });
                         $("#lain_lain_table_data").html(table_data);
                     } else {
                         table_data += `<tr>
-                                <td colspan="6" style="text-align:center">Data Tidak ditemukan</td>
+                                <td colspan="7" style="text-align:center">Data Tidak ditemukan</td>
                             </tr>`;
                         $("#lain_lain_table_data").html(table_data);
                     }

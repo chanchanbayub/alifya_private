@@ -89,7 +89,8 @@ class KlaimLainLainMitraController extends BaseController
                                 'mitra_pengajar_id' => strtolower($mitra_pengajar->id),
                                 'bulan' => $bulan,
                                 'tahun' => $tahun,
-                                'lain_lain' => intval(0)
+                                'lain_lain' => intval(0),
+                                'booster_media_mitra' => intval(0)
                             ]);
                             $alert = [
                                 'success' => 'Lain Lain Berhasil di Simpan !'
@@ -110,7 +111,8 @@ class KlaimLainLainMitraController extends BaseController
                                 'mitra_pengajar_id' => strtolower($mitra_pengajar->id),
                                 'bulan' => $bulan,
                                 'tahun' => $tahun,
-                                'lain_lain' => intval(0)
+                                'lain_lain' => intval(0),
+                                'booster_media_mitra' => intval(0)
                             ]);
                             $alert = [
                                 'success' => 'Lain Lain Berhasil di Simpan !'
@@ -182,6 +184,12 @@ class KlaimLainLainMitraController extends BaseController
                         'required' => 'Upah Tidak Boleh Kosong !'
                     ]
                 ],
+                'booster_media_mitra' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Upah Tidak Boleh Kosong !'
+                    ]
+                ],
 
             ])) {
                 $alert = [
@@ -189,6 +197,7 @@ class KlaimLainLainMitraController extends BaseController
                         'mitra_pengajar_id' => $this->validation->getError('mitra_pengajar_id'),
                         'lain_lain' => $this->validation->getError('lain_lain'),
                         'bulan' => $this->validation->getError('bulan'),
+                        'booster_media_mitra' => $this->validation->getError('booster_media_mitra'),
 
                     ]
                 ];
@@ -196,6 +205,7 @@ class KlaimLainLainMitraController extends BaseController
 
                 $mitra_pengajar_id = $this->request->getPost('mitra_pengajar_id');
                 $lain_lain = $this->request->getPost('lain_lain');
+                $booster_media_mitra = $this->request->getPost('booster_media_mitra');
                 $bulan = $this->request->getPost('bulan');
 
                 $tahun = date('Y');
@@ -203,6 +213,7 @@ class KlaimLainLainMitraController extends BaseController
                 $this->klaimLainLainModel->save([
                     'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
                     'lain_lain' => strtolower($lain_lain),
+                    'booster_media_mitra' => strtolower($booster_media_mitra),
                     'bulan' => $bulan,
                     'tahun' => $tahun
 
@@ -279,12 +290,20 @@ class KlaimLainLainMitraController extends BaseController
                     ]
                 ],
 
+                'booster_media_mitra' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'lain_lain Tidak Boleh Kosong !'
+                    ]
+                ],
+
 
             ])) {
                 $alert = [
                     'error' => [
                         'mitra_pengajar' => $this->validation->getError('mitra_pengajar'),
                         'lain_lain' => $this->validation->getError('lain_lain'),
+                        'booster_media_mitra' => $this->validation->getError('booster_media_mitra'),
                         'bulan' => $this->validation->getError('bulan'),
 
                     ]
@@ -299,6 +318,7 @@ class KlaimLainLainMitraController extends BaseController
                 $tahun = $this->request->getPost('tahun');
 
                 $lain_lain = $this->request->getPost('lain_lain');
+                $booster_media_mitra = $this->request->getPost('booster_media_mitra');
 
                 if ($tahun == null) {
                     $tahun = date('Y');
@@ -310,6 +330,7 @@ class KlaimLainLainMitraController extends BaseController
                     'bulan' => $bulan,
                     'tahun' => $tahun,
                     'lain_lain' => strtolower($lain_lain),
+                    'booster_media_mitra' => strtolower($booster_media_mitra),
 
                 ]);
 
