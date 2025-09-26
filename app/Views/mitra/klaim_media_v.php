@@ -64,88 +64,6 @@
     </div>
 </section>
 
-<!-- modal save-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $title ?></h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="add_form">
-                    <?= csrf_field(); ?>
-                    <div class="mb-3">
-                        <label for="peserta_didik_id" class="col-form-label">Peserta Didik :</label>
-                        <select name="peserta_didik_id" id="peserta_didik_id" class="form-select">
-                            <option value="">--Silahkan Pilih--</option>
-                            <?php foreach ($peserta_didik as $peserta_didik) : ?>
-                                <option value="<?= $peserta_didik->peserta_didik_id ?>"><?= $peserta_didik->nama_lengkap_anak ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <div class="invalid-feedback error-peserta-didik">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="bulan" class="form-label">Pilih Bulan :</label>
-                        <select name="bulan" id="bulan" class="form-control">
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="1">Januari</option>
-                            <option value="2">Februari</option>
-                            <option value="3">Maret</option>
-                            <option value="4">April</option>
-                            <option value="5">Mei</option>
-                            <option value="6">Juni</option>
-                            <option value="7">Juli</option>
-                            <option value="8">Agustus</option>
-                            <option value="9">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
-                        <div class="invalid-feedback error-bulan-edit">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="jenis_media_id" class="form-label">Jenis Media :</label>
-                        <select name="jenis_media_id" id="jenis_media_id" class="form-control">
-                            <option value="">--Silahkan Pilih--</option>
-                            <?php foreach ($jenis_media as $media) : ?>
-                                <option value="<?= $media->id ?>"><?= $media->nama_media ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <div class="invalid-feedback error-jenis-media">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="harga_media" class="col-form-label">Harga Media :</label>
-                        <input type="number" class="form-control" id="harga_media" name="harga_media" placeholder="50000">
-                        <div class="invalid-feedback error-harga-media">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="faktur" class="col-form-label">Faktur :</label>
-                        <input type="file" class="form-control" id="faktur" name="faktur">
-                        <div class="invalid-feedback error-faktur">
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
-                        <button type="submit" class="btn btn-outline-success save"> <i class="bi bi-arrow-right"></i> Kirim</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- End Modal Save -->
-
 <!-- Modal Edit -->
 <div class="modal fade" id="editModal" tabindex="-1">
     <div class="modal-dialog">
@@ -229,33 +147,6 @@
 </div>
 <!-- End Edit Modal-->
 
-<!-- Modal hapus  -->
-<div class="modal fade" id="deleteModal" tabindex="0">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Form <small> Hapus <?= $title ?> </small></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="delete_form">
-                    <?= csrf_field(); ?>
-                    <input type="hidden" class="form-control" id="id_delete" name="id">
-                    <div class="modal-body">
-                        <p>Apakah Anda Yakin ?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"> <i class="bi bi-x-lg"></i> Batal</button>
-                        <button type="submit" class="btn btn-outline-danger button_delete"> <i class="bi bi-trash"></i> Hapus</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End hapus Modal-->
-
-
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script>
@@ -337,94 +228,6 @@
             dropdownParent: $('#editModal')
         });
 
-
-        $("#add_form").submit(function(e) {
-            e.preventDefault();
-
-            let peserta_didik_id = $("#peserta_didik_id").val();
-            let bulan = $("#bulan").val();
-            let jenis_media_id = $("#jenis_media_id").val();
-            let harga_media = $("#harga_media").val();
-            let faktur = $("#faktur").val();
-
-
-            let formData = new FormData(this);
-
-            formData.append('peserta_didik_id', peserta_didik_id);
-            formData.append('bulan', bulan);
-            formData.append('jenis_media_id', jenis_media_id);
-            formData.append('harga_media', harga_media);
-            formData.append('faktur', faktur);
-
-            $.ajax({
-                url: '/mitra_pengajar/media_belajar/insert',
-                data: formData,
-                dataType: 'json',
-                enctype: 'multipart/form-data',
-                type: 'POST',
-                contentType: false,
-                processData: false,
-                cache: false,
-                beforeSend: function() {
-                    $('.save').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
-                    $('.save').prop('disabled', true);
-                },
-                success: function(response) {
-                    $('.save').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
-                    $('.save').prop('disabled', false);
-                    if (response.error) {
-                        if (response.error.peserta_didik_id) {
-                            $("#peserta_didik_id").addClass('is-invalid');
-                            $(".error-peserta-didik").html(response.error.peserta_didik_id);
-                        } else {
-                            $("#peserta_didik_id").removeClass('is-invalid');
-                            $(".error-peserta-didik").html('');
-                        }
-
-                        if (response.error.bulan) {
-                            $("#bulan").addClass('is-invalid');
-                            $(".error-bulan").html(response.error.bulan);
-                        } else {
-                            $("#bulan").removeClass('is-invalid');
-                            $(".error-bulan").html('');
-                        }
-
-                        if (response.error.jenis_media_id) {
-                            $("#jenis_media_id").addClass('is-invalid');
-                            $(".error-jenis-media").html(response.error.jenis_media);
-                        } else {
-                            $("#jenis_media_id").removeClass('is-invalid');
-                            $(".error-jenis-media").html('');
-                        }
-
-                        if (response.error.harga_media) {
-                            $("#harga_media").addClass('is-invalid');
-                            $(".error-harga-media").html(response.error.harga_media);
-                        } else {
-                            $("#harga_media").removeClass('is-invalid');
-                            $(".error-harga-media").html('');
-                        }
-
-                    } else {
-                        Swal.fire({
-                            icon: 'success',
-                            title: `${response.success}`,
-                        });
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1000)
-                    }
-                },
-                error: function() {
-                    Swal.fire({
-                        icon: 'error',
-                        title: `Data Belum Tersimpan!`,
-                    });
-                    $('.save').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
-                    $('.save').prop('disabled', false);
-                }
-            });
-        })
     });
 
     // Aksi Edit 
@@ -445,7 +248,6 @@
                 $("#harga_media_edit").val(response.klaim_media.harga_media);
                 $("#bulan_edit").val(response.klaim_media.bulan).trigger('change');
                 $("#tahun_edit").val(response.klaim_media.tahun);
-                $("#lain_lain_edit").val(response.klaim_media.lain_lain);
                 $("#faktur_lama").val(response.klaim_media.faktur);
 
 
@@ -483,7 +285,6 @@
         let tahun = $("#tahun_edit").val();
         let jenis_media_id = $("#jenis_media_id_edit").val();
         let harga_media = $("#harga_media_edit").val();
-        let lain_lain = $("#lain_lain_edit").val();
         let faktur = $("#faktur_edit").val();
 
         let formData = new FormData(this);
@@ -495,11 +296,10 @@
         formData.append('bulan', bulan);
         formData.append('jenis_media_id', jenis_media_id);
         formData.append('harga_media', harga_media);
-        formData.append('lain_lain', lain_lain);
         formData.append('faktur', faktur);
 
         $.ajax({
-            url: '/admin/klaim_media_belajar/update',
+            url: '/mitra_pengajar/klaim_media_belajar/update',
             data: formData,
             dataType: 'json',
             enctype: 'multipart/form-data',
@@ -508,8 +308,8 @@
             processData: false,
             cache: false,
             beforeSend: function() {
-                $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
-                $('.save').prop('disabled', true);
+                $('.update').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
+                $('.update').prop('disabled', true);
             },
             success: function(response) {
                 $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
@@ -545,14 +345,6 @@
                         $(".error-harga-media-edit").html('');
                     }
 
-                    if (response.error.lain_lain) {
-                        $("#lain_lain_edit").addClass('is-invalid');
-                        $(".error-lain-lain-edit").html(response.error.lain_lain);
-                    } else {
-                        $("#lain_lain_edit").removeClass('is-invalid');
-                        $(".error-lain-lain-edit").html('');
-                    }
-
                     if (response.error.faktur) {
                         $("#faktur_edit").addClass('is-invalid');
                         $(".error-faktur-edit").html(response.error.faktur);
@@ -576,69 +368,17 @@
                     icon: 'error',
                     title: `Data Belum Tersimpan!`,
                 });
-                $('.save').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
-                $('.save').prop('disabled', false);
+                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
+                $('.update').prop('disabled', false);
             }
         });
     });
     // End Aksi
 
     // Aksi Hapus
-    $(document).on('click', "#delete", function(e) {
-        e.preventDefault();
-        let id = $(this).attr('data-id');
-        $.ajax({
-            url: '/admin/klaim_media_belajar/edit',
-            method: 'get',
-            dataType: 'JSON',
-            data: {
-                id: id,
-            },
-            success: function(response) {
-                $("#id_delete").val(response.klaim_media.id);
-            }
-        });
-    });
 
-    $("#delete_form").submit(function(e) {
-        e.preventDefault();
-        let id = $("#id_delete").val();
-        $.ajax({
-            url: '/admin/klaim_media_belajar/delete',
-            method: 'post',
-            dataType: 'JSON',
-            data: {
-                id: id,
-            },
-            beforeSend: function() {
-                $('.button_delete').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
-                $('.button_delete').prop('disabled', true);
-            },
-            success: function(response) {
-                $('.button_delete').html('<i class="bi bi-trash"></i> Hapus');
-                $('.button_delete').prop('disabled', false);
 
-                $("#deleteModal").modal('hide');
-                Swal.fire({
-                    icon: 'success',
-                    title: `${response.success}`,
-                });
-                setTimeout(function() {
-                    location.reload();
-                }, 1000)
-            },
-            error: function(response) {
 
-                Swal.fire({
-                    icon: 'error',
-                    title: `Data Gagal di Hapus!`,
-                });
-                $('.button_delete').html('<i class="bi bi-trash"></i> Hapus');
-                $('.button_delete').prop('disabled', false);
-
-            }
-        });
-    });
     // End Aksi Hapus
 </script>
 

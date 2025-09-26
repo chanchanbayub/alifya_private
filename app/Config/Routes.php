@@ -359,6 +359,8 @@ $routes->group('auth', static function ($routes) {
 $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('dashboard', 'Mitra\DashboardController::index');
 
+    $routes->post('klaim_media_belajar/update', 'Mitra\KlaimMediaPesertaController::update');
+
     $routes->get('materi_belajar', 'Mitra\MateriBelajarController::index');
 
     $routes->get('jadwal_tetap', 'Mitra\JadwalTetapController::index');

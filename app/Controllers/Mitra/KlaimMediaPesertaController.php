@@ -70,95 +70,6 @@ class KlaimMediaPesertaController extends BaseController
         }
     }
 
-    public function insert()
-    {
-        if ($this->request->isAJAX()) {
-
-            if (!$this->validate([
-                'peserta_didik_id' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Upah Tidak Boleh Kosong !'
-                    ]
-                ],
-
-                'bulan' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Upah Tidak Boleh Kosong !'
-                    ]
-                ],
-
-                'jenis_media_id' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Jenis Media Tidak Boleh Kosong !'
-                    ]
-                ],
-
-                'harga_media' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Harga Media Tidak Boleh Kosong !'
-                    ]
-                ],
-
-                'faktur' => [
-                    'rules' => 'max_size[faktur,2048]|is_image[faktur]|mime_in[faktur,image/png,image/jpeg]',
-                    'errors' => [
-                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
-                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
-                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
-                    ]
-                ],
-
-            ])) {
-                $alert = [
-                    'error' => [
-                        'peserta_didik_id' => $this->validation->getError('peserta_didik_id'),
-                        'bulan' => $this->validation->getError('bulan'),
-                        'jenis_media_id' => $this->validation->getError('jenis_media_id'),
-                        'harga_media' => $this->validation->getError('harga_media'),
-                        'faktur' => $this->validation->getError('faktur'),
-
-                    ]
-                ];
-            } else {
-
-                $peserta_didik_id = $this->request->getPost('peserta_didik_id');
-                $bulan = $this->request->getPost('bulan');
-                $tahun = date('Y');
-                $jenis_media_id = $this->request->getPost('jenis_media_id');
-                $harga_media = $this->request->getPost('harga_media');
-                $faktur = $this->request->getFile('faktur');
-
-
-                if ($faktur->getError() == 4) {
-                    $namaFaktur = null;
-                } else {
-                    $namaFaktur = $faktur->getRandomName();
-                    $faktur->move('faktur', $namaFaktur);
-                }
-
-                $this->klaimMediaBelajarModel->save([
-                    'peserta_didik_id' => strtolower($peserta_didik_id),
-                    'bulan' => strtolower($bulan),
-                    'tahun' => strtolower($tahun),
-                    'jenis_media_id' => $jenis_media_id,
-                    'harga_media' => $harga_media,
-                    'faktur' => $namaFaktur,
-                ]);
-
-
-                $alert = [
-                    'success' => 'Harga Media Belajar Berhasil di Simpan !'
-                ];
-            }
-
-            return json_encode($alert);
-        }
-    }
-
     public function edit()
     {
         if ($this->request->isAJAX()) {
@@ -176,32 +87,6 @@ class KlaimMediaPesertaController extends BaseController
             ];
 
             return json_encode($data);
-        }
-    }
-
-    public function delete()
-    {
-        if ($this->request->isAJAX()) {
-
-            $id = $this->request->getVar('id');
-
-            $klaim_media = $this->klaimMediaBelajarModel->where(["id" => $id])->first();
-
-            $path_foto = 'faktur/' . $klaim_media['faktur'];
-
-            if ($klaim_media["faktur"] != null) {
-                if (file_exists($path_foto)) {
-                    unlink($path_foto);
-                }
-            }
-
-            $this->klaimMediaBelajarModel->delete($klaim_media["id"]);
-
-            $alert = [
-                'success' => 'Klaim Media Berhasil di Hapus!'
-            ];
-
-            return json_encode($alert);
         }
     }
 
@@ -275,13 +160,21 @@ class KlaimMediaPesertaController extends BaseController
                     $faktur->move('faktur', $namaFaktur);
                 }
 
+                $media = $this->klaimMediaBelajarModel->where(["id" => $id])->get()->getRowObject();
+
+                if ($media->lain_lain == null) {
+                    $input_lain_lain = intval(0);
+                } else {
+                    $input_lain_lain = intval($media->lain_lain);
+                }
+
                 $this->klaimMediaBelajarModel->update($id, [
                     'peserta_didik_id' => strtolower($peserta_didik_id),
                     'bulan' => strtolower($bulan),
                     'tahun' => strtolower($tahun),
                     'jenis_media_id' => $jenis_media_id,
                     'harga_media' => $harga_media,
-                    'lain_lain' => 0,
+                    'lain_lain' => $input_lain_lain,
                     'faktur' => $namaFaktur,
                 ]);
 
