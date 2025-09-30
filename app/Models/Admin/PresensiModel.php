@@ -49,7 +49,7 @@ class PresensiModel extends Model
             ->get()->getResultObject();
     }
 
-    public function getPresensiWithMonth($mitra_pengajar_id, $bulan, $peserta_didik_id)
+    public function getPresensiWithMonth($mitra_pengajar_id, $bulan, $peserta_didik_id, $tahun)
     {
         return $this->table($this->table)
             ->select("presensi_table.id, presensi_table.mitra_pengajar_id ,presensi_table.tanggal_masuk, presensi_table.jam_masuk,  data_murid_table.nama_lengkap_anak")
@@ -58,6 +58,7 @@ class PresensiModel extends Model
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
             ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
             ->where(["presensi_table.peserta_didik_id" => $peserta_didik_id])
             ->orderBy('presensi_table.tanggal_masuk asc')
             ->get()->getResultObject();
@@ -72,6 +73,7 @@ class PresensiModel extends Model
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
             ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            // ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
 
             ->orderBy('presensi_table.tanggal_masuk desc')
             ->get()->getResultObject();
@@ -176,6 +178,7 @@ class PresensiModel extends Model
             ->join('harga_table', 'harga_table.peserta_didik_id = presensi_table.peserta_didik_id')
             // ->join('media_belajar_anak_table', 'media_belajar_anak_table.peserta_didik_id = data_murid_table.id')
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $bulan)
             // ->where(['media_belajar_anak_table.bulan' => $bulan])
             // ->where(['media_belajar_anak_table.tahun' => $tahun])
             ->where(['harga_table.bulan' => $bulan])
@@ -242,6 +245,7 @@ class PresensiModel extends Model
             ->join('paket_belajar_table', 'paket_belajar_table.id = data_murid_table.paket_belajar_id', 'left')
             ->where(["data_murid_table.id" => $peserta_didik_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
             ->where(['harga_table.bulan' => $bulan])
             ->where(['harga_table.tahun' => $tahun])
             ->where(['media_belajar_anak_table.bulan' => $bulan])

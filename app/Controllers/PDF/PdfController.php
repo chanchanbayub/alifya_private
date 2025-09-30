@@ -67,7 +67,7 @@ class PdfController extends BaseController
         // dd($bulan);
         // $tahun = 2024;
 
-        $invoice = $this->presensiModel->getPresensiWithMonth($mitra_data, $bulan, $peserta_data);
+        $invoice = $this->presensiModel->getPresensiWithMonth($mitra_data, $bulan, $peserta_data, $tahun);
 
         $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_data);
 
