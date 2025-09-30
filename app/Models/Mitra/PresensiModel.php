@@ -62,6 +62,7 @@ class PresensiModel extends Model
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
             ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
             ->orderBy('presensi_table.tanggal_masuk desc')
             ->get()->getResultObject();
     }
@@ -89,6 +90,7 @@ class PresensiModel extends Model
             ->join('paket_belajar_table', 'paket_belajar_table.id = data_murid_table.paket_belajar_id', 'left')
             ->where(["data_murid_table.id" => $peserta_didik_id])
             ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
             ->orderBy('data_pengajar_table.nama_lengkap desc')
             ->get()->getResultObject();
     }
