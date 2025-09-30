@@ -41,6 +41,7 @@ class PresensiAHLController extends BaseController
 
         $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhlById(session('mitra_pengajar_id'));
         $presensi_ahl =  $this->presensiAhlModel->getPresensiAhlByid(session('mitra_pengajar_id'));
+        // dd($presensi_ahl);
 
         $data = [
             'title' => 'Presensi AHL',

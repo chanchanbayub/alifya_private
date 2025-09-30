@@ -57,7 +57,7 @@
                                             <th scope="row"><a href="#"><?= $no++ ?></a></th>
                                             <td><?= $presensi_ahl->nama_lengkap ?></td>
                                             <td><?= $presensi_ahl->jenis_pekerjaan ?></td>
-                                            <td><?= tanggal_indonesia(date('Y-m-d', strtotime($presensi_ahl->tanggal))) ?>, <?= date_indo('Y-m-d', strtotime($presensi_ahl->tanggal)) ?></td>
+                                            <td><?= tanggal_indonesia(date('Y-m-d', strtotime($presensi_ahl->tanggal))) ?>, <?= date_indo(date('Y-m-d', strtotime($presensi_ahl->tanggal))) ?></td>
                                             <td><?= date('H:i', strtotime($presensi_ahl->jam))  ?></td>
                                             <td><?= $presensi_ahl->lokasi ?></td>
                                             <td><?= $presensi_ahl->lain_lain ?></td>
