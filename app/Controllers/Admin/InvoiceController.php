@@ -248,6 +248,7 @@ class InvoiceController extends BaseController
                 $total_harga = $this->presensiModel->SumHargaPresensi($inputan_bulan, $inputan_tahun);
                 $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
 
+
                 if ($total_harga->total_harga == null) {
                     $total_bayar = "0";
                 } else {
