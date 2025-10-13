@@ -327,17 +327,20 @@ class HargaMitraController extends BaseController
 
                         $mitra_pengajar = $this->kelompokBelajarModel->getWhereMitraPengajarbyPesertaDidik($peserta->id);
 
-                        $this->hargaMitraModel->save([
-                            'mitra_pengajar_id' => strtolower($mitra_pengajar->mitra_pengajar_id),
-                            'peserta_didik_id' => strtolower($peserta->id),
-                            'bulan' => $inputan_bulan_terbaru,
-                            'tahun' => $inputan_tahun_terbaru,
-                            'harga_mitra' => "0",
-                            'booster_media' => "0",
-                        ]);
-                        $alert = [
-                            'success' => 'Upah Mitra Berhasil di Simpan !'
-                        ];
+                        if ($mitra_pengajar != null) {
+                            $this->hargaMitraModel->save([
+                                'mitra_pengajar_id' => strtolower($mitra_pengajar->mitra_pengajar_id),
+                                'peserta_didik_id' => strtolower($mitra_pengajar->peserta_didik_id),
+                                'bulan' => $inputan_bulan_terbaru,
+                                'tahun' => $inputan_tahun_terbaru,
+                                'harga_mitra' => "0",
+                                'booster_media' => "0",
+                            ]);
+                            $alert = [
+                                // 'mitra_pengajar_id' => $mitra_pengajar,
+                                'success' => 'Upah Mitra Berhasil di Simpan !'
+                            ];
+                        }
                     }
                 }
             }

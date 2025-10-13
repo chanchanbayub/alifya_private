@@ -60,7 +60,7 @@ class KelompokBelajarModel extends Model
         return $this->table($this->table)
             ->select("kelompok_belajar_table.id, kelompok_belajar_table.kelompok_id, kelompok_belajar_table.peserta_didik_id, kelompok_table.mitra_pengajar_id, data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak")
             ->join('kelompok_table', 'kelompok_table.id = kelompok_belajar_table.kelompok_id')
-            ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id', 'left')
             ->join('data_murid_table', 'data_murid_table.id = kelompok_belajar_table.peserta_didik_id')
             // ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->where(["kelompok_belajar_table.peserta_didik_id" => $peserta_didik])

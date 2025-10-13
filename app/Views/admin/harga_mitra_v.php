@@ -802,6 +802,7 @@
                     setTimeout(function() {
                         location.reload();
                     }, 1000)
+                    // console.log(response);
                 }
             },
             error: function() {
