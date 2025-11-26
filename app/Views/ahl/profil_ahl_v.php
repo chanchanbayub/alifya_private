@@ -84,6 +84,10 @@
                                 <div class="col-lg-6 col-md-4 label">Alamat Domisili</div>
                                 <div class="col-lg-6 col-md-8"><?= $profil->alamat_domisili_anak ?></div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-4 label">Username Instagram Orang Tua</div>
+                                <div class="col-lg-6 col-md-8"> <a href="https://www.instagram.com/<?= $profil->usersname_instagram ?>/" target="_blank"><?= $profil->usersname_instagram ?></a> </div>
+                            </div>
 
                         </div>
                     </div>
