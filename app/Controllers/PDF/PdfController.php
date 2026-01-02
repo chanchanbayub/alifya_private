@@ -45,7 +45,7 @@ class PdfController extends BaseController
         $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
     }
 
-    public function invoice_peserta_didik($mitra_pengajar_id, $peserta_didik_id, $bulan)
+    public function invoice_peserta_didik($mitra_pengajar_id, $peserta_didik_id, $bulan, $tahun)
     {
         $this->mpdf->showImageErrors = true;
 
@@ -62,10 +62,10 @@ class PdfController extends BaseController
         $peserta_data = $peserta->id;
 
         $bulan = $bulan;
-        $tahun = date('Y');
+        // $tahun = date('Y');
 
         // dd($bulan);
-        // $tahun = 2024;
+        // $tahun = 2025;
 
         $invoice = $this->presensiModel->getPresensiWithMonth($mitra_data, $bulan, $peserta_data, $tahun);
 

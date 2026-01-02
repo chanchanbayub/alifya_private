@@ -165,7 +165,7 @@
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.media_belajar)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.lain_lain)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
-                                <td align="center"><a href="/admin/cetak_invoice/pdf/${e.mitra_pengajar_id}/${e.id}/${e.bulan}" data-id="${e.mitra_pengajar_id}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td >
+                                <td align="center"><a href="/admin/cetak_invoice/pdf/${e.mitra_pengajar_id}/${e.id}/${e.bulan}/${e.tahun}" data-id="${e.mitra_pengajar_id}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td >
                                     </tr>`;
                             });
                             $("#table_invoice_peserta").html(table_invoice_data);
