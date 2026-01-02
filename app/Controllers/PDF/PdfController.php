@@ -62,10 +62,6 @@ class PdfController extends BaseController
         $peserta_data = $peserta->id;
 
         $bulan = $bulan;
-        // $tahun = date('Y');
-
-        // dd($bulan);
-        // $tahun = 2025;
 
         $invoice = $this->presensiModel->getPresensiWithMonth($mitra_data, $bulan, $peserta_data, $tahun);
 
