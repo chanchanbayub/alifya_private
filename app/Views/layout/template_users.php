@@ -47,10 +47,10 @@
             <div class="col-lg-6 col-md-6 mb-5">
                 <a href="/" class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0" style="font-size: 40px; line-height: 40px">
                     <!-- <i class="flaticon-043-teddy-bear"></i> -->
-                    <span class="text-white">Alifya Private</span>
+                    <span class="text-white">Alifya Learning</span>
                 </a>
                 <p class="text-justify">
-                    Alifya Private merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
+                    Alifya Learning merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
                 </p>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
@@ -98,12 +98,12 @@
         <div class="container-fluid pt-5" style="border-top: 1px solid rgba(23, 162, 184, 0.2) ;">
             <p class="m-0 text-center text-white">
                 &copy;
-                <a class="text-white font-weight-bold" href="/">Alifya Private</a>.
+                <a class="text-white font-weight-bold" href="/">Alifya Learning</a>.
                 All Rights Reserved.
 
                 <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                 Designed by
-                <a class="text-white font-weight-bold" href="/">Alifya Private</a>
+                <a class="text-white font-weight-bold" href="/">Alifya Learning</a>
             </p>
         </div>
     </div>

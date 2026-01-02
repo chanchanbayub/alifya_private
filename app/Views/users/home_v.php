@@ -5,12 +5,12 @@
 <div class="container-fluid bg-primary px-0 px-md-5 mb-5">
     <div class="row align-items-center px-3">
         <div class="col-lg-6 text-center text-lg-left">
-            <h4 class="text-white mb-4 mt-5 mt-lg-0">Alifya Private</h4>
+            <h1 class="text-white mb-4 mt-5 mt-lg-0">Alifya Learning</h1>
             <h1 class="display-3 font-weight-bold text-white">
-                Les Private Diwilayah Jawa Barat
+                Pusat Les Anak Unggulan di Jawa Barat
             </h1>
             <p class="text-white mb-4">
-                Alifya Private merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
+                Alifya Learning merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
             </p>
             <a href="/program_belajar" class="btn btn-secondary btn-sm mt-1 py-3 px-5">Program Belajar</a>
         </div>
@@ -90,7 +90,7 @@
                 </p>
                 <h1 class="mb-4">Les Private Terbaik Untuk Anak Anda</h1>
                 <p>
-                    Alifya Private merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
+                    Alifya Learning merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
                 </p>
                 <div class="row pt-2 pb-4">
                     <div class="col-6 col-md-4">
@@ -214,7 +214,7 @@
     <div class="container">
         <div class="text-center pb-2">
             <p class="section-title px-5">
-                <span class="px-2">Guru Alifya Private</span>
+                <span class="px-2">Guru Alifya Learning</span>
             </p>
             <h1 class="mb-4">Guru Pengajar</h1>
         </div>

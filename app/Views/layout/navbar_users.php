@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
         <a href="/" class="navbar-brand font-weight-bold text-secondary" style="font-size: 35px">
             <!-- <i class="flaticon-043-teddy-bear"></i> -->
-            <span class="text-secondary">Alifya Private</span>
+            <span class="text-secondary">Alifya Learning</span>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>

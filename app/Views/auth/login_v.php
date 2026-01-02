@@ -52,7 +52,7 @@
                             <div class="d-flex justify-content-center py-4">
                                 <a href="#" class="logo d-flex align-items-center w-auto">
                                     <!-- <img src="/assets/img/logo.png" width="95" alt=""> -->
-                                    <span class="d-lg-block">Alifya Private | Login</span>
+                                    <span class="d-lg-block">Alifya Learning | Login</span>
                                 </a>
                             </div><!-- End Logo -->
 
@@ -61,7 +61,7 @@
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
-                                        <!-- <span class="d-lg-block">Alifya Private | Login</span> -->
+                                        <!-- <span class="d-lg-block">Alifya Learning | Login</span> -->
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                         <p class="text-center small">Masukan email & password untuk login</p>
                                     </div>
@@ -102,7 +102,7 @@
                                 <!-- You can delete the links only if you purchased the pro version. -->
                                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                Designed by <a href="/">Alifya Private</a>
+                                Designed by <a href="/">Alifya Learning</a>
                             </div>
 
                         </div>
