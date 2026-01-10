@@ -80,7 +80,7 @@
                     <th scope="col">No.</th>
                     <th scope="col">Nama Panggilan Anak</th>
                     <th scope="col">Program Belajar</th>
-                    <th scope="col">Jumlah Pertemuan /Bulan</th>
+                    <th scope="col">Jumlah Pertemuan /Minggu</th>
                     <th scope="col">Harga Paket</th>
                     <th scope="col">Lain-Lain</th>
 
