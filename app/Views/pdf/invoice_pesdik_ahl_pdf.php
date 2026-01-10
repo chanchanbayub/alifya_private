@@ -91,7 +91,7 @@
                     <td>1.</td>
                     <td><?= $peserta_didik->nama_panggilan_anak ?></td>
                     <td><?= $peserta_didik->nama_program ?></td>
-                    <td><?= $peserta_didik->jumlah_pertemuan ?> x dalam sebeulan</td>
+                    <td><?= $peserta_didik->jumlah_pertemuan ?> x per minggu</td>
                     <td>Rp. <?= number_format($peserta_didik->harga_paket)  ?></td>
                     <td>Rp. <?= number_format($lain_lain)  ?></td>
 
