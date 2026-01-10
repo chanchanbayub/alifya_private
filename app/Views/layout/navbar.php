@@ -102,7 +102,7 @@
 
          <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#home_learning" data-bs-toggle="collapse" href="#">
-                 <i class="bi bi-house"></i><span>AHL <span class="badge bg-success">Coming Soon!!</span></span><i class="bi bi-chevron-down ms-auto"></i>
+                 <i class="bi bi-house"></i><span>Alifya Home Learning </span><i class="bi bi-chevron-down ms-auto"></i>
              </a>
              <ul id="home_learning" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                  <li>
@@ -173,7 +173,7 @@
              </ul>
          </li>
 
-         <li class="nav-heading">DATA MANAGEMENT</li>
+         <li class="nav-heading">ALIFYA PRIVATE</li>
 
          <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#jadwal-nav" data-bs-toggle="collapse" href="#">
