@@ -174,7 +174,7 @@
              <ul id="pesdik" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
                  <li>
-                     <a href="/admin/admin/peserta_ahl">
+                     <a href="/admin/peserta_ahl">
                          <i class="bi bi-circle"></i><span>Peserta Didik AHL</span>
                      </a>
                  </li>
