@@ -9,10 +9,12 @@
             <h1 class="display-3 font-weight-bold text-white">
                 Pusat Les Anak Unggulan di Jawa Barat
             </h1>
-            <p class="text-white mb-4">
-                Alifya Learning merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
+            <p class="text-white text-justify mb-4">
+                PT. Alifya Learning Indonesia merupakan lembaga pendidikan non-formal yang hadir sebagai mitra bagi orang tua dalam mendampingi proses tumbuh kembang dan kebutuhan pendampingan belajar anak usia dini. Kami memfasilitasi pembelajaran dengan pendekatan learning by playing, menggunakan media edukatif yang menyenangkan, bermakna, serta sesuai tahap perkembangan anak. Setiap proses belajar dilengkapi dengan laporan dan dokumentasi kegiatan yang terupdate, sebagai bentuk transparansi dan pemantauan perkembangan anak.
+                <br><br>
+                Alifya berdiri sejak 2021, dan mulai berkobar bersama tim pengajar di Januari 2023.
             </p>
-            <a href="/program_belajar" class="btn btn-secondary btn-sm mt-1 py-3 px-5">Program Belajar</a>
+            <a href="/program_belajar" class="btn btn-outline-light btn-sm mt-1 py-3 px-5">Program Belajar</a>
         </div>
         <div class="col-lg-6 text-center">
             <div class="row">
@@ -89,8 +91,8 @@
                     <span class="pr-2">Tentang Kami</span>
                 </p>
                 <h1 class="mb-4">Les Private Terbaik Untuk Anak Anda</h1>
-                <p>
-                    Alifya Learning merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
+                <p class="text-justify">
+                    PT. Alifya Learning Indonesia merupakan lembaga pendidikan non-formal yang hadir sebagai mitra bagi orang tua dalam mendampingi proses tumbuh kembang dan kebutuhan pendampingan belajar anak usia dini. Kami memfasilitasi pembelajaran dengan pendekatan learning by playing, menggunakan media edukatif yang menyenangkan, bermakna, serta sesuai tahap perkembangan anak. Setiap proses belajar dilengkapi dengan laporan dan dokumentasi kegiatan yang terupdate, sebagai bentuk transparansi dan pemantauan perkembangan anak.
                 </p>
                 <div class="row pt-2 pb-4">
                     <div class="col-6 col-md-4">

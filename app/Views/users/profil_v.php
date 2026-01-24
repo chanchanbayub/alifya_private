@@ -13,8 +13,10 @@
                     <span class="pr-2">Tentang Kami</span>
                 </p>
                 <h1 class="mb-4">Les Private Terbaik Untuk Anak Anda</h1>
-                <p style="text-align: justify;">
-                    Alifya Private merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
+                <p class="text-justify">
+                    PT. Alifya Learning Indonesia merupakan lembaga pendidikan non-formal yang hadir sebagai mitra bagi orang tua dalam mendampingi proses tumbuh kembang dan kebutuhan pendampingan belajar anak usia dini. Kami memfasilitasi pembelajaran dengan pendekatan learning by playing, menggunakan media edukatif yang menyenangkan, bermakna, serta sesuai tahap perkembangan anak. Setiap proses belajar dilengkapi dengan laporan dan dokumentasi kegiatan yang terupdate, sebagai bentuk transparansi dan pemantauan perkembangan anak.
+                    <br><br>
+                    Alifya berdiri sejak 2021, dan mulai berkobar bersama tim pengajar di Januari 2023.
                 </p>
                 <div class="row pt-2">
                     <div class="col-6 col-md-4">

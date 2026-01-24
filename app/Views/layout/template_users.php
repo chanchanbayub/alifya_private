@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <title><?= $title ?></title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="Free HTML Templates" name="keywords" />
-    <meta content="Free HTML Templates" name="description" />
+    <meta content="Alifya Learning Indonesia" name="keywords" />
+    <meta content="Alifya Learning Indonesia" name="description" />
 
     <!-- Favicon -->
     <link href="/assets/img/logo.png" rel="shortcut icon" type="image/png">
@@ -42,7 +42,7 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5">
+    <div class="container-fluid bg-primary text-white mt-5 py-5 px-sm-3 px-md-5">
         <div class="row pt-5">
             <div class="col-lg-6 col-md-6 mb-5">
                 <a href="/" class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0" style="font-size: 40px; line-height: 40px">
@@ -50,7 +50,9 @@
                     <span class="text-white">Alifya Learning</span>
                 </a>
                 <p class="text-justify">
-                    Alifya Learning merupakan lembaga pendidikan nonformal yang dibangun untuk membantu dan bersinergi bersama orang tua dalam memfasilitasi kebutuhan pendampingan belajar anak dengan metode learning by playing.
+                    PT. Alifya Learning Indonesia merupakan lembaga pendidikan non-formal yang hadir sebagai mitra bagi orang tua dalam mendampingi proses tumbuh kembang dan kebutuhan pendampingan belajar anak usia dini. Kami memfasilitasi pembelajaran dengan pendekatan learning by playing, menggunakan media edukatif yang menyenangkan, bermakna, serta sesuai tahap perkembangan anak. Setiap proses belajar dilengkapi dengan laporan dan dokumentasi kegiatan yang terupdate, sebagai bentuk transparansi dan pemantauan perkembangan anak.
+                    <br><br>
+                    Alifya berdiri sejak 2021, dan mulai berkobar bersama tim pengajar di Januari 2023.
                 </p>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
@@ -95,7 +97,7 @@
                 </form>
             </div>
         </div>
-        <div class="container-fluid pt-5" style="border-top: 1px solid rgba(23, 162, 184, 0.2) ;">
+        <div class="container-fluid pt-5" style="border-top: 1px solid rgba(254, 254, 254, 0.2) ;">
             <p class="m-0 text-center text-white">
                 &copy;
                 <a class="text-white font-weight-bold" href="/">Alifya Learning</a>.

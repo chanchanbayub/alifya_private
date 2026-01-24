@@ -19,7 +19,7 @@
   --white: #fff;
   --gray: #6c757d;
   --gray-dark: #343a40;
-  --primary: #aba4ce;
+  --primary: #956FD6;
   --secondary: #00394f;
   --success: #28a745;
   --info: #17a2b8;
@@ -2409,8 +2409,8 @@ fieldset:disabled a.btn {
 
 .btn-secondary {
   color: #fff;
-  background-color: #786791;
-  border-color: #786791;
+  background-color: #956FD6;
+  border-color: #956FD6;
 }
 
 .btn-secondary:hover {
@@ -6356,7 +6356,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #b7b2db !important;
+  background-color: #956FD6 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -9527,11 +9527,11 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #b5b3db !important;
+  color: #956FD6 !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #b5b3db !important;
+  color: #956FD6 !important;
 }
 
 .text-secondary {
