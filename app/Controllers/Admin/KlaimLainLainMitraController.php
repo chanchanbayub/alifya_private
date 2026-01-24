@@ -210,20 +210,28 @@ class KlaimLainLainMitraController extends BaseController
 
                 $tahun = date('Y');
 
-                $this->klaimLainLainModel->save([
-                    'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
-                    'lain_lain' => strtolower($lain_lain),
-                    'booster_media_mitra' => strtolower($booster_media_mitra),
-                    'bulan' => $bulan,
-                    'tahun' => $tahun
+                $data_lain_lain = $this->klaimLainLainModel->where(["mitra_pengajar_id" => $mitra_pengajar_id])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->first();
 
-                ]);
+                if ($data_lain_lain == null) {
 
-                $alert = [
-                    'success' => 'Lain Lain Berhasil di Simpan !'
-                ];
+                    $this->klaimLainLainModel->save([
+                        'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
+                        'lain_lain' => strtolower($lain_lain),
+                        'booster_media_mitra' => strtolower($booster_media_mitra),
+                        'bulan' => $bulan,
+                        'tahun' => $tahun
+
+                    ]);
+
+                    $alert = [
+                        'success' => 'Lain Lain Berhasil di Simpan !'
+                    ];
+                } else {
+                    $alert = [
+                        'error_data' => 'Lain Lain Sudah Ada !'
+                    ];
+                }
             }
-
             return json_encode($alert);
         }
     }

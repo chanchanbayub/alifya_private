@@ -485,7 +485,7 @@
                             $(".error-booster").html('');
                         }
 
-                    } else {
+                    } else if (response.success) {
                         Swal.fire({
                             icon: 'success',
                             title: `${response.success}`,
@@ -493,12 +493,17 @@
                         setTimeout(function() {
                             location.reload();
                         }, 1000)
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `${response.error_data}`,
+                        });
                     }
                 },
                 error: function() {
                     Swal.fire({
                         icon: 'error',
-                        title: `Data Belum Tersimpan!`,
+                        title: `Data Gagal Disimpan`,
                     });
                     $('.save').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
                     $('.save').prop('disabled', false);
