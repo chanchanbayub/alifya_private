@@ -178,6 +178,11 @@
                          <i class="bi bi-circle"></i><span>Peserta Didik AHL</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="/admin/lain_lain_peserta_ahl">
+                         <i class="bi bi-circle"></i><span>Lain-Lain Peserta AHL</span>
+                     </a>
+                 </li>
 
 
              </ul>

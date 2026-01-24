@@ -312,6 +312,16 @@ $routes->group('admin', static function ($routes) {
     $routes->post('price_list_ahl/delete', 'Ahl\PriceListController::delete');
 
     // price_list
+    $routes->get('lain_lain_peserta_ahl', 'Ahl\LainLainPesertaAHLController::index');
+    $routes->post('lain_lain_peserta_ahl/getLainLain', 'Ahl\LainLainPesertaAHLController::getLainLain');
+    $routes->post('lain_lain_peserta_ahl/insert', 'Ahl\LainLainPesertaAHLController::insert');
+    $routes->get('lain_lain_peserta_ahl/edit', 'Ahl\LainLainPesertaAHLController::edit');
+    $routes->post('lain_lain_peserta_ahl/update', 'Ahl\LainLainPesertaAHLController::update');
+    $routes->post('lain_lain_peserta_ahl/delete', 'Ahl\LainLainPesertaAHLController::delete');
+
+    $routes->post('lain_lain_peserta_ahl/update_lain_lain', 'Ahl\LainLainPesertaAHLController::update_lain_lain');
+
+    // price_list
     $routes->get('invoice_peserta_ahl', 'Ahl\InvoicePesertaController::index');
     $routes->get('invoice_peserta_ahl/cek_invoice', 'Ahl\InvoicePesertaController::cek_invoice');
     $routes->post('invoice_peserta_ahl/getPriceList', 'Ahl\InvoicePesertaController::getPriceList');

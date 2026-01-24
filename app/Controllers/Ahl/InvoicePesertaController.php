@@ -59,8 +59,22 @@ class InvoicePesertaController extends BaseController
                 $inputan_bulan = intval($data_bulan[1]);
                 $inputan_tahun = intval($data_bulan[0]);
 
+                $peserta_ahl = $this->pesertaDidikAhlModel->getPesertaDidikAhlInvoice();
+
+                $peserta_didik = [];
+
+                foreach ($peserta_ahl as $data) {
+                    $peserta_didik[] = [
+                        'nama_lengkap_anak' => $data->nama_lengkap_anak,
+                        'nama_program' => $data->nama_program,
+                        'harga_paket' => $data->harga_paket,
+                        'lain_lain' => $data->lain_lain,
+                        'total_akhir' => intval($data->harga_paket) + intval($data->lain_lain)
+                    ];
+                }
+
                 $alert = [
-                    'peserta_didik_ahl' => $this->pesertaDidikAhlModel->getPesertaDidikAhlInvoice(),
+                    'peserta_didik_ahl' => $peserta_didik,
                     'bulan' => $inputan_bulan,
                     'tahun' => $inputan_tahun,
                     'total' => $this->pesertaDidikAhlModel->getTotalInvoice(),

@@ -11,6 +11,7 @@ use App\Models\Admin\MediaBelajarModel;
 use App\Models\Admin\MuridModel;
 use App\Models\Admin\PengajarModel;
 use App\Models\Admin\PresensiModel;
+use App\Models\Ahl\LainLainPesertaAHLModel;
 use App\Models\Ahl\PesertaDidikAhlModel;
 use App\Models\Ahl\PresensiAhlModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -29,6 +30,7 @@ class PdfController extends BaseController
     protected $klaimMediaPesertaModel;
     protected $presensiAhlModel;
     protected $pesertaDidikAhlModel;
+    protected $lainLainAhlModel;
 
     public function __construct()
     {
@@ -43,6 +45,7 @@ class PdfController extends BaseController
         $this->klaimMediaPesertaModel = new KlaimMediaPesertaModel();
         $this->presensiAhlModel = new PresensiAhlModel();
         $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
+        $this->lainLainAhlModel = new LainLainPesertaAHLModel();
     }
 
     public function invoice_peserta_didik($mitra_pengajar_id, $peserta_didik_id, $bulan, $tahun)
@@ -261,7 +264,11 @@ class PdfController extends BaseController
 
         $peserta = $peserta_didik_id;
         $bulan = $bulan;
-        $lain_lain = 0;
+
+        $lain_lain_peserta = $this->lainLainAhlModel->where(["peserta_didik_ahl_id" => $peserta])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->first();
+
+        // dd($lain_lain_peserta);
+        $lain_lain = intval($lain_lain_peserta["lain_lain"]);
 
         $peserta_didik = $this->pesertaDidikAhlModel->getProfil($peserta);
 

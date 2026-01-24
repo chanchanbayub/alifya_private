@@ -164,8 +164,8 @@
                                     <td>${e.nama_lengkap_anak}</td>
                                     <td>${e.nama_program}</td>
                                     <td align="center"> Rp. ${new Intl.NumberFormat().format(e.harga_paket)}</td>
-                                    <td align="center">0</td>
-                                    <td align="center">Rp. ${new Intl.NumberFormat().format(e.harga_paket) + 1 }</td>
+                                    <td align="center">Rp. ${new Intl.NumberFormat().format(e.lain_lain)}</td>
+                                    <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)} </td>
                                     <td align="center"><a href="/admin/invoice_peserta_ahl/pdf/${e.id}/${response.bulan}/${response.tahun}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Download Invoice </a></td> </td>
                                 </tr>`;
                             });
