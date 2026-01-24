@@ -254,16 +254,14 @@ class PdfController extends BaseController
         }
     }
 
-    public function pesdik_ahl()
+    public function pesdik_ahl($peserta_didik_id, $bulan, $tahun)
     {
 
         $this->mpdf->showImageErrors = true;
 
-        $peserta = $this->request->getVar('peserta_didik_id');
-        $bulan = $this->request->getVar('bulan');
-        $lain_lain = $this->request->getVar('lain_lain');
-
-        $time = new DateTime($bulan);
+        $peserta = $peserta_didik_id;
+        $bulan = $bulan;
+        $lain_lain = 0;
 
         $peserta_didik = $this->pesertaDidikAhlModel->getProfil($peserta);
 
