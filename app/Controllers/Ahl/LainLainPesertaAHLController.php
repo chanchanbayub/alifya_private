@@ -79,66 +79,46 @@ class LainLainPesertaAHLController extends BaseController
                 $inputan_tahun = intval($data_bulan[0]);
 
                 $peserta_didik_ahl = $this->pesertaDidikAhlModel->getPesertaDidikAhlInvoice();
-                // dd($peserta_didik);
+
 
                 foreach ($peserta_didik_ahl as $peserta_didik_ahl) {
-
-                    $data_lain_lain = $this->lainlainPesertaAhlModel->where(["peserta_didik_ahl_id" => $peserta_didik_ahl->id])->orderBy('id')->get()->getRowObject();
-
-                    if ($data_lain_lain != null) {
-                        $data_lain_lain_berdasarkan_bulan = $this->lainlainPesertaAhlModel->where(["peserta_didik_ahl_id" => $data_lain_lain->peserta_didik_ahl_id])->where(["bulan" => $inputan_bulan])->where(["tahun" => $inputan_tahun])->get()->getRowObject();
-
-                        if ($data_lain_lain_berdasarkan_bulan == null) {
-                            $this->lainlainPesertaAhlModel->save([
-                                'peserta_didik_ahl_id' => strtolower($peserta_didik_ahl->id),
-                                'bulan' => $inputan_bulan,
-                                'tahun' => $inputan_tahun,
-                                'lain_lain' => intval(0),
-                            ]);
-                            $alert = [
-                                'success' => 'Lain Lain Berhasil di Simpan !'
-                            ];
-                        } elseif ($data_lain_lain != null) {
-                            $alert = [
-                                'error' => [
-                                    'data' => 'Lain Lain Tersebut Sudah terdaptar!'
-                                ],
-                            ];
-                        }
-                    } elseif ($data_lain_lain == null) {
-
-                        $data_lain_lain_berdasarkan_bulan = $this->lainlainPesertaAhlModel->where(["peserta_didik_ahl_id" => $data_lain_lain])->where(["bulan" => $inputan_bulan])->where(["tahun" => $inputan_tahun])->get()->getRowObject();
-
-                        if ($data_lain_lain_berdasarkan_bulan == null) {
-                            $this->lainlainPesertaAhlModel->save([
-                                'peserta_didik_ahl_id' => strtolower($peserta_didik_ahl->id),
-                                'bulan' => $inputan_bulan,
-                                'tahun' => $inputan_tahun,
-                                'lain_lain' => intval(0),
-                            ]);
-                            $alert = [
-                                'success' => 'Lain Lain Berhasil di Simpan !'
-                            ];
-                        } elseif ($data_lain_lain != null) {
-                            $alert = [
-                                'error' => [
-                                    'data' => 'Lain Lain Tersebut Sudah terdaptar!'
-                                ],
-                            ];
-                        }
-                    } else {
-                        $alert = [
-                            'error' => [
-                                'data' => 'Lain Lain Bulan Tersebut Sudah terdaptar!'
-                            ],
-                        ];
-                    }
+                    $this->lainlainPesertaAhlModel->save([
+                        'peserta_didik_ahl_id' => strtolower($peserta_didik_ahl->id),
+                        'bulan' => $inputan_bulan,
+                        'tahun' => $inputan_tahun,
+                        'lain_lain' => intval(0),
+                    ]);
+                    $alert = [
+                        'success' => 'Lain Lain Berhasil di Simpan !'
+                    ];
                 }
+                return json_encode($alert);
             }
-
-            return json_encode($alert);
         }
     }
+
+
+    // public function getLainLainPerbulan()
+    // {
+    //     if ($this->request->isAJAX()) {
+
+    //         $bulan = $this->request->getVar('bulan');
+
+    //         $data_bulan = explode("-", $bulan);
+
+    //         $inputan_bulan = intval($data_bulan[1]);
+
+    //         $inputan_tahun = intval($data_bulan[0]);
+
+    //         $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanData($inputan_bulan, $inputan_tahun);
+
+    //         $data = [
+    //             'lain_lain' => $lain_lain,
+    //         ];
+
+    //         return json_encode($data);
+    //     }
+    // }
 
     public function insert()
     {
@@ -201,7 +181,9 @@ class LainLainPesertaAHLController extends BaseController
                         ];
                     } else {
                         $alert = [
-                            'data' => 'Lain Lain Tersebut Sudah terdaptar!'
+                            'error' => [
+                                'data' => 'Lain Lain Tersebut Sudah terdaptar!'
+                            ],
                         ];
                     }
                 }
@@ -313,26 +295,4 @@ class LainLainPesertaAHLController extends BaseController
             return json_encode($alert);
         }
     }
-
-    // public function getLainLainPerbulan()
-    // {
-    //     if ($this->request->isAJAX()) {
-
-    //         $bulan = $this->request->getVar('bulan');
-
-    //         $data_bulan = explode("-", $bulan);
-
-    //         $inputan_bulan = intval($data_bulan[1]);
-
-    //         $inputan_tahun = intval($data_bulan[0]);
-
-    //         $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanData($inputan_bulan, $inputan_tahun);
-
-    //         $data = [
-    //             'lain_lain' => $lain_lain,
-    //         ];
-
-    //         return json_encode($data);
-    //     }
-    // }
 }

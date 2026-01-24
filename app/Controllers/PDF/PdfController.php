@@ -267,7 +267,6 @@ class PdfController extends BaseController
 
         $lain_lain_peserta = $this->lainLainAhlModel->where(["peserta_didik_ahl_id" => $peserta])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->first();
 
-        // dd($lain_lain_peserta);
         $lain_lain = intval($lain_lain_peserta["lain_lain"]);
 
         $peserta_didik = $this->pesertaDidikAhlModel->getProfil($peserta);

@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-outline-primary btn-block save" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cari</button>
+                                    <button class="btn btn-outline-primary btn-block save" id="cek_data" type="submit" disabled> <i class="bi bi-search"></i> Cari</button>
                                 </div>
                             </form>
                             <!-- End Browser Default Validation -->
@@ -357,7 +357,7 @@
             dropdownParent: $('#editModal')
         });
 
-        $("#notifModal").modal('show');
+        // $("#notifModal").modal('show');
 
     });
 
@@ -625,7 +625,6 @@
                 $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Update Upah Peserta');
                 $('.update').prop('disabled', false);
                 if (response.error) {
-
                     if (response.error.bulan) {
                         $("#bulan_update").addClass('is-invalid');
                         $(".error-bulan-update").html(response.error.bulan);
@@ -633,14 +632,6 @@
                         $("#bulan_update").removeClass('is-invalid');
                         $(".error-bulan-update").html('');
                     }
-
-                    if (response.error.data) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: `${response.error.data}`,
-                        });
-                    }
-
                 } else {
                     Swal.fire({
                         icon: 'success',

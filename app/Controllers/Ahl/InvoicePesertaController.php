@@ -3,6 +3,7 @@
 namespace App\Controllers\Ahl;
 
 use App\Controllers\BaseController;
+use App\Models\Ahl\LainLainPesertaAHLModel;
 use App\Models\Ahl\PesertaDidikAhlModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -11,10 +12,11 @@ class InvoicePesertaController extends BaseController
 
     protected $validation;
     protected $pesertaDidikAhlModel;
-
+    protected $lainLainPesertaAhlModel;
     public function __construct()
     {
         $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
+        $this->lainLainPesertaAhlModel = new LainLainPesertaAHLModel();
         $this->validation = \Config\Services::validation();
 
         helper(['format']);
@@ -64,12 +66,17 @@ class InvoicePesertaController extends BaseController
                 $peserta_didik = [];
 
                 foreach ($peserta_ahl as $data) {
+
+                    $lain_lain = $this->lainLainPesertaAhlModel->where(["peserta_didik_ahl_id" => $data->id])->where(["bulan" => $inputan_bulan])->where(["tahun" => $inputan_tahun])->get()->getRowObject();
+                    // dd($lain_lain->lain_lain);
+
                     $peserta_didik[] = [
+                        'id' => $data->id,
                         'nama_lengkap_anak' => $data->nama_lengkap_anak,
                         'nama_program' => $data->nama_program,
                         'harga_paket' => $data->harga_paket,
-                        'lain_lain' => $data->lain_lain,
-                        'total_akhir' => intval($data->harga_paket) + intval($data->lain_lain)
+                        'lain_lain' => $lain_lain->lain_lain,
+                        'total_akhir' => intval($data->harga_paket) + intval($lain_lain->lain_lain)
                     ];
                 }
 
