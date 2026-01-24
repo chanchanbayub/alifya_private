@@ -8,9 +8,10 @@
                  <i class="bi bi-grid"></i>
                  <span>Dashboard</span>
              </a>
-         </li><!-- End Dashboard Nav -->
+         </li>
+         <!-- End Dashboard Nav -->
 
-         <li class="nav-heading">Komponent Item</li>
+         <li class="nav-heading">Component Item</li>
 
          <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#component-nav" data-bs-toggle="collapse" href="#">
@@ -53,6 +54,28 @@
                      </a>
                  </li>
 
+                 <li>
+                     <a href="/admin/jenis_pekerjaan">
+                         <i class="bi bi-circle"></i><span>Jenis Pekerjaan AHL</span>
+                     </a>
+                 </li>
+
+                 <li>
+                     <a href="/admin/status_presensi">
+                         <i class="bi bi-circle"></i><span>Status Presensi AHL</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/admin/lokasi">
+                         <i class="bi bi-circle"></i><span>Lokasi Presensi AHL</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/admin/jam_masuk_ahl">
+                         <i class="bi bi-circle"></i><span>Jadwal AHL</span>
+                     </a>
+                 </li>
+
              </ul>
          </li><!-- End Icons Nav -->
 
@@ -77,8 +100,26 @@
                      </a>
                  </li>
 
+                 <li>
+                     <a href="/admin/layanan">
+                         <i class="bi bi-circle"></i><span>Layanan AHL</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/admin/price_list_ahl">
+                         <i class="bi bi-circle"></i><span>Price List Paket AHL</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/admin/program_ahl">
+                         <i class="bi bi-circle"></i><span>Program Belajar AHL</span>
+                     </a>
+                 </li>
+
              </ul>
          </li><!-- End Icons Nav -->
+
+
 
          <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#alat-nav" data-bs-toggle="collapse" href="#">
@@ -102,54 +143,16 @@
 
          <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#home_learning" data-bs-toggle="collapse" href="#">
-                 <i class="bi bi-house"></i><span>Alifya Home Learning </span><i class="bi bi-chevron-down ms-auto"></i>
+                 <i class="bi bi-people"></i><span>Mitra Pengajar AHL </span><i class="bi bi-chevron-down ms-auto"></i>
              </a>
              <ul id="home_learning" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                 <li>
-                     <a href="/admin/layanan">
-                         <i class="bi bi-circle"></i><span>Layanan AHL</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="/admin/price_list_ahl">
-                         <i class="bi bi-circle"></i><span>Price List Paket AHL</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="/admin/program_ahl">
-                         <i class="bi bi-circle"></i><span>Program Belajar AHL</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="/admin/jenis_pekerjaan">
-                         <i class="bi bi-circle"></i><span>Jenis Pekerjaan</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="/admin/status_presensi">
-                         <i class="bi bi-circle"></i><span>Status Presensi</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="/admin/lokasi">
-                         <i class="bi bi-circle"></i><span>Lokasi Presensi</span>
-                     </a>
-                 </li>
+
                  <li>
                      <a href="/admin/mitra_ahl">
-                         <i class="bi bi-circle"></i><span>Mitra Pengajar AHL</span>
+                         <i class="bi bi-circle"></i><span>Mitra Pengajar AHL </span>
                      </a>
                  </li>
-                 <li>
-                     <a href="/admin/peserta_ahl">
-                         <i class="bi bi-circle"></i><span>Peserta Didik AHL</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="/admin/jam_masuk_ahl">
-                         <i class="bi bi-circle"></i><span>Jadwal AHL</span>
-                     </a>
-                 </li>
+
                  <li>
                      <a href="/admin/presensi_ahl">
                          <i class="bi bi-circle"></i><span>Presensi AHL </span>
@@ -160,6 +163,33 @@
                          <i class="bi bi-circle"></i><span>Upah AHL</span>
                      </a>
                  </li>
+
+             </ul>
+         </li>
+
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#pesdik" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-people"></i><span>Peserta Didik AHL </span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="pesdik" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                 <li>
+                     <a href="/admin/admin/peserta_ahl">
+                         <i class="bi bi-circle"></i><span>Peserta Didik AHL</span>
+                     </a>
+                 </li>
+
+
+             </ul>
+         </li>
+
+
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#invoice_home" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-receipt"></i><span>Invoice AHL </span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="invoice_home" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
                  <li>
                      <a href="/admin/invoice_mitra_ahl">
                          <i class="bi bi-circle"></i><span>Invoice Mitra AHL</span>
