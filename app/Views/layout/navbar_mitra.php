@@ -94,7 +94,7 @@
              </ul>
          </li>
 
-         <li class="nav-item">
+         <!-- <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#media-nav" data-bs-toggle="collapse" href="#">
                  <i class="bi bi-cash-stack"></i><span>Harga Media Belajar</span><i class="bi bi-chevron-down ms-auto"></i>
              </a>
@@ -105,7 +105,7 @@
                      </a>
                  </li>
              </ul>
-         </li>
+         </li> -->
 
          <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#presensi-nav" data-bs-toggle="collapse" href="#">
