@@ -387,7 +387,6 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('data_murid/edit', 'Mitra\MuridController::edit');
     $routes->post('data_murid/update', 'Mitra\MuridController::update');
 
-
     $routes->get('presensi', 'Mitra\PresensiController::index');
     $routes->post('presensi/insert', 'Mitra\PresensiController::insert');
     $routes->get('presensi/edit', 'Mitra\PresensiController::edit');
@@ -410,6 +409,11 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('invoice/edit', 'Mitra\InvoiceKonfirmasiController::edit');
     $routes->post('invoice/update', 'Mitra\InvoiceKonfirmasiController::update');
     $routes->post('invoice/delete', 'Mitra\InvoiceKonfirmasiController::delete');
+
+    // Peserta didik Ahl
+    $routes->get('peserta_ahl', 'Mitra\PesertaDidikAhlController::index');
+    $routes->get('peserta_ahl/getProfil/(:any)', 'Mitra\PesertaDidikAhlController::getProfil/$1');
+    $routes->post('peserta_ahl/getPesertaAhl', 'Mitra\PesertaDidikAhlController::getPesertaAhl');
 
     // Presensi AHL
     $routes->get('presensi_ahl_mitra', 'Mitra\PresensiAHLController::index');
