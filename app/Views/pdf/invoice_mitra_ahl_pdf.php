@@ -119,7 +119,7 @@
                 </tr>
             </tfoot>
         </table>
-        <img src="assets/img/cap.png" alt="" style="margin-left:850px; margin-top:-145px;" class="cap">
+        <img src="assets/img/logo_baru.png" alt="" style="margin-left:850px; margin-top:-145px;" class="cap">
     </div>
 </body>
 

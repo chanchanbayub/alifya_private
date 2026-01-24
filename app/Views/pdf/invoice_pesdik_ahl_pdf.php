@@ -45,7 +45,7 @@
             padding-left: 10px;
             padding-right: 10px;
             margin: 0 auto;
-            background-image: url('assets/img/logo.png');
+            background-image: url('assets/img/logo_baru.png');
             background-size: 350px;
             background-repeat: no-repeat;
             background-origin: content-box;
@@ -122,7 +122,7 @@
                 </tr>
             </tfoot>
         </table>
-        <img src="assets/img/cap.png" alt="" style="margin-left:850px; margin-top:-145px;" class="cap">
+        <img src="assets/img/logo_baru.png" alt="" style="margin-left:850px; margin-top:-145px;" class="cap">
     </div>
 </body>
 
