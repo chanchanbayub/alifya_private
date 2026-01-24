@@ -23,6 +23,8 @@ class PresensiModel extends Model
             ->select("presensi_table.id, presensi_table.tanggal_masuk, presensi_table.jam_masuk, presensi_table.dokumentasi, presensi_table.dokumentasi_orang_tua,data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak")
             ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->where(["data_murid_table.status_murid_id" => 1])
             ->orderBy('presensi_table.tanggal_masuk desc')
             ->get()->getResultObject();
     }
