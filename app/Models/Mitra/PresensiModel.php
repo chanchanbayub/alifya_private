@@ -34,7 +34,9 @@ class PresensiModel extends Model
             ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
             ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where(["data_murid_table.status_murid_id" => 1])
             ->orderBy('presensi_table.id desc')
             ->get()->getResultObject();
     }

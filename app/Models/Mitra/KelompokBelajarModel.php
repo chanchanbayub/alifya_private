@@ -47,6 +47,7 @@ class KelompokBelajarModel extends Model
             ->join('data_murid_table', 'data_murid_table.id = kelompok_belajar_table.peserta_didik_id')
             ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->where(["kelompok_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where(["data_murid_table.status_murid_id" => 1])
             ->orderBy('data_murid_table.nama_lengkap_anak ASC')
             ->get()->getResultObject();
     }
