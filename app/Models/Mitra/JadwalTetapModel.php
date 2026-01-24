@@ -24,6 +24,8 @@ class JadwalTetapModel extends Model
             ->join('hari_belajar_table', 'hari_belajar_table.id = jadwal_tetap_table.hari_id')
             ->join('data_pengajar_table', 'data_pengajar_table.id = jadwal_tetap_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = jadwal_tetap_table.peserta_didik_id')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->where(["data_murid_table.status_murid_id" => 1])
             ->orderBy('jadwal_tetap_table.id desc')
             ->get()->getResultObject();
     }
@@ -35,6 +37,8 @@ class JadwalTetapModel extends Model
             ->join('hari_belajar_table', 'hari_belajar_table.id = jadwal_tetap_table.hari_id')
             ->join('data_pengajar_table', 'data_pengajar_table.id = jadwal_tetap_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = jadwal_tetap_table.peserta_didik_id')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->where(["data_murid_table.status_murid_id" => 1])
             ->where(["jadwal_tetap_table.mitra_pengajar_id" => $mitra_pengajar_id])
             ->orderBy('jadwal_tetap_table.id desc')
             ->get()->getResultObject();
