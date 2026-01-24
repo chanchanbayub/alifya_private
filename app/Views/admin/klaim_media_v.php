@@ -545,7 +545,7 @@
                             $(".error-lain-lain").html('');
                         }
 
-                    } else {
+                    } else if (response.success) {
                         Swal.fire({
                             icon: 'success',
                             title: `${response.success}`,
@@ -553,6 +553,11 @@
                         setTimeout(function() {
                             location.reload();
                         }, 1000)
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `${response.errors}`,
+                        });
                     }
                 },
                 error: function() {

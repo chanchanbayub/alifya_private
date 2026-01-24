@@ -148,20 +148,28 @@ class KlaimMediaPesertaController extends BaseController
                     $faktur->move('faktur', $namaFaktur);
                 }
 
-                $this->klaimMediaBelajarModel->save([
-                    'peserta_didik_id' => strtolower($peserta_didik_id),
-                    'bulan' => strtolower($bulan),
-                    'tahun' => strtolower($tahun),
-                    'jenis_media_id' => $jenis_media_id,
-                    'harga_media' => $harga_media,
-                    'lain_lain' => $lain_lain,
-                    'faktur' => $namaFaktur,
-                ]);
+                $media = $this->klaimMediaBelajarModel->where(["peserta_didik_id" => $peserta_didik_id])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->first();
+
+                if ($media == null) {
+                    $this->klaimMediaBelajarModel->save([
+                        'peserta_didik_id' => strtolower($peserta_didik_id),
+                        'bulan' => strtolower($bulan),
+                        'tahun' => strtolower($tahun),
+                        'jenis_media_id' => $jenis_media_id,
+                        'harga_media' => $harga_media,
+                        'lain_lain' => $lain_lain,
+                        'faktur' => $namaFaktur,
+                    ]);
 
 
-                $alert = [
-                    'success' => 'Harga Media Belajar Berhasil di Simpan !'
-                ];
+                    $alert = [
+                        'success' => 'Harga Media Belajar Berhasil di Simpan !'
+                    ];
+                } else {
+                    $alert = [
+                        'errors' => 'Bulan dan Tahun Media Tidak Boleh Sama!'
+                    ];
+                }
             }
 
             return json_encode($alert);
