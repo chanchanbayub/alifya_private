@@ -99,6 +99,18 @@
                                 <div class="col-lg-6 col-md-4 label">Alamat Domisili</div>
                                 <div class="col-lg-6 col-md-8"><?= $mitra_pengajar->alamat_domisili ?></div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-4 label">Patokan Alamat</div>
+                                <div class="col-lg-6 col-md-8"><?= $mitra_pengajar->patokan_alamat ?></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-4 label">Cakupan Wilayah</div>
+                                <div class="col-lg-6 col-md-8"><?= $mitra_pengajar->cakupan_wilayah ?></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-4 label">Kontak Darurat</div>
+                                <div class="col-lg-6 col-md-8"><?= $mitra_pengajar->kontak_darurat ?></div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 label">Status Perkawinan</div>

@@ -124,12 +124,34 @@
                         <div class="invalid-feedback error-usia">
                         </div>
                     </div>
+
+
                     <div class="mb-3">
                         <label for="alamat_domisili" class="col-form-label">Alamat Domisili :</label>
                         <textarea name="alamat_domisili" id="alamat_domisili" class="form-control"></textarea>
                         <div class="invalid-feedback error-alamat">
                         </div>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="patokan_alamat" class="col-form-label">Patokan Alamat :</label>
+                        <textarea name="patokan_alamat" id="patokan_alamat" class="form-control"></textarea>
+                        <div class="invalid-feedback error-patokan-alamat">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cakupan_wilayah" class="col-form-label">Cakupan Wilayah :</label>
+                        <textarea name="cakupan_wilayah" id="cakupan_wilayah" class="form-control"></textarea>
+                        <div class="invalid-feedback error-cakupan-wilayah">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kontak-darurat" class="col-form-label">Kontak Darurat :</label>
+                        <input type="number" name="kontak_darurat" id="kontak_darurat" class="form-control">
+                        <div class="invalid-feedback error-kontak-darurat">
+                        </div>
+                    </div>
+
                     <div class="mb-3">
                         <label for="pendidikan_terakhir" class="col-form-label">Pendidikan Terakhir :</label>
                         <input type="text" class="form-control" id="pendidikan_terakhir" name="pendidikan_terakhir" placeholder="S-1">
@@ -323,6 +345,28 @@
                         <div class="invalid-feedback error-alamat-edit">
                         </div>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="patokan_alamat_edit" class="col-form-label">Patokan Alamat :</label>
+                        <textarea name="patokan_alamat" id="patokan_alamat_edit" class="form-control"></textarea>
+                        <div class="invalid-feedback error-patokan-alamat">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cakupan_wilayah_edit" class="col-form-label">Cakupan Wilayah :</label>
+                        <textarea name="cakupan_wilayah" id="cakupan_wilayah_edit" class="form-control"></textarea>
+                        <div class="invalid-feedback error-cakupan-wilayah-edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="kontak_darurat_edit" class="col-form-label">Kontak Darurat :</label>
+                        <input type="number" name="kontak_darurat" id="kontak_darurat_edit" class="form-control">
+                        <div class="invalid-feedback error-kontak-darurat-edit">
+                        </div>
+                    </div>
+
                     <div class="mb-3">
                         <label for="pendidikan_terakhir_edit" class="col-form-label">Pendidikan Terakhir :</label>
                         <input type="text" class="form-control" id="pendidikan_terakhir_edit" name="pendidikan_terakhir" placeholder="S-1">
@@ -506,7 +550,12 @@
             let email = $("#email").val();
             let tanggal_lahir_mitra = $("#tanggal_lahir_mitra").val();
             let usia = $("#usia").val();
+
             let alamat_domisili = $("#alamat_domisili").val();
+            let patokan_alamat = $("#patokan_alamat").val();
+            let cakupan_wilayah = $("#cakupan_wilayah").val();
+            let kontak_darurat = $("#kontak_darurat").val();
+
             let pendidikan_terakhir = $("#pendidikan_terakhir").val();
             let jurusan = $("#jurusan").val();
             let status_perkawinan = $("#status_perkawinan").val();
@@ -532,6 +581,11 @@
             formData.append('tanggal_lahir_mitra', tanggal_lahir_mitra);
             formData.append('usia', usia);
             formData.append('alamat_domisili', alamat_domisili);
+
+            formData.append('patokan_alamat', patokan_alamat);
+            formData.append('cakupan_wilayah', cakupan_wilayah);
+            formData.append('kontak_darurat', kontak_darurat);
+
             formData.append('pendidikan_terakhir', pendidikan_terakhir);
             formData.append('jurusan', jurusan);
             formData.append('status_perkawinan', status_perkawinan);
@@ -607,6 +661,31 @@
                             $("#alamat_domisili").removeClass('is-invalid');
                             $(".error-alamat").html('');
                         }
+
+                        if (response.error.patokan_alamat) {
+                            $("#patokan_alamat").addClass('is-invalid');
+                            $(".error-patokan-alamat").html(response.error.patokan_alamat);
+                        } else {
+                            $("#patokan_alamat").removeClass('is-invalid');
+                            $(".error-patokan-alamat").html('');
+                        }
+
+                        if (response.error.cakupan_wilayah) {
+                            $("#cakupan_wilayah").addClass('is-invalid');
+                            $(".error-cakupan-wilayah").html(response.error.cakupan_wilayah);
+                        } else {
+                            $("#cakupan_wilayah").removeClass('is-invalid');
+                            $(".error-cakupan-wilayah").html('');
+                        }
+
+                        if (response.error.kontak_darurat) {
+                            $("#kontak_darurat").addClass('is-invalid');
+                            $(".error-kontak-darurat").html(response.error.kontak_darurat);
+                        } else {
+                            $("#kontak_darurat").removeClass('is-invalid');
+                            $(".error-kontak-darurat").html('');
+                        }
+
                         if (response.error.pendidikan_terakhir) {
                             $("#pendidikan_terakhir").addClass('is-invalid');
                             $(".error-pendidikan").html(response.error.pendidikan_terakhir);
@@ -768,7 +847,12 @@
                 $("#email_edit").val(response.pengajar.email);
                 $("#usia_edit").val(response.pengajar.usia);
                 $("#tanggal_lahir_mitra_edit").val(response.pengajar.tanggal_lahir_mitra);
+
                 $("#alamat_domisili_edit").val(response.pengajar.alamat_domisili);
+                $("#patokan_alamat_edit").val(response.pengajar.patokan_alamat);
+                $("#cakupan_wilayah_edit").val(response.pengajar.cakupan_wilayah);
+                $("#kontak_darurat_edit").val(response.pengajar.kontak_darurat);
+
                 $("#pendidikan_terakhir_edit").val(response.pengajar.pendidikan_terakhir);
                 $("#jurusan_edit").val(response.pengajar.jurusan);
                 $("#status_perkawinan_edit").val(response.pengajar.status_perkawinan);
@@ -809,7 +893,12 @@
         let email = $("#email_edit").val();
         let tanggal_lahir_mitra = $("#tanggal_lahir_mitra_edit").val();
         let usia = $("#usia_edit").val();
+
         let alamat_domisili = $("#alamat_domisili_edit").val();
+        let patokan_alamat = $("#patokan_alamat_edit").val();
+        let cakupan_wilayah = $("#cakupan_wilayah_edit").val();
+        let kontak_darurat = $("#kontak_darurat_edit").val();
+
         let pendidikan_terakhir = $("#pendidikan_terakhir_edit").val();
         let jurusan = $("#jurusan_edit").val();
         let status_perkawinan = $("#status_perkawinan_edit").val();
@@ -841,6 +930,10 @@
         formData.append('tanggal_lahir_mitra', tanggal_lahir_mitra);
         formData.append('usia', usia);
         formData.append('alamat_domisili', alamat_domisili);
+        formData.append('patokan_alamat', patokan_alamat);
+        formData.append('cakupan_wilayah', cakupan_wilayah);
+        formData.append('kontak_darurat', kontak_darurat);
+
         formData.append('pendidikan_terakhir', pendidikan_terakhir);
         formData.append('jurusan', jurusan);
         formData.append('status_perkawinan', status_perkawinan);
@@ -916,6 +1009,27 @@
                     } else {
                         $("#alamat_domisili_edit").removeClass('is-invalid');
                         $(".error-alamat-edit").html('');
+                    }
+                    if (response.error.patokan_alamat) {
+                        $("#patokan_alamat_edit").addClass('is-invalid');
+                        $(".error-patokan-alamat-edit").html(response.error.patokan_alamat);
+                    } else {
+                        $("#patokan_alamat_edit").removeClass('is-invalid');
+                        $(".error-patokan-alamat-edit").html('');
+                    }
+                    if (response.error.cakupan_wilayah) {
+                        $("#cakupan_wilayah_edit").addClass('is-invalid');
+                        $(".error-cakupan-wilayah-edit").html(response.error.cakupan_wilayah);
+                    } else {
+                        $("#cakupan_wilayah_edit").removeClass('is-invalid');
+                        $(".error-cakupan-wilayah-edit").html('');
+                    }
+                    if (response.error.kontak_darurat) {
+                        $("#kontak_darurat_edit").addClass('is-invalid');
+                        $(".error-kontak-darurat-edit").html(response.error.kontak_darurat);
+                    } else {
+                        $("#kontak_darurat_edit").removeClass('is-invalid');
+                        $(".error-kontak-darurat-edit").html('');
                     }
                     if (response.error.pendidikan_terakhir) {
                         $("#pendidikan_terakhir_edit").addClass('is-invalid');
