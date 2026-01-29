@@ -130,6 +130,24 @@ class UsersController extends BaseController
                         'required' => 'Alamat Domisili Tidak Boleh Kosong !'
                     ]
                 ],
+                'patokan_alamat' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Patokan Alamat Tidak Boleh Kosong !'
+                    ]
+                ],
+                'cakupan_wilayah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'kontak_darurat' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
                 'pendidikan_terakhir' => [
                     'rules' => 'required',
                     'errors' => [
@@ -244,6 +262,9 @@ class UsersController extends BaseController
                         'usia' => $this->validation->getError('usia'),
                         'tanggal_lahir_mitra' => $this->validation->getError('tanggal_lahir_mitra'),
                         'alamat_domisili' => $this->validation->getError('alamat_domisili'),
+                        'patokan_alamat' => $this->validation->getError('patokan_alamat'),
+                        'cakupan_wilayah' => $this->validation->getError('cakupan_wilayah'),
+                        'kontak_darurat' => $this->validation->getError('kontak_darurat'),
                         'pendidikan_terakhir' => $this->validation->getError('pendidikan_terakhir'),
                         'jurusan' => $this->validation->getError('jurusan'),
                         'status_perkawinan' => $this->validation->getError('status_perkawinan'),
@@ -272,6 +293,11 @@ class UsersController extends BaseController
                 $usia = $this->request->getPost('usia');
                 $tanggal_lahir_mitra = $this->request->getPost('tanggal_lahir_mitra');
                 $alamat_domisili = $this->request->getPost('alamat_domisili');
+
+                $patokan_alamat = $this->request->getPost('patokan_alamat');
+                $cakupan_wilayah = $this->request->getPost('cakupan_wilayah');
+                $kontak_darurat = $this->request->getPost('kontak_darurat');
+
                 $pendidikan_terakhir = $this->request->getPost('pendidikan_terakhir');
                 $jurusan = $this->request->getPost('jurusan');
                 $status_perkawinan = $this->request->getPost('status_perkawinan');
@@ -304,6 +330,9 @@ class UsersController extends BaseController
                     'usia' => strtolower($usia),
                     'tanggal_lahir_mitra' => strtolower($tanggal_lahir_mitra),
                     'alamat_domisili' => strtolower($alamat_domisili),
+                    'patokan_alamat' => strtolower($patokan_alamat),
+                    'cakupan_wilayah' => strtolower($cakupan_wilayah),
+                    'kontak_darurat' => strtolower($kontak_darurat),
                     'pendidikan_terakhir' => strtolower($pendidikan_terakhir),
                     'jurusan' => strtolower($jurusan),
                     'status_perkawinan' => strtolower($status_perkawinan),

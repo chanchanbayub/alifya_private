@@ -53,6 +53,24 @@
                         </div>
 
                         <div class="control-group">
+                            <label for="patokan_alamat">Patokan Alamat :</label>
+                            <textarea name="patokan_alamat" id="patokan_alamat" class="form-control"></textarea>
+                            <p class="help-block text-danger error-patokan-alamat"></p>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="cakupan_wilayah">Cakupan Wilayah :</label>
+                            <textarea name="cakupan_wilayah" id="cakupan_wilayah" class="form-control"></textarea>
+                            <p class="help-block text-danger error-cakupan-wilayah"></p>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="kontak_darurat">Kontak Darurat :</label>
+                            <input type="number" name="kontak_darurat" id="kontak_darurat" placeholder="6282xxxx" class="form-control">
+                            <p class="help-block text-danger error-kontak-darurat"></p>
+                        </div>
+
+                        <div class="control-group">
                             <label for="pendidikan_terakhir">Pendidikan Terakhir :</label>
                             <input type="text" class="form-control" id="pendidikan_terakhir" name="pendidikan_terakhir" placeholder="contoh : S-1" />
                             <p class="help-block text-danger error-pendidikan-terakhir"></p>
@@ -180,6 +198,9 @@
         let usia = $("#usia").val();
         let tanggal_lahir_mitra = $("#tanggal_lahir_mitra").val();
         let alamat_domisili = $("#alamat_domisili").val();
+        let patokan_alamat = $("#patokan_alamat").val();
+        let cakupan_wilayah = $("#cakupan_wilayah").val();
+        let kontak_darurat = $("#kontak_darurat").val();
         let pendidikan_terakhir = $("#pendidikan_terakhir").val();
         let jurusan = $("#jurusan").val();
         let status_perkawinan = $("#status_perkawinan").val();
@@ -206,6 +227,9 @@
         formData.append('usia', usia);
         formData.append('tanggal_lahir_mitra', tanggal_lahir_mitra);
         formData.append('alamat_domisili', alamat_domisili);
+        formData.append('patokan_alamat', patokan_alamat);
+        formData.append('cakupan_wilayah', cakupan_wilayah);
+        formData.append('kontak_darurat', kontak_darurat);
         formData.append('pendidikan_terakhir', pendidikan_terakhir);
         formData.append('jurusan', jurusan);
         formData.append('status_perkawinan', status_perkawinan);
@@ -281,6 +305,27 @@
                     } else {
                         $("#alamat_domisili").removeClass('is-invalid');
                         $(".error-alamat-domisili").html('');
+                    }
+                    if (response.error.patokan_alamat) {
+                        $("#patokan_alamat").addClass('is-invalid');
+                        $(".error-patokan-alamat").html(response.error.patokan_alamat);
+                    } else {
+                        $("#patokan_alamat").removeClass('is-invalid');
+                        $(".error-patokan-alamat").html('');
+                    }
+                    if (response.error.cakupan_wilayah) {
+                        $("#cakupan_wilayah").addClass('is-invalid');
+                        $(".error-cakupan-wilayah").html(response.error.cakupan_wilayah);
+                    } else {
+                        $("#cakupan_wilayah").removeClass('is-invalid');
+                        $(".error-cakupan-wilayah").html('');
+                    }
+                    if (response.error.kontak_darurat) {
+                        $("#kontak_darurat").addClass('is-invalid');
+                        $(".error-kontak-darurat").html(response.error.kontak_darurat);
+                    } else {
+                        $("#kontak_darurat").removeClass('is-invalid');
+                        $(".error-kontak-darurat").html('');
                     }
                     if (response.error.pendidikan_terakhir) {
                         $("#pendidikan_terakhir").addClass('is-invalid');
