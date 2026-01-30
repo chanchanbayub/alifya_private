@@ -186,13 +186,14 @@ class InvoiceMitraController extends BaseController
                 $total_data = $this->presensiModel->sumTotalAnak($inputan_bulan, $inputan_tahun);
 
                 $total_harga_mitra = $this->presensiModel->SumHargaPresensiMitra($inputan_bulan, $inputan_tahun);
-                // dd($total_harga_mitra->total_harga_mitra);
 
-                $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
+                // $total_booster = $this->hargaMitraModel->getHargaMitraPerbulan()
+
+                // $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
 
                 $total_lain_lain_mitra = $this->klaimLainLainModel->SumLainLainPerbulan($inputan_bulan, $inputan_tahun);
 
-                $total_booster_media_mitra = $this->klaimLainLainModel->SumBoosterMediaPerbulan($inputan_bulan, $inputan_tahun);
+                // $total_booster_media_mitra = $this->klaimLainLainModel->SumBoosterMediaPerbulan($inputan_bulan, $inputan_tahun);
 
                 // data anak
                 if ($total_data->total_anak == null) {
@@ -214,25 +215,27 @@ class InvoiceMitraController extends BaseController
                     $total_harga = intval($total_harga_mitra->total_harga_mitra);
                 }
 
-                // // booster_media
-                // if ($total_harga_mitra->total_booster == null) {
-                //     $total_booster = intval(0);
-                // } else {
-                //     $total_booster = intval($total_harga_mitra->total_booster);
-                // }
-
-                if ($total_booster_media_mitra->total_booster_media_mitra == null) {
+                // booster_media
+                if ($total_harga_mitra->total_booster == null) {
                     $total_booster = intval(0);
                 } else {
-                    $total_booster = intval($total_booster_media_mitra->total_booster_media_mitra);
+                    $total_booster = intval($total_harga_mitra->total_booster);
                 }
 
+
+
+                // if ($total_booster_media_mitra->total_booster_media_mitra == null) {
+                //     $total_booster = intval(0);
+                // } else {
+                //     $total_booster = intval($total_booster_media_mitra->total_booster_media_mitra);
+                // }
+
                 // media belajar
-                if ($total_harga_media->total_harga_media == null) {
-                    $total_media = intval(0);
-                } else {
-                    $total_media = intval($total_harga_media->total_harga_media);
-                }
+                // if ($total_harga_media->total_harga_media == null) {
+                //     $total_media = intval(0);
+                // } else {
+                //     $total_media = intval($total_harga_media->total_harga_media);
+                // }
 
                 // lain_lain
                 if ($total_lain_lain_mitra->total_lain_lain == null) {
@@ -241,7 +244,7 @@ class InvoiceMitraController extends BaseController
                     $total_lain_lain = intval($total_lain_lain_mitra->total_lain_lain);
                 }
 
-                $total_pemasukan = $total_harga + $total_media + $total_lain_lain + $total_booster;
+                $total_pemasukan = $total_harga  + $total_lain_lain + $total_booster;
 
                 $alert = [
                     'data_presensi' => $data_presensi,

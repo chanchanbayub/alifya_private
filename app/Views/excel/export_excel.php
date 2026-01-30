@@ -54,8 +54,8 @@ header("Content-Disposition: attachment; filename=pembukuan_mitra.xls");
                     <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Anak Aktif</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Upah Per Anak</th>
-                    <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Upah</th>
-                    <th scope="col" style="text-transform: capitalize; text-align:center">Media Belajar</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center">Harga Booster</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center">Total Booster</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
                     <th colspan="2" scope="col" style="text-transform: capitalize; text-align:center">Aksi</th>
@@ -67,27 +67,23 @@ header("Content-Disposition: attachment; filename=pembukuan_mitra.xls");
                     <tr>
                         <td scope="col"><?= $no++ ?></td>
                         <td scope="col" style="text-transform: capitalize;"><?= $presensi["nama_lengkap"] ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= $presensi["jumlah_anak"] ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= $presensi["total_presensi"] ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["harga_mitra"], 0, ",", ".") ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["booster_media"], 0, ",", ".")  ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["total_media_belajar"], 0, ",", ".") ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($presensi["total_lain_lain"], 0, ",", ".") ?></td>
-                        <td scope="col" style="text-transform: capitalize; text-align:center; font-weight: bold"> <?= number_format($presensi["total_akhir"], 0, ",", ".") ?></td>
+                        <td scope="col" style="text-transform: capitalize;"><?= $presensi["jumlah_anak"] ?></td>
+                        <td scope="col" style="text-transform: capitalize;"><?= $presensi["total_presensi"] ?></td>
+                        <td scope="col" style="text-transform: capitalize;"><?= number_format($presensi["harga_mitra"], 0, ",", ".")  ?></td>
+                        <td scope="col" style="text-transform: capitalize;"><?= number_format($presensi["harga_booster"], 0, ",", ".")  ?></td>
+                        <td scope="col" style="text-transform: capitalize;"><?= number_format($presensi["total_jumlah_booster"], 0, ",", ".")  ?></td>
+                        <td scope="col" style="text-transform: capitalize;"><?= number_format($presensi["total_lain_lain"], 0, ",", ".")  ?></td>
+                        <td scope="col" style="text-transform: capitalize;"><?= number_format($presensi["total_akhir"], 0, ",", ".")  ?></td>
+
+
                         <td></td>
                         <td></td>
                     </tr>
+                <?php endforeach; ?>
             </tbody>
-        <?php endforeach; ?>
-        <tfoot>
-            <tr>
-                <th colspan="2" style="text-align: center;">TOTAL PEMASUKAN :</th>
-                <th style="text-align: center;"><?= $total_anak_aktif ?></th>
-                <th style="text-align: center;"><?= $total_presensi_perbulan ?></th>
-                <th colspan="7" style="text-align: center;">Rp. <?= number_format($total_pemasukan) ?> </th>
-
-            </tr>
-        </tfoot>
+            <!-- <tfoot>
+            
+        </tfoot> -->
         </table>
     </div>
 

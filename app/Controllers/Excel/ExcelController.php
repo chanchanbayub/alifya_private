@@ -3,6 +3,7 @@
 namespace App\Controllers\Excel;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\HargaMitraModel;
 use App\Models\Admin\KelompokBelajarModel;
 use App\Models\Admin\KelompokModel;
 use App\Models\Admin\KlaimLainLainMitraModel;
@@ -18,12 +19,14 @@ class ExcelController extends BaseController
     protected $klaimLainLainModel;
     protected $kelompokModel;
     protected $validation;
+    protected $hargaMitraModel;
 
     public function __construct()
     {
         $this->presensiModel = new PresensiModel();
         $this->kelompokBelajarModel = new KelompokBelajarModel();
         $this->klaimMediaPesertaModel = new KlaimMediaPesertaModel();
+        $this->hargaMitraModel = new HargaMitraModel();
         $this->klaimLainLainModel = new KlaimLainLainMitraModel();
         $this->kelompokModel = new KelompokModel();
         $this->validation = \Config\Services::validation();
@@ -49,6 +52,8 @@ class ExcelController extends BaseController
             $presensi_data = $this->presensiModel->getInvoiceMitraData($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
 
             $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
+
+            $harga_media = $this->hargaMitraModel->getHargaMitraPerbulan($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
 
             // $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar->mitra_pengajar_id, $inputan_bulan, $inputan_tahun);
 
@@ -76,6 +81,12 @@ class ExcelController extends BaseController
                 //     $total_media  = $booster_media->total_media;
                 // }
 
+                if ($harga_media->booster_media == null) {
+                    $total_booster = 0;
+                } else {
+                    $total_booster = $harga_media->booster_media;
+                }
+
                 if ($media_belajar_anak->total_harga_media == null) {
                     $total_media_anak = 0;
                 } else {
@@ -88,11 +99,13 @@ class ExcelController extends BaseController
                     $total_lain_lain  = $lain_lain->total_lain_lain;
                 }
 
-                if ($lain_lain->total_booster == null) {
-                    $total_booster = 0;
-                } else {
-                    $total_booster  = $lain_lain->total_booster;
-                }
+                // if ($lain_lain->total_booster == null) {
+                //     $total_booster = 0;
+                // } else {
+                //     $total_booster  = $lain_lain->total_booster;
+                // }
+
+
 
                 $data_presensi[] = [
                     'data_pengajar_id' => $mitra_pengajar->mitra_pengajar_id,
@@ -103,24 +116,33 @@ class ExcelController extends BaseController
                     'nama_lengkap' => $mitra_pengajar->nama_lengkap,
                     'total_presensi' => intval($total_presensi),
                     'harga_mitra' => intval($harga_mitra),
-                    'booster_media' => intval($total_booster),
-                    'total_media_belajar' => intval($total_media_anak),
+                    'harga_booster' => intval($total_booster),
+                    'total_jumlah_booster' => intval($data_peserta->jumlah_anak) * intval($total_booster),
+
+                    // 'booster_mitra' => intval($total_booster),
+                    // 'booster_media' => intval($total_media),
+                    // 'total_media_belajar' => intval($total_media_anak),
                     'total_lain_lain' => intval($total_lain_lain),
-                    'total_akhir' => intval($harga_mitra) + intval($total_booster) + intval($total_lain_lain) + intval($total_media_anak)
+                    // 'total_akhir' => intval($harga_mitra) + intval($total_booster) + intval($total_lain_lain) + intval($total_media_anak)
+                    'total_akhir' => intval($harga_mitra) +  intval($total_lain_lain) + intval($data_peserta->jumlah_anak) * intval($total_booster)
                 ];
             }
         }
 
+
+
+
         $total_data = $this->presensiModel->sumTotalAnak($inputan_bulan, $inputan_tahun);
 
         $total_harga_mitra = $this->presensiModel->SumHargaPresensiMitra($inputan_bulan, $inputan_tahun);
-        // dd($total_harga_mitra->total_harga_mitra);
 
-        $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
+        // $total_booster = $this->hargaMitraModel->getHargaMitraPerbulan()
+
+        // $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
 
         $total_lain_lain_mitra = $this->klaimLainLainModel->SumLainLainPerbulan($inputan_bulan, $inputan_tahun);
 
-        $total_booster_media_mitra = $this->klaimLainLainModel->SumBoosterMediaPerbulan($inputan_bulan, $inputan_tahun);
+        // $total_booster_media_mitra = $this->klaimLainLainModel->SumBoosterMediaPerbulan($inputan_bulan, $inputan_tahun);
 
         // data anak
         if ($total_data->total_anak == null) {
@@ -143,24 +165,26 @@ class ExcelController extends BaseController
         }
 
         // booster_media
-        // if ($total_harga_mitra->total_booster == null) {
-        //     $total_booster = intval(0);
-        // } else {
-        //     $total_booster = intval($total_harga_mitra->total_booster);
-        // }
-
-        if ($total_booster_media_mitra->total_booster_media_mitra == null) {
+        if ($total_harga_mitra->total_booster == null) {
             $total_booster = intval(0);
         } else {
-            $total_booster = intval($total_booster_media_mitra->total_booster_media_mitra);
+            $total_booster = intval($total_harga_mitra->total_booster);
         }
 
+
+
+        // if ($total_booster_media_mitra->total_booster_media_mitra == null) {
+        //     $total_booster = intval(0);
+        // } else {
+        //     $total_booster = intval($total_booster_media_mitra->total_booster_media_mitra);
+        // }
+
         // media belajar
-        if ($total_harga_media->total_harga_media == null) {
-            $total_media = intval(0);
-        } else {
-            $total_media = intval($total_harga_media->total_harga_media);
-        }
+        // if ($total_harga_media->total_harga_media == null) {
+        //     $total_media = intval(0);
+        // } else {
+        //     $total_media = intval($total_harga_media->total_harga_media);
+        // }
 
         // lain_lain
         if ($total_lain_lain_mitra->total_lain_lain == null) {
@@ -169,14 +193,17 @@ class ExcelController extends BaseController
             $total_lain_lain = intval($total_lain_lain_mitra->total_lain_lain);
         }
 
-        $total_pemasukan = $total_harga + $total_booster + $total_media + $total_lain_lain;
+
+        // dd($data_presensi);
+
+
 
         $data = [
             'data_presensi' => $data_presensi,
-            'total_anak_aktif' => $total_anak,
-            'total_presensi_perbulan' => $total_presensi_perbulan,
-            'total_pemasukan' => $total_pemasukan,
-            'harga_mitra' => $harga_mitra,
+            // 'total_anak_aktif' => $total_anak,
+            // 'total_presensi_perbulan' => $total_presensi_perbulan,
+            // 'total_pemasukan' => $total_pemasukan,
+            // 'harga_mitra' => $harga_mitra,
             'bulan_indo' => $inputan_bulan
         ];
 

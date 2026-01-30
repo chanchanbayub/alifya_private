@@ -115,7 +115,6 @@ class PdfController extends BaseController
 
         $invoice = $this->presensiModel->getInvoiceMitraWithMonth($mitra_pengajar_id, $bulan, $tahun);
 
-        // dd($invoice);
 
         if (count($invoice) == 0) {
 
@@ -131,11 +130,21 @@ class PdfController extends BaseController
 
             $total = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun);
 
+            $getBooster = $this->hargaMitraModel->where(["mitra_pengajar_id" => $mitra_pengajar_id])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->first();
+
+            $presensi_data = $this->presensiModel->getInvoiceMitraData($mitra_pengajar_id, $bulan, $tahun);
+            foreach ($presensi_data as $data_peserta) {
+                $jumlah_anak = $data_peserta->jumlah_anak;
+            }
+
+            $booster_media = $getBooster["booster_media"] * $jumlah_anak;
+
+
             // $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun);
 
             $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar_id, $bulan, $tahun);
 
-            $media_belajar_anak = $this->klaimMediaPesertaModel->SumHargaMediaWithMitra($mitra_pengajar_id, $bulan, $tahun);
+            // $media_belajar_anak = $this->klaimMediaPesertaModel->SumHargaMediaWithMitra($mitra_pengajar_id, $bulan, $tahun);
 
             if ($total->total == null) {
                 $total = intval(0);
@@ -149,11 +158,7 @@ class PdfController extends BaseController
             //     $total_media = intval($booster_media->total_media);
             // }
 
-            if ($lain_lain->total_booster == null) {
-                $total_booster = 0;
-            } else {
-                $total_booster  = $lain_lain->total_booster;
-            }
+
 
             if ($lain_lain->total_lain_lain == null) {
                 $total_lain_lain = intval(0);
@@ -161,19 +166,19 @@ class PdfController extends BaseController
                 $total_lain_lain = intval($lain_lain->total_lain_lain);
             }
 
-            if ($media_belajar_anak->total_harga_media == null) {
-                $total_harga_media = intval(0);
-            } else {
-                $total_harga_media = intval($media_belajar_anak->total_harga_media);
-            }
+            // if ($media_belajar_anak->total_harga_media == null) {
+            //     $total_harga_media = intval(0);
+            // } else {
+            //     $total_harga_media = intval($media_belajar_anak->total_harga_media);
+            // }
 
             $data = [
                 'invoice' =>  $invoice,
                 'mitra_pengajar' => $pengajar,
                 'total' => $total,
-                'booster_media' => $total_booster,
+                'booster_media' => $booster_media,
                 'lain_lain' => $total_lain_lain,
-                'media_belajar' => $total_harga_media,
+                // 'media_belajar' => $total_media,
 
             ];
 
