@@ -80,17 +80,27 @@ class LainLainPesertaAHLController extends BaseController
 
                 $peserta_didik_ahl = $this->pesertaDidikAhlModel->getPesertaDidikAhlInvoice();
 
-
                 foreach ($peserta_didik_ahl as $peserta_didik_ahl) {
-                    $this->lainlainPesertaAhlModel->save([
-                        'peserta_didik_ahl_id' => strtolower($peserta_didik_ahl->id),
-                        'bulan' => $inputan_bulan,
-                        'tahun' => $inputan_tahun,
-                        'lain_lain' => intval(0),
-                    ]);
-                    $alert = [
-                        'success' => 'Lain Lain Berhasil di Simpan !'
-                    ];
+
+                    $duplicat = $this->lainlainPesertaAhlModel->where(["peserta_didik_ahl_id" => $peserta_didik_ahl->id])->where(["bulan" => $inputan_bulan])->where(["tahun" => $inputan_tahun])->first();
+
+                    if ($duplicat == null) {
+                        $this->lainlainPesertaAhlModel->save([
+                            'peserta_didik_ahl_id' => strtolower($peserta_didik_ahl->id),
+                            'bulan' => $inputan_bulan,
+                            'tahun' => $inputan_tahun,
+                            'lain_lain' => intval(0),
+                        ]);
+                        $alert = [
+                            'success' => 'Lain Lain Berhasil di Simpan !'
+                        ];
+                    } else {
+                        $alert = [
+                            'error' => [
+                                'duplicate' => 'Data Sudah Terupdate',
+                            ]
+                        ];
+                    }
                 }
                 return json_encode($alert);
             }
