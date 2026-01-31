@@ -287,4 +287,18 @@ class PresensiModel extends Model
             ->orderBy('data_pengajar_table.nama_lengkap desc')
             ->get()->getRowObject();
     }
+
+    public function getDuplicatData($mitra_pengajar_id, $tanggal_masuk, $peserta_didik_id)
+    {
+        return $this->table($this->table)
+            ->select("presensi_table.id, presensi_table.tanggal_masuk, presensi_table.jam_masuk, presensi_table.dokumentasi, presensi_table.dokumentasi_orang_tua,  data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak")
+            ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
+            ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where(["presensi_table.tanggal_masuk" => $tanggal_masuk])
+            ->where(["presensi_table.peserta_didik_id" => $peserta_didik_id])
+            ->orderBy('presensi_table.id desc')
+            ->get()->getRowObject();
+    }
 }

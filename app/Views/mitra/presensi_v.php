@@ -285,9 +285,6 @@
                                 icon: 'error',
                                 title: `${response.error.duplicate}`,
                             });
-                            setTimeout(function() {
-                                location.reload();
-                            }, 3000)
                         }
 
                     } else {

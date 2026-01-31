@@ -443,6 +443,13 @@
                             $(".error-dokumentasi-orang-tua").html('');
                         }
 
+                        if (response.error.duplicate) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: `${response.error.duplicate}`,
+                            });
+                        }
+
                     } else {
                         Swal.fire({
                             icon: 'success',

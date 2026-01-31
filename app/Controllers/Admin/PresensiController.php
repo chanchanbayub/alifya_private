@@ -198,23 +198,32 @@ class PresensiController extends BaseController
                 $dokumentasi_orang_tua = $this->request->getFile('dokumentasi_orang_tua');
                 $nama_dokumentasi = $dokumentasi_orang_tua->getRandomName();
 
+                $rowDataPresensi = $this->presensiModel->getDuplicatData($mitra_pengajar_id, $tanggal_masuk, $peserta_didik_id);
 
-                $this->presensiModel->save([
-                    'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
-                    'tanggal_masuk' => strtolower($tanggal_masuk),
-                    'jam_masuk' => strtolower($jam_masuk),
-                    'peserta_didik_id' => strtolower($peserta_didik_id),
-                    'dokumentasi' => strtolower($nama_foto),
-                    'dokumentasi_orang_tua' => strtolower($nama_dokumentasi),
+                if ($rowDataPresensi != null) {
+                    $alert = [
+                        'error' => [
+                            'duplicate' => 'Anda Sudah Melakukan Presensi Pada Tanggal ini, Silahkan Cek dihalaman Ini!',
+                        ]
+                    ];
+                } else {
+                    $this->presensiModel->save([
+                        'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
+                        'tanggal_masuk' => strtolower($tanggal_masuk),
+                        'jam_masuk' => strtolower($jam_masuk),
+                        'peserta_didik_id' => strtolower($peserta_didik_id),
+                        'dokumentasi' => strtolower($nama_foto),
+                        'dokumentasi_orang_tua' => strtolower($nama_dokumentasi),
 
-                ]);
+                    ]);
 
-                $dokumentasi->move('dokumentasi', $nama_foto);
-                $dokumentasi_orang_tua->move('dokumentasi_orang_tua', $nama_dokumentasi);
+                    $dokumentasi->move('dokumentasi', $nama_foto);
+                    $dokumentasi_orang_tua->move('dokumentasi_orang_tua', $nama_dokumentasi);
 
-                $alert = [
-                    'success' => 'Presensi Berhasil di Simpan !'
-                ];
+                    $alert = [
+                        'success' => 'Presensi Berhasil di Simpan !'
+                    ];
+                }
             }
 
             return json_encode($alert);
