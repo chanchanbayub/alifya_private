@@ -130,19 +130,22 @@ class PdfController extends BaseController
 
             $total = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun);
 
-            $getBooster = $this->hargaMitraModel->where(["mitra_pengajar_id" => $mitra_pengajar_id])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->first();
+            // $getBooster = $this->hargaMitraModel->where(["mitra_pengajar_id" => $mitra_pengajar_id])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->first();
 
             $presensi_data = $this->presensiModel->getInvoiceMitraData($mitra_pengajar_id, $bulan, $tahun);
             foreach ($presensi_data as $data_peserta) {
                 $jumlah_anak = $data_peserta->jumlah_anak;
             }
 
-            $booster_media = $getBooster["booster_media"] * $jumlah_anak;
+            // $booster_media = $getBooster["booster_media"] * $jumlah_anak;
 
 
             // $booster_media = $this->presensiModel->getMediaMitraWithMonthSum($mitra_pengajar_id, $bulan, $tahun);
 
             $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar_id, $bulan, $tahun);
+
+            $booster_media = $lain_lain->booster_media_mitra * $jumlah_anak;
+
 
             // $media_belajar_anak = $this->klaimMediaPesertaModel->SumHargaMediaWithMitra($mitra_pengajar_id, $bulan, $tahun);
 
@@ -176,7 +179,7 @@ class PdfController extends BaseController
                 'invoice' =>  $invoice,
                 'mitra_pengajar' => $pengajar,
                 'total' => $total,
-                'booster_media' => $booster_media,
+                'booster_media' => intval($booster_media),
                 'lain_lain' => $total_lain_lain,
                 // 'media_belajar' => $total_media,
 

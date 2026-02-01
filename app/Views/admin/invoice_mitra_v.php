@@ -174,7 +174,7 @@
                                 <td align="center">${e.jumlah_anak}</td>
                                 <td align="center">${e.total_presensi}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.harga_mitra)}</td>
-                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.harga_booster)}</td>
+                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.booster_mitra)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_jumlah_booster)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_lain_lain)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
