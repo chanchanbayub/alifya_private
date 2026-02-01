@@ -384,6 +384,84 @@ class UsersController extends BaseController
         if ($this->request->isAJAX()) {
 
             if (!$this->validate([
+                'ketersediaan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'nama_panggilan_anak' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'jenis_kelamin' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'pendidikan_id' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'ukuran_baju' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'catatan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'bukti_tf' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'izin_dokumentasi' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'tata_tertib' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'tindak_lanjut' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'larangan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'data_1' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'data_2' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
                 'nama_lengkap_anak' => [
                     'rules' => 'required',
                     'errors' => [
@@ -397,12 +475,7 @@ class UsersController extends BaseController
 
                     ]
                 ],
-                'usia_anak' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Usia Tidak Boleh Kosong !'
-                    ]
-                ],
+
                 'alamat_domisili_anak' => [
                     'rules' => 'required',
                     'errors' => [
@@ -492,6 +565,15 @@ class UsersController extends BaseController
                         'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
                     ]
                 ],
+                'bukti_tf' => [
+                    'rules' => 'uploaded[bukti_tf]|max_size[bukti_tf,2048]|is_image[bukti_tf]|mime_in[bukti_tf,image/png,image/jpeg]',
+                    'errors' => [
+                        'uploaded' => 'File Tidak Boleh Kosong !',
+                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
+                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
+                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
+                    ]
+                ],
 
                 'info_les' => [
                     'rules' => 'required',
@@ -500,18 +582,6 @@ class UsersController extends BaseController
                     ]
                 ],
 
-                'brosur' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Tidak Boleh Kosong !'
-                    ]
-                ],
-                'data' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Tidak Boleh Kosong !'
-                    ]
-                ],
 
 
             ])) {
@@ -519,7 +589,6 @@ class UsersController extends BaseController
                     'error' => [
                         'nama_lengkap_anak' => $this->validation->getError('nama_lengkap_anak'),
                         'tanggal_lahir_anak' => $this->validation->getError('tanggal_lahir_anak'),
-                        'usia_anak' => $this->validation->getError('usia_anak'),
                         'alamat_domisili_anak' => $this->validation->getError('alamat_domisili_anak'),
                         'sekolah_anak' => $this->validation->getError('sekolah_anak'),
                         'nomor_whatsapp_wali' => $this->validation->getError('nomor_whatsapp_wali'),
@@ -531,12 +600,24 @@ class UsersController extends BaseController
                         'waktu_belajar' => $this->validation->getError('waktu_belajar'),
                         'foto_anak' => $this->validation->getError('foto_anak'),
                         'info_les' => $this->validation->getError('info_les'),
-                        'brosur' => $this->validation->getError('brosur'),
-                        'data' => $this->validation->getError('data'),
                         'nama_ayah' => $this->validation->getError('nama_ayah'),
                         'nama_ibu' => $this->validation->getError('nama_ibu'),
                         'pekerjaan_ayah' => $this->validation->getError('pekerjaan_ayah'),
                         'pekerjaan_ibu' => $this->validation->getError('pekerjaan_ibu'),
+                        'ketersediaan' => $this->validation->getError('ketersediaan'),
+                        'nama_panggilan_anak' => $this->validation->getError('nama_panggilan_anak'),
+                        'jenis_kelamin' => $this->validation->getError('jenis_kelamin'),
+                        'pendidikan_id' => $this->validation->getError('pendidikan_id'),
+                        'pendidikan_id' => $this->validation->getError('pendidikan_id'),
+                        'ukuran_baju' => $this->validation->getError('ukuran_baju'),
+                        'catatan' => $this->validation->getError('catatan'),
+                        'bukti_tf' => $this->validation->getError('bukti_tf'),
+                        'izin_dokumentasi' => $this->validation->getError('izin_dokumentasi'),
+                        'tata_tertib' => $this->validation->getError('tata_tertib'),
+                        'tindak_lanjut' => $this->validation->getError('tindak_lanjut'),
+                        'larangan' => $this->validation->getError('larangan'),
+                        'data_1' => $this->validation->getError('data_1'),
+                        'data_2' => $this->validation->getError('data_2'),
                     ]
                 ];
             } else {
@@ -546,7 +627,7 @@ class UsersController extends BaseController
 
                 $nama_lengkap_anak = $this->request->getPost('nama_lengkap_anak');
                 $tanggal_lahir_anak = $this->request->getPost('tanggal_lahir_anak');
-                $usia_anak = $this->request->getPost('usia_anak');
+
                 $alamat_domisili_anak = $this->request->getPost('alamat_domisili_anak');
                 $sekolah_anak = $this->request->getPost('sekolah_anak');
                 $nomor_whatsapp_wali = $this->request->getPost('nomor_whatsapp_wali');
@@ -555,15 +636,9 @@ class UsersController extends BaseController
                 $materi_belajar_id = $this->request->getPost('materi_belajar_id');
                 $hari_belajar = $this->request->getPost('hari_belajar');
                 $waktu_belajar = $this->request->getPost('waktu_belajar');
-
-                $foto_anak = $this->request->getFile('foto_anak');
-
-                $nama_foto = $foto_anak->getRandomName();
-
                 $status_murid_id = 3;
-                $brosur = $this->request->getPost('brosur');
+
                 $info_les = $this->request->getPost('info_les');
-                $data = $this->request->getPost('data');
 
                 $nama_ibu = $this->request->getPost('nama_ibu');
                 $nama_ayah = $this->request->getPost('nama_ayah');
@@ -571,13 +646,33 @@ class UsersController extends BaseController
                 $pekerjaan_ibu = $this->request->getPost('pekerjaan_ibu');
 
                 $paket_belajar_id = $this->request->getPost('paket_belajar_id');
+                $ketersediaan = $this->request->getPost('ketersediaan');
+                $nama_panggilan_anak = $this->request->getPost('nama_panggilan_anak');
+                $jenis_kelamin = $this->request->getPost('jenis_kelamin');
+                $pendidikan_id = $this->request->getPost('pendidikan_id');
+                $ukuran_baju = $this->request->getPost('ukuran_baju');
+                $catatan = $this->request->getPost('catatan');
+                $izin_dokumentasi = $this->request->getPost('izin_dokumentasi');
+                $tata_tertib = $this->request->getPost('tata_tertib');
+                $tindak_lanjut = $this->request->getPost('tindak_lanjut');
+                $larangan = $this->request->getPost('larangan');
+                $data_1 = $this->request->getPost('data_1');
+                $data_2 = $this->request->getPost('data_2');
+
+
+
+                $bukti_tf = $this->request->getFile('bukti_tf');
+                $nama_tf = $bukti_tf->getRandomName();
+
+                $foto_anak = $this->request->getFile('foto_anak');
+
+                $nama_foto = $foto_anak->getRandomName();
 
 
                 $this->muridModel->save([
                     'uid_murid' => $uid_murid,
                     'nama_lengkap_anak' => strtolower($nama_lengkap_anak),
                     'tanggal_lahir_anak' => strtolower($tanggal_lahir_anak),
-                    'usia_anak' => strtolower($usia_anak),
                     'alamat_domisili_anak' => strtolower($alamat_domisili_anak),
                     'sekolah_anak' => strtolower($sekolah_anak),
                     'nomor_whatsapp_wali' => strtolower($nomor_whatsapp_wali),
@@ -591,15 +686,27 @@ class UsersController extends BaseController
                     'nama_ibu' => strtolower($nama_ibu),
                     'pekerjaan_ayah' => strtolower($pekerjaan_ayah),
                     'pekerjaan_ibu' => strtolower($pekerjaan_ibu),
-                    'brosur' => $brosur,
                     'info_les' => $info_les,
-                    'data' => $data,
                     'foto_anak' => strtolower($nama_foto),
+                    'bukti_tf' => strtolower($nama_tf),
+                    'ketersediaan' => strtolower($ketersediaan),
+                    'nama_panggilan_anak' => strtolower($nama_panggilan_anak),
+                    'jenis_kelamin' => strtolower($jenis_kelamin),
+                    'pendidikan_id' => strtolower($pendidikan_id),
+                    'ukuran_baju' => strtolower($ukuran_baju),
+                    'catatan' => strtolower($catatan),
+                    'izin_dokumentasi' => strtolower($izin_dokumentasi),
+                    'tata_tertib' => strtolower($tata_tertib),
+                    'tindak_lanjut' => strtolower($tindak_lanjut),
+                    'larangan' => strtolower($larangan),
+                    'data_1' => strtolower($data_1),
+                    'data_2' => strtolower($data_2),
                     'status_murid_id' => $status_murid_id,
 
                 ]);
 
                 $foto_anak->move('foto_profil_anak', $nama_foto);
+                $bukti_tf->move('bukti_tf_private', $nama_tf);
 
                 $alert = [
                     'success' => 'Data Berhasil Tersimpan, Silahkan Tunggu informasi dari admin, Terima kasih!'

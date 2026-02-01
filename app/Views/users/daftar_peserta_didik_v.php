@@ -246,8 +246,8 @@
                         </div>
                         <!-- db baru -->
                         <div class="control-group">
-                            <label for="waktu_belajar">Notes untuk calon pengajar :</label>
-                            <input type="text" class="form-control" id="waktu_belajar" name="waktu_belajar" placeholder=" contoh :pagi & siang" />
+                            <label for="catatan">Notes untuk calon pengajar :</label>
+                            <input type="text" class="form-control" id="catatan" name="catatan" placeholder="catatan" />
                             <p class="help-block text-danger error-waktu-belajar"></p>
                         </div>
 
@@ -302,10 +302,10 @@
                         <br>
                         <!-- db baru -->
                         <div class="control-group">
-                            <label for="tata_tertib">Tindak Lanjut Kegiatan (<a href="/assets/img/tindak_lanjut.jpg" target="_blank">Lihat Tindak Lanjut Kegiatan</a>) :</label>
+                            <label for="tindak_lanjut">Tindak Lanjut Kegiatan (<a href="/assets/img/tindak_lanjut.jpg" target="_blank">Lihat Tindak Lanjut Kegiatan</a>) :</label>
                             <br>
                             <img src="/assets/img/tindak_lanjut.jpg" alt="brosur" width="350"><br><br>
-                            <select name="tata_tertib" id="tata_tertib" class="form-control">
+                            <select name="tindak_lanjut" id="tindak_lanjut" class="form-control">
                                 <option value="">--Silahkan Pilih--</option>
                                 <option value="Saya sudah membaca dan menyetujui Tindak Lanjut Kegiatan">Saya sudah membaca dan menyetujui "Tindak Lanjut Kegiatan"</option>
                             </select>
@@ -425,7 +425,6 @@
 
         let nama_lengkap_anak = $("#nama_lengkap_anak").val();
         let tanggal_lahir_anak = $("#tanggal_lahir_anak").val();
-        let usia_anak = $("#usia_anak").val();
         let alamat_domisili_anak = $("#alamat_domisili_anak").val();
         let sekolah_anak = $("#sekolah_anak").val();
         let nomor_whatsapp_wali = $("#nomor_whatsapp_wali").val();
@@ -443,15 +442,28 @@
 
         let waktu_belajar = $("#waktu_belajar").val();
         let foto_anak = $("#foto_anak").val();
-        let data = $("#data").val();
-        let brosur = $("#brosur").val();
+
         let info_les = $("#info_les").val();
+
+        let ketersediaan = $("#ketersediaan").val();
+        let nama_panggilan_anak = $("#nama_panggilan_anak").val();
+        let jenis_kelamin = $("#jenis_kelamin").val();
+        let pendidikan_id = $("#pendidikan_id").val();
+        let ukuran_baju = $("#ukuran_baju").val();
+        let catatan = $("#catatan").val();
+        let bukti_tf = $("#bukti_tf").val();
+        let izin_dokumentasi = $("#izin_dokumentasi").val();
+        let tata_tertib = $("#tata_tertib").val();
+        let tindak_lanjut = $("#tindak_lanjut").val();
+        let larangan = $("#larangan").val();
+        let data_1 = $("#data_1").val();
+        let data_2 = $("#data_2").val();
 
         let formData = new FormData(this);
 
         formData.append('nama_lengkap_anak', nama_lengkap_anak);
         formData.append('tanggal_lahir_anak', tanggal_lahir_anak);
-        formData.append('usia_anak', usia_anak);
+
         formData.append('alamat_domisili_anak', alamat_domisili_anak);
         formData.append('sekolah_anak', sekolah_anak);
         formData.append('nomor_whatsapp_wali', nomor_whatsapp_wali);
@@ -468,9 +480,23 @@
 
         formData.append('waktu_belajar', waktu_belajar);
         formData.append('foto_anak', foto_anak);
-        formData.append('brosur', brosur);
-        formData.append('data', data);
+
         formData.append('info_les', info_les);
+
+
+        formData.append('ketersediaan', ketersediaan);
+        formData.append('nama_panggilan_anak', nama_panggilan_anak);
+        formData.append('jenis_kelamin', jenis_kelamin);
+        formData.append('pendidikan_id', pendidikan_id);
+        formData.append('ukuran_baju', ukuran_baju);
+        formData.append('catatan', catatan);
+        formData.append('bukti_tf', bukti_tf);
+        formData.append('izin_dokumentasi', izin_dokumentasi);
+        formData.append('tata_tertib', tata_tertib);
+        formData.append('tindak_lanjut', tindak_lanjut);
+        formData.append('larangan', larangan);
+        formData.append('data_1', data_1);
+        formData.append('data_2', data_2);
 
         $.ajax({
             url: '/daftar_peserta_didik/insert',
@@ -510,13 +536,7 @@
                         $("#nomor_whatsapp_wali").removeClass('is-invalid');
                         $(".error-nomor-whatsapp-wali").html('');
                     }
-                    if (response.error.usia_anak) {
-                        $("#usia_anak").addClass('is-invalid');
-                        $(".error-usia-anak").html(response.error.usia_anak);
-                    } else {
-                        $("#usia_anak").removeClass('is-invalid');
-                        $(".error-usia-anak").html('');
-                    }
+
                     if (response.error.alamat_domisili_anak) {
                         $("#alamat_domisili_anak").addClass('is-invalid');
                         $(".error-alamat-domisili-anak").html(response.error.alamat_domisili_anak);
@@ -629,20 +649,99 @@
                         $("#foto_anak").removeClass('is-invalid');
                         $(".error-foto-anak").html('');
                     }
-                    if (response.error.brosur) {
-                        $("#brosur").addClass('is-invalid');
-                        $(".error-brosur").html(response.error.brosur);
+                    if (response.error.ketersediaan) {
+                        $("#ketersediaan").addClass('is-invalid');
+                        $(".error-ketersediaan").html(response.error.ketersediaan);
                     } else {
-                        $("#brosur").removeClass('is-invalid');
-                        $(".error-brosur").html('');
+                        $("#ketersediaan").removeClass('is-invalid');
+                        $(".error-ketersediaan").html('');
                     }
-                    if (response.error.data) {
-                        $("#data").addClass('is-invalid');
-                        $(".error-data").html(response.error.data);
+                    if (response.error.nama_panggilan_anak) {
+                        $("#nama_panggilan_anak").addClass('is-invalid');
+                        $(".error-nama-panggilan-anak").html(response.error.nama_panggilan_anak);
                     } else {
-                        $("#data").removeClass('is-invalid');
-                        $(".error-data").html('');
+                        $("#nama_panggilan_anak").removeClass('is-invalid');
+                        $(".error-nama-panggilan-anak").html('');
                     }
+                    if (response.error.jenis_kelamin) {
+                        $("#jenis_kelamin").addClass('is-invalid');
+                        $(".error-jenis-kelamin").html(response.error.jenis_kelamin);
+                    } else {
+                        $("#jenis_kelamin").removeClass('is-invalid');
+                        $(".error-jenis-kelamin").html('');
+                    }
+                    if (response.error.pendidikan_id) {
+                        $("#pendidikan_id").addClass('is-invalid');
+                        $(".error-pendidikan").html(response.error.pendidikan_id);
+                    } else {
+                        $("#pendidikan_id").removeClass('is-invalid');
+                        $(".error-pendidikan").html('');
+                    }
+                    if (response.error.ukuran_baju) {
+                        $("#ukuran_baju").addClass('is-invalid');
+                        $(".error-ukuran-baju").html(response.error.ukuran_baju);
+                    } else {
+                        $("#ukuran_baju").removeClass('is-invalid');
+                        $(".error-ukuran-baju").html('');
+                    }
+                    if (response.error.catatan) {
+                        $("#catatan").addClass('is-invalid');
+                        $(".error-catatan").html(response.error.catatan);
+                    } else {
+                        $("#catatan").removeClass('is-invalid');
+                        $(".error-catatan").html('');
+                    }
+                    if (response.error.bukti_tf) {
+                        $("#bukti_tf").addClass('is-invalid');
+                        $(".error-bukti-tf").html(response.error.bukti_tf);
+                    } else {
+                        $("#bukti_tf").removeClass('is-invalid');
+                        $(".error-bukti-tf").html('');
+                    }
+                    if (response.error.izin_dokumentasi) {
+                        $("#izin_dokumentasi").addClass('is-invalid');
+                        $(".error-izin-dokumentasi").html(response.error.izin_dokumentasi);
+                    } else {
+                        $("#izin_dokumentasi").removeClass('is-invalid');
+                        $(".error-izin-dokumentasi").html('');
+                    }
+                    if (response.error.tata_tertib) {
+                        $("#tata_tertib").addClass('is-invalid');
+                        $(".error-tata-tertib").html(response.error.tata_tertib);
+                    } else {
+                        $("#tata_tertib").removeClass('is-invalid');
+                        $(".error-tata-tertib").html('');
+                    }
+                    if (response.error.tindak_lanjut) {
+                        $("#tindak_lanjut").addClass('is-invalid');
+                        $(".error-tindak-lanjut").html(response.error.tindak_lanjut);
+                    } else {
+                        $("#tindak_lanjut").removeClass('is-invalid');
+                        $(".error-tindak-lanjut").html('');
+                    }
+                    if (response.error.larangan) {
+                        $("#larangan").addClass('is-invalid');
+                        $(".error-larangan").html(response.error.larangan);
+                    } else {
+                        $("#larangan").removeClass('is-invalid');
+                        $(".error-larangan").html('');
+                    }
+                    if (response.error.data_1) {
+                        $("#data_1").addClass('is-invalid');
+                        $(".error-data-1").html(response.error.data_1);
+                    } else {
+                        $("#data_1").removeClass('is-invalid');
+                        $(".error-data-1").html('');
+                    }
+                    if (response.error.data_2) {
+                        $("#data_2").addClass('is-invalid');
+                        $(".error-data-2").html(response.error.data_2);
+                    } else {
+                        $("#data_2").removeClass('is-invalid');
+                        $(".error-data-2").html('');
+                    }
+
+
 
                 } else {
                     Swal.fire({
