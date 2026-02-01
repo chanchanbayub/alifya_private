@@ -9,8 +9,8 @@
     <meta content="Alifya Learning Indonesia" name="description" />
 
     <!-- Favicon -->
-    <link href="/assets/img/logo.png" rel="shortcut icon" type="image/png">
-    <link href="/assets/img/logo.png" rel="apple-touch-icon" type="image/png">
+    <link href="/assets/img/logo_baru.png" rel="shortcut icon" type="image/png">
+    <link href="/assets/img/logo_baru.png" rel="apple-touch-icon" type="image/png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />

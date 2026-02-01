@@ -80,7 +80,8 @@ class UsersController extends BaseController
     {
         $data = [
             'title' => 'Alifya Private | Peserta Didik',
-            'peserta_didik' => $this->muridModel->getDataMuridAktif()
+            'peserta_didik' => $this->muridModel->getDataMuridAktif(),
+
         ];
         return view('users/peserta_didik_v', $data);
     }
@@ -372,7 +373,8 @@ class UsersController extends BaseController
             'title' => 'Alifya Private | Peserta Didik',
             'program_belajar' => $this->programBelajarModel->getProgramBelajar(),
             'materi_belajar' => $this->materiBelajarModel->getMateriBelajar(),
-            'paket_belajar' => $this->paketBelajarModel->getPaketBelajar()
+            'paket_belajar' => $this->paketBelajarModel->getPaketBelajar(),
+            'pendidikan' => $this->tingkatPendidikanModel->getPendidikan()
         ];
         return view('users/daftar_peserta_didik_v', $data);
     }
