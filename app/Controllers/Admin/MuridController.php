@@ -328,6 +328,7 @@ class MuridController extends BaseController
             $murid = $this->muridModel->where(["id" => $id])->first();
 
             $path_foto = 'foto_profil_anak/' . $murid['foto_anak'];
+            $path_bukti_tf = 'bukti_tf_private/' . $murid['bukti_tf'];
 
             $this->muridModel->delete($murid["id"]);
 
@@ -338,6 +339,11 @@ class MuridController extends BaseController
             if ($murid['foto_anak'] != null) {
                 if (file_exists($path_foto)) {
                     unlink($path_foto);
+                }
+            }
+            if ($murid['bukti_tf'] != null) {
+                if (file_exists($path_bukti_tf)) {
+                    unlink($path_bukti_tf);
                 }
             }
 
@@ -353,6 +359,12 @@ class MuridController extends BaseController
 
         $profil = $this->muridModel->getMitramurid($id);
 
+        // dd($profil);
+        $hari_ini = date_create();
+        $tanggal_lahir = date_create($profil->tanggal_lahir_anak);
+
+        $usia = date_diff($hari_ini, $tanggal_lahir);
+
 
         if ($profil == null) {
             return redirect()->to('/admin/data_murid');
@@ -361,6 +373,7 @@ class MuridController extends BaseController
         $data = [
             'title' => 'Peserta Didik',
             'profil' => $profil,
+            'usia' => $usia
         ];
 
         return view('admin/profil_murid_v', $data);

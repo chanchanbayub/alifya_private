@@ -26,6 +26,7 @@
                     <div class="social-links mt-2">
                         <a href="https://wa.me/+<?= $profil->nomor_whatsapp_wali ?>" target="_blank" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
                         <a href="https://www.instagram.com/<?= $profil->username_instagram_wali ?>/" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="/bukti_tf_private/<?= $profil->bukti_tf ?>" target="_blank" class="instagram"><i class="bi bi-file"></i></a>
                     </div>
                 </div>
             </div>
@@ -44,46 +45,22 @@
                     </ul>
                     <div class="tab-content pt-2">
 
+                        <h5 class="card-title">Komitmen Awal Orang Tua Orang Tua</h5>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-4 label ">Apakah Mom/Pap bersedia untuk Ananda ikut berproses bersama Alifya?
+                            </div>
+                            <div class="col-lg-6 col-md-8"> <?= $profil->ketersediaan ?></div>
+                        </div>
+
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                            <h5 class="card-title">Profil Lengkap</h5>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label ">Register ID</div>
-                                <div class="col-lg-6 col-md-8">REG - <?= $profil->uid_murid ?></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label ">Nama</div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->nama_lengkap_anak ?></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label ">Tanggal Lahir</div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->tanggal_lahir_anak ?></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Usia</div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->usia_anak ?> Tahun</div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Alamat Domisili</div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->alamat_domisili_anak ?> </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Sekolah Anak</div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->sekolah_anak ?></div>
-                            </div>
-
+                            <h5 class="card-title">Profil Orang Tua</h5>
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 label">Nama Ayah</div>
                                 <div class="col-lg-6 col-md-8"><?= $profil->nama_ayah ?></div>
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Pekerjaan Ayah</div>
+                                <div class="col-lg-6 col-md-4 label">Nama Pekerjaan Ayah</div>
                                 <div class="col-lg-6 col-md-8"><?= $profil->pekerjaan_ayah ?></div>
                             </div>
 
@@ -93,62 +70,143 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Pekerjaan Ibu</div>
+                                <div class="col-lg-6 col-md-4 label">Nama Pekerjaan Ibu</div>
                                 <div class="col-lg-6 col-md-8"><?= $profil->pekerjaan_ibu ?></div>
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Nomor Whatsapp Wali</div>
+                                <div class="col-lg-6 col-md-4 label">Nomor Whatsapp Orang Tua</div>
                                 <div class="col-lg-6 col-md-8"><?= $profil->nomor_whatsapp_wali ?> </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Tahu Alifya dari (Boleh Sebut Nama) </div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->info_les ?></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Username Instagram Wali </div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->username_instagram_wali ?></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Paket Belajar </div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->nama_paket ?></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Program Belajar </div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->nama_program ?></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Materi Belajar </div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->level ?></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Hari Belajar </div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->hari_belajar ?></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Waktu Belajar </div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->waktu_belajar ?></div>
+                                <div class="col-lg-6 col-md-4 label">Alamat Domisili</div>
+                                <div class="col-lg-6 col-md-8"><?= $profil->alamat_domisili_anak ?></div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Saya Sudah Mengetahui Program dan Biaya Paket Belajar melalui Brosur / Internet </div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->brosur ?></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Saya Sudah Mengisi data diatas dengan benar, jujur, dan dapat dipertanggung jawabkan </div>
-                                <div class="col-lg-6 col-md-8"><?= $profil->data ?></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-4 label">Status</div>
-                                <div class="col-lg-6 col-md-8"><span class="<?= ($profil->status_murid_id == 1) ? 'badge bg-success' : 'badge bg-warning' ?>"><?= $profil->status_murid ?></span> </div>
+                                <div class="col-lg-6 col-md-4 label">Username Instagram Orang Tua</div>
+                                <div class="col-lg-6 col-md-8"> <a href="https://www.instagram.com/<?= $profil->username_instagram_wali ?>/" target="_blank"><?= $profil->username_instagram_wali ?></a> </div>
                             </div>
                         </div>
+
+                        <div class="tab-content pt-2">
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <h5 class="card-title">Profil Lengkap</h5>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Nama Lengkap Anak</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->nama_lengkap_anak ?></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Nama Panggilan Anak</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->nama_panggilan_anak ?></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Tanggal Lahir</div>
+                                    <?php if ($profil->tanggal_lahir_anak == null) : ?>
+                                        <div class="col-lg-6 col-md-8">-</div>
+                                    <?php else : ?>
+                                        <div class="col-lg-6 col-md-8"><?= date("d-m-Y", strtotime($profil->tanggal_lahir_anak))  ?> </div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Usia</div>
+                                    <div class="col-lg-6 col-md-8"><?= $usia->y ?> Tahun, <?= $usia->m ?> Bulan, <?= $usia->d ?> Hari
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Jenis Kelamin</div>
+                                    <?php if ($profil->jenis_kelamin == "l") : ?>
+                                        <div class="col-lg-6 col-md-8">Laki-laki</div>
+                                    <?php elseif ($profil->jenis_kelamin == "p") : ?>
+                                        <div class="col-lg-6 col-md-8">Perempuan</div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Sekolah Anak</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->sekolah_anak ?></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Pendidikan Formal Saat Ini</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->pendidikan ?></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Ukuran Baju</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->ukuran_baju ?></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Program Belajar</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->nama_program ?></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Jumlah Pertemuan</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->jumlah_pertemuan ?> x / perbulan</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Materi Belajar</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->level ?> x / perbulan</div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Hari Belajar</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->hari_belajar ?> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Waktu Belajar</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->waktu_belajar ?> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Dari mana Mom/Pap mengetahui Alifya Learning?</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->info_les ?> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Catatan Untuk Mitra Pengajar</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->catatan ?> </div>
+                                </div>
+
+                                <h5 class="card-title">Pesetujuan</h5>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Apakah Mom/Pap berkenan jika dokumentasi kegiatan belajar Ananda (foto/video) digunakan untuk kebutuhan media sosial Alifya Learning??
+                                    </div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->izin_dokumentasi ?></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Tata Tertib
+                                    </div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->tata_tertib ?></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Tindak Lanjut </div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->tindak_lanjut ?></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Prohibition/Larangan</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->larangan ?></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Saya menyatakan bahwa
+                                    </div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->data_1 ?> <br> <?= $profil->data_2 ?> </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
                     </div><!-- End Bordered Tabs -->
 
                 </div>
