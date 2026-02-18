@@ -211,9 +211,9 @@
                         <br>
 
                         <div class="control-group">
-                            <label for="program_belajar_id">Brosur Alifya Home Learning (<a href="/assets/img/price_list.jpg" target="_blank">Lihat Brosur</a>) :</label>
+                            <label for="program_belajar_id">Brosur Alifya Home Learning (<a href="/assets/img/price_list.jpeg" target="_blank">Lihat Brosur</a>) :</label>
                             <br>
-                            <img src="/assets/img/price_list.jpg" alt="brosur" width="350">
+                            <img src="/assets/img/price_list.jpeg" alt="brosur" width="350">
                         </div>
                         <br>
 
