@@ -218,6 +218,13 @@
                         <br>
 
                         <div class="control-group">
+                            <label for="program_belajar_id">Tata Tertib Alifya Home Learning (<a href="/assets/img/tata_tertib_ahl.jpeg" target="_blank">Lihat Tata Tertib</a>) :</label>
+                            <br>
+                            <img src="/assets/img/tata_tertib_ahl.jpeg" alt="tata_tertib" width="350">
+                        </div>
+                        <br>
+
+                        <div class="control-group">
                             <label for="program_belajar_ahl_id">Program Belajar :</label>
                             <select name="program_belajar_ahl_id" id="program_belajar_ahl_id" class="form-control">
                                 <option value="">--Silahkan Pilih</option>
