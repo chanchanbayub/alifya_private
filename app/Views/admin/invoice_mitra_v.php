@@ -84,7 +84,6 @@
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Anak Aktif</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Harga Presensi</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Harga Booster</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Total Booster</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
@@ -174,7 +173,6 @@
                                 <td align="center">${e.jumlah_anak}</td>
                                 <td align="center">${e.total_presensi}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.harga_mitra)}</td>
-                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.booster_mitra)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_jumlah_booster)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_lain_lain)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
