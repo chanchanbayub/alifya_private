@@ -170,13 +170,10 @@ class InvoiceMitraController extends BaseController
                             'nama_lengkap' => $mitra_pengajar->nama_lengkap,
                             'total_presensi' => intval($total_presensi),
                             'harga_mitra' => intval($harga_mitra),
-                            // 'harga_booster' => intval($total_booster),
                             'booster_mitra' => intval($total_booster),
                             'total_jumlah_booster' => intval($data_peserta->jumlah_anak) * intval($total_booster),
-                            // 'booster_media' => intval($total_media),
                             'total_media_belajar' => intval($total_media_anak),
                             'total_lain_lain' => intval($total_lain_lain),
-                            // 'total_akhir' => intval($harga_mitra) + intval($total_booster) + intval($total_lain_lain) + intval($total_media_anak)
                             'total_akhir' => intval($harga_mitra) +  intval($total_lain_lain) + intval($data_peserta->jumlah_anak) * intval($total_booster)
                         ];
                     }
@@ -188,7 +185,6 @@ class InvoiceMitraController extends BaseController
 
                 $total_lain_lain_mitra = $this->klaimLainLainModel->SumLainLainPerbulan($inputan_bulan, $inputan_tahun);
 
-                // $total_booster_media = $this->klaimLainLainModel->SumBoosterMediaPerbulan($inputan_bulan, $inputan_tahun);
                 $total_booster_media = 0;
                 foreach ($data_presensi as $jumlah => $value) {
                     $total_booster_media += intval($value["total_jumlah_booster"]);
@@ -215,14 +211,6 @@ class InvoiceMitraController extends BaseController
                 } else {
                     $total_harga = intval($total_harga_mitra->total_harga_mitra);
                 }
-
-                // booster_media
-                // if ($total_booster_media->total_booster_media_mitra == null) {
-                //     $total_media_booster = intval(0);
-                // } else {
-                //     $total_media_booster = intval($total_booster_media->total_booster_media_mitra);
-                // }
-
 
                 // lain_lain
                 if ($total_lain_lain_mitra->total_lain_lain == null) {

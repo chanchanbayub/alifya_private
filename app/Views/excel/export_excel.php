@@ -79,9 +79,15 @@ header("Content-Disposition: attachment; filename=pembukuan_mitra.xls");
                     </tr>
                 <?php endforeach; ?>
             </tbody>
-            <!-- <tfoot>
-            
-        </tfoot> -->
+
+            <tfoot>
+                <tr>
+                    <th colspan="2" style="text-align: center;">TOTAL PEMASUKAN :</th>
+                    <th style="text-align: center;"><?= $total_anak_aktif ?></th>
+                    <th style="text-align: center;"><?= $total_presensi_perbulan ?></th>
+                    <th colspan="7" style="text-align: center;">Rp. <?= number_format($total_pemasukan) ?> </th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
