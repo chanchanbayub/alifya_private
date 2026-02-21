@@ -90,7 +90,7 @@ class KlaimLainLainMitraController extends BaseController
                                 'bulan' => $bulan,
                                 'tahun' => $tahun,
                                 'lain_lain' => intval(0),
-                                'booster_media_mitra' => intval(0)
+                                'booster_media_mitra' => intval(3500)
                             ]);
                             $alert = [
                                 'success' => 'Lain Lain Berhasil di Simpan !'

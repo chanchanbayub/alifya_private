@@ -53,8 +53,7 @@ header("Content-Disposition: attachment; filename=pembukuan_mitra.xls");
                     <th scope="col" style="text-transform: capitalize; text-align:center">Mitra Pengajar</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Anak Aktif</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi</th>
-                    <th scope="col" style="text-transform: capitalize; text-align:center">Upah Per Anak</th>
-                    <th scope="col" style="text-transform: capitalize; text-align:center">Harga Booster</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center">Harga Presensi</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Total Booster</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
@@ -70,7 +69,6 @@ header("Content-Disposition: attachment; filename=pembukuan_mitra.xls");
                         <td scope="col" style="text-transform: capitalize;"><?= $presensi["jumlah_anak"] ?></td>
                         <td scope="col" style="text-transform: capitalize;"><?= $presensi["total_presensi"] ?></td>
                         <td scope="col" style="text-transform: capitalize;"><?= number_format($presensi["harga_mitra"], 0, ",", ".")  ?></td>
-                        <td scope="col" style="text-transform: capitalize;"><?= number_format($presensi["booster_mitra"], 0, ",", ".")  ?></td>
                         <td scope="col" style="text-transform: capitalize;"><?= number_format($presensi["total_jumlah_booster"], 0, ",", ".")  ?></td>
                         <td scope="col" style="text-transform: capitalize;"><?= number_format($presensi["total_lain_lain"], 0, ",", ".")  ?></td>
                         <td scope="col" style="text-transform: capitalize;"><?= number_format($presensi["total_akhir"], 0, ",", ".")  ?></td>

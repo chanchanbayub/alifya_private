@@ -173,7 +173,6 @@ class InvoiceMitraController extends BaseController
                             // 'harga_booster' => intval($total_booster),
                             'booster_mitra' => intval($total_booster),
                             'total_jumlah_booster' => intval($data_peserta->jumlah_anak) * intval($total_booster),
-
                             // 'booster_media' => intval($total_media),
                             'total_media_belajar' => intval($total_media_anak),
                             'total_lain_lain' => intval($total_lain_lain),
@@ -187,13 +186,14 @@ class InvoiceMitraController extends BaseController
 
                 $total_harga_mitra = $this->presensiModel->SumHargaPresensiMitra($inputan_bulan, $inputan_tahun);
 
-                // $total_booster = $this->hargaMitraModel->getHargaMitraPerbulan()
-
-                // $total_harga_media = $this->klaimMediaPesertaModel->SumHargaMedia($inputan_bulan, $inputan_tahun);
-
                 $total_lain_lain_mitra = $this->klaimLainLainModel->SumLainLainPerbulan($inputan_bulan, $inputan_tahun);
 
-                // $total_booster_media_mitra = $this->klaimLainLainModel->SumBoosterMediaPerbulan($inputan_bulan, $inputan_tahun);
+                // $total_booster_media = $this->klaimLainLainModel->SumBoosterMediaPerbulan($inputan_bulan, $inputan_tahun);
+                $total_booster_media = 0;
+                foreach ($data_presensi as $jumlah => $value) {
+                    $total_booster_media += intval($value["total_jumlah_booster"]);
+                }
+
 
                 // data anak
                 if ($total_data->total_anak == null) {
@@ -201,6 +201,7 @@ class InvoiceMitraController extends BaseController
                 } else {
                     $total_anak =  intval($total_data->total_anak);
                 }
+
                 // data Presensi perbulan
                 if ($total_data->total_presensi_perbulan == null) {
                     $total_presensi_perbulan = intval(0);
@@ -216,26 +217,12 @@ class InvoiceMitraController extends BaseController
                 }
 
                 // booster_media
-                if ($total_harga_mitra->total_booster == null) {
-                    $total_booster = intval(0);
-                } else {
-                    $total_booster = intval($total_harga_mitra->total_booster);
-                }
-
-
-
-                // if ($total_booster_media_mitra->total_booster_media_mitra == null) {
-                //     $total_booster = intval(0);
+                // if ($total_booster_media->total_booster_media_mitra == null) {
+                //     $total_media_booster = intval(0);
                 // } else {
-                //     $total_booster = intval($total_booster_media_mitra->total_booster_media_mitra);
+                //     $total_media_booster = intval($total_booster_media->total_booster_media_mitra);
                 // }
 
-                // media belajar
-                // if ($total_harga_media->total_harga_media == null) {
-                //     $total_media = intval(0);
-                // } else {
-                //     $total_media = intval($total_harga_media->total_harga_media);
-                // }
 
                 // lain_lain
                 if ($total_lain_lain_mitra->total_lain_lain == null) {
@@ -244,7 +231,7 @@ class InvoiceMitraController extends BaseController
                     $total_lain_lain = intval($total_lain_lain_mitra->total_lain_lain);
                 }
 
-                $total_pemasukan = $total_harga  + $total_lain_lain + $total_booster;
+                $total_pemasukan = $total_harga  + $total_lain_lain + $total_booster_media;
 
                 $alert = [
                     'data_presensi' => $data_presensi,

@@ -191,7 +191,7 @@ class PresensiModel extends Model
     public function SumHargaPresensiMitra($bulan, $tahun)
     {
         return $this->table($this->table)
-            ->select("SUM(harga_mitra_table.harga_mitra) as total_harga_mitra, SUM(harga_mitra_table.booster_media) as total_booster")
+            ->select("SUM(harga_mitra_table.harga_mitra) as total_harga_mitra")
             ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
             ->join('harga_mitra_table', 'harga_mitra_table.peserta_didik_id = data_murid_table.id')
