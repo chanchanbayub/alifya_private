@@ -48,7 +48,7 @@ class UpahMitraController extends BaseController
                                                     <i class="bi bi-trash"></i>
                                                 </button>';
                 })
-                ->setSearchableColumns(['nama_lengkap', 'bulan', 'upah_mitra', 'lain_lain'])
+                ->setSearchableColumns(['nama_lengkap', 'bulan', 'upah_mitra', 'bonus_kehadiran', 'booster_penugasan', 'penalangan', 'lain_lain'])
                 ->addNumbering('no')->toJson(true);
         }
     }
@@ -77,6 +77,24 @@ class UpahMitraController extends BaseController
                         'required' => 'Tidak Boleh Kosong!'
                     ]
                 ],
+                'bonus_kehadiran' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong!'
+                    ]
+                ],
+                'booster_penugasan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong!'
+                    ]
+                ],
+                'penalangan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong!'
+                    ]
+                ],
                 'lain_lain' => [
                     'rules' => 'required',
                     'errors' => [
@@ -90,6 +108,9 @@ class UpahMitraController extends BaseController
                         'mitra_ahl_id' => $this->validation->getError('mitra_ahl_id'),
                         'bulan' => $this->validation->getError('bulan'),
                         'upah_mitra' => $this->validation->getError('upah_mitra'),
+                        'bonus_kehadiran' => $this->validation->getError('bonus_kehadiran'),
+                        'booster_penugasan' => $this->validation->getError('booster_penugasan'),
+                        'penalangan' => $this->validation->getError('penalangan'),
                         'lain_lain' => $this->validation->getError('lain_lain'),
 
                     ]
@@ -99,6 +120,9 @@ class UpahMitraController extends BaseController
                 $mitra_ahl_id = $this->request->getPost('mitra_ahl_id');
                 $bulan = $this->request->getPost('bulan');
                 $upah_mitra = $this->request->getPost('upah_mitra');
+                $bonus_kehadiran = $this->request->getPost('bonus_kehadiran');
+                $booster_penugasan = $this->request->getPost('booster_penugasan');
+                $penalangan = $this->request->getPost('penalangan');
                 $lain_lain = $this->request->getPost('lain_lain');
 
                 // $data_bulan = date_create($bulan);
@@ -107,16 +131,28 @@ class UpahMitraController extends BaseController
 
                 $bulan_ini = $time->format('Y-m-d');
 
-                $this->upahMitraModel->save([
-                    'mitra_ahl_id' => strtolower($mitra_ahl_id),
-                    'bulan' => strtolower($bulan_ini),
-                    'upah_mitra' => strtolower($upah_mitra),
-                    'lain_lain' => strtolower($lain_lain),
-                ]);
+                $get_data = $this->upahMitraModel->where(["mitra_ahl_id" => $mitra_ahl_id])->where(["bulan" => $bulan_ini])->first();
 
-                $alert = [
-                    'success' => 'Upah Mitra Berhasil di Simpan!'
-                ];
+                if ($get_data != null) {
+                    $alert = [
+                        'error' => [
+                            'duplikat' => 'Upah Mitra Bulan Tersebut Telah terdaftar di database!'
+                        ]
+                    ];
+                } else {
+                    $this->upahMitraModel->save([
+                        'mitra_ahl_id' => strtolower($mitra_ahl_id),
+                        'bulan' => strtolower($bulan_ini),
+                        'upah_mitra' => strtolower($upah_mitra),
+                        'bonus_kehadiran' => strtolower($bonus_kehadiran),
+                        'booster_penugasan' => strtolower($booster_penugasan),
+                        'penalangan' => strtolower($penalangan),
+                        'lain_lain' => strtolower($lain_lain),
+                    ]);
+                    $alert = [
+                        'success' => 'Upah Mitra Berhasil di Simpan!'
+                    ];
+                }
             }
 
             return json_encode($alert);
@@ -186,6 +222,24 @@ class UpahMitraController extends BaseController
                         'required' => 'Tidak Boleh Kosong!'
                     ]
                 ],
+                'bonus_kehadiran' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong!'
+                    ]
+                ],
+                'booster_penugasan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong!'
+                    ]
+                ],
+                'penalangan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong!'
+                    ]
+                ],
                 'lain_lain' => [
                     'rules' => 'required',
                     'errors' => [
@@ -199,6 +253,9 @@ class UpahMitraController extends BaseController
                         'mitra_ahl_id' => $this->validation->getError('mitra_ahl_id'),
                         'bulan' => $this->validation->getError('bulan'),
                         'upah_mitra' => $this->validation->getError('upah_mitra'),
+                        'bonus_kehadiran' => $this->validation->getError('bonus_kehadiran'),
+                        'booster_penugasan' => $this->validation->getError('booster_penugasan'),
+                        'penalangan' => $this->validation->getError('penalangan'),
                         'lain_lain' => $this->validation->getError('lain_lain'),
 
                     ]
@@ -208,6 +265,9 @@ class UpahMitraController extends BaseController
                 $mitra_ahl_id = $this->request->getPost('mitra_ahl_id');
                 $bulan = $this->request->getPost('bulan');
                 $upah_mitra = $this->request->getPost('upah_mitra');
+                $bonus_kehadiran = $this->request->getPost('bonus_kehadiran');
+                $booster_penugasan = $this->request->getPost('booster_penugasan');
+                $penalangan = $this->request->getPost('penalangan');
                 $lain_lain = $this->request->getPost('lain_lain');
 
                 // $data_bulan = date_create($bulan);
@@ -220,6 +280,9 @@ class UpahMitraController extends BaseController
                     'mitra_ahl_id' => strtolower($mitra_ahl_id),
                     'bulan' => strtolower($bulan_ini),
                     'upah_mitra' => strtolower($upah_mitra),
+                    'bonus_kehadiran' => strtolower($bonus_kehadiran),
+                    'booster_penugasan' => strtolower($booster_penugasan),
+                    'penalangan' => strtolower($penalangan),
                     'lain_lain' => strtolower($lain_lain),
                 ]);
 

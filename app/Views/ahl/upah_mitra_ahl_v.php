@@ -92,6 +92,9 @@
                                         <th scope="col">Mitra Pengajar</th>
                                         <th scope="col">Bulan</th>
                                         <th scope="col">Upah Mitra AHL</th>
+                                        <th scope="col">Bonus Kehadiran</th>
+                                        <th scope="col">Booster Penugasan</th>
+                                        <th scope="col">Penalangan</th>
                                         <th scope="col">Lain-Lain</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
@@ -167,7 +170,6 @@
                         <label for="mitra_ahl_id" class="col-form-label">Mitra Pengajar :</label>
                         <select name="mitra_ahl_id" id="mitra_ahl_id" class="form-select">
                             <option value="">--Silahkan Pilih--</option>
-
                             <?php foreach ($mitra_pengajar_ahl as $mitra_pengajar_ahl) : ?>
                                 <option value="<?= $mitra_pengajar_ahl->mitra_id ?>"><?= $mitra_pengajar_ahl->nama_lengkap ?></option>
                             <?php endforeach; ?>
@@ -188,6 +190,27 @@
                         <label for="upah_mitra" class="col-form-label">Upah Mitra :</label>
                         <input type="number" class="form-control" id="upah_mitra" name="upah_mitra" placeholder="50000">
                         <div class="invalid-feedback error-upah-mitra">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="bonus_kehadiran" class="col-form-label">Bonus Kehadiran :</label>
+                        <input type="number" class="form-control" id="bonus_kehadiran" name="bonus_kehadiran" placeholder="50000">
+                        <div class="invalid-feedback error-bonus-kehadiran">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="booster_penugasan" class="col-form-label">Booster Penugasan :</label>
+                        <input type="number" class="form-control" id="booster_penugasan" name="booster_penugasan" placeholder="50000">
+                        <div class="invalid-feedback error-booster-penugasan">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="penalangan" class="col-form-label">Penalangan :</label>
+                        <input type="number" class="form-control" id="penalangan" name="penalangan" placeholder="50000">
+                        <div class="invalid-feedback error-penalangan">
                         </div>
                     </div>
 
@@ -246,6 +269,27 @@
                         <label for="upah_mitra_edit" class="col-form-label">Upah Mitra :</label>
                         <input type="number" class="form-control" id="upah_mitra_edit" name="upah_mitra" placeholder="50000">
                         <div class="invalid-feedback error-upah-mitra-edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="bonus_kehadiran_edit" class="col-form-label">Bonus Kehadiran :</label>
+                        <input type="number" class="form-control" id="bonus_kehadiran_edit" name="bonus_kehadiran_edit" placeholder="50000">
+                        <div class="invalid-feedback error-bonus-kehadiran_edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="booster_penugasan_edit" class="col-form-label">Booster Penugasan :</label>
+                        <input type="number" class="form-control" id="booster_penugasan_edit" name="booster_penugasan_edit" placeholder="50000">
+                        <div class="invalid-feedback error-booster-penugasan_edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="penalangan_edit" class="col-form-label">Penalangan :</label>
+                        <input type="number" class="form-control" id="penalangan_edit" name="penalangan_edit" placeholder="50000">
+                        <div class="invalid-feedback error-penalangan-edit">
                         </div>
                     </div>
 
@@ -340,6 +384,18 @@
                     render: $.fn.dataTable.render.number('.', '.', 0, '')
                 },
                 {
+                    data: 'bonus_kehadiran',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'booster_penugasan',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'penalangan',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
                     data: 'lain_lain',
                     render: $.fn.dataTable.render.number('.', '.', 0, '')
                 },
@@ -376,6 +432,9 @@
             let mitra_ahl_id = $("#mitra_ahl_id").val();
             let bulan = $("#bulan").val();
             let upah_mitra = $("#upah_mitra").val();
+            let bonus_kehadiran = $("#bonus_kehadiran").val();
+            let booster_penugasan = $("#booster_penugasan").val();
+            let penalangan = $("#penalangan").val();
             let lain_lain = $("#lain_lain").val();
 
             $.ajax({
@@ -386,6 +445,9 @@
                     mitra_ahl_id: mitra_ahl_id,
                     bulan: bulan,
                     upah_mitra: upah_mitra,
+                    bonus_kehadiran: bonus_kehadiran,
+                    booster_penugasan: booster_penugasan,
+                    penalangan: penalangan,
                     lain_lain: lain_lain,
 
                 },
@@ -420,6 +482,27 @@
                             $("#upah_mitra").removeClass('is-invalid');
                             $(".error-upah-mitra").html('');
                         }
+                        if (response.error.bonus_kehadiran) {
+                            $("#bonus_kehadiran").addClass('is-invalid');
+                            $(".error-bonus-kehadiran").html(response.error.bonus_kehadiran);
+                        } else {
+                            $("#bonus_kehadiran").removeClass('is-invalid');
+                            $(".error-bonus-kehadiran").html('');
+                        }
+                        if (response.error.booster_penugasan) {
+                            $("#booster_penugasan").addClass('is-invalid');
+                            $(".error-booster-penugasan").html(response.error.booster_penugasan);
+                        } else {
+                            $("#booster_penugasan").removeClass('is-invalid');
+                            $(".error-booster-penugasan").html('');
+                        }
+                        if (response.error.penalangan) {
+                            $("#penalangan").addClass('is-invalid');
+                            $(".error-penalangan").html(response.error.penalangan);
+                        } else {
+                            $("#penalangan").removeClass('is-invalid');
+                            $(".error-penalangan").html('');
+                        }
                         if (response.error.lain_lain) {
                             $("#lain_lain").addClass('is-invalid');
                             $(".error-lain-lain").html(response.error.lain_lain);
@@ -428,7 +511,12 @@
                             $(".error-lain-lain").html('');
                         }
 
-
+                        if (response.error.duplikat) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: `${response.error.duplikat}`,
+                            });
+                        }
 
                     } else {
                         Swal.fire({
@@ -469,6 +557,9 @@
                 $("#id_edit").val(response.upah_mitra.id);
                 $("#bulan_edit").val(response.upah_mitra.bulan);
                 $("#upah_mitra_edit").val(response.upah_mitra.upah_mitra);
+                $("#bonus_kehadiran_edit").val(response.upah_mitra.bonus_kehadiran);
+                $("#booster_penugasan_edit").val(response.upah_mitra.booster_penugasan);
+                $("#penalangan_edit").val(response.upah_mitra.penalangan);
                 $("#lain_lain_edit").val(response.upah_mitra.lain_lain);
 
 
@@ -493,6 +584,9 @@
         let mitra_ahl_id = $("#mitra_ahl_id_edit").val();
         let bulan = $("#bulan_edit").val();
         let upah_mitra = $("#upah_mitra_edit").val();
+        let bonus_kehadiran = $("#bonus_kehadiran_edit").val();
+        let booster_penugasan = $("#booster_penugasan_edit").val();
+        let penalangan = $("#penalangan_edit").val();
         let lain_lain = $("#lain_lain_edit").val();
 
         $.ajax({
@@ -504,6 +598,9 @@
                 mitra_ahl_id: mitra_ahl_id,
                 bulan: bulan,
                 upah_mitra: upah_mitra,
+                bonus_kehadiran: bonus_kehadiran,
+                booster_penugasan: booster_penugasan,
+                penalangan: penalangan,
                 lain_lain: lain_lain,
             },
             beforeSend: function() {
@@ -536,6 +633,27 @@
                     } else {
                         $("#upah_mitra_edit").removeClass('is-invalid');
                         $(".error-upah-mitra-edit").html('');
+                    }
+                    if (response.error.bonus_kehadiran) {
+                        $("#bonus_kehadiran_edit").addClass('is-invalid');
+                        $(".error-bonus-kehadiran-edit").html(response.error.bonus_kehadiran);
+                    } else {
+                        $("#bonus_kehadiran_edit").removeClass('is-invalid');
+                        $(".error-bonus-kehadiran-edit").html('');
+                    }
+                    if (response.error.booster_penugasan) {
+                        $("#booster_penugasan_edit").addClass('is-invalid');
+                        $(".error-booster-penugasan-edit").html(response.error.booster_penugasan);
+                    } else {
+                        $("#booster_penugasan_edit").removeClass('is-invalid');
+                        $(".error-booster-penugasan-edit").html('');
+                    }
+                    if (response.error.penalangan) {
+                        $("#penalangan_edit").addClass('is-invalid');
+                        $(".error-penalangan-edit").html(response.error.penalangan);
+                    } else {
+                        $("#penalangan_edit").removeClass('is-invalid');
+                        $(".error-penalangan-edit").html('');
                     }
                     if (response.error.lain_lain) {
                         $("#lain_lain_edit").addClass('is-invalid');
