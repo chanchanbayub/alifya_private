@@ -358,6 +358,7 @@ class MuridController extends BaseController
         }
 
         $profil = $this->muridModel->getMitramurid($id);
+        // dd($profil);
 
         // dd($profil);
         $hari_ini = date_create();
