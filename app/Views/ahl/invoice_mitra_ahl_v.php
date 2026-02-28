@@ -81,12 +81,11 @@
                                     <tr>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">No</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Mitra Pengajar</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi Masuk</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi Pulang</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Dinas Luar</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Total Presensi</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Upah Mitra</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Upah Mitra </th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Bonus Kehadiran</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Booster Penugasan</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Penalangan</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain Ahl</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Link</th>
                                     </tr>
@@ -165,25 +164,24 @@
                     } else {
                         let no = 1;
                         let table_invoice_data = ``;
-                        if (response.data_presensi.length >= 1) {
-                            response.data_presensi.forEach(function(e) {
+                        if (response.upah_ahl.length >= 1) {
+                            response.upah_ahl.forEach(function(e) {
                                 table_invoice_data += `<tr>
                                     <td>${no++}</td>
                                     <td>${e.nama_lengkap}</td>
-                                    <td align="center">${e.jumlah_presensi_masuk}</td>
-                                    <td align="center">${e.jumlah_presensi_pulang}</td>
-                                    <td align="center">${e.jumlah_presensi_dinas_luar}</td>
-                                    <td align="center">${e.jumlah_presensi_perbulan}</td>
-                                    <td align="center">Rp. ${new Intl.NumberFormat().format(e.upah_mitra)}</td>
+                                    <td align="center">${new Intl.NumberFormat().format(e.upah_mitra)}</td>
+                                    <td align="center">${new Intl.NumberFormat().format(e.bonus_kehadiran)}</td>
+                                    <td align="center">${new Intl.NumberFormat().format(e.booster_penugasan)}</td>
+                                    <td align="center">${new Intl.NumberFormat().format(e.penalangan)}</td>
                                     <td align="center">Rp. ${new Intl.NumberFormat().format(e.lain_lain)}</td>
                                     <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
                                     <td align="center"><a href="/admin/invoice_mitra_ahl/pdf/${e.mitra_id}/${response.bulan}/${response.tahun}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td> </td>
                                 </tr>`;
                             });
                             $(".table_invoice").html(table_invoice_data);
-                            $(".jumlah_presensi").html(response.total_presensi_perbulan);
-                            $(".jumlah_presensi_masuk").html(response.total_presensi_perbulan_masuk);
-                            $(".jumlah_presensi_pulang").html(response.total_presensi_perbulan_pulang);
+                            // $(".jumlah_presensi").html(response.total_presensi_perbulan);
+                            // $(".jumlah_presensi_masuk").html(response.total_presensi_perbulan_masuk);
+                            // $(".jumlah_presensi_pulang").html(response.total_presensi_perbulan_pulang);
                             // $("#total_pemasukan").html('Rp. ' + new Intl.NumberFormat().format(response.total_pemasukan));
                             // $(".total_anak").html(response.total_anak_aktif);
                         } else {

@@ -76,41 +76,37 @@ class InvoiceMitraAhlController extends BaseController
 
                 $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhl();
 
-                $data_presensi_ahl = [];
+                $data_upah_ahl = [];
 
                 foreach ($mitra_pengajar_ahl as $mitra_pengajar) {
 
-                    $presensi = $this->presensiAhlModel->getPresensiWithMonthInvoice($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
-                    $presensi_masuk = $this->presensiAhlModel->getPresensiMasuk($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
-                    $presensi_pulang = $this->presensiAhlModel->getPresensiPulang($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
-                    $presensi_dinas_luar = $this->presensiAhlModel->getPresensiDinasLuar($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
+                    $upah_ahl = $this->upahMitraModel->getUpahMitraAhlWhereMitraAhl($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
 
-                    foreach ($presensi as $presensi) {
-                        $data_presensi_ahl[] = [
-                            'mitra_id' => $presensi->mitra_id,
-                            'nama_lengkap' => $presensi->nama_lengkap,
-                            'jumlah_presensi_masuk' => $presensi_masuk->jumlah_presensi_masuk,
-                            'jumlah_presensi_pulang' => $presensi_pulang->jumlah_presensi_pulang,
-                            'jumlah_presensi_dinas_luar' => $presensi_dinas_luar->jumlah_presensi_dinas_luar,
-                            'jumlah_presensi_perbulan' => $presensi->jumlah_presensi_perbulan,
-                            'upah_mitra' => $presensi->upah_mitra,
-                            'lain_lain' => $presensi->lain_lain,
-                            'total_akhir' => $presensi->upah_mitra + $presensi->lain_lain
+                    foreach ($upah_ahl as $upah_ahl) {
+                        $data_upah_ahl[] = [
+                            'mitra_id' => $upah_ahl->mitra_ahl_id,
+                            'nama_lengkap' => $upah_ahl->nama_lengkap,
+                            'upah_mitra' => $upah_ahl->upah_mitra,
+                            'bonus_kehadiran' => $upah_ahl->bonus_kehadiran,
+                            'booster_penugasan' => $upah_ahl->booster_penugasan,
+                            'penalangan' => $upah_ahl->penalangan,
+                            'lain_lain' => $upah_ahl->lain_lain,
+                            'total_akhir' => $upah_ahl->upah_mitra + $upah_ahl->bonus_kehadiran + $upah_ahl->booster_penugasan + $upah_ahl->lain_lain
                         ];
                     }
                 }
 
-                $total_presensi_perbulan = $this->presensiAhlModel->totalPresensiPerbulan($inputan_bulan, $inputan_tahun);
-                $total_presensi_perbulan_masuk = $this->presensiAhlModel->totalPresensiPerbulanMasuk($inputan_bulan, $inputan_tahun);
-                $total_presensi_perbulan_pulang = $this->presensiAhlModel->totalPresensiPerbulanPulang($inputan_bulan, $inputan_tahun);
-                $total_presensi_perbulan_dinas_luar = $this->presensiAhlModel->totalPresensiPerbulanDinasLuar($inputan_bulan, $inputan_tahun);
+                // $total_presensi_perbulan = $this->presensiAhlModel->totalPresensiPerbulan($inputan_bulan, $inputan_tahun);
+                // $total_presensi_perbulan_masuk = $this->presensiAhlModel->totalPresensiPerbulanMasuk($inputan_bulan, $inputan_tahun);
+                // $total_presensi_perbulan_pulang = $this->presensiAhlModel->totalPresensiPerbulanPulang($inputan_bulan, $inputan_tahun);
+                // $total_presensi_perbulan_dinas_luar = $this->presensiAhlModel->totalPresensiPerbulanDinasLuar($inputan_bulan, $inputan_tahun);
 
                 $alert = [
-                    'data_presensi' => $data_presensi_ahl,
-                    'total_presensi_perbulan' => $total_presensi_perbulan->total_presensi_perbulan,
-                    'total_presensi_perbulan_masuk' => $total_presensi_perbulan_masuk->total_presensi_perbulan_masuk,
-                    'total_presensi_perbulan_pulang' => $total_presensi_perbulan_pulang->total_presensi_perbulan_pulang,
-                    'total_presensi_perbulan_dinas_luar' => $total_presensi_perbulan_dinas_luar->total_presensi_perbulan_dinas_luar,
+                    'upah_ahl' => $data_upah_ahl,
+                    // 'total_presensi_perbulan' => $total_presensi_perbulan->total_presensi_perbulan,
+                    // 'total_presensi_perbulan_masuk' => $total_presensi_perbulan_masuk->total_presensi_perbulan_masuk,
+                    // 'total_presensi_perbulan_pulang' => $total_presensi_perbulan_pulang->total_presensi_perbulan_pulang,
+                    // 'total_presensi_perbulan_dinas_luar' => $total_presensi_perbulan_dinas_luar->total_presensi_perbulan_dinas_luar,
                     'bulan' => $inputan_bulan,
                     'tahun' => $inputan_tahun
                 ];
