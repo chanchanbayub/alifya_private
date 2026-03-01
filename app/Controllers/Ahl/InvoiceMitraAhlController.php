@@ -3,7 +3,11 @@
 namespace App\Controllers\Ahl;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\KelompokBelajarModel;
+use App\Models\Admin\KelompokModel;
+use App\Models\Admin\KlaimLainLainMitraModel;
 use App\Models\Admin\PengajarModel;
+use App\Models\Admin\PresensiModel;
 use App\Models\Ahl\JamMasukAhlModel;
 use App\Models\Ahl\MitraPengajarAhlModel;
 use App\Models\Ahl\PresensiAhlModel;
@@ -19,6 +23,10 @@ class InvoiceMitraAhlController extends BaseController
     protected $presensiAhlModel;
     protected $jamMasukAhlModel;
     protected $validation;
+    protected $presensiModel;
+    protected $klaimLainLainModel;
+    protected $kelompokModel;
+    protected $kelompokBelajarModel;
 
     public function __construct()
     {
@@ -27,7 +35,11 @@ class InvoiceMitraAhlController extends BaseController
         $this->jamMasukAhlModel = new JamMasukAhlModel();
         $this->presensiAhlModel = new PresensiAhlModel();
         $this->pengajarModel = new PengajarModel();
+        $this->presensiModel = new PresensiModel();
+        $this->klaimLainLainModel = new KlaimLainLainMitraModel();
         $this->validation = \Config\Services::validation();
+        $this->kelompokModel = new KelompokModel();
+        $this->kelompokBelajarModel = new KelompokBelajarModel();
 
         helper(['format']);
     }
@@ -76,12 +88,16 @@ class InvoiceMitraAhlController extends BaseController
 
                 $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhl();
 
+
                 $data_upah_ahl = [];
 
                 foreach ($mitra_pengajar_ahl as $mitra_pengajar) {
 
                     $upah_ahl = $this->upahMitraModel->getUpahMitraAhlWhereMitraAhl($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
-
+                    $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
+                    $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
+                    $kelompok_id = $this->kelompokModel->where(["mitra_pengajar_id" => $mitra_pengajar->mitra_id])->first();
+                    $jumlah_anak = $this->kelompokBelajarModel->getUserWithKelompok($kelompok_id["id"]);
                     foreach ($upah_ahl as $upah_ahl) {
                         $data_upah_ahl[] = [
                             'mitra_id' => $upah_ahl->mitra_ahl_id,
@@ -91,7 +107,8 @@ class InvoiceMitraAhlController extends BaseController
                             'booster_penugasan' => $upah_ahl->booster_penugasan,
                             'penalangan' => $upah_ahl->penalangan,
                             'lain_lain' => $upah_ahl->lain_lain,
-                            'total_akhir' => $upah_ahl->upah_mitra + $upah_ahl->bonus_kehadiran + $upah_ahl->booster_penugasan + $upah_ahl->lain_lain
+                            'pendapatan_ap' => intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak),
+                            'total_akhir' => intval($upah_ahl->upah_mitra) + intval($upah_ahl->bonus_kehadiran) + intval($upah_ahl->booster_penugasan) + intval($upah_ahl->lain_lain) + intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak)
                         ];
                     }
                 }

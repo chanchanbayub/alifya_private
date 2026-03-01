@@ -86,6 +86,7 @@
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Booster Penugasan</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Penalangan</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain Ahl</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Pendapatan Private</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Link</th>
                                     </tr>
@@ -174,6 +175,7 @@
                                     <td align="center">${new Intl.NumberFormat().format(e.booster_penugasan)}</td>
                                     <td align="center">${new Intl.NumberFormat().format(e.penalangan)}</td>
                                     <td align="center">Rp. ${new Intl.NumberFormat().format(e.lain_lain)}</td>
+                                    <td align="center">Rp. ${new Intl.NumberFormat().format(e.pendapatan_ap)}</td>
                                     <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
                                     <td align="center"><a href="/admin/invoice_mitra_ahl/pdf/${e.mitra_id}/${response.bulan}/${response.tahun}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td> </td>
                                 </tr>`;
