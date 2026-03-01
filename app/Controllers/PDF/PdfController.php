@@ -5,6 +5,8 @@ namespace App\Controllers\PDF;
 use App\Controllers\BaseController;
 use App\Models\Admin\HargaMitraModel;
 use App\Models\Admin\HargaModel;
+use App\Models\Admin\KelompokBelajarModel;
+use App\Models\Admin\KelompokModel;
 use App\Models\Admin\KlaimLainLainMitraModel;
 use App\Models\Admin\KlaimMediaPesertaModel;
 use App\Models\Admin\MediaBelajarModel;
@@ -12,8 +14,10 @@ use App\Models\Admin\MuridModel;
 use App\Models\Admin\PengajarModel;
 use App\Models\Admin\PresensiModel;
 use App\Models\Ahl\LainLainPesertaAHLModel;
+use App\Models\Ahl\MitraPengajarAhlModel;
 use App\Models\Ahl\PesertaDidikAhlModel;
 use App\Models\Ahl\PresensiAhlModel;
+use App\Models\Ahl\UpahMitraModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use DateTime;
 
@@ -31,6 +35,11 @@ class PdfController extends BaseController
     protected $presensiAhlModel;
     protected $pesertaDidikAhlModel;
     protected $lainLainAhlModel;
+    protected $mitraPengajarAhlModel;
+    protected $upahMitraModel;
+    protected $kelompokModel;
+    protected $kelompokBelajarModel;
+
 
     public function __construct()
     {
@@ -46,6 +55,10 @@ class PdfController extends BaseController
         $this->presensiAhlModel = new PresensiAhlModel();
         $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
         $this->lainLainAhlModel = new LainLainPesertaAHLModel();
+        $this->mitraPengajarAhlModel = new MitraPengajarAhlModel();
+        $this->upahMitraModel = new UpahMitraModel();
+        $this->kelompokModel = new KelompokModel();
+        $this->kelompokBelajarModel = new KelompokBelajarModel();
     }
 
     public function invoice_peserta_didik($mitra_pengajar_id, $peserta_didik_id, $bulan, $tahun)
@@ -200,9 +213,9 @@ class PdfController extends BaseController
 
         $mitra_pengajar_id = $mitra_pengajar_id;
 
-        $bulan = intval($bulan);
+        $inputan_bulan = intval($bulan);
 
-        $tahun = intval($tahun);
+        $inputan_tahun = intval($tahun);
 
 
         helper(['format']);
@@ -210,7 +223,6 @@ class PdfController extends BaseController
         $mitra_pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
 
         $presensi = $this->presensiAhlModel->getPresensiWithMonthInvoice($mitra_pengajar_id, $bulan, $tahun);
-
 
         // dd($invoice);
 
@@ -224,44 +236,44 @@ class PdfController extends BaseController
             return redirect()->back()->withInput($error);
         } else {
 
-            $pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
+            $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhlById($mitra_pengajar_id);
 
-            $presensi_masuk = $this->presensiAhlModel->getPresensiMasuk($mitra_pengajar_id, $bulan, $tahun);
-            $presensi_pulang = $this->presensiAhlModel->getPresensiPulang($mitra_pengajar_id, $bulan, $tahun);
-            $presensi_dinas_luar = $this->presensiAhlModel->getPresensiDinasLuar($mitra_pengajar_id, $bulan, $tahun);
-            $presensi = $this->presensiAhlModel->getPresensiWithMonthInvoice($mitra_pengajar_id, $bulan, $tahun);
 
-            foreach ($presensi as $presensi) {
 
-                $mitra_id = $presensi->mitra_id;
-                $nama_lengkap = $presensi->nama_lengkap;
-                $jumlah_presensi_masuk = $presensi_masuk->jumlah_presensi_masuk;
-                $jumlah_presensi_pulang = $presensi_pulang->jumlah_presensi_pulang;
-                $jumlah_presensi_dinas_luar = $presensi_dinas_luar->jumlah_presensi_dinas_luar;
-                $jumlah_presensi_perbulan = $presensi->jumlah_presensi_perbulan;
-                $upah_mitra = $presensi->upah_mitra;
-                $lain_lain = $presensi->lain_lain;
-                $total_akhir = $presensi->upah_mitra + $presensi->lain_lain;
+
+            $upah_ahl = $this->upahMitraModel->getUpahMitraAhlWhereMitraAhl($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
+
+            $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
+            $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
+            $kelompok_id = $this->kelompokModel->where(["mitra_pengajar_id" => $mitra_pengajar_ahl->mitra_id])->first();
+            $jumlah_anak = $this->kelompokBelajarModel->getUserWithKelompok($kelompok_id["id"]);
+
+            foreach ($upah_ahl as $upah_ahl) {
+                $data_upah_ahl = [
+                    'mitra_id' => $upah_ahl->mitra_ahl_id,
+                    'nama_lengkap' => $upah_ahl->nama_lengkap,
+                    'upah_mitra' => $upah_ahl->upah_mitra,
+                    'bonus_kehadiran' => $upah_ahl->bonus_kehadiran,
+                    'booster_penugasan' => $upah_ahl->booster_penugasan,
+                    'penalangan' => $upah_ahl->penalangan,
+                    'lain_lain' => $upah_ahl->lain_lain,
+                    'pendapatan_ap' => intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak),
+                    'total_akhir' => intval($upah_ahl->upah_mitra) + intval($upah_ahl->bonus_kehadiran) + intval($upah_ahl->booster_penugasan) + intval($upah_ahl->lain_lain) + intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak)
+                ];
             }
 
 
-            $data = [
-                'jumlah_presensi_perbulan' =>  $jumlah_presensi_perbulan,
-                'upah_mitra' => $upah_mitra,
-                'lain_lain' => $lain_lain,
-                'total_akhir' => $total_akhir,
-                'mitra_pengajar' => $pengajar,
-                'presensi_masuk' => $presensi_masuk->jumlah_presensi_masuk,
-                'presensi_pulang' => $presensi_pulang->jumlah_presensi_pulang,
-                'presensi_dinas_luar' => $presensi_dinas_luar->jumlah_presensi_dinas_luar,
 
+
+            $data = [
+                'upah_ahl' =>  $data_upah_ahl,
             ];
 
             $html = view('pdf/invoice_mitra_ahl_pdf', $data);
             $this->mpdf->WriteHTML($html);
 
             $this->response->setHeader('Content-Type', 'application/pdf');;
-            $this->mpdf->output('Invoice-' . $pengajar->nama_lengkap  . '.pdf', 'I');
+            $this->mpdf->output('Invoice-' . $mitra_pengajar_ahl->nama_lengkap  . '.pdf', 'I');
         }
     }
 

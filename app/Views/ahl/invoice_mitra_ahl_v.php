@@ -93,7 +93,7 @@
                                 </thead>
                                 <tbody class="table_invoice">
 
-                                <tfoot>
+                                    <!-- <tfoot>
                                     <tr>
                                         <th colspan="2" style="text-align: center;">JUMLAH :</th>
                                         <th colspan="1" class="jumlah_presensi_masuk" style="text-align: center;">0</th>
@@ -104,7 +104,7 @@
                                         <th colspan="1" class="total_lain_lain" style="text-align: center;">0</th>
                                         <th colspan="1" class="total_akhir" style="text-align: center;">0</th>
                                     </tr>
-                                </tfoot>
+                                </tfoot> -->
                             </table>
                         </div>
                     </div>

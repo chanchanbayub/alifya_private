@@ -88,7 +88,6 @@ class InvoiceMitraAhlController extends BaseController
 
                 $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhl();
 
-
                 $data_upah_ahl = [];
 
                 foreach ($mitra_pengajar_ahl as $mitra_pengajar) {

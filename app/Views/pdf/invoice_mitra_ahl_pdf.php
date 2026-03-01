@@ -14,6 +14,7 @@
             text-align: center;
             box-sizing: border-box;
             text-transform: capitalize;
+            padding: 20px 0;
         }
 
         .logo {
@@ -25,7 +26,7 @@
             text-align: center;
         }
 
-        #pengantar {
+        .pengantar {
             text-align: left;
             margin: 0 auto;
         }
@@ -44,8 +45,10 @@
             width: 100%;
             padding-left: 10px;
             padding-right: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
             margin: 0 auto;
-            background-image: url('assets/img/logo.png');
+            background-image: url('assets/img/logo_baru.png');
             background-size: 350px;
             background-repeat: no-repeat;
             background-origin: content-box;
@@ -62,12 +65,12 @@
             <img src="assets/img/logo.png" id="logo_center" width="80" alt="logo">
         </div> -->
         <!-- <hr> -->
-        <table id="pengantar">
+        <table class="pengantar">
             <thead>
                 <tr>
                     <th scope="col">Mitra Pengajar</th>
                     <th scope="col">:</th>
-                    <th scope="col" style="text-transform: capitalize;"><?= $mitra_pengajar->nama_lengkap ?> </th>
+                    <th scope="col" style="text-transform: capitalize;"><?= $upah_ahl["nama_lengkap"] ?> </th>
                 </tr>
 
             </thead>
@@ -76,50 +79,58 @@
         <table id="table">
             <thead>
                 <tr>
-                    <th scope="col">Jumlah Presensi Masuk</th>
-                    <th scope="col">Jumlah Presensi Pulang</th>
-                    <th scope="col">Jumlah Presensi Dinas Luar</th>
-                    <th scope="col">Total Presensi</th>
-                    <th scope="col">Upah Mitra</th>
-                    <th scope="col">Lain-Lain</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Mitra Pengajar</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Upah Mitra </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Bonus Kehadiran</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Booster Penugasan</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Penalangan</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Lain-Lain Ahl</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Pendapatan AP</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Total Akhir</th>
+
 
                 </tr>
             </thead>
             <tbody id="content-table">
                 <tr>
-                    <td><?= $presensi_masuk ?> </td>
-                    <td><?= $presensi_pulang ?> </td>
-                    <td><?= $presensi_dinas_luar ?> </td>
-                    <td> <?= $jumlah_presensi_perbulan ?> </td>
-                    <td>Rp. <?= number_format($upah_mitra)  ?> </td>
-                    <td>Rp. <?= number_format($lain_lain) ?> </td>
-                </tr>
-                <tr>
-                    <th colspan="4">Total Pembayaran</th>
-                    <th colspan="2">Rp. <?= number_format($total_akhir) ?></th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; "><?= $upah_ahl["nama_lengkap"]  ?></th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["upah_mitra"])   ?> </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["bonus_kehadiran"])   ?> </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["booster_penugasan"])   ?> </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["penalangan"])   ?> </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["lain_lain"])   ?> </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["pendapatan_ap"])   ?> </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["total_akhir"])   ?> </th>
                 </tr>
             </tbody>
-            <tfoot>
-                <br>
+
+        </table>
+    </div>
+    <br>
+    <div>
+        <table align="right">
+            <thead>
                 <tr>
-                    <th colspan="4" style="border: 0;"></th>
-                    <th colspan="2" style="border: 0;">Tasikmalaya, <?= date('d F Y') ?></th>
+                    <th colspan="6" style="border: 0;"></th>
+                    <th style="border: 0;">Tasikmalaya, <?= date('d F Y') ?></th>
                 </tr>
                 <tr>
-                    <th colspan="4" style="border: 0;"></th>
+                    <th colspan="6" style="border: 0;"></th>
                     <th colspan="2" style="border: 0;">Founder,</th>
                 </tr>
                 <tr>
-                    <th colspan="4" style="border: 0;"></th>
+                    <th colspan="6" style="border: 0;"></th>
                     <th colspan="2" style="border: 0;"><img src="assets/img/ttd_anisa.png" alt="" width="130" class="ttd"></th>
                 </tr>
                 <tr>
-                    <th colspan="4" style="border: 0;"></th>
+                    <th colspan="6" style="border: 0;"></th>
                     <th colspan="2" style="border: 0;">Annisa Shofaril Wahidah Y, S.Pd.</th>
                 </tr>
-            </tfoot>
+            </thead>
         </table>
-        <img src="assets/img/logo_baru.png" alt="" style="margin-left:850px; margin-top:-145px;" class="cap">
+        <img src="assets/img/logo_baru.png" alt="" style="margin-left:950px; margin-top:-155px;" class="cap">
+
+
     </div>
 </body>
 
