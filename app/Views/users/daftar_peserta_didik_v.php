@@ -5,10 +5,10 @@
 <div class="container-fluid pt-5">
     <div class="container">
         <div class="text-center pb-2">
+            <h1 class="mb-4">Alifya Private</h1>
             <p class="section-title px-5">
-                <span class="px-2 text-secondary">Daftar Sebagai Peserta Didik</span>
+                <span class="px-2 text-secondary">Pendaftaran Alifya Private</span>
             </p>
-            <h1 class="mb-4">Peserta Didik</h1>
         </div>
         <div class="row">
             <div class="col-lg-12 mb-5">
