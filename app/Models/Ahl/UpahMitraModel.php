@@ -37,7 +37,7 @@ class UpahMitraModel extends Model
             ->where('MONTH(upah_mitra_ahl_table.bulan)', $bulan)
             ->where('YEAR(upah_mitra_ahl_table.bulan)', $tahun)
 
-            ->orderBy('upah_mitra_ahl_table.id desc')
+            ->orderBy('data_pengajar_table.nama_lengkap asc')
             ->get()->getResultObject();
     }
 
