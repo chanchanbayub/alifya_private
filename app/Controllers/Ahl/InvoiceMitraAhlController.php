@@ -93,10 +93,12 @@ class InvoiceMitraAhlController extends BaseController
                 foreach ($mitra_pengajar_ahl as $mitra_pengajar) {
 
                     $upah_ahl = $this->upahMitraModel->getUpahMitraAhlWhereMitraAhl($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
+
                     $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
                     $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
                     $kelompok_id = $this->kelompokModel->where(["mitra_pengajar_id" => $mitra_pengajar->mitra_id])->first();
                     $jumlah_anak = $this->kelompokBelajarModel->getUserWithKelompok($kelompok_id["id"]);
+
                     foreach ($upah_ahl as $upah_ahl) {
                         $data_upah_ahl[] = [
                             'mitra_id' => $upah_ahl->mitra_ahl_id,
