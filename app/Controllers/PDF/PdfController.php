@@ -238,9 +238,6 @@ class PdfController extends BaseController
 
             $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhlById($mitra_pengajar_id);
 
-
-
-
             $upah_ahl = $this->upahMitraModel->getUpahMitraAhlWhereMitraAhl($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
 
             $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
@@ -258,7 +255,7 @@ class PdfController extends BaseController
                     'penalangan' => $upah_ahl->penalangan,
                     'lain_lain' => $upah_ahl->lain_lain,
                     'pendapatan_ap' => intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak),
-                    'total_akhir' => intval($upah_ahl->upah_mitra) + intval($upah_ahl->bonus_kehadiran) + intval($upah_ahl->booster_penugasan) + intval($upah_ahl->lain_lain) + intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak)
+                    'total_akhir' => intval($upah_ahl->upah_mitra) + intval($upah_ahl->penalangan) + intval($upah_ahl->bonus_kehadiran) + intval($upah_ahl->booster_penugasan) + intval($upah_ahl->lain_lain) + intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak)
                 ];
             }
 

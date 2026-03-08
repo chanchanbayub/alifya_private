@@ -107,7 +107,7 @@ class InvoiceMitraAhlController extends BaseController
                             'penalangan' => $upah_ahl->penalangan,
                             'lain_lain' => $upah_ahl->lain_lain,
                             'pendapatan_ap' => intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak),
-                            'total_akhir' => intval($upah_ahl->upah_mitra) + intval($upah_ahl->bonus_kehadiran) + intval($upah_ahl->booster_penugasan) + intval($upah_ahl->lain_lain) + intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak)
+                            'total_akhir' => intval($upah_ahl->upah_mitra) + intval($upah_ahl->penalangan) + intval($upah_ahl->bonus_kehadiran) + intval($upah_ahl->booster_penugasan) + intval($upah_ahl->lain_lain) + intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak)
                         ];
                     }
                 }

@@ -34,7 +34,7 @@ class MitraPengajarAhlModel extends Model
             ->join('data_pengajar_table', 'data_pengajar_table.id = mitra_pengajar_ahl_table.mitra_id')
             ->join('layanan_ahl_table', 'layanan_ahl_table.id = mitra_pengajar_ahl_table.jenis_layanan_id')
             ->where(["mitra_pengajar_ahl_table.mitra_id" => $mitra_id])
-            ->orderBy('mitra_pengajar_ahl_table.id desc')
+            ->orderBy('data_pengajar_table.nama_lengkap asc')
             ->get()->getRowObject();
     }
 }
