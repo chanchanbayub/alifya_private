@@ -10,7 +10,7 @@ class ProfilController extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'About Us | Alifya Private',
+            'title' => 'About Us | Alifya Learning',
         ];
         return view('users/profil_v', $data);
     }

@@ -56,7 +56,7 @@ class UsersController extends BaseController
         $data_slidder = $this->testimonialModel->getTestimonial();
 
         $data = [
-            'title' => 'Alifya Private',
+            'title' => 'Alifya Learning',
             'program_belajar' => $program_belajar,
             'paket_belajar' => $paketBelajar,
             'data_pengajar' => $data_pengajar,
@@ -79,7 +79,7 @@ class UsersController extends BaseController
     public function peserta_didik()
     {
         $data = [
-            'title' => 'Alifya Private | Peserta Didik',
+            'title' => 'Alifya Learning | Peserta Didik',
             'peserta_didik' => $this->muridModel->getDataMuridAktif(),
 
         ];
@@ -89,7 +89,7 @@ class UsersController extends BaseController
     public function daftar_mitra()
     {
         $data = [
-            'title' => 'Alifya Private | Daftar Mitra',
+            'title' => 'Alifya Learning | Daftar Mitra',
 
         ];
         return view('users/daftar_mitra_v', $data);
@@ -370,7 +370,7 @@ class UsersController extends BaseController
     public function daftar_peserta_didik()
     {
         $data = [
-            'title' => 'Alifya Private | Peserta Didik',
+            'title' => 'Alifya Learning | Peserta Didik',
             'program_belajar' => $this->programBelajarModel->getProgramBelajar(),
             'materi_belajar' => $this->materiBelajarModel->getMateriBelajar(),
             'paket_belajar' => $this->paketBelajarModel->getPaketBelajar(),
