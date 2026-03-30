@@ -352,6 +352,7 @@ $routes->group('admin', static function ($routes) {
     $routes->post('upah_mitra_ahl/getUpahAhl', 'Ahl\UpahMitraController::getUpahAhl');
     $routes->post('upah_mitra_ahl/insert', 'Ahl\UpahMitraController::insert');
     $routes->get('upah_mitra_ahl/edit', 'Ahl\UpahMitraController::edit');
+    $routes->post('upah_mitra_ahl/update_harga', 'Ahl\UpahMitraController::update_harga');
     $routes->post('upah_mitra_ahl/update', 'Ahl\UpahMitraController::update');
     $routes->post('upah_mitra_ahl/delete', 'Ahl\UpahMitraController::delete');
 

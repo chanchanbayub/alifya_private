@@ -79,7 +79,7 @@
                                     <h6>Aksi</h6>
                                 </li>
                                 <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
-                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateHargaModal"><i class="bi bi-plus"></i> Update Harga Bulan Ini</a></li>
+                                <!-- <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateUpahAhlModal"><i class="bi bi-plus"></i> Update Harga Bulan Ini</a></li> -->
                             </ul>
                         </div>
 
@@ -122,11 +122,11 @@
 </section>
 
 <!-- Modal -->
-<div class="modal fade" id="updateHargaModal" tabindex="-1" aria-labelledby="updateHargaModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateUpahAhlModal" tabindex="-1" aria-labelledby="updateHargaModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="updateHargaModalLabel">Update Upah Peserta Didik</h5>
+                <h5 class="modal-title" id="updateHargaModalLabel">Update Upah Mitra AHL</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -147,7 +147,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Batal</button>
-                        <button type="submit" class="btn btn-outline-success update"> <i class="bi bi-arrow-right"></i> Update Upah Peserta</button>
+                        <button type="submit" class="btn btn-outline-success update"> <i class="bi bi-arrow-right"></i> Update Upah Mitra Ahl</button>
                     </div>
                 </form>
             </div>
@@ -360,6 +360,17 @@
 
 <script>
     $(document).ready(function() {
+
+        $('#mitra_ahl_id').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#exampleModal')
+        });
+
+        $('#mitra_ahl_id_edit').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#editModal')
+        });
+
         $('#data_table').DataTable({
             processing: true,
             serverSide: true,
@@ -413,18 +424,6 @@
     });
 
     $(document).ready(function(e) {
-
-        $('#mitra_ahl_id').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#exampleModal')
-        });
-
-        $('#mitra_ahl_id_edit').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#editModal')
-        });
-
-
 
         $("#add_form").submit(function(e) {
             e.preventDefault();
@@ -749,7 +748,7 @@
         let bulan_update = $("#bulan_data_update").val();
 
         $.ajax({
-            url: '/admin/harga/update_harga',
+            url: '/admin/upah_mitra_ahl/update_harga',
             method: 'post',
             dataType: 'JSON',
             data: {
@@ -761,7 +760,7 @@
                 $('.update').prop('disabled', true);
             },
             success: function(response) {
-                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Update Upah Peserta');
+                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Update Upah Mitra Ahl');
                 $('.update').prop('disabled', false);
                 if (response.error) {
 
@@ -802,7 +801,7 @@
                     icon: 'error',
                     title: `Data Belum Tersimpan!`,
                 });
-                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
+                $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Update Upah Mitra Ahl');
                 $('.update').prop('disabled', false);
             }
         });
