@@ -84,7 +84,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5">
-                <img class="img-fluid rounded mb-5 mb-lg-0" src="/users/img/1.jpg" alt="" />
+                <img class="img-fluid rounded mb-5 mb-lg-0" src="/users/img/update_foto.jpeg" alt="" />
             </div>
             <div class="col-lg-7">
                 <p class="section-title pr-5">
@@ -96,7 +96,7 @@
                 </p>
                 <div class="row pt-2 pb-4">
                     <div class="col-6 col-md-4">
-                        <img class="img-fluid rounded" src="/users/img/2.jpg" alt="" />
+                        <img class="img-fluid rounded" src="/users/img/1.jpg" alt="" />
                         <a href="/profil" class="btn btn-secondary btn-sm mt-2 py-2 px-4">About Us</a>
                     </div>
                     <div class="col-6 col-md-8">

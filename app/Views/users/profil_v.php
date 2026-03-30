@@ -6,7 +6,7 @@
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-lg-5">
-                <img class="img-fluid rounded mb-5 mb-lg-0" src="/users/img/1.jpg" alt="" />
+                <img class="img-fluid rounded mb-5 mb-lg-0" src="/users/img/update_foto.jpeg" alt="" />
             </div>
             <div class="col-lg-7">
                 <p class="section-title pr-5">
@@ -71,19 +71,24 @@
         </p>
     </div>
     <div class="row">
-        <div class="col-md-4 text-center team mb-5">
+        <div class="col-md-3 text-center team mb-5">
             <div class="position-relative overflow-hidden mb-4">
                 <img class="img-fluid w-100 rounded" src="/users/img/1.jpg" alt="" />
             </div>
         </div>
-        <div class="col-md-4 text-center team mb-5">
+        <div class="col-md-3 text-center team mb-5">
             <div class="position-relative overflow-hidden mb-4">
                 <img class="img-fluid w-100 rounded" src="/users/img/2.jpg" alt="" />
             </div>
         </div>
-        <div class="col-md-4 text-center team mb-5">
+        <div class="col-md-3 text-center team mb-5">
             <div class="position-relative overflow-hidden mb-4">
                 <img class="img-fluid w-100 rounded" src="/users/img/3.jpg" alt="" />
+            </div>
+        </div>
+        <div class="col-md-3 text-center team mb-5">
+            <div class="position-relative overflow-hidden mb-4">
+                <img class="img-fluid w-100 rounded" src="/users/img/crop.jpg" alt="" />
             </div>
         </div>
 
