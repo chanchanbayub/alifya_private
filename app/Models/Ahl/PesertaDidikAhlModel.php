@@ -76,4 +76,52 @@ class PesertaDidikAhlModel extends Model
             ->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc')
             ->get()->getRowObject();
     }
+
+    public function getPesertaDidikAhlAktif()
+    {
+        return $this->table($this->table)
+            ->select("peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.program_belajar_ahl_id, peserta_didik_ahl_table.status_peserta_id, program_ahl_table.nama_program, status_murid_table.status_murid, price_list_table.harga_paket")
+            ->join('program_ahl_table', 'program_ahl_table.id = peserta_didik_ahl_table.program_belajar_ahl_id')
+            ->join('price_list_table', 'price_list_table.id = peserta_didik_ahl_table.jumlah_pertemuan_id')
+            ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id')
+            ->where(["peserta_didik_ahl_table.status_peserta_id" => 1])
+            ->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc')
+            ->get()->getResultObject();
+    }
+
+    public function getPesertaDidikAhlPendaftaran()
+    {
+        return $this->table($this->table)
+            ->select("peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.program_belajar_ahl_id, peserta_didik_ahl_table.status_peserta_id, program_ahl_table.nama_program, status_murid_table.status_murid, price_list_table.harga_paket")
+            ->join('program_ahl_table', 'program_ahl_table.id = peserta_didik_ahl_table.program_belajar_ahl_id')
+            ->join('price_list_table', 'price_list_table.id = peserta_didik_ahl_table.jumlah_pertemuan_id')
+            ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id')
+            ->where(["peserta_didik_ahl_table.status_peserta_id" => 2])
+            ->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc')
+            ->get()->getResultObject();
+    }
+
+    public function getPesertaDidikAhlWaiting()
+    {
+        return $this->table($this->table)
+            ->select("peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.program_belajar_ahl_id, peserta_didik_ahl_table.status_peserta_id, program_ahl_table.nama_program, status_murid_table.status_murid, price_list_table.harga_paket")
+            ->join('program_ahl_table', 'program_ahl_table.id = peserta_didik_ahl_table.program_belajar_ahl_id')
+            ->join('price_list_table', 'price_list_table.id = peserta_didik_ahl_table.jumlah_pertemuan_id')
+            ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id')
+            ->where(["peserta_didik_ahl_table.status_peserta_id" => 3])
+            ->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc')
+            ->get()->getResultObject();
+    }
+
+    public function getPesertaDidikAhlOff()
+    {
+        return $this->table($this->table)
+            ->select("peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.program_belajar_ahl_id, peserta_didik_ahl_table.status_peserta_id, program_ahl_table.nama_program, status_murid_table.status_murid, price_list_table.harga_paket")
+            ->join('program_ahl_table', 'program_ahl_table.id = peserta_didik_ahl_table.program_belajar_ahl_id')
+            ->join('price_list_table', 'price_list_table.id = peserta_didik_ahl_table.jumlah_pertemuan_id')
+            ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id')
+            ->where(["peserta_didik_ahl_table.status_peserta_id" => 4])
+            ->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc')
+            ->get()->getResultObject();
+    }
 }
