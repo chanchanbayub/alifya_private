@@ -158,7 +158,7 @@
                                                 <td style="padding: 10px;">34,5</td>
                                                 <td style="padding: 10px;">37</td>
                                                 <td style="padding: 10px;">39,5</td>
-                                                <td style="padding: 10px;">-</td>
+                                                <td style="padding: 10px;">45</td>
                                             </tr>
                                             <tr>
                                                 <td style="padding: 10px;">Panjang Badan</td>
@@ -166,7 +166,7 @@
                                                 <td style="padding: 10px;">45,5</td>
                                                 <td style="padding: 10px;">50,5</td>
                                                 <td style="padding: 10px;">53</td>
-                                                <td style="padding: 10px;">-</td>
+                                                <td style="padding: 10px;">56</td>
                                             </tr>
                                         </table>
                                         <br>
