@@ -42,7 +42,7 @@
                                         <th scope="col">Nama </th>
                                         <th scope="col">Profil</th>
                                         <th scope="col">Status Murid</th>
-                                        <th scope="col">Aksi</th>
+                                        <!-- <th scope="col">Aksi</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,11 +58,7 @@
                                                 </a>
                                             </td>
                                             <td> <span class='<?= ($data_murid->status_murid_id == 1) ? "badge bg-success" : "badge bg-warning" ?>'><?= $data_murid->status_murid ?></span></td>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $data_murid->peserta_didik_id ?>" type="button">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
-                                            </td>
+
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
