@@ -57,18 +57,27 @@ class MuridController extends BaseController
 
 
         if ($id == null) {
-            return redirect()->to('/mitra_pengajar/data_murid');
+            return redirect()->to('/admin/data_murid');
         }
 
-        $profil = $this->muridModel->getMitraMurid($id);
+        $profil = $this->muridModel->getMitramurid($id);
+        // dd($profil);
+
+        // dd($profil);
+        $hari_ini = date_create();
+        $tanggal_lahir = date_create($profil->tanggal_lahir_anak);
+
+        $usia = date_diff($hari_ini, $tanggal_lahir);
+
 
         if ($profil == null) {
-            return redirect()->to('/mitra_pengajar/data_murid');
+            return redirect()->to('/admin/data_murid');
         }
 
         $data = [
             'title' => 'Peserta Didik',
             'profil' => $profil,
+            'usia' => $usia
         ];
 
         return view('mitra/profil_murid_v', $data);
