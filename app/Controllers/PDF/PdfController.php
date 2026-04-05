@@ -243,7 +243,12 @@ class PdfController extends BaseController
             $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
             $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
             $kelompok_id = $this->kelompokModel->where(["mitra_pengajar_id" => $mitra_pengajar_ahl->mitra_id])->first();
-            $jumlah_anak = $this->kelompokBelajarModel->getUserWithKelompok($kelompok_id["id"]);
+
+            $presensi_data = $this->presensiModel->getInvoiceMitraData($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
+            foreach ($presensi_data as $data) {
+                $jumlah_anak = intval($data->jumlah_anak);
+            }
+            // $jumlah_anak = $this->kelompokBelajarModel->getUserWithKelompok($kelompok_id["id"]);
 
             foreach ($upah_ahl as $upah_ahl) {
                 $data_upah_ahl = [
@@ -254,8 +259,8 @@ class PdfController extends BaseController
                     'booster_penugasan' => $upah_ahl->booster_penugasan,
                     'penalangan' => $upah_ahl->penalangan,
                     'lain_lain' => $upah_ahl->lain_lain,
-                    'pendapatan_ap' => intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak),
-                    'total_akhir' => intval($upah_ahl->upah_mitra) + intval($upah_ahl->penalangan) + intval($upah_ahl->bonus_kehadiran) + intval($upah_ahl->booster_penugasan) + intval($upah_ahl->lain_lain) + intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * count($jumlah_anak)
+                    'pendapatan_ap' => intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * $jumlah_anak,
+                    'total_akhir' => intval($upah_ahl->upah_mitra) + intval($upah_ahl->penalangan) + intval($upah_ahl->bonus_kehadiran) + intval($upah_ahl->booster_penugasan) + intval($upah_ahl->lain_lain) + intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * $jumlah_anak
                 ];
             }
 
