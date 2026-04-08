@@ -51,10 +51,10 @@
                 <div class="col-md-6">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title">Export <?= $title ?> (Dalam Pengembangan)</h5>
+                            <h5 class="card-title">Export <?= $title ?> </h5>
                             <!-- Browser Default Validation -->
                             <!-- <form class="row g-3 text-capitalize" action="export_excel" method="get"> -->
-                            <form class="row g-3 text-capitalize" id="export_excel" action="/export_excel">
+                            <form class="row g-3 text-capitalize" id="export_excel" action="/export_invoice_peserta_ahl">
                                 <?= csrf_field(); ?>
                                 <div class="col-md-12">
                                     <label for="bulan" class="form-label">Pilih Bulan :</label>
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-outline-primary" id="export" type="submit" disabled> <i class="bi bi-download"></i> Export</button>
+                                    <button class="btn btn-outline-primary" id="export" type="submit"> <i class="bi bi-download"></i> Export</button>
                                 </div>
                             </form>
                             <!-- End Browser Default Validation -->

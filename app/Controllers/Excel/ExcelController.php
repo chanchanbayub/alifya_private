@@ -9,7 +9,9 @@ use App\Models\Admin\KelompokModel;
 use App\Models\Admin\KlaimLainLainMitraModel;
 use App\Models\Admin\KlaimMediaPesertaModel;
 use App\Models\Admin\PresensiModel;
+use App\Models\Ahl\LainLainPesertaAHLModel;
 use App\Models\Ahl\MitraPengajarAhlModel;
+use App\Models\Ahl\PesertaDidikAhlModel;
 use App\Models\Ahl\UpahMitraModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -24,6 +26,8 @@ class ExcelController extends BaseController
     protected $hargaMitraModel;
     protected $mitraPengajarAhlModel;
     protected $upahMitraModel;
+    protected $pesertaDidikAhlModel;
+    protected $lainLainPesertaAhlModel;
 
     public function __construct()
     {
@@ -36,6 +40,8 @@ class ExcelController extends BaseController
         $this->validation = \Config\Services::validation();
         $this->mitraPengajarAhlModel = new MitraPengajarAhlModel();
         $this->upahMitraModel = new UpahMitraModel();
+        $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
+        $this->lainLainPesertaAhlModel = new LainLainPesertaAHLModel();
     }
 
     public function invoice_mitra()
@@ -357,5 +363,50 @@ class ExcelController extends BaseController
         ];
 
         return view('excel/export_excel_mitra_ahl', $data);
+    }
+
+    public function export_invoice_peserta_ahl()
+    {
+
+        helper(['format']);
+
+        $bulan = $this->request->getVar('bulan');
+
+        $data_bulan = explode("-", $bulan);
+
+        $inputan_bulan = intval($data_bulan[1]);
+        $inputan_tahun = intval($data_bulan[0]);
+
+        $peserta_ahl = $this->pesertaDidikAhlModel->getPesertaDidikAhlInvoice();
+
+        $peserta_didik = [];
+
+        foreach ($peserta_ahl as $data) {
+
+            $lain_lain = $this->lainLainPesertaAhlModel->where(["peserta_didik_ahl_id" => $data->id])->where(["bulan" => $inputan_bulan])->where(["tahun" => $inputan_tahun])->get()->getRowObject();
+
+            if ($lain_lain == null) {
+                $lain_lain = 0;
+            } else {
+                $lain_lain = $lain_lain->lain_lain;
+            }
+
+            $peserta_didik[] = [
+                'id' => $data->id,
+                'nama_lengkap_anak' => $data->nama_lengkap_anak,
+                'nama_program' => $data->nama_program,
+                'harga_paket' => $data->harga_paket,
+                'lain_lain' => $lain_lain,
+                'total_akhir' => intval($data->harga_paket) + intval($lain_lain)
+            ];
+        }
+
+        $data = [
+            'peserta_didik_ahl' => $peserta_didik,
+            'bulan_indo' => $inputan_bulan,
+            'tahun' => $inputan_tahun,
+            'total' => $this->pesertaDidikAhlModel->getTotalInvoice(),
+        ];
+        return view('excel/export_excel_peserta_ahl', $data);
     }
 }

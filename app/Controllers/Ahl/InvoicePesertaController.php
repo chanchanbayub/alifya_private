@@ -68,15 +68,20 @@ class InvoicePesertaController extends BaseController
                 foreach ($peserta_ahl as $data) {
 
                     $lain_lain = $this->lainLainPesertaAhlModel->where(["peserta_didik_ahl_id" => $data->id])->where(["bulan" => $inputan_bulan])->where(["tahun" => $inputan_tahun])->get()->getRowObject();
-                    // dd($lain_lain->lain_lain);
+
+                    if ($lain_lain == null) {
+                        $lain_lain = 0;
+                    } else {
+                        $lain_lain = $lain_lain->lain_lain;
+                    }
 
                     $peserta_didik[] = [
                         'id' => $data->id,
                         'nama_lengkap_anak' => $data->nama_lengkap_anak,
                         'nama_program' => $data->nama_program,
                         'harga_paket' => $data->harga_paket,
-                        'lain_lain' => $lain_lain->lain_lain,
-                        'total_akhir' => intval($data->harga_paket) + intval($lain_lain->lain_lain)
+                        'lain_lain' => $lain_lain,
+                        'total_akhir' => intval($data->harga_paket) + intval($lain_lain)
                     ];
                 }
 
