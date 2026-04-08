@@ -363,6 +363,7 @@ $routes->group('admin', static function ($routes) {
 
 $routes->get('export_excel/', 'Excel\ExcelController::invoice_mitra');
 $routes->get('export_excel_peserta_didik/', 'Excel\ExcelController::invoice_peserta');
+$routes->get('export_invoice_mitra_ahl/', 'Excel\ExcelController::export_invoice_mitra_ahl');
 
 $routes->group('auth', static function ($routes) {
 

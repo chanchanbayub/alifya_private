@@ -9,6 +9,8 @@ use App\Models\Admin\KelompokModel;
 use App\Models\Admin\KlaimLainLainMitraModel;
 use App\Models\Admin\KlaimMediaPesertaModel;
 use App\Models\Admin\PresensiModel;
+use App\Models\Ahl\MitraPengajarAhlModel;
+use App\Models\Ahl\UpahMitraModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class ExcelController extends BaseController
@@ -20,6 +22,8 @@ class ExcelController extends BaseController
     protected $kelompokModel;
     protected $validation;
     protected $hargaMitraModel;
+    protected $mitraPengajarAhlModel;
+    protected $upahMitraModel;
 
     public function __construct()
     {
@@ -30,6 +34,8 @@ class ExcelController extends BaseController
         $this->klaimLainLainModel = new KlaimLainLainMitraModel();
         $this->kelompokModel = new KelompokModel();
         $this->validation = \Config\Services::validation();
+        $this->mitraPengajarAhlModel = new MitraPengajarAhlModel();
+        $this->upahMitraModel = new UpahMitraModel();
     }
 
     public function invoice_mitra()
@@ -109,9 +115,6 @@ class ExcelController extends BaseController
                 ];
             }
         }
-
-
-
 
         $total_data = $this->presensiModel->sumTotalAnak($inputan_bulan, $inputan_tahun);
 
@@ -289,5 +292,70 @@ class ExcelController extends BaseController
         // dd($data);
 
         return view('excel/export_excel_peserta', $data);
+    }
+
+    public function export_invoice_mitra_ahl()
+    {
+
+        helper(['format']);
+
+        $bulan = $this->request->getVar('bulan');
+
+        $data_bulan = explode("-", $bulan);
+
+        $inputan_bulan = intval($data_bulan[1]);
+        // dd($inputan_bulan);
+        $inputan_tahun = intval($data_bulan[0]);
+
+        $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhl();
+
+        $data_upah_ahl = [];
+
+        foreach ($mitra_pengajar_ahl as $mitra_pengajar) {
+
+            $upah_ahl = $this->upahMitraModel->getUpahMitraAhlWhereMitraAhl($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
+
+            $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
+            $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
+            $kelompok_id = $this->kelompokModel->where(["mitra_pengajar_id" => $mitra_pengajar->mitra_id])->first();
+
+            $presensi_data = $this->presensiModel->getInvoiceMitraData($mitra_pengajar->mitra_id, $inputan_bulan, $inputan_tahun);
+            foreach ($presensi_data as $data) {
+                $jumlah_anak = $data->jumlah_anak;
+            }
+            // $jumlah_anak = $this->kelompokBelajarModel->getUserWithKelompok($kelompok_id["id"]);
+            // dd(intval($jumlah_anak));
+
+            foreach ($upah_ahl as $upah_ahl) {
+                $data_upah_ahl[] = [
+                    'mitra_id' => $upah_ahl->mitra_ahl_id,
+                    'nama_lengkap' => $upah_ahl->nama_lengkap,
+                    'upah_mitra' => $upah_ahl->upah_mitra,
+                    'bonus_kehadiran' => $upah_ahl->bonus_kehadiran,
+                    'booster_penugasan' => $upah_ahl->booster_penugasan,
+                    'penalangan' => $upah_ahl->penalangan,
+                    'lain_lain' => $upah_ahl->lain_lain,
+                    'pendapatan_ap' => intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * intval($jumlah_anak),
+                    'total_akhir' => intval($upah_ahl->upah_mitra) + intval($upah_ahl->penalangan) + intval($upah_ahl->bonus_kehadiran) + intval($upah_ahl->booster_penugasan) + intval($upah_ahl->lain_lain) + intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * intval($jumlah_anak)
+                ];
+            }
+        }
+
+        // $total_presensi_perbulan = $this->presensiAhlModel->totalPresensiPerbulan($inputan_bulan, $inputan_tahun);
+        // $total_presensi_perbulan_masuk = $this->presensiAhlModel->totalPresensiPerbulanMasuk($inputan_bulan, $inputan_tahun);
+        // $total_presensi_perbulan_pulang = $this->presensiAhlModel->totalPresensiPerbulanPulang($inputan_bulan, $inputan_tahun);
+        // $total_presensi_perbulan_dinas_luar = $this->presensiAhlModel->totalPresensiPerbulanDinasLuar($inputan_bulan, $inputan_tahun);
+
+        $data = [
+            'upah_ahl' => $data_upah_ahl,
+            // 'total_presensi_perbulan' => $total_presensi_perbulan->total_presensi_perbulan,
+            // 'total_presensi_perbulan_masuk' => $total_presensi_perbulan_masuk->total_presensi_perbulan_masuk,
+            // 'total_presensi_perbulan_pulang' => $total_presensi_perbulan_pulang->total_presensi_perbulan_pulang,
+            // 'total_presensi_perbulan_dinas_luar' => $total_presensi_perbulan_dinas_luar->total_presensi_perbulan_dinas_luar,
+            'bulan_indo' => $inputan_bulan,
+            'tahun' => $inputan_tahun
+        ];
+
+        return view('excel/export_excel_mitra_ahl', $data);
     }
 }
