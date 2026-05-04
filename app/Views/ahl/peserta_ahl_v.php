@@ -159,6 +159,13 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="agama" class="col-form-label">Agama : </label>
+                        <input type="text" name="agama" id="agama" class="form-control">
+                        <div class="invalid-feedback error-agama">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="usersname_instagram" class="col-form-label">Usersname Instagram : </label>
                         <input type="text" name="usersname_instagram" id="usersname_instagram" class="form-control">
                         <div class="invalid-feedback error-usersname-instagram">
@@ -458,6 +465,7 @@
             let pekerjaan_ayah = $("#pekerjaan_ayah").val();
             let nama_ibu = $("#nama_ibu").val();
             let pekerjaan_ibu = $("#pekerjaan_ibu").val();
+            let agama = $("#agama").val();
             let usersname_instagram = $("#usersname_instagram").val();
             let nomor_whatsapp_orang_tua = $("#nomor_whatsapp_orang_tua").val();
             let alamat_domisili_anak = $("#alamat_domisili_anak").val();
@@ -496,6 +504,7 @@
             formData.append('pekerjaan_ayah', pekerjaan_ayah);
             formData.append('nama_ibu', nama_ibu);
             formData.append('pekerjaan_ibu', pekerjaan_ibu);
+            formData.append('agama', agama);
             formData.append('usersname_instagram', usersname_instagram);
             formData.append('nomor_whatsapp_orang_tua', nomor_whatsapp_orang_tua);
             formData.append('alamat_domisili_anak', alamat_domisili_anak);
@@ -569,6 +578,13 @@
                         } else {
                             $("#pekerjaan_ibu").removeClass('is-invalid');
                             $(".error-pekerjaan-ibu").html('');
+                        }
+                        if (response.error.agama) {
+                            $("#agama").addClass('is-invalid');
+                            $(".error-agama").html(response.error.agama);
+                        } else {
+                            $("#agama").removeClass('is-invalid');
+                            $(".error-agama").html('');
                         }
                         if (response.error.usersname_instagram) {
                             $("#usersname_instagram").addClass('is-invalid');
@@ -739,6 +755,7 @@
                 $("#pekerjaan_ayah").val(response.peserta_ahl.pekerjaan_ayah);
                 $("#nama_ibu").val(response.peserta_ahl.nama_ibu);
                 $("#pekerjaan_ibu").val(response.peserta_ahl.pekerjaan_ibu);
+                $("#agama").val(response.peserta_ahl.agama);
                 $("#usersname_instagram").val(response.peserta_ahl.usersname_instagram);
                 $("#nomor_whatsapp_orang_tua").val(response.peserta_ahl.nomor_whatsapp_orang_tua);
                 $("#alamat_domisili_anak").val(response.peserta_ahl.alamat_domisili_anak);

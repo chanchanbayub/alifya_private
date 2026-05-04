@@ -75,6 +75,12 @@
                         </div>
 
                         <div class="control-group">
+                            <label for="agama">Agama :</label>
+                            <input type="text" class="form-control" id="agama" name="agama" placeholder="Masukan Agama Ayah / Ibu" />
+                            <p class="help-block text-danger error-agama"></p>
+                        </div>
+
+                        <div class="control-group">
                             <label for="usersname_instagram">Username Instagram Orang Tua :</label>
                             <input type="text" class="form-control" id="usersname_instagram" name="username_instagram" placeholder="Masukan Username Instagram" />
                             <p class="help-block text-danger error-usersname-instagram"></p>
@@ -347,6 +353,7 @@
         let pekerjaan_ayah = $("#pekerjaan_ayah").val();
         let nama_ibu = $("#nama_ibu").val();
         let pekerjaan_ibu = $("#pekerjaan_ibu").val();
+        let agama = $("#agama").val();
         let usersname_instagram = $("#usersname_instagram").val();
         let nomor_whatsapp_orang_tua = $("#nomor_whatsapp_orang_tua").val();
         let alamat_domisili_anak = $("#alamat_domisili_anak").val();
@@ -377,6 +384,7 @@
         formData.append('pekerjaan_ayah', pekerjaan_ayah);
         formData.append('nama_ibu', nama_ibu);
         formData.append('pekerjaan_ibu', pekerjaan_ibu);
+        formData.append('agama', agama);
         formData.append('usersname_instagram', usersname_instagram);
         formData.append('nomor_whatsapp_orang_tua', nomor_whatsapp_orang_tua);
         formData.append('alamat_domisili_anak', alamat_domisili_anak);
@@ -447,6 +455,13 @@
                     } else {
                         $("#pekerjaan_ibu").removeClass('is-invalid');
                         $(".error-pekerjaan-ibu").html('');
+                    }
+                    if (response.error.agama) {
+                        $("#agama").addClass('is-invalid');
+                        $(".error-agama").html(response.error.agama);
+                    } else {
+                        $("#agama").removeClass('is-invalid');
+                        $(".error-agama").html('');
                     }
                     if (response.error.usersname_instagram) {
                         $("#usersname_instagram").addClass('is-invalid');

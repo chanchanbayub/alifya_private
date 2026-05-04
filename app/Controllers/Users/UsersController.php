@@ -766,6 +766,12 @@ class UsersController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+                'agama' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
                 'usersname_instagram' => [
                     'rules' => 'required',
                     'errors' => [
@@ -900,6 +906,7 @@ class UsersController extends BaseController
 
                         'nama_ibu' => $this->validation->getError('nama_ibu'),
                         'pekerjaan_ibu' => $this->validation->getError('pekerjaan_ibu'),
+                        'agama' => $this->validation->getError('agama'),
                         'usersname_instagram' => $this->validation->getError('usersname_instagram'),
                         'nomor_whatsapp_orang_tua' => $this->validation->getError('nomor_whatsapp_orang_tua'),
                         'alamat_domisili_anak' => $this->validation->getError('alamat_domisili_anak'),
@@ -934,6 +941,7 @@ class UsersController extends BaseController
                 $nama_ayah = $this->request->getPost('nama_ayah');
                 $pekerjaan_ayah = $this->request->getPost('pekerjaan_ayah');
                 $pekerjaan_ibu = $this->request->getPost('pekerjaan_ibu');
+                $agama = $this->request->getPost('agama');
                 $usersname_instagram = $this->request->getPost('usersname_instagram');
                 $nomor_whatsapp_orang_tua = $this->request->getPost('nomor_whatsapp_orang_tua');
                 $alamat_domisili_anak = $this->request->getPost('alamat_domisili_anak');
@@ -968,6 +976,7 @@ class UsersController extends BaseController
                     'pekerjaan_ayah' => strtolower($pekerjaan_ayah),
                     'nama_ibu' => strtolower($nama_ibu),
                     'pekerjaan_ibu' => strtolower($pekerjaan_ibu),
+                    'agama' => strtolower($agama),
                     'usersname_instagram' => strtolower($usersname_instagram),
                     'nomor_whatsapp_orang_tua' => strtolower($nomor_whatsapp_orang_tua),
                     'alamat_domisili_anak' => strtolower($alamat_domisili_anak),
