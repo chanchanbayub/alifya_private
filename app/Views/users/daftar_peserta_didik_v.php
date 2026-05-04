@@ -377,7 +377,7 @@
 
                         <div>
                             <button class="btn btn-primary btn-lg save" type="submit" id="sendMessageButton">
-                                Kirim Lamaran
+                                Kirim Pendaftaran
                             </button>
                         </div>
                     </form>
@@ -515,7 +515,7 @@
                 $('.save').prop('disabled', true);
             },
             success: function(response) {
-                $('.save').html(`Kirim Lamaran`)
+                $('.save').html(`Kirim Pendaftaran`)
                 $('.save').prop('disabled', false);
                 if (response.error) {
                     if (response.error.nama_lengkap_anak) {
@@ -762,7 +762,7 @@
                     title: `Data Belum Tersimpan!`,
                 });
                 $('.save').html(`<button class="btn btn-primary py-2 px-10 save" type="submit" id="sendMessageButton">
-                                Kirim Lamaran
+                                Kirim Pendaftaran
                             </button>`)
                 $('.save').prop('disabled', false);
             }
