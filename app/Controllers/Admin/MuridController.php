@@ -122,6 +122,12 @@ class MuridController extends BaseController
                         'required' => 'Pekerjaan Ibu Tidak Boleh Kosong !'
                     ]
                 ],
+                'agama' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Agama Tidak Boleh Kosong !'
+                    ]
+                ],
                 'nomor_whatsapp_wali' => [
                     'rules' => 'required',
                     'errors' => [
@@ -212,6 +218,7 @@ class MuridController extends BaseController
                         'pekerjaan_ayah' => $this->validation->getError('pekerjaan_ayah'),
                         'nama_ibu' => $this->validation->getError('nama_ibu'),
                         'pekerjaan_ibu' => $this->validation->getError('pekerjaan_ibu'),
+                        'agama' => $this->validation->getError('agama'),
                         'nomor_whatsapp_wali' => $this->validation->getError('nomor_whatsapp_wali'),
                         'username_instagram_wali' => $this->validation->getError('username_instagram_wali'),
                         'info_les' => $this->validation->getError('info_les'),
@@ -233,13 +240,13 @@ class MuridController extends BaseController
 
                 $nama_lengkap_anak = $this->request->getPost('nama_lengkap_anak');
                 $tanggal_lahir_anak = $this->request->getPost('tanggal_lahir_anak');
-                $usia_anak = $this->request->getPost('usia_anak');
                 $alamat_domisili_anak = $this->request->getPost('alamat_domisili_anak');
                 $sekolah_anak = $this->request->getPost('sekolah_anak');
                 $nama_ayah = $this->request->getPost('nama_ayah');
                 $pekerjaan_ayah = $this->request->getPost('pekerjaan_ayah');
                 $nama_ibu = $this->request->getPost('nama_ibu');
                 $pekerjaan_ibu = $this->request->getPost('pekerjaan_ibu');
+                $agama = $this->request->getPost('agama');
                 $nomor_whatsapp_wali = $this->request->getPost('nomor_whatsapp_wali');
                 $username_instagram_wali = $this->request->getPost('username_instagram_wali');
                 $info_les = $this->request->getPost('info_les');
@@ -262,13 +269,13 @@ class MuridController extends BaseController
                     'uid_murid' => $uid_murid,
                     'nama_lengkap_anak' => strtolower($nama_lengkap_anak),
                     'tanggal_lahir_anak' => strtolower($tanggal_lahir_anak),
-                    'usia_anak' => strtolower($usia_anak),
                     'alamat_domisili_anak' => strtolower($alamat_domisili_anak),
                     'sekolah_anak' => strtolower($sekolah_anak),
                     'nama_ayah' => strtolower($nama_ayah),
                     'pekerjaan_ayah' => strtolower($pekerjaan_ayah),
                     'nama_ibu' => strtolower($nama_ibu),
                     'pekerjaan_ibu' => strtolower($pekerjaan_ibu),
+                    'agama' => strtolower($agama),
                     'nomor_whatsapp_wali' => strtolower($nomor_whatsapp_wali),
                     'username_instagram_wali' => strtolower($username_instagram_wali),
                     'info_les' => strtolower($info_les),
@@ -441,6 +448,12 @@ class MuridController extends BaseController
                         'required' => 'Pekerjaan Ibu Tidak Boleh Kosong !'
                     ]
                 ],
+                'agama' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Agama Tidak Boleh Kosong !'
+                    ]
+                ],
                 'nomor_whatsapp_wali' => [
                     'rules' => 'required',
                     'errors' => [
@@ -516,13 +529,13 @@ class MuridController extends BaseController
                     'error' => [
                         'nama_lengkap_anak' => $this->validation->getError('nama_lengkap_anak'),
                         'tanggal_lahir_anak' => $this->validation->getError('tanggal_lahir_anak'),
-                        'usia_anak' => $this->validation->getError('usia_anak'),
                         'alamat_domisili_anak' => $this->validation->getError('alamat_domisili_anak'),
                         'sekolah_anak' => $this->validation->getError('sekolah_anak'),
                         'nama_ayah' => $this->validation->getError('nama_ayah'),
                         'pekerjaan_ayah' => $this->validation->getError('pekerjaan_ayah'),
                         'nama_ibu' => $this->validation->getError('nama_ibu'),
                         'pekerjaan_ibu' => $this->validation->getError('pekerjaan_ibu'),
+                        'agama' => $this->validation->getError('agama'),
                         'nomor_whatsapp_wali' => $this->validation->getError('nomor_whatsapp_wali'),
                         'username_instagram_wali' => $this->validation->getError('username_instagram_wali'),
                         'info_les' => $this->validation->getError('info_les'),
@@ -547,13 +560,13 @@ class MuridController extends BaseController
 
                 $nama_lengkap_anak = $this->request->getPost('nama_lengkap_anak');
                 $tanggal_lahir_anak = $this->request->getPost('tanggal_lahir_anak');
-                $usia_anak = $this->request->getPost('usia_anak');
                 $alamat_domisili_anak = $this->request->getPost('alamat_domisili_anak');
                 $sekolah_anak = $this->request->getPost('sekolah_anak');
                 $nama_ayah = $this->request->getPost('nama_ayah');
                 $pekerjaan_ayah = $this->request->getPost('pekerjaan_ayah');
                 $nama_ibu = $this->request->getPost('nama_ibu');
                 $pekerjaan_ibu = $this->request->getPost('pekerjaan_ibu');
+                $agama = $this->request->getPost('agama');
                 $nomor_whatsapp_wali = $this->request->getPost('nomor_whatsapp_wali');
                 $username_instagram_wali = $this->request->getPost('username_instagram_wali');
                 $info_les = $this->request->getPost('info_les');
@@ -585,13 +598,13 @@ class MuridController extends BaseController
                     'uid_murid' => $uid_murid,
                     'nama_lengkap_anak' => strtolower($nama_lengkap_anak),
                     'tanggal_lahir_anak' => strtolower($tanggal_lahir_anak),
-                    'usia_anak' => strtolower($usia_anak),
                     'alamat_domisili_anak' => strtolower($alamat_domisili_anak),
                     'sekolah_anak' => strtolower($sekolah_anak),
                     'nama_ayah' => strtolower($nama_ayah),
                     'pekerjaan_ayah' => strtolower($pekerjaan_ayah),
                     'nama_ibu' => strtolower($nama_ibu),
                     'pekerjaan_ibu' => strtolower($pekerjaan_ibu),
+                    'agama' => strtolower($agama),
                     'nomor_whatsapp_wali' => strtolower($nomor_whatsapp_wali),
                     'username_instagram_wali' => strtolower($username_instagram_wali),
                     'info_les' => strtolower($info_les),

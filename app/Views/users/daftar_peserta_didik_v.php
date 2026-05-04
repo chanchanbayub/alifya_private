@@ -67,6 +67,13 @@
                                         <input type="text" class="form-control" id="pekerjaan_ibu" name="pekerjaan_ibu" placeholder="Masukan Pekerjaan Ibu" />
                                         <p class="help-block text-danger error-pekerjaan-ibu"></p>
                                     </div>
+
+                                    <div class="control-group">
+                                        <label for="agama">Agama :</label>
+                                        <input type="text" class="form-control" id="agama" name="agama" placeholder="Masukan Agama Ayah/Ibu" />
+                                        <p class="help-block text-danger error-agama"></p>
+                                    </div>
+
                                     <div class="control-group">
                                         <label for="username_instagram_wali">Username instagram orang tua :</label>
                                         <input type="text" class="form-control" id="username_instagram_wali" name="username_instagram_wali" placeholder="Masukan Username Instagram : abc" />
@@ -442,6 +449,7 @@
         let pekerjaan_ayah = $("#pekerjaan_ayah").val();
         let nama_ibu = $("#nama_ibu").val();
         let pekerjaan_ibu = $("#pekerjaan_ibu").val();
+        let agama = $("#agama").val();
 
         let waktu_belajar = $("#waktu_belajar").val();
         let foto_anak = $("#foto_anak").val();
@@ -480,6 +488,7 @@
         formData.append('pekerjaan_ayah', pekerjaan_ayah);
         formData.append('nama_ibu', nama_ibu);
         formData.append('pekerjaan_ibu', pekerjaan_ibu);
+        formData.append('agama', agama);
 
         formData.append('waktu_belajar', waktu_belajar);
         formData.append('foto_anak', foto_anak);
@@ -635,6 +644,14 @@
                     } else {
                         $("#pekerjaan_ibu").removeClass('is-invalid');
                         $(".error-pekerjaan-ibu").html('');
+                    }
+
+                    if (response.error.agama) {
+                        $("#agama").addClass('is-invalid');
+                        $(".error-agama").html(response.error.agama);
+                    } else {
+                        $("#agama").removeClass('is-invalid');
+                        $(".error-agama").html('');
                     }
 
                     if (response.error.pekerjaan_ayah) {

@@ -550,6 +550,12 @@ class UsersController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+                'agama' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
                 'pekerjaan_ayah' => [
                     'rules' => 'required',
                     'errors' => [
@@ -604,6 +610,7 @@ class UsersController extends BaseController
                         'nama_ibu' => $this->validation->getError('nama_ibu'),
                         'pekerjaan_ayah' => $this->validation->getError('pekerjaan_ayah'),
                         'pekerjaan_ibu' => $this->validation->getError('pekerjaan_ibu'),
+                        'agama' => $this->validation->getError('agama'),
                         'ketersediaan' => $this->validation->getError('ketersediaan'),
                         'nama_panggilan_anak' => $this->validation->getError('nama_panggilan_anak'),
                         'jenis_kelamin' => $this->validation->getError('jenis_kelamin'),
@@ -644,6 +651,7 @@ class UsersController extends BaseController
                 $nama_ayah = $this->request->getPost('nama_ayah');
                 $pekerjaan_ayah = $this->request->getPost('pekerjaan_ayah');
                 $pekerjaan_ibu = $this->request->getPost('pekerjaan_ibu');
+                $agama = $this->request->getPost('agama');
 
                 $paket_belajar_id = $this->request->getPost('paket_belajar_id');
                 $ketersediaan = $this->request->getPost('ketersediaan');
@@ -686,6 +694,7 @@ class UsersController extends BaseController
                     'nama_ibu' => strtolower($nama_ibu),
                     'pekerjaan_ayah' => strtolower($pekerjaan_ayah),
                     'pekerjaan_ibu' => strtolower($pekerjaan_ibu),
+                    'agama' => strtolower($agama),
                     'info_les' => $info_les,
                     'foto_anak' => strtolower($nama_foto),
                     'bukti_tf' => strtolower($nama_tf),

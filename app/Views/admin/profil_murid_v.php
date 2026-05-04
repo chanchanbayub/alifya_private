@@ -75,6 +75,11 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-lg-6 col-md-4 label">Agama Orang Tua</div>
+                                <div class="col-lg-6 col-md-8"><?= ($profil->agama == null) ? "-" : "$profil->agama" ?></div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-lg-6 col-md-4 label">Nomor Whatsapp Orang Tua</div>
                                 <div class="col-lg-6 col-md-8"><?= $profil->nomor_whatsapp_wali ?> </div>
                             </div>

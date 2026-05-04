@@ -154,6 +154,13 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="agama" class="col-form-label">Agama :</label>
+                        <input type="text" class="form-control" id="agama" name="agama">
+                        <div class="invalid-feedback error-agama">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="nomor_whatsapp_wali" class="col-form-label">Nomor Whatsapp Wali :</label>
                         <input type="text" class="form-control" id="nomor_whatsapp_wali" name="nomor_whatsapp_wali" placeholder="6282xxxxx">
                         <div class="invalid-feedback error-nomor-wali">
@@ -354,6 +361,13 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="agama_edit" class="col-form-label">Agama:</label>
+                        <input type="text" class="form-control" id="agama_edit" name="agama">
+                        <div class="invalid-feedback error-agama-edit">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="nomor_whatsapp_wali_edit" class="col-form-label">Nomor Whatsapp Wali:</label>
                         <input type="text" class="form-control" id="nomor_whatsapp_wali_edit" name="nomor_whatsapp_wali">
                         <div class="invalid-feedback error-nomor-wali-edit">
@@ -536,6 +550,7 @@
             let pekerjaan_ayah = $("#pekerjaan_ayah").val();
             let nama_ibu = $("#nama_ibu").val();
             let pekerjaan_ibu = $("#pekerjaan_ibu").val();
+            let agama = $("#agama").val();
             let nomor_whatsapp_wali = $("#nomor_whatsapp_wali").val();
             let username_instagram_wali = $("#username_instagram_wali").val();
             let info_les = $("#info_les").val();
@@ -561,6 +576,7 @@
             formData.append('pekerjaan_ayah', pekerjaan_ayah);
             formData.append('nama_ibu', nama_ibu);
             formData.append('pekerjaan_ibu', pekerjaan_ibu);
+            formData.append('agama', agama);
             formData.append('nomor_whatsapp_wali', nomor_whatsapp_wali);
             formData.append('username_instagram_wali', username_instagram_wali);
             formData.append('info_les', info_les);
@@ -654,6 +670,13 @@
                         } else {
                             $("#pekerjaan_ibu").removeClass('is-invalid');
                             $(".error-pekerjaan-ibu").html('');
+                        }
+                        if (response.error.agama) {
+                            $("#agama").addClass('is-invalid');
+                            $(".error-agama").html(response.error.agama);
+                        } else {
+                            $("#agama").removeClass('is-invalid');
+                            $(".error-agama").html('');
                         }
                         if (response.error.nomor_whatsapp_wali) {
                             $("#nomor_whatsapp_wali").addClass('is-invalid');
@@ -794,6 +817,7 @@
                 $("#nama_ibu_edit").val(response.murid.nama_ibu);
                 $("#pekerjaan_ayah_edit").val(response.murid.pekerjaan_ayah);
                 $("#pekerjaan_ibu_edit").val(response.murid.pekerjaan_ibu);
+                $("#agama_edit").val(response.murid.agama);
                 $("#nomor_whatsapp_wali_edit").val(response.murid.nomor_whatsapp_wali);
                 $("#username_instagram_wali_edit").val(response.murid.username_instagram_wali);
                 $("#hari_belajar_edit").val(response.murid.hari_belajar);
@@ -918,6 +942,7 @@
         let nama_ibu = $("#nama_ibu_edit").val();
         let pekerjaan_ayah = $("#pekerjaan_ayah_edit").val();
         let pekerjaan_ibu = $("#pekerjaan_ibu_edit").val();
+        let agama = $("#agama_edit").val();
         let nomor_whatsapp_wali = $("#nomor_whatsapp_wali_edit").val();
         let username_instagram_wali = $("#username_instagram_wali_edit").val();
         let info_les = $("#info_les_edit").val();
@@ -945,6 +970,7 @@
         formData.append('nama_ibu', nama_ibu);
         formData.append('pekerjaan_ayah', pekerjaan_ayah);
         formData.append('pekerjaan_ibu', pekerjaan_ibu);
+        formData.append('agama', agama);
         formData.append('nomor_whatsapp_wali', nomor_whatsapp_wali);
         formData.append('username_instagram_wali', username_instagram_wali);
         formData.append('info_les', info_les);
@@ -1065,6 +1091,13 @@
                     } else {
                         $("#hari_belajar_edit").removeClass('is-invalid');
                         $(".error-hari-belajar-edit").html('');
+                    }
+                    if (response.error.agama) {
+                        $("#agama_edit").addClass('is-invalid');
+                        $(".error-agama-edit").html(response.error.agama);
+                    } else {
+                        $("#agama_edit").removeClass('is-invalid');
+                        $(".error-agama-edit").html('');
                     }
                     if (response.error.waktu_belajar) {
                         $("#waktu_belajar_edit").addClass('is-invalid');
