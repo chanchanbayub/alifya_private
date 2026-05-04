@@ -84,7 +84,25 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5">
-                <img class="img-fluid rounded mb-5 mb-lg-0" src="/users/img/update_foto.jpeg" alt="" />
+                <div class="container">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/users/img/slide/slide_foto_1.jpeg" class="img-fluid rounded mb-5 mb-lg-0" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/users/img/slide/slide_foto_2.jpeg" class="img-fluid rounded mb-5 mb-lg-0" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/users/img/slide/slide_foto_3.jpeg" class="img-fluid rounded mb-5 mb-lg-0" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/users/img/slide/slide_foto_4.jpeg" class="img-fluid rounded mb-5 mb-lg-0" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <img class="img-fluid rounded mb-5 mb-lg-0" src="/users/img/update_foto.jpeg" alt="" /> -->
             </div>
             <div class="col-lg-7">
                 <p class="section-title pr-5">
