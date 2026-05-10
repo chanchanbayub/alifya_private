@@ -9,7 +9,7 @@ class MuridModel extends Model
     protected $table            = 'data_murid_table';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['uid_murid', 'nama_lengkap_anak', 'tanggal_lahir_anak',  'alamat_domisili_anak', 'sekolah_anak', 'nama_ibu', 'nama_ayah', 'pekerjaan_ayah', 'pekerjaan_ibu', 'agama', 'nomor_whatsapp_wali', 'paket_belajar_id', 'username_instagram_wali', 'program_belajar_id', 'materi_belajar_id', 'hari_belajar', 'waktu_belajar', 'info_les', 'foto_anak', 'status_murid_id', 'ketersediaan', 'nama_panggilan_anak', 'jenis_kelamin', 'pendidikan_id', 'ukuran_baju', 'catatan', 'bukti_tf', 'izin_dokumentasi', 'tata_tertib', 'tindak_lanjut', 'larangan', 'data_1', 'data_2'];
+    protected $allowedFields    = ['uid_murid', 'nama_lengkap_anak', 'tanggal_lahir_anak',  'alamat_domisili_anak', 'sekolah_anak', 'nama_ibu', 'nama_ayah', 'pekerjaan_ayah', 'pekerjaan_ibu', 'nomor_whatsapp_wali', 'paket_belajar_id', 'username_instagram_wali', 'program_belajar_id', 'materi_belajar_id', 'hari_belajar', 'waktu_belajar', 'info_les', 'foto_anak', 'status_murid_id', 'ketersediaan', 'nama_panggilan_anak', 'jenis_kelamin', 'pendidikan_id', 'ukuran_baju', 'catatan', 'bukti_tf', 'izin_dokumentasi', 'tata_tertib', 'tindak_lanjut', 'larangan', 'data_1', 'data_2', 'agama'];
 
     // Dates
     protected $useTimestamps = true;

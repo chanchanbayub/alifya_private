@@ -562,25 +562,6 @@ class UsersController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
-                'foto_anak' => [
-                    'rules' => 'uploaded[foto_anak]|max_size[foto_anak,2048]|is_image[foto_anak]|mime_in[foto_anak,image/png,image/jpeg]',
-                    'errors' => [
-                        'uploaded' => 'Foto Tidak Boleh Kosong !',
-                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
-                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
-                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
-                    ]
-                ],
-                'bukti_tf' => [
-                    'rules' => 'uploaded[bukti_tf]|max_size[bukti_tf,2048]|is_image[bukti_tf]|mime_in[bukti_tf,image/png,image/jpeg]',
-                    'errors' => [
-                        'uploaded' => 'File Tidak Boleh Kosong !',
-                        'max_size' => 'Ukuran Terlalu Besar (max : 2MB) !',
-                        'is_image' => 'Yang Anda Upload Bukan Gambar !',
-                        'mime_in' => 'Format yang diperbolehkan hanya, png, jpg, jpeg !',
-                    ]
-                ],
-
                 'info_les' => [
                     'rules' => 'required',
                     'errors' => [
@@ -604,7 +585,6 @@ class UsersController extends BaseController
                         'materi_belajar_id' => $this->validation->getError('materi_belajar_id'),
                         'hari_belajar' => $this->validation->getError('hari_belajar'),
                         'waktu_belajar' => $this->validation->getError('waktu_belajar'),
-                        'foto_anak' => $this->validation->getError('foto_anak'),
                         'info_les' => $this->validation->getError('info_les'),
                         'nama_ayah' => $this->validation->getError('nama_ayah'),
                         'nama_ibu' => $this->validation->getError('nama_ibu'),
@@ -615,10 +595,8 @@ class UsersController extends BaseController
                         'nama_panggilan_anak' => $this->validation->getError('nama_panggilan_anak'),
                         'jenis_kelamin' => $this->validation->getError('jenis_kelamin'),
                         'pendidikan_id' => $this->validation->getError('pendidikan_id'),
-                        'pendidikan_id' => $this->validation->getError('pendidikan_id'),
                         'ukuran_baju' => $this->validation->getError('ukuran_baju'),
                         'catatan' => $this->validation->getError('catatan'),
-                        'bukti_tf' => $this->validation->getError('bukti_tf'),
                         'izin_dokumentasi' => $this->validation->getError('izin_dokumentasi'),
                         'tata_tertib' => $this->validation->getError('tata_tertib'),
                         'tindak_lanjut' => $this->validation->getError('tindak_lanjut'),
