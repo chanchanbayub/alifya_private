@@ -13,6 +13,8 @@ class InvoicePesertaController extends BaseController
     protected $validation;
     protected $pesertaDidikAhlModel;
     protected $lainLainPesertaAhlModel;
+
+
     public function __construct()
     {
         $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
@@ -21,7 +23,6 @@ class InvoicePesertaController extends BaseController
 
         helper(['format']);
     }
-
 
     public function index()
     {
