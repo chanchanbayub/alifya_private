@@ -84,6 +84,20 @@
                                 </div>
 
                                 <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Agama</div>
+                                    <div class="col-lg-6 col-md-8"><?= ($profil->agama == null) ? "-" : "$profil->agama" ?>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-4 label">Alamat Domisili</div>
+                                    <div class="col-lg-6 col-md-8"><?= $profil->alamat_domisili_anak ?>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Sekolah Anak</div>
                                     <div class="col-lg-6 col-md-8"><?= $profil->sekolah_anak ?></div>
                                 </div>
