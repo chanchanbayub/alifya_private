@@ -657,24 +657,24 @@ class MuridController extends BaseController
 
                 $bukti_tf = $this->request->getFile('bukti_tf');
 
-                // $nama_tf = $bukti_tf->getRandomName();
-
                 $path_bukti_tf = 'bukti_tf_private/' . $bukti_tf_lama;
 
                 if ($bukti_tf->getError() == 4) {
-                    $nama_tf = $bukti_tf_lama;
+                    if ($bukti_tf_lama != null) {
+                        $nama_tf = $bukti_tf_lama;
+                    } else {
+                        $nama_tf = 'NULL';
+                    }
                 } else {
-                    if (file_exists($path_bukti_tf)) {
-                        unlink($path_bukti_tf);
+                    if ($bukti_tf_lama != null) {
+                        if (file_exists($path_bukti_tf)) {
+                            unlink($path_bukti_tf);
+                        }
                     }
                     $nama_tf = $bukti_tf->getRandomName();
                     $bukti_tf->move('bukti_tf_private', $nama_tf);
                 }
 
-
-                $foto_anak = $this->request->getFile('foto_anak');
-
-                // $nama_foto = $foto_anak->getRandomName();
 
                 $foto_anak = $this->request->getFile('foto_anak');
 
@@ -712,7 +712,7 @@ class MuridController extends BaseController
                     'agama' => strtolower($agama),
                     'info_les' => $info_les,
                     'foto_anak' => strtolower($nama_foto),
-                    'bukti_tf' => strtolower($nama_tf),
+                    'bukti_tf' => $nama_tf,
                     'ketersediaan' => strtolower($ketersediaan),
                     'nama_panggilan_anak' => strtolower($nama_panggilan_anak),
                     'jenis_kelamin' => strtolower($jenis_kelamin),

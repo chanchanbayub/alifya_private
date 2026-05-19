@@ -938,7 +938,7 @@
                 id: id,
             },
             success: function(response) {
-                console
+
                 $("#id_edit").val(response.murid.id);
                 $("#foto_lama").val(response.murid.foto_anak);
                 $("#bukti_tf_lama").val(response.murid.bukti_tf);
@@ -1110,6 +1110,7 @@
         let jenis_kelamin = $("#jenis_kelamin_edit").val();
         let pendidikan_id = $("#pendidikan_id_edit").val();
         let ukuran_baju = $("#ukuran_baju_edit").val();
+        let ketersediaan = $("#ketersediaan_edit").val();
 
         let program_belajar_id = $("#program_belajar_id_edit").val();
         let materi_belajar_id = $("#materi_belajar_id_edit").val();
@@ -1170,7 +1171,7 @@
         formData.append('tindak_lanjut', tindak_lanjut);
         formData.append('larangan', larangan);
         formData.append('info_les', info_les);
-        formData.append('status_murid_id', status_murid_id);
+        formData.append('ketersediaan', ketersediaan);
 
         formData.append('data_1', data_1);
         formData.append('data_2', data_2);
@@ -1192,90 +1193,47 @@
                 $('.update').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
                 $('.update').prop('disabled', false);
                 if (response.error) {
-                    if (response.error.nama_lengkap_anak) {
-                        $("#nama_lengkap_anak_edit").addClass('is-invalid');
-                        $(".error-nama-edit").html(response.error.nama_lengkap_anak);
+
+                    if (response.error.ketersediaan) {
+                        $("#ketersediaan_edit").addClass('is-invalid');
+                        $(".error-ketersediaan-edit").html(response.error.ketersediaan);
                     } else {
-                        $("#nama_lengkap_anak_edit").removeClass('is-invalid');
-                        $(".error-nama-edit").html('');
+                        $("#ketersediaan_edit").removeClass('is-invalid');
+                        $(".error-ketersediaan-edit").html('');
                     }
-                    if (response.error.tanggal_lahir_anak) {
-                        $("#tanggal_lahir_anak_edit").addClass('is-invalid');
-                        $(".error-tanggal-lahir-edit").html(response.error.tanggal_lahir_anak);
+
+                    if (response.error.nama_ayah) {
+                        $("#nama_ayah_edit").addClass('is-invalid');
+                        $(".error-nama-ayah-edit").html(response.error.nama_ayah);
                     } else {
-                        $("#tanggal_lahir_anak_edit").removeClass('is-invalid');
-                        $(".error-tanggal-lahir-edit").html('');
+                        $("#nama_ayah_edit").removeClass('is-invalid');
+                        $(".error-nama-ayah-edit").html('');
                     }
-                    if (response.error.alamat_domisili_anak) {
-                        $("#alamat_domisili_anak_edit").addClass('is-invalid');
-                        $(".error-alamat-edit").html(response.error.alamat_domisili_anak);
+
+                    if (response.error.pekerjaan_ayah) {
+                        $("#pekerjaan_ayah_edit").addClass('is-invalid');
+                        $(".error-pekerjaan-ayah-edit").html(response.error.pekerjaan_ayah);
                     } else {
-                        $("#alamat_domisili_anak").removeClass('is-invalid');
-                        $(".error-alamat-edit").html('');
+                        $("#pekerjaan_ayah_edit").removeClass('is-invalid');
+                        $(".error-pekerjaan-ayah-edit").html('');
                     }
-                    if (response.error.sekolah_anak) {
-                        $("#sekolah_anak_edit").addClass('is-invalid');
-                        $(".error-sekolah-anak-edit").html(response.error.sekolah_anak);
+
+                    if (response.error.nama_ibu) {
+                        $("#nama_ibu_edit").addClass('is-invalid');
+                        $(".error-nama-ibu-edit").html(response.error.nama_ibu);
                     } else {
-                        $("#sekolah_anak_edit").removeClass('is-invalid');
-                        $(".error-sekolah-anak-edit").html('');
+                        $("#nama_ibu_edit").removeClass('is-invalid');
+                        $(".error-nama-ibu-edit").html('');
                     }
-                    if (response.error.nomor_whatsapp_wali) {
-                        $("#nomor_whatsapp_wali_edit").addClass('is-invalid');
-                        $(".error-nomor-wali-edit").html(response.error.nomor_whatsapp_wali);
+
+                    if (response.error.pekerjaan_ibu) {
+                        $("#pekerjaan_ibu_edit").addClass('is-invalid');
+                        $(".error-pekerjaan-ibu-edit").html(response.error.pekerjaan_ibu);
                     } else {
-                        $("#nomor_whatsapp_wali_edit").removeClass('is-invalid');
-                        $(".error-nomor-wali-edit").html('');
+                        $("#pekerjaan_ibu_edit").removeClass('is-invalid');
+                        $(".error-pekerjaan-ibu-edit").html('');
                     }
-                    if (response.error.info_les) {
-                        $("#info_les_edit").addClass('is-invalid');
-                        $(".error-info-les-edit").html(response.error.info_les);
-                    } else {
-                        $("#info_les_edit").removeClass('is-invalid');
-                        $(".error-info-les-edit").html('');
-                    }
-                    if (response.error.username_instagram_wali) {
-                        $("#username_instagram_wali_edit").addClass('is-invalid');
-                        $(".error-username-ig-wali-edit").html(response.error.username_instagram_wali);
-                    } else {
-                        $("#username_instagram_wali_edit").removeClass('is-invalid');
-                        $(".error-username-ig-wali-edit").html('');
-                    }
-                    if (response.error.paket_belajar_id) {
-                        $("#paket_belajar_id_edit").addClass('is-invalid');
-                        $(".error-paket-belajar-edit").html(response.error.paket_belajar_id);
-                    } else {
-                        $("#paket_belajar_id_edit").removeClass('is-invalid');
-                        $(".error-paket-belajar-edit").html('');
-                    }
-                    if (response.error.program_belajar_id) {
-                        $("#program_belajar_id_edit").addClass('is-invalid');
-                        $(".error-program-belajar-edit").html(response.error.program_belajar_id);
-                    } else {
-                        $("#program_belajar_id_edit").removeClass('is-invalid');
-                        $(".error-program-belajar-edit").html('');
-                    }
-                    if (response.error.materi_belajar_id) {
-                        $("#materi_belajar_id_edit").addClass('is-invalid');
-                        $(".error-materi-belajar-edit").html(response.error.materi_belajar_id);
-                    } else {
-                        $("#materi_belajar_id_edit").removeClass('is-invalid');
-                        $(".error-materi-belajar-edit").html('');
-                    }
-                    if (response.error.materi_belajar_id) {
-                        $("#materi_belajar_id_edit").addClass('is-invalid');
-                        $(".error-materi-belajar-edit").html(response.error.materi_belajar_id);
-                    } else {
-                        $("#materi_belajar_id_edit").removeClass('is-invalid');
-                        $(".error-materi-belajar-edit").html('');
-                    }
-                    if (response.error.hari_belajar) {
-                        $("#hari_belajar_edit").addClass('is-invalid');
-                        $(".error-hari-belajar-edit").html(response.error.hari_belajar);
-                    } else {
-                        $("#hari_belajar_edit").removeClass('is-invalid');
-                        $(".error-hari-belajar-edit").html('');
-                    }
+
                     if (response.error.agama) {
                         $("#agama_edit").addClass('is-invalid');
                         $(".error-agama-edit").html(response.error.agama);
@@ -1283,6 +1241,119 @@
                         $("#agama_edit").removeClass('is-invalid');
                         $(".error-agama-edit").html('');
                     }
+
+                    if (response.error.username_instagram_wali) {
+                        $("#username_instagram_wali_edit").addClass('is-invalid');
+                        $(".error-username-ig-wali-edit").html(response.error.username_instagram_wali);
+                    } else {
+                        $("#username_instagram_wali_edit").removeClass('is-invalid');
+                        $(".error-username-ig-wali-edit").html('');
+                    }
+
+                    if (response.error.nomor_whatsapp_wali) {
+                        $("#nomor_whatsapp_wali_edit").addClass('is-invalid');
+                        $(".error-nomor-wali-edit").html(response.error.nomor_whatsapp_wali);
+                    } else {
+                        $("#nomor_whatsapp_wali_edit").removeClass('is-invalid');
+                        $(".error-nomor-wali-edit").html('');
+                    }
+
+                    if (response.error.alamat_domisili_anak) {
+                        $("#alamat_domisili_anak_edit").addClass('is-invalid');
+                        $(".error-alamat-edit").html(response.error.alamat_domisili_anak);
+                    } else {
+                        $("#alamat_domisili_anak").removeClass('is-invalid');
+                        $(".error-alamat-edit").html('');
+                    }
+
+                    if (response.error.nama_lengkap_anak) {
+                        $("#nama_lengkap_anak_edit").addClass('is-invalid');
+                        $(".error-nama-edit").html(response.error.nama_lengkap_anak);
+                    } else {
+                        $("#nama_lengkap_anak_edit").removeClass('is-invalid');
+                        $(".error-nama-edit").html('');
+                    }
+
+                    if (response.error.nama_panggilan_anak) {
+                        $("#nama_panggilan_anak_edit").addClass('is-invalid');
+                        $(".error-nama-panggilan-edit").html(response.error.nama_panggilan_anak);
+                    } else {
+                        $("#nama_panggilan_anak_edit").removeClass('is-invalid');
+                        $(".error-nama-panggilan-edit").html('');
+                    }
+
+                    if (response.error.tanggal_lahir_anak) {
+                        $("#tanggal_lahir_anak_edit").addClass('is-invalid');
+                        $(".error-tanggal-lahir-edit").html(response.error.tanggal_lahir_anak);
+                    } else {
+                        $("#tanggal_lahir_anak_edit").removeClass('is-invalid');
+                        $(".error-tanggal-lahir-edit").html('');
+                    }
+
+                    if (response.error.jenis_kelamin) {
+                        $("#jenis_kelamin_edit").addClass('is-invalid');
+                        $(".error-jenis-kelamin-edit").html(response.error.jenis_kelamin);
+                    } else {
+                        $("#jenis_kelamin_edit").removeClass('is-invalid');
+                        $(".error-jenis-kelamin-edit").html('');
+                    }
+
+                    if (response.error.pendidikan_id) {
+                        $("#pendidikan_id_edit").addClass('is-invalid');
+                        $(".error-pendidikan-edit").html(response.error.pendidikan_id);
+                    } else {
+                        $("#pendidikan_id_edit").removeClass('is-invalid');
+                        $(".error-pendidikan-edit").html('');
+                    }
+
+                    if (response.error.sekolah_anak) {
+                        $("#sekolah_anak_edit").addClass('is-invalid');
+                        $(".error-sekolah-anak-edit").html(response.error.sekolah_anak);
+                    } else {
+                        $("#sekolah_anak_edit").removeClass('is-invalid');
+                        $(".error-sekolah-anak-edit").html('');
+                    }
+
+                    if (response.error.ukuran_baju) {
+                        $("#ukuran_baju_edit").addClass('is-invalid');
+                        $(".error-ukuran-baju-edit").html(response.error.ukuran_baju);
+                    } else {
+                        $("#ukuran_baju_edit").removeClass('is-invalid');
+                        $(".error-ukuran-baju-edit").html('');
+                    }
+
+                    if (response.error.program_belajar_id) {
+                        $("#program_belajar_id_edit").addClass('is-invalid');
+                        $(".error-program-belajar-edit").html(response.error.program_belajar_id);
+                    } else {
+                        $("#program_belajar_id_edit").removeClass('is-invalid');
+                        $(".error-program-belajar-edit").html('');
+                    }
+
+                    if (response.error.materi_belajar_id) {
+                        $("#materi_belajar_id_edit").addClass('is-invalid');
+                        $(".error-materi-belajar-edit").html(response.error.materi_belajar_id);
+                    } else {
+                        $("#materi_belajar_id_edit").removeClass('is-invalid');
+                        $(".error-materi-belajar-edit").html('');
+                    }
+
+                    if (response.error.paket_belajar_id) {
+                        $("#paket_belajar_id_edit").addClass('is-invalid');
+                        $(".error-paket-belajar-edit").html(response.error.paket_belajar_id);
+                    } else {
+                        $("#paket_belajar_id_edit").removeClass('is-invalid');
+                        $(".error-paket-belajar-edit").html('');
+                    }
+
+                    if (response.error.hari_belajar) {
+                        $("#hari_belajar_edit").addClass('is-invalid');
+                        $(".error-hari-belajar-edit").html(response.error.hari_belajar);
+                    } else {
+                        $("#hari_belajar_edit").removeClass('is-invalid');
+                        $(".error-hari-belajar-edit").html('');
+                    }
+
                     if (response.error.waktu_belajar) {
                         $("#waktu_belajar_edit").addClass('is-invalid');
                         $(".error-waktu-edit").html(response.error.waktu_belajar);
@@ -1290,34 +1361,71 @@
                         $("#waktu_belajar_edit").removeClass('is-invalid');
                         $(".error-waktu-edit").html('');
                     }
-                    if (response.error.foto_anak) {
-                        $("#foto_anak_edit").addClass('is-invalid');
-                        $(".error-foto-anak-edit").html(response.error.foto_anak);
+
+                    if (response.error.catatan) {
+                        $("#catatan_edit").addClass('is-invalid');
+                        $(".error-catatan-edit").html(response.error.catatan);
                     } else {
-                        $("#foto_anak_edit").removeClass('is-invalid');
-                        $(".error-foto-anak-edit").html('');
+                        $("#catatan_edit").removeClass('is-invalid');
+                        $(".error-catatan-edit").html('');
                     }
-                    if (response.error.status_murid_id) {
-                        $("#status_murid_id_edit").addClass('is-invalid');
-                        $(".error-status-murid-edit").html(response.error.status_murid_id);
+
+                    if (response.error.izin_dokumentasi) {
+                        $("#izin_dokumentasi_edit").addClass('is-invalid');
+                        $(".error-izin-dokumentasi-edit").html(response.error.izin_dokumentasi);
                     } else {
-                        $("#status_murid_id_edit").removeClass('is-invalid');
-                        $(".error-status-murid-edit").html('');
+                        $("#izin_dokumentasi_edit").removeClass('is-invalid');
+                        $(".error-izin-dokumentasi-edit").html('');
                     }
-                    if (response.error.brosur) {
-                        $("#brosur_edit").addClass('is-invalid');
-                        $(".error-brosur-edit").html(response.error.brosur);
+
+                    if (response.error.tata_tertib) {
+                        $("#tata_tertib_edit").addClass('is-invalid');
+                        $(".error-tata-tertib-edit").html(response.error.tata_tertib);
                     } else {
-                        $("#brosur_edit").removeClass('is-invalid');
-                        $(".error-brosur-edit").html('');
+                        $("#tata_tertib_edit").removeClass('is-invalid');
+                        $(".error-tata-tertib-edit").html('');
                     }
-                    if (response.error.data) {
-                        $("#data_edit").addClass('is-invalid');
-                        $(".error-data-edit").html(response.error.data);
+
+                    if (response.error.tindak_lanjut) {
+                        $("#tindak_lanjut_edit").addClass('is-invalid');
+                        $(".error-tindak-lanjut-edit").html(response.error.tindak_lanjut);
                     } else {
-                        $("#data_edit").removeClass('is-invalid');
-                        $(".error-data-edit").html('');
+                        $("#tindak_lanjut_edit").removeClass('is-invalid');
+                        $(".error-tindak-lanjut-edit").html('');
                     }
+
+                    if (response.error.larangan) {
+                        $("#larangan_edit").addClass('is-invalid');
+                        $(".error-larangan-edit").html(response.error.larangan);
+                    } else {
+                        $("#larangan_edit").removeClass('is-invalid');
+                        $(".error-larangan-edit").html('');
+                    }
+
+                    if (response.error.info_les) {
+                        $("#info_les_edit").addClass('is-invalid');
+                        $(".error-info-les-edit").html(response.error.info_les);
+                    } else {
+                        $("#info_les_edit").removeClass('is-invalid');
+                        $(".error-info-les-edit").html('');
+                    }
+
+                    if (response.error.data_1) {
+                        $("#data_1_edit").addClass('is-invalid');
+                        $(".error-data-1-edit").html(response.error.data_1);
+                    } else {
+                        $("#data_1_edit").removeClass('is-invalid');
+                        $(".error-data-1-edit").html('');
+                    }
+
+                    if (response.error.data_2) {
+                        $("#data_2_edit").addClass('is-invalid');
+                        $(".error-data-2-edit").html(response.error.data_2);
+                    } else {
+                        $("#data_2_edit").removeClass('is-invalid');
+                        $(".error-data-2-edit").html('');
+                    }
+
 
 
                 } else {

@@ -26,6 +26,7 @@
                     <div class="social-links mt-2">
                         <a href="https://wa.me/+<?= $profil->nomor_whatsapp_wali ?>" target="_blank" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
                         <a href="https://www.instagram.com/<?= $profil->username_instagram_wali ?>/" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="/bukti_tf_private/<?= $profil->bukti_tf ?>" target="_blank" class="instagram"><i class="bi bi-file"></i></a>
                     </div>
                 </div>
             </div>
