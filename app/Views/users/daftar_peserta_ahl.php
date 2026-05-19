@@ -227,9 +227,9 @@
                         <br>
 
                         <div class="control-group">
-                            <label for="program_belajar_id">Tata Tertib Alifya Home Learning (<a href="/assets/img/tata_tertib_ahl.jpeg" target="_blank">Lihat Tata Tertib</a>) :</label>
+                            <label for="program_belajar_id">Tata Tertib Alifya Home Learning (<a href="/assets/img/tata_tertib_ahl_2026.png" target="_blank">Lihat Tata Tertib</a>) :</label>
                             <br>
-                            <img src="/assets/img/tata_tertib_ahl.jpeg" alt="tata_tertib" width="350">
+                            <img src="/assets/img/tata_tertib_ahl_2026.png" alt="tata_tertib" width="350">
                         </div>
                         <br>
 
