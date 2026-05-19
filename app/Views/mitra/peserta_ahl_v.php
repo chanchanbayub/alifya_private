@@ -37,6 +37,7 @@
                                         <th scope="col">Nama Lengkap</th>
                                         <th scope="col">Profil Peserta</th>
                                         <th scope="col">Status Peserta</th>
+                                        <th scope="col">Aksi</th>
 
                                     </tr>
                                 </thead>
@@ -150,6 +151,13 @@
                         <label for="pekerjaan_ibu" class="col-form-label">Pekerjaan ibu : </label>
                         <input type="text" name="pekerjaan_ibu" id="pekerjaan_ibu" class="form-control">
                         <div class="invalid-feedback error-pekerjaan-ibu">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="agama" class="col-form-label">Agama : </label>
+                        <input type="text" name="agama" id="agama" class="form-control">
+                        <div class="invalid-feedback error-agama">
                         </div>
                     </div>
 
@@ -360,6 +368,7 @@
                         <div class="invalid-feedback error-status-peserta-didik">
                         </div>
                     </div>
+
             </div>
 
             <div class="modal-footer">
@@ -372,33 +381,6 @@
 </div>
 </div>
 <!-- End Edit Modal-->
-
-<!-- Modal hapus  -->
-<div class="modal fade" id="deleteModal" tabindex="0">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Form <small> Hapus <?= $title ?> </small></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="delete_form">
-                    <?= csrf_field(); ?>
-                    <input type="hidden" class="form-control" id="id_delete" name="id">
-                    <div class="modal-body">
-                        <p>Apakah Anda Yakin ?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"> <i class="bi bi-x-lg"></i> Batal</button>
-                        <button type="submit" class="btn btn-outline-danger button_delete"> <i class="bi bi-trash"></i> Hapus</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End hapus Modal-->
-
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
@@ -427,6 +409,9 @@
                 {
                     data: 'status_murid',
                 },
+                {
+                    data: 'action',
+                },
 
             ],
         });
@@ -448,6 +433,8 @@
             let pekerjaan_ayah = $("#pekerjaan_ayah").val();
             let nama_ibu = $("#nama_ibu").val();
             let pekerjaan_ibu = $("#pekerjaan_ibu").val();
+            let agama = $("#agama").val();
+
             let usersname_instagram = $("#usersname_instagram").val();
             let nomor_whatsapp_orang_tua = $("#nomor_whatsapp_orang_tua").val();
             let alamat_domisili_anak = $("#alamat_domisili_anak").val();
@@ -486,6 +473,7 @@
             formData.append('pekerjaan_ayah', pekerjaan_ayah);
             formData.append('nama_ibu', nama_ibu);
             formData.append('pekerjaan_ibu', pekerjaan_ibu);
+            formData.append('agama', agama);
             formData.append('usersname_instagram', usersname_instagram);
             formData.append('nomor_whatsapp_orang_tua', nomor_whatsapp_orang_tua);
             formData.append('alamat_domisili_anak', alamat_domisili_anak);
@@ -509,7 +497,7 @@
             formData.append('status_peserta_id', status_peserta_id);
 
             $.ajax({
-                url: '/admin/peserta_ahl/update',
+                url: '/mitra_pengajar/peserta_ahl/update',
                 data: formData,
                 dataType: 'json',
                 enctype: 'multipart/form-data',
@@ -559,6 +547,13 @@
                         } else {
                             $("#pekerjaan_ibu").removeClass('is-invalid');
                             $(".error-pekerjaan-ibu").html('');
+                        }
+                        if (response.error.agama) {
+                            $("#agama").addClass('is-invalid');
+                            $(".error-agama").html(response.error.agama);
+                        } else {
+                            $("#agama").removeClass('is-invalid');
+                            $(".error-agama").html('');
                         }
                         if (response.error.usersname_instagram) {
                             $("#usersname_instagram").addClass('is-invalid');
@@ -729,6 +724,7 @@
                 $("#pekerjaan_ayah").val(response.peserta_ahl.pekerjaan_ayah);
                 $("#nama_ibu").val(response.peserta_ahl.nama_ibu);
                 $("#pekerjaan_ibu").val(response.peserta_ahl.pekerjaan_ibu);
+                $("#agama").val(response.peserta_ahl.agama);
                 $("#usersname_instagram").val(response.peserta_ahl.usersname_instagram);
                 $("#nomor_whatsapp_orang_tua").val(response.peserta_ahl.nomor_whatsapp_orang_tua);
                 $("#alamat_domisili_anak").val(response.peserta_ahl.alamat_domisili_anak);
@@ -744,68 +740,9 @@
                 $("#data_1").val(response.peserta_ahl.data_1);
                 $("#data_2").val(response.peserta_ahl.data_2);
                 $("#tanggal_bergabung").val(response.peserta_ahl.tanggal_bergabung);
-                $("#status_peserta_id").val(response.peserta_ahl.status_peserta_id);
                 $("#program_belajar_ahl_id").val(response.peserta_ahl.program_belajar_ahl_id).trigger('change');
                 $("#jumlah_pertemuan_id").val(response.peserta_ahl.jumlah_pertemuan_id).trigger('change');
-
-
-
-            }
-        });
-    });
-
-    // Aksi Hapus
-    $(document).on('click', "#delete", function(e) {
-        e.preventDefault();
-        let id = $(this).attr('data-id');
-        $.ajax({
-            url: '/admin/peserta_ahl/edit',
-            method: 'get',
-            dataType: 'JSON',
-            data: {
-                id: id,
-            },
-            success: function(response) {
-                $("#id_delete").val(response.peserta_ahl.id);
-            }
-        });
-    });
-
-    $("#delete_form").submit(function(e) {
-        e.preventDefault();
-        let id = $("#id_delete").val();
-        $.ajax({
-            url: '/admin/peserta_ahl/delete',
-            method: 'post',
-            dataType: 'JSON',
-            data: {
-                id: id,
-            },
-            beforeSend: function() {
-                $('.button_delete').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
-                $('.button_delete').prop('disabled', true);
-            },
-            success: function(response) {
-                $('.button_delete').html('<i class="bi bi-trash"></i> Hapus');
-                $('.button_delete').prop('disabled', false);
-
-                $("#deleteModal").modal('hide');
-                Swal.fire({
-                    icon: 'success',
-                    title: `${response.success}`,
-                });
-                setTimeout(function() {
-                    location.reload();
-                }, 1000)
-            },
-            error: function(response) {
-
-                Swal.fire({
-                    icon: 'error',
-                    title: `Data Gagal di Hapus!`,
-                });
-                $('.button_delete').html('<i class="bi bi-trash"></i> Hapus');
-                $('.button_delete').prop('disabled', false);
+                $("#status_peserta_id").val(response.peserta_ahl.status_peserta_id);
 
             }
         });

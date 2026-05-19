@@ -650,7 +650,10 @@ class PesertaDidikAhlController extends BaseController
                 $jumlah_pertemuan_id = $this->request->getPost('jumlah_pertemuan_id');
 
                 $foto_anak = $this->request->getFile('foto_anak');
+                $path_foto_anak = 'foto_profil_anak_ahl/' . $foto_anak_lama;
+
                 $bukti_tf = $this->request->getFile('bukti_tf');
+                $path_bukti_tf = 'bukti_tf/' . $bukti_tf_lama;
 
                 $izin_dokumentasi = $this->request->getPost('izin_dokumentasi');
                 $info_alifya = $this->request->getPost('info_alifya');
@@ -663,8 +666,8 @@ class PesertaDidikAhlController extends BaseController
                 if ($foto_anak->getError() == 4) {
                     $nama_foto = $foto_anak_lama;
                 } else {
-                    if ($foto_anak_lama != null) {
-                        unlink('foto_profil_anak_ahl/' . $foto_anak_lama);
+                    if (file_exists($path_foto_anak)) {
+                        unlink($path_foto_anak);
                     }
                     $nama_foto = $foto_anak->getRandomName();
                     $foto_anak->move('foto_profil_anak_ahl', $nama_foto);
@@ -673,8 +676,8 @@ class PesertaDidikAhlController extends BaseController
                 if ($bukti_tf->getError() == 4) {
                     $nama_foto_tf = $bukti_tf_lama;
                 } else {
-                    if ($bukti_tf_lama != null) {
-                        unlink('bukti_tf/' . $bukti_tf_lama);
+                    if (file_exists($path_bukti_tf) != null) {
+                        unlink($path_bukti_tf);
                     }
                     $nama_foto_tf = $bukti_tf->getRandomName();
                     $bukti_tf->move('bukti_tf', $nama_foto_tf);

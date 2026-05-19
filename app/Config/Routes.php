@@ -431,6 +431,7 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('peserta_ahl', 'Mitra\PesertaDidikAhlController::index');
     $routes->get('peserta_ahl/getProfil/(:any)', 'Mitra\PesertaDidikAhlController::getProfil/$1');
     $routes->post('peserta_ahl/getPesertaAhl', 'Mitra\PesertaDidikAhlController::getPesertaAhl');
+    $routes->post('peserta_ahl/update', 'Mitra\PesertaDidikAhlController::update');
 
     // Presensi AHL
     $routes->get('presensi_ahl_mitra', 'Mitra\PresensiAHLController::index');
