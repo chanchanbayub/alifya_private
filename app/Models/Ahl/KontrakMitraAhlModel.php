@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Models\Ahl;
+
+use CodeIgniter\Model;
+
+class KontrakMitraAhlModel extends Model
+{
+    protected $table            = 'kontrak_mitra_ahl_table';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $allowedFields    = ['mitra_pengajar_id', 'awal_bergabung', 'akhir_kontrak'];
+
+    // Dates
+    protected $useTimestamps = true;
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+
+
+    public function getKontrakMitra()
+    {
+        $db = db_connect();
+        $builder = $db->table($this->table);
+
+        $builder = $builder->select('kontrak_mitra_ahl_table.id, data_pengajar_table.nama_lengkap, kontrak_mitra_ahl_table.awal_bergabung, kontrak_mitra_ahl_table.akhir_kontrak')
+            ->join('mitra_pengajar_ahl_table', 'mitra_pengajar_ahl_table.mitra_id = kontrak_mitra_ahl_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = kontrak_mitra_ahl_table.mitra_pengajar_id');
+        return $builder->orderBy('data_pengajar_table.nama_lengkap asc');
+    }
+
+    public function getKontrakMitraData()
+    {
+        return $this->table($this->table)
+            ->select('kontrak_mitra_ahl_table.id, kontrak_mitra_ahl_table.mitra_pengajar_id, , data_pengajar_table.nama_lengkap, kontrak_mitra_ahl_table.awal_bergabung, kontrak_mitra_ahl_table.akhir_kontrak, data_pengajar_table.status_id, data_pengajar_table.status_id, status_pengajar_table.status_pengajar')
+            // ->select('kontrak_mitra_ahl_table.id')
+            ->join('mitra_pengajar_ahl_table', 'mitra_pengajar_ahl_table.mitra_id = kontrak_mitra_ahl_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = kontrak_mitra_ahl_table.mitra_pengajar_id')
+            ->join('status_pengajar_table', 'status_pengajar_table.id = data_pengajar_table.status_id')
+            ->where(['data_pengajar_table.status_id' => 1])
+            ->orderBy('data_pengajar_table.nama_lengkap asc')
+            ->get()->getResultObject();
+    }
+
+    public function getKontrakMitraPerbulan($bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select('kontrak_mitra_ahl_table.id, data_pengajar_table.nama_lengkap, kontrak_mitra_ahl_table.awal_bergabung, kontrak_mitra_ahl_table.akhir_kontrak')
+            ->join('mitra_pengajar_ahl_table', 'mitra_pengajar_ahl_table.mitra_id = kontrak_mitra_ahl_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = kontrak_mitra_ahl_table.mitra_pengajar_id')
+            ->where('MONTH(kontrak_mitra_ahl_table.akhir_kontrak)', $bulan)
+            ->where('YEAR(kontrak_mitra_ahl_table.akhir_kontrak)', $tahun)
+            ->orderBy('data_pengajar_table.nama_lengkap asc')->get()->getResultObject();
+    }
+}

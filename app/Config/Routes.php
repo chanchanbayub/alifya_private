@@ -273,6 +273,14 @@ $routes->group('admin', static function ($routes) {
     $routes->post('mitra_ahl/update', 'Ahl\MitraPengajarAhlController::update');
     $routes->post('mitra_ahl/delete', 'Ahl\MitraPengajarAhlController::delete');
 
+    // Mitra Ahl 
+    $routes->get('kontrak_mitra_ahl', 'Ahl\KontrakMitraAhlController::index');
+    $routes->post('kontrak_mitra_ahl/insert', 'Ahl\KontrakMitraAhlController::insert');
+    $routes->get('kontrak_mitra_ahl/edit', 'Ahl\KontrakMitraAhlController::edit');
+    $routes->post('kontrak_mitra_ahl/update', 'Ahl\KontrakMitraAhlController::update');
+    $routes->post('kontrak_mitra_ahl/delete', 'Ahl\KontrakMitraAhlController::delete');
+    $routes->post('kontrak_mitra_ahl/kontrak_perbulan', 'Ahl\KontrakMitraAhlController::kontrak_perbulan');
+
     // Presensi AHL
     $routes->get('presensi_ahl', 'Ahl\PresensiAhlController::index');
     $routes->post('presensi_ahl/insert', 'Ahl\PresensiAhlController::insert');

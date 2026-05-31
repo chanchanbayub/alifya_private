@@ -152,7 +152,6 @@
                          <i class="bi bi-circle"></i><span>Mitra Pengajar AHL </span>
                      </a>
                  </li>
-
                  <li>
                      <a href="/admin/presensi_ahl">
                          <i class="bi bi-circle"></i><span>Presensi AHL </span>
@@ -161,6 +160,11 @@
                  <li>
                      <a href="/admin/upah_mitra_ahl">
                          <i class="bi bi-circle"></i><span>Upah AHL</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/admin/kontrak_mitra_ahl">
+                         <i class="bi bi-circle"></i><span>Kontrak Mitra AHL</span>
                      </a>
                  </li>
 
