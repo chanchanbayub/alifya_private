@@ -214,6 +214,12 @@ class MuridController extends BaseController
                         'required' => 'Nama Sekolah Tidak Boleh Kosong !'
                     ]
                 ],
+                'riwayat_penyakit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Riwayat Penyakit Tidak Boleh Kosong !'
+                    ]
+                ],
                 'nomor_whatsapp_wali' => [
                     'rules' => 'required',
                     'errors' => [
@@ -322,6 +328,7 @@ class MuridController extends BaseController
                         'pendidikan_id' => $this->validation->getError('pendidikan_id'),
                         'ukuran_baju' => $this->validation->getError('ukuran_baju'),
                         'catatan' => $this->validation->getError('catatan'),
+                        'riwayat_penyakit' => $this->validation->getError('riwayat_penyakit'),
                         'izin_dokumentasi' => $this->validation->getError('izin_dokumentasi'),
                         'tata_tertib' => $this->validation->getError('tata_tertib'),
                         'tindak_lanjut' => $this->validation->getError('tindak_lanjut'),
@@ -350,6 +357,7 @@ class MuridController extends BaseController
                 $materi_belajar_id = $this->request->getPost('materi_belajar_id');
                 $hari_belajar = $this->request->getPost('hari_belajar');
                 $waktu_belajar = $this->request->getPost('waktu_belajar');
+                $riwayat_penyakit = $this->request->getPost('riwayat_penyakit');
 
                 $info_les = $this->request->getPost('info_les');
 
@@ -421,6 +429,7 @@ class MuridController extends BaseController
                     'materi_belajar_id' => strtolower($materi_belajar_id),
                     'hari_belajar' => strtolower($hari_belajar),
                     'waktu_belajar' => strtolower($waktu_belajar),
+                    'riwayat_penyakit' => strtolower($riwayat_penyakit),
                     'nama_ayah' => strtolower($nama_ayah),
                     'nama_ibu' => strtolower($nama_ibu),
                     'pekerjaan_ayah' => strtolower($pekerjaan_ayah),

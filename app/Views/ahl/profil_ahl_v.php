@@ -140,6 +140,11 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-lg-6 col-md-4 label">Riwayat Penyakit</div>
+                                <div class="col-lg-6 col-md-8"><?= $profil->riwayat_penyakit ?></div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-lg-6 col-md-4 label">Sekolah Anak</div>
                                 <div class="col-lg-6 col-md-8"><?= $profil->sekolah_anak ?></div>
                             </div>

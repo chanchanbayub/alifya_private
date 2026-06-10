@@ -415,7 +415,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="riwayat_penyakit_edit" class="col-form-label">Nama Sekolah :</label>
+                        <label for="riwayat_penyakit_edit" class="col-form-label">Riwayat Penyakit :</label>
                         <input type="text" class="form-control" id="riwayat_penyakit_edit" name="riwayat_penyakit">
                         <div class="invalid-feedback error-riwayat-edit">
                         </div>

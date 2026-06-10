@@ -157,6 +157,12 @@
                         </div>
 
                         <div class="control-group">
+                            <label for="riwayat_penyakit">Alergi / Riwayat Penyakit :</label>
+                            <input type="text" class="form-control" id="riwayat_penyakit" name="riwayat_penyakit" placeholder="Riwayat Penyakit" />
+                            <p class="help-block text-danger error-riwayat"></p>
+                        </div>
+
+                        <div class="control-group">
                             <label for="ukuran_baju">Ukuran Baju Anak :</label>
                             <table border="1" style="border-collapse: collapse; text-align:center">
                                 <tr>
@@ -365,6 +371,7 @@
         let jenis_kelamin = $("#jenis_kelamin").val();
         let pendidikan_id = $("#pendidikan_id").val();
         let sekolah_anak = $("#sekolah_anak").val();
+        let riwayat_penyakit = $("#riwayat_penyakit").val();
         let ukuran_baju = $("#ukuran_baju").val();
 
         // 
@@ -393,6 +400,8 @@
         formData.append('tanggal_lahir_anak', tanggal_lahir_anak);
         formData.append('jenis_kelamin', jenis_kelamin);
         formData.append('pendidikan_id', pendidikan_id);
+        formData.append('sekolah_anak', sekolah_anak);
+        formData.append('riwayat_penyakit', riwayat_penyakit);
         formData.append('ukuran_baju', ukuran_baju);
         formData.append('program_belajar_ahl_id', program_belajar_ahl_id);
         formData.append('jumlah_pertemuan_id', jumlah_pertemuan_id);
@@ -521,10 +530,17 @@
                     }
                     if (response.error.sekolah_anak) {
                         $("#sekolah_anak").addClass('is-invalid');
-                        $(".error-sekolah_anak").html(response.error.sekolah_anak);
+                        $(".error-sekolah-anak").html(response.error.sekolah_anak);
                     } else {
                         $("#sekolah_anak").removeClass('is-invalid');
-                        $(".error-sekolah_anak").html('');
+                        $(".error-sekolah-anak").html('');
+                    }
+                    if (response.error.riwayat_penyakit) {
+                        $("#riwayat_penyakit").addClass('is-invalid');
+                        $(".error-riwayat").html(response.error.riwayat_penyakit);
+                    } else {
+                        $("#riwayat_penyakit").removeClass('is-invalid');
+                        $(".error-riwayat").html('');
                     }
                     if (response.error.ukuran_baju) {
                         $("#ukuran_baju").addClass('is-invalid');

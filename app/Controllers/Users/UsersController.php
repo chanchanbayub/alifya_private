@@ -844,6 +844,12 @@ class UsersController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+                'riwayat_penyakit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
                 'ukuran_baju' => [
                     'rules' => 'required',
                     'errors' => [
@@ -933,6 +939,7 @@ class UsersController extends BaseController
                         'jenis_kelamin' => $this->validation->getError('jenis_kelamin'),
                         'pendidikan_id' => $this->validation->getError('pendidikan_id'),
                         'sekolah_anak' => $this->validation->getError('sekolah_anak'),
+                        'riwayat_penyakit' => $this->validation->getError('riwayat_penyakit'),
                         'ukuran_baju' => $this->validation->getError('ukuran_baju'),
 
                         'program_belajar_ahl_id' => $this->validation->getError('program_belajar_ahl_id'),
@@ -968,6 +975,7 @@ class UsersController extends BaseController
                 $jenis_kelamin = $this->request->getPost('jenis_kelamin');
                 $pendidikan_id = $this->request->getPost('pendidikan_id');
                 $sekolah_anak = $this->request->getPost('sekolah_anak');
+                $riwayat_penyakit = $this->request->getPost('riwayat_penyakit');
                 $ukuran_baju = $this->request->getPost('ukuran_baju');
 
                 $program_belajar_ahl_id = $this->request->getPost('program_belajar_ahl_id');
@@ -1002,6 +1010,7 @@ class UsersController extends BaseController
                     'jenis_kelamin' => strtolower($jenis_kelamin),
                     'pendidikan_id' => strtolower($pendidikan_id),
                     'sekolah_anak' => strtolower($sekolah_anak),
+                    'riwayat_penyakit' => strtolower($riwayat_penyakit),
                     'ukuran_baju' => strtolower($ukuran_baju),
                     'program_belajar_ahl_id' => strtolower($program_belajar_ahl_id),
                     'jumlah_pertemuan_id' => strtolower($jumlah_pertemuan_id),

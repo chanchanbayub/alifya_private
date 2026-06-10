@@ -234,6 +234,13 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="riwayat_penyakit">Riwayat Penyakit :</label>
+                        <input type="text" class="form-control" id="riwayat_penyakit" name="riwayat_penyakit" placeholder="riwayat" />
+                        <div class="invalid-feedback error-riwayat">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="ukuran_baju">Ukuran Baju Anak :</label>
                         <table style="border-collapse: collapse; text-align:center" class="table table-bordered">
                             <tr>
@@ -446,6 +453,7 @@
             let jenis_kelamin = $("#jenis_kelamin").val();
             let pendidikan_id = $("#pendidikan_id").val();
             let sekolah_anak = $("#sekolah_anak").val();
+            let riwayat_penyakit = $("#riwayat_penyakit").val();
             let ukuran_baju = $("#ukuran_baju").val();
 
             // 
@@ -483,6 +491,8 @@
             formData.append('tanggal_lahir_anak', tanggal_lahir_anak);
             formData.append('jenis_kelamin', jenis_kelamin);
             formData.append('pendidikan_id', pendidikan_id);
+            formData.append('sekolah_anak', sekolah_anak);
+            formData.append('riwayat_penyakit', riwayat_penyakit);
             formData.append('ukuran_baju', ukuran_baju);
 
             formData.append('program_belajar_ahl_id', program_belajar_ahl_id);
@@ -618,6 +628,13 @@
                             $("#sekolah_anak").removeClass('is-invalid');
                             $(".error-sekolah_anak").html('');
                         }
+                        if (response.error.riwayat_penyakit) {
+                            $("#riwayat_penyakit").addClass('is-invalid');
+                            $(".error-riwayat").html(response.error.riwayat_penyakit);
+                        } else {
+                            $("#riwayat_penyakit").removeClass('is-invalid');
+                            $(".error-riwayat").html('');
+                        }
                         if (response.error.ukuran_baju) {
                             $("#ukuran_baju").addClass('is-invalid');
                             $(".error-ukuran-baju").html(response.error.ukuran_baju);
@@ -734,6 +751,7 @@
                 $("#jenis_kelamin").val(response.peserta_ahl.jenis_kelamin).trigger('change');
                 $("#pendidikan_id").val(response.peserta_ahl.pendidikan_id).trigger('change');
                 $("#sekolah_anak").val(response.peserta_ahl.sekolah_anak);
+                $("#riwayat_penyakit").val(response.peserta_ahl.riwayat_penyakit);
                 $("#ukuran_baju").val(response.peserta_ahl.ukuran_baju);
                 $("#izin_dokumentasi").val(response.peserta_ahl.izin_dokumentasi).trigger('change');
                 $("#info_alifya").val(response.peserta_ahl.info_alifya);
