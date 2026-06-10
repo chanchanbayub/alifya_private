@@ -495,6 +495,12 @@ class MuridController extends BaseController
                         'required' => 'Nama Sekolah Tidak Boleh Kosong !'
                     ]
                 ],
+                'riwayat_penyakit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Riwayat Penyakit Tidak Boleh Kosong !'
+                    ]
+                ],
                 'nomor_whatsapp_wali' => [
                     'rules' => 'required',
                     'errors' => [
@@ -584,6 +590,7 @@ class MuridController extends BaseController
                         'tanggal_lahir_anak' => $this->validation->getError('tanggal_lahir_anak'),
                         'alamat_domisili_anak' => $this->validation->getError('alamat_domisili_anak'),
                         'sekolah_anak' => $this->validation->getError('sekolah_anak'),
+                        'riwayat_penyakit' => $this->validation->getError('riwayat_penyakit'),
                         'nomor_whatsapp_wali' => $this->validation->getError('nomor_whatsapp_wali'),
                         'username_instagram_wali' => $this->validation->getError('username_instagram_wali'),
                         'paket_belajar_id' => $this->validation->getError('paket_belajar_id'),
@@ -625,6 +632,7 @@ class MuridController extends BaseController
 
                 $alamat_domisili_anak = $this->request->getPost('alamat_domisili_anak');
                 $sekolah_anak = $this->request->getPost('sekolah_anak');
+                $riwayat_penyakit = $this->request->getPost('riwayat_penyakit');
                 $nomor_whatsapp_wali = $this->request->getPost('nomor_whatsapp_wali');
                 $username_instagram_wali = $this->request->getPost('username_instagram_wali');
                 $program_belajar_id = $this->request->getPost('program_belajar_id');
@@ -698,6 +706,7 @@ class MuridController extends BaseController
                     'tanggal_lahir_anak' => strtolower($tanggal_lahir_anak),
                     'alamat_domisili_anak' => strtolower($alamat_domisili_anak),
                     'sekolah_anak' => strtolower($sekolah_anak),
+                    'riwayat_penyakit' => strtolower($riwayat_penyakit),
                     'nomor_whatsapp_wali' => strtolower($nomor_whatsapp_wali),
                     'username_instagram_wali' => strtolower($username_instagram_wali),
                     'paket_belajar_id' => strtolower($paket_belajar_id),

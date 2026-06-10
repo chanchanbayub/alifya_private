@@ -147,6 +147,12 @@
                                         <p class="help-block text-danger error-sekolah-anak"></p>
                                     </div>
 
+                                    <div class="control-group">
+                                        <label for="riwayat_penyakit">Catatan Alergi / Riwayat Penyakit :</label>
+                                        <input type="text" class="form-control" id="riwayat_penyakit" name="riwayat_penyakit" placeholder="jika tidak ada isi dengan '-'" />
+                                        <p class="help-block text-danger error-riwayat"></p>
+                                    </div>
+
                                     <!-- DB Baru -->
                                     <div class="control-group">
                                         <label for="ukuran_baju">Ukuran Baju Anak :</label>
@@ -437,6 +443,7 @@
         let tanggal_lahir_anak = $("#tanggal_lahir_anak").val();
         let alamat_domisili_anak = $("#alamat_domisili_anak").val();
         let sekolah_anak = $("#sekolah_anak").val();
+        let riwayat_penyakit = $("#riwayat_penyakit").val();
         let nomor_whatsapp_wali = $("#nomor_whatsapp_wali").val();
         let username_instagram_wali = $("#username_instagram_wali").val();
         let paket_belajar_id = $("#paket_belajar_id").val();
@@ -477,6 +484,7 @@
 
         formData.append('alamat_domisili_anak', alamat_domisili_anak);
         formData.append('sekolah_anak', sekolah_anak);
+        formData.append('riwayat_penyakit', riwayat_penyakit);
         formData.append('nomor_whatsapp_wali', nomor_whatsapp_wali);
         formData.append('username_instagram_wali', username_instagram_wali);
         formData.append('paket_belajar_id', paket_belajar_id);
@@ -494,7 +502,6 @@
         formData.append('foto_anak', foto_anak);
 
         formData.append('info_les', info_les);
-
 
         formData.append('ketersediaan', ketersediaan);
         formData.append('nama_panggilan_anak', nama_panggilan_anak);
@@ -562,6 +569,13 @@
                     } else {
                         $("#sekolah_anak").removeClass('is-invalid');
                         $(".error-sekolah-anak").html('');
+                    }
+                    if (response.error.riwayat_penyakit) {
+                        $("#riwayat_penyakit").addClass('is-invalid');
+                        $(".error-riwayat").html(response.error.riwayat_penyakit);
+                    } else {
+                        $("#riwayat_penyakit").removeClass('is-invalid');
+                        $(".error-riwayat").html('');
                     }
                     if (response.error.username_instagram_wali) {
                         $("#username_instagram_wali").addClass('is-invalid');

@@ -413,6 +413,13 @@
                         <div class="invalid-feedback error-sekolah-anak-edit">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="riwayat_penyakit_edit" class="col-form-label">Nama Sekolah :</label>
+                        <input type="text" class="form-control" id="riwayat_penyakit_edit" name="riwayat_penyakit">
+                        <div class="invalid-feedback error-riwayat-edit">
+                        </div>
+                    </div>
                     <br>
 
                     <div class="form-group">
@@ -679,6 +686,7 @@
             let usia_anak = $("#usia_anak").val();
             let alamat_domisili_anak = $("#alamat_domisili_anak").val();
             let sekolah_anak = $("#sekolah_anak").val();
+            let riwayat_penyakit = $("#riwayat_penyakit").val();
             let nama_ayah = $("#nama_ayah").val();
             let pekerjaan_ayah = $("#pekerjaan_ayah").val();
             let nama_ibu = $("#nama_ibu").val();
@@ -705,6 +713,7 @@
             formData.append('usia_anak', usia_anak);
             formData.append('alamat_domisili_anak', alamat_domisili_anak);
             formData.append('sekolah_anak', sekolah_anak);
+            formData.append('riwayat_penyakit', riwayat_penyakit);
             formData.append('nama_ayah', nama_ayah);
             formData.append('pekerjaan_ayah', pekerjaan_ayah);
             formData.append('nama_ibu', nama_ibu);
@@ -768,6 +777,13 @@
                         } else {
                             $("#alamat_domisili_anak").removeClass('is-invalid');
                             $(".error-alamat").html('');
+                        }
+                        if (response.error.sekolah_anak) {
+                            $("#sekolah_anak").addClass('is-invalid');
+                            $(".error-sekolah-anak").html(response.error.sekolah_anak);
+                        } else {
+                            $("#sekolah_anak").removeClass('is-invalid');
+                            $(".error-sekolah-anak").html('');
                         }
                         if (response.error.sekolah_anak) {
                             $("#sekolah_anak").addClass('is-invalid');
@@ -969,6 +985,7 @@
                 $("#pendidikan_id_edit").val(response.murid.pendidikan_id).trigger('change');
 
                 $("#sekolah_anak_edit").val(response.murid.sekolah_anak);
+                $("#riwayat_penyakit_edit").val(response.murid.riwayat_penyakit);
                 $("#ukuran_baju_edit").val(response.murid.ukuran_baju);
 
                 let program_id = `<option value="">--Silahkan Pilih--</option>`;
@@ -1107,6 +1124,7 @@
         let nama_panggilan_anak = $("#nama_panggilan_anak_edit").val();
         let tanggal_lahir_anak = $("#tanggal_lahir_anak_edit").val();
         let sekolah_anak = $("#sekolah_anak_edit").val();
+        let riwayat_penyakit = $("#riwayat_penyakit_edit").val();
         let jenis_kelamin = $("#jenis_kelamin_edit").val();
         let pendidikan_id = $("#pendidikan_id_edit").val();
         let ukuran_baju = $("#ukuran_baju_edit").val();
@@ -1152,6 +1170,7 @@
         formData.append('nama_panggilan_anak', nama_panggilan_anak);
         formData.append('tanggal_lahir_anak', tanggal_lahir_anak);
         formData.append('sekolah_anak', sekolah_anak);
+        formData.append('riwayat_penyakit', riwayat_penyakit);
         formData.append('jenis_kelamin', jenis_kelamin);
         formData.append('pendidikan_id', pendidikan_id);
         formData.append('ukuran_baju', ukuran_baju);
@@ -1312,6 +1331,14 @@
                     } else {
                         $("#sekolah_anak_edit").removeClass('is-invalid');
                         $(".error-sekolah-anak-edit").html('');
+                    }
+
+                    if (response.error.riwayat_penyakit) {
+                        $("#riwayat_penyakit_edit").addClass('is-invalid');
+                        $(".error-riwayat-edit").html(response.error.riwayat_penyakit);
+                    } else {
+                        $("#riwayat_penyakit_edit").removeClass('is-invalid');
+                        $(".error-riwayat-edit").html('');
                     }
 
                     if (response.error.ukuran_baju) {
