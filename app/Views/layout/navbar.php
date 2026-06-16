@@ -139,6 +139,22 @@
              </ul>
          </li><!-- End Icons Nav -->
 
+         <li class="nav-heading">Sistem Pembimbing</li>
+
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#pembimbing" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-people"></i><span>Pembimbing</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="pembimbing" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                 <li>
+                     <a href="/admin/pembimbing">
+                         <i class="bi bi-circle"></i><span>Tunjuk Pembimbing </span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+
          <li class="nav-heading">Alifya Home Learning</li>
 
          <li class="nav-item">

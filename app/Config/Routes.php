@@ -187,6 +187,12 @@ $routes->group('admin', static function ($routes) {
     $routes->post('kelompok_belajar/update', 'Admin\KelompokBelajarController::update');
     $routes->post('kelompok_belajar/delete', 'Admin\KelompokBelajarController::delete');
 
+    $routes->get('pembimbing', 'Admin\PembimbingController::index');
+    $routes->post('pembimbing/insert', 'Admin\PembimbingController::insert');
+    $routes->get('pembimbing/edit', 'Admin\PembimbingController::edit');
+    $routes->post('pembimbing/update', 'Admin\PembimbingController::update');
+    $routes->post('pembimbing/delete', 'Admin\PembimbingController::delete');
+
     $routes->get('presensi', 'Admin\PresensiController::index');
     $routes->post('presensi/insert', 'Admin\PresensiController::insert');
     $routes->get('presensi/edit', 'Admin\PresensiController::edit');
