@@ -5,6 +5,7 @@ namespace App\Controllers\Mitra;
 use App\Controllers\BaseController;
 use App\Models\Admin\PembimbingModel;
 use App\Models\Admin\StatusMuridModel;
+use App\Models\Ahl\MitraPengajarAhlModel;
 use App\Models\Ahl\PesertaDidikAhlModel;
 use App\Models\Ahl\PriceListModel;
 use App\Models\Ahl\ProgramAHLModel;
@@ -15,6 +16,7 @@ use Hermawan\DataTables\DataTable;
 class PesertaDidikAhlController extends BaseController
 {
     protected $pesertaDidikAhlModel;
+    protected $mitraPengajarAhlModel;
     protected $pembimbingModel;
     protected $programAhlModel;
     protected $tingkatPendidikanModel;
@@ -25,6 +27,7 @@ class PesertaDidikAhlController extends BaseController
     public function __construct()
     {
         $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
+        $this->mitraPengajarAhlModel = new MitraPengajarAhlModel();
         $this->pembimbingModel = new PembimbingModel();
         $this->programAhlModel = new ProgramAHLModel();
         $this->tingkatPendidikanModel = new TingkatPendidikanModel();
@@ -40,7 +43,23 @@ class PesertaDidikAhlController extends BaseController
 
         $pembimbing = $this->pembimbingModel->where(["mitra_pengajar_id" => $session_mitra])->first();
 
-        if ($pembimbing != null) {
+        $mitra_ahl = $this->mitraPengajarAhlModel->where(["mitra_id" => $session_mitra])->first();
+
+        if ($pembimbing == null) {
+            if ($mitra_ahl != null) {
+                $data = [
+                    'title' => 'Peserta Didik Alifya Home Learning',
+                    'program_ahl' => $this->programAhlModel->getProgramAHL(),
+                    'pendidikan' => $this->tingkatPendidikanModel->getPendidikan(),
+                    'price_list' => $this->priceListModel->getPriceList(),
+                    'status_murid' => $this->statusMuridModel->getStatusMurid()
+                ];
+
+                return view('mitra/peserta_ahl_v', $data);
+            } else {
+                return redirect()->back();
+            }
+        } else {
             $data = [
                 'title' => 'Peserta Didik Alifya Home Learning',
                 'program_ahl' => $this->programAhlModel->getProgramAHL(),
@@ -50,8 +69,6 @@ class PesertaDidikAhlController extends BaseController
             ];
 
             return view('mitra/peserta_ahl_v', $data);
-        } else {
-            return redirect()->back();
         }
     }
 
