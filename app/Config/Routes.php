@@ -417,6 +417,7 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('data_murid/view/(:any)', 'Mitra\MuridController::view/$1');
     $routes->get('data_murid/edit', 'Mitra\MuridController::edit');
     $routes->post('data_murid/update', 'Mitra\MuridController::update');
+    $routes->get('data_murid/peserta_didik', 'Mitra\MuridController::peserta_didik');
 
     $routes->get('presensi', 'Mitra\PresensiController::index');
     $routes->post('presensi/insert', 'Mitra\PresensiController::insert');

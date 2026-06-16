@@ -25,6 +25,26 @@
              </ul>
          </li><!-- End Icons Nav -->
 
+         <li class="nav-heading">PEMBIMBING</li>
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#pembimbing-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi-person-check"></i><span>Sistem Pembimbing</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="pembimbing-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/mitra_pengajar/peserta_ahl">
+                         <i class="bi bi-circle"></i><span>Peserta Didik AHL</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/mitra_pengajar/data_murid/peserta_didik">
+                         <i class="bi bi-circle"></i><span>Peserta Didik Private</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+
+
          <li class="nav-heading">ALIFYA HOME LEARNING</li>
 
          <li class="nav-item">

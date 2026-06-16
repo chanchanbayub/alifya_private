@@ -460,4 +460,21 @@ class MuridController extends BaseController
             return json_encode($alert);
         }
     }
+
+    public function peserta_didik()
+    {
+
+
+        $data = [
+            'title' => 'Peserta Didik',
+            'status_murid' => $this->statusMuridModel->getStatusMurid(),
+            'program_belajar' => $this->programBelajarModel->getProgramBelajar(),
+            'materi_belajar' => $this->materiBelajarModel->getMateriBelajar(),
+            'data_murid' => $this->muridModel->getDataMurid(),
+            'paket_belajar' => $this->paketBelajarModel->getPaketBelajar(),
+
+        ];
+
+        return view('mitra/murid_private_v', $data);
+    }
 }
