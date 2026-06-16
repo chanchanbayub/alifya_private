@@ -40,19 +40,22 @@ class PresensiAHLController extends BaseController
     {
 
         $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhlById(session('mitra_pengajar_id'));
-        $presensi_ahl =  $this->presensiAhlModel->getPresensiAhlByid(session('mitra_pengajar_id'));
-        // dd($presensi_ahl);
 
-        $data = [
-            'title' => 'Presensi AHL',
-            'presensi_ahl' => $presensi_ahl,
-            'lokasi' => $this->lokasiModel->getLokasi(),
-            'jenis_pekerjaan' => $this->jenisPekerjaanModel->getJenisPekerjaan(),
-            'status_presensi' => $this->statusPresensiModel->getStatusPresensi(),
-            'mitra_pengajar_ahl' => $mitra_pengajar_ahl,
-        ];
+        if ($mitra_pengajar_ahl != null) {
+            $presensi_ahl =  $this->presensiAhlModel->getPresensiAhlByid(session('mitra_pengajar_id'));
+            $data = [
+                'title' => 'Presensi AHL',
+                'presensi_ahl' => $presensi_ahl,
+                'lokasi' => $this->lokasiModel->getLokasi(),
+                'jenis_pekerjaan' => $this->jenisPekerjaanModel->getJenisPekerjaan(),
+                'status_presensi' => $this->statusPresensiModel->getStatusPresensi(),
+                'mitra_pengajar_ahl' => $mitra_pengajar_ahl,
+            ];
 
-        return view('mitra/presensi_ahl_v', $data);
+            return view('mitra/presensi_ahl_v', $data);
+        } else {
+            return redirect()->back();
+        }
     }
 
     public function insert()

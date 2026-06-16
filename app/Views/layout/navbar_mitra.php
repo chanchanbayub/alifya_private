@@ -32,11 +32,6 @@
              </a>
              <ul id="pembimbing-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                  <li>
-                     <a href="/mitra_pengajar/peserta_ahl">
-                         <i class="bi bi-circle"></i><span>Peserta Didik AHL</span>
-                     </a>
-                 </li>
-                 <li>
                      <a href="/mitra_pengajar/data_murid/peserta_didik">
                          <i class="bi bi-circle"></i><span>Peserta Didik Private</span>
                      </a>

@@ -4,6 +4,7 @@ namespace App\Controllers\Mitra;
 
 use App\Controllers\BaseController;
 use App\Models\Admin\PaketBelajarModel;
+use App\Models\Admin\PembimbingModel;
 use App\Models\Admin\ProgramBelajarModel;
 use App\Models\Admin\StatusMuridModel;
 use App\Models\Ahl\TingkatPendidikanModel;
@@ -21,12 +22,14 @@ class MuridController extends BaseController
     protected $materiBelajarModel;
     protected $paketBelajarModel;
     protected $tingkatPendidikanModel;
+    protected $pembimbingModel;
 
     protected $validation;
 
     public function __construct()
     {
         $this->muridModel = new MuridModel();
+        $this->pembimbingModel = new PembimbingModel();
         $this->kelompokBelajarModel = new KelompokBelajarModel();
         $this->statusMuridModel = new StatusMuridModel();
         $this->programBelajarModel = new ProgramBelajarModel();
@@ -464,17 +467,24 @@ class MuridController extends BaseController
     public function peserta_didik()
     {
 
+        $session_mitra = session('mitra_pengajar_id');
 
-        $data = [
-            'title' => 'Peserta Didik',
-            'status_murid' => $this->statusMuridModel->getStatusMurid(),
-            'program_belajar' => $this->programBelajarModel->getProgramBelajar(),
-            'materi_belajar' => $this->materiBelajarModel->getMateriBelajar(),
-            'data_murid' => $this->muridModel->getDataMurid(),
-            'paket_belajar' => $this->paketBelajarModel->getPaketBelajar(),
+        $pembimbing = $this->pembimbingModel->where(["mitra_pengajar_id" => $session_mitra])->first();
 
-        ];
+        if ($pembimbing != null) {
+            $data = [
+                'title' => 'Peserta Didik',
+                'status_murid' => $this->statusMuridModel->getStatusMurid(),
+                'program_belajar' => $this->programBelajarModel->getProgramBelajar(),
+                'materi_belajar' => $this->materiBelajarModel->getMateriBelajar(),
+                'data_murid' => $this->muridModel->getDataMurid(),
+                'paket_belajar' => $this->paketBelajarModel->getPaketBelajar(),
 
-        return view('mitra/murid_private_v', $data);
+            ];
+
+            return view('mitra/murid_private_v', $data);
+        } else {
+            return redirect()->back();
+        }
     }
 }

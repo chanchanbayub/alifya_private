@@ -3,6 +3,7 @@
 namespace App\Controllers\Mitra;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\PembimbingModel;
 use App\Models\Admin\StatusMuridModel;
 use App\Models\Ahl\PesertaDidikAhlModel;
 use App\Models\Ahl\PriceListModel;
@@ -14,6 +15,7 @@ use Hermawan\DataTables\DataTable;
 class PesertaDidikAhlController extends BaseController
 {
     protected $pesertaDidikAhlModel;
+    protected $pembimbingModel;
     protected $programAhlModel;
     protected $tingkatPendidikanModel;
     protected $statusMuridModel;
@@ -23,6 +25,7 @@ class PesertaDidikAhlController extends BaseController
     public function __construct()
     {
         $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
+        $this->pembimbingModel = new PembimbingModel();
         $this->programAhlModel = new ProgramAHLModel();
         $this->tingkatPendidikanModel = new TingkatPendidikanModel();
         $this->statusMuridModel = new StatusMuridModel();
@@ -32,15 +35,24 @@ class PesertaDidikAhlController extends BaseController
 
     public function index()
     {
-        $data = [
-            'title' => 'Peserta Didik Alifya Home Learning',
-            'program_ahl' => $this->programAhlModel->getProgramAHL(),
-            'pendidikan' => $this->tingkatPendidikanModel->getPendidikan(),
-            'price_list' => $this->priceListModel->getPriceList(),
-            'status_murid' => $this->statusMuridModel->getStatusMurid()
-        ];
 
-        return view('mitra/peserta_ahl_v', $data);
+        $session_mitra = session('mitra_pengajar_id');
+
+        $pembimbing = $this->pembimbingModel->where(["mitra_pengajar_id" => $session_mitra])->first();
+
+        if ($pembimbing != null) {
+            $data = [
+                'title' => 'Peserta Didik Alifya Home Learning',
+                'program_ahl' => $this->programAhlModel->getProgramAHL(),
+                'pendidikan' => $this->tingkatPendidikanModel->getPendidikan(),
+                'price_list' => $this->priceListModel->getPriceList(),
+                'status_murid' => $this->statusMuridModel->getStatusMurid()
+            ];
+
+            return view('mitra/peserta_ahl_v', $data);
+        } else {
+            return redirect()->back();
+        }
     }
 
     public function getPesertaAhl()
