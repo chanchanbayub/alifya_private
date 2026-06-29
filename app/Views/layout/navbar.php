@@ -139,6 +139,26 @@
              </ul>
          </li><!-- End Icons Nav -->
 
+         <li class="nav-heading">Alifya Performance Rangking</li>
+
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#apr" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-award"></i><span> APR </span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="apr" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/admin/kategori_apr">
+                         <i class="bi bi-circle"></i><span>Kategori APR</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/admin/skala_nilai_apr">
+                         <i class="bi bi-circle"></i><span>Skala Nilai APR</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+
          <li class="nav-heading">Sistem Pembimbing</li>
 
          <li class="nav-item">

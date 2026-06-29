@@ -204,6 +204,19 @@ $routes->group('admin', static function ($routes) {
     $routes->get('presensi_bulanan', 'Admin\PresensiController::presensi_bulanan');
     $routes->get('presensi/getPresensiPerbulan', 'Admin\PresensiController::getPresensiPerbulan');
 
+    // Kategori APR Controller
+    $routes->get('kategori_apr', 'Admin\KategoriAPRController::index');
+    $routes->post('kategori_apr/insert', 'Admin\KategoriAPRController::insert');
+    $routes->get('kategori_apr/edit', 'Admin\KategoriAPRController::edit');
+    $routes->post('kategori_apr/update', 'Admin\KategoriAPRController::update');
+    $routes->post('kategori_apr/delete', 'Admin\KategoriAPRController::delete');
+
+    $routes->get('skala_nilai_apr', 'Admin\SkalaNilaiAPRController::index');
+    $routes->post('skala_nilai_apr/insert', 'Admin\SkalaNilaiAPRController::insert');
+    $routes->get('skala_nilai_apr/edit', 'Admin\SkalaNilaiAPRController::edit');
+    $routes->post('skala_nilai_apr/update', 'Admin\SkalaNilaiAPRController::update');
+    $routes->post('skala_nilai_apr/delete', 'Admin\SkalaNilaiAPRController::delete');
+
 
     $routes->get('absensi', 'Admin\AbsensiController::index');
     $routes->post('absensi/insert', 'Admin\AbsensiController::insert');
