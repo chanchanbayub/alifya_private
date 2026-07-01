@@ -467,15 +467,6 @@
                     <br>
 
                     <div class="form-group">
-                        <label for="program_belajar_id_edit" class="col-form-label">Program Belajar:</label>
-                        <select name="program_belajar_id" id="program_belajar_id_edit" class="form-select">
-                            <option value="">--Silahkan Pilih--</option>
-                        </select>
-                        <div class="invalid-feedback error-program-belajar-edit">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="materi_belajar_id_edit" class="col-form-label">Materi Belajar:</label>
                         <select name="materi_belajar_id" id="materi_belajar_id_edit" class="form-select">
                             <option value="">--Silahkan Pilih--</option>
@@ -696,7 +687,6 @@
             let username_instagram_wali = $("#username_instagram_wali").val();
             let info_les = $("#info_les").val();
             let paket_belajar_id = $("#paket_belajar_id").val();
-            let program_belajar_id = $("#program_belajar_id").val();
             let materi_belajar_id = $("#materi_belajar_id").val();
             let hari_belajar = $("#hari_belajar").val();
             let waktu_belajar = $("#waktu_belajar").val();
@@ -723,7 +713,6 @@
             formData.append('username_instagram_wali', username_instagram_wali);
             formData.append('info_les', info_les);
             formData.append('paket_belajar_id', paket_belajar_id);
-            formData.append('program_belajar_id', program_belajar_id);
             formData.append('materi_belajar_id', materi_belajar_id);
             formData.append('hari_belajar', hari_belajar);
             formData.append('waktu_belajar', waktu_belajar);
@@ -855,13 +844,7 @@
                             $("#paket_belajar_id").removeClass('is-invalid');
                             $(".error-paket-belajar").html('');
                         }
-                        if (response.error.program_belajar_id) {
-                            $("#program_belajar_id").addClass('is-invalid');
-                            $(".error-program-belajar").html(response.error.program_belajar_id);
-                        } else {
-                            $("#program_belajar_id").removeClass('is-invalid');
-                            $(".error-program-belajar").html('');
-                        }
+
                         if (response.error.materi_belajar_id) {
                             $("#materi_belajar_id").addClass('is-invalid');
                             $(".error-materi-belajar").html(response.error.materi_belajar_id);

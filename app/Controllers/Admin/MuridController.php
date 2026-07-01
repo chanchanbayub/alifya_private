@@ -519,12 +519,6 @@ class MuridController extends BaseController
                         'required' => 'Paket Belajar Tidak Boleh Kosong !'
                     ]
                 ],
-                'program_belajar_id' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Program Belajar  Tidak Boleh Kosong !'
-                    ]
-                ],
                 'materi_belajar_id' => [
                     'rules' => 'required',
                     'errors' => [
@@ -594,7 +588,6 @@ class MuridController extends BaseController
                         'nomor_whatsapp_wali' => $this->validation->getError('nomor_whatsapp_wali'),
                         'username_instagram_wali' => $this->validation->getError('username_instagram_wali'),
                         'paket_belajar_id' => $this->validation->getError('paket_belajar_id'),
-                        'program_belajar_id' => $this->validation->getError('program_belajar_id'),
                         'materi_belajar_id' => $this->validation->getError('materi_belajar_id'),
                         'hari_belajar' => $this->validation->getError('hari_belajar'),
                         'waktu_belajar' => $this->validation->getError('waktu_belajar'),
@@ -635,7 +628,6 @@ class MuridController extends BaseController
                 $riwayat_penyakit = $this->request->getPost('riwayat_penyakit');
                 $nomor_whatsapp_wali = $this->request->getPost('nomor_whatsapp_wali');
                 $username_instagram_wali = $this->request->getPost('username_instagram_wali');
-                $program_belajar_id = $this->request->getPost('program_belajar_id');
                 $materi_belajar_id = $this->request->getPost('materi_belajar_id');
                 $hari_belajar = $this->request->getPost('hari_belajar');
                 $waktu_belajar = $this->request->getPost('waktu_belajar');
@@ -710,7 +702,6 @@ class MuridController extends BaseController
                     'nomor_whatsapp_wali' => strtolower($nomor_whatsapp_wali),
                     'username_instagram_wali' => strtolower($username_instagram_wali),
                     'paket_belajar_id' => strtolower($paket_belajar_id),
-                    'program_belajar_id' => strtolower($program_belajar_id),
                     'materi_belajar_id' => strtolower($materi_belajar_id),
                     'hari_belajar' => strtolower($hari_belajar),
                     'waktu_belajar' => strtolower($waktu_belajar),
