@@ -119,11 +119,6 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-4 label">Program Belajar</div>
-                                    <div class="col-lg-6 col-md-8"><?= $profil->nama_program ?></div>
-                                </div>
-
-                                <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Jumlah Pertemuan</div>
                                     <div class="col-lg-6 col-md-8"><?= $profil->jumlah_pertemuan ?> x / perbulan</div>
                                 </div>

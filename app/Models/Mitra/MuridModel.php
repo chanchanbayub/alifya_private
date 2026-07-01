@@ -9,7 +9,7 @@ class MuridModel extends Model
     protected $table            = 'data_murid_table';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['uid_murid', 'nama_lengkap_anak', 'tanggal_lahir_anak',  'alamat_domisili_anak', 'sekolah_anak', 'riwayat_penyakit', 'nama_ibu', 'nama_ayah', 'pekerjaan_ayah', 'pekerjaan_ibu', 'nomor_whatsapp_wali', 'paket_belajar_id', 'username_instagram_wali', 'program_belajar_id', 'materi_belajar_id', 'hari_belajar', 'waktu_belajar', 'info_les', 'foto_anak', 'status_murid_id', 'ketersediaan', 'nama_panggilan_anak', 'jenis_kelamin', 'pendidikan_id', 'ukuran_baju', 'catatan', 'bukti_tf', 'izin_dokumentasi', 'tata_tertib', 'tindak_lanjut', 'larangan', 'data_1', 'data_2', 'agama'];
+    protected $allowedFields    = ['uid_murid', 'nama_lengkap_anak', 'tanggal_lahir_anak',  'alamat_domisili_anak', 'sekolah_anak', 'riwayat_penyakit', 'nama_ibu', 'nama_ayah', 'pekerjaan_ayah', 'pekerjaan_ibu', 'nomor_whatsapp_wali', 'paket_belajar_id', 'username_instagram_wali', 'materi_belajar_id', 'hari_belajar', 'waktu_belajar', 'info_les', 'foto_anak', 'status_murid_id', 'ketersediaan', 'nama_panggilan_anak', 'jenis_kelamin', 'pendidikan_id', 'ukuran_baju', 'catatan', 'bukti_tf', 'izin_dokumentasi', 'tata_tertib', 'tindak_lanjut', 'larangan', 'data_1', 'data_2', 'agama'];
 
     // Dates
     protected $useTimestamps = true;
@@ -21,10 +21,9 @@ class MuridModel extends Model
     {
         return $this->table($this->table)
             ->select("data_murid_table.id,data_murid_table.uid_murid,data_murid_table.nama_lengkap_anak, data_murid_table.tanggal_lahir_anak,  data_murid_table.alamat_domisili_anak, data_murid_table.sekolah_anak, data_murid_table.nomor_whatsapp_wali, data_murid_table. username_instagram_wali, data_murid_table.paket_belajar_id, data_murid_table.info_les,  
-            data_murid_table.program_belajar_id, data_murid_table.materi_belajar_id, data_murid_table.hari_belajar, data_murid_table.waktu_belajar, data_murid_table.foto_anak, data_murid_table.status_murid_id, status_murid_table.status_murid,materi_belajar_table.program_belajar_id, program_belajar_table.nama_program, paket_belajar_table.nama_paket, paket_belajar_table.jumlah_pertemuan")
+             data_murid_table.materi_belajar_id, data_murid_table.hari_belajar, data_murid_table.waktu_belajar, data_murid_table.foto_anak, data_murid_table.status_murid_id, status_murid_table.status_murid,materi_belajar_table.program_belajar_id,  paket_belajar_table.nama_paket, paket_belajar_table.jumlah_pertemuan")
             ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->join('paket_belajar_table', 'paket_belajar_table.id = data_murid_table.paket_belajar_id', 'left')
-            ->join('program_belajar_table', 'program_belajar_table.id = data_murid_table.program_belajar_id')
             ->join('materi_belajar_table', 'materi_belajar_table.id = data_murid_table.materi_belajar_id')
             ->orderBy('data_murid_table.status_murid_id ASC')
             ->orderBy('data_murid_table.nama_lengkap_anak ASC')
@@ -34,12 +33,11 @@ class MuridModel extends Model
     public function getMitraMurid($id)
     {
         return $this->table($this->table)
-            ->select("data_murid_table.id, data_murid_table.uid_murid,data_murid_table.nama_lengkap_anak, data_murid_table.riwayat_penyakit, data_murid_table.tanggal_lahir_anak,  data_murid_table.alamat_domisili_anak, data_murid_table.nama_ayah, data_murid_table.nama_ibu, data_murid_table.pekerjaan_ayah, data_murid_table.pekerjaan_ibu, data_murid_table.info_les,  data_murid_table.sekolah_anak, data_murid_table.agama, data_murid_table.nomor_whatsapp_wali, data_murid_table. username_instagram_wali, data_murid_table.program_belajar_id, data_murid_table.materi_belajar_id, data_murid_table.hari_belajar, data_murid_table.waktu_belajar, data_murid_table.foto_anak,data_murid_table.bukti_tf, data_murid_table.ketersediaan,data_murid_table.nama_panggilan_anak,data_murid_table.jenis_kelamin,data_murid_table.pendidikan_id,data_murid_table.ukuran_baju,data_murid_table.catatan,data_murid_table.izin_dokumentasi, data_murid_table.tata_tertib,data_murid_table.tindak_lanjut, data_murid_table.larangan, data_murid_table.data_1, data_murid_table.data_2,data_murid_table.status_murid_id, status_murid_table.status_murid,materi_belajar_table.level, program_belajar_table.nama_program, paket_belajar_table.nama_paket, paket_belajar_table.jumlah_pertemuan, tingkat_pendidikan_table.pendidikan")
+            ->select("data_murid_table.id, data_murid_table.uid_murid,data_murid_table.nama_lengkap_anak, data_murid_table.riwayat_penyakit, data_murid_table.tanggal_lahir_anak,  data_murid_table.alamat_domisili_anak, data_murid_table.nama_ayah, data_murid_table.nama_ibu, data_murid_table.pekerjaan_ayah, data_murid_table.pekerjaan_ibu, data_murid_table.info_les,  data_murid_table.sekolah_anak, data_murid_table.agama, data_murid_table.nomor_whatsapp_wali, data_murid_table. username_instagram_wali,  data_murid_table.materi_belajar_id, data_murid_table.hari_belajar, data_murid_table.waktu_belajar, data_murid_table.foto_anak,data_murid_table.bukti_tf, data_murid_table.ketersediaan,data_murid_table.nama_panggilan_anak,data_murid_table.jenis_kelamin,data_murid_table.pendidikan_id,data_murid_table.ukuran_baju,data_murid_table.catatan,data_murid_table.izin_dokumentasi, data_murid_table.tata_tertib,data_murid_table.tindak_lanjut, data_murid_table.larangan, data_murid_table.data_1, data_murid_table.data_2,data_murid_table.status_murid_id, status_murid_table.status_murid,materi_belajar_table.level,  paket_belajar_table.nama_paket, paket_belajar_table.jumlah_pertemuan, tingkat_pendidikan_table.pendidikan")
             ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->join('tingkat_pendidikan_table', 'tingkat_pendidikan_table.id = data_murid_table.pendidikan_id', 'left')
             ->join('paket_belajar_table', 'paket_belajar_table.id = data_murid_table.paket_belajar_id')
             ->join('materi_belajar_table', 'materi_belajar_table.id = data_murid_table.materi_belajar_id')
-            ->join('program_belajar_table', 'program_belajar_table.id = data_murid_table.program_belajar_id')
             ->where(["data_murid_table.id" => $id])
             ->orderBy('id desc')
             ->get()->getRowObject();

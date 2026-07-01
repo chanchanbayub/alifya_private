@@ -157,9 +157,9 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="id_edit" name="id">
-                        <input type="text" class="form-control" id="foto_lama" name="foto_lama">
-                        <input type="text" class="form-control" id="bukti_tf_lama" name="bukti_tf_lama">
+                        <input type="hidden" class="form-control" id="id_edit" name="id">
+                        <input type="hidden" class="form-control" id="foto_lama" name="foto_lama">
+                        <input type="hidden" class="form-control" id="bukti_tf_lama" name="bukti_tf_lama">
 
                         <label for="nama_lengkap_anak_edit" class="col-form-label">Nama Lengkap:</label>
                         <input type="text" class="form-control" id="nama_lengkap_anak_edit" name="nama_lengkap_anak">
@@ -260,15 +260,6 @@
                     </div>
 
                     <br>
-
-                    <div class="form-group">
-                        <label for="program_belajar_id_edit" class="col-form-label">Program Belajar:</label>
-                        <select name="program_belajar_id" id="program_belajar_id_edit" class="form-select">
-                            <option value="">--Silahkan Pilih--</option>
-                        </select>
-                        <div class="invalid-feedback error-program-belajar-edit">
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         <label for="materi_belajar_id_edit" class="col-form-label">Materi Belajar:</label>
@@ -478,16 +469,6 @@
                 $("#riwayat_penyakit_edit").val(response.murid.riwayat_penyakit);
                 $("#ukuran_baju_edit").val(response.murid.ukuran_baju);
 
-                let program_id = `<option value="">--Silahkan Pilih--</option>`;
-
-                response.program_belajar.forEach(function(e) {
-                    program_id += `<option value="${e.id}"> ${e.nama_program} </option>`
-                });
-
-                $("#program_belajar_id_edit").html(program_id);
-
-                $("#program_belajar_id_edit").val(response.murid.program_belajar_id).trigger('change');
-
                 let materi_id = `<option value="">--Silahkan Pilih--</option>`;
 
                 response.materi_belajar.forEach(function(e) {
@@ -527,7 +508,6 @@
         let pendidikan_id = $("#pendidikan_id_edit").val();
         let ukuran_baju = $("#ukuran_baju_edit").val();
 
-        let program_belajar_id = $("#program_belajar_id_edit").val();
         let materi_belajar_id = $("#materi_belajar_id_edit").val();
         let paket_belajar_id = $("#paket_belajar_id_edit").val();
         let hari_belajar = $("#hari_belajar_edit").val();
@@ -573,7 +553,6 @@
         formData.append('pendidikan_id', pendidikan_id);
         formData.append('ukuran_baju', ukuran_baju);
 
-        formData.append('program_belajar_id', program_belajar_id);
         formData.append('materi_belajar_id', materi_belajar_id);
         formData.append('paket_belajar_id', paket_belajar_id);
         formData.append('hari_belajar', hari_belajar);
@@ -745,14 +724,6 @@
                     } else {
                         $("#ukuran_baju_edit").removeClass('is-invalid');
                         $(".error-ukuran-baju-edit").html('');
-                    }
-
-                    if (response.error.program_belajar_id) {
-                        $("#program_belajar_id_edit").addClass('is-invalid');
-                        $(".error-program-belajar-edit").html(response.error.program_belajar_id);
-                    } else {
-                        $("#program_belajar_id_edit").removeClass('is-invalid');
-                        $(".error-program-belajar-edit").html('');
                     }
 
                     if (response.error.materi_belajar_id) {
