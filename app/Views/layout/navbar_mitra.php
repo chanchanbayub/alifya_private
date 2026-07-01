@@ -36,6 +36,11 @@
                          <i class="bi bi-circle"></i><span>Peserta Didik Private</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="/mitra_pengajar/kuisioner_rangking">
+                         <i class="bi bi-circle"></i><span>Kuisioner Ranking</span>
+                     </a>
+                 </li>
              </ul>
          </li>
 

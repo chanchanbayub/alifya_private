@@ -217,7 +217,6 @@ $routes->group('admin', static function ($routes) {
     $routes->post('skala_nilai_apr/update', 'Admin\SkalaNilaiAPRController::update');
     $routes->post('skala_nilai_apr/delete', 'Admin\SkalaNilaiAPRController::delete');
 
-
     $routes->get('absensi', 'Admin\AbsensiController::index');
     $routes->post('absensi/insert', 'Admin\AbsensiController::insert');
     $routes->get('absensi/edit', 'Admin\AbsensiController::edit');
@@ -467,4 +466,11 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('presensi_ahl_mitra/edit', 'Mitra\PresensiAHLController::edit');
     $routes->post('presensi_ahl_mitra/update', 'Mitra\PresensiAHLController::update');
     $routes->post('presensi_ahl_mitra/delete', 'Mitra\PresensiAHLController::delete');
+
+    // KUISIONER RANGKING
+    $routes->get('kuisioner_rangking', 'Mitra\KuisionerController::index');
+    $routes->post('kuisioner_rangking/insert', 'Mitra\KuisionerController::insert');
+    $routes->get('kuisioner_rangking/edit', 'Mitra\KuisionerController::edit');
+    $routes->post('kuisioner_rangking/update', 'Mitra\KuisionerController::update');
+    $routes->post('kuisioner_rangking/delete', 'Mitra\KuisionerController::delete');
 });
