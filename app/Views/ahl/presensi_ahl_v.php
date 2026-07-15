@@ -15,11 +15,41 @@
 <section class="section dashboard">
     <div class="row">
 
-        <!-- Left side columns -->
         <div class="col-lg-12">
             <div class="row">
+                <div class="col-xxl-6 col-md-12">
+                    <div class="card info-card sales-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Presensi Harian <span>| Mitra Pengajar </span></h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-calendar"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <a href="presensi_ahl_harian" class=""> Klik Disini Untuk Presensi Harian!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-md-12">
+                    <div class="card info-card sales-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Presensi Perbulan <span>| Mitra Pengajar </span></h5>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-calendar"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <a href="#" class=""> Klik Disini Untuk Presensi Perbulan!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <!-- Recent Sales -->
+            <div class="row">
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
 
@@ -88,6 +118,7 @@
 
     </div>
 </section>
+
 
 <!-- modal save-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

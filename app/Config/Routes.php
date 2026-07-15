@@ -306,6 +306,10 @@ $routes->group('admin', static function ($routes) {
     $routes->post('presensi_ahl/update', 'Ahl\PresensiAhlController::update');
     $routes->post('presensi_ahl/delete', 'Ahl\PresensiAhlController::delete');
 
+    $routes->get('presensi_ahl_harian', 'Ahl\PresensiAhlController::presensi_harian');
+    $routes->get('presensi_ahl_bulanan', 'Ahl\PresensiAhlController::presensi_bulanan');
+    $routes->get('presensi_ahl/getPresensiPerbulan', 'Ahl\PresensiAhlController::getPresensiPerbulan');
+
     // Program AHL
     $routes->get('program_ahl', 'Ahl\ProgramAHLController::index');
     $routes->post('program_ahl/insert', 'Ahl\ProgramAHLController::insert');

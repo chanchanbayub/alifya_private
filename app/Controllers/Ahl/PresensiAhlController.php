@@ -266,6 +266,34 @@ class PresensiAhlController extends BaseController
         }
     }
 
+    public function presensi_harian()
+    {
+
+        helper(['format']);
+
+        $tanggal_hari = date('Y/m/d');
+        // $tanggal_hari = date('2026/07/01');
+
+
+        $presensi_ahl = $this->presensiAhlModel->getPresensiAhlHarian($tanggal_hari);
+        // dd($presensi_ahl);
+
+        $hari_ini = tanggal_indonesia(date('Y-m-d'));
+
+        $data = [
+            'title' => 'Presensi Harian AHL',
+            'presensi_ahl' => $presensi_ahl,
+            'lokasi' => $this->lokasiModel->getLokasi(),
+            'jenis_pekerjaan' => $this->jenisPekerjaanModel->getJenisPekerjaan(),
+            'status_presensi' => $this->statusPresensiModel->getStatusPresensi(),
+            'mitra_pengajar_ahl' => $this->mitraPengajarAhlModel->getMitraPengajarAhl(),
+            'hari_ini' => $hari_ini
+        ];
+
+
+        return view('ahl/presensi_harian_v', $data);
+    }
+
     public function update()
     {
         if ($this->request->isAJAX()) {
