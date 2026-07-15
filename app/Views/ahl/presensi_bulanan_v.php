@@ -192,7 +192,7 @@
                                     <td>${e.lain_lain}</td>
                                     <td>${e.status_presensi}</td>
                                     <td>${e.keterangan}</td>
-                                    <td><a href="/../dokumentasi_ahl/${e.dokumentasi}" target="_blank">Lihat</a></td>
+                                    <td><a href="../dokumentasi_ahl/${e.dokumentasi}" target="_blank">Lihat</a></td>
                                 </tr>`;
                     });
                     $(".data_presensi").html(tableData);
