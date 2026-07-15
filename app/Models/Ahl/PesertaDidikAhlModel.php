@@ -22,9 +22,9 @@ class PesertaDidikAhlModel extends Model
         $db = db_connect();
         $builder = $db->table($this->table);
 
-        $builder = $builder->select('peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.status_peserta_id, status_murid_table.status_murid')
+        $builder = $builder->select('peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.nama_ayah, peserta_didik_ahl_table.nama_ibu,peserta_didik_ahl_table.status_peserta_id, status_murid_table.status_murid')
             ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id');
-        return $builder->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc');
+        return $builder->orderBy('peserta_didik_ahl_table.status_peserta_id asc');
     }
 
     public function getProfil($id)

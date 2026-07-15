@@ -40,6 +40,8 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama Lengkap</th>
+                                        <th scope="col">Nama Ayah</th>
+                                        <th scope="col">Nama Ibu</th>
                                         <th scope="col">Profil Peserta</th>
                                         <th scope="col">Status Peserta</th>
                                         <th scope="col">Aksi</th>
@@ -437,6 +439,12 @@
                 },
                 {
                     data: 'nama_lengkap_anak',
+                },
+                {
+                    data: 'nama_ayah',
+                },
+                {
+                    data: 'nama_ibu',
                 },
                 {
                     data: 'lihat_profil',

@@ -66,7 +66,7 @@ class PesertaDidikAhlController extends BaseController
                                                 </a>
                            ';
                 })
-                ->setSearchableColumns(['nama_lengkap_anak'])
+                ->setSearchableColumns(['nama_lengkap_anak', 'nama_ayah', 'nama_ibu', 'alamat_domisili_anak'])
                 ->addNumbering('no')->toJson(true);
         }
     }

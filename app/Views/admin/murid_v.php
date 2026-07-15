@@ -40,6 +40,8 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama </th>
+                                        <th scope="col">Nama Ayah </th>
+                                        <th scope="col">Nama Ibu </th>
                                         <th scope="col">Profil</th>
                                         <th scope="col">Status Murid</th>
                                         <th scope="col">Aksi</th>
@@ -51,6 +53,8 @@
                                         <tr>
                                             <th scope="row"><a href="#"><?= $no++ ?></a></th>
                                             <td><?= $data_murid->nama_lengkap_anak ?></td>
+                                            <td><?= $data_murid->nama_ayah ?></td>
+                                            <td><?= $data_murid->nama_ibu ?></td>
 
                                             <td> <a href="/admin/data_murid/view/<?= $data_murid->id ?>" target="_blank" class="btn btn-sm btn-outline-primary" data-id="<?= $data_murid->id ?>">
                                                     <i class="bi bi-eye"> Lihat Data</i>

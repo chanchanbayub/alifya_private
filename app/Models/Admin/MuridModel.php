@@ -20,7 +20,7 @@ class MuridModel extends Model
     public function getDataMurid()
     {
         return $this->table($this->table)
-            ->select("data_murid_table.id,data_murid_table.uid_murid,data_murid_table.nama_lengkap_anak, data_murid_table.tanggal_lahir_anak,  data_murid_table.alamat_domisili_anak, data_murid_table.sekolah_anak, data_murid_table.nomor_whatsapp_wali, data_murid_table.agama, data_murid_table. username_instagram_wali, data_murid_table.paket_belajar_id, data_murid_table.info_les,  
+            ->select("data_murid_table.id,data_murid_table.uid_murid,data_murid_table.nama_lengkap_anak, data_murid_table.tanggal_lahir_anak,  data_murid_table.alamat_domisili_anak, data_murid_table.sekolah_anak, data_murid_table.nomor_whatsapp_wali, data_murid_table.agama, data_murid_table. username_instagram_wali, data_murid_table.paket_belajar_id, data_murid_table.info_les,  data_murid_table.nama_ayah, data_murid_table.nama_ibu,   
             data_murid_table.materi_belajar_id, data_murid_table.hari_belajar, data_murid_table.waktu_belajar, data_murid_table.foto_anak, data_murid_table.status_murid_id, status_murid_table.status_murid,materi_belajar_table.program_belajar_id, paket_belajar_table.nama_paket, paket_belajar_table.jumlah_pertemuan")
             ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->join('paket_belajar_table', 'paket_belajar_table.id = data_murid_table.paket_belajar_id', 'left')
