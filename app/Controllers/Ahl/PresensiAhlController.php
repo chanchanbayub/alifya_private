@@ -272,11 +272,8 @@ class PresensiAhlController extends BaseController
         helper(['format']);
 
         $tanggal_hari = date('Y/m/d');
-        // $tanggal_hari = date('2026/07/01');
-
 
         $presensi_ahl = $this->presensiAhlModel->getPresensiAhlHarian($tanggal_hari);
-        // dd($presensi_ahl);
 
         $hari_ini = tanggal_indonesia(date('Y-m-d'));
 
@@ -292,6 +289,36 @@ class PresensiAhlController extends BaseController
 
 
         return view('ahl/presensi_harian_v', $data);
+    }
+
+    public function presensi_bulanan()
+    {
+
+        helper(['format']);
+
+        $tanggal_hari = date('Y/m/d');
+
+        // $presensi_ahl_bulanan = $this->presensiAhlModel->getPresensiAhlBulanan($tanggal_hari);
+        $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhl();
+
+        // dd($mitra_pengajar_ahl);
+
+        // dd($presensi_ahl_bulanan);
+
+        $hari_ini = tanggal_indonesia(date('Y-m-d'));
+
+        $data = [
+            'title' => 'Rekap Presensi Perbulan AHL',
+            // 'presensi_ahl' => $presensi_ahl_bulanan,
+            'lokasi' => $this->lokasiModel->getLokasi(),
+            'jenis_pekerjaan' => $this->jenisPekerjaanModel->getJenisPekerjaan(),
+            'status_presensi' => $this->statusPresensiModel->getStatusPresensi(),
+            'mitra_pengajar_ahl' => $mitra_pengajar_ahl,
+            'hari_ini' => $hari_ini
+        ];
+
+
+        return view('ahl/presensi_bulanan_v', $data);
     }
 
     public function update()
@@ -454,6 +481,44 @@ class PresensiAhlController extends BaseController
             }
 
             return json_encode($alert);
+        }
+    }
+
+    public function getPresensiPerbulan()
+    {
+        if ($this->request->isAJAX()) {
+
+            $mitra_pengajar_id = $this->request->getVar('mitra_pengajar_id');
+
+            $tahun = $this->request->getVar('tahun');
+
+            $bulan = explode("-", $tahun);
+
+            $presensi = $this->presensiAhlModel->getPresensiAhlBulanan($mitra_pengajar_id, $bulan["1"], $bulan["0"]);
+            $presensi_masuk = $this->presensiAhlModel->getPresensiAhlBulananMasuk($mitra_pengajar_id, $bulan["1"], $bulan["0"]);
+            $presensi_pulang = $this->presensiAhlModel->getPresensiAhlBulananPulang($mitra_pengajar_id, $bulan["1"], $bulan["0"]);
+            $presensi_DL = $this->presensiAhlModel->getPresensiAhlBulananDL($mitra_pengajar_id, $bulan["1"], $bulan["0"]);
+
+            helper(['format']);
+
+            $jumlah_masuk = count($presensi_masuk);
+            $jumlah_pulang = count($presensi_pulang);
+            $jumlah_DL = count($presensi_DL);
+            // $jumlah_presensi = count($presensi);
+
+            // dd($data_presensi);
+
+            $data = [
+                'presensi' => $presensi,
+                'jumlah_masuk' => $jumlah_masuk,
+                'jumlah_pulang' => $jumlah_pulang,
+                'jumlah_dl' => $jumlah_DL,
+                'mitra' => $mitra_pengajar_id,
+                // 'jumlah_presensi' => $jumlah_presensi,
+                'bulan' => $bulan["1"]
+            ];
+
+            return json_encode($data);
         }
     }
 }

@@ -391,7 +391,6 @@ class PresensiController extends BaseController
 
             $tahun = $this->request->getVar('tahun');
 
-
             $bulan = explode("-", $tahun);
 
             $jadwal_bulanan = $this->jadwalTetaModel->getJadwalbulanan($mitra_pengajar_id);

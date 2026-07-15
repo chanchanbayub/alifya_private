@@ -26,7 +26,7 @@
                                     <i class="bi bi-calendar"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <a href="presensi_ahl_harian" class=""> Klik Disini Untuk Presensi Harian!</a>
+                                    <a href="/admin/presensi_ahl_harian" class=""> Klik Disini Untuk Presensi Harian!</a>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                                     <i class="bi bi-calendar"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <a href="#" class=""> Klik Disini Untuk Presensi Perbulan!</a>
+                                    <a href="/admin/presensi_ahl_bulanan" class=""> Klik Disini Untuk Presensi Perbulan!</a>
                                 </div>
                             </div>
                         </div>

@@ -163,4 +163,65 @@ class PresensiAhlModel extends Model
             ->orderBy('presensi_ahl_table.id desc')
             ->get()->getResultObject();
     }
+
+    public function getPresensiAhlBulanan($mitra_id, $bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("presensi_ahl_table.id, presensi_ahl_table.mitra_id, presensi_ahl_table.tanggal, presensi_ahl_table.jam, presensi_ahl_table.lain_lain ,presensi_ahl_table.keterangan, presensi_ahl_table.dokumentasi, data_pengajar_table.nama_lengkap, lokasi_table.lokasi, jenis_pekerjaan_table.jenis_pekerjaan, status_presensi_table.status_presensi")
+            ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_ahl_table.mitra_id')
+            ->join('jenis_pekerjaan_table', 'jenis_pekerjaan_table.id = presensi_ahl_table.jenis_pekerjaan_id')
+            ->join('lokasi_table', 'lokasi_table.id = presensi_ahl_table.lokasi_id')
+            ->join('status_presensi_table', 'status_presensi_table.id = presensi_ahl_table.status_presensi_id')
+            ->where(["presensi_ahl_table.mitra_id" => $mitra_id])
+            ->where('MONTH(presensi_ahl_table.tanggal)', $bulan)
+            ->where('YEAR(presensi_ahl_table.tanggal)', $tahun)
+            ->orderBy('presensi_ahl_table.tanggal desc')
+            ->get()->getResultObject();
+    }
+
+    public function getPresensiAhlBulananMasuk($mitra_id, $bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("presensi_ahl_table.id, presensi_ahl_table.mitra_id, presensi_ahl_table.tanggal, presensi_ahl_table.jam, presensi_ahl_table.lain_lain ,presensi_ahl_table.keterangan, presensi_ahl_table.dokumentasi, data_pengajar_table.nama_lengkap, lokasi_table.lokasi, jenis_pekerjaan_table.jenis_pekerjaan, status_presensi_table.status_presensi")
+            ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_ahl_table.mitra_id')
+            ->join('jenis_pekerjaan_table', 'jenis_pekerjaan_table.id = presensi_ahl_table.jenis_pekerjaan_id')
+            ->join('lokasi_table', 'lokasi_table.id = presensi_ahl_table.lokasi_id')
+            ->join('status_presensi_table', 'status_presensi_table.id = presensi_ahl_table.status_presensi_id')
+            ->where(["presensi_ahl_table.mitra_id" => $mitra_id])
+            ->where('MONTH(presensi_ahl_table.tanggal)', $bulan)
+            ->where('YEAR(presensi_ahl_table.tanggal)', $tahun)
+            ->where(["presensi_ahl_table.status_presensi_id" => 1])
+            ->orderBy('presensi_ahl_table.tanggal desc')
+            ->get()->getResultObject();
+    }
+    public function getPresensiAhlBulananPulang($mitra_id, $bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("presensi_ahl_table.id, presensi_ahl_table.mitra_id, presensi_ahl_table.tanggal, presensi_ahl_table.jam, presensi_ahl_table.lain_lain ,presensi_ahl_table.keterangan, presensi_ahl_table.dokumentasi, data_pengajar_table.nama_lengkap, lokasi_table.lokasi, jenis_pekerjaan_table.jenis_pekerjaan, status_presensi_table.status_presensi")
+            ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_ahl_table.mitra_id')
+            ->join('jenis_pekerjaan_table', 'jenis_pekerjaan_table.id = presensi_ahl_table.jenis_pekerjaan_id')
+            ->join('lokasi_table', 'lokasi_table.id = presensi_ahl_table.lokasi_id')
+            ->join('status_presensi_table', 'status_presensi_table.id = presensi_ahl_table.status_presensi_id')
+            ->where(["presensi_ahl_table.mitra_id" => $mitra_id])
+            ->where('MONTH(presensi_ahl_table.tanggal)', $bulan)
+            ->where('YEAR(presensi_ahl_table.tanggal)', $tahun)
+            ->where(["presensi_ahl_table.status_presensi_id" => 2])
+            ->orderBy('presensi_ahl_table.tanggal desc')
+            ->get()->getResultObject();
+    }
+    public function getPresensiAhlBulananDL($mitra_id, $bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("presensi_ahl_table.id, presensi_ahl_table.mitra_id, presensi_ahl_table.tanggal, presensi_ahl_table.jam, presensi_ahl_table.lain_lain ,presensi_ahl_table.keterangan, presensi_ahl_table.dokumentasi, data_pengajar_table.nama_lengkap, lokasi_table.lokasi, jenis_pekerjaan_table.jenis_pekerjaan, status_presensi_table.status_presensi")
+            ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_ahl_table.mitra_id')
+            ->join('jenis_pekerjaan_table', 'jenis_pekerjaan_table.id = presensi_ahl_table.jenis_pekerjaan_id')
+            ->join('lokasi_table', 'lokasi_table.id = presensi_ahl_table.lokasi_id')
+            ->join('status_presensi_table', 'status_presensi_table.id = presensi_ahl_table.status_presensi_id')
+            ->where(["presensi_ahl_table.mitra_id" => $mitra_id])
+            ->where('MONTH(presensi_ahl_table.tanggal)', $bulan)
+            ->where('YEAR(presensi_ahl_table.tanggal)', $tahun)
+            ->where(["presensi_ahl_table.status_presensi_id" => 3])
+            ->orderBy('presensi_ahl_table.tanggal desc')
+            ->get()->getResultObject();
+    }
 }
