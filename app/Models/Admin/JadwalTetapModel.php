@@ -50,6 +50,7 @@ class JadwalTetapModel extends Model
             ->join('data_pengajar_table', 'data_pengajar_table.id = jadwal_tetap_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = jadwal_tetap_table.peserta_didik_id')
             ->where(["jadwal_tetap_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where(["data_murid_table.status_murid_id" => 1])
             ->orderBy('jadwal_tetap_table.id desc')
             ->get()->getResultObject();
     }
