@@ -281,7 +281,7 @@
                         </div>
 
                         <div class="control-group">
-                            <label for="bukti_tf">Upload bukti transfer pendaftaran Rp 350.000, ke BNI 0949684935 a.n Annisa Shofaril Wahidah :</label>
+                            <label for="bukti_tf">Upload bukti transfer pendaftaran Rp 350.000, ke BNI 8112111219 a.n Alifya Learning Indonesia :</label>
                             <input type="file" class="form-control" id="bukti_tf" name="bukti_tf" />
                             <p class="help-block text-danger error-bukti-tf"></p>
                         </div>

@@ -219,7 +219,7 @@
                         </div>
                         <br>
                         <div class="control-group">
-                            <label for="materi_belajar_id">Materi Belajar :</label>
+                            <label for="materi_belajar_id">Program Belajar :</label>
                             <select name="materi_belajar_id" id="materi_belajar_id" class="form-control">
                                 <option value="">--Silahkan Pilih</option>
                                 <?php foreach ($materi_belajar as $materi_belajar) : ?>
@@ -271,7 +271,7 @@
                                     </div>
                                     <!-- db baru -->
                                     <div class="control-group">
-                                        <label for="bukti_tf">Upload bukti transfer pendaftaran Rp 350.000, ke BNI 0949684935 a.n Annisa Shofaril Wahidah :</label>
+                                        <label for="bukti_tf">Upload bukti transfer pendaftaran Rp 350.000, ke BNI 8112111219 a.n Alifya Learning Indonesia :</label>
                                         <input type="file" class="form-control" id="bukti_tf" name="bukti_tf" />
                                         <p class="help-block text-danger error-bukti-tf"></p>
                                     </div>
