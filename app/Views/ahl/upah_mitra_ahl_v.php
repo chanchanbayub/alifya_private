@@ -19,11 +19,10 @@
         <div class="col-lg-12">
             <div class="row">
 
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
                             <h5 class="card-title">Cek Upah Mitra AHL (Dalam Pengembangan)</h5>
-                            <!-- Browser Default Validation -->
                             <form class="row g-3 text-capitalize" id="cek_harga_perbulan">
                                 <?= csrf_field(); ?>
                                 <div class="col-md-12">
@@ -36,12 +35,11 @@
                                     <button class="btn btn-outline-primary btn-block search" id="cek_data" type="submit" disabled> <i class="bi bi-search"></i> Cari</button>
                                 </div>
                             </form>
-                            <!-- End Browser Default Validation -->
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-12">
+                <!-- <div class="col-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
                             <h5 class="card-title"><?= $title ?> <span>| Bulan Tersebut (Dalam Pengembangan) </span></h5>
@@ -61,12 +59,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-
                         </div>
-
                     </div>
-
-                </div><!-- End Recent Sales -->
+                </div> -->
+                <!-- End Recent Sales -->
 
                 <!-- Recent Sales -->
                 <div class="col-12">
