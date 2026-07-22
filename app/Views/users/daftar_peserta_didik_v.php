@@ -213,9 +213,9 @@
                         </div>
                         <br>
                         <div class="control-group">
-                            <label for="program_belajar_id">Brosur Alifya Private (<a href="/assets/img/brosur.png" target="_blank">Lihat Brosur</a>) :</label>
+                            <label for="program_belajar_id">Brosur Alifya Private (<a href="/assets/img/brosur_baru_ap.png" target="_blank">Lihat Brosur</a>) :</label>
                             <br>
-                            <img src="/assets/img/brosur.png" alt="brosur" width="350">
+                            <img src="/assets/img/brosur_baru_ap.png" alt="brosur" width="350">
                         </div>
                         <br>
                         <div class="control-group">
