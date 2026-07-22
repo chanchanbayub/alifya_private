@@ -48,7 +48,7 @@ class UpahMitraController extends BaseController
                                                     <i class="bi bi-trash"></i>
                                                 </button>';
                 })
-                ->setSearchableColumns(['nama_lengkap', 'bulan', 'upah_mitra', 'bonus_kehadiran', 'booster_penugasan', 'penalangan', 'lain_lain'])
+                ->setSearchableColumns(['nama_lengkap', 'bulan', 'upah_mitra', 'insentif', 'bonus_kehadiran', 'booster_penugasan', 'model_class', 'penalangan', 'lain_lain'])
                 ->addNumbering('no')->toJson(true);
         }
     }
@@ -83,7 +83,19 @@ class UpahMitraController extends BaseController
                         'required' => 'Tidak Boleh Kosong!'
                     ]
                 ],
+                'insentif' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong!'
+                    ]
+                ],
                 'booster_penugasan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong!'
+                    ]
+                ],
+                'model_class' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'Tidak Boleh Kosong!'
@@ -108,8 +120,10 @@ class UpahMitraController extends BaseController
                         'mitra_ahl_id' => $this->validation->getError('mitra_ahl_id'),
                         'bulan' => $this->validation->getError('bulan'),
                         'upah_mitra' => $this->validation->getError('upah_mitra'),
+                        'insentif' => $this->validation->getError('insentif'),
                         'bonus_kehadiran' => $this->validation->getError('bonus_kehadiran'),
                         'booster_penugasan' => $this->validation->getError('booster_penugasan'),
+                        'model_class' => $this->validation->getError('model_class'),
                         'penalangan' => $this->validation->getError('penalangan'),
                         'lain_lain' => $this->validation->getError('lain_lain'),
 
@@ -120,8 +134,10 @@ class UpahMitraController extends BaseController
                 $mitra_ahl_id = $this->request->getPost('mitra_ahl_id');
                 $bulan = $this->request->getPost('bulan');
                 $upah_mitra = $this->request->getPost('upah_mitra');
+                $insentif = $this->request->getPost('insentif');
                 $bonus_kehadiran = $this->request->getPost('bonus_kehadiran');
                 $booster_penugasan = $this->request->getPost('booster_penugasan');
+                $model_class = $this->request->getPost('model_class');
                 $penalangan = $this->request->getPost('penalangan');
                 $lain_lain = $this->request->getPost('lain_lain');
 
@@ -145,6 +161,8 @@ class UpahMitraController extends BaseController
                         'bulan' => strtolower($bulan_ini),
                         'upah_mitra' => strtolower($upah_mitra),
                         'bonus_kehadiran' => strtolower($bonus_kehadiran),
+                        'insentif' => strtolower($insentif),
+                        'model_class' => strtolower($model_class),
                         'booster_penugasan' => strtolower($booster_penugasan),
                         'penalangan' => strtolower($penalangan),
                         'lain_lain' => strtolower($lain_lain),
@@ -228,7 +246,19 @@ class UpahMitraController extends BaseController
                         'required' => 'Tidak Boleh Kosong!'
                     ]
                 ],
+                'insentif' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong!'
+                    ]
+                ],
                 'booster_penugasan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong!'
+                    ]
+                ],
+                'model_class' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'Tidak Boleh Kosong!'
@@ -253,11 +283,12 @@ class UpahMitraController extends BaseController
                         'mitra_ahl_id' => $this->validation->getError('mitra_ahl_id'),
                         'bulan' => $this->validation->getError('bulan'),
                         'upah_mitra' => $this->validation->getError('upah_mitra'),
+                        'insentif' => $this->validation->getError('insentif'),
                         'bonus_kehadiran' => $this->validation->getError('bonus_kehadiran'),
                         'booster_penugasan' => $this->validation->getError('booster_penugasan'),
+                        'model_class' => $this->validation->getError('model_class'),
                         'penalangan' => $this->validation->getError('penalangan'),
                         'lain_lain' => $this->validation->getError('lain_lain'),
-
                     ]
                 ];
             } else {
@@ -265,6 +296,8 @@ class UpahMitraController extends BaseController
                 $mitra_ahl_id = $this->request->getPost('mitra_ahl_id');
                 $bulan = $this->request->getPost('bulan');
                 $upah_mitra = $this->request->getPost('upah_mitra');
+                $insentif = $this->request->getPost('insentif');
+                $model_class = $this->request->getPost('model_class');
                 $bonus_kehadiran = $this->request->getPost('bonus_kehadiran');
                 $booster_penugasan = $this->request->getPost('booster_penugasan');
                 $penalangan = $this->request->getPost('penalangan');
@@ -280,6 +313,8 @@ class UpahMitraController extends BaseController
                     'mitra_ahl_id' => strtolower($mitra_ahl_id),
                     'bulan' => strtolower($bulan_ini),
                     'upah_mitra' => strtolower($upah_mitra),
+                    'insentif' => strtolower($insentif),
+                    'model_class' => strtolower($model_class),
                     'bonus_kehadiran' => strtolower($bonus_kehadiran),
                     'booster_penugasan' => strtolower($booster_penugasan),
                     'penalangan' => strtolower($penalangan),

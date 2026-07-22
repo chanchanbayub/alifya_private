@@ -91,9 +91,11 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Mitra Pengajar</th>
                                         <th scope="col">Bulan</th>
-                                        <th scope="col">Upah Mitra AHL</th>
+                                        <th scope="col">Gaji Pokok</th>
                                         <th scope="col">Bonus Kehadiran</th>
+                                        <th scope="col">Insentif/Backup</th>
                                         <th scope="col">Booster Penugasan</th>
+                                        <th scope="col">Model Class</th>
                                         <th scope="col">Penalangan</th>
                                         <th scope="col">Lain-Lain</th>
                                         <th scope="col">Aksi</th>
@@ -187,7 +189,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="upah_mitra" class="col-form-label">Upah Mitra :</label>
+                        <label for="upah_mitra" class="col-form-label">Gaji Pokok :</label>
                         <input type="number" class="form-control" id="upah_mitra" name="upah_mitra" placeholder="50000">
                         <div class="invalid-feedback error-upah-mitra">
                         </div>
@@ -201,9 +203,23 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="insentif" class="col-form-label">Insentif/Backup :</label>
+                        <input type="number" class="form-control" id="insentif" name="insentif" placeholder="50000">
+                        <div class="invalid-feedback error-insentif">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="booster_penugasan" class="col-form-label">Booster Penugasan :</label>
                         <input type="number" class="form-control" id="booster_penugasan" name="booster_penugasan" placeholder="50000">
                         <div class="invalid-feedback error-booster-penugasan">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="model_class" class="col-form-label">Model Class :</label>
+                        <input type="number" class="form-control" id="model_class" name="model_class" placeholder="50000">
+                        <div class="invalid-feedback error-model">
                         </div>
                     </div>
 
@@ -273,6 +289,13 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="insentif_edit" class="col-form-label">Insentif/Backup :</label>
+                        <input type="number" class="form-control" id="insentif_edit" name="insentif" placeholder="50000">
+                        <div class="invalid-feedback error-insentif-edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="bonus_kehadiran_edit" class="col-form-label">Bonus Kehadiran :</label>
                         <input type="number" class="form-control" id="bonus_kehadiran_edit" name="bonus_kehadiran_edit" placeholder="50000">
                         <div class="invalid-feedback error-bonus-kehadiran_edit">
@@ -283,6 +306,13 @@
                         <label for="booster_penugasan_edit" class="col-form-label">Booster Penugasan :</label>
                         <input type="number" class="form-control" id="booster_penugasan_edit" name="booster_penugasan_edit" placeholder="50000">
                         <div class="invalid-feedback error-booster-penugasan_edit">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="model_class_edit" class="col-form-label">Model Class :</label>
+                        <input type="number" class="form-control" id="model_class_edit" name="model_class" placeholder="50000">
+                        <div class="invalid-feedback error-model-edit">
                         </div>
                     </div>
 
@@ -399,7 +429,15 @@
                     render: $.fn.dataTable.render.number('.', '.', 0, '')
                 },
                 {
+                    data: 'insentif',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
                     data: 'booster_penugasan',
+                    render: $.fn.dataTable.render.number('.', '.', 0, '')
+                },
+                {
+                    data: 'model_class',
                     render: $.fn.dataTable.render.number('.', '.', 0, '')
                 },
                 {
@@ -432,7 +470,9 @@
             let bulan = $("#bulan").val();
             let upah_mitra = $("#upah_mitra").val();
             let bonus_kehadiran = $("#bonus_kehadiran").val();
+            let insentif = $("#insentif").val();
             let booster_penugasan = $("#booster_penugasan").val();
+            let model_class = $("#model_class").val();
             let penalangan = $("#penalangan").val();
             let lain_lain = $("#lain_lain").val();
 
@@ -445,7 +485,9 @@
                     bulan: bulan,
                     upah_mitra: upah_mitra,
                     bonus_kehadiran: bonus_kehadiran,
+                    insentif: insentif,
                     booster_penugasan: booster_penugasan,
+                    model_class: model_class,
                     penalangan: penalangan,
                     lain_lain: lain_lain,
 
@@ -488,12 +530,26 @@
                             $("#bonus_kehadiran").removeClass('is-invalid');
                             $(".error-bonus-kehadiran").html('');
                         }
+                        if (response.error.insentif) {
+                            $("#insentif").addClass('is-invalid');
+                            $(".error-insentif").html(response.error.insentif);
+                        } else {
+                            $("#insentif").removeClass('is-invalid');
+                            $(".error-insentif").html('');
+                        }
                         if (response.error.booster_penugasan) {
                             $("#booster_penugasan").addClass('is-invalid');
                             $(".error-booster-penugasan").html(response.error.booster_penugasan);
                         } else {
                             $("#booster_penugasan").removeClass('is-invalid');
                             $(".error-booster-penugasan").html('');
+                        }
+                        if (response.error.model_class) {
+                            $("#model_class").addClass('is-invalid');
+                            $(".error-model").html(response.error.model_class);
+                        } else {
+                            $("#model_class").removeClass('is-invalid');
+                            $(".error-model").html('');
                         }
                         if (response.error.penalangan) {
                             $("#penalangan").addClass('is-invalid');
@@ -556,6 +612,8 @@
                 $("#id_edit").val(response.upah_mitra.id);
                 $("#bulan_edit").val(response.upah_mitra.bulan);
                 $("#upah_mitra_edit").val(response.upah_mitra.upah_mitra);
+                $("#insentif_edit").val(response.upah_mitra.insentif);
+                $("#model_class_edit").val(response.upah_mitra.model_class);
                 $("#bonus_kehadiran_edit").val(response.upah_mitra.bonus_kehadiran);
                 $("#booster_penugasan_edit").val(response.upah_mitra.booster_penugasan);
                 $("#penalangan_edit").val(response.upah_mitra.penalangan);
@@ -583,6 +641,8 @@
         let mitra_ahl_id = $("#mitra_ahl_id_edit").val();
         let bulan = $("#bulan_edit").val();
         let upah_mitra = $("#upah_mitra_edit").val();
+        let insentif = $("#insentif_edit").val();
+        let model_class = $("#model_class_edit").val();
         let bonus_kehadiran = $("#bonus_kehadiran_edit").val();
         let booster_penugasan = $("#booster_penugasan_edit").val();
         let penalangan = $("#penalangan_edit").val();
@@ -597,6 +657,8 @@
                 mitra_ahl_id: mitra_ahl_id,
                 bulan: bulan,
                 upah_mitra: upah_mitra,
+                insentif: insentif,
+                model_class: model_class,
                 bonus_kehadiran: bonus_kehadiran,
                 booster_penugasan: booster_penugasan,
                 penalangan: penalangan,
@@ -632,6 +694,20 @@
                     } else {
                         $("#upah_mitra_edit").removeClass('is-invalid');
                         $(".error-upah-mitra-edit").html('');
+                    }
+                    if (response.error.insentif) {
+                        $("#insentif_edit").addClass('is-invalid');
+                        $(".error-insentif-edit").html(response.error.insentif);
+                    } else {
+                        $("#insentif_edit").removeClass('is-invalid');
+                        $(".error-insentif-edit").html('');
+                    }
+                    if (response.error.model_class) {
+                        $("#model_class_edit").addClass('is-invalid');
+                        $(".error-model-edit").html(response.error.model_class);
+                    } else {
+                        $("#model_class_edit").removeClass('is-invalid');
+                        $(".error-model-edit").html('');
                     }
                     if (response.error.bonus_kehadiran) {
                         $("#bonus_kehadiran_edit").addClass('is-invalid');
