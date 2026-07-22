@@ -83,7 +83,9 @@
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Mitra Pengajar</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Upah Mitra </th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Bonus Kehadiran</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Insentif/Backup</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Booster Penugasan</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Model Class</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Penalangan</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain Ahl</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Pendapatan Private</th>
@@ -172,7 +174,9 @@
                                     <td>${e.nama_lengkap}</td>
                                     <td align="center">${new Intl.NumberFormat().format(e.upah_mitra)}</td>
                                     <td align="center">${new Intl.NumberFormat().format(e.bonus_kehadiran)}</td>
+                                    <td align="center">${new Intl.NumberFormat().format(e.insentif)}</td>
                                     <td align="center">${new Intl.NumberFormat().format(e.booster_penugasan)}</td>
+                                    <td align="center">${new Intl.NumberFormat().format(e.model_class)}</td>
                                     <td align="center">${new Intl.NumberFormat().format(e.penalangan)}</td>
                                     <td align="center">Rp. ${new Intl.NumberFormat().format(e.lain_lain)}</td>
                                     <td align="center">Rp. ${new Intl.NumberFormat().format(e.pendapatan_ap)}</td>
