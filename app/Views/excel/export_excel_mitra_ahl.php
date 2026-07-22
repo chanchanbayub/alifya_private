@@ -55,7 +55,9 @@ header("Content-Disposition: attachment; filename=pembukuan_mitra_ahl.xls");
                     <th scope="col" style="text-transform: capitalize; text-align:center">Nama Lengkap</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Upah Mitra</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Bonus Kehadiran</th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center">Insentif/Backup</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Booster Penugasan </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center">Model Class</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Penalangan</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center">Pendapatan AP</th>
@@ -70,7 +72,9 @@ header("Content-Disposition: attachment; filename=pembukuan_mitra_ahl.xls");
                         <td scope="col" style="text-transform: capitalize;"><?= $upah["nama_lengkap"] ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($upah["upah_mitra"], 0, ",", ".")   ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($upah["bonus_kehadiran"], 0, ",", ".")   ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($upah["insentif"], 0, ",", ".")   ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($upah["booster_penugasan"], 0, ",", ".")  ?></td>
+                        <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($upah["model_class"], 0, ",", ".") ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($upah["penalangan"], 0, ",", ".") ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($upah["lain_lain"], 0, ",", ".") ?></td>
                         <td scope="col" style="text-transform: capitalize; text-align:center"><?= number_format($upah["pendapatan_ap"], 0, ",", ".") ?></td>
