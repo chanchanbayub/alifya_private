@@ -197,6 +197,7 @@
                                 <option value="m">M</option>
                                 <option value="l">L</option>
                                 <option value="xl">XL</option>
+                                <option value="xxl">XXL</option>
                             </select>
 
                             <p class="help-block text-danger error-ukuran-baju"></p>
