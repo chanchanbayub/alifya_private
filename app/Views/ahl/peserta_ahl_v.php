@@ -255,6 +255,7 @@
                                 <td style="padding: 10px;">M</td>
                                 <td style="padding: 10px;">L</td>
                                 <td style="padding: 10px;">XL</td>
+                                <td style="padding: 10px;">XXL</td>
                             </tr>
                             <tr>
                                 <td style="padding: 10px;">Lebar Dada</td>
@@ -262,6 +263,7 @@
                                 <td style="padding: 10px;">34,5</td>
                                 <td style="padding: 10px;">37</td>
                                 <td style="padding: 10px;">39,5</td>
+                                <td style="padding: 10px;">45</td>
                             </tr>
                             <tr>
                                 <td style="padding: 10px;">Panjang Badan</td>
@@ -269,6 +271,7 @@
                                 <td style="padding: 10px;">45,5</td>
                                 <td style="padding: 10px;">50,5</td>
                                 <td style="padding: 10px;">53</td>
+                                <td style="padding: 10px;">56</td>
                             </tr>
                         </table>
                         <select name="ukuran_baju" id="ukuran_baju" class="form-control">
@@ -277,6 +280,7 @@
                             <option value="m">M</option>
                             <option value="l">L</option>
                             <option value="xl">XL</option>
+                            <option value="xxl">XXL</option>
                         </select>
                         <div class="invalid-feedback error-ukuran-baju">
                         </div>
