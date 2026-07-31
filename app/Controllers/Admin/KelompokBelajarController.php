@@ -52,9 +52,10 @@ class KelompokBelajarController extends BaseController
                     ]
                 ],
                 'peserta_didik_id' => [
-                    'rules' => 'required',
+                    'rules' => 'required|is_unique[kelompok_belajar_table.peserta_didik_id]',
                     'errors' => [
-                        'required' => 'Peserta Didik Tidak Boleh Kosong !'
+                        'required' => 'Peserta Didik Tidak Boleh Kosong !',
+                        'is_unique' => 'Peserta Didik Telah Terdaftar !',
                     ]
                 ],
             ])) {
