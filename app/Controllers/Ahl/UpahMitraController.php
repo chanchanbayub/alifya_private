@@ -330,80 +330,93 @@ class UpahMitraController extends BaseController
         }
     }
 
-    // public function update_harga()
-    // {
-    //     if ($this->request->isAJAX()) {
+    public function update_harga()
+    {
+        if ($this->request->isAJAX()) {
 
-    //         if (!$this->validate([
-    //             'bulan' => [
-    //                 'rules' => 'required',
-    //                 'errors' => [
-    //                     'required' => 'Bulan Sebelumnya Tidak Boleh Kosong !'
-    //                 ]
-    //             ],
-    //             'bulan_update' => [
-    //                 'rules' => 'required',
-    //                 'errors' => [
-    //                     'required' => 'Bulan Sekarang Tidak Boleh Kosong !'
-    //                 ]
-    //             ]
-    //         ])) {
-    //             $alert = [
-    //                 'error' => [
-    //                     'bulan' => $this->validation->getError('bulan'),
-    //                     'bulan_update' => $this->validation->getError('bulan_update'),
-    //                 ]
-    //             ];
-    //         } else {
+            if (!$this->validate([
+                'bulan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bulan Sebelumnya Tidak Boleh Kosong !'
+                    ]
+                ],
+                'bulan_update' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bulan Sekarang Tidak Boleh Kosong !'
+                    ]
+                ]
+            ])) {
+                $alert = [
+                    'error' => [
+                        'bulan' => $this->validation->getError('bulan'),
+                        'bulan_update' => $this->validation->getError('bulan_update'),
+                    ]
+                ];
+            } else {
 
-    //             $bulan = $this->request->getPost('bulan');
-    //             $bulan_sebelumnya = date_create($bulan);
-    //             $format_bulan_sebelumnya = date_format($bulan_sebelumnya, 'Y-m-d');
+                $bulan = $this->request->getPost('bulan');
+                $bulan_sebelumnya = date('Y/m/d', strtotime($bulan));
+
+                $inputan_bulan_terbaru = $this->request->getPost('bulan_update');
+                $bulan_update = date('Y/m/d', strtotime($inputan_bulan_terbaru));
 
 
-    //             $inputan_bulan_terbaru = $this->request->getPost('bulan_update');
-    //             $bulan_update = date_create($inputan_bulan_terbaru);
-    //             $format_bulan_terbaru = date_format($bulan_update, 'Y-m-d');
+                $upah_sebelumnya = $this->upahMitraModel->where(["bulan" => $bulan_sebelumnya])->findAll();
 
-    //             $mitra_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhl();
+                foreach ($upah_sebelumnya as $upah_sebelumnya) {
+                    $upah_terbaru = $this->upahMitraModel->where(["mitra_ahl_id" => $upah_sebelumnya["mitra_ahl_id"]])->where(["bulan" => $bulan_update])->first();
 
-    //             foreach ($mitra_ahl as $mitra_ahl) {
+                    if ($upah_terbaru == null) {
+                        $this->upahMitraModel->save([
+                            'mitra_ahl_id' => $upah_sebelumnya["mitra_ahl_id"],
+                            'bulan' => $bulan_update,
+                            'upah_mitra' => $upah_sebelumnya["upah_mitra"],
+                            'bonus_kehadiran' => $upah_sebelumnya["bonus_kehadiran"],
+                            'insentif' => '0',
+                            'booster_penugasan' => '0',
+                            'model_class' => '0',
+                            'penalangan' => '0',
+                            'lain_lain' => '0',
+                        ]);
 
-    //                 $data_harga_bulan_sebelumnya = $this->upahMitraModel->where(["mitra_ahl_id" => $mitra_ahl->mitra_id])->where(["bulan" => $format_bulan_terbaru])->findAll();
-    //                 dd(count($data_harga_bulan_sebelumnya));
+                        $alert = [
+                            'success' => 'Upah Mitra Ahl Berhasil di Simpan !'
+                        ];
+                    } else {
+                        $alert = [
+                            'error' => [
+                                'data' => 'Upah Sudah Terdaftar'
+                            ]
+                        ];
+                    }
+                    // dd($upah_terbaru);
+                }
+            }
+            return json_encode($alert);
+        }
+    }
 
-    //                 if (count($data_harga_bulan_sebelumnya) >= 1) {
-    //                     $this->upahMitraModel->save([
-    //                         'mitra_ahl_id' => $mitra_ahl->mitra_id,
-    //                         'upah_mitra' => $data_harga_bulan_sebelumnya["upah_mitra"],
-    //                         'bulan' => $format_bulan_terbaru,
-    //                         'bonus_kehadiran' => '0',
-    //                         'booster_penugasan' => '0',
-    //                         'penalangan' => '0',
-    //                         'lain_lain' => '0',
-    //                     ]);
-    //                     $alert = [
-    //                         'success' => 'Upah Mitra Ahl Berhasil di Simpan !'
-    //                     ];
-    //                 } else {
+    public function upah_perbulan()
+    {
+        if ($this->request->isAJAX()) {
 
-    //                     $this->upahMitraModel->save([
-    //                         'mitra_ahl_id' => $mitra_ahl->mitra_id,
-    //                         'upah_mitra' => $data_harga_bulan_sebelumnya["upah_mitra"],
-    //                         'bulan' => $format_bulan_terbaru,
-    //                         'bonus_kehadiran' => '0',
-    //                         'booster_penugasan' => '0',
-    //                         'penalangan' => '0',
-    //                         'lain_lain' => '0',
-    //                     ]);
-    //                     $alert = [
-    //                         'success' => 'Upah Mitra Ahl Berhasil di Simpan !'
-    //                     ];
-    //                 }
-    //             }
-    //         }
+            $bulan = $this->request->getVar('bulan');
 
-    //         return json_encode($alert);
-    //     }
-    // }
+            $data_bulan = explode("-", $bulan);
+
+            $inputan_bulan = $data_bulan[1];
+            $inputan_tahun = $data_bulan[0];
+
+            $harga = $this->upahMitraModel->getUpahMitraWithMonth($inputan_bulan, $inputan_tahun);
+
+
+            $data = [
+                'harga' => $harga,
+            ];
+
+            return json_encode($data);
+        }
+    }
 }

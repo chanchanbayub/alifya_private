@@ -385,6 +385,7 @@ $routes->group('admin', static function ($routes) {
     $routes->post('upah_mitra_ahl/update_harga', 'Ahl\UpahMitraController::update_harga');
     $routes->post('upah_mitra_ahl/update', 'Ahl\UpahMitraController::update');
     $routes->post('upah_mitra_ahl/delete', 'Ahl\UpahMitraController::delete');
+    $routes->post('upah_mitra_ahl/cek_upah_perbulan', 'Ahl\UpahMitraController::upah_perbulan');
 
     // export excel peserta
 

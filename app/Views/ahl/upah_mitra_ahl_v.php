@@ -19,10 +19,10 @@
         <div class="col-lg-12">
             <div class="row">
 
-                <!-- <div class="col-md-12">
+                <div class="col-md-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title">Cek Upah Mitra AHL (Dalam Pengembangan)</h5>
+                            <h5 class="card-title">Cek Upah Mitra AHL </h5>
                             <form class="row g-3 text-capitalize" id="cek_harga_perbulan">
                                 <?= csrf_field(); ?>
                                 <div class="col-md-12">
@@ -32,36 +32,40 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-outline-primary btn-block search" id="cek_data" type="submit" disabled> <i class="bi bi-search"></i> Cari</button>
+                                    <button class="btn btn-outline-primary btn-block search" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cari</button>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
-                <!-- <div class="col-12">
+                <div class="col-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title"><?= $title ?> <span>| Bulan Tersebut (Dalam Pengembangan) </span></h5>
+                            <h5 class="card-title"><?= $title ?> <span>| Bulan Tersebut </span></h5>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Mitra Pengajar</th>
                                         <th scope="col">Bulan</th>
-                                        <th scope="col">Upah Mitra</th>
+                                        <th scope="col">Gaji Pokok</th>
+                                        <th scope="col">Bonus Kehadiran</th>
+                                        <th scope="col">Insentif/Backup</th>
+                                        <th scope="col">Booster Penugasan</th>
+                                        <th scope="col">Model Class</th>
                                         <th scope="col">Lain-Lain</th>
                                     </tr>
                                 </thead>
                                 <tbody id="harga_table_data">
                                     <tr>
-                                        <td colspan="6" style="text-align: center;">Tidak Ada Data</td>
+                                        <td colspan="9" style="text-align: center;">Tidak Ada Data</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <!-- End Recent Sales -->
 
                 <!-- Recent Sales -->
@@ -75,7 +79,7 @@
                                     <h6>Aksi</h6>
                                 </li>
                                 <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
-                                <!-- <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateUpahAhlModal"><i class="bi bi-plus"></i> Update Harga Bulan Ini</a></li> -->
+                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#updateUpahAhlModal"><i class="bi bi-plus"></i> Update Harga Bulan Ini</a></li>
                             </ul>
                         </div>
 
@@ -130,16 +134,16 @@
             <div class="modal-body">
                 <form id="update_harga_form">
                     <div class="mb-3">
-                        <label for="bulan_data" class="col-form-label">Silahkan Pilih Bulan Sebelumnya :</label>
-                        <input type="month" name="bulan" id="bulan_data" class="form-control">
-                        <div class="invalid-feedback error-bulan-data">
+                        <label for="bulan_sebelumnya" class="col-form-label">Silahkan Pilih Bulan Sebelumnya :</label>
+                        <input type="date" name="bulan" id="bulan_sebelumnya" class="form-control">
+                        <div class="invalid-feedback error-bulan-sebelumnya">
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="bulan_data_update" class="col-form-label">Silahkan Pilih Bulan Sekarang :</label>
-                        <input type="month" name="bulan_update" id="bulan_data_update" class="form-control">
-                        <div class="invalid-feedback error-bulan-data-update">
+                        <label for="bulan_update" class="col-form-label">Silahkan Pilih Bulan Sekarang :</label>
+                        <input type="date" name="bulan_update" id="bulan_update" class="form-control">
+                        <div class="invalid-feedback error-bulan-update">
                         </div>
                     </div>
 
@@ -816,8 +820,8 @@
 
     $("#update_harga_form").submit(function(e) {
         e.preventDefault();
-        let bulan = $("#bulan_data").val();
-        let bulan_update = $("#bulan_data_update").val();
+        let bulan = $("#bulan_sebelumnya").val();
+        let bulan_update = $("#bulan_update").val();
 
         $.ajax({
             url: '/admin/upah_mitra_ahl/update_harga',
@@ -837,18 +841,18 @@
                 if (response.error) {
 
                     if (response.error.bulan) {
-                        $("#bulan_data").addClass('is-invalid');
-                        $(".error-bulan-data").html(response.error.bulan);
+                        $("#bulan_sebelumnya").addClass('is-invalid');
+                        $(".error-bulan-sebelumnya").html(response.error.bulan);
                     } else {
-                        $("#bulan_data").removeClass('is-invalid');
-                        $(".error-bulan-data").html('');
+                        $("#bulan_sebelumnya").removeClass('is-invalid');
+                        $(".error-bulan-sebelumnya").html('');
                     }
                     if (response.error.bulan_update) {
-                        $("#bulan_data_update").addClass('is-invalid');
-                        $(".error-bulan-data-update").html(response.error.bulan_update);
+                        $("#bulan_update").addClass('is-invalid');
+                        $(".error-bulan-update").html(response.error.bulan_update);
                     } else {
-                        $("#bulan_data_update").removeClass('is-invalid');
-                        $(".error-bulan-data-update").html('');
+                        $("#bulan_update").removeClass('is-invalid');
+                        $(".error-bulan-update").html('');
                     }
 
                     if (response.error.data) {
@@ -884,36 +888,39 @@
             e.preventDefault();
             let bulan = $("#bulan_table").val();
             $.ajax({
-                url: '/admin/harga/harga_perbulan',
+                url: '/admin/upah_mitra_ahl/cek_upah_perbulan',
                 data: {
                     bulan: bulan
                 },
                 dataType: 'json',
                 type: 'POST',
                 beforeSend: function() {
-                    $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
-                    $('.save').prop('disabled', true);
+                    $('#cek_data').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
+                    $('#cek_data').prop('disabled', true);
                 },
                 success: function(response) {
                     let no = 1;
                     let table_data = ``;
-                    $('.save').html('<i class="bi bi-search"></i> Search');
-                    $('.save').prop('disabled', false);
+                    $('#cek_data').html('<i class="bi bi-search"></i> Search');
+                    $('#cek_data').prop('disabled', false);
                     if (response.harga.length >= 1) {
                         response.harga.forEach(function(e) {
                             table_data += `<tr>
                                 <td>${no++}</td>
-                                <td>${e.nama_lengkap_anak}</td>
+                                <td>${e.nama_lengkap}</td>
                                 <td>${e.bulan}</td>
-                                <td>${e.tahun}</td>
-                                <td>Rp. ${new Intl.NumberFormat().format(e.harga)} </td>
-                                <td>${e.status_murid} </td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.bonus_kehadiran)} </td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.insentif)} </td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.booster_penugasan)} </td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.model_class)} </td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.penalangan)} </td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.lain_lain)} </td>
                             </tr>`;
                         });
                         $("#harga_table_data").html(table_data);
                     } else {
                         table_data += `<tr>
-                                <td colspan="6" style="text-align:center">Data Tidak ditemukan</td>
+                                <td colspan="9" style="text-align:center">Data Tidak ditemukan</td>
                             </tr>`;
                         $("#harga_table_data").html(table_data);
                     }
@@ -924,8 +931,8 @@
                         icon: 'error',
                         title: `Data Belum Tersimpan!`,
                     });
-                    $('.save').html('<i class="bi bi-search"></i> Search');
-                    $('.save').prop('disabled', false);
+                    $('#cek_data').html('<i class="bi bi-search"></i> Search');
+                    $('#cek_data').prop('disabled', false);
                 }
             });
         })

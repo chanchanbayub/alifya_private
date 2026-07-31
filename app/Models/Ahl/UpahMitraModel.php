@@ -50,4 +50,29 @@ class UpahMitraModel extends Model
             ->join('data_pengajar_table', 'data_pengajar_table.id = mitra_pengajar_ahl_table.mitra_id');
         return $builder->orderBy('data_pengajar_table.nama_lengkap asc');
     }
+
+    public function getUpahMitraWithMonth($bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("upah_mitra_ahl_table.id, upah_mitra_ahl_table.mitra_ahl_id, upah_mitra_ahl_table.bulan, upah_mitra_ahl_table.upah_mitra, upah_mitra_ahl_table.bonus_kehadiran, upah_mitra_ahl_table.booster_penugasan, upah_mitra_ahl_table.penalangan, upah_mitra_ahl_table.insentif, upah_mitra_ahl_table.model_class,upah_mitra_ahl_table.lain_lain, data_pengajar_table.nama_lengkap")
+            ->join('mitra_pengajar_ahl_table', 'mitra_pengajar_ahl_table.mitra_id = upah_mitra_ahl_table.mitra_ahl_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = mitra_pengajar_ahl_table.mitra_id')
+            ->where('MONTH(upah_mitra_ahl_table.bulan)', $bulan)
+            ->where('YEAR(upah_mitra_ahl_table.bulan)', $tahun)
+            ->orderBy('data_pengajar_table.nama_lengkap asc')
+            ->get()->getResultObject();
+    }
+
+    public function getUpahWithMonth($mitra_ahl_id, $bulan)
+    {
+        return $this->table($this->table)
+            ->select("upah_mitra_ahl_table.id, upah_mitra_ahl_table.mitra_ahl_id, upah_mitra_ahl_table.bulan, upah_mitra_ahl_table.upah_mitra, upah_mitra_ahl_table.bonus_kehadiran, upah_mitra_ahl_table.booster_penugasan, upah_mitra_ahl_table.penalangan, upah_mitra_ahl_table.insentif, upah_mitra_ahl_table.model_class,upah_mitra_ahl_table.lain_lain, data_pengajar_table.nama_lengkap")
+            ->join('mitra_pengajar_ahl_table', 'mitra_pengajar_ahl_table.mitra_id = upah_mitra_ahl_table.mitra_ahl_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = mitra_pengajar_ahl_table.mitra_id')
+            ->where(["upah_mitra_ahl_table.mitra_ahl_id" => $mitra_ahl_id])
+            ->where('MONTH(upah_mitra_ahl_table.bulan)', $bulan)
+            // ->where('YEAR(upah_mitra_ahl_table.bulan)', $tahun)
+            ->orderBy('data_pengajar_table.nama_lengkap asc')
+            ->get()->getResultObject();
+    }
 }
