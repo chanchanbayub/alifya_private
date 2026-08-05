@@ -282,9 +282,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="upah_mitra_edit" class="col-form-label">Upah Mitra :</label>
+                        <label for="upah_mitra_edit" class="col-form-label">Gaji Pokok :</label>
                         <input type="number" class="form-control" id="upah_mitra_edit" name="upah_mitra" placeholder="50000">
                         <div class="invalid-feedback error-upah-mitra-edit">
+                        </div>
+                    </div>
+
+                     <div class="mb-3">
+                        <label for="bonus_kehadiran_edit" class="col-form-label">Bonus Kehadiran :</label>
+                        <input type="number" class="form-control" id="bonus_kehadiran_edit" name="bonus_kehadiran_edit" placeholder="50000">
+                        <div class="invalid-feedback error-bonus-kehadiran_edit">
                         </div>
                     </div>
 
@@ -292,13 +299,6 @@
                         <label for="insentif_edit" class="col-form-label">Insentif/Backup :</label>
                         <input type="number" class="form-control" id="insentif_edit" name="insentif" placeholder="50000">
                         <div class="invalid-feedback error-insentif-edit">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="bonus_kehadiran_edit" class="col-form-label">Bonus Kehadiran :</label>
-                        <input type="number" class="form-control" id="bonus_kehadiran_edit" name="bonus_kehadiran_edit" placeholder="50000">
-                        <div class="invalid-feedback error-bonus-kehadiran_edit">
                         </div>
                     </div>
 
