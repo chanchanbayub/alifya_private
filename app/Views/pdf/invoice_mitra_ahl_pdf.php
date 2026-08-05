@@ -80,7 +80,7 @@
             <thead>
                 <tr>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Mitra Pengajar</th>
-                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Upah Mitra </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Gaji Pokok </th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Bonus Kehadiran</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Insentif/Backup</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Booster Penugasan</th>
