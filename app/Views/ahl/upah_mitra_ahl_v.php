@@ -289,16 +289,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="insentif_edit" class="col-form-label">Insentif/Backup :</label>
-                        <input type="number" class="form-control" id="insentif_edit" name="insentif" placeholder="50000">
-                        <div class="invalid-feedback error-insentif-edit">
+                        <label for="bonus_kehadiran_edit" class="col-form-label">Bonus Kehadiran :</label>
+                        <input type="number" class="form-control" id="bonus_kehadiran_edit" name="bonus_kehadiran_edit" placeholder="50000">
+                        <div class="invalid-feedback error-bonus-kehadiran_edit">
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="bonus_kehadiran_edit" class="col-form-label">Bonus Kehadiran :</label>
-                        <input type="number" class="form-control" id="bonus_kehadiran_edit" name="bonus_kehadiran_edit" placeholder="50000">
-                        <div class="invalid-feedback error-bonus-kehadiran_edit">
+                        <label for="insentif_edit" class="col-form-label">Insentif/Backup :</label>
+                        <input type="number" class="form-control" id="insentif_edit" name="insentif" placeholder="50000">
+                        <div class="invalid-feedback error-insentif-edit">
                         </div>
                     </div>
 

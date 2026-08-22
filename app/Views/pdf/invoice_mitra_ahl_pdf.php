@@ -80,7 +80,7 @@
             <thead>
                 <tr>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Mitra Pengajar</th>
-                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Upah Mitra </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Gaji Pokok </th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Bonus Kehadiran</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Insentif/Backup</th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Booster Penugasan</th>
@@ -97,8 +97,8 @@
                 <tr>
                     <th scope="col" style="text-transform: capitalize; text-align:center; "><?= $upah_ahl["nama_lengkap"]  ?></th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["upah_mitra"])   ?> </th>
-                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["insentif"])   ?> </th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["bonus_kehadiran"])   ?> </th>
+                    <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["insentif"])   ?> </th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["booster_penugasan"])   ?> </th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["model_class"])   ?> </th>
                     <th scope="col" style="text-transform: capitalize; text-align:center; ">Rp. <?= number_format($upah_ahl["penalangan"])   ?> </th>
