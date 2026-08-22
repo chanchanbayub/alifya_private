@@ -4,6 +4,7 @@ namespace App\Controllers\Ahl;
 
 use App\Controllers\BaseController;
 use App\Models\Admin\PengajarModel;
+use App\Models\AHL\AbsensiAHLModel;
 use App\Models\Ahl\JamMasukAhlModel;
 use App\Models\Ahl\JenisPekerjaanModel;
 use App\Models\Ahl\LokasiModel;
@@ -23,6 +24,7 @@ class PresensiAhlController extends BaseController
     protected $jamMasukAhlModel;
     protected $lokasiModel;
     protected $validation;
+    protected $absensiAhlModel;
 
     public function __construct()
     {
@@ -33,6 +35,7 @@ class PresensiAhlController extends BaseController
         $this->lokasiModel = new LokasiModel();
         $this->jenisPekerjaanModel = new JenisPekerjaanModel();
         $this->statusPresensiModel = new StatusPresensiModel();
+        $this->absensiAhlModel = new AbsensiAHLModel();
         $this->validation = \Config\Services::validation();
 
         helper(['format']);
@@ -274,12 +277,15 @@ class PresensiAhlController extends BaseController
         $tanggal_hari = date('Y/m/d');
 
         $presensi_ahl = $this->presensiAhlModel->getPresensiAhlHarian($tanggal_hari);
+        $absensi_ahl = $this->absensiAhlModel->getAbsensiAhlHarian($tanggal_hari);
+
 
         $hari_ini = tanggal_indonesia(date('Y-m-d'));
 
         $data = [
             'title' => 'Presensi Harian AHL',
             'presensi_ahl' => $presensi_ahl,
+            'absensi_ahl' => $absensi_ahl,
             'lokasi' => $this->lokasiModel->getLokasi(),
             'jenis_pekerjaan' => $this->jenisPekerjaanModel->getJenisPekerjaan(),
             'status_presensi' => $this->statusPresensiModel->getStatusPresensi(),
@@ -499,11 +505,14 @@ class PresensiAhlController extends BaseController
             $presensi_pulang = $this->presensiAhlModel->getPresensiAhlBulananPulang($mitra_pengajar_id, $bulan["1"], $bulan["0"]);
             $presensi_DL = $this->presensiAhlModel->getPresensiAhlBulananDL($mitra_pengajar_id, $bulan["1"], $bulan["0"]);
 
+            $absensi = $this->absensiAhlModel->getDataAbsensiAhlWithMonth($mitra_pengajar_id, $bulan["1"], $bulan["0"]);
+
             helper(['format']);
 
             $jumlah_masuk = count($presensi_masuk);
             $jumlah_pulang = count($presensi_pulang);
             $jumlah_DL = count($presensi_DL);
+            $jumlah_absensi = count($absensi);
             // $jumlah_presensi = count($presensi);
 
             // dd($data_presensi);
@@ -513,9 +522,10 @@ class PresensiAhlController extends BaseController
                 'jumlah_masuk' => $jumlah_masuk,
                 'jumlah_pulang' => $jumlah_pulang,
                 'jumlah_dl' => $jumlah_DL,
+                'jumlah_absensi' => $jumlah_absensi,
                 'mitra' => $mitra_pengajar_id,
-                // 'jumlah_presensi' => $jumlah_presensi,
-                'bulan' => $bulan["1"]
+                'bulan' => $bulan["1"],
+                'absensi' => $absensi
             ];
 
             return json_encode($data);

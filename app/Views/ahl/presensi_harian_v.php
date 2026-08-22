@@ -61,6 +61,37 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="card recent-sales overflow-auto">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Absensi Harian AHL <span>| <?= tanggal_indonesia(date('Y-m-d')) ?>, <?= date_indo(date('Y-m-d')); ?> Table </span></h5>
+                        <table class="table table-bordered datatable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Nama Lengkap</th>
+                                    <th scope="col">Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1; ?>
+                                <?php foreach ($absensi_ahl as $absensi_ahl) : ?>
+                                    <tr>
+                                        <th scope="row"><a href="#"><?= $no++ ?></a></th>
+                                        <td><?= tanggal_indonesia(date('Y-m-d', strtotime($absensi_ahl->tanggal))) ?>, <?= date_indo(date('Y-m-d', strtotime($absensi_ahl->tanggal))) ?></td>
+                                        <td><?= $absensi_ahl->nama_lengkap ?></td>
+                                        <td><?= $absensi_ahl->keterangan ?></td>
+                                    </tr>
+
+                                <?php endforeach; ?>
+                                <!-- EndForeach -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <!-- End Recent Sales -->
         </div>
     </div><!-- End Left side columns -->

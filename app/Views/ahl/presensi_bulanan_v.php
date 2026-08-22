@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-xxl-4 col-md-12">
+                        <div class="col-xxl-3 col-md-12">
                             <div class="card info-card sales-card">
                                 <div class="card-body">
                                     <h5 class="card-title">Total <span>|Presensi Masuk </span></h5>
@@ -69,14 +69,14 @@
                                             <i class="bi bi-calendar"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6 id="masuk"></h6>
+                                            <h6 id="masuk">0</h6>
                                             <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-md-12">
+                        <div class="col-xxl-3 col-md-12">
                             <div class="card info-card sales-card">
                                 <div class="card-body">
                                     <h5 class="card-title">Total <span>|Presensi Pulang </span></h5>
@@ -85,14 +85,14 @@
                                             <i class="bi bi-calendar"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6 id="pulang"></h6>
+                                            <h6 id="pulang">0</h6>
                                             <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-md-12">
+                        <div class="col-xxl-3 col-md-12">
                             <div class="card info-card sales-card">
                                 <div class="card-body">
                                     <h5 class="card-title">Total <span>|Presensi Dinas Luar </span></h5>
@@ -101,7 +101,23 @@
                                             <i class="bi bi-calendar"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6 id="dl"></h6>
+                                            <h6 id="dl">0</h6>
+                                            <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-12">
+                            <div class="card info-card sales-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total <span>|Absensi </span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-calendar"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6 id="absensi">0</h6>
                                             <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"></span>
                                         </div>
                                     </div>
@@ -113,8 +129,6 @@
             </div>
 
             <div class="card recent-sales overflow-auto">
-
-
                 <div class="card-body">
                     <h5 class="card-title"><?= $title ?> <span>| <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> <?= date('Y') ?> </span></h5>
                     <table class="table table-bordered">
@@ -135,6 +149,27 @@
                         <tbody class="data_presensi">
                             <tr>
                                 <td colspan="10" style="text-align: center;">Tidak Ada Data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card recent-sales overflow-auto">
+                <div class="card-body">
+                    <h5 class="card-title">Rekap Absensi Perbulan AHL <span>| <?= bulan(date('n', strtotime(date('Y-m-d'))))  ?> <?= date('Y') ?> </span></h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Nama Lengkap</th>
+                                <th scope="col">Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody class="data_absensi">
+                            <tr>
+                                <td colspan="4" style="text-align: center;">Tidak Ada Data</td>
                             </tr>
                         </tbody>
                     </table>
@@ -176,6 +211,7 @@
                 $("#masuk").html(response.jumlah_masuk);
                 $("#pulang").html(response.jumlah_pulang);
                 $("#dl").html(response.jumlah_dl);
+                $("#absensi").html(response.jumlah_absensi);
                 // console.log(response.presensi);
                 let no = 1;
                 let tableData = ``;
@@ -198,10 +234,32 @@
                     $(".data_presensi").html(tableData);
                 } else {
                     tableData += `<tr>
-                                    <td colspan="10"  align="center">data tidak ditemukan</td>
+                                    <td colspan="10"  align="center">Tidak Ada Data</td>
                                 </tr>`;
                     $(".data_presensi").html(tableData);
                 }
+
+                let number = 1;
+                let tableAbsen = ``;
+
+                if (response.absensi.length >= 1) {
+                    response.absensi.forEach(function(e) {
+                        tableAbsen += `<tr>
+                                    <td>${number++}</td>
+                                    <td>${e.tanggal}</td>
+                                    <td>${e.nama_lengkap}</td>
+                                    <td>${e.keterangan}</td>
+                                </tr>`;
+                    });
+                    $(".data_absensi").html(tableAbsen);
+                } else {
+                    tableAbsen += `<tr>
+                                    <td colspan="10" align="center">Tidak Ada Data</td>
+                                </tr>`;
+                    $(".data_absensi").html(tableAbsen);
+                }
+
+
 
             }
         });

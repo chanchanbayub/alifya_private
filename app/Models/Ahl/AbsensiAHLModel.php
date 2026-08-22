@@ -43,4 +43,24 @@ class AbsensiAHLModel extends Model
             ->where(["absensi_ahl_table.id" => $id])
             ->orderBy('id desc')->get()->getRowObject();
     }
+
+    public function getDataAbsensiAhlWithMonth($mitra_pengajar_id, $bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select('absensi_ahl_table.id,absensi_ahl_table.tanggal, absensi_ahl_table.mitra_pengajar_id, data_pengajar_table.nama_lengkap ,absensi_ahl_table.keterangan')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = absensi_ahl_table.mitra_pengajar_id')
+            ->where(["absensi_ahl_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where('MONTH(absensi_ahl_table.tanggal)', $bulan)
+            ->where('YEAR(absensi_ahl_table.tanggal)', $tahun)
+            ->orderBy('id desc')->get()->getResultObject();
+    }
+
+    public function getAbsensiAhlHarian($tanggal)
+    {
+        return $this->table($this->table)
+            ->select('absensi_ahl_table.id,absensi_ahl_table.tanggal, absensi_ahl_table.mitra_pengajar_id, data_pengajar_table.nama_lengkap ,absensi_ahl_table.keterangan')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = absensi_ahl_table.mitra_pengajar_id')
+            ->where(["absensi_ahl_table.tanggal" => $tanggal])
+            ->orderBy('id desc')->get()->getResultObject();
+    }
 }
