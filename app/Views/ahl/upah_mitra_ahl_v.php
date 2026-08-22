@@ -54,6 +54,7 @@
                                         <th scope="col">Insentif/Backup</th>
                                         <th scope="col">Booster Penugasan</th>
                                         <th scope="col">Model Class</th>
+                                        <th scope="col">Penalangan</th>
                                         <th scope="col">Lain-Lain</th>
                                     </tr>
                                 </thead>
@@ -289,16 +290,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="insentif_edit" class="col-form-label">Insentif/Backup :</label>
-                        <input type="number" class="form-control" id="insentif_edit" name="insentif" placeholder="50000">
-                        <div class="invalid-feedback error-insentif-edit">
+                        <label for="bonus_kehadiran_edit" class="col-form-label">Bonus Kehadiran :</label>
+                        <input type="number" class="form-control" id="bonus_kehadiran_edit" name="bonus_kehadiran_edit" placeholder="50000">
+                        <div class="invalid-feedback error-bonus-kehadiran_edit">
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="bonus_kehadiran_edit" class="col-form-label">Bonus Kehadiran :</label>
-                        <input type="number" class="form-control" id="bonus_kehadiran_edit" name="bonus_kehadiran_edit" placeholder="50000">
-                        <div class="invalid-feedback error-bonus-kehadiran_edit">
+                        <label for="insentif_edit" class="col-form-label">Insentif/Backup :</label>
+                        <input type="number" class="form-control" id="insentif_edit" name="insentif" placeholder="50000">
+                        <div class="invalid-feedback error-insentif-edit">
                         </div>
                     </div>
 
@@ -909,6 +910,7 @@
                                 <td>${no++}</td>
                                 <td>${e.nama_lengkap}</td>
                                 <td>${e.bulan}</td>
+                                <td>Rp. ${new Intl.NumberFormat().format(e.upah_mitra)} </td>
                                 <td>Rp. ${new Intl.NumberFormat().format(e.bonus_kehadiran)} </td>
                                 <td>Rp. ${new Intl.NumberFormat().format(e.insentif)} </td>
                                 <td>Rp. ${new Intl.NumberFormat().format(e.booster_penugasan)} </td>
