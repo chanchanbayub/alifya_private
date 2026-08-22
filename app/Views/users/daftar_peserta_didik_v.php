@@ -394,6 +394,26 @@
 </div>
 <!-- Contact End -->
 
+<!-- Modal -->
+<div class="modal fade" id="error-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pastikan Semua Form Terisi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Pastikan Semuanya Form Terisi, Pastikan tidak ada yang terlewat</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script>
@@ -494,9 +514,11 @@
                     $('.save').html(`Kirim Pendaftaran`)
                     $('.save').prop('disabled', false);
                     if (response.error) {
+                        $("#error-modal").modal('show');
                         if (response.error.nama_lengkap_anak) {
                             $("#nama_lengkap_anak").addClass('is-invalid');
                             $(".error-nama-lengkap-anak").html(response.error.nama_lengkap_anak);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#nama_lengkap_anak").removeClass('is-invalid');
                             $(".error-nama-lengkap-anak").html('');
@@ -504,6 +526,7 @@
                         if (response.error.tanggal_lahir_anak) {
                             $("#tanggal_lahir_anak").addClass('is-invalid');
                             $(".error-tanggal-lahir-anak").html(response.error.tanggal_lahir_anak);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#tanggal_lahir_anak").removeClass('is-invalid');
                             $(".error-tanggal-lahir-anak").html('');
@@ -511,6 +534,7 @@
                         if (response.error.nomor_whatsapp_wali) {
                             $("#nomor_whatsapp_wali").addClass('is-invalid');
                             $(".error-nomor-whatsapp-wali").html(response.error.nomor_whatsapp_wali);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#nomor_whatsapp_wali").removeClass('is-invalid');
                             $(".error-nomor-whatsapp-wali").html('');
@@ -519,6 +543,7 @@
                         if (response.error.alamat_domisili_anak) {
                             $("#alamat_domisili_anak").addClass('is-invalid');
                             $(".error-alamat-domisili-anak").html(response.error.alamat_domisili_anak);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#alamat_domisili_anak").removeClass('is-invalid');
                             $(".error-alamat-domisili-anak").html('');
@@ -526,6 +551,7 @@
                         if (response.error.sekolah_anak) {
                             $("#sekolah_anak").addClass('is-invalid');
                             $(".error-sekolah-anak").html(response.error.sekolah_anak);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#sekolah_anak").removeClass('is-invalid');
                             $(".error-sekolah-anak").html('');
@@ -533,6 +559,7 @@
                         if (response.error.riwayat_penyakit) {
                             $("#riwayat_penyakit").addClass('is-invalid');
                             $(".error-riwayat").html(response.error.riwayat_penyakit);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#riwayat_penyakit").removeClass('is-invalid');
                             $(".error-riwayat").html('');
@@ -540,6 +567,7 @@
                         if (response.error.username_instagram_wali) {
                             $("#username_instagram_wali").addClass('is-invalid');
                             $(".error-username-instagram-wali").html(response.error.username_instagram_wali);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#username_instagram_wali").removeClass('is-invalid');
                             $(".error-username-instagram-wali").html('');
@@ -547,6 +575,7 @@
                         if (response.error.info_les) {
                             $("#info_les").addClass('is-invalid');
                             $(".error-info_les").html(response.error.info_les);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#info_les").removeClass('is-invalid');
                             $(".error-info_les").html('');
@@ -554,6 +583,7 @@
                         if (response.error.paket_belajar_id) {
                             $("#paket_belajar_id").addClass('is-invalid');
                             $(".error-paket-belajar").html(response.error.paket_belajar_id);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#paket_belajar_id").removeClass('is-invalid');
                             $(".error-paket-belajar").html('');
@@ -562,6 +592,7 @@
                         if (response.error.materi_belajar_id) {
                             $("#materi_belajar_id").addClass('is-invalid');
                             $(".error-materi-belajar").html(response.error.materi_belajar_id);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#materi_belajar_id").removeClass('is-invalid');
                             $(".error-materi-belajar").html('');
@@ -569,6 +600,7 @@
                         if (response.error.hari_belajar) {
                             $("#hari_belajar").addClass('is-invalid');
                             $(".error-hari-belajar").html(response.error.hari_belajar);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#hari_belajar").removeClass('is-invalid');
                             $(".error-hari-belajar").html('');
@@ -576,6 +608,7 @@
                         if (response.error.waktu_belajar) {
                             $("#waktu_belajar").addClass('is-invalid');
                             $(".error-waktu-belajar").html(response.error.waktu_belajar);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#waktu_belajar").removeClass('is-invalid');
                             $(".error-waktu-belajar").html('');
@@ -584,6 +617,7 @@
                         if (response.error.nama_ayah) {
                             $("#nama_ayah").addClass('is-invalid');
                             $(".error-nama-ayah").html(response.error.nama_ayah);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#nama_ayah").removeClass('is-invalid');
                             $(".error-nama-ayah").html('');
@@ -592,6 +626,7 @@
                         if (response.error.pekerjaan_ayah) {
                             $("#pekerjaan_ayah").addClass('is-invalid');
                             $(".error-pekerjaan-ayah").html(response.error.pekerjaan_ayah);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#pekerjaan_ayah").removeClass('is-invalid');
                             $(".error-pekerjaan-ayah").html('');
@@ -600,6 +635,7 @@
                         if (response.error.nama_ibu) {
                             $("#nama_ibu").addClass('is-invalid');
                             $(".error-nama-ibu").html(response.error.nama_ibu);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#nama_ibu").removeClass('is-invalid');
                             $(".error-nama-ibu").html('');
@@ -608,6 +644,7 @@
                         if (response.error.pekerjaan_ibu) {
                             $("#pekerjaan_ibu").addClass('is-invalid');
                             $(".error-pekerjaan-ibu").html(response.error.pekerjaan_ibu);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#pekerjaan_ibu").removeClass('is-invalid');
                             $(".error-pekerjaan-ibu").html('');
@@ -616,6 +653,7 @@
                         if (response.error.agama) {
                             $("#agama").addClass('is-invalid');
                             $(".error-agama").html(response.error.agama);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#agama").removeClass('is-invalid');
                             $(".error-agama").html('');
@@ -624,6 +662,7 @@
                         if (response.error.pekerjaan_ayah) {
                             $("#pekerjaan_ayah").addClass('is-invalid');
                             $(".error-pekerjaan-ayah").html(response.error.pekerjaan_ayah);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#pekerjaan_ayah").removeClass('is-invalid');
                             $(".error-pekerjaan-ayah").html('');
@@ -632,6 +671,7 @@
                         if (response.error.foto_anak) {
                             $("#foto_anak").addClass('is-invalid');
                             $(".error-foto-anak").html(response.error.foto_anak);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#foto_anak").removeClass('is-invalid');
                             $(".error-foto-anak").html('');
@@ -639,6 +679,7 @@
                         if (response.error.ketersediaan) {
                             $("#ketersediaan").addClass('is-invalid');
                             $(".error-ketersediaan").html(response.error.ketersediaan);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#ketersediaan").removeClass('is-invalid');
                             $(".error-ketersediaan").html('');
@@ -646,6 +687,7 @@
                         if (response.error.nama_panggilan_anak) {
                             $("#nama_panggilan_anak").addClass('is-invalid');
                             $(".error-nama-panggilan-anak").html(response.error.nama_panggilan_anak);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#nama_panggilan_anak").removeClass('is-invalid');
                             $(".error-nama-panggilan-anak").html('');
@@ -653,6 +695,7 @@
                         if (response.error.jenis_kelamin) {
                             $("#jenis_kelamin").addClass('is-invalid');
                             $(".error-jenis-kelamin").html(response.error.jenis_kelamin);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#jenis_kelamin").removeClass('is-invalid');
                             $(".error-jenis-kelamin").html('');
@@ -660,6 +703,7 @@
                         if (response.error.pendidikan_id) {
                             $("#pendidikan_id").addClass('is-invalid');
                             $(".error-pendidikan").html(response.error.pendidikan_id);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#pendidikan_id").removeClass('is-invalid');
                             $(".error-pendidikan").html('');
@@ -667,6 +711,7 @@
                         if (response.error.ukuran_baju) {
                             $("#ukuran_baju").addClass('is-invalid');
                             $(".error-ukuran-baju").html(response.error.ukuran_baju);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#ukuran_baju").removeClass('is-invalid');
                             $(".error-ukuran-baju").html('');
@@ -674,6 +719,7 @@
                         if (response.error.catatan) {
                             $("#catatan").addClass('is-invalid');
                             $(".error-catatan").html(response.error.catatan);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#catatan").removeClass('is-invalid');
                             $(".error-catatan").html('');
@@ -681,6 +727,7 @@
                         if (response.error.bukti_tf) {
                             $("#bukti_tf").addClass('is-invalid');
                             $(".error-bukti-tf").html(response.error.bukti_tf);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#bukti_tf").removeClass('is-invalid');
                             $(".error-bukti-tf").html('');
@@ -688,6 +735,7 @@
                         if (response.error.izin_dokumentasi) {
                             $("#izin_dokumentasi").addClass('is-invalid');
                             $(".error-izin-dokumentasi").html(response.error.izin_dokumentasi);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#izin_dokumentasi").removeClass('is-invalid');
                             $(".error-izin-dokumentasi").html('');
@@ -695,6 +743,7 @@
                         if (response.error.tata_tertib) {
                             $("#tata_tertib").addClass('is-invalid');
                             $(".error-tata-tertib").html(response.error.tata_tertib);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#tata_tertib").removeClass('is-invalid');
                             $(".error-tata-tertib").html('');
@@ -702,6 +751,7 @@
                         if (response.error.tindak_lanjut) {
                             $("#tindak_lanjut").addClass('is-invalid');
                             $(".error-tindak-lanjut").html(response.error.tindak_lanjut);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#tindak_lanjut").removeClass('is-invalid');
                             $(".error-tindak-lanjut").html('');
@@ -709,6 +759,7 @@
                         if (response.error.larangan) {
                             $("#larangan").addClass('is-invalid');
                             $(".error-larangan").html(response.error.larangan);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#larangan").removeClass('is-invalid');
                             $(".error-larangan").html('');
@@ -716,6 +767,7 @@
                         if (response.error.data_1) {
                             $("#data_1").addClass('is-invalid');
                             $(".error-data-1").html(response.error.data_1);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#data_1").removeClass('is-invalid');
                             $(".error-data-1").html('');
@@ -723,6 +775,7 @@
                         if (response.error.data_2) {
                             $("#data_2").addClass('is-invalid');
                             $(".error-data-2").html(response.error.data_2);
+                            $("#error-modal").modal('show');
                         } else {
                             $("#data_2").removeClass('is-invalid');
                             $(".error-data-2").html('');
