@@ -194,6 +194,11 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/absensi_ahl">
+                         <i class="bi bi-circle"></i><span>Absensi AHL</span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="/admin/upah_mitra_ahl">
                          <i class="bi bi-circle"></i><span>Upah AHL</span>
                      </a>
@@ -227,7 +232,6 @@
 
              </ul>
          </li>
-
 
          <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#invoice_home" data-bs-toggle="collapse" href="#">

@@ -310,6 +310,13 @@ $routes->group('admin', static function ($routes) {
     $routes->get('presensi_ahl_bulanan', 'Ahl\PresensiAhlController::presensi_bulanan');
     $routes->get('presensi_ahl/getPresensiPerbulan', 'Ahl\PresensiAhlController::getPresensiPerbulan');
 
+    $routes->get('absensi_ahl', 'Ahl\AbsensiAHLController::index');
+    $routes->post('absensi_ahl/insert', 'Ahl\AbsensiAHLController::insert');
+    $routes->get('absensi_ahl/edit', 'Ahl\AbsensiAHLController::edit');
+    $routes->post('absensi_ahl/update', 'Ahl\AbsensiAHLController::update');
+    $routes->post('absensi_ahl/delete', 'Ahl\AbsensiAHLController::delete');
+    $routes->get('absensi_ahl/getAbsensiMitraAhl', 'Ahl\AbsensiAHLController::getAbsensiMitraAhl');
+
     // Program AHL
     $routes->get('program_ahl', 'Ahl\ProgramAHLController::index');
     $routes->post('program_ahl/insert', 'Ahl\ProgramAHLController::insert');
@@ -442,6 +449,13 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->post('presensi/update', 'Mitra\PresensiController::update');
     $routes->post('presensi/delete', 'Mitra\PresensiController::delete');
     $routes->get('presensi/getPesertaDidik', 'Mitra\PresensiController::getPesertaDidik');
+
+    $routes->get('absensi_ahl', 'Mitra\AbsensiAHLController::index');
+    $routes->post('absensi_ahl/insert', 'Mitra\AbsensiAHLController::insert');
+    $routes->get('absensi_ahl/edit', 'Mitra\AbsensiAHLController::edit');
+    $routes->post('absensi_ahl/update', 'Mitra\AbsensiAHLController::update');
+    $routes->post('absensi_ahl/delete', 'Mitra\AbsensiAHLController::delete');
+    $routes->get('absensi_ahl/getPesertaDidik', 'Mitra\AbsensiAHLController::getPesertaDidik');
 
     $routes->get('absensi', 'Mitra\AbsensiController::index');
     $routes->post('absensi/insert', 'Mitra\AbsensiController::insert');

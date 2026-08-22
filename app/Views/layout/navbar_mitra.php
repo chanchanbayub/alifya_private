@@ -62,6 +62,11 @@
                          <i class=" bi bi-circle"></i><span>Presensi AHL</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="/mitra_pengajar/absensi_ahl">
+                         <i class=" bi bi-circle"></i><span>Absensi AHL</span>
+                     </a>
+                 </li>
              </ul>
          </li>
 
