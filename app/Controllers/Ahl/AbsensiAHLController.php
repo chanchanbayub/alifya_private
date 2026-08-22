@@ -100,16 +100,24 @@ class AbsensiAHLController extends BaseController
                 $mitra_pengajar_id = $this->request->getPost('mitra_pengajar_id');
                 $keterangan = $this->request->getPost('keterangan');
 
-                $this->absensiAhlModel->save([
-                    'tanggal' => strtolower($tanggal),
-                    'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
-                    'keterangan' => strtolower($keterangan),
+                $cek_data = $this->absensiAhlModel->where(["mitra_pengajar_id" => $mitra_pengajar_id])->where(["tanggal" => $tanggal])->first();
 
-                ]);
+                if ($cek_data != null) {
+                    $alert = [
+                        'duplikat' => 'Tanggal sudah tersimpan di database'
+                    ];
+                } else {
+                    $this->absensiAhlModel->save([
+                        'tanggal' => strtolower($tanggal),
+                        'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
+                        'keterangan' => strtolower($keterangan),
 
-                $alert = [
-                    'success' => 'Absensi Berhasil di Simpan !'
-                ];
+                    ]);
+
+                    $alert = [
+                        'success' => 'Absensi Berhasil di Simpan !'
+                    ];
+                }
             }
 
             return json_encode($alert);

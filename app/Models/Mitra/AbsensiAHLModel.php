@@ -9,7 +9,7 @@ class AbsensiAHLModel extends Model
     protected $table            = 'absensi_ahl_table';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['tanggal', 'mitra_pengajar_id', 'peserta_didik_ahl_id', 'absen', 'keterangan', 'pergantian_jadwal'];
+    protected $allowedFields    = ['tanggal', 'mitra_pengajar_id', 'keterangan'];
 
     // Dates
     protected $useTimestamps = true;
@@ -20,12 +20,9 @@ class AbsensiAHLModel extends Model
     public function getDataAbsensiAhl($mitra_pengajar)
     {
         return $this->table($this->table)
-            ->select('absensi_ahl_table.id,absensi_ahl_table.tanggal, absensi_ahl_table.mitra_pengajar_id, absensi_ahl_table.peserta_didik_ahl_id, absensi_ahl_table.absen, absensi_ahl_table.keterangan ,peserta_didik_ahl_table.nama_lengkap_anak, data_pengajar_table.nama_lengkap, ')
+            ->select('absensi_ahl_table.id,absensi_ahl_table.tanggal, absensi_ahl_table.mitra_pengajar_id, absensi_ahl_table.keterangan, data_pengajar_table.nama_lengkap')
             ->join('data_pengajar_table', 'data_pengajar_table.id = absensi_ahl_table.mitra_pengajar_id')
-            ->join('peserta_didik_ahl_table', 'peserta_didik_ahl_table.id = absensi_ahl_table.peserta_didik_ahl_id')
-            ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id')
             ->where(["absensi_ahl_table.mitra_pengajar_id" => $mitra_pengajar])
-            ->where(["peserta_didik_ahl_table.status_peserta_id" => 1])
             ->orderBy('id desc')->get()->getResultObject();
     }
 
