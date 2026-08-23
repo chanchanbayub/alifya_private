@@ -4,7 +4,7 @@ namespace App\Controllers\AHL;
 
 use App\Controllers\BaseController;
 use App\Models\Admin\PengajarModel;
-use App\Models\AHL\AbsensiAHLModel;
+use App\Models\Ahl\AbsensiAHLModel;
 use App\Models\Ahl\MitraPengajarAhlModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use Hermawan\DataTables\DataTable;
