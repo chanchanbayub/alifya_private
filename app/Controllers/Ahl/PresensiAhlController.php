@@ -4,7 +4,7 @@ namespace App\Controllers\Ahl;
 
 use App\Controllers\BaseController;
 use App\Models\Admin\PengajarModel;
-use App\Models\AHL\AbsensiAHLModel;
+use App\Models\Ahl\AbsensiAHLModel;
 use App\Models\Ahl\JamMasukAhlModel;
 use App\Models\Ahl\JenisPekerjaanModel;
 use App\Models\Ahl\LokasiModel;
