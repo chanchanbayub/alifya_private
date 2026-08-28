@@ -29,7 +29,7 @@
                                 <li class="dropdown-header text-start">
                                     <h6>Aksi</h6>
                                 </li>
-                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Tambah <?= $title ?></a></li>
+                                <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-plus"></i> Isi Kuisioner</a></li>
                             </ul>
                         </div>
 
@@ -41,17 +41,21 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Pembimbing</th>
                                         <th scope="col">Mitra Pengajar</th>
-                                        <th scope="col">Bulan</th>
-                                        <th scope="col">Jumlah Murid</th>
+                                        <th scope="col">Bulan - Tahun</th>
                                         <th scope="col">Administrasi</th>
                                         <th scope="col">Kreativitas</th>
-                                        <th scope="col">Kehadiran</th>
-                                        <th scope="col">Progres Peserta Didik</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1; ?>
-
+                                    <?php foreach ($kuisioner as $kuisioner) : ?>
+                                        <th scope="col"><?= $no++ ?> </th>
+                                        <th scope="col"><?= $kuisioner["pembimbing"] ?> </th>
+                                        <th scope="col"><?= $kuisioner["nama_lengkap"] ?> </th>
+                                        <th scope="col"><?= $kuisioner["bulan"] ?> <?= $kuisioner["tahun"] ?> </th>
+                                        <th scope="col"><?= $kuisioner["administrasi"] ?>% </th>
+                                        <th scope="col"><?= $kuisioner["administrasi"] ?>% </th>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
 
@@ -70,7 +74,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Kategori APR</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Kuisioner</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -80,6 +84,7 @@
                         <label for="pembimbing_id" class="col-form-label">Pembimbing :</label>
                         <select name="pembimbing_id" id="pembimbing_id" class="form-select">
                             <option value="">--Silahkan Pilih--</option>
+                            <option value="<?= $pembimbing->id ?>" selected><?= $pembimbing->nama_lengkap ?></option>
 
                         </select>
                         <div class="invalid-feedback error-pembimbing">
@@ -90,7 +95,9 @@
                         <label for="mitra_pengajar_id" class="col-form-label">Mitra Pengajar :</label>
                         <select name="mitra_pengajar_id" id="mitra_pengajar_id" class="form-select">
                             <option value="">--Silahkan Pilih--</option>
-
+                            <?php foreach ($mitra as $mitra) : ?>
+                                <option value="<?= $mitra->id ?>"><?= $mitra->nama_lengkap ?> </option>
+                            <?php endforeach; ?>
                         </select>
                         <div class="invalid-feedback error-mitra">
                         </div>
@@ -105,22 +112,6 @@
                     <div class="control-group">
                         <div class="card">
                             <div class="card-header">
-                                <h5>JUMLAH SISWA</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="administrasi" class="col-form-label">Jumlah Siswa yang ditampilkan diisi oleh Sistem Secara Otomatis dan Terintegrasi</label>
-                                    <input type="number" class="form-control" id="jumlah_murid" name="jumlah_murid" placeholder="diisi otomatis oleh sistem" disabled>
-                                    <div class="invalid-feedback error-jumlah">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="card">
-                            <div class="card-header">
                                 <h5>ADMINISTRASI</h5>
                             </div>
                             <div class="card-body">
@@ -128,6 +119,9 @@
                                     <label for="administrasi" class="col-form-label">Mohon pilih satu kondisi yang paling menggambarkan performa administrasi Mitra Pengajar tersebut selama bulan ini:</label>
                                     <select name="administrasi" id="administrasi" class="form-select">
                                         <option value="">--Silahkan Pilih--</option>
+                                        <?php foreach ($administrasi as $administrasi) : ?>
+                                            <option value="<?= $administrasi->id ?>"><?= $administrasi->nilai ?> (<?= $administrasi->bobot ?>%) - <?= $administrasi->keterangan  ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback error-administrasi">
                                     </div>
@@ -143,11 +137,14 @@
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="administrasi" class="col-form-label">Mohon pilih satu kondisi yang paling menggambarkan kreativitas mengajar Mitra Pengajar berdasarkan bukti dokumentasi berkala bulan ini:</label>
-                                    <select name="administrasi" id="administrasi" class="form-select">
+                                    <label for="kreativitas" class="col-form-label">Mohon pilih satu kondisi yang paling menggambarkan kreativitas mengajar Mitra Pengajar berdasarkan bukti dokumentasi berkala bulan ini:</label>
+                                    <select name="kreativitas" id="kreativitas" class="form-select">
                                         <option value="">--Silahkan Pilih--</option>
+                                        <?php foreach ($kreativitas as $kreativitas) : ?>
+                                            <option value="<?= $kreativitas->id ?>"><?= $kreativitas->nilai ?> (<?= $kreativitas->bobot ?>%) - <?= $kreativitas->keterangan  ?></option>
+                                        <?php endforeach; ?>
                                     </select>
-                                    <div class="invalid-feedback error-administrasi">
+                                    <div class="invalid-feedback error-kreativitas">
                                     </div>
                                 </div>
                             </div>
@@ -175,6 +172,101 @@
             theme: 'bootstrap-5',
             dropdownParent: $('#exampleModal')
         });
+        $('#administrasi').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#exampleModal')
+        });
+        $('#kreativitas').select2({
+            theme: 'bootstrap-5',
+            dropdownParent: $('#exampleModal')
+        });
+
+        $("#add_form").submit(function(e) {
+            e.preventDefault();
+
+            let pembimbing_id = $("#pembimbing_id").val();
+            let mitra_pengajar_id = $("#mitra_pengajar_id").val();
+            let bulan = $("#bulan").val();
+            let administrasi = $("#administrasi").val();
+            let kreativitas = $("#kreativitas").val();
+
+            $.ajax({
+                url: '/mitra_pengajar/kuisioner_rangking/insert',
+                method: 'post',
+                dataType: 'JSON',
+                data: {
+                    pembimbing_id: pembimbing_id,
+                    mitra_pengajar_id: mitra_pengajar_id,
+                    bulan: bulan,
+                    administrasi: administrasi,
+                    kreativitas: kreativitas,
+                },
+                beforeSend: function() {
+                    $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
+                    $('.save').prop('disabled', true);
+                },
+                success: function(response) {
+                    $('.save').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
+                    $('.save').prop('disabled', false);
+                    if (response.error) {
+                        if (response.error.pembimbing_id) {
+                            $("#pembimbing_id").addClass('is-invalid');
+                            $(".error-pembimbing").html(response.error.pembimbing_id);
+                        } else {
+                            $("#pembimbing_id").removeClass('is-invalid');
+                            $(".error-pembimbing").html('');
+                        }
+
+                        if (response.error.mitra_pengajar_id) {
+                            $("#mitra_pengajar_id").addClass('is-invalid');
+                            $(".error-mitra").html(response.error.mitra_pengajar_id);
+                        } else {
+                            $("#mitra_pengajar_id").removeClass('is-invalid');
+                            $(".error-mitra").html('');
+                        }
+
+                        if (response.error.bulan) {
+                            $("#bulan").addClass('is-invalid');
+                            $(".error-bulan").html(response.error.bulan);
+                        } else {
+                            $("#bulan").removeClass('is-invalid');
+                            $(".error-bulan").html('');
+                        }
+                        if (response.error.administrasi) {
+                            $("#administrasi").addClass('is-invalid');
+                            $(".error-administrasi").html(response.error.administrasi);
+                        } else {
+                            $("#administrasi").removeClass('is-invalid');
+                            $(".error-administrasi").html('');
+                        }
+                        if (response.error.kreativitas) {
+                            $("#kreativitas").addClass('is-invalid');
+                            $(".error-kreativitas").html(response.error.kreativitas);
+                        } else {
+                            $("#kreativitas").removeClass('is-invalid');
+                            $(".error-kreativitas").html('');
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: `${response.success}`,
+                        });
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000)
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: `Data Belum Tersimpan!`,
+                    });
+                    $('.save').html('<i class="bi bi-box-arrow-in-right"></i> Kirim');
+                    $('.save').prop('disabled', false);
+                }
+            });
+        })
+
     });
 </script>
 

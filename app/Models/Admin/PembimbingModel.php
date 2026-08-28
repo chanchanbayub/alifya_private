@@ -26,4 +26,15 @@ class PembimbingModel extends Model
             ->orderBy('data_pengajar_table.nama_lengkap asc')
             ->get()->getResultObject();
     }
+
+    public function getPembimbingWhereMitraId($mitra_id)
+    {
+        return $this->table($this->table)
+            ->select('pembimbing_table.id, pembimbing_table.mitra_pengajar_id, data_pengajar_table.nama_lengkap, status_pengajar_table.status_pengajar')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = pembimbing_table.mitra_pengajar_id')
+            ->join('status_pengajar_table', 'status_pengajar_table.id = data_pengajar_table.status_id')
+            ->where(["pembimbing_table.mitra_pengajar_id" => $mitra_id])
+            ->orderBy('data_pengajar_table.nama_lengkap asc')
+            ->get()->getRowObject();
+    }
 }

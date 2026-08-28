@@ -25,4 +25,13 @@ class SkalaNilaiAPRModel extends Model
             ->orderBy('skala_nilai_table.id asc')
             ->get()->getResultObject();
     }
+    public function getSkalaNilaiWhereKategori($kategori)
+    {
+        return $this->table($this->table)
+            ->select('skala_nilai_table.id, skala_nilai_table.kategori_apr_id, skala_nilai_table.nilai, skala_nilai_table.bobot, skala_nilai_table.keterangan, kategori_apr_table.nama_kategori_apr')
+            ->join('kategori_apr_table', 'kategori_apr_table.id = skala_nilai_table.kategori_apr_id')
+            ->where(["skala_nilai_table.kategori_apr_id" => $kategori])
+            ->orderBy('skala_nilai_table.nilai asc')
+            ->get()->getResultObject();
+    }
 }
