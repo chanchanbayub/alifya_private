@@ -156,6 +156,11 @@
                          <i class="bi bi-circle"></i><span>Skala Nilai APR</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="/admin/standar_predikat">
+                         <i class="bi bi-circle"></i><span>Standar Predikat APR</span>
+                     </a>
+                 </li>
              </ul>
          </li>
 

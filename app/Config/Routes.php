@@ -217,6 +217,13 @@ $routes->group('admin', static function ($routes) {
     $routes->post('skala_nilai_apr/update', 'Admin\SkalaNilaiAPRController::update');
     $routes->post('skala_nilai_apr/delete', 'Admin\SkalaNilaiAPRController::delete');
 
+    // Standar Predikat APR Controller
+    $routes->get('standar_predikat', 'Admin\StandarPredikatAPRController::index');
+    $routes->post('standar_predikat/insert', 'Admin\StandarPredikatAPRController::insert');
+    $routes->get('standar_predikat/edit', 'Admin\StandarPredikatAPRController::edit');
+    $routes->post('standar_predikat/update', 'Admin\StandarPredikatAPRController::update');
+    $routes->post('standar_predikat/delete', 'Admin\StandarPredikatAPRController::delete');
+
     $routes->get('absensi', 'Admin\AbsensiController::index');
     $routes->post('absensi/insert', 'Admin\AbsensiController::insert');
     $routes->get('absensi/edit', 'Admin\AbsensiController::edit');
