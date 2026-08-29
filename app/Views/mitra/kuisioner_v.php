@@ -177,14 +177,6 @@
             theme: 'bootstrap-5',
             dropdownParent: $('#exampleModal')
         });
-        $('#administrasi').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#exampleModal')
-        });
-        $('#kreativitas').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#exampleModal')
-        });
 
         $("#add_form").submit(function(e) {
             e.preventDefault();
@@ -251,7 +243,7 @@
                             $("#kreativitas").removeClass('is-invalid');
                             $(".error-kreativitas").html('');
                         }
-                    } else {
+                    } else if (response.success) {
                         Swal.fire({
                             icon: 'success',
                             title: `${response.success}`,
@@ -259,6 +251,11 @@
                         setTimeout(function() {
                             location.reload();
                         }, 1000)
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: `${response.duplikat}`,
+                        });
                     }
                 },
                 error: function() {

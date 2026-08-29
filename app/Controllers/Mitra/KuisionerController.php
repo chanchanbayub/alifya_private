@@ -145,29 +145,48 @@ class KuisionerController extends BaseController
 
                 $jumlah_murid_aktif = $this->presensiModel->SumTotalAnak($mitra_pengajar_id, $month, $tahun);
 
-                $this->kuisionerKreativitasModel->save([
-                    'pembimbing_id' => strtolower($pembimbing_id),
-                    'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
-                    'kreativitas' => strtolower($kreativitas),
-                    // 'kreativitas' => strtolower($kreativitas),
-                    'bulan' => strtolower($month),
-                    'tahun' => strtolower($tahun),
-                ]);
+                $cek_kuisioner = $this->kuisionerModel->cekDataKuisioner($pembimbing_id, $mitra_pengajar_id, $month, $tahun);
+                // dd($cek_kuisioner);
 
-                $this->kuisionerModel->save([
-                    'pembimbing_id' => strtolower($pembimbing_id),
-                    'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
-                    'administrasi' => strtolower($administrasi),
-                    // 'kreativitas' => strtolower($kreativitas),
-                    'bulan' => strtolower($month),
-                    'tahun' => strtolower($tahun),
-                    'jumlah_murid_aktif' => intval($jumlah_murid_aktif->total_anak),
 
-                ]);
+                if ($cek_kuisioner == null) {
 
-                $alert = [
-                    'success' => 'Kuisioner Pertama Berhasil di Simpan !'
-                ];
+                    $cek_kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitas($pembimbing_id, $mitra_pengajar_id, $month, $tahun);
+
+                    if ($cek_kuisioner_kreativitas == null) {
+
+                        $this->kuisionerKreativitasModel->save([
+                            'pembimbing_id' => strtolower($pembimbing_id),
+                            'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
+                            'kreativitas' => strtolower($kreativitas),
+                            // 'kreativitas' => strtolower($kreativitas),
+                            'bulan' => strtolower($month),
+                            'tahun' => strtolower($tahun),
+                        ]);
+                        $this->kuisionerModel->save([
+                            'pembimbing_id' => strtolower($pembimbing_id),
+                            'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
+                            'administrasi' => strtolower($administrasi),
+                            // 'kreativitas' => strtolower($kreativitas),
+                            'bulan' => strtolower($month),
+                            'tahun' => strtolower($tahun),
+                            'jumlah_murid_aktif' => intval($jumlah_murid_aktif->total_anak),
+
+                        ]);
+
+                        $alert = [
+                            'success' => 'Kuisioner Pertama Berhasil di Simpan !'
+                        ];
+                    } else {
+                        $alert = [
+                            'duplikat' => 'Kuisioner dengan Mitra tersebut, dan bulan tersebut sudah terdaftar'
+                        ];
+                    }
+                } else {
+                    $alert = [
+                        'duplikat' => 'Kuisioner dengan Mitra tersebut, dan bulan tersebut sudah terdaftar'
+                    ];
+                }
             }
 
             return json_encode($alert);
