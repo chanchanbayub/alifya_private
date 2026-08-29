@@ -44,17 +44,22 @@
                                         <th scope="col">Bulan - Tahun</th>
                                         <th scope="col">Administrasi</th>
                                         <th scope="col">Kreativitas</th>
+                                        <th scope="col">Jumlah Anak Aktif</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1; ?>
                                     <?php foreach ($kuisioner as $kuisioner) : ?>
-                                        <th scope="col"><?= $no++ ?> </th>
-                                        <th scope="col"><?= $kuisioner["pembimbing"] ?> </th>
-                                        <th scope="col"><?= $kuisioner["nama_lengkap"] ?> </th>
-                                        <th scope="col"><?= $kuisioner["bulan"] ?> <?= $kuisioner["tahun"] ?> </th>
-                                        <th scope="col"><?= $kuisioner["administrasi"] ?>% </th>
-                                        <th scope="col"><?= $kuisioner["administrasi"] ?>% </th>
+                                        <tr>
+                                            <th scope="col"><?= $no++ ?> </th>
+                                            <th scope="col"><?= $kuisioner["pembimbing"] ?> </th>
+                                            <th scope="col"><?= $kuisioner["nama_lengkap"] ?> </th>
+                                            <th scope="col"><?= $kuisioner["bulan"] ?> <?= $kuisioner["tahun"] ?> </th>
+                                            <th scope="col"><?= $kuisioner["administrasi"] ?>% </th>
+                                            <th scope="col"><?= $kuisioner["kreativitas"] ?>% </th>
+                                            <th scope="col"><?= $kuisioner["jumlah_murid_aktif"] ?> Anak </th>
+                                        </tr>
+
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>

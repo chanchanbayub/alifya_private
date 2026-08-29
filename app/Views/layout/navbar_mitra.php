@@ -38,7 +38,12 @@
                  </li>
                  <li>
                      <a href="/mitra_pengajar/kuisioner_rangking">
-                         <i class="bi bi-circle"></i><span>Kuisioner Ranking</span>
+                         <i class="bi bi-circle"></i><span>Kuisioner Rangking</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/mitra_pengajar/kuisioner_progres_anak">
+                         <i class="bi bi-circle"></i><span>Kuisioner Progress Anak</span>
                      </a>
                  </li>
              </ul>

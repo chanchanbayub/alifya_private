@@ -7,7 +7,9 @@ use App\Models\Admin\KategoriAPRModel;
 use App\Models\Admin\PembimbingModel;
 use App\Models\Admin\PengajarModel;
 use App\Models\Admin\SkalaNilaiAPRModel;
+use App\Models\Mitra\KuisionerKreativitasModel;
 use App\Models\Mitra\KuisionerModel;
+use App\Models\Mitra\PresensiModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KuisionerController extends BaseController
@@ -17,6 +19,8 @@ class KuisionerController extends BaseController
     protected $katagoriAprModel;
     protected $skalaNilaiAprModel;
     protected $kuisionerModel;
+    protected $presensiModel;
+    protected $kuisionerKreativitasModel;
     protected $validation;
 
     public function __construct()
@@ -26,6 +30,8 @@ class KuisionerController extends BaseController
         $this->katagoriAprModel = new KategoriAPRModel();
         $this->skalaNilaiAprModel = new SkalaNilaiAPRModel();
         $this->kuisionerModel = new KuisionerModel();
+        $this->kuisionerKreativitasModel = new KuisionerKreativitasModel();
+        $this->presensiModel = new PresensiModel();
         $this->validation = \Config\Services::validation();
         helper(['format']);
     }
@@ -39,17 +45,23 @@ class KuisionerController extends BaseController
         $kreativitas = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(3);
         $administrasi = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(2);
         $kuisioner = $this->kuisionerModel->getKuisioner();
+        // dd($kuisioner);
 
         $data_kuisioner = [];
 
         foreach ($kuisioner as $kuisioner) {
+
+            $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitas($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+            // dd($kuisioner_kreativitas);
 
             $data_kuisioner[] = [
                 'pembimbing' => $pembimbing->nama_lengkap,
                 'nama_lengkap' => $kuisioner->nama_lengkap,
                 'bulan' => bulan($kuisioner->bulan),
                 'tahun' => $kuisioner->tahun,
-                'administrasi' => $kuisioner->administrasi
+                'administrasi' => $kuisioner->administrasi,
+                'kreativitas' => $kuisioner_kreativitas->kreativitas,
+                'jumlah_murid_aktif' => $kuisioner->jumlah_murid_aktif
             ];
         };
         // dd($kuisioner);
@@ -93,12 +105,12 @@ class KuisionerController extends BaseController
                         'required' => 'Tidak Boleh Kosong !',
                     ]
                 ],
-                // 'kreativitas' => [
-                //     'rules' => 'required',
-                //     'errors' => [
-                //         'required' => 'Tidak Boleh Kosong !',
-                //     ]
-                // ],
+                'kreativitas' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !',
+                    ]
+                ],
                 'bulan' => [
                     'rules' => 'required',
                     'errors' => [
@@ -113,7 +125,7 @@ class KuisionerController extends BaseController
                         'pembimbing_id' => $this->validation->getError('pembimbing_id'),
                         'mitra_pengajar_id' => $this->validation->getError('mitra_pengajar_id'),
                         'administrasi' => $this->validation->getError('administrasi'),
-                        // 'kreativitas' => $this->validation->getError('kreativitas'),
+                        'kreativitas' => $this->validation->getError('kreativitas'),
                         'bulan' => $this->validation->getError('bulan'),
                     ]
                 ];
@@ -128,8 +140,19 @@ class KuisionerController extends BaseController
                 $tahun = $bulan_data["0"];
 
                 $administrasi = $this->request->getPost('administrasi');
-                // $kreativitas = $this->request->getPost('kreativitas');
 
+                $kreativitas = $this->request->getPost('kreativitas');
+
+                $jumlah_murid_aktif = $this->presensiModel->SumTotalAnak($mitra_pengajar_id, $month, $tahun);
+
+                $this->kuisionerKreativitasModel->save([
+                    'pembimbing_id' => strtolower($pembimbing_id),
+                    'mitra_pengajar_id' => strtolower($mitra_pengajar_id),
+                    'kreativitas' => strtolower($kreativitas),
+                    // 'kreativitas' => strtolower($kreativitas),
+                    'bulan' => strtolower($month),
+                    'tahun' => strtolower($tahun),
+                ]);
 
                 $this->kuisionerModel->save([
                     'pembimbing_id' => strtolower($pembimbing_id),
@@ -138,7 +161,7 @@ class KuisionerController extends BaseController
                     // 'kreativitas' => strtolower($kreativitas),
                     'bulan' => strtolower($month),
                     'tahun' => strtolower($tahun),
-                    'jumlah_murid_aktif' => 2,
+                    'jumlah_murid_aktif' => intval($jumlah_murid_aktif->total_anak),
 
                 ]);
 
