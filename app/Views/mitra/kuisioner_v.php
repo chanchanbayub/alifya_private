@@ -42,9 +42,9 @@
                                         <th scope="col">Pembimbing</th>
                                         <th scope="col">Mitra Pengajar</th>
                                         <th scope="col">Bulan - Tahun</th>
-                                        <th scope="col">Administrasi</th>
-                                        <th scope="col">Kreativitas</th>
-                                        <th scope="col">Jumlah Anak Aktif</th>
+                                        <th scope="col" align="center">Administrasi <br>(nilai yang di dapat x 15%)</th>
+                                        <th scope="col" align="center">Kreativitas <br> (nilai yang di dapat x 20%)</th>
+                                        <th scope="col" align="center">Jumlah Anak Aktif <br> (nilai yang di dapat x 10%)</th>
                                     </tr>
                                 </thead>
                                 <tbody>

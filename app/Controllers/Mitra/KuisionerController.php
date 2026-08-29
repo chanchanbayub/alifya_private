@@ -21,6 +21,7 @@ class KuisionerController extends BaseController
     protected $kuisionerModel;
     protected $presensiModel;
     protected $kuisionerKreativitasModel;
+
     protected $validation;
 
     public function __construct()
@@ -47,20 +48,27 @@ class KuisionerController extends BaseController
         $kuisioner = $this->kuisionerModel->getKuisioner();
         // dd($kuisioner);
 
+        // dd($kuisioner);
+
         $data_kuisioner = [];
 
         foreach ($kuisioner as $kuisioner) {
 
             $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitas($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
-            // dd($kuisioner_kreativitas);
+
+            $bobot_kategori = $this->katagoriAprModel->where(["id" => $kuisioner->kategori_apr_id])->first();
+            $bobot_kategori_kreativitas = $this->katagoriAprModel->where(["id" => $kuisioner_kreativitas->kategori_apr_id])->first();
+
+            $kuisioner_administrasi = intval($bobot_kategori["bobot_nilai_apr"]) * intval($kuisioner->administrasi) / 100;
+            $kuisioner_kreativitas = intval($bobot_kategori_kreativitas["bobot_nilai_apr"]) * intval($kuisioner_kreativitas->kreativitas) / 100;
 
             $data_kuisioner[] = [
                 'pembimbing' => $pembimbing->nama_lengkap,
                 'nama_lengkap' => $kuisioner->nama_lengkap,
                 'bulan' => bulan($kuisioner->bulan),
                 'tahun' => $kuisioner->tahun,
-                'administrasi' => $kuisioner->administrasi,
-                'kreativitas' => $kuisioner_kreativitas->kreativitas,
+                'administrasi' => $kuisioner_administrasi,
+                'kreativitas' => $kuisioner_kreativitas,
                 'jumlah_murid_aktif' => $kuisioner->jumlah_murid_aktif
             ];
         };
@@ -146,8 +154,6 @@ class KuisionerController extends BaseController
                 $jumlah_murid_aktif = $this->presensiModel->SumTotalAnak($mitra_pengajar_id, $month, $tahun);
 
                 $cek_kuisioner = $this->kuisionerModel->cekDataKuisioner($pembimbing_id, $mitra_pengajar_id, $month, $tahun);
-                // dd($cek_kuisioner);
-
 
                 if ($cek_kuisioner == null) {
 
@@ -173,7 +179,6 @@ class KuisionerController extends BaseController
                             'jumlah_murid_aktif' => intval($jumlah_murid_aktif->total_anak),
 
                         ]);
-
                         $alert = [
                             'success' => 'Kuisioner Pertama Berhasil di Simpan !'
                         ];

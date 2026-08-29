@@ -42,6 +42,8 @@
                                         <th scope="col">Nama Kategori</th>
                                         <th scope="col">Nilai</th>
                                         <th scope="col">Bobot</th>
+                                        <th scope="col">Nilai Awal</th>
+                                        <th scope="col">Nilai Akhir</th>
                                         <th scope="col">Keterangan</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
@@ -54,6 +56,8 @@
                                             <td><?= $skala_nilai->nama_kategori_apr ?></td>
                                             <td><?= $skala_nilai->nilai ?></td>
                                             <td><?= $skala_nilai->bobot ?>%</td>
+                                            <td><?= ($skala_nilai->nilai_awal == null ? "0" : $skala_nilai->nilai_awal) ?></td>
+                                            <td><?= ($skala_nilai->nilai_akhir == null ? "0" : $skala_nilai->nilai_akhir) ?></td>
                                             <td><?= $skala_nilai->keterangan ?></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $skala_nilai->id ?>" type="button">
@@ -114,6 +118,18 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <label for="nilai_awal" class="col-form-label">Nilai Awal :</label>
+                        <input type="text" class="form-control" id="nilai_awal" name="nilai_awal" placeholder="cth. 10">
+                        <div class="invalid-feedback error-awal">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nilai_akhir" class="col-form-label">Nilai akhir :</label>
+                        <input type="text" class="form-control" id="nilai_akhir" name="nilai_akhir" placeholder="cth. 10">
+                        <div class="invalid-feedback error-akhir">
+                        </div>
+                    </div>
+                    <div class="mb-3">
                         <label for="keterangan" class="col-form-label">Keterangan :</label>
                         <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder=".....">
                         <div class="invalid-feedback error-keterangan">
@@ -164,6 +180,18 @@
                         <label for="bobot_edit" class="col-form-label">Bobot :</label>
                         <input type="text" class="form-control" id="bobot_edit" name="bobot" placeholder="cth. 10">
                         <div class="invalid-feedback error-bobot-edit">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nilai_awal_edit" class="col-form-label">Nilai Awal :</label>
+                        <input type="text" class="form-control" id="nilai_awal_edit" name="nilai_awal" placeholder="cth. 10">
+                        <div class="invalid-feedback error-awal-edit">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nilai_akhir_edit" class="col-form-label">Nilai Akhir :</label>
+                        <input type="text" class="form-control" id="nilai_akhir_edit" name="nilai_akhir" placeholder="cth. 10">
+                        <div class="invalid-feedback error-akhir-edit">
                         </div>
                     </div>
                     <div class="mb-3">
@@ -226,6 +254,8 @@
             let kategori_apr_id = $("#kategori_apr_id").val();
             let nilai = $("#nilai").val();
             let bobot = $("#bobot").val();
+            let nilai_awal = $("#nilai_awal").val();
+            let nilai_akhir = $("#nilai_akhir").val();
             let keterangan = $("#keterangan").val();
 
             $.ajax({
@@ -236,6 +266,8 @@
                     kategori_apr_id: kategori_apr_id,
                     nilai: nilai,
                     bobot: bobot,
+                    nilai_awal: nilai_awal,
+                    nilai_akhir: nilai_akhir,
                     keterangan: keterangan,
                 },
                 beforeSend: function() {
@@ -268,6 +300,22 @@
                         } else {
                             $("#nilai").removeClass('is-invalid');
                             $(".error-nilai").html('');
+                        }
+
+                        if (response.error.nilai_awal) {
+                            $("#nilai_awal").addClass('is-invalid');
+                            $(".error-awal").html(response.error.nilai_awal);
+                        } else {
+                            $("#nilai_awal").removeClass('is-invalid');
+                            $(".error-awal").html('');
+                        }
+
+                        if (response.error.nilai_akhir) {
+                            $("#nilai_akhir").addClass('is-invalid');
+                            $(".error-akhir").html(response.error.nilai_akhir);
+                        } else {
+                            $("#nilai_akhir").removeClass('is-invalid');
+                            $(".error-nilai-akhir").html('');
                         }
                         if (response.error.keterangan) {
                             $("#keterangan").addClass('is-invalid');
@@ -315,6 +363,8 @@
                 $("#id_edit").val(response.skala_nilai.id);
                 $("#bobot_edit").val(response.skala_nilai.bobot);
                 $("#nilai_edit").val(response.skala_nilai.nilai);
+                $("#nilai_awal_edit").val(response.skala_nilai.nilai_awal);
+                $("#nilai_akhir_edit").val(response.skala_nilai.nilai_akhir);
                 $("#keterangan_edit").val(response.skala_nilai.keterangan);
 
                 let kategori = `<option value="">--Silahkan Pilih--</option>`;
@@ -338,6 +388,8 @@
         let kategori_apr_id = $("#kategori_apr_id_edit").val();
         let nilai = $("#nilai_edit").val();
         let bobot = $("#bobot_edit").val();
+        let nilai_awal = $("#nilai_awal_edit").val();
+        let nilai_akhir = $("#nilai_akhir_edit").val();
         let keterangan = $("#keterangan_edit").val();
 
         $.ajax({
@@ -349,6 +401,8 @@
                 kategori_apr_id: kategori_apr_id,
                 nilai: nilai,
                 bobot: bobot,
+                nilai_awal: nilai_awal,
+                nilai_akhir: nilai_akhir,
                 keterangan: keterangan,
             },
             beforeSend: function() {
@@ -381,6 +435,20 @@
                     } else {
                         $("#nilai_edit").removeClass('is-invalid');
                         $(".error-nilai-edit").html('');
+                    }
+                    if (response.error.nilai_awal) {
+                        $("#nilai_awal_edit").addClass('is-invalid');
+                        $(".error-awal-edit").html(response.error.nilai_awal);
+                    } else {
+                        $("#nilai_awal_edit").removeClass('is-invalid');
+                        $(".error-awal-edit").html('');
+                    }
+                    if (response.error.nilai_akhir) {
+                        $("#nilai_akhir_edit").addClass('is-invalid');
+                        $(".error-akhir-edit").html(response.error.nilai_akhir);
+                    } else {
+                        $("#nilai_akhir_edit").removeClass('is-invalid');
+                        $(".error-akhir-edit").html('');
                     }
                     if (response.error.keterangan) {
                         $("#keterangan_edit").addClass('is-invalid');

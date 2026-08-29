@@ -55,6 +55,18 @@ class SkalaNilaiAPRController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+                'nilai_awal' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'nilai_akhir' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
                 'keterangan' => [
                     'rules' => 'required',
                     'errors' => [
@@ -68,6 +80,8 @@ class SkalaNilaiAPRController extends BaseController
                         'kategori_apr_id' => $this->validation->getError('kategori_apr_id'),
                         'bobot' => $this->validation->getError('bobot'),
                         'nilai' => $this->validation->getError('nilai'),
+                        'nilai_awal' => $this->validation->getError('nilai_awal'),
+                        'nilai_akhir' => $this->validation->getError('nilai_akhir'),
                         'keterangan' => $this->validation->getError('keterangan'),
 
                     ]
@@ -77,12 +91,16 @@ class SkalaNilaiAPRController extends BaseController
                 $kategori_apr_id = $this->request->getPost('kategori_apr_id');
                 $bobot = $this->request->getPost('bobot');
                 $nilai = $this->request->getPost('nilai');
+                $nilai_awal = $this->request->getPost('nilai_awal');
+                $nilai_akhir = $this->request->getPost('nilai_akhir');
                 $keterangan = $this->request->getPost('keterangan');
 
                 $this->skalaNilaiModel->save([
                     'kategori_apr_id' => strtolower($kategori_apr_id),
                     'bobot' => strtolower($bobot),
                     'nilai' => strtolower($nilai),
+                    'nilai_awal' => strtolower($nilai_awal),
+                    'nilai_akhir' => strtolower($nilai_akhir),
                     'keterangan' => strtolower($keterangan),
 
                 ]);
@@ -155,6 +173,18 @@ class SkalaNilaiAPRController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+                'nilai_awal' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
+                'nilai_akhir' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
                 'keterangan' => [
                     'rules' => 'required',
                     'errors' => [
@@ -168,6 +198,8 @@ class SkalaNilaiAPRController extends BaseController
                         'kategori_apr_id' => $this->validation->getError('kategori_apr_id'),
                         'bobot' => $this->validation->getError('bobot'),
                         'nilai' => $this->validation->getError('nilai'),
+                        'nilai_awal' => $this->validation->getError('nilai_awal'),
+                        'nilai_akhir' => $this->validation->getError('nilai_akhir'),
                         'keterangan' => $this->validation->getError('keterangan'),
 
                     ]
@@ -177,12 +209,16 @@ class SkalaNilaiAPRController extends BaseController
                 $kategori_apr_id = $this->request->getPost('kategori_apr_id');
                 $bobot = $this->request->getPost('bobot');
                 $nilai = $this->request->getPost('nilai');
+                $nilai_awal = $this->request->getPost('nilai_awal');
+                $nilai_akhir = $this->request->getPost('nilai_akhir');
                 $keterangan = $this->request->getPost('keterangan');
 
                 $this->skalaNilaiModel->update($id, [
                     'kategori_apr_id' => strtolower($kategori_apr_id),
                     'bobot' => strtolower($bobot),
                     'nilai' => strtolower($nilai),
+                    'nilai_awal' => strtolower($nilai_awal),
+                    'nilai_akhir' => strtolower($nilai_akhir),
                     'keterangan' => strtolower($keterangan),
 
                 ]);
