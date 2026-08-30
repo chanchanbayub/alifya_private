@@ -42,9 +42,10 @@
                                         <th scope="col">Pembimbing</th>
                                         <th scope="col">Mitra Pengajar</th>
                                         <th scope="col">Bulan - Tahun</th>
+                                        <th scope="col" align="center">Jumlah Anak Aktif <br> (nilai yang di dapat x 10%)</th>
                                         <th scope="col" align="center">Administrasi <br>(nilai yang di dapat x 15%)</th>
                                         <th scope="col" align="center">Kreativitas <br> (nilai yang di dapat x 20%)</th>
-                                        <th scope="col" align="center">Jumlah Anak Aktif <br> (nilai yang di dapat x 10%)</th>
+                                        <th scope="col" align="center">Kehadiran <br> (nilai yang di dapat x 25%)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,9 +56,10 @@
                                             <th scope="col"><?= $kuisioner["pembimbing"] ?> </th>
                                             <th scope="col"><?= $kuisioner["nama_lengkap"] ?> </th>
                                             <th scope="col"><?= $kuisioner["bulan"] ?> <?= $kuisioner["tahun"] ?> </th>
-                                            <th scope="col"><?= $kuisioner["administrasi"] ?>% </th>
-                                            <th scope="col"><?= $kuisioner["kreativitas"] ?>% </th>
-                                            <th scope="col"><?= $kuisioner["jumlah_murid_aktif"] ?> Anak </th>
+                                            <th scope="col"><?= $kuisioner["jumlah_murid_aktif"] ?> %</th>
+                                            <th scope="col"><?= $kuisioner["administrasi"] ?> %</th>
+                                            <th scope="col"><?= $kuisioner["kreativitas"] ?> %</th>
+                                            <th scope="col"><?= $kuisioner["kreativitas"] ?> %</th>
                                         </tr>
 
                                     <?php endforeach; ?>

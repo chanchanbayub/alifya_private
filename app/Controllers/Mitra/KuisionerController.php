@@ -45,15 +45,15 @@ class KuisionerController extends BaseController
         $mitra_pengajar = $this->pengajarModel->getDataPengajarStatusAktif();
         $kreativitas = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(3);
         $administrasi = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(2);
+        $perhitungan_murid = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(1);
+        // dd($perhitungan_murid);
         $kuisioner = $this->kuisionerModel->getKuisioner();
-        // dd($kuisioner);
-
-        // dd($kuisioner);
 
         $data_kuisioner = [];
 
         foreach ($kuisioner as $kuisioner) {
 
+            // Kreativitas
             $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitas($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
 
             $bobot_kategori = $this->katagoriAprModel->where(["id" => $kuisioner->kategori_apr_id])->first();
@@ -62,6 +62,16 @@ class KuisionerController extends BaseController
             $kuisioner_administrasi = intval($bobot_kategori["bobot_nilai_apr"]) * intval($kuisioner->administrasi) / 100;
             $kuisioner_kreativitas = intval($bobot_kategori_kreativitas["bobot_nilai_apr"]) * intval($kuisioner_kreativitas->kreativitas) / 100;
 
+            $bobot_jumlah_anak =  $this->katagoriAprModel->where(["id" => 1])->first();
+
+            foreach ($perhitungan_murid as $jumlah) {
+                if ($kuisioner->jumlah_murid_aktif >= $jumlah->nilai_awal && $kuisioner->jumlah_murid_aktif <= $jumlah->nilai_akhir) {
+                    $kuisioner_jumlah_murid = intval($bobot_jumlah_anak["bobot_nilai_apr"]) * intval($jumlah->bobot) / 100;
+                };
+            }
+
+            // dd($kuisioner_jumlah_murid);
+
             $data_kuisioner[] = [
                 'pembimbing' => $pembimbing->nama_lengkap,
                 'nama_lengkap' => $kuisioner->nama_lengkap,
@@ -69,7 +79,7 @@ class KuisionerController extends BaseController
                 'tahun' => $kuisioner->tahun,
                 'administrasi' => $kuisioner_administrasi,
                 'kreativitas' => $kuisioner_kreativitas,
-                'jumlah_murid_aktif' => $kuisioner->jumlah_murid_aktif
+                'jumlah_murid_aktif' => $kuisioner_jumlah_murid
             ];
         };
         // dd($kuisioner);
