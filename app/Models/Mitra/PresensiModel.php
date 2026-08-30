@@ -110,4 +110,33 @@ class PresensiModel extends Model
             ->orderBy('data_pengajar_table.nama_lengkap desc')
             ->get()->getRowObject();
     }
+
+    public function getPresensiPerMitra($mitra_pengajar_id, $bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("presensi_table.id, presensi_table.mitra_pengajar_id ,presensi_table.tanggal_masuk, presensi_table.jam_masuk,presensi_table.dokumentasi,data_murid_table.nama_lengkap_anak, data_pengajar_table.nama_lengkap, presensi_table.dokumentasi_orang_tua")
+            ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = presensi_table.mitra_pengajar_id')
+            ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
+            ->orderBy('presensi_table.tanggal_masuk desc')
+            ->get()->getResultObject();
+    }
+
+    // public function getPresensiPerbulan($peserta_didik_id, $bulan, $tahun)
+    // {
+    //     return $this->table($this->table)
+    //         ->select("COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi_perbulan, data_murid_table.id,  paket_belajar_table.nama_paket, paket_belajar_table.jumlah_pertemuan")
+    //         ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+    //         ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+    //         ->join('paket_belajar_table', 'paket_belajar_table.id = data_murid_table.paket_belajar_id', 'left')
+    //         ->join('materi_belajar_table', 'materi_belajar_table.id = data_murid_table.materi_belajar_id')
+    //         ->where(["data_murid_table.id" => $peserta_didik_id])
+    //         ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+    //         ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
+    //         ->orderBy('id desc')
+    //         ->get()->getRowObject();
+    // }
 }

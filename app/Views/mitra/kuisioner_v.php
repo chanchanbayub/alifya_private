@@ -59,7 +59,7 @@
                                             <th scope="col"><?= $kuisioner["jumlah_murid_aktif"] ?> %</th>
                                             <th scope="col"><?= $kuisioner["administrasi"] ?> %</th>
                                             <th scope="col"><?= $kuisioner["kreativitas"] ?> %</th>
-                                            <th scope="col"><?= $kuisioner["kreativitas"] ?> %</th>
+                                            <th scope="col"><?= $kuisioner["kehadiran"] ?> %</th>
                                         </tr>
 
                                     <?php endforeach; ?>

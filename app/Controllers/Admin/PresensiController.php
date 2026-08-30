@@ -417,6 +417,7 @@ class PresensiController extends BaseController
 
             foreach ($presensi_ideal_anak as $presensi_data) {
                 $presensi_peranak = $this->presensiModel->getPresensiPerbulan($presensi_data->peserta_didik_id, $bulan["1"], $bulan["0"]);
+
                 $data_murid = $this->muridModel->getMitraMurid($presensi_data->peserta_didik_id);
 
                 if ($presensi_peranak != null) {

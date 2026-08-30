@@ -7,6 +7,7 @@ use App\Models\Admin\KategoriAPRModel;
 use App\Models\Admin\PembimbingModel;
 use App\Models\Admin\PengajarModel;
 use App\Models\Admin\SkalaNilaiAPRModel;
+use App\Models\Mitra\KelompokBelajarModel;
 use App\Models\Mitra\KuisionerKreativitasModel;
 use App\Models\Mitra\KuisionerModel;
 use App\Models\Mitra\PresensiModel;
@@ -20,6 +21,7 @@ class KuisionerController extends BaseController
     protected $skalaNilaiAprModel;
     protected $kuisionerModel;
     protected $presensiModel;
+    protected $kelompokBelajarModel;
     protected $kuisionerKreativitasModel;
 
     protected $validation;
@@ -33,6 +35,7 @@ class KuisionerController extends BaseController
         $this->kuisionerModel = new KuisionerModel();
         $this->kuisionerKreativitasModel = new KuisionerKreativitasModel();
         $this->presensiModel = new PresensiModel();
+        $this->kelompokBelajarModel = new KelompokBelajarModel();
         $this->validation = \Config\Services::validation();
         helper(['format']);
     }
@@ -46,6 +49,7 @@ class KuisionerController extends BaseController
         $kreativitas = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(3);
         $administrasi = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(2);
         $perhitungan_murid = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(1);
+        $perhitungan_kehadiran = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(4);
         // dd($perhitungan_murid);
         $kuisioner = $this->kuisionerModel->getKuisioner();
 
@@ -70,7 +74,13 @@ class KuisionerController extends BaseController
                 };
             }
 
-            // dd($kuisioner_jumlah_murid);
+            $bobot_kehadiran =  $this->katagoriAprModel->where(["id" => 4])->first();
+
+            foreach ($perhitungan_kehadiran as $jumlah_perhitungan) {
+                if ($kuisioner->kehadiran >= $jumlah_perhitungan->nilai_awal && $kuisioner->kehadiran <= $jumlah_perhitungan->nilai_akhir) {
+                    $kehadiran_jumlah = intval($bobot_kehadiran["bobot_nilai_apr"]) * intval($jumlah_perhitungan->bobot) / 100;
+                };
+            }
 
             $data_kuisioner[] = [
                 'pembimbing' => $pembimbing->nama_lengkap,
@@ -79,7 +89,8 @@ class KuisionerController extends BaseController
                 'tahun' => $kuisioner->tahun,
                 'administrasi' => $kuisioner_administrasi,
                 'kreativitas' => $kuisioner_kreativitas,
-                'jumlah_murid_aktif' => $kuisioner_jumlah_murid
+                'jumlah_murid_aktif' => $kuisioner_jumlah_murid,
+                'kehadiran' => $kehadiran_jumlah,
             ];
         };
         // dd($kuisioner);
@@ -161,6 +172,16 @@ class KuisionerController extends BaseController
 
                 $kreativitas = $this->request->getPost('kreativitas');
 
+                $kehadiran = $this->presensiModel->getPresensiPerMitra($mitra_pengajar_id, $month, $tahun);
+
+                $jumlah_paket_belajar = $this->kelompokBelajarModel->getPesertaDidikWhereMitraPengajarSumPaketBelajar($mitra_pengajar_id);
+
+                if (count($kehadiran) > 0) {
+                    $presensi_ideal = number_format(intval(count($kehadiran)) / intval($jumlah_paket_belajar->total_paket_belajar) * 100);
+                } else {
+                    $presensi_ideal = 0;
+                }
+
                 $jumlah_murid_aktif = $this->presensiModel->SumTotalAnak($mitra_pengajar_id, $month, $tahun);
 
                 $cek_kuisioner = $this->kuisionerModel->cekDataKuisioner($pembimbing_id, $mitra_pengajar_id, $month, $tahun);
@@ -186,6 +207,7 @@ class KuisionerController extends BaseController
                             // 'kreativitas' => strtolower($kreativitas),
                             'bulan' => strtolower($month),
                             'tahun' => strtolower($tahun),
+                            'kehadiran' => $presensi_ideal,
                             'jumlah_murid_aktif' => intval($jumlah_murid_aktif->total_anak),
 
                         ]);
