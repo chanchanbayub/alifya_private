@@ -499,4 +499,13 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('kuisioner_rangking/edit', 'Mitra\KuisionerController::edit');
     $routes->post('kuisioner_rangking/update', 'Mitra\KuisionerController::update');
     $routes->post('kuisioner_rangking/delete', 'Mitra\KuisionerController::delete');
+
+    // KUISIONER PROGRES ANAK
+    $routes->get('kuisioner_progres_anak', 'Mitra\KuisionerProgresAnakController::index');
+    $routes->post('kuisioner_progres_anak/insert', 'Mitra\KuisionerProgresAnakController::insert');
+    $routes->get('kuisioner_progres_anak/edit', 'Mitra\KuisionerProgresAnakController::edit');
+    $routes->post('kuisioner_progres_anak/update', 'Mitra\KuisionerProgresAnakController::update');
+    $routes->post('kuisioner_progres_anak/delete', 'Mitra\KuisionerProgresAnakController::delete');
+
+    $routes->get('kuisioner_progres_anak/getPesertaDidik', 'Mitra\KuisionerProgresAnakController::getPesertaDidik');
 });
