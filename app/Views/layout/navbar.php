@@ -143,7 +143,7 @@
 
          <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#apr" data-bs-toggle="collapse" href="#">
-                 <i class="bi bi-award"></i><span> APR </span><i class="bi bi-chevron-down ms-auto"></i>
+                 <i class="bi bi-award"></i><span> Component APR </span><i class="bi bi-chevron-down ms-auto"></i>
              </a>
              <ul id="apr" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                  <li>
@@ -161,6 +161,26 @@
                          <i class="bi bi-circle"></i><span>Standar Predikat APR</span>
                      </a>
                  </li>
+             </ul>
+             <a class="nav-link collapsed" data-bs-target="#kuisioner" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-award"></i><span> Kuisioner APR </span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="kuisioner" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/admin/kuisioner_rangking">
+                         <i class="bi bi-circle"></i><span>Kuisioner Rangking APR</span>
+                     </a>
+                 </li>
+                 <!-- <li>
+                     <a href="/admin/skala_nilai_apr">
+                         <i class="bi bi-circle"></i><span>Skala Nilai APR</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/admin/standar_predikat">
+                         <i class="bi bi-circle"></i><span>Standar Predikat APR</span>
+                     </a>
+                 </li> -->
              </ul>
          </li>
 

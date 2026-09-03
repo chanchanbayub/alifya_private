@@ -401,6 +401,22 @@ $routes->group('admin', static function ($routes) {
     $routes->post('upah_mitra_ahl/delete', 'Ahl\UpahMitraController::delete');
     $routes->post('upah_mitra_ahl/cek_upah_perbulan', 'Ahl\UpahMitraController::upah_perbulan');
 
+    // KUISIONER RANGKING
+    $routes->get('kuisioner_rangking', 'Admin\KuisionerController::index');
+    $routes->post('kuisioner_rangking/insert', 'Admin\KuisionerController::insert');
+    $routes->get('kuisioner_rangking/edit', 'Admin\KuisionerController::edit');
+    $routes->post('kuisioner_rangking/update', 'Admin\KuisionerController::update');
+    $routes->post('kuisioner_rangking/delete', 'Admin\KuisionerController::delete');
+
+    // KUISIONER PROGRES ANAK
+    $routes->get('kuisioner_progres_anak', 'Admin\KuisionerProgresAnakController::index');
+    $routes->post('kuisioner_progres_anak/insert', 'Admin\KuisionerProgresAnakController::insert');
+    $routes->get('kuisioner_progres_anak/edit', 'Admin\KuisionerProgresAnakController::edit');
+    $routes->post('kuisioner_progres_anak/update', 'Admin\KuisionerProgresAnakController::update');
+    $routes->post('kuisioner_progres_anak/delete', 'Admin\KuisionerProgresAnakController::delete');
+
+    $routes->get('kuisioner_progres_anak/getPesertaDidik', 'Admin\KuisionerProgresAnakController::getPesertaDidik');
+
     // export excel peserta
 
     // $routes->post('export_excel/', 'Excel\ExcelController::index');

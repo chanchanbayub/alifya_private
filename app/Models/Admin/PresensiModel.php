@@ -287,6 +287,20 @@ class PresensiModel extends Model
             ->get()->getRowObject();
     }
 
+    public function getJumlahMuridAktif($mitra_pengajar_id, $bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select("COUNT(MONTH(presensi_table.tanggal_masuk)) as total_presensi_perbulan, COUNT(DISTINCT(presensi_table.peserta_didik_id)) as total_anak")
+            ->join('kelompok_table', 'kelompok_table.mitra_pengajar_id = presensi_table.mitra_pengajar_id')
+            ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
+            ->join('data_murid_table', 'data_murid_table.id = presensi_table.peserta_didik_id')
+            ->where('MONTH(presensi_table.tanggal_masuk)', $bulan)
+            ->where('YEAR(presensi_table.tanggal_masuk)', $tahun)
+            ->where(["presensi_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->orderBy('data_pengajar_table.nama_lengkap desc')
+            ->get()->getRowObject();
+    }
+
     public function getDuplicatData($mitra_pengajar_id, $tanggal_masuk, $peserta_didik_id)
     {
         return $this->table($this->table)
