@@ -41,12 +41,13 @@ class KelompokBelajarModel extends Model
     public function getPesertaDidikWhereMitraPengajar($mitra_pengajar_id)
     {
         return $this->table($this->table)
-            ->select("kelompok_belajar_table.id, kelompok_belajar_table.kelompok_id, kelompok_belajar_table.peserta_didik_id, kelompok_table.mitra_pengajar_id, data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak")
+            ->select("kelompok_belajar_table.id, kelompok_belajar_table.kelompok_id, kelompok_belajar_table.peserta_didik_id, kelompok_table.mitra_pengajar_id, data_pengajar_table.nama_lengkap, data_murid_table.nama_lengkap_anak, data_murid_table.status_murid_id, status_murid_table.status_murid")
             ->join('kelompok_table', 'kelompok_table.id = kelompok_belajar_table.kelompok_id')
             ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = kelompok_belajar_table.peserta_didik_id')
-            // ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
+            ->join('status_murid_table', 'status_murid_table.id = data_murid_table.status_murid_id')
             ->where(["kelompok_table.mitra_pengajar_id" => $mitra_pengajar_id])
+            ->where(["data_murid_table.status_murid_id" => 1])
             ->orderBy('kelompok_belajar_table.id desc')
             ->get()->getResultObject();
     }
@@ -54,7 +55,7 @@ class KelompokBelajarModel extends Model
     public function getHargaPesertaDidikWhereMitraPengajar($mitra_pengajar_id)
     {
         return $this->table($this->table)
-            ->select("data_murid_table.nama_lengkap_anak, data_murid_table.status_murid_id, harga_table.media_belajar, harga_table.bulan, data_murid_table.id,")
+            ->select("data_murid_table.nama_lengkap_anak, data_murid_table.status_murid_id, harga_table.media_belajar, harga_table.bulan, data_murid_table.id")
             ->join('kelompok_table', 'kelompok_table.id = kelompok_belajar_table.kelompok_id')
             ->join('data_pengajar_table', 'data_pengajar_table.id = kelompok_table.mitra_pengajar_id')
             ->join('data_murid_table', 'data_murid_table.id = kelompok_belajar_table.peserta_didik_id')

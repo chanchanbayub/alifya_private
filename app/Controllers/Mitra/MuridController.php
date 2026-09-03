@@ -44,6 +44,8 @@ class MuridController extends BaseController
     {
         // dd('helo');
         $data_murid = $this->kelompokBelajarModel->getPesertaDidikWhereMitraPengajar(session()->get('mitra_pengajar_id'));
+
+        // dd($data_murid);
         // dd($data_murid);
 
         $data = [
