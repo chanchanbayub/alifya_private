@@ -171,6 +171,11 @@
                          <i class="bi bi-circle"></i><span>Kuisioner Rangking APR</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="/admin/kuisioner_progres_anak">
+                         <i class="bi bi-circle"></i><span>Kuisioner Progress Anak APR</span>
+                     </a>
+                 </li>
                  <!-- <li>
                      <a href="/admin/skala_nilai_apr">
                          <i class="bi bi-circle"></i><span>Skala Nilai APR</span>
