@@ -57,7 +57,6 @@
                                             <td scope="col"><?= $kuisioner["bulan"] ?> <?= $kuisioner["tahun"] ?> </td>
                                             <td scope="col"><?= $kuisioner["peserta_didik"] ?> </td>
                                             <td scope="col"><?= $kuisioner["progres_anak"] ?> %</td>
-                                            <td scope="col"><?= $kuisioner["progres_anak"] ?> %</td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $kuisioner["id"] ?>" type="button">
                                                     <i class="bi bi-trash"></i>
@@ -167,7 +166,7 @@
             <div class="modal-body">
                 <form id="delete_form">
                     <?= csrf_field(); ?>
-                    <input type="text" class="form-control" id="id_delete" name="id">
+                    <input type="hidden" class="form-control" id="id_delete" name="id">
                     <div class="modal-body">
                         <p>Apakah Anda Yakin ?</p>
                     </div>
