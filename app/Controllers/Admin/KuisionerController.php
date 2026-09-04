@@ -89,6 +89,7 @@ class KuisionerController extends BaseController
 
 
             $data_kuisioner[] = [
+                'id' => $kuisioner->id,
                 'pembimbing_data' => $pembimbing_data->nama_lengkap,
                 'nama_lengkap' => $kuisioner->nama_lengkap,
                 'bulan' => bulan($kuisioner->bulan),
@@ -236,6 +237,43 @@ class KuisionerController extends BaseController
                     ];
                 }
             }
+
+            return json_encode($alert);
+        }
+    }
+
+    public function edit()
+    {
+        if ($this->request->isAJAX()) {
+
+            $id = $this->request->getVar('id');
+
+            $kuisioner_rangking = $this->kuisionerModel->where(["id" => $id])->first();
+
+            $data = [
+                'kuisioner_rangking' => $kuisioner_rangking,
+            ];
+
+            return json_encode($data);
+        }
+    }
+
+    public function delete()
+    {
+        if ($this->request->isAJAX()) {
+
+            $id = $this->request->getVar('id');
+
+            $kuisioner = $this->kuisionerModel->where(["id" => $id])->first();
+            $kuisioner_kreativitas = $this->kuisionerKreativitasModel->where(["pembimbing_id" => $kuisioner["pembimbing_id"]])->where(["mitra_pengajar_id" => $kuisioner["mitra_pengajar_id"]])->where(["bulan" => $kuisioner["bulan"]])->where(["tahun" => $kuisioner["tahun"]])->first();
+
+            $this->kuisionerKreativitasModel->delete($kuisioner_kreativitas["id"]);
+
+            $this->kuisionerModel->delete($kuisioner["id"]);
+
+            $alert = [
+                'success' => 'Kuisioner Berhasil di Hapus !'
+            ];
 
             return json_encode($alert);
         }
