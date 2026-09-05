@@ -176,16 +176,16 @@
                          <i class="bi bi-circle"></i><span>Kuisioner Progress Anak APR</span>
                      </a>
                  </li>
-                 <!-- <li>
-                     <a href="/admin/skala_nilai_apr">
-                         <i class="bi bi-circle"></i><span>Skala Nilai APR</span>
+             </ul>
+             <a class="nav-link collapsed" data-bs-target="#rekap_apr" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-award"></i><span> Rekap APR </span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="rekap_apr" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/admin/rekap_performance">
+                         <i class="bi bi-circle"></i><span>Penilaian APR</span>
                      </a>
                  </li>
-                 <li>
-                     <a href="/admin/standar_predikat">
-                         <i class="bi bi-circle"></i><span>Standar Predikat APR</span>
-                     </a>
-                 </li> -->
              </ul>
          </li>
 

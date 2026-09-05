@@ -87,7 +87,6 @@ class KuisionerController extends BaseController
             }
 
 
-
             $data_kuisioner[] = [
                 'id' => $kuisioner->id,
                 'pembimbing_data' => $pembimbing_data->nama_lengkap,

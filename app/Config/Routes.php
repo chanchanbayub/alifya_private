@@ -417,6 +417,15 @@ $routes->group('admin', static function ($routes) {
 
     $routes->get('kuisioner_progres_anak/getPesertaDidik', 'Admin\KuisionerProgresAnakController::getPesertaDidik');
 
+    // KUISIONER PROGRES ANAK
+    $routes->get('rekap_performance', 'Admin\RekapPerformanceController::index');
+    $routes->post('rekap_performance/insert', 'Admin\RekapPerformanceController::insert');
+    $routes->get('rekap_performance/edit', 'Admin\RekapPerformanceController::edit');
+    $routes->post('rekap_performance/update', 'Admin\RekapPerformanceController::update');
+    $routes->post('rekap_performance/delete', 'Admin\RekapPerformanceController::delete');
+
+    $routes->post('rekap_performance/cek_penilaian', 'Admin\RekapPerformanceController::cek_penilaian');
+
     // export excel peserta
 
     // $routes->post('export_excel/', 'Excel\ExcelController::index');

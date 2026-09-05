@@ -20,6 +20,9 @@ class StandarPredikatAPRController extends BaseController
     public function index()
     {
 
+        // $predikat = $this->standarPredikatAprModel->getStandarPredikat();
+        // // dd($predikat);
+
         $data = [
             'title' => 'Standar Predikat Alifya Performance Rangking',
             'predikat' => $this->standarPredikatAprModel->getStandarPredikat()
@@ -45,22 +48,31 @@ class StandarPredikatAPRController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+                'nilai_akhir' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
 
             ])) {
                 $alert = [
                     'error' => [
                         'predikat' => $this->validation->getError('predikat'),
                         'nilai_predikat' => $this->validation->getError('nilai_predikat'),
+                        'nilai_akhir' => $this->validation->getError('nilai_akhir'),
                     ]
                 ];
             } else {
 
                 $predikat = $this->request->getPost('predikat');
                 $nilai_predikat = $this->request->getPost('nilai_predikat');
+                $nilai_akhir = $this->request->getPost('nilai_akhir');
 
                 $this->standarPredikatAprModel->save([
                     'predikat' => strtolower($predikat),
                     'nilai_predikat' => strtolower($nilai_predikat),
+                    'nilai_akhir' => strtolower($nilai_akhir),
 
                 ]);
 
@@ -120,12 +132,19 @@ class StandarPredikatAPRController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+                'nilai_akhir' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
 
             ])) {
                 $alert = [
                     'error' => [
                         'predikat' => $this->validation->getError('predikat'),
                         'nilai_predikat' => $this->validation->getError('nilai_predikat'),
+                        'nilai_akhir' => $this->validation->getError('nilai_akhir'),
                     ]
                 ];
             } else {
@@ -133,10 +152,12 @@ class StandarPredikatAPRController extends BaseController
                 $id = $this->request->getPost('id');
                 $predikat = $this->request->getPost('predikat');
                 $nilai_predikat = $this->request->getPost('nilai_predikat');
+                $nilai_akhir = $this->request->getPost('nilai_akhir');
 
                 $this->standarPredikatAprModel->update($id, [
                     'predikat' => strtolower($predikat),
                     'nilai_predikat' => strtolower($nilai_predikat),
+                    'nilai_akhir' => strtolower($nilai_akhir),
 
                 ]);
 

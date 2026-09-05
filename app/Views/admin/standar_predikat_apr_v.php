@@ -40,7 +40,8 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Standar Predikat</th>
-                                        <th scope="col">Nilai</th>
+                                        <th scope="col">Nilai Awal</th>
+                                        <th scope="col">Nilai Akhir</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -51,6 +52,7 @@
                                             <th scope="row"><a href="#"><?= $no++ ?></a></th>
                                             <td><?= $predikat->predikat ?></td>
                                             <td><?= $predikat->nilai_predikat ?>%</td>
+                                            <td><?= $predikat->nilai_akhir ?>%</td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-warning" id="edit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $predikat->id ?>" type="button">
                                                     <i class="bi bi-pencil-square"></i>
@@ -93,9 +95,16 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="nilai_predikat" class="col-form-label">Nilai :</label>
+                        <label for="nilai_predikat" class="col-form-label">Nilai Awal:</label>
                         <input type="text" class="form-control" id="nilai_predikat" name="nilai_predikat" placeholder="cth. 10">
                         <div class="invalid-feedback error-nilai">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nilai_akhir" class="col-form-label">Nilai Akhir:</label>
+                        <input type="text" class="form-control" id="nilai_akhir" name="nilai_akhir" placeholder="cth. 10">
+                        <div class="invalid-feedback error-nilai-akhir">
                         </div>
                     </div>
 
@@ -132,9 +141,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="nilai_predikat_edit" class="col-form-label">Nilai :</label>
+                        <label for="nilai_predikat_edit" class="col-form-label">Nilai Awal:</label>
                         <input type="text" class="form-control" id="nilai_predikat_edit" name="nilai_predikat">
                         <div class="invalid-feedback error-nilai-edit">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nilai_akhir_edit" class="col-form-label">Nilai Akhir:</label>
+                        <input type="text" class="form-control" id="nilai_akhir_edit" name="nilai_akhir">
+                        <div class="invalid-feedback error-nilai-akhir-edit">
 
                         </div>
                     </div>
@@ -185,6 +202,7 @@
 
             let predikat = $("#predikat").val();
             let nilai_predikat = $("#nilai_predikat").val();
+            let nilai_akhir = $("#nilai_akhir").val();
 
             $.ajax({
                 url: '/admin/standar_predikat/insert',
@@ -193,6 +211,7 @@
                 data: {
                     predikat: predikat,
                     nilai_predikat: nilai_predikat,
+                    nilai_akhir: nilai_akhir,
                 },
                 beforeSend: function() {
                     $('.save').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
@@ -216,6 +235,13 @@
                         } else {
                             $("#nilai_predikat").removeClass('is-invalid');
                             $(".error-nilai").html('');
+                        }
+                        if (response.error.nilai_akhir) {
+                            $("#nilai_akhir").addClass('is-invalid');
+                            $(".error-nilai-akhir").html(response.error.nilai_akhir);
+                        } else {
+                            $("#nilai_akhir").removeClass('is-invalid');
+                            $(".error-nilai-akhir").html('');
                         }
 
                     } else {
@@ -256,6 +282,7 @@
                 $("#id_edit").val(response.id);
                 $("#predikat_edit").val(response.predikat);
                 $("#nilai_predikat_edit").val(response.nilai_predikat);
+                $("#nilai_akhir_edit").val(response.nilai_akhir);
 
             }
         });
@@ -266,6 +293,7 @@
         let id = $('#id_edit').val();
         let predikat = $('#predikat_edit').val();
         let nilai_predikat = $('#nilai_predikat_edit').val();
+        let nilai_akhir = $('#nilai_akhir_edit').val();
 
         $.ajax({
             url: '/admin/standar_predikat/update',
@@ -275,6 +303,7 @@
                 id: id,
                 predikat: predikat,
                 nilai_predikat: nilai_predikat,
+                nilai_akhir: nilai_akhir,
             },
             beforeSend: function() {
                 $('.update').html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading...");
@@ -297,6 +326,13 @@
                     } else {
                         $("#nilai_predikat_edit").removeClass('is-invalid');
                         $(".error-nilai-edit").html('');
+                    }
+                    if (response.error.nilai_akhir) {
+                        $("#nilai_akhir_edit").addClass('is-invalid');
+                        $(".error-nilai-akhir-edit").html(response.error.nilai_akhir);
+                    } else {
+                        $("#nilai_akhir_edit").removeClass('is-invalid');
+                        $(".error-nilai-akhir-edit").html('');
                     }
 
                 } else {

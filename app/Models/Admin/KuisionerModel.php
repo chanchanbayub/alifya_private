@@ -40,4 +40,14 @@ class KuisionerModel extends Model
             ->where(["tahun" => $tahun])
             ->orderBy('data_pengajar_table.nama_lengkap asc')->get()->getResultObject();
     }
+    public function getRekapKuisionerPerbulan($bulan, $tahun)
+    {
+        return $this->table($this->table)
+            ->select('kuisioner_table.id, kuisioner_table.pembimbing_id, kuisioner_table.mitra_pengajar_id , bulan , tahun, data_pengajar_table.nama_lengkap, skala_nilai_table.bobot as administrasi, kuisioner_table.jumlah_murid_aktif,  kuisioner_table.kehadiran, skala_nilai_table.kategori_apr_id')
+            ->join('data_pengajar_table ', 'data_pengajar_table.id = kuisioner_table.mitra_pengajar_id')
+            ->join('skala_nilai_table', 'skala_nilai_table.id = kuisioner_table.administrasi')
+            ->where(["bulan" => $bulan])
+            ->where(["tahun" => $tahun])
+            ->orderBy('data_pengajar_table.nama_lengkap asc')->get()->getResultObject();
+    }
 }

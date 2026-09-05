@@ -9,7 +9,7 @@ class StandarPredikatAPRModel extends Model
     protected $table            = 'standar_predikat_apr_table';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['predikat', 'nilai_predikat'];
+    protected $allowedFields    = ['predikat', 'nilai_predikat', 'nilai_akhir'];
 
     // Dates
     protected $useTimestamps = true;
@@ -20,7 +20,7 @@ class StandarPredikatAPRModel extends Model
     public function getStandarPredikat()
     {
         return $this->table($this->table)
-            ->select('standar_predikat_apr_table.id, standar_predikat_apr_table.predikat, standar_predikat_apr_table.nilai_predikat')
+            ->select('standar_predikat_apr_table.id, standar_predikat_apr_table.predikat, standar_predikat_apr_table.nilai_predikat, standar_predikat_apr_table.nilai_akhir')
             ->orderBy('id desc')
             ->get()
             ->getResultObject();
