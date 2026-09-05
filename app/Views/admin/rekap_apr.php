@@ -31,7 +31,7 @@
                                 <?= csrf_field(); ?>
 
                                 <div class="col-md-12">
-                                    <label for="bulan" class="form-label">Pilih Bulan :</label>
+                                    <label for="bulan" class="form-label">Pilih Bulan Sekarang:</label>
                                     <input type="month" name="bulan" id="bulan" class="form-control">
                                     <div class="invalid-feedback error-bulan">
                                     </div>
@@ -54,7 +54,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">No</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Ranking</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Mitra Pengajar</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Murid (10%)</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Administrasi (15%)</th>
@@ -63,7 +63,6 @@
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Progress Anak (30%)</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Final Score</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Predikat</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Month on Month</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -89,14 +88,6 @@
 <script>
     $(document).ready(function(e) {
 
-        const rupiah = (number) => {
-            return new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR"
-            }).format(number);
-        }
-
-
         $("#cek_penilaian").submit(function(e) {
             e.preventDefault();
             let bulan = $("#bulan").val();
@@ -113,7 +104,7 @@
                     $('.search').prop('disabled', true);
                 },
                 success: function(response) {
-                    console.log(response.data_kuisioner);
+                    // console.log(response.data_kuisioner);
                     $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
                     $('.search').prop('disabled', false);
                     if (response.error) {
@@ -124,6 +115,13 @@
                             $("#bulan").removeClass('is-invalid');
                             $(".error-bulan").html('');
                         }
+                        if (response.error.bulan_sebelumnya) {
+                            $("#bulan_sebelumnya").addClass('is-invalid');
+                            $(".error-bulan-sebelumnya").html(response.error.bulan_sebelumnya);
+                        } else {
+                            $("#bulan_sebelumnya").removeClass('is-invalid');
+                            $(".error-bulan-sebelumnya").html('');
+                        }
 
                     } else {
                         let no = 1;
@@ -131,17 +129,15 @@
                         if (response.data_kuisioner.length >= 1) {
                             response.data_kuisioner.forEach(function(e) {
                                 table_kuisioner += `<tr>
-                                    <td>${no++}</td>
-                                    <td>${e.nama_lengkap}</td>
-                                    <td align="center">${e.jumlah_murid_aktif}%</td>
-                                    <td align="center">${e.administrasi}%</td>
-                                    <td align="center">${e.kreativitas}%</td>
-                                    <td align="center">${e.kehadiran}%</td>
-                                    <td align="center">${e.progres_anak}%</td>
-                                    <td align="center">${e.final_score}%</td>
-                                    <td align="center" style="text-transform:uppercase">${e.nilai_data}</td>
-                                    
-                                    <td align="center">0</td>
+                                    <td align="center" style="text-transform:uppercase">${no++}</td>
+                                    <td align="left"   style="text-transform:uppercase">${e.nama_lengkap}</td>
+                                    <td align="center" style="text-transform:uppercase">${e.jumlah_murid_aktif}%</td>
+                                    <td align="center" style="text-transform:uppercase">${e.administrasi}%</td>
+                                    <td align="center" style="text-transform:uppercase">${e.kreativitas}%</td>
+                                    <td align="center" style="text-transform:uppercase">${e.kehadiran}%</td>
+                                    <td align="center" style="text-transform:uppercase">${e.progres_anak}%</td>
+                                    <td align="center" style="text-transform:uppercase;font-weight: bold;">${e.final_score}%</td>
+                                    <td align="center" style="text-transform:uppercase;font-weight: bold;">${e.nilai_data}</td>
                                     <td align="center"><a href="#" data-id="#" class="btn btn-sm btn-outline-primary invoice"> Rincian </a></td>
                                 </tr>`;
                             });

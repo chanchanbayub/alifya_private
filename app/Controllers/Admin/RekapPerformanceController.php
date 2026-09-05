@@ -64,9 +64,10 @@ class RekapPerformanceController extends BaseController
                 'bulan' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Bulan Tidak Boleh Kosong !'
+                        'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+
 
             ])) {
                 $alert = [
@@ -81,10 +82,8 @@ class RekapPerformanceController extends BaseController
                 $perhitungan_murid = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(1);
                 $perhitungan_kehadiran = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(4);
 
-
-
+                // Bulan Sekarang
                 $bulan = $this->request->getVar('bulan');
-
                 $data_bulan = explode("-", $bulan);
 
                 $inputan_bulan = intval($data_bulan[1]);
@@ -141,7 +140,6 @@ class RekapPerformanceController extends BaseController
                         if ($final_score >= $predikat->nilai_predikat && $final_score <= $predikat->nilai_akhir) {
                             $nilai = $predikat->predikat;
                         };
-                        // dd($nilai);
                     }
 
                     $data_kuisioner[] = [
@@ -161,8 +159,13 @@ class RekapPerformanceController extends BaseController
                     ];
                 };
 
+                // Ambil kolom 'umur' dari array utama
+                $final_score = array_column($data_kuisioner, 'final_score');
 
+                // Urutkan array berdasarkan kolom umur
+                array_multisort($final_score, SORT_DESC, $data_kuisioner);
 
+                // print_r($data);
 
                 $alert = [
                     'inputan_bulan' => $inputan_bulan,
