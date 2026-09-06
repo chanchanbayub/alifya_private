@@ -13,6 +13,7 @@ use App\Models\Admin\PengajarModel;
 use App\Models\Admin\PresensiModel;
 use App\Models\Admin\SkalaNilaiAPRModel;
 use App\Models\Admin\StandarPredikatAPRModel;
+use CodeIgniter\Exceptions\AlertError;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class RekapPerformanceController extends BaseController
@@ -174,6 +175,109 @@ class RekapPerformanceController extends BaseController
                 ];
             }
         }
+        return json_encode($alert);
+    }
+
+    public function rincian()
+    {
+        $id = $this->request->getVar('id');
+        $bulan = $this->request->getVar('bulan');
+        $tahun = $this->request->getVar('tahun');
+
+        helper(['format']);
+
+        $perhitungan_murid = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(1);
+        $perhitungan_kehadiran = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(4);
+
+        $kuisioner = $this->kuisionerModel->getKuisionerWhereId($id);
+
+
+        foreach ($perhitungan_murid as $jumlah) {
+            if ($kuisioner->jumlah_murid_aktif >= $jumlah->nilai_awal && $kuisioner->jumlah_murid_aktif <= $jumlah->nilai_akhir) {
+                $skala_nilai = $jumlah->nilai;
+                $bobot_jumlah_anak  = $jumlah->bobot;
+            };
+        }
+
+
+        // Kreativitas
+        $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitasData($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+
+
+        // $bobot_kategori = $this->katagoriAprModel->where(["id" => $kuisioner->kategori_apr_id])->first();
+        // $bobot_kategori_kreativitas = $this->katagoriAprModel->where(["id" => $kuisioner_kreativitas->kategori_apr_id])->first();
+
+        // $kuisioner_administrasi = intval($bobot_kategori["bobot_nilai_apr"]) * intval($kuisioner->administrasi) / 100;
+        // $kuisioner_kreativitas = intval($bobot_kategori_kreativitas["bobot_nilai_apr"]) * intval($kuisioner_kreativitas->kreativitas) / 100;
+
+
+
+        // $bobot_kehadiran =  $this->katagoriAprModel->where(["id" => 4])->first();
+
+        foreach ($perhitungan_kehadiran as $jumlah_perhitungan) {
+            if ($kuisioner->kehadiran >= $jumlah_perhitungan->nilai_awal && $kuisioner->kehadiran <= $jumlah_perhitungan->nilai_akhir) {
+                $skala_nilai_kehadiran = $jumlah_perhitungan->nilai;
+                $bobot_kehadiran  = $jumlah_perhitungan->bobot;
+            };
+        }
+
+        // Progress Siswa
+        $rata_rata_progres = $this->kuisionerProgressAnakModel->getRataRata($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+
+        $jumlah_data_progress = count($this->kuisionerProgressAnakModel->getJumlahData($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun));
+
+        $progres_anak = intval($rata_rata_progres->total_bobot) / intval($jumlah_data_progress);
+        $bobot_progres_anak = $this->katagoriAprModel->where(["id" => 5])->first();
+
+        $nilai_progress_anak = intval($bobot_progres_anak["bobot_nilai_apr"]) * intval($progres_anak) / 100;
+
+        $alert = [
+
+            // Jumlah Murid
+            'jumlah_murid_aktif' => $kuisioner->jumlah_murid_aktif,
+            'skala_nilai_jumlah_murid' => $skala_nilai,
+            'bobot_jumlah_anak' => $bobot_jumlah_anak,
+
+
+            // Administrasi
+            'administrasi' => $kuisioner->keterangan,
+            'skala_nilai_administrasi' => $kuisioner->nilai,
+            'skala_nilai_administrasi_bobot' => $kuisioner->administrasi,
+
+            // Administrasi
+            'kreativitas' => $kuisioner_kreativitas->keterangan,
+            'skala_nilai_kreativitas' => $kuisioner_kreativitas->nilai,
+            'skala_nilai_kreativitas_bobot' => $kuisioner_kreativitas->kreativitas,
+
+            // Kehadiran
+            'kehadiran' => $kuisioner->kehadiran,
+            'skala_nilai_kehadiran' => $skala_nilai_kehadiran,
+            'skala_nilai_kehadiran_bobot' => $bobot_kehadiran,
+
+            // Progres Anak
+            'progres_anak' => $progres_anak,
+            'skala_nilai_progress' => "-",
+            'skala_nilai_progress_bobot' => '-',
+
+            'progres' => $jumlah_data_progress,
+            'rata_rata' => $rata_rata_progres,
+
+
+
+            'kuisioner' => $kuisioner,
+            'kuisioner_kreativitas' => $kuisioner_kreativitas,
+            'nilai_progres_anak' => $nilai_progress_anak,
+            'progres_data' => $progres_anak
+
+
+
+
+
+
+
+        ];
+
+
         return json_encode($alert);
     }
 }

@@ -425,6 +425,7 @@ $routes->group('admin', static function ($routes) {
     $routes->post('rekap_performance/delete', 'Admin\RekapPerformanceController::delete');
 
     $routes->post('rekap_performance/cek_penilaian', 'Admin\RekapPerformanceController::cek_penilaian');
+    $routes->get('rekap_performance/rincian', 'Admin\RekapPerformanceController::rincian');
 
     // export excel peserta
 

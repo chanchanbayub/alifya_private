@@ -51,7 +51,7 @@
 
                         <div class="card-body">
                             <h5 class="card-title">Rekap Penilaian APR Bulan Tersebut <span>| Table </span></h5>
-                            <table class="table table-bordered">
+                            <table class="table table-responsive table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Ranking</th>
@@ -81,6 +81,37 @@
 </section>
 <!-- End Left side columns -->
 
+<!-- Modal -->
+<div class="modal fade" id="rincian" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Rincian Penilaian APR</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Indikatior Performa</th>
+                            <th>Data Aktual</th>
+                            <th>Penilaian / Status</th>
+                            <th>Konversi Skala</th>
+                            <th>Skor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rincian_table">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- </div> -->
 
@@ -104,7 +135,6 @@
                     $('.search').prop('disabled', true);
                 },
                 success: function(response) {
-                    // console.log(response.data_kuisioner);
                     $('.search').html('<i class="bi bi-search"></i> Cek Invoice');
                     $('.search').prop('disabled', false);
                     if (response.error) {
@@ -138,7 +168,7 @@
                                     <td align="center" style="text-transform:uppercase">${e.progres_anak}%</td>
                                     <td align="center" style="text-transform:uppercase;font-weight: bold;">${e.final_score}%</td>
                                     <td align="center" style="text-transform:uppercase;font-weight: bold;">${e.nilai_data}</td>
-                                    <td align="center"><a href="#" data-id="#" class="btn btn-sm btn-outline-primary invoice"> Rincian </a></td>
+                                    <td align="center"><button type="button" id="button_rincian" class="btn btn-outline-secondary btn-sm" data-id="${e.id}" data-bulan="${response.inputan_bulan}" data-tahun="${response.inputan_tahun}" data-bs-toggle="modal" data-bs-target="#rincian">rincian</button></td>
                                 </tr>`;
                             });
                             $(".table_penilaian").html(table_kuisioner);
@@ -155,6 +185,69 @@
                 }
             });
         })
+    });
+
+    $(document).on('click', "#button_rincian", function(e) {
+        e.preventDefault();
+        let id = $(this).attr('data-id');
+        let bulan = $(this).attr('data-bulan');
+        let tahun = $(this).attr('data-tahun');
+
+        $.ajax({
+            url: '/admin/rekap_performance/rincian',
+            method: 'get',
+            dataType: 'JSON',
+            data: {
+                id: id,
+                bulan: bulan,
+                tahun: tahun,
+            },
+            success: function(response) {
+                console.log(response);
+
+                let no = 1;
+                let rincian_table = ``;
+                rincian_table +=
+                    `<tr>
+                        <td align="left" style="text-transform:capitalize">Jumlah Murid</td>
+                        <td align="left" style="text-transform:capitalize">${response.jumlah_murid_aktif} Murid</td>
+                        <td align="left" style="text-transform:capitalize">Database Anak Aktif</td>
+                        <td align="left" style="text-transform:capitalize">Skala ${response.skala_nilai_jumlah_murid}</td>
+                        <td align="left" style="text-transform:capitalize">${response.bobot_jumlah_anak}% </td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="text-transform:capitalize">Administrasi</td>
+                        <td align="left" style="text-transform:capitalize">${response.administrasi}</td>
+                        <td align="left" style="text-transform:capitalize">Penilaian Ms. Pembimbing</td>
+                        <td align="left" style="text-transform:capitalize">Skala ${response.skala_nilai_administrasi}</td>
+                        <td align="left" style="text-transform:capitalize">${response.skala_nilai_administrasi_bobot}% </td>
+                    </tr>
+                
+                    <tr>
+                        <td align="left" style="text-transform:capitalize">Kreativitas</td>
+                        <td align="left" style="text-transform:capitalize">${response.kreativitas}</td>
+                        <td align="left" style="text-transform:capitalize">Penilaian Evaluasi Dokumentasi</td>
+                        <td align="left" style="text-transform:capitalize">Skala ${response.skala_nilai_kreativitas} </td>
+                        <td align="left" style="text-transform:capitalize">${response.skala_nilai_kreativitas_bobot}% </td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="text-transform:capitalize">Kehadiran</td>
+                        <td align="left" style="text-transform:capitalize">${response.kehadiran}%</td>
+                        <td align="left" style="text-transform:capitalize">Presensi Sistem</td>
+                        <td align="left" style="text-transform:capitalize">Skala ${response.skala_nilai_kehadiran}</td>
+                       <td align="left" style="text-transform:capitalize">${response.skala_nilai_kehadiran_bobot}% </td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="text-transform:capitalize">Progress Anak</td>
+                        <td align="left" style="text-transform:capitalize">${response.progres_anak}</td>
+                        <td align="left" style="text-transform:capitalize">Capaian Kurikulum</td>
+                        <td align="left" style="text-transform:capitalize">Skala ${response.skala_nilai_progress} </td>
+                       <td align="left" style="text-transform:capitalize">${response.skala_nilai_progress_bobot}% </td>
+                    </tr>`
+
+                $("#rincian_table").html(rincian_table);
+            }
+        });
     });
 </script>
 
