@@ -84,7 +84,6 @@
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Anak Aktif</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Jumlah Presensi</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Harga Presensi</th>
-                                        <th scope="col" style="text-transform: capitalize; text-align:center">Total Booster</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Link</th>
@@ -97,7 +96,7 @@
                                         <th colspan="2" style="text-align: center;">JUMLAH :</th>
                                         <th colspan="1" class="total_anak" style="text-align: center;">0</th>
                                         <th colspan="1" class="total_presensi_perbulan" style="text-align: center;">0</th>
-                                        <th colspan="6" style="text-align: center;" id="total_pemasukan">0</th>
+                                        <th colspan="5" style="text-align: center;" id="total_pemasukan">0</th>
 
                                     </tr>
                                 </tfoot>
@@ -173,7 +172,6 @@
                                 <td align="center">${e.jumlah_anak}</td>
                                 <td align="center">${e.total_presensi}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.harga_mitra)}</td>
-                                <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_jumlah_booster)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_lain_lain)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
                                 <td align="center"><a href="/admin/invoice_mitra/pdf/${e.mitra_pengajar_id}/${e.bulan}/${e.tahun}" data-id="${e.mitra_pengajar_id}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td> </td>

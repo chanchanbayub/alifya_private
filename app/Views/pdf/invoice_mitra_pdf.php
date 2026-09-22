@@ -103,12 +103,8 @@
                     <th>Rp. <?= number_format($lain_lain) ?></th>
                 </tr>
                 <tr>
-                    <th colspan="3">Booster Media</th>
-                    <th>Rp. <?= number_format($booster_media) ?></th>
-                </tr>
-                <tr>
                     <th colspan="3">Total Pembayaran</th>
-                    <th>Rp. <?= number_format($total + $lain_lain + $booster_media) ?></th>
+                    <th>Rp. <?= number_format($total + $lain_lai) ?></th>
                 </tr>
 
                 <tr>

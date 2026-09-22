@@ -56,7 +56,7 @@ class PesertaDidikAhlModel extends Model
     public function getPesertaDidikAhlInvoice()
     {
         return $this->table($this->table)
-            ->select("peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.program_belajar_ahl_id, peserta_didik_ahl_table.status_peserta_id, program_ahl_table.nama_program, status_murid_table.status_murid, price_list_table.harga_paket")
+            ->select("peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.program_belajar_ahl_id, peserta_didik_ahl_table.status_peserta_id, peserta_didik_ahl_table.nomor_whatsapp_orang_tua, program_ahl_table.nama_program, status_murid_table.status_murid, price_list_table.harga_paket")
             ->join('program_ahl_table', 'program_ahl_table.id = peserta_didik_ahl_table.program_belajar_ahl_id')
             ->join('price_list_table', 'price_list_table.id = peserta_didik_ahl_table.jumlah_pertemuan_id')
             ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id')

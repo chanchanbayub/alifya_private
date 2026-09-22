@@ -86,6 +86,7 @@
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Klaim Media</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Download</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Kirim Whatsapp</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table_invoice">

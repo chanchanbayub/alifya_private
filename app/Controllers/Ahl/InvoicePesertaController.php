@@ -79,6 +79,7 @@ class InvoicePesertaController extends BaseController
                     $peserta_didik[] = [
                         'id' => $data->id,
                         'nama_lengkap_anak' => $data->nama_lengkap_anak,
+                        'no_whatsapp' => $data->nomor_whatsapp_orang_tua,
                         'nama_program' => $data->nama_program,
                         'harga_paket' => $data->harga_paket,
                         'lain_lain' => $lain_lain,
