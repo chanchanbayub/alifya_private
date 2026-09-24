@@ -500,8 +500,6 @@ class PresensiController extends BaseController
 
             $pengajar = $this->kelompokModel->getKelompokPengajar();
 
-            // $presensi = $this->presensiModel->getPresensiIdealMitra($bulan["1"], $bulan["0"]);
-
             $presensi_ideal_mitra = [];
 
             foreach ($pengajar as $pengajar) {
@@ -516,16 +514,19 @@ class PresensiController extends BaseController
                     $presensi_ideal = 0;
                 }
 
+                $jumlah_anak_aktif = $this->presensiModel->getJumlahMuridAktif($pengajar->mitra_pengajar_id, $bulan["1"], $bulan["0"]);
+
                 $presensi_ideal_mitra[] = [
                     'nama_lengkap' => $pengajar->nama_lengkap,
+                    'jumlah_anak' => $jumlah_anak_aktif->total_anak,
+                    'total_presensi' => $jumlah_anak_aktif->total_presensi_perbulan,
+                    'target_presensi' => $jumlah_paket_belajar->total_paket_belajar,
                     'presensi_ideal_data' => $presensi_ideal
                 ];
             }
 
-            // asort($presensi_ideal_mitra);
-
             $data = [
-
+                'presensi_permitra' => $presensi_permitra,
                 'presensi_ideal_mitra' => $presensi_ideal_mitra,
                 'bulan' => $bulan["1"]
             ];

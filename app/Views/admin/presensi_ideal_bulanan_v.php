@@ -52,12 +52,15 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Mitra Pengajar</th>
+                                        <th scope="col">Jumlah Anak Aktif</th>
+                                        <th scope="col">Jumlah Presensi</th>
+                                        <th scope="col">Target Presensi</th>
                                         <th scope="col">Presensi Ideal</th>
                                     </tr>
                                 </thead>
                                 <tbody class="presensi_ideal">
                                     <tr>
-                                        <td colspan="3" style="text-align: center;">Tidak Ada Data</td>
+                                        <td colspan="6" style="text-align: center;">Tidak Ada Data</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -128,6 +131,9 @@
                             tableData += `<tr>
                                 <td>${no++}</td>
                                 <td>${e.nama_lengkap}</td>
+                                <td>${e.jumlah_anak}</td>
+                                <td>${e.total_presensi}</td>
+                                <td>${(e.target_presensi) == null ? "0" : e.target_presensi}</td>
                                 <td>${e.presensi_ideal_data}%</td>
                                 
                             </tr>`;
