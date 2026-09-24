@@ -202,7 +202,9 @@ $routes->group('admin', static function ($routes) {
 
     $routes->get('presensi_harian', 'Admin\PresensiController::presensi_harian');
     $routes->get('presensi_bulanan', 'Admin\PresensiController::presensi_bulanan');
+    $routes->get('presensi_ideal_bulanan', 'Admin\PresensiController::presensi_ideal_bulanan');
     $routes->get('presensi/getPresensiPerbulan', 'Admin\PresensiController::getPresensiPerbulan');
+    $routes->get('presensi/getPresensiIdealPerbulan', 'Admin\PresensiController::getPresensiIdealPerbulan');
 
     // Kategori APR Controller
     $routes->get('kategori_apr', 'Admin\KategoriAPRController::index');

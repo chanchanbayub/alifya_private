@@ -462,4 +462,75 @@ class PresensiController extends BaseController
             return json_encode($data);
         }
     }
+
+    public function presensi_ideal_bulanan()
+    {
+        $kelompokPengajar = $this->kelompokModel->getKelompokPengajar();
+
+        helper(['format']);
+
+        $tanggal_hari = date('Y/m/d');
+
+        $presensi_bulanan = $this->presensiModel->getDataPresensiPerhari($tanggal_hari);
+
+
+        $hari_ini = tanggal_indonesia(date('Y-m-d'));
+
+        // $absensi = $this->absensiModel->getAbsensiPerhari($tanggal_hari);
+
+        $data = [
+            'title' => 'Presensi bulanan',
+            'presensi' => $presensi_bulanan,
+            'mitra_pengajar' => $kelompokPengajar,
+        ];
+
+        return view('admin/presensi_ideal_bulanan_v', $data);
+    }
+
+    public function getPresensiIdealPerbulan()
+    {
+        if ($this->request->isAJAX()) {
+
+
+            helper(['format']);
+
+            $tahun = $this->request->getVar('tahun');
+
+            $bulan = explode("-", $tahun);
+
+            $pengajar = $this->kelompokModel->getKelompokPengajar();
+
+            // $presensi = $this->presensiModel->getPresensiIdealMitra($bulan["1"], $bulan["0"]);
+
+            $presensi_ideal_mitra = [];
+
+            foreach ($pengajar as $pengajar) {
+
+                $presensi_permitra = $this->presensiModel->getPresensiIdealMitraData($pengajar->mitra_pengajar_id, $bulan["1"], $bulan["0"]);
+
+                $jumlah_paket_belajar = $this->kelompokBelajarModel->getPesertaDidikWhereMitraPengajarSumPaketBelajar($pengajar->mitra_pengajar_id);
+
+                if (intval($presensi_permitra->total_presensi_perbulan) > 0) {
+                    $presensi_ideal = number_format(intval($presensi_permitra->total_presensi_perbulan) / intval($jumlah_paket_belajar->total_paket_belajar) * 100);
+                } else {
+                    $presensi_ideal = 0;
+                }
+
+                $presensi_ideal_mitra[] = [
+                    'nama_lengkap' => $pengajar->nama_lengkap,
+                    'presensi_ideal_data' => $presensi_ideal
+                ];
+            }
+
+            // asort($presensi_ideal_mitra);
+
+            $data = [
+
+                'presensi_ideal_mitra' => $presensi_ideal_mitra,
+                'bulan' => $bulan["1"]
+            ];
+
+            return json_encode($data);
+        }
+    }
 }
