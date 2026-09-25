@@ -20,6 +20,7 @@ $routes->get('/profil', 'Users\ProfilController::index');
 $routes->get('/program_belajar', 'Users\ProgramBelajarController::index');
 $routes->get('/materi_belajar', 'Users\MateriBelajarController::index');
 $routes->get('/getMateriBelajar', 'Users\MateriBelajarController::getMateriBelajar');
+$routes->get('/download_invoice_peserta_ahl/pdf/(:any)', 'PDF\PdfController::download_invoice_peserta_ahl/$1');
 
 $routes->group('admin', static function ($routes) {
     $routes->get('dashboard', 'Admin\DashboardController::index');
@@ -377,6 +378,7 @@ $routes->group('admin', static function ($routes) {
     $routes->post('invoice_peserta_ahl/delete', 'Ahl\InvoicePesertaController::delete');
 
     $routes->get('invoice_peserta_ahl/pdf/(:any)', 'PDF\PdfController::pesdik_ahl/$1');
+
 
 
     // invoice mitra AHL

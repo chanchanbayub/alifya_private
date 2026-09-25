@@ -319,4 +319,43 @@ class PdfController extends BaseController
             $this->mpdf->output('Invoice-' . $peserta_didik->nama_lengkap_anak  . '.pdf', 'I');
         }
     }
+
+    public function download_invoice_peserta_ahl($peserta_didik_id, $bulan, $tahun)
+    {
+
+        $this->mpdf->showImageErrors = true;
+
+        $peserta = $peserta_didik_id;
+        $bulan = $bulan;
+
+        $lain_lain_peserta = $this->lainLainAhlModel->where(["peserta_didik_ahl_id" => $peserta])->where(["bulan" => $bulan])->where(["tahun" => $tahun])->first();
+
+        $lain_lain = intval($lain_lain_peserta["lain_lain"]);
+
+        $peserta_didik = $this->pesertaDidikAhlModel->getProfil($peserta);
+
+        helper(['format']);
+
+        if ($peserta_didik == null) {
+
+            $error = [
+                'error' => 'Data Tidak Ditemukan!'
+            ];
+
+            session()->setFlashdata($error);
+            return redirect()->back()->withInput($error);
+        } else {
+
+            $data = [
+                'peserta_didik' =>  $peserta_didik,
+                'lain_lain' => $lain_lain
+            ];
+
+            $html = view('pdf/invoice_pesdik_ahl_pdf', $data);
+            $this->mpdf->WriteHTML($html);
+
+            $this->response->setHeader('Content-Type', 'application/pdf');;
+            $this->mpdf->output('Invoice-' . $peserta_didik->nama_lengkap_anak  . '.pdf', 'I');
+        }
+    }
 }

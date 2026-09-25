@@ -81,6 +81,7 @@ class InvoicePesertaController extends BaseController
                         'nama_lengkap_anak' => $data->nama_lengkap_anak,
                         'no_whatsapp' => $data->nomor_whatsapp_orang_tua,
                         'nama_program' => $data->nama_program,
+                        'nomor_whatsapp' => $data->nomor_whatsapp_orang_tua,
                         'harga_paket' => $data->harga_paket,
                         'lain_lain' => $lain_lain,
                         'total_akhir' => intval($data->harga_paket) + intval($lain_lain)
