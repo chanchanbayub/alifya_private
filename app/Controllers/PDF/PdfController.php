@@ -355,7 +355,7 @@ class PdfController extends BaseController
             $this->mpdf->WriteHTML($html);
 
             $this->response->setHeader('Content-Type', 'application/pdf');;
-            $this->mpdf->output('Invoice-' . $peserta_didik->nama_lengkap_anak  . '.pdf', 'D');
+            $this->mpdf->output('Invoice-' . $peserta_didik->nama_lengkap_anak  . '.pdf', 'I');
         }
     }
 }
