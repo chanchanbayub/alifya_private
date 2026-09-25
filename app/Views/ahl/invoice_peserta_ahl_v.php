@@ -168,7 +168,7 @@
                                     <td align="center">Rp. ${new Intl.NumberFormat().format(e.lain_lain)}</td>
                                     <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)} </td>
                                     <td align="center"><a href="/admin/invoice_peserta_ahl/pdf/${e.id}/${response.bulan}/${response.tahun}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Download Invoice </a></td>
-                                    <td align="center"><a href="https://wa.me/${e.no_whatsapp}?text=Halo%20Mom%2C%20berikut%20invoice%20les%20Alifya%20Learning.%20Detail%20dan%20total%20invoice%20dapat%20dilihat%20pada%20link%20berikut%3A%0A%0A%F0%9F%94%97%20Link%20Pratinjau%20Invoice%3A%20<?= base_url() ?>download_invoice_peserta_ahl/pdf/${e.id}/${response.bulan}/${response.tahun}%0A%0APembayaran%20melalui%3A%0ABNI%208112111219%0Aa.n.%20PT%20Alifya%20Learning%20Indonesia%0A%0ATerima%20kasih%F0%9F%99%8F%F0%9F%8F%BB" target="_blank" class="btn btn-sm btn-outline-primary"> Kirim Invoice via WhatsAp </a></td>
+                                    <td align="center"><a href="https://wa.me/${e.no_whatsapp}?text=Halo%20Mom%2C%20berikut%20invoice%20les%20Alifya%20Learning.%20Detail%20dan%20total%20invoice%20dapat%20dilihat%20pada%20link%20berikut%3A%0A%0ALink%20Pratinjau%20Invoice%3A%20<?= base_url() ?>download_invoice_peserta_ahl/pdf/${e.id}/${response.bulan}/${response.tahun}%0A%0APembayaran%20melalui%3A%0ABNI%208112111219%0Aa.n.%20PT%20Alifya%20Learning%20Indonesia%0A%0ATerima%20kasih" target="_blank" class="btn btn-sm btn-outline-primary"> Kirim Invoice via WhatsAp </a></td>
                                 </tr>`;
                             });
 
