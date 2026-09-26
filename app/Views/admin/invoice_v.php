@@ -84,6 +84,7 @@
                                 <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain</th>
                                 <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
                                 <th scope="col" style="text-transform: capitalize; text-align:center">Link</th>
+                                <th scope="col" style="text-transform: capitalize; text-align:center">Kirim Whatsapp</th>
                             </tr>
                         </thead>
                         <tbody id="table_invoice_peserta">
@@ -165,7 +166,8 @@
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.media_belajar)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.lain_lain)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
-                                <td align="center"><a href="/admin/cetak_invoice/pdf/${e.mitra_pengajar_id}/${e.id}/${e.bulan}/${e.tahun}" data-id="${e.mitra_pengajar_id}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td >
+                                <td align="center"><a href="/admin/cetak_invoice/pdf/${e.mitra_pengajar_id}/${e.id}/${e.bulan}/${e.tahun}" data-id="${e.mitra_pengajar_id}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td>
+                                <td align="center"><a href="https://wa.me/${e.nomor_whatsapp}?text=Halo%20Mom%2C%20berikut%20invoice%20les%20Alifya%20Learning.%20Detail%20dan%20total%20invoice%20dapat%20dilihat%20pada%20link%20berikut%3A%0A%0ALink%20Pratinjau%20Invoice%3A%20<?= base_url() ?>download_invoice_peserta/pdf/${e.mitra_pengajar_id}/${e.id}/${e.bulan}/${e.tahun}%0A%0APembayaran%20melalui%3A%0ABNI%208112111219%0Aa.n.%20PT%20Alifya%20Learning%20Indonesia%0A%0ATerima%20kasih" target="_blank" class="btn btn-sm btn-outline-primary"> Kirim via WhatsApp </a></td>
                                     </tr>`;
                             });
                             $("#table_invoice_peserta").html(table_invoice_data);

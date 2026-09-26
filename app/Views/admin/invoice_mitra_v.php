@@ -87,6 +87,7 @@
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Lain-Lain</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Link</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Kirim Via Whatsapp</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table_invoice">
@@ -174,7 +175,9 @@
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.harga_mitra)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_lain_lain)}</td>
                                 <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
-                                <td align="center"><a href="/admin/invoice_mitra/pdf/${e.mitra_pengajar_id}/${e.bulan}/${e.tahun}" data-id="${e.mitra_pengajar_id}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td> </td>
+                                <td align="center"><a href="/admin/invoice_mitra/pdf/${e.mitra_pengajar_id}/${e.bulan}/${e.tahun}" data-id="${e.mitra_pengajar_id}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td> 
+                                <td align="center"><a href="https://wa.me/${e.nomor_whatsapp}?text=Halo%20Miss%2C%20slip%20gaji%20sudah%20bisa%20dilihat%20pada%20link%20berikut.%20Silakan%20dicek%20dan%20konfirmasi%20jika%20sudah%20sesuai%20ya.%0A%0ALink%20Slip%20Gaji%3A%20<?= base_url() ?>download_slip_gaji_ap/pdf/${e.mitra_pengajar_id}/${e.bulan}/${e.tahun}%0A%0ATerima%20kasih" target="_blank" class="btn btn-sm btn-outline-primary">Kirim via WhatsApp</a>
+                                    </td>
                             </tr>`;
                             });
                             $(".table_invoice").html(table_invoice_data);

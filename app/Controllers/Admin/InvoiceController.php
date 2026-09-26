@@ -231,6 +231,7 @@ class InvoiceController extends BaseController
                         $data_presensi[] = [
                             'id' => $data_peserta->id,
                             'mitra_pengajar_id' => $data_anak->mitra_pengajar_id,
+                            'nomor_whatsapp' => $data_anak->nomor_whatsapp_wali,
                             'bulan' => $data_peserta->bulan,
                             'tahun' => $inputan_tahun,
                             'nama_lengkap' => $data_anak->nama_lengkap,

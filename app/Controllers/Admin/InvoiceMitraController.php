@@ -166,6 +166,7 @@ class InvoiceMitraController extends BaseController
                             'bulan' => $inputan_bulan,
                             'tahun' => $inputan_tahun,
                             'mitra_pengajar_id' => $mitra_pengajar->mitra_pengajar_id,
+                            'nomor_whatsapp' => $mitra_pengajar->nomor_whatsapp,
                             'jumlah_anak' => $data_peserta->jumlah_anak,
                             'nama_lengkap' => $mitra_pengajar->nama_lengkap,
                             'total_presensi' => intval($total_presensi),

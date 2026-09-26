@@ -22,6 +22,9 @@ $routes->get('/materi_belajar', 'Users\MateriBelajarController::index');
 $routes->get('/getMateriBelajar', 'Users\MateriBelajarController::getMateriBelajar');
 $routes->get('/download_invoice_peserta_ahl/pdf/(:any)', 'PDF\PdfController::download_invoice_peserta_ahl/$1');
 $routes->get('/download_slip_gaji/pdf/(:any)', 'PDF\PdfController::download_slip_gaji_ahl/$1');
+// AP
+$routes->get('/download_invoice_peserta/pdf/(:any)', 'PDF\PdfController::download_invoice_peserta/$1');
+$routes->get('/download_slip_gaji_ap/pdf/(:any)', 'PDF\PdfController::download_slip_gaji_ap/$1');
 
 $routes->group('admin', static function ($routes) {
     $routes->get('dashboard', 'Admin\DashboardController::index');

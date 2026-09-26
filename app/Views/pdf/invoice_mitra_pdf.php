@@ -104,7 +104,7 @@
                 </tr>
                 <tr>
                     <th colspan="3">Total Pembayaran</th>
-                    <th>Rp. <?= number_format($total + $lain_lai) ?></th>
+                    <th>Rp. <?= number_format($total + $lain_lain) ?></th>
                 </tr>
 
                 <tr>
