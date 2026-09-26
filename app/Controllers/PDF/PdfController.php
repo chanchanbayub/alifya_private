@@ -358,4 +358,76 @@ class PdfController extends BaseController
             $this->mpdf->output('Invoice-' . $peserta_didik->nama_lengkap_anak  . '.pdf', 'I');
         }
     }
+
+    public function download_slip_gaji_ahl($mitra_pengajar_id, $bulan, $tahun)
+    {
+
+        $this->mpdf->showImageErrors = true;
+
+        $mitra_pengajar_id = $mitra_pengajar_id;
+
+        $inputan_bulan = intval($bulan);
+
+        $inputan_tahun = intval($tahun);
+
+
+        helper(['format']);
+
+        $mitra_pengajar = $this->pengajarModel->getMitraPengajarWithId($mitra_pengajar_id);
+
+        $presensi = $this->presensiAhlModel->getPresensiWithMonthInvoice($mitra_pengajar_id, $bulan, $tahun);
+
+        // dd($invoice);
+
+        if (count($presensi) == 0) {
+
+            $error = [
+                'error' => 'Data Tidak Ditemukan!'
+            ];
+
+            session()->setFlashdata($error);
+            return redirect()->back()->withInput($error);
+        } else {
+
+            $mitra_pengajar_ahl = $this->mitraPengajarAhlModel->getMitraPengajarAhlById($mitra_pengajar_id);
+
+            $upah_ahl = $this->upahMitraModel->getUpahMitraAhlWhereMitraAhl($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
+
+            $harga_mitra = $this->presensiModel->getInvoiceMitraWithMonthSum($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
+            $lain_lain = $this->klaimLainLainModel->getLainLainPerbulanDataMitraPengajar($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
+            $kelompok_id = $this->kelompokModel->where(["mitra_pengajar_id" => $mitra_pengajar_ahl->mitra_id])->first();
+
+            $presensi_data = $this->presensiModel->getInvoiceMitraData($mitra_pengajar_ahl->mitra_id, $inputan_bulan, $inputan_tahun);
+            foreach ($presensi_data as $data) {
+                $jumlah_anak = intval($data->jumlah_anak);
+            }
+            // $jumlah_anak = $this->kelompokBelajarModel->getUserWithKelompok($kelompok_id["id"]);
+
+            foreach ($upah_ahl as $upah_ahl) {
+                $data_upah_ahl = [
+                    'mitra_id' => $upah_ahl->mitra_ahl_id,
+                    'nama_lengkap' => $upah_ahl->nama_lengkap,
+                    'upah_mitra' => $upah_ahl->upah_mitra,
+                    'bonus_kehadiran' => $upah_ahl->bonus_kehadiran,
+                    'insentif' => $upah_ahl->insentif,
+                    'booster_penugasan' => $upah_ahl->booster_penugasan,
+                    'model_class' => $upah_ahl->model_class,
+                    'penalangan' => $upah_ahl->penalangan,
+                    'lain_lain' => $upah_ahl->lain_lain,
+                    'pendapatan_ap' => intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * intval($jumlah_anak),
+                    'total_akhir' => intval($upah_ahl->upah_mitra) + intval($upah_ahl->penalangan) + intval($upah_ahl->bonus_kehadiran) + intval($upah_ahl->insentif) + intval($upah_ahl->model_class) + intval($upah_ahl->booster_penugasan) + intval($upah_ahl->lain_lain) + intval($harga_mitra->total) + intval($lain_lain->total_lain_lain) + intval($lain_lain->total_booster) * intval($jumlah_anak)
+                ];
+            }
+
+            $data = [
+                'upah_ahl' =>  $data_upah_ahl,
+            ];
+
+            $html = view('pdf/invoice_mitra_ahl_pdf', $data);
+            $this->mpdf->WriteHTML($html);
+
+            $this->response->setHeader('Content-Type', 'application/pdf');;
+            $this->mpdf->output('Invoice-' . $mitra_pengajar_ahl->nama_lengkap  . '.pdf', 'I');
+        }
+    }
 }

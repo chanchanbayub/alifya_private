@@ -91,6 +91,7 @@
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Pendapatan Private</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Total Akhir</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Link</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Kirim Whatsapp</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table_invoice">
@@ -182,6 +183,8 @@
                                     <td align="center">Rp. ${new Intl.NumberFormat().format(e.pendapatan_ap)}</td>
                                     <td align="center">Rp. ${new Intl.NumberFormat().format(e.total_akhir)}</td>
                                     <td align="center"><a href="/admin/invoice_mitra_ahl/pdf/${e.mitra_id}/${response.bulan}/${response.tahun}" target="_blank" class="btn btn-sm btn-outline-primary invoice"> Cetak Invoice </a></td> </td>
+                                    <td align="center"><a href="https://wa.me/${e.nomor_whatsapp}?text=Halo%20Miss%2C%20slip%20gaji%20sudah%20bisa%20dilihat%20pada%20link%20berikut.%20Silakan%20dicek%20dan%20konfirmasi%20jika%20sudah%20sesuai%20ya.%0A%0ALink%20Slip%20Gaji%3A%20<?= base_url() ?>download_slip_gaji/${e.mitra_id}/${response.bulan}/${response.tahun}%0A%0ATerima%20kasih" target="_blank" class="btn btn-sm btn-outline-primary">Kirim via WhatsApp</a>
+                                    </td>
                                 </tr>`;
                             });
                             $(".table_invoice").html(table_invoice_data);

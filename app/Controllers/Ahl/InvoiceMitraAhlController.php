@@ -109,6 +109,7 @@ class InvoiceMitraAhlController extends BaseController
                         $data_upah_ahl[] = [
                             'mitra_id' => $upah_ahl->mitra_ahl_id,
                             'nama_lengkap' => $upah_ahl->nama_lengkap,
+                            'nomor_whatsapp' => $upah_ahl->nomor_whatsapp,
                             'upah_mitra' => $upah_ahl->upah_mitra,
                             'bonus_kehadiran' => $upah_ahl->bonus_kehadiran,
                             'insentif' => $upah_ahl->insentif,

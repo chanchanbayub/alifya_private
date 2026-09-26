@@ -20,7 +20,7 @@ class MitraPengajarAhlModel extends Model
     public function getMitraPengajarAhl()
     {
         return $this->table($this->table)
-            ->select("mitra_pengajar_ahl_table.id, mitra_pengajar_ahl_table.mitra_id, mitra_pengajar_ahl_table.jenis_layanan_id, data_pengajar_table.nama_lengkap, layanan_ahl_table.nama_layanan")
+            ->select("mitra_pengajar_ahl_table.id, mitra_pengajar_ahl_table.mitra_id, mitra_pengajar_ahl_table.jenis_layanan_id, data_pengajar_table.nama_lengkap,data_pengajar_table.nomor_whatsapp, layanan_ahl_table.nama_layanan")
             ->join('data_pengajar_table', 'data_pengajar_table.id = mitra_pengajar_ahl_table.mitra_id')
             ->join('layanan_ahl_table', 'layanan_ahl_table.id = mitra_pengajar_ahl_table.jenis_layanan_id')
             ->orderBy('data_pengajar_table.nama_lengkap asc')
@@ -30,7 +30,7 @@ class MitraPengajarAhlModel extends Model
     public function getMitraPengajarAhlById($mitra_id)
     {
         return $this->table($this->table)
-            ->select("mitra_pengajar_ahl_table.id, mitra_pengajar_ahl_table.mitra_id, mitra_pengajar_ahl_table.jenis_layanan_id, data_pengajar_table.nama_lengkap, layanan_ahl_table.nama_layanan")
+            ->select("mitra_pengajar_ahl_table.id, mitra_pengajar_ahl_table.mitra_id, mitra_pengajar_ahl_table.jenis_layanan_id, data_pengajar_table.nama_lengkap, data_pengajar_table.nomor_whatsapp, layanan_ahl_table.nama_layanan")
             ->join('data_pengajar_table', 'data_pengajar_table.id = mitra_pengajar_ahl_table.mitra_id')
             ->join('layanan_ahl_table', 'layanan_ahl_table.id = mitra_pengajar_ahl_table.jenis_layanan_id')
             ->where(["mitra_pengajar_ahl_table.mitra_id" => $mitra_id])
