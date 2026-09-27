@@ -41,9 +41,11 @@ class KuisionerProgresAnakController extends BaseController
         $session_mitra = session('mitra_pengajar_id');
 
         $pembimbing = $this->pembimbingModel->getPembimbingWhereMitraId($session_mitra);
+        // dd($pembimbing);
         $mitra_pengajar = $this->pengajarModel->getDataPengajarStatusAktif();
         $progres_anak = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(5);
-        $kuisioner_progres = $this->kuisionerProgresAnakModel->getKuisioner();
+        $kuisioner_progres = $this->kuisionerProgresAnakModel->getKuisionerWherePembimbing($pembimbing->id);
+        // dd($kuisioner_progres);
         // dd($kuisioner_progres);
 
         $data_kuisioner = [];
