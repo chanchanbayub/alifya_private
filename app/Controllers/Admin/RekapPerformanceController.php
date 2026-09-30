@@ -130,6 +130,10 @@ class RekapPerformanceController extends BaseController
                     $progres_anak = intval($rata_rata_progres->total_bobot) / intval($jumlah_data_progress);
                     $bobot_progres_anak = $this->katagoriAprModel->where(["id" => 5])->first();
 
+                    if ($prores_anak == null) {
+                        $progres_anak = 0;
+                    }
+
                     $nilai_progress_anak = intval($bobot_progres_anak["bobot_nilai_apr"]) * intval($progres_anak) / 100;
 
                     $final_score = intval($kuisioner_jumlah_murid) + intval($kuisioner_administrasi) + intval($kuisioner_kreativitas) + intval($kehadiran_jumlah) + intval($nilai_progress_anak);
