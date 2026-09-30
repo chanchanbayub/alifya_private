@@ -92,19 +92,20 @@ class RekapPerformanceController extends BaseController
 
                 $kuisioner = $this->kuisionerModel->getRekapKuisionerPerbulan($inputan_bulan, $inputan_tahun);
 
+
                 $data_kuisioner = [];
 
                 foreach ($kuisioner as $kuisioner) {
 
-                    $pembimbing_data = $this->pembimbingModel->getPembimbingWherePembimbingId($kuisioner->pembimbing_id);
                     // Kreativitas
-                    $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitas($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+                    $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitasNonPembimbing($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+
 
                     $bobot_kategori = $this->katagoriAprModel->where(["id" => $kuisioner->kategori_apr_id])->first();
                     $bobot_kategori_kreativitas = $this->katagoriAprModel->where(["id" => $kuisioner_kreativitas->kategori_apr_id])->first();
 
                     $kuisioner_administrasi = intval($bobot_kategori["bobot_nilai_apr"]) * intval($kuisioner->administrasi) / 100;
-                    $kuisioner_kreativitas = intval($bobot_kategori_kreativitas["bobot_nilai_apr"]) * intval($kuisioner_kreativitas->kreativitas) / 100;
+                    $nilai_kuisioner_kreativitas = intval($bobot_kategori_kreativitas["bobot_nilai_apr"]) * intval($kuisioner_kreativitas->kreativitas) / 100;
 
                     $bobot_jumlah_anak =  $this->katagoriAprModel->where(["id" => 1])->first();
 
@@ -123,27 +124,25 @@ class RekapPerformanceController extends BaseController
                     }
 
                     // Progress Siswa
-                    $rata_rata_progres = $this->kuisionerProgressAnakModel->getRataRata($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
-                    if ($rata_rata_progres == null) {
-                       $rata_rata_progres->total_bobot = 0;
-                    }
+                    $rata_rata_progres = $this->kuisionerProgressAnakModel->getRataRataData($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+                    // dd($rata_rata_progres->nama_lengkap);
 
-                    $jumlah_data_progress = count($this->kuisionerProgressAnakModel->getJumlahData($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun));
 
-                    if ($jumlah_data_progress == 0) {
-                        $jumlah_data_progress = 0;
-                    }
+                    // if ($rata_rata_progres->total_bobot == null) {
+                    //     $rata_rata_progres->total_bobot = 0;
+                    // }
+
+                    $jumlah_data_progress = count($this->kuisionerProgressAnakModel->getJumlah($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun));
+
+                    // dd($jumlah_data_progress);
 
                     $progres_anak = intval($rata_rata_progres->total_bobot) / intval($jumlah_data_progress);
                     $bobot_progres_anak = $this->katagoriAprModel->where(["id" => 5])->first();
 
-                    if ($prores_anak == null) {
-                        $progres_anak = 0;
-                    }
 
-                    $nilai_progress_anak = intval($bobot_progres_anak["bobot_nilai_apr"]) * intval($progres_anak) / 100;
+                    $nilai_progress_anak = ceil(intval($bobot_progres_anak["bobot_nilai_apr"]) * intval($progres_anak) / 100);
 
-                    $final_score = intval($kuisioner_jumlah_murid) + intval($kuisioner_administrasi) + intval($kuisioner_kreativitas) + intval($kehadiran_jumlah) + intval($nilai_progress_anak);
+                    $final_score = intval($kuisioner_jumlah_murid) + intval($kuisioner_administrasi) + intval($nilai_kuisioner_kreativitas) + intval($kehadiran_jumlah) + intval($nilai_progress_anak);
 
                     $predikat = $this->standarPredikatAprModel->getStandarPredikat();
                     // dd($final_score);
@@ -156,12 +155,12 @@ class RekapPerformanceController extends BaseController
 
                     $data_kuisioner[] = [
                         'id' => $kuisioner->id,
-                        'pembimbing_data' => $pembimbing_data->nama_lengkap,
+                        // 'pembimbing_data' => $pembimbing_data->nama_lengkap,
                         'nama_lengkap' => $kuisioner->nama_lengkap,
                         'bulan' => bulan($kuisioner->bulan),
                         'tahun' => $kuisioner->tahun,
                         'administrasi' => $kuisioner_administrasi,
-                        'kreativitas' => $kuisioner_kreativitas,
+                        'kreativitas' => $nilai_kuisioner_kreativitas,
                         'jumlah_murid_aktif' => $kuisioner_jumlah_murid,
                         'kehadiran' => $kehadiran_jumlah,
                         'progres_anak' => $nilai_progress_anak,
@@ -174,7 +173,7 @@ class RekapPerformanceController extends BaseController
                 // Ambil kolom 'umur' dari array utama
                 $final_score = array_column($data_kuisioner, 'final_score');
 
-                // Urutkan array berdasarkan kolom umur
+                // // Urutkan array berdasarkan kolom umur
                 array_multisort($final_score, SORT_DESC, $data_kuisioner);
 
                 // print_r($data);
@@ -182,7 +181,11 @@ class RekapPerformanceController extends BaseController
                 $alert = [
                     'inputan_bulan' => $inputan_bulan,
                     'inputan_tahun' => $inputan_tahun,
-                    'data_kuisioner' => $data_kuisioner
+                    'data_kuisioner' => $data_kuisioner,
+                    'kuisioner' => $kuisioner,
+                    'kreativitas' => $kuisioner_kreativitas,
+                    'nilai_administrasi' => $kuisioner_administrasi,
+                    // 'perhitungan_murid' => $perhitungan_murid
                 ];
             }
         }
@@ -213,6 +216,7 @@ class RekapPerformanceController extends BaseController
 
         // Kreativitas
         $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitasData($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+        // dd($kuisioner_kreativitas);
 
 
         // $bobot_kategori = $this->katagoriAprModel->where(["id" => $kuisioner->kategori_apr_id])->first();
@@ -274,10 +278,9 @@ class RekapPerformanceController extends BaseController
             'rata_rata' => $rata_rata_progres,
 
 
-
             'kuisioner' => $kuisioner,
             'kuisioner_kreativitas' => $kuisioner_kreativitas,
-            'nilai_progres_anak' => $nilai_progress_anak,
+            'nilai_progres_anak' => ceil($nilai_progress_anak),
             'progres_data' => $progres_anak
 
 
