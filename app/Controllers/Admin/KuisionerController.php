@@ -50,7 +50,7 @@ class KuisionerController extends BaseController
         $administrasi = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(2);
         $perhitungan_murid = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(1);
         $perhitungan_kehadiran = $this->skalaNilaiAprModel->getSkalaNilaiWhereKategori(4);
-        // dd($perhitungan_murid);
+        // dd($perhitungan_kehadiran);
         $kuisioner = $this->kuisionerModel->getKuisioner();
         // dd($kuisioner);
 
@@ -58,9 +58,17 @@ class KuisionerController extends BaseController
 
         foreach ($kuisioner as $kuisioner) {
 
-            // dd($kuisioner->pembimbing_id);
+            // $jumlah_kehadiran = $this->presensiModel->getPresensiPerMitra($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+
+            // $jumlah_paket_belajar = $this->kelompokBelajarModel->getPesertaDidikWhereMitraPengajarSumPaketBelajar($kuisioner->mitra_pengajar_id);
+
+            // if (count($jumlah_kehadiran) > 0) {
+            //     $presensi_ideal = number_format(intval(count($jumlah_kehadiran)) / intval($jumlah_paket_belajar->total_paket_belajar) * 100);
+            // } else {
+            //     $presensi_ideal = 0;
+            // }
+
             $pembimbing_data = $this->pembimbingModel->getPembimbingWherePembimbingId($kuisioner->pembimbing_id);
-            // dd($pembimbing_data);
             // Kreativitas
             $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitas($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
 

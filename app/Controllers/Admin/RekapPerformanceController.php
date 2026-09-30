@@ -117,6 +117,16 @@ class RekapPerformanceController extends BaseController
 
                     $bobot_kehadiran =  $this->katagoriAprModel->where(["id" => 4])->first();
 
+                    // $jumlah_kehadiran = $this->presensiModel->getPresensiPerMitra($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+
+                    // $jumlah_paket_belajar = $this->kelompokBelajarModel->getPesertaDidikWhereMitraPengajarSumPaketBelajar($kuisioner->mitra_pengajar_id);
+
+                    // if (count($jumlah_kehadiran) > 0) {
+                    //     $presensi_ideal = number_format(intval(count($jumlah_kehadiran)) / intval($jumlah_paket_belajar->total_paket_belajar) * 100);
+                    // } else {
+                    //     $presensi_ideal = 0;
+                    // }
+
                     foreach ($perhitungan_kehadiran as $jumlah_perhitungan) {
                         if ($kuisioner->kehadiran >= $jumlah_perhitungan->nilai_awal && $kuisioner->kehadiran <= $jumlah_perhitungan->nilai_akhir) {
                             $kehadiran_jumlah = intval($bobot_kehadiran["bobot_nilai_apr"]) * intval($jumlah_perhitungan->bobot) / 100;
@@ -225,8 +235,6 @@ class RekapPerformanceController extends BaseController
         // $kuisioner_administrasi = intval($bobot_kategori["bobot_nilai_apr"]) * intval($kuisioner->administrasi) / 100;
         // $kuisioner_kreativitas = intval($bobot_kategori_kreativitas["bobot_nilai_apr"]) * intval($kuisioner_kreativitas->kreativitas) / 100;
 
-
-
         // $bobot_kehadiran =  $this->katagoriAprModel->where(["id" => 4])->first();
 
         foreach ($perhitungan_kehadiran as $jumlah_perhitungan) {
@@ -237,9 +245,9 @@ class RekapPerformanceController extends BaseController
         }
 
         // Progress Siswa
-        $rata_rata_progres = $this->kuisionerProgressAnakModel->getRataRata($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+        $rata_rata_progres = $this->kuisionerProgressAnakModel->getRataRataData($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
 
-        $jumlah_data_progress = count($this->kuisionerProgressAnakModel->getJumlahData($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun));
+        $jumlah_data_progress = count($this->kuisionerProgressAnakModel->getJumlah($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun));
 
         $progres_anak = intval($rata_rata_progres->total_bobot) / intval($jumlah_data_progress);
         $bobot_progres_anak = $this->katagoriAprModel->where(["id" => 5])->first();
@@ -270,7 +278,7 @@ class RekapPerformanceController extends BaseController
             'skala_nilai_kehadiran_bobot' => $bobot_kehadiran,
 
             // Progres Anak
-            'progres_anak' => $progres_anak,
+            'progres_anak' => ceil($progres_anak),
             'skala_nilai_progress' => "-",
             'skala_nilai_progress_bobot' => '-',
 
