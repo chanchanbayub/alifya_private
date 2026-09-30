@@ -125,7 +125,7 @@ class RekapPerformanceController extends BaseController
                     // Progress Siswa
                     $rata_rata_progres = $this->kuisionerProgressAnakModel->getRataRata($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
                     if ($rata_rata_progres == null) {
-                        $rata_rata_progres = 0;
+                       $rata_rata_progres->total_bobot = 0;
                     }
 
                     $jumlah_data_progress = count($this->kuisionerProgressAnakModel->getJumlahData($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun));
