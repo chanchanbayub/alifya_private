@@ -103,8 +103,14 @@
                     <tbody id="rincian_table">
 
                     </tbody>
+                    <tbody id="rincian_progress">
+
+                    </tbody>
+
                 </table>
             </div>
+
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
@@ -203,8 +209,6 @@
                 tahun: tahun,
             },
             success: function(response) {
-                console.log(response);
-
                 let no = 1;
                 let rincian_table = ``;
                 rincian_table +=
@@ -238,14 +242,24 @@
                        <td align="left" style="text-transform:capitalize">${response.skala_nilai_kehadiran_bobot}% </td>
                     </tr>
                     <tr>
-                        <td align="left" style="text-transform:capitalize">Progress Anak</td>
-                        <td align="left" style="text-transform:capitalize">${response.progres_anak}</td>
-                        <td align="left" style="text-transform:capitalize">Capaian Kurikulum</td>
-                        <td align="left" style="text-transform:capitalize">Skala ${response.skala_nilai_progress} </td>
-                       <td align="left" style="text-transform:capitalize">${response.skala_nilai_progress_bobot}% </td>
+                        <td colspan="5" align="left" style="text-transform:capitalize">Progress Anak</td>
                     </tr>`
-
                 $("#rincian_table").html(rincian_table);
+
+                let number = 1;
+                let rincian_progres = ``;
+                if (response.rincian_progres_anak.length >= 1) {
+                    response.rincian_progres_anak.forEach(function(e) {
+                        rincian_progres += `<tr>
+                                    <td align="center" style="text-transform:capitalize">${number++}</td>
+                                    <td align="left"   style="text-transform:capitalize">${e.nama_lengkap_anak}</td>
+                                    <td align="center" style="text-transform:capitalize">${e.keterangan}</td>
+                                    <td align="center" style="text-transform:capitalize">Skala ${e.nilai}</td>
+                                    <td align="center" style="text-transform:capitalize">${e.bobot}%</td>
+                                </tr>`;
+                    });
+                    $("#rincian_progress").html(rincian_progres);
+                }
             }
         });
     });

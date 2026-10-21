@@ -226,16 +226,6 @@ class RekapPerformanceController extends BaseController
 
         // Kreativitas
         $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitasData($kuisioner->pembimbing_id, $kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
-        // dd($kuisioner_kreativitas);
-
-
-        // $bobot_kategori = $this->katagoriAprModel->where(["id" => $kuisioner->kategori_apr_id])->first();
-        // $bobot_kategori_kreativitas = $this->katagoriAprModel->where(["id" => $kuisioner_kreativitas->kategori_apr_id])->first();
-
-        // $kuisioner_administrasi = intval($bobot_kategori["bobot_nilai_apr"]) * intval($kuisioner->administrasi) / 100;
-        // $kuisioner_kreativitas = intval($bobot_kategori_kreativitas["bobot_nilai_apr"]) * intval($kuisioner_kreativitas->kreativitas) / 100;
-
-        // $bobot_kehadiran =  $this->katagoriAprModel->where(["id" => 4])->first();
 
         foreach ($perhitungan_kehadiran as $jumlah_perhitungan) {
             if ($kuisioner->kehadiran >= $jumlah_perhitungan->nilai_awal && $kuisioner->kehadiran <= $jumlah_perhitungan->nilai_akhir) {
@@ -250,9 +240,14 @@ class RekapPerformanceController extends BaseController
         $jumlah_data_progress = count($this->kuisionerProgressAnakModel->getJumlah($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun));
 
         $progres_anak = intval($rata_rata_progres->total_bobot) / intval($jumlah_data_progress);
+
         $bobot_progres_anak = $this->katagoriAprModel->where(["id" => 5])->first();
 
         $nilai_progress_anak = intval($bobot_progres_anak["bobot_nilai_apr"]) * intval($progres_anak) / 100;
+
+        $rincian_progres_anak = $this->kuisionerProgressAnakModel->getJumlah($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
+
+
 
         $alert = [
 
@@ -289,13 +284,8 @@ class RekapPerformanceController extends BaseController
             'kuisioner' => $kuisioner,
             'kuisioner_kreativitas' => $kuisioner_kreativitas,
             'nilai_progres_anak' => ceil($nilai_progress_anak),
-            'progres_data' => $progres_anak
-
-
-
-
-
-
+            'progres_data' => $progres_anak,
+            'rincian_progres_anak' => $rincian_progres_anak
 
         ];
 
