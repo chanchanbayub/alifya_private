@@ -99,6 +99,16 @@
                         <div class="invalid-feedback error-ketersediaan-edit">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="info_modul_edit" class="col-form-label">Les membaca menggunakan modul "Buku 60 Jam dan Buku MMAM" & Les mengaji menggunakan modul "Demaji, My Tilawah, dan Ummi"</label>
+                        <select name="info_modul" id="info_modul_edit" class="form-select" require>
+                            <option value="">--Silahkan Pilih--</option>
+                            <option value="saya bersedia mengikuti modul yang ditetapkan">saya bersedia mengikuti modul yang ditetapkan</option>
+
+                        </select>
+                        <div class="invalid-feedback error-info-modul-edit">
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="nama_ayah_edit" class="col-form-label">Nama Ayah:</label>
@@ -429,6 +439,7 @@
                 $("#bukti_tf_lama").val(response.murid.bukti_tf);
 
                 $("#ketersediaan_edit").val(response.murid.ketersediaan).trigger('change');
+                $("#info_modul_edit").val(response.murid.info_modul).trigger('change');
 
                 $("#nama_ayah_edit").val(response.murid.nama_ayah);
                 $("#pekerjaan_ayah_edit").val(response.murid.pekerjaan_ayah);
@@ -524,6 +535,7 @@
         let larangan = $("#larangan_edit").val();
         let info_les = $("#info_les_edit").val();
         let ketersediaan = $("#ketersediaan_edit").val();
+        let info_modul = $("#info_modul_edit").val();
 
 
         let data_1 = $("#data_1_edit").val();
@@ -569,6 +581,7 @@
         formData.append('larangan', larangan);
         formData.append('info_les', info_les);
         formData.append('ketersediaan', ketersediaan);
+        formData.append('info_modul', info_modul);
 
         formData.append('data_1', data_1);
         formData.append('data_2', data_2);
@@ -597,6 +610,13 @@
                     } else {
                         $("#ketersediaan_edit").removeClass('is-invalid');
                         $(".error-ketersediaan-edit").html('');
+                    }
+                    if (response.error.info_modul) {
+                        $("#info_modul_edit").addClass('is-invalid');
+                        $(".error-info-modul-edit").html(response.error.info_modul);
+                    } else {
+                        $("#info_modul_edit").removeClass('is-invalid');
+                        $(".error-info-modul-edit").html('');
                     }
 
                     if (response.error.nama_ayah) {

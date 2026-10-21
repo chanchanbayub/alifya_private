@@ -50,6 +50,13 @@
                                 <h5 class="card-title">Profil Lengkap</h5>
 
                                 <div class="row">
+                                    <div class="col-lg-6 col-md-4 label ">Les membaca menggunakan modul "Buku 60 Jam dan Buku MMAM" &
+                                        Les mengaji menggunakan modul "Demaji, My Tilawah, dan Ummi"
+                                    </div>
+                                    <div class="col-lg-6 col-md-8"> <?= $profil->info_modul ?></div>
+                                </div>
+
+                                <div class="row">
                                     <div class="col-lg-6 col-md-4 label">Nama Lengkap Anak</div>
                                     <div class="col-lg-6 col-md-8"><?= $profil->nama_lengkap_anak ?></div>
                                 </div>
