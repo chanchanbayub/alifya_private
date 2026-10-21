@@ -133,6 +133,17 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="modul">Les membaca menggunakan modul "Buku 60 Jam dan Buku MMAM" & Les mengaji menggunakan modul "Demaji, My Tilawah, dan Ummi" </label>
+                        <select name="info_modul" id="info_modul" class="form-control">
+                            <option value="">--Silahkan Pilih--</option>
+                            <option value="saya bersedia mengikuti modul yang ditetapkan">Saya bersedia mengikuti modul yang ditetapkan</option>
+
+                        </select>
+                        <div class="invalid-feedback error-info-modul">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="nama_ayah" class="col-form-label">Nama Ayah : </label>
                         <input type="text" name="nama_ayah" id="nama_ayah" class="form-control">
                         <div class="invalid-feedback error-nama-ayah">
@@ -479,6 +490,7 @@
             let bukti_tf_lama = $("#bukti_tf_lama").val();
 
             let ketersediaan = $("#ketersediaan").val();
+            let info_modul = $("#info_modul").val();
             // Data Orang Tua
             let nama_ayah = $("#nama_ayah").val();
             let pekerjaan_ayah = $("#pekerjaan_ayah").val();
@@ -519,6 +531,7 @@
             formData.append('bukti_tf_lama', bukti_tf_lama);
 
             formData.append('ketersediaan', ketersediaan);
+            formData.append('info_modul', info_modul);
 
             formData.append('nama_ayah', nama_ayah);
             formData.append('pekerjaan_ayah', pekerjaan_ayah);
@@ -572,6 +585,13 @@
                         } else {
                             $("#ketersediaan").removeClass('is-invalid');
                             $(".error-ketersediaan").html('');
+                        }
+                        if (response.error.info_modul) {
+                            $("#info_modul").addClass('is-invalid');
+                            $(".error-info-modul").html(response.error.info_modul);
+                        } else {
+                            $("#info_modul").removeClass('is-invalid');
+                            $(".error-info-modul").html('');
                         }
                         if (response.error.nama_ayah) {
                             $("#nama_ayah").addClass('is-invalid');
@@ -782,6 +802,7 @@
                 $("#foto_anak_lama").val(response.peserta_ahl.foto_anak);
                 $("#bukti_tf_lama").val(response.peserta_ahl.bukti_tf);
                 $("#ketersediaan").val(response.peserta_ahl.ketersediaan).trigger('change');
+                $("#info_modul").val(response.peserta_ahl.info_modul).trigger('change');
                 $("#nama_ayah").val(response.peserta_ahl.nama_ayah);
                 $("#pekerjaan_ayah").val(response.peserta_ahl.pekerjaan_ayah);
                 $("#nama_ibu").val(response.peserta_ahl.nama_ibu);

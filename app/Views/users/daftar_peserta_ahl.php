@@ -14,7 +14,7 @@
             <div class="col-lg-12 mb-5">
                 <div class="card">
                     <div class="card-header">
-                        <h5>PILIHAN PROGRAM DAN AJUAN JADWAL
+                        <h5>KOMITMEN AWAL ORANG TUA
                         </h5>
                     </div>
                     <div class="card-body">
@@ -38,6 +38,24 @@
 
                             <p class="help-block text-danger error-ketersediaan"></p>
                         </div>
+
+                        <div class="control-group">
+                            <label for="modul">Keseragaman Modul (<a href="/assets/img/info_modul.png" target="_blank">Lihat Modul</a>) :</label>
+                            <br>
+                            <img src="/assets/img/info_modul.png" alt="modul" width="350">
+                        </div>
+                        <br>
+
+                        <div class="control-group">
+                            <label for="modul">Les membaca menggunakan modul <b>"Buku 60 Jam dan Buku MMAM"</b> <br> Les mengaji menggunakan modul "Demaji, My Tilawah, dan Ummi" </label>
+                            <select name="info_modul" id="info_modul" class="form-control">
+                                <option value="">--Silahkan Pilih--</option>
+                                <option value="Saya bersedia mengikuti modul yang ditetapkan">Saya bersedia mengikuti modul yang ditetapkan</option>
+
+                            </select>
+                            <p class="help-block text-danger error-info-modul"></p>
+                        </div>
+                        <br>
 
                         <div class="control-group">
                             <div class="card">
@@ -374,6 +392,7 @@
         e.preventDefault();
 
         let ketersediaan = $("#ketersediaan").val();
+        let info_modul = $("#info_modul").val();
 
         // Data Orang Tua
         let nama_ayah = $("#nama_ayah").val();
@@ -408,6 +427,7 @@
         let formData = new FormData(this);
 
         formData.append('ketersediaan', ketersediaan);
+        formData.append('info_modul', info_modul);
         formData.append('nama_ayah', nama_ayah);
         formData.append('pekerjaan_ayah', pekerjaan_ayah);
         formData.append('nama_ibu', nama_ibu);
@@ -458,6 +478,14 @@
                     } else {
                         $("#ketersediaan").removeClass('is-invalid');
                         $(".error-ketersediaan").html('');
+                    }
+                    if (response.error.info_modul) {
+                        $("#info_modul").addClass('is-invalid');
+                        $(".error-info-modul").html(response.error.info_modul);
+                        $("#error-modal").modal('show');
+                    } else {
+                        $("#info_modul").removeClass('is-invalid');
+                        $(".error-info-modul").html('');
                     }
                     if (response.error.nama_ayah) {
                         $("#nama_ayah").addClass('is-invalid');

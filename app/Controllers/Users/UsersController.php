@@ -389,6 +389,12 @@ class UsersController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+                'info_modul' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
                 'nama_panggilan_anak' => [
                     'rules' => 'required',
                     'errors' => [
@@ -609,6 +615,7 @@ class UsersController extends BaseController
                         'pekerjaan_ibu' => $this->validation->getError('pekerjaan_ibu'),
                         'agama' => $this->validation->getError('agama'),
                         'ketersediaan' => $this->validation->getError('ketersediaan'),
+                        'info_modul' => $this->validation->getError('info_modul'),
                         'nama_panggilan_anak' => $this->validation->getError('nama_panggilan_anak'),
                         'jenis_kelamin' => $this->validation->getError('jenis_kelamin'),
                         'pendidikan_id' => $this->validation->getError('pendidikan_id'),
@@ -653,6 +660,7 @@ class UsersController extends BaseController
 
                 $paket_belajar_id = $this->request->getPost('paket_belajar_id');
                 $ketersediaan = $this->request->getPost('ketersediaan');
+                $info_modul = $this->request->getPost('info_modul');
                 $nama_panggilan_anak = $this->request->getPost('nama_panggilan_anak');
                 $jenis_kelamin = $this->request->getPost('jenis_kelamin');
                 $pendidikan_id = $this->request->getPost('pendidikan_id');
@@ -697,6 +705,7 @@ class UsersController extends BaseController
                     'foto_anak' => strtolower($nama_foto),
                     'bukti_tf' => strtolower($nama_tf),
                     'ketersediaan' => strtolower($ketersediaan),
+                    'info_modul' => strtolower($info_modul),
                     'nama_panggilan_anak' => strtolower($nama_panggilan_anak),
                     'jenis_kelamin' => strtolower($jenis_kelamin),
                     'pendidikan_id' => strtolower($pendidikan_id),
@@ -743,6 +752,12 @@ class UsersController extends BaseController
 
             if (!$this->validate([
                 'ketersediaan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pilih Salah Satu'
+                    ]
+                ],
+                'info_modul' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'Pilih Salah Satu'
@@ -913,6 +928,7 @@ class UsersController extends BaseController
                 $alert = [
                     'error' => [
                         'ketersediaan' => $this->validation->getError('ketersediaan'),
+                        'info_modul' => $this->validation->getError('info_modul'),
                         // data orang_tua
                         'nama_ayah' => $this->validation->getError('nama_ayah'),
                         'pekerjaan_ayah' => $this->validation->getError('pekerjaan_ayah'),
@@ -949,6 +965,7 @@ class UsersController extends BaseController
             } else {
 
                 $ketersediaan = $this->request->getPost('ketersediaan');
+                $info_modul = $this->request->getPost('info_modul');
 
                 // data orang tua
                 $nama_ibu = $this->request->getPost('nama_ibu');
@@ -987,6 +1004,7 @@ class UsersController extends BaseController
 
                 $this->pesertaDidikAhlModel->save([
                     'ketersediaan' => strtolower($ketersediaan),
+                    'info_modul' => strtolower($info_modul),
                     'nama_ayah' => strtolower($nama_ayah),
                     'pekerjaan_ayah' => strtolower($pekerjaan_ayah),
                     'nama_ibu' => strtolower($nama_ibu),

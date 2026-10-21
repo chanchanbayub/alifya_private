@@ -41,6 +41,23 @@
                         </div>
 
                         <div class="control-group">
+                            <label for="modul">Keseragaman Modul (<a href="/assets/img/info_modul.png" target="_blank">Lihat Modul</a>) :</label>
+                            <br>
+                            <img src="/assets/img/info_modul.png" alt="modul" width="350">
+                        </div>
+                        <br>
+
+                        <div class="control-group">
+                            <label for="modul">Les membaca menggunakan modul <b>"Buku 60 Jam dan Buku MMAM"</b> <br> Les mengaji menggunakan modul "Demaji, My Tilawah, dan Ummi" </label>
+                            <select name="info_modul" id="info_modul" class="form-control">
+                                <option value="">--Silahkan Pilih--</option>
+                                <option value="Saya bersedia mengikuti modul yang ditetapkan">Saya bersedia mengikuti modul yang ditetapkan</option>
+
+                            </select>
+                            <p class="help-block text-danger error-modul"></p>
+                        </div>
+
+                        <div class="control-group">
                             <div class="card">
                                 <div class="card-header">
                                     <h5>DATA ORANG TUA / WALI

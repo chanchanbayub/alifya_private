@@ -51,6 +51,13 @@
                             </div>
                             <div class="col-lg-6 col-md-8"><?= $profil->ketersediaan ?></div>
                         </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-4 label">Les membaca menggunakan modul "Buku 60 Jam dan Buku MMAM" <br>
+                                Les mengaji menggunakan modul "Demaji, My Tilawah, dan Ummi"
+                            </div>
+                            <div class="col-lg-6 col-md-8"><?= $profil->info_modul ?></div>
+                        </div>
 
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
                             <h5 class="card-title">Profil Orang Tua</h5>

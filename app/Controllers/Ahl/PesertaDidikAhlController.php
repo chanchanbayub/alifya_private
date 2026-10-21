@@ -449,6 +449,12 @@ class PesertaDidikAhlController extends BaseController
                         'required' => 'Pilih Salah Satu'
                     ]
                 ],
+                'info_modul' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pilih Salah Satu'
+                    ]
+                ],
                 // data orang tua
                 'nama_ayah' => [
                     'rules' => 'required',
@@ -596,6 +602,7 @@ class PesertaDidikAhlController extends BaseController
                 $alert = [
                     'error' => [
                         'ketersediaan' => $this->validation->getError('ketersediaan'),
+                        'info_modul' => $this->validation->getError('info_modul'),
                         // data orang_tua
                         'nama_ayah' => $this->validation->getError('nama_ayah'),
                         'pekerjaan_ayah' => $this->validation->getError('pekerjaan_ayah'),
@@ -634,6 +641,7 @@ class PesertaDidikAhlController extends BaseController
                 $bukti_tf_lama = $this->request->getVar('bukti_tf_lama');
 
                 $ketersediaan = $this->request->getPost('ketersediaan');
+                $info_modul = $this->request->getPost('info_modul');
 
                 // data orang tua
                 $nama_ibu = $this->request->getPost('nama_ibu');
@@ -693,6 +701,7 @@ class PesertaDidikAhlController extends BaseController
 
                 $this->pesertaDidikAhlModel->update($id, [
                     'ketersediaan' => strtolower($ketersediaan),
+                    'info_modul' => strtolower($info_modul),
                     'nama_ayah' => strtolower($nama_ayah),
                     'pekerjaan_ayah' => strtolower($pekerjaan_ayah),
                     'nama_ibu' => strtolower($nama_ibu),
