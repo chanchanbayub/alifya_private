@@ -403,6 +403,12 @@ class MuridController extends BaseController
                         'required' => 'Tidak Boleh Kosong !'
                     ]
                 ],
+                'info_modul' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tidak Boleh Kosong !'
+                    ]
+                ],
                 'nama_panggilan_anak' => [
                     'rules' => 'required',
                     'errors' => [
@@ -598,6 +604,7 @@ class MuridController extends BaseController
                         'pekerjaan_ibu' => $this->validation->getError('pekerjaan_ibu'),
                         'agama' => $this->validation->getError('agama'),
                         'ketersediaan' => $this->validation->getError('ketersediaan'),
+                        'info_modul' => $this->validation->getError('info_modul'),
                         'nama_panggilan_anak' => $this->validation->getError('nama_panggilan_anak'),
                         'jenis_kelamin' => $this->validation->getError('jenis_kelamin'),
                         'pendidikan_id' => $this->validation->getError('pendidikan_id'),
@@ -643,6 +650,7 @@ class MuridController extends BaseController
 
                 $paket_belajar_id = $this->request->getPost('paket_belajar_id');
                 $ketersediaan = $this->request->getPost('ketersediaan');
+                $info_modul = $this->request->getPost('info_modul');
                 $nama_panggilan_anak = $this->request->getPost('nama_panggilan_anak');
                 $jenis_kelamin = $this->request->getPost('jenis_kelamin');
                 $pendidikan_id = $this->request->getPost('pendidikan_id');
@@ -714,6 +722,7 @@ class MuridController extends BaseController
                     'foto_anak' => strtolower($nama_foto),
                     'bukti_tf' => $nama_tf,
                     'ketersediaan' => strtolower($ketersediaan),
+                    'info_modul' => strtolower($info_modul),
                     'nama_panggilan_anak' => strtolower($nama_panggilan_anak),
                     'jenis_kelamin' => strtolower($jenis_kelamin),
                     'pendidikan_id' => strtolower($pendidikan_id),

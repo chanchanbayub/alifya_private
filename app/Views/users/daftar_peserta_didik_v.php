@@ -54,7 +54,7 @@
                                 <option value="Saya bersedia mengikuti modul yang ditetapkan">Saya bersedia mengikuti modul yang ditetapkan</option>
 
                             </select>
-                            <p class="help-block text-danger error-modul"></p>
+                            <p class="help-block text-danger error-info-modul"></p>
                         </div>
 
                         <div class="control-group">
@@ -462,6 +462,7 @@
             let info_les = $("#info_les").val();
 
             let ketersediaan = $("#ketersediaan").val();
+            let info_modul = $("#info_modul").val();
             let nama_panggilan_anak = $("#nama_panggilan_anak").val();
             let jenis_kelamin = $("#jenis_kelamin").val();
             let pendidikan_id = $("#pendidikan_id").val();
@@ -501,6 +502,7 @@
             formData.append('info_les', info_les);
 
             formData.append('ketersediaan', ketersediaan);
+            formData.append('info_modul', info_modul);
             formData.append('nama_panggilan_anak', nama_panggilan_anak);
             formData.append('jenis_kelamin', jenis_kelamin);
             formData.append('pendidikan_id', pendidikan_id);
@@ -700,6 +702,14 @@
                         } else {
                             $("#ketersediaan").removeClass('is-invalid');
                             $(".error-ketersediaan").html('');
+                        }
+                        if (response.error.info_modul) {
+                            $("#info_modul").addClass('is-invalid');
+                            $(".error-info-modul").html(response.error.info_modul);
+                            $("#error-modal").modal('show');
+                        } else {
+                            $("#info_modul").removeClass('is-invalid');
+                            $(".error-info-modul").html('');
                         }
                         if (response.error.nama_panggilan_anak) {
                             $("#nama_panggilan_anak").addClass('is-invalid');
