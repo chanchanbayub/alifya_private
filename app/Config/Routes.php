@@ -455,6 +455,10 @@ $routes->group('auth', static function ($routes) {
 $routes->group('mitra_pengajar', static function ($routes) {
     $routes->get('dashboard', 'Mitra\DashboardController::index');
 
+    $routes->get('rekap_apr', 'Mitra\RekapAPRController::index');
+    $routes->post('rekap_apr/cek_penilaian', 'Mitra\RekapAPRController::cek_penilaian');
+    $routes->get('rekap_apr/rincian', 'Mitra\RekapAPRController::rincian');
+
     $routes->post('klaim_media_belajar/update', 'Mitra\KlaimMediaPesertaController::update');
 
     $routes->get('materi_belajar', 'Mitra\MateriBelajarController::index');

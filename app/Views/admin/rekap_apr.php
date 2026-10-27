@@ -36,6 +36,12 @@
                                     <div class="invalid-feedback error-bulan">
                                     </div>
                                 </div>
+                                <!-- <div class="col-md-6">
+                                    <label for="bulan_sebelumnya" class="form-label">Pilih Bulan Sebelumnya:</label>
+                                    <input type="month" name="bulan_sebelumnya" id="bulan_sebelumnya" class="form-control">
+                                    <div class="invalid-feedback error-bulan-sebelumnya">
+                                    </div>
+                                </div> -->
 
                                 <div class="col-md-6">
                                     <button class="btn btn-outline-primary search" id="cek_data" type="submit"> <i class="bi bi-search"></i> Cek Penilaian</button>
@@ -128,6 +134,7 @@
         $("#cek_penilaian").submit(function(e) {
             e.preventDefault();
             let bulan = $("#bulan").val();
+            // let bulan_sebelumnya = $("#bulan_sebelumnya").val();
 
             $.ajax({
                 url: '/admin/rekap_performance/cek_penilaian',
@@ -135,6 +142,7 @@
                 dataType: 'JSON',
                 data: {
                     bulan: bulan,
+                    // bulan_sebelumnya: bulan_sebelumnya,
                 },
                 beforeSend: function() {
                     $('.search').html("<span class='spinner-border spinner-border-sm' role='harga' aria-hidden='true'></span>Loading...");
@@ -151,13 +159,13 @@
                             $("#bulan").removeClass('is-invalid');
                             $(".error-bulan").html('');
                         }
-                        if (response.error.bulan_sebelumnya) {
-                            $("#bulan_sebelumnya").addClass('is-invalid');
-                            $(".error-bulan-sebelumnya").html(response.error.bulan_sebelumnya);
-                        } else {
-                            $("#bulan_sebelumnya").removeClass('is-invalid');
-                            $(".error-bulan-sebelumnya").html('');
-                        }
+                        // if (response.error.bulan_sebelumnya) {
+                        //     $("#bulan_sebelumnya").addClass('is-invalid');
+                        //     $(".error-bulan-sebelumnya").html(response.error.bulan_sebelumnya);
+                        // } else {
+                        //     $("#bulan_sebelumnya").removeClass('is-invalid');
+                        //     $(".error-bulan-sebelumnya").html('');
+                        // }
 
                     } else {
                         let no = 1;
@@ -251,11 +259,11 @@
                 if (response.rincian_progres_anak.length >= 1) {
                     response.rincian_progres_anak.forEach(function(e) {
                         rincian_progres += `<tr>
-                                    <td align="center" style="text-transform:capitalize">${number++}</td>
+                                    <td align="left" style="text-transform:capitalize">${number++}</td>
                                     <td align="left"   style="text-transform:capitalize">${e.nama_lengkap_anak}</td>
-                                    <td align="center" style="text-transform:capitalize">${e.keterangan}</td>
-                                    <td align="center" style="text-transform:capitalize">Skala ${e.nilai}</td>
-                                    <td align="center" style="text-transform:capitalize">${e.bobot}%</td>
+                                    <td align="left" style="text-transform:capitalize">${e.keterangan}</td>
+                                    <td align="left" style="text-transform:capitalize">Skala ${e.nilai}</td>
+                                    <td align="left" style="text-transform:capitalize">${e.bobot}%</td>
                                 </tr>`;
                     });
                     $("#rincian_progress").html(rincian_progres);

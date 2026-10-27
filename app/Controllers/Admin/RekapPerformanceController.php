@@ -69,11 +69,11 @@ class RekapPerformanceController extends BaseController
                     ]
                 ],
 
-
             ])) {
                 $alert = [
                     'error' => [
                         'bulan' => $this->validation->getError('bulan'),
+                        'bulan_sebelumnya' => $this->validation->getError('bulan_sebelumnya'),
                     ]
                 ];
             } else {
@@ -90,16 +90,13 @@ class RekapPerformanceController extends BaseController
                 $inputan_bulan = intval($data_bulan[1]);
                 $inputan_tahun = intval($data_bulan[0]);
 
+                // Bulan Sekarang
                 $kuisioner = $this->kuisionerModel->getRekapKuisionerPerbulan($inputan_bulan, $inputan_tahun);
-
-
                 $data_kuisioner = [];
 
                 foreach ($kuisioner as $kuisioner) {
 
-                    // Kreativitas
                     $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitasNonPembimbing($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
-
 
                     $bobot_kategori = $this->katagoriAprModel->where(["id" => $kuisioner->kategori_apr_id])->first();
                     $bobot_kategori_kreativitas = $this->katagoriAprModel->where(["id" => $kuisioner_kreativitas->kategori_apr_id])->first();
@@ -117,38 +114,20 @@ class RekapPerformanceController extends BaseController
 
                     $bobot_kehadiran =  $this->katagoriAprModel->where(["id" => 4])->first();
 
-                    // $jumlah_kehadiran = $this->presensiModel->getPresensiPerMitra($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
-
-                    // $jumlah_paket_belajar = $this->kelompokBelajarModel->getPesertaDidikWhereMitraPengajarSumPaketBelajar($kuisioner->mitra_pengajar_id);
-
-                    // if (count($jumlah_kehadiran) > 0) {
-                    //     $presensi_ideal = number_format(intval(count($jumlah_kehadiran)) / intval($jumlah_paket_belajar->total_paket_belajar) * 100);
-                    // } else {
-                    //     $presensi_ideal = 0;
-                    // }
-
                     foreach ($perhitungan_kehadiran as $jumlah_perhitungan) {
                         if ($kuisioner->kehadiran >= $jumlah_perhitungan->nilai_awal && $kuisioner->kehadiran <= $jumlah_perhitungan->nilai_akhir) {
                             $kehadiran_jumlah = intval($bobot_kehadiran["bobot_nilai_apr"]) * intval($jumlah_perhitungan->bobot) / 100;
                         };
                     }
 
-                    // Progress Siswa
                     $rata_rata_progres = $this->kuisionerProgressAnakModel->getRataRataData($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
-                    // dd($rata_rata_progres->nama_lengkap);
 
-
-                    // if ($rata_rata_progres->total_bobot == null) {
-                    //     $rata_rata_progres->total_bobot = 0;
-                    // }
 
                     $jumlah_data_progress = count($this->kuisionerProgressAnakModel->getJumlah($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun));
 
-                    // dd($jumlah_data_progress);
 
                     $progres_anak = intval($rata_rata_progres->total_bobot) / intval($jumlah_data_progress);
                     $bobot_progres_anak = $this->katagoriAprModel->where(["id" => 5])->first();
-
 
                     $nilai_progress_anak = ceil(intval($bobot_progres_anak["bobot_nilai_apr"]) * intval($progres_anak) / 100);
 
@@ -185,16 +164,15 @@ class RekapPerformanceController extends BaseController
 
                 // // Urutkan array berdasarkan kolom umur
                 array_multisort($final_score, SORT_DESC, $data_kuisioner);
-
                 // print_r($data);
 
                 $alert = [
                     'inputan_bulan' => $inputan_bulan,
                     'inputan_tahun' => $inputan_tahun,
                     'data_kuisioner' => $data_kuisioner,
-                    'kuisioner' => $kuisioner,
-                    'kreativitas' => $kuisioner_kreativitas,
-                    'nilai_administrasi' => $kuisioner_administrasi,
+                    // 'kuisioner' => $kuisioner,
+                    // 'kreativitas' => $kuisioner_kreativitas,
+                    // 'nilai_administrasi' => $kuisioner_administrasi,
                     // 'perhitungan_murid' => $perhitungan_murid
                 ];
             }

@@ -49,6 +49,21 @@
              </ul>
          </li>
 
+         <li class="nav-heading">Alifya Performance Rangking</li>
+
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#apr-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-award"></i><span>Rekap APR</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="apr-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/mitra_pengajar/rekap_apr">
+                         <i class="bi bi-circle"></i><span>Rekap APR</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+
 
          <li class="nav-heading">ALIFYA HOME LEARNING</li>
 
