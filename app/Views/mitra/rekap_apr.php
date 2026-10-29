@@ -62,12 +62,13 @@
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Progress Anak (30%)</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Final Score</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Predikat</th>
+                                        <th scope="col" style="text-transform: capitalize; text-align:center">Month On Month</th>
                                         <th scope="col" style="text-transform: capitalize; text-align:center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table_penilaian">
                                     <tr>
-                                        <td colspan="10" style="text-transform: capitalize; text-align:center">Tidak Ada Data</td>
+                                        <td colspan="11" style="text-transform: capitalize; text-align:center">Tidak Ada Data</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -165,6 +166,7 @@
                                 <td align="center" style="text-transform:uppercase">${response.progres_anak}%</td>
                                 <td align="center" style="text-transform:uppercase;font-weight: bold;">${response.final_score}%</td>
                                 <td align="center" style="text-transform:uppercase;font-weight: bold;">${response.nilai_data}</td>
+                                <td align="center" style="text-transform:uppercase;font-weight: bold;">${response.keterangan}</td>
                                 <td align="center"><button type="button" id="button_rincian" class="btn btn-outline-secondary btn-sm" data-id="${response.id}" data-bulan="${response.inputan_bulan}" data-tahun="${response.inputan_tahun}" data-bs-toggle="modal" data-bs-target="#rincian">rincian</button></td>
                                 </tr>`;
 
