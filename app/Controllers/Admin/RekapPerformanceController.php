@@ -90,12 +90,67 @@ class RekapPerformanceController extends BaseController
                 $inputan_bulan = intval($data_bulan[1]);
                 $inputan_tahun = intval($data_bulan[0]);
 
+                $tanggal_sebelumnya = new \DateTime(
+                    sprintf('%04d-%02d-01', $inputan_tahun, $inputan_bulan)
+                );
+
+                $tanggal_sebelumnya->modify('-1 month');
+
+                $bulan_sebelumnya = (int) $tanggal_sebelumnya->format('m');
+                $tahun_sebelumnya = (int) $tanggal_sebelumnya->format('Y');
+
+
                 // Bulan Sekarang
                 $kuisioner = $this->kuisionerModel->getRekapKuisionerPerbulan($inputan_bulan, $inputan_tahun);
                 $data_kuisioner = [];
 
                 foreach ($kuisioner as $kuisioner) {
 
+                    $kuisioner_sebelumnya = $this->kuisionerModel->getRekapKuisionerPerbulanMitra($kuisioner->mitra_pengajar_id, $bulan_sebelumnya, $tahun_sebelumnya);
+
+                    if ($kuisioner_sebelumnya != null) {
+                        $kuisioner_kreativitas_sebelumnya = $this->kuisionerKreativitasModel->getKuisionerKreativitasNonPembimbing($kuisioner_sebelumnya->mitra_pengajar_id, $kuisioner_sebelumnya->bulan, $kuisioner_sebelumnya->tahun);
+
+                        $bobot_kategori_sebelumnya = $this->katagoriAprModel->where(["id" => $kuisioner_sebelumnya->kategori_apr_id])->first();
+                        $bobot_kategori_kreativitas_sebelumnya = $this->katagoriAprModel->where(["id" => $kuisioner_kreativitas_sebelumnya->kategori_apr_id])->first();
+
+                        $kuisioner_administrasi_sebelumnya = intval($bobot_kategori_sebelumnya["bobot_nilai_apr"]) * intval($kuisioner_sebelumnya->administrasi) / 100;
+                        $nilai_kuisioner_kreativitas_sebelumnya = intval($bobot_kategori_kreativitas_sebelumnya["bobot_nilai_apr"]) * intval($kuisioner_kreativitas_sebelumnya->kreativitas) / 100;
+
+                        $bobot_jumlah_anak_sebelumnya =  $this->katagoriAprModel->where(["id" => 1])->first();
+
+                        foreach ($perhitungan_murid as $jumlah_sebelumnya) {
+                            if ($kuisioner_sebelumnya->jumlah_murid_aktif >= $jumlah_sebelumnya->nilai_awal && $kuisioner_sebelumnya->jumlah_murid_aktif <= $jumlah_sebelumnya->nilai_akhir) {
+                                $kuisioner_jumlah_murid_sebelumnya = intval($bobot_jumlah_anak_sebelumnya["bobot_nilai_apr"]) * intval($jumlah_sebelumnya->bobot) / 100;
+                            };
+                        }
+
+                        $bobot_kehadiran_sebelumnya =  $this->katagoriAprModel->where(["id" => 4])->first();
+
+                        foreach ($perhitungan_kehadiran as $jumlah_perhitungan_sebelumnya) {
+                            if ($kuisioner_sebelumnya >= $jumlah_perhitungan_sebelumnya->nilai_awal && $kuisioner_sebelumnya <= $jumlah_perhitungan_sebelumnya->nilai_akhir) {
+                                $kehadiran_jumlah_sebelumnya = intval($bobot_kehadiran_sebelumnya["bobot_nilai_apr"]) * intval($jumlah_perhitungan_sebelumnya->bobot) / 100;
+                            };
+                        }
+
+                        $rata_rata_progres_sebelumnya = $this->kuisionerProgressAnakModel->getRataRataData($kuisioner_sebelumnya->mitra_pengajar_id, $kuisioner_sebelumnya->bulan, $kuisioner_sebelumnya->tahun);
+
+
+                        $jumlah_data_progress_sebelumnya = count($this->kuisionerProgressAnakModel->getJumlah($kuisioner_sebelumnya->mitra_pengajar_id, $kuisioner_sebelumnya->bulan, $kuisioner_sebelumnya->tahun));
+
+
+                        $progres_anak_sebelumnya = intval($rata_rata_progres_sebelumnya->total_bobot) / intval($jumlah_data_progress_sebelumnya);
+                        $bobot_progres_anak_sebelumnya = $this->katagoriAprModel->where(["id" => 5])->first();
+
+                        $nilai_progress_anak_sebelumnya = ceil(intval($bobot_progres_anak_sebelumnya["bobot_nilai_apr"]) * intval($progres_anak_sebelumnya) / 100);
+
+                        $final_score_sebelumnya = intval($kuisioner_jumlah_murid_sebelumnya) + intval($kuisioner_administrasi_sebelumnya) + intval($nilai_kuisioner_kreativitas_sebelumnya) + intval($kehadiran_jumlah_sebelumnya) + intval($nilai_progress_anak_sebelumnya);
+                    } else {
+                        $final_score_sebelumnya = 0;
+                    }
+
+
+                    // Kuisioner Bulan Berjalan
                     $kuisioner_kreativitas = $this->kuisionerKreativitasModel->getKuisionerKreativitasNonPembimbing($kuisioner->mitra_pengajar_id, $kuisioner->bulan, $kuisioner->tahun);
 
                     $bobot_kategori = $this->katagoriAprModel->where(["id" => $kuisioner->kategori_apr_id])->first();
@@ -142,6 +197,12 @@ class RekapPerformanceController extends BaseController
                         };
                     }
 
+                    if ($final_score < $final_score_sebelumnya) {
+                        $keterangan = 'Menurun';
+                    } else {
+                        $keterangan = 'Naik';
+                    }
+
                     $data_kuisioner[] = [
                         'id' => $kuisioner->id,
                         // 'pembimbing_data' => $pembimbing_data->nama_lengkap,
@@ -154,6 +215,8 @@ class RekapPerformanceController extends BaseController
                         'kehadiran' => $kehadiran_jumlah,
                         'progres_anak' => $nilai_progress_anak,
                         'final_score' => $final_score,
+                        'final_score_sebelumnya' => $final_score_sebelumnya,
+                        'keterangan' => $keterangan,
                         'nilai_data' => $nilai
 
                     ];
