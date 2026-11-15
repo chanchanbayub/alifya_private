@@ -53,7 +53,7 @@ application/logs/*
 Icon
 
 .env
-public/
+# public/
 # Thumbnails
 ._*
 
@@ -96,6 +96,7 @@ Temporary Items
 # Ignore all local history of files
 .history
 .ionide
+.DS_Store
 
 
 
