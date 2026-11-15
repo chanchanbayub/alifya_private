@@ -53,7 +53,7 @@ application/logs/*
 Icon
 
 .env
-# public/
+public/
 # Thumbnails
 ._*
 
