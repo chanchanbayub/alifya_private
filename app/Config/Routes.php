@@ -447,6 +447,8 @@ $routes->get('export_excel_peserta_didik/', 'Excel\ExcelController::invoice_pese
 $routes->get('export_invoice_mitra_ahl/', 'Excel\ExcelController::export_invoice_mitra_ahl');
 $routes->get('export_invoice_peserta_ahl/', 'Excel\ExcelController::export_invoice_peserta_ahl');
 
+$routes->get('export_excel_data_peserta/', 'Excel\ExcelController::data_peserta');
+
 $routes->group('auth', static function ($routes) {
 
     $routes->get('login', 'Auth\LoginController::index');

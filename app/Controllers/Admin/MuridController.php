@@ -47,6 +47,8 @@ class MuridController extends BaseController
             'paket_belajar' => $this->paketBelajarModel->getPaketBelajar(),
         ];
 
+        // dd($this->statusMuridModel->getStatusMurid());
+
         return view('admin/murid_v', $data);
     }
 

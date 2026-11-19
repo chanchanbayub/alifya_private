@@ -8,6 +8,7 @@ use App\Models\Admin\KelompokBelajarModel;
 use App\Models\Admin\KelompokModel;
 use App\Models\Admin\KlaimLainLainMitraModel;
 use App\Models\Admin\KlaimMediaPesertaModel;
+use App\Models\Admin\MuridModel;
 use App\Models\Admin\PresensiModel;
 use App\Models\Ahl\LainLainPesertaAHLModel;
 use App\Models\Ahl\MitraPengajarAhlModel;
@@ -28,6 +29,7 @@ class ExcelController extends BaseController
     protected $upahMitraModel;
     protected $pesertaDidikAhlModel;
     protected $lainLainPesertaAhlModel;
+    protected $muridModel;
 
     public function __construct()
     {
@@ -42,6 +44,7 @@ class ExcelController extends BaseController
         $this->upahMitraModel = new UpahMitraModel();
         $this->pesertaDidikAhlModel = new PesertaDidikAhlModel();
         $this->lainLainPesertaAhlModel = new LainLainPesertaAHLModel();
+        $this->muridModel = new MuridModel();
     }
 
     public function invoice_mitra()
@@ -410,5 +413,25 @@ class ExcelController extends BaseController
             'total' => $this->pesertaDidikAhlModel->getTotalInvoice(),
         ];
         return view('excel/export_excel_peserta_ahl', $data);
+    }
+
+    public function data_peserta()
+    {
+        helper(['format']);
+
+        $status_murid = $this->request->getVar('status_id');
+
+        if ($status_murid != "10") {
+            $peserta_didik = $this->muridModel->getMuridWithStatus($status_murid);
+            // dd($peserta_didik);
+        } else {
+            $peserta_didik = $this->muridModel->getDataMurid();
+        }
+
+        $data = [
+            'peserta_didik' => $peserta_didik,
+
+        ];
+        return view('excel/export_excel_data_peserta_ap', $data);
     }
 }

@@ -19,6 +19,34 @@
         <div class="col-lg-12">
             <div class="row">
 
+                <div class="col-md-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Export Data Anak Excel </h5>
+                            <!-- Browser Default Validation -->
+                            <form class="row g-3 text-capitalize" action="/export_excel_data_peserta/">
+                                <?= csrf_field(); ?>
+                                <div class="col-md-12">
+                                    <label for="status_id" class="form-label">Pilih Status :</label>
+                                    <select name="status_id" class="form-select" id="status_id" required>
+                                        <option value="">--Silahkan Pilih--</option>
+                                        <?php foreach ($status_murid as $status_murid) : ?>
+                                            <option value="<?= $status_murid->id ?>"><?= $status_murid->status_murid ?></option>
+                                        <?php endforeach; ?>
+                                        <option value="10">Semua Data</option>
+                                    </select>
+                                    <div class="invalid-feedback error-status-table">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-outline-primary btn-block type=" submit"> <i class="bi bi-files"></i> Export</button>
+                                </div>
+                            </form>
+                            <!-- End Browser Default Validation -->
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Recent Sales -->
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
@@ -256,9 +284,7 @@
                         <label for="status_murid_id" class="col-form-label">Status Murid :</label>
                         <select name="status_murid_id" id="status_murid_id" class="form-select">
                             <option value="">--Silahkan Pilih-- </option>
-                            <?php foreach ($status_murid as $status_murid) : ?>
-                                <option value="<?= $status_murid->id ?>"><?= $status_murid->status_murid ?></option>
-                            <?php endforeach; ?>
+
                         </select>
                         <div class="invalid-feedback error-status-murid">
                         </div>
