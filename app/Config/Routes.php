@@ -352,6 +352,8 @@ $routes->group('admin', static function ($routes) {
     $routes->post('peserta_ahl/insert', 'Ahl\PesertaDidikAhlController::insert');
     $routes->get('peserta_ahl/edit', 'Ahl\PesertaDidikAhlController::edit');
     $routes->post('peserta_ahl/update', 'Ahl\PesertaDidikAhlController::update');
+    $routes->get('peserta_ahl/ulang_tahun_murid', 'Ahl\PesertaDidikAhlController::ulang_tahun');
+    $routes->post('peserta_ahl/data_ulang_tahun_murid', 'Ahl\PesertaDidikAhlController::data_ulang_tahun_murid');
     $routes->post('peserta_ahl/delete', 'Ahl\PesertaDidikAhlController::delete');
 
     // price_list

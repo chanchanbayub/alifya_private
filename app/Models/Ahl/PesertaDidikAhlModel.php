@@ -124,4 +124,25 @@ class PesertaDidikAhlModel extends Model
             ->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc')
             ->get()->getResultObject();
     }
+
+    public function getDataUltahMurid()
+    {
+        return $this->table($this->table)
+            ->select("peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.tanggal_lahir_anak, peserta_didik_ahl_table.nomor_whatsapp_orang_tua, peserta_didik_ahl_table.usersname_instagram, peserta_didik_ahl_table.status_peserta_id, status_murid_table.status_murid")
+            ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id')
+            ->where(["peserta_didik_ahl_table.status_peserta_id" => 1])
+            ->orderBy('MONTH(peserta_didik_ahl_table.tanggal_lahir_anak) asc')
+            ->get()->getResultObject();
+    }
+
+    public function getDataPesertaWithBulanUltah($bulan)
+    {
+        return $this->table($this->table)
+            ->select("peserta_didik_ahl_table.id, peserta_didik_ahl_table.nama_lengkap_anak, peserta_didik_ahl_table.tanggal_lahir_anak, peserta_didik_ahl_table.nomor_whatsapp_orang_tua, peserta_didik_ahl_table.usersname_instagram, peserta_didik_ahl_table.status_peserta_id, status_murid_table.status_murid")
+            ->join('status_murid_table', 'status_murid_table.id = peserta_didik_ahl_table.status_peserta_id')
+            ->where(["peserta_didik_ahl_table.status_peserta_id" => 1])
+            ->where("MONTH(peserta_didik_ahl_table.tanggal_lahir_anak)", $bulan)
+            ->orderBy('peserta_didik_ahl_table.nama_lengkap_anak asc')
+            ->get()->getResultObject();
+    }
 }

@@ -254,6 +254,11 @@
                      </a>
                  </li>
                  <li>
+                     <a href="/admin/peserta_ahl/ulang_tahun_murid">
+                         <i class="bi bi-circle"></i><span>Ulang Tahun Peserta AHL</span>
+                     </a>
+                 </li>
+                 <li>
                      <a href="/admin/lain_lain_peserta_ahl">
                          <i class="bi bi-circle"></i><span>Lain-Lain Peserta AHL</span>
                      </a>

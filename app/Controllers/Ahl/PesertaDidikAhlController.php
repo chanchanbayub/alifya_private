@@ -738,4 +738,43 @@ class PesertaDidikAhlController extends BaseController
             return json_encode($alert);
         }
     }
+
+    public function ulang_tahun()
+    {
+        helper(['format']);
+        $tahun = date('Y');
+        $bulan = date('m');
+
+
+        $data_murid_ultah = $this->pesertaDidikAhlModel->getDataUltahMurid();
+        $data_ultah_bulan_ini = $this->pesertaDidikAhlModel->getDataPesertaWithBulanUltah($bulan);
+
+        $data = [
+            'title' => 'Ulang Tahun Peserta Didik Ahl',
+            'status_murid' => $this->statusMuridModel->getStatusMurid(),
+            'data_murid_ultah' => $data_murid_ultah,
+            'data_ultah_bulan_ini' => $data_ultah_bulan_ini,
+            'tahun' => $tahun,
+            'bulan' => $bulan
+        ];
+
+        return view('ahl/ultah_peserta_ahl_v', $data);
+    }
+
+    public function data_ulang_tahun_murid()
+    {
+        if ($this->request->isAJAX()) {
+
+            $bulan = $this->request->getVar('bulan');
+
+            $data_ultah = $this->pesertaDidikAhlModel->getDataPesertaWithBulanUltah($bulan);
+
+            $data = [
+                'data_ultah' => $data_ultah,
+                'tahun' => date('Y')
+            ];
+
+            return json_encode($data);
+        }
+    }
 }
