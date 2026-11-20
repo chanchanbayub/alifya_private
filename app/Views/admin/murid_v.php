@@ -33,7 +33,6 @@
                                         <?php foreach ($status_murid as $status_murid) : ?>
                                             <option value="<?= $status_murid->id ?>"><?= $status_murid->status_murid ?></option>
                                         <?php endforeach; ?>
-                                        <option value="10">Semua Data</option>
                                     </select>
                                     <div class="invalid-feedback error-status-table">
                                     </div>
