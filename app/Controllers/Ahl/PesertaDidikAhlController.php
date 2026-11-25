@@ -57,8 +57,12 @@ class PesertaDidikAhlController extends BaseController
                     </button>
                     
                     <button class="btn btn-sm btn-outline-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="' .  $row->id . '" type="button">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>';
+                        <i class="bi bi-trash"></i>
+                    </button>
+                    
+                   <a href="/admin/peserta_ahl/export/' .  $row->id . '" class="btn btn-sm btn-outline-primary" target="_blank" >
+                                                    <i class="bi bi-files"></i>
+                                                </a>';
                 })
                 ->add('lihat_profil', function ($row) {
                     return '<a href="/admin/peserta_ahl/getProfil/' .  $row->id . '" class="btn btn-sm btn-outline-primary" target="_blank" >
@@ -75,7 +79,7 @@ class PesertaDidikAhlController extends BaseController
     public function getProfil($id)
     {
         if ($id == null) {
-            dd($id);
+            // dd($id);
             return redirect()->to('/admin/data_murid');
         }
 

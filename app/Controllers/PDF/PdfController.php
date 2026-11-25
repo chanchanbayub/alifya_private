@@ -550,4 +550,58 @@ class PdfController extends BaseController
             $this->mpdf->output('Invoice-' . $pengajar->nama_lengkap  . '.pdf', 'I');
         }
     }
+
+    public function export_biodata_ahl($peserta_didik_id)
+    {
+
+        $this->mpdf = new \Mpdf\Mpdf(
+            [
+                'format' => 'A4',
+                'orientation' => 'P',
+                'margin_left' => 17,
+                'margin_right' => 17,
+                'margin_top' => 18,
+                'margin_bottom' => 20
+            ]
+        );
+
+        $this->mpdf->showImageErrors = true;
+
+        helper(['format']);
+
+        $biodata_peserta = $this->pesertaDidikAhlModel->getProfil($peserta_didik_id);
+
+        $tanggal_bergabung = bulan_indo($biodata_peserta->tanggal_bergabung);
+
+        $hari_ini = date_create();
+        $tanggal_lahir = date_create($biodata_peserta->tanggal_lahir_anak);
+
+        $usia = date_diff($hari_ini, $tanggal_lahir);
+
+        $foto = $biodata_peserta->foto_anak;
+
+        $path_foto = 'foto_profil_anak_ahl/' . $foto;
+
+        if (file_exists($path_foto)) {
+            $foto_peserta = $path_foto;
+        } else {
+            $foto_peserta = 'assets/img/foto_kosong.jpg';
+        }
+
+
+
+        $data = [
+            'biodata_peserta' => $biodata_peserta,
+            'tgl_bergabung' => $tanggal_bergabung,
+            'usia' => $usia,
+            'foto_peserta' => $foto_peserta
+        ];
+
+
+        $html = view('pdf/biodata_anak_pdf', $data);
+        $this->mpdf->WriteHTML($html);
+
+        $this->response->setHeader('Content-Type', 'application/pdf');;
+        $this->mpdf->output('Biodata.pdf', 'I');
+    }
 }
