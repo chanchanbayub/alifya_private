@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <title>Kop Surat Alifya Home Learning</title>
+  <title>Cover Rapot Alifya Home Learning</title>
 
   <style>
     body {
@@ -254,7 +254,7 @@
 
         <p class="kontak">
           Instagram: @alifya.learning |
-          Telp. +62xxxxxxxxxx
+          Telp. +6282261179817
         </p>
 
       </td>
