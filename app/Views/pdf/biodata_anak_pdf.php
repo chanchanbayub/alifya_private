@@ -187,7 +187,7 @@
 
     .foto-siswa {
       width: 130px;
-      height: 160px;
+      height: 130px;
       object-fit: cover;
 
     }
