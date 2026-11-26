@@ -28,6 +28,7 @@ class PresensiController extends BaseController
         $this->kelompokBelajarModel = new KelompokBelajarModel();
         $this->muridModel = new MuridModel();
         $this->validation = \Config\Services::validation();
+        helper(['format']);
     }
 
     public function index()
@@ -292,5 +293,58 @@ class PresensiController extends BaseController
         }
 
         return json_encode($alert);
+    }
+
+    public function presensi_bulanan()
+    {
+        $kelompokPengajar = $this->kelompokModel->getKelompokPengajar();
+
+        helper(['format']);
+
+        // $tanggal_hari = date('Y/m/d');
+
+        // $presensi_bulanan = $this->presensiModel->getDataPresensiPerhari($tanggal_hari);
+        // dd($presensi_bulanan);
+
+
+        $hari_ini = tanggal_indonesia(date('Y-m-d'));
+
+        // $absensi = $this->absensiModel->getAbsensiPerhari($tanggal_hari);
+
+        $data = [
+            'title' => 'Presensi bulanan',
+            // 'presensi' => $presensi_bulanan,
+            // 'mitra_pengajar' => $kelompokPengajar,
+        ];
+
+        return view('mitra/presensi_bulanan_v', $data);
+    }
+
+    public function getPresensiPerbulan()
+    {
+        if ($this->request->isAJAX()) {
+
+
+            $mitra_pengajar_id = session()->get('mitra_pengajar_id');
+
+            $tahun = $this->request->getVar('tahun');
+
+            $bulan = explode("-", $tahun);
+
+            $presensi = $this->presensiModel->getPresensiPerMitra($mitra_pengajar_id, $bulan["1"], $bulan["0"]);
+
+            helper(['format']);
+
+
+            $jumlah_presensi = count($presensi);
+
+            $data = [
+                'presensi' => $presensi,
+                'jumlah_presensi' => $jumlah_presensi,
+                'bulan' => $bulan["1"]
+            ];
+
+            return json_encode($data);
+        }
     }
 }

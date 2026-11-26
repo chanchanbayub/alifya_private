@@ -502,6 +502,9 @@ $routes->group('mitra_pengajar', static function ($routes) {
     $routes->post('presensi/delete', 'Mitra\PresensiController::delete');
     $routes->get('presensi/getPesertaDidik', 'Mitra\PresensiController::getPesertaDidik');
 
+    $routes->get('presensi_bulanan', 'Mitra\PresensiController::presensi_bulanan');
+    $routes->get('presensi/getPresensiPerbulan', 'Mitra\PresensiController::getPresensiPerbulan');
+
     $routes->get('absensi_ahl', 'Mitra\AbsensiAHLController::index');
     $routes->post('absensi_ahl/insert', 'Mitra\AbsensiAHLController::insert');
     $routes->get('absensi_ahl/edit', 'Mitra\AbsensiAHLController::edit');
