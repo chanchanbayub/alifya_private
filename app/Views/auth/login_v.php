@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/assets/img/logo.png" rel="icon">
-    <link href="/assets/logo.png" rel="apple-touch-icon">
+    <link href="/assets/img/logo_baru.png" rel="icon">
+    <link href="/assets/logo_baru.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
