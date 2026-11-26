@@ -434,4 +434,20 @@ class ExcelController extends BaseController
         ];
         return view('excel/export_excel_data_peserta_ap', $data);
     }
+
+    public function data_peserta_ahl()
+    {
+        helper(['format']);
+
+        $status_murid = $this->request->getVar('status_id');
+
+        $peserta_didik = $this->pesertaDidikAhlModel->getStatusPeserta($status_murid);
+        // dd($peserta_didik);
+
+        $data = [
+            'peserta_didik' => $peserta_didik,
+
+        ];
+        return view('excel/export_excel_data_peserta_ahl', $data);
+    }
 }

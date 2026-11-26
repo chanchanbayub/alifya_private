@@ -38,7 +38,8 @@ class PesertaDidikAhlController extends BaseController
             'program_ahl' => $this->programAhlModel->getProgramAHL(),
             'pendidikan' => $this->tingkatPendidikanModel->getPendidikan(),
             'price_list' => $this->priceListModel->getPriceList(),
-            'status_murid' => $this->statusMuridModel->getStatusMurid()
+            'status_murid' => $this->statusMuridModel->getStatusMurid(),
+            'status_data' => $this->statusMuridModel->getStatusMurid()
         ];
 
         return view('ahl/peserta_ahl_v', $data);

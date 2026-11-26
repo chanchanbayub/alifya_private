@@ -450,6 +450,7 @@ $routes->get('export_invoice_mitra_ahl/', 'Excel\ExcelController::export_invoice
 $routes->get('export_invoice_peserta_ahl/', 'Excel\ExcelController::export_invoice_peserta_ahl');
 
 $routes->get('export_excel_data_peserta/', 'Excel\ExcelController::data_peserta');
+$routes->get('export_excel_data_peserta_ahl/', 'Excel\ExcelController::data_peserta_ahl');
 
 $routes->group('auth', static function ($routes) {
 
